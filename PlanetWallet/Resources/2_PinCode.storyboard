@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TTs-8X-dJK">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pin Code Registration Controller-->
+        <scene sceneID="lxX-gG-7ia">
+            <objects>
+                <viewController storyboardIdentifier="PinCodeRegistrationController" id="TTs-8X-dJK" customClass="PinCodeRegistrationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z48-bd-Ssy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOh-dE-ZMn">
+                                <rect key="frame" x="161" y="437.5" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hOh-dE-ZMn" firstAttribute="centerX" secondItem="Z48-bd-Ssy" secondAttribute="centerX" id="ExS-zY-SAA"/>
+                            <constraint firstItem="hOh-dE-ZMn" firstAttribute="centerY" secondItem="Z48-bd-Ssy" secondAttribute="centerY" id="xNy-bv-die"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zMS-BO-URX"/>
+                    </view>
+                    <connections>
+                        <segue destination="8Iy-fZ-BRG" kind="show" identifier="pincoderegistration_to_pincodecertification" animates="NO" id="Clq-6k-gta"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODH-lg-iqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-313.04347826086956" y="134.59821428571428"/>
+        </scene>
+        <!--Pin Code Certification Controller-->
+        <scene sceneID="tSi-bF-h1V">
+            <objects>
+                <viewController storyboardIdentifier="PinCodeCertificationController" id="8Iy-fZ-BRG" customClass="PinCodeCertificationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KS5-Yq-oka">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="certification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1z-AO-ggM">
+                                <rect key="frame" x="161" y="437.5" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X1z-AO-ggM" firstAttribute="centerX" secondItem="KS5-Yq-oka" secondAttribute="centerX" id="9K8-1o-aWA"/>
+                            <constraint firstItem="X1z-AO-ggM" firstAttribute="centerY" secondItem="KS5-Yq-oka" secondAttribute="centerY" id="BnG-wF-622"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dhH-kU-7wc"/>
+                    </view>
+                    <connections>
+                        <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_walletadd" id="WKf-tH-rxL"/>
+                        <segue destination="4dR-O6-8zh" kind="show" id="JDt-4c-Y7h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0UT-ZS-r2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="592.75362318840587" y="131.91964285714286"/>
+        </scene>
+        <!--WalletAddController-->
+        <scene sceneID="Yhf-dt-1Pc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="WalletAddController" id="Fx2-3Q-ztL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dn1-V9-yQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="132"/>
+        </scene>
+        <!--MainController-->
+        <scene sceneID="to7-F9-ND8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="4_Main" referencedIdentifier="MainController" id="4dR-O6-8zh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vjb-0h-4hG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1344" y="219"/>
+        </scene>
+    </scenes>
+</document>

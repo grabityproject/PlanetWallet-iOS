@@ -8,20 +8,76 @@
 
 /* Begin PBXBuildFile section */
 		044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54622793D3F00FD7E5E /* AppDelegate.swift */; };
-		044BC54922793D3F00FD7E5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54822793D3F00FD7E5E /* ViewController.swift */; };
-		044BC54C22793D3F00FD7E5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54A22793D3F00FD7E5E /* Main.storyboard */; };
+		044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54822793D3F00FD7E5E /* SplashController.swift */; };
+		044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */; };
 		044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54D22793D4000FD7E5E /* Assets.xcassets */; };
 		044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */; };
+		044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */; };
+		044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56722793F8800FD7E5E /* 4_Main.storyboard */; };
+		044BC56A22793FA100FD7E5E /* 3_Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56922793FA100FD7E5E /* 3_Wallet.storyboard */; };
+		044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56B22793FC400FD7E5E /* 5_Token.storyboard */; };
+		044BC56E22793FD900FD7E5E /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56D22793FD900FD7E5E /* 7_Settings.storyboard */; };
+		044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC570227943A400FD7E5E /* 6_Transfer.storyboard */; };
+		044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */; };
+		044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */; };
+		044BC577227943F400FD7E5E /* WalletAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC576227943F400FD7E5E /* WalletAddController.swift */; };
+		044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */; };
+		044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57A2279441F00FD7E5E /* WalletImportController.swift */; };
+		044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57C2279443800FD7E5E /* MnemonicImportController.swift */; };
+		044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57E2279444B00FD7E5E /* JSONImportController.swift */; };
+		044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */; };
+		044BC5832279446E00FD7E5E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5822279446E00FD7E5E /* MainController.swift */; };
+		044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5842279447A00FD7E5E /* TokenAddController.swift */; };
+		044BC5872279448D00FD7E5E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5862279448D00FD7E5E /* SettingController.swift */; };
+		044BC58A227944A400FD7E5E /* TokenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC589227944A400FD7E5E /* TokenListView.swift */; };
+		044BC58C227944B000FD7E5E /* CustomTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC58B227944B000FD7E5E /* CustomTokenView.swift */; };
+		044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC58D22794C4400FD7E5E /* AppConstant.swift */; };
+		044BC59022794ED200FD7E5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC58F22794ED200FD7E5E /* Utils.swift */; };
+		044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59122794EFC00FD7E5E /* Extension + Color.swift */; };
+		044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5932279704900FD7E5E /* Extension + UIView.swift */; };
+		044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5952279705C00FD7E5E /* Extension + String.swift */; };
+		044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5972279707800FD7E5E /* Extension + Array.swift */; };
+		044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC599227970A000FD7E5E /* Extension + Data.swift */; };
+		044BC59C2279A18B00FD7E5E /* TransferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59B2279A18B00FD7E5E /* TransferController.swift */; };
+		044BC59E2279A2E800FD7E5E /* PList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59D2279A2E800FD7E5E /* PList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		044BC54322793D3F00FD7E5E /* PlanetWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC54622793D3F00FD7E5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		044BC54822793D3F00FD7E5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		044BC54B22793D3F00FD7E5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		044BC54822793D3F00FD7E5E /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
+		044BC54B22793D3F00FD7E5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/1_Splash.storyboard; sourceTree = "<group>"; };
 		044BC54D22793D4000FD7E5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		044BC55022793D4000FD7E5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		044BC55222793D4000FD7E5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
+		044BC56722793F8800FD7E5E /* 4_Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 4_Main.storyboard; sourceTree = "<group>"; };
+		044BC56922793FA100FD7E5E /* 3_Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 3_Wallet.storyboard; sourceTree = "<group>"; };
+		044BC56B22793FC400FD7E5E /* 5_Token.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
+		044BC56D22793FD900FD7E5E /* 7_Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
+		044BC570227943A400FD7E5E /* 6_Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
+		044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PinCodeRegistrationController.swift; path = PlanetWallet/Views/PinCodeRegistrationController.swift; sourceTree = SOURCE_ROOT; };
+		044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCertificationController.swift; sourceTree = "<group>"; };
+		044BC576227943F400FD7E5E /* WalletAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAddController.swift; sourceTree = "<group>"; };
+		044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetGenerateController.swift; sourceTree = "<group>"; };
+		044BC57A2279441F00FD7E5E /* WalletImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportController.swift; sourceTree = "<group>"; };
+		044BC57C2279443800FD7E5E /* MnemonicImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicImportController.swift; sourceTree = "<group>"; };
+		044BC57E2279444B00FD7E5E /* JSONImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImportController.swift; sourceTree = "<group>"; };
+		044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyImportController.swift; sourceTree = "<group>"; };
+		044BC5822279446E00FD7E5E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		044BC5842279447A00FD7E5E /* TokenAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddController.swift; sourceTree = "<group>"; };
+		044BC5862279448D00FD7E5E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		044BC589227944A400FD7E5E /* TokenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListView.swift; sourceTree = "<group>"; };
+		044BC58B227944B000FD7E5E /* CustomTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTokenView.swift; sourceTree = "<group>"; };
+		044BC58D22794C4400FD7E5E /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		044BC58F22794ED200FD7E5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		044BC59122794EFC00FD7E5E /* Extension + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Color.swift"; sourceTree = "<group>"; };
+		044BC5932279704900FD7E5E /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
+		044BC5952279705C00FD7E5E /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
+		044BC5972279707800FD7E5E /* Extension + Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Array.swift"; sourceTree = "<group>"; };
+		044BC599227970A000FD7E5E /* Extension + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Data.swift"; sourceTree = "<group>"; };
+		044BC59B2279A18B00FD7E5E /* TransferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferController.swift; sourceTree = "<group>"; };
+		044BC59D2279A2E800FD7E5E /* PList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +110,162 @@
 		044BC54522793D3F00FD7E5E /* PlanetWallet */ = {
 			isa = PBXGroup;
 			children = (
-				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
-				044BC54822793D3F00FD7E5E /* ViewController.swift */,
-				044BC54A22793D3F00FD7E5E /* Main.storyboard */,
-				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
-				044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */,
-				044BC55222793D4000FD7E5E /* Info.plist */,
+				044BC55E22793DAC00FD7E5E /* Widgets */,
+				044BC55D22793DA600FD7E5E /* Views */,
+				044BC55C22793DA000FD7E5E /* Utils */,
+				044BC55B22793D9900FD7E5E /* Supporting Files */,
+				044BC55A22793D9100FD7E5E /* Resources */,
+				044BC55922793D8800FD7E5E /* MiniFrameWork */,
+				044BC55822793D8100FD7E5E /* Common */,
 			);
 			path = PlanetWallet;
+			sourceTree = "<group>";
+		};
+		044BC55822793D8100FD7E5E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				044BC58D22794C4400FD7E5E /* AppConstant.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		044BC55922793D8800FD7E5E /* MiniFrameWork */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MiniFrameWork;
+			sourceTree = "<group>";
+		};
+		044BC55A22793D9100FD7E5E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
+				044BC55222793D4000FD7E5E /* Info.plist */,
+				044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */,
+				044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */,
+				044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */,
+				044BC56922793FA100FD7E5E /* 3_Wallet.storyboard */,
+				044BC56722793F8800FD7E5E /* 4_Main.storyboard */,
+				044BC56B22793FC400FD7E5E /* 5_Token.storyboard */,
+				044BC570227943A400FD7E5E /* 6_Transfer.storyboard */,
+				044BC56D22793FD900FD7E5E /* 7_Settings.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		044BC55B22793D9900FD7E5E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
+				044BC59122794EFC00FD7E5E /* Extension + Color.swift */,
+				044BC5932279704900FD7E5E /* Extension + UIView.swift */,
+				044BC5952279705C00FD7E5E /* Extension + String.swift */,
+				044BC5972279707800FD7E5E /* Extension + Array.swift */,
+				044BC599227970A000FD7E5E /* Extension + Data.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		044BC55C22793DA000FD7E5E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				044BC58F22794ED200FD7E5E /* Utils.swift */,
+				044BC59D2279A2E800FD7E5E /* PList.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		044BC55D22793DA600FD7E5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				044BC55F22793DF700FD7E5E /* 1_Splash */,
+				044BC56022793E0200FD7E5E /* 2_PinCode */,
+				044BC56222793E3400FD7E5E /* 3_Wallet */,
+				044BC56122793E0900FD7E5E /* 4_Main */,
+				044BC56322793E3A00FD7E5E /* 5_Token */,
+				044BC56422793E4C00FD7E5E /* 6_Transfer */,
+				044BC56F2279437000FD7E5E /* 7_Setting */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		044BC55E22793DAC00FD7E5E /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		044BC55F22793DF700FD7E5E /* 1_Splash */ = {
+			isa = PBXGroup;
+			children = (
+				044BC54822793D3F00FD7E5E /* SplashController.swift */,
+			);
+			path = 1_Splash;
+			sourceTree = "<group>";
+		};
+		044BC56022793E0200FD7E5E /* 2_PinCode */ = {
+			isa = PBXGroup;
+			children = (
+				044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */,
+				044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */,
+			);
+			path = 2_PinCode;
+			sourceTree = "<group>";
+		};
+		044BC56122793E0900FD7E5E /* 4_Main */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5822279446E00FD7E5E /* MainController.swift */,
+			);
+			path = 4_Main;
+			sourceTree = "<group>";
+		};
+		044BC56222793E3400FD7E5E /* 3_Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				044BC576227943F400FD7E5E /* WalletAddController.swift */,
+				044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */,
+				044BC57A2279441F00FD7E5E /* WalletImportController.swift */,
+				044BC57C2279443800FD7E5E /* MnemonicImportController.swift */,
+				044BC57E2279444B00FD7E5E /* JSONImportController.swift */,
+				044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */,
+			);
+			path = 3_Wallet;
+			sourceTree = "<group>";
+		};
+		044BC56322793E3A00FD7E5E /* 5_Token */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5882279449100FD7E5E /* Page */,
+				044BC5842279447A00FD7E5E /* TokenAddController.swift */,
+			);
+			path = 5_Token;
+			sourceTree = "<group>";
+		};
+		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				044BC59B2279A18B00FD7E5E /* TransferController.swift */,
+			);
+			path = 6_Transfer;
+			sourceTree = "<group>";
+		};
+		044BC56F2279437000FD7E5E /* 7_Setting */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5862279448D00FD7E5E /* SettingController.swift */,
+			);
+			path = 7_Setting;
+			sourceTree = "<group>";
+		};
+		044BC5882279449100FD7E5E /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				044BC589227944A400FD7E5E /* TokenListView.swift */,
+				044BC58B227944B000FD7E5E /* CustomTokenView.swift */,
+			);
+			path = Page;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +326,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */,
 				044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */,
+				044BC56E22793FD900FD7E5E /* 7_Settings.storyboard in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
-				044BC54C22793D3F00FD7E5E /* Main.storyboard in Resources */,
+				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
+				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
+				044BC56A22793FA100FD7E5E /* 3_Wallet.storyboard in Resources */,
+				044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */,
+				044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,20 +345,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044BC54922793D3F00FD7E5E /* ViewController.swift in Sources */,
+				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
+				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
+				044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */,
+				044BC58C227944B000FD7E5E /* CustomTokenView.swift in Sources */,
+				044BC577227943F400FD7E5E /* WalletAddController.swift in Sources */,
+				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
+				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
+				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
+				044BC59C2279A18B00FD7E5E /* TransferController.swift in Sources */,
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
+				044BC59E2279A2E800FD7E5E /* PList.swift in Sources */,
+				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,
+				044BC59022794ED200FD7E5E /* Utils.swift in Sources */,
+				044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */,
+				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
+				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
+				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
+				044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */,
+				044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */,
+				044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */,
+				044BC58A227944A400FD7E5E /* TokenListView.swift in Sources */,
+				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
+				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
+				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		044BC54A22793D3F00FD7E5E /* Main.storyboard */ = {
+		044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				044BC54B22793D3F00FD7E5E /* Base */,
 			);
-			name = Main.storyboard;
+			name = 1_Splash.storyboard;
 			sourceTree = "<group>";
 		};
 		044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */ = {
@@ -284,7 +516,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52645LAF7U;
-				INFOPLIST_FILE = PlanetWallet/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PlanetWallet/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +535,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52645LAF7U;
-				INFOPLIST_FILE = PlanetWallet/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PlanetWallet/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

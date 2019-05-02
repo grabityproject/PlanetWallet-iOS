@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pBn-Jn-OOA">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Controller-->
+        <scene sceneID="eBN-9D-cxP">
+            <objects>
+                <viewController storyboardIdentifier="MainController" id="pBn-Jn-OOA" customClass="MainController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gpI-PO-C1H">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="m4r-lL-dV8"/>
+                    </view>
+                    <connections>
+                        <segue destination="2Da-Zc-beW" kind="show" identifier="main_to_tokenadd" animates="NO" id="kTb-bG-rs0"/>
+                        <segue destination="jYR-7T-aVN" kind="show" identifier="main_to_transfer" animates="NO" id="ggG-BA-aGA"/>
+                        <segue destination="oky-eY-4iW" kind="show" identifier="main_to_setting" animates="NO" id="JN4-AP-6ud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tem-yv-J6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17" y="125"/>
+        </scene>
+        <!--TokenAddController-->
+        <scene sceneID="n7r-vo-c5t">
+            <objects>
+                <viewControllerPlaceholder storyboardName="5_Token" referencedIdentifier="TokenAddController" id="2Da-Zc-beW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qlk-ng-SlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766" y="-73"/>
+        </scene>
+        <!--TransferController-->
+        <scene sceneID="2ZS-ad-0Ng">
+            <objects>
+                <viewControllerPlaceholder storyboardName="6_Transfer" referencedIdentifier="TransferController" id="jYR-7T-aVN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTf-qs-e6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765" y="125"/>
+        </scene>
+        <!--SettingController-->
+        <scene sceneID="Ttl-Mr-97T">
+            <objects>
+                <viewControllerPlaceholder storyboardName="7_Settings" referencedIdentifier="SettingController" id="oky-eY-4iW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BoW-Px-7dJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766" y="341"/>
+        </scene>
+    </scenes>
+</document>

@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        setNavigationBar()
         return true
     }
 
@@ -42,5 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    private func setNavigationBar() {
+        // set navigation bar transparanct
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().isTranslucent = true
+        
+        // set back button title hidden
+        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
+        
+        let attributes = [NSAttributedString.Key.font:  UIFont(name: "Helvetica-Bold", size: 0.1)!, NSAttributedString.Key.foregroundColor: UIColor.clear]
+        
+        BarButtonItemAppearance.setTitleTextAttributes(attributes, for: .normal)
+        BarButtonItemAppearance.setTitleTextAttributes(attributes, for: .highlighted)
+    }
 }
 
