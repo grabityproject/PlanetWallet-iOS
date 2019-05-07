@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TTs-8X-dJK">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,30 +9,84 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Regular.ttf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Pin Code Registration Controller-->
         <scene sceneID="lxX-gG-7ia">
             <objects>
                 <viewController storyboardIdentifier="PinCodeRegistrationController" id="TTs-8X-dJK" customClass="PinCodeRegistrationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z48-bd-Ssy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOh-dE-ZMn">
-                                <rect key="frame" x="161" y="437.5" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2F-2i-UtN">
+                                <rect key="frame" x="0.0" y="44" width="375" height="362"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpQ-zW-vGd">
+                                        <rect key="frame" x="70" y="128.66666666666666" width="235" height="34"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-oG-T4d">
+                                        <rect key="frame" x="79" y="171.66666666666666" width="217" height="19"/>
+                                        <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
+                                        <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-S7-Cx7" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="100.66666666666669" y="242" width="174" height="12"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="174" id="EE6-7v-Pfc"/>
+                                            <constraint firstAttribute="height" constant="12" id="hOj-58-LnQ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="9jw-S7-Cx7" firstAttribute="top" secondItem="vUa-oG-T4d" secondAttribute="bottom" constant="51.5" id="MRv-X7-Zir"/>
+                                    <constraint firstItem="vUa-oG-T4d" firstAttribute="centerY" secondItem="u2F-2i-UtN" secondAttribute="centerY" id="R4c-ae-FwO"/>
+                                    <constraint firstItem="dpQ-zW-vGd" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="TRP-Fp-kSG"/>
+                                    <constraint firstItem="vUa-oG-T4d" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="dw1-pA-u0t"/>
+                                    <constraint firstItem="9jw-S7-Cx7" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="our-xQ-XAs"/>
+                                    <constraint firstItem="vUa-oG-T4d" firstAttribute="top" secondItem="dpQ-zW-vGd" secondAttribute="bottom" constant="9" id="tM4-Qd-9Lg"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcr-62-DMD" userLabel="CharPad" customClass="CharPad" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="15" y="406" width="345" height="346"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iyy-aY-PXK" userLabel="NumPad" customClass="NumberPad" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="15" y="406" width="345" height="346"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hOh-dE-ZMn" firstAttribute="centerX" secondItem="Z48-bd-Ssy" secondAttribute="centerX" id="ExS-zY-SAA"/>
-                            <constraint firstItem="hOh-dE-ZMn" firstAttribute="centerY" secondItem="Z48-bd-Ssy" secondAttribute="centerY" id="xNy-bv-die"/>
+                            <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="Pcr-62-DMD" secondAttribute="trailing" constant="15" id="2NH-3p-U9e"/>
+                            <constraint firstItem="u2F-2i-UtN" firstAttribute="top" secondItem="zMS-BO-URX" secondAttribute="top" id="3R9-Bv-ugE"/>
+                            <constraint firstItem="u2F-2i-UtN" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" id="3ai-hm-wvY"/>
+                            <constraint firstAttribute="bottom" secondItem="Iyy-aY-PXK" secondAttribute="bottom" constant="60" id="CIK-We-dhz"/>
+                            <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="u2F-2i-UtN" secondAttribute="trailing" id="LlD-pK-Va7"/>
+                            <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="Iyy-aY-PXK" secondAttribute="trailing" constant="15" id="SuK-Le-I8q"/>
+                            <constraint firstItem="Iyy-aY-PXK" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" constant="15" id="UVd-y5-bga"/>
+                            <constraint firstItem="Iyy-aY-PXK" firstAttribute="height" secondItem="Z48-bd-Ssy" secondAttribute="height" multiplier="0.5" constant="-60" id="Ugy-SO-SQL"/>
+                            <constraint firstItem="Pcr-62-DMD" firstAttribute="height" secondItem="Z48-bd-Ssy" secondAttribute="height" multiplier="0.5" constant="-60" id="csJ-IK-Oqw"/>
+                            <constraint firstItem="Pcr-62-DMD" firstAttribute="top" secondItem="u2F-2i-UtN" secondAttribute="bottom" id="iQv-uY-Yeb"/>
+                            <constraint firstItem="Pcr-62-DMD" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" constant="15" id="m0e-ny-oZk"/>
+                            <constraint firstAttribute="bottom" secondItem="Pcr-62-DMD" secondAttribute="bottom" constant="60" id="x7E-xJ-7x1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zMS-BO-URX"/>
                     </view>
                     <connections>
+                        <outlet property="charPad" destination="Pcr-62-DMD" id="mEI-kE-h02"/>
+                        <outlet property="numPad" destination="Iyy-aY-PXK" id="QNG-Yl-OSd"/>
+                        <outlet property="pinView" destination="9jw-S7-Cx7" id="Vva-Ha-Iyi"/>
                         <segue destination="8Iy-fZ-BRG" kind="show" identifier="pincoderegistration_to_pincodecertification" animates="NO" id="Clq-6k-gta"/>
                     </connections>
                 </viewController>
@@ -45,31 +99,80 @@
             <objects>
                 <viewController storyboardIdentifier="PinCodeCertificationController" id="8Iy-fZ-BRG" customClass="PinCodeCertificationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KS5-Yq-oka">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="certification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1z-AO-ggM">
-                                <rect key="frame" x="161" y="437.5" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Txo-JP-Ch6" userLabel="CharPad" customClass="CharPad" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="15" y="406" width="345" height="346"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dE3-Uq-h3Y" userLabel="NumPad" customClass="NumberPad" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="15" y="406" width="345" height="346"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6v-ix-hvp">
+                                <rect key="frame" x="0.0" y="44" width="375" height="362"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-qN-REx">
+                                        <rect key="frame" x="74.666666666666671" y="129.66666666666666" width="225.66666666666663" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP7-nu-37l">
+                                        <rect key="frame" x="79" y="171.66666666666666" width="217" height="19"/>
+                                        <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
+                                        <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-fe-2CY" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="100.66666666666669" y="242" width="174" height="12"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="jKi-ey-Vck"/>
+                                            <constraint firstAttribute="width" constant="174" id="v3g-jG-tSp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wP7-nu-37l" firstAttribute="top" secondItem="QeC-qN-REx" secondAttribute="bottom" constant="9" id="6Du-Yg-hvv"/>
+                                    <constraint firstItem="wP7-nu-37l" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Po-3M-jk6"/>
+                                    <constraint firstItem="wP7-nu-37l" firstAttribute="centerY" secondItem="d6v-ix-hvp" secondAttribute="centerY" id="8Qh-Dn-uqT"/>
+                                    <constraint firstItem="oTs-fe-2CY" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Qs-6p-WIj"/>
+                                    <constraint firstItem="oTs-fe-2CY" firstAttribute="top" secondItem="wP7-nu-37l" secondAttribute="bottom" constant="51.5" id="Tz1-tB-cq0"/>
+                                    <constraint firstItem="QeC-qN-REx" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="WPx-XG-FHP"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="X1z-AO-ggM" firstAttribute="centerX" secondItem="KS5-Yq-oka" secondAttribute="centerX" id="9K8-1o-aWA"/>
-                            <constraint firstItem="X1z-AO-ggM" firstAttribute="centerY" secondItem="KS5-Yq-oka" secondAttribute="centerY" id="BnG-wF-622"/>
+                            <constraint firstItem="Txo-JP-Ch6" firstAttribute="height" secondItem="KS5-Yq-oka" secondAttribute="height" multiplier="0.5" constant="-60" id="8Sa-63-1Q6"/>
+                            <constraint firstItem="d6v-ix-hvp" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" id="8wa-NB-cfd"/>
+                            <constraint firstItem="d6v-ix-hvp" firstAttribute="top" secondItem="dhH-kU-7wc" secondAttribute="top" id="AhD-MW-8sC"/>
+                            <constraint firstItem="dE3-Uq-h3Y" firstAttribute="height" secondItem="KS5-Yq-oka" secondAttribute="height" multiplier="0.5" constant="-60" id="Hqe-5X-7LX"/>
+                            <constraint firstItem="Txo-JP-Ch6" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" constant="15" id="Trv-sl-zTX"/>
+                            <constraint firstItem="dhH-kU-7wc" firstAttribute="trailing" secondItem="Txo-JP-Ch6" secondAttribute="trailing" constant="15" id="ViI-Pb-rZX"/>
+                            <constraint firstItem="dhH-kU-7wc" firstAttribute="trailing" secondItem="dE3-Uq-h3Y" secondAttribute="trailing" constant="15" id="XQC-q3-mzA"/>
+                            <constraint firstAttribute="bottom" secondItem="Txo-JP-Ch6" secondAttribute="bottom" constant="60" id="dbX-4y-tyr"/>
+                            <constraint firstItem="d6v-ix-hvp" firstAttribute="trailing" secondItem="dhH-kU-7wc" secondAttribute="trailing" id="iI0-3j-3Td"/>
+                            <constraint firstItem="dE3-Uq-h3Y" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" constant="15" id="vLQ-LV-bFu"/>
+                            <constraint firstAttribute="bottom" secondItem="dE3-Uq-h3Y" secondAttribute="bottom" constant="60" id="wkX-9T-1NM"/>
+                            <constraint firstItem="Txo-JP-Ch6" firstAttribute="top" secondItem="d6v-ix-hvp" secondAttribute="bottom" id="ztH-bh-Y3b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dhH-kU-7wc"/>
                     </view>
                     <connections>
-                        <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_walletadd" id="WKf-tH-rxL"/>
-                        <segue destination="4dR-O6-8zh" kind="show" id="JDt-4c-Y7h"/>
+                        <outlet property="charPad" destination="Txo-JP-Ch6" id="Qmx-Xx-zza"/>
+                        <outlet property="numPad" destination="dE3-Uq-h3Y" id="q7p-oS-y1g"/>
+                        <outlet property="pinView" destination="oTs-fe-2CY" id="i9J-fb-fKE"/>
+                        <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_walletadd" animates="NO" id="WKf-tH-rxL"/>
+                        <segue destination="4dR-O6-8zh" kind="show" identifier="pincodecertification_to_main" animates="NO" id="JDt-4c-Y7h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UT-ZS-r2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="592.75362318840587" y="131.91964285714286"/>
+            <point key="canvasLocation" x="591" y="134"/>
         </scene>
         <!--WalletAddController-->
         <scene sceneID="Yhf-dt-1Pc">

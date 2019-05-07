@@ -8,23 +8,96 @@
 
 import UIKit
 
-class PinCodeCertificationController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class PinCodeCertificationController: PlanetWalletViewController {
+    
+    private var passwordStr = "" {
+        didSet {
+            pinView.setSelectedColor(passwordStr.count)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBOutlet var pinView: PinView!
+    @IBOutlet var charPad: CharPad!
+    @IBOutlet var numPad: NumberPad!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewInit()
+        setData()
     }
-    */
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewInit() {
+        charPad.delegate = self
+        numPad.delegate = self
+    }
+    
+    override func setData() {
+        
+    }
+    
+    
+    
+    private func handleSuccessSignIn() {
+        //TODO: - navigation
+        //이전 vc에 따라 다음 vc가 정해짐
+        sendAction(segue: Keys.Segue.TO_WALLETADD, userInfo: nil)
+    }
+    
+    private func showNumberPad(_ isNumberPad: Bool) {
+        if isNumberPad {
+            charPad.isHidden = true
+            numPad.isHidden = false
+        }
+        else {
+            charPad.isHidden = false
+            numPad.isHidden = true
+        }
+    }
+    
 }
+
+extension PinCodeCertificationController: NumberPadDelegate {
+    func didTouchedNumberPad(_ num: String) {
+        if num.count == 4 {
+            showNumberPad(false)
+        }
+        
+        passwordStr = num
+    }
+}
+
+extension PinCodeCertificationController: CharPadDelegate {
+    func didTouchedCharPad(_ char: String) {
+        guard let savedPassword = UserDefaults.standard.value(forKey: "pincode") as? String else { return }
+        
+        self.passwordStr = passwordStr + char
+        if passwordStr == savedPassword {    // Success to sign in
+            handleSuccessSignIn()
+        }
+        else {
+            self.passwordStr = ""
+            self.numPad.resetPassword()
+            self.charPad.resetPassword()
+            
+            showNumberPad(true)
+        }
+    }
+    
+    func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
+        if isBack {
+            pinView.setSelectedColor(3)
+            numPad.deleteLastPW()
+            showNumberPad(true)
+        }
+    }
+    
+    
+}
+
+

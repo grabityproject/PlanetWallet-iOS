@@ -40,6 +40,25 @@
 		044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC599227970A000FD7E5E /* Extension + Data.swift */; };
 		044BC59C2279A18B00FD7E5E /* TransferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59B2279A18B00FD7E5E /* TransferController.swift */; };
 		044BC59E2279A2E800FD7E5E /* PList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59D2279A2E800FD7E5E /* PList.swift */; };
+		044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */; };
+		044BC5B4227AD39200FD7E5E /* WorkSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B0227AD39200FD7E5E /* WorkSans-SemiBold.ttf */; };
+		044BC5B5227AD39200FD7E5E /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B1227AD39200FD7E5E /* WorkSans-Medium.ttf */; };
+		044BC5B6227AD39200FD7E5E /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B2227AD39200FD7E5E /* WorkSans-Regular.ttf */; };
+		044BC5B7227AD39200FD7E5E /* WorkSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B3227AD39200FD7E5E /* WorkSans-Bold.ttf */; };
+		044BC5BC227AE2C700FD7E5E /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5B8227AE2C600FD7E5E /* PinView.swift */; };
+		044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B9227AE2C600FD7E5E /* PinView.xib */; };
+		044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5C0227AF7BC00FD7E5E /* NumberPad.xib */; };
+		044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5C2227B000700FD7E5E /* NumberPad.swift */; };
+		044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5C4227BCDD500FD7E5E /* CharPad.xib */; };
+		044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5C6227BCDE300FD7E5E /* CharPad.swift */; };
+		04ED330B227C23DD0092075E /* RoundBorderBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED330A227C23DD0092075E /* RoundBorderBtn.swift */; };
+		04ED330D227C25BC0092075E /* Roundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED330C227C25BC0092075E /* Roundable.swift */; };
+		04ED330F227C25D60092075E /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED330E227C25D60092075E /* Borderable.swift */; };
+		04ED3313227C26AF0092075E /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3312227C26AE0092075E /* RoundBtn.swift */; };
+		04ED3315227C29B40092075E /* PlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3314227C29B40092075E /* PlanetView.swift */; };
+		04ED3318227C356C0092075E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3317227C356C0092075E /* GradientView.swift */; };
+		04ED331A227C45350092075E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3319227C45350092075E /* RoundView.swift */; };
+		04ED331C228113F30092075E /* RoundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED331B228113F30092075E /* RoundBorderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +97,25 @@
 		044BC599227970A000FD7E5E /* Extension + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Data.swift"; sourceTree = "<group>"; };
 		044BC59B2279A18B00FD7E5E /* TransferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferController.swift; sourceTree = "<group>"; };
 		044BC59D2279A2E800FD7E5E /* PList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PList.swift; sourceTree = "<group>"; };
+		044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetWalletViewController.swift; sourceTree = "<group>"; };
+		044BC5B0227AD39200FD7E5E /* WorkSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		044BC5B1227AD39200FD7E5E /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
+		044BC5B2227AD39200FD7E5E /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
+		044BC5B3227AD39200FD7E5E /* WorkSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Bold.ttf"; sourceTree = "<group>"; };
+		044BC5B8227AE2C600FD7E5E /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		044BC5B9227AE2C600FD7E5E /* PinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
+		044BC5C0227AF7BC00FD7E5E /* NumberPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberPad.xib; sourceTree = "<group>"; };
+		044BC5C2227B000700FD7E5E /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		044BC5C4227BCDD500FD7E5E /* CharPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharPad.xib; sourceTree = "<group>"; };
+		044BC5C6227BCDE300FD7E5E /* CharPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharPad.swift; sourceTree = "<group>"; };
+		04ED330A227C23DD0092075E /* RoundBorderBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBorderBtn.swift; sourceTree = "<group>"; };
+		04ED330C227C25BC0092075E /* Roundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roundable.swift; sourceTree = "<group>"; };
+		04ED330E227C25D60092075E /* Borderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Borderable.swift; sourceTree = "<group>"; };
+		04ED3312227C26AE0092075E /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
+		04ED3314227C29B40092075E /* PlanetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetView.swift; sourceTree = "<group>"; };
+		04ED3317227C356C0092075E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		04ED3319227C45350092075E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
+		04ED331B228113F30092075E /* RoundBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBorderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +162,8 @@
 		044BC55822793D8100FD7E5E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				044BC58D22794C4400FD7E5E /* AppConstant.swift */,
+				044BC5A2227A9FE700FD7E5E /* components */,
+				044BC5A1227A9FD100FD7E5E /* commonset */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -132,6 +171,7 @@
 		044BC55922793D8800FD7E5E /* MiniFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				04ED3314227C29B40092075E /* PlanetView.swift */,
 			);
 			path = MiniFrameWork;
 			sourceTree = "<group>";
@@ -139,6 +179,7 @@
 		044BC55A22793D9100FD7E5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
 				044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */,
@@ -192,6 +233,9 @@
 		044BC55E22793DAC00FD7E5E /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				04ED3316227C35580092075E /* View */,
+				04ED3311227C269D0092075E /* Button */,
+				04ED3310227C26930092075E /* Protocol */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -207,6 +251,7 @@
 		044BC56022793E0200FD7E5E /* 2_PinCode */ = {
 			isa = PBXGroup;
 			children = (
+				044BC5C8227BD2AF00FD7E5E /* Cells */,
 				044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */,
 				044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */,
 			);
@@ -266,6 +311,74 @@
 				044BC58B227944B000FD7E5E /* CustomTokenView.swift */,
 			);
 			path = Page;
+			sourceTree = "<group>";
+		};
+		044BC5A1227A9FD100FD7E5E /* commonset */ = {
+			isa = PBXGroup;
+			children = (
+				044BC58D22794C4400FD7E5E /* AppConstant.swift */,
+			);
+			path = commonset;
+			sourceTree = "<group>";
+		};
+		044BC5A2227A9FE700FD7E5E /* components */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		044BC5AF227AD38800FD7E5E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5B3227AD39200FD7E5E /* WorkSans-Bold.ttf */,
+				044BC5B1227AD39200FD7E5E /* WorkSans-Medium.ttf */,
+				044BC5B2227AD39200FD7E5E /* WorkSans-Regular.ttf */,
+				044BC5B0227AD39200FD7E5E /* WorkSans-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		044BC5C8227BD2AF00FD7E5E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5B8227AE2C600FD7E5E /* PinView.swift */,
+				044BC5B9227AE2C600FD7E5E /* PinView.xib */,
+				044BC5C0227AF7BC00FD7E5E /* NumberPad.xib */,
+				044BC5C2227B000700FD7E5E /* NumberPad.swift */,
+				044BC5C4227BCDD500FD7E5E /* CharPad.xib */,
+				044BC5C6227BCDE300FD7E5E /* CharPad.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		04ED3310227C26930092075E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				04ED330C227C25BC0092075E /* Roundable.swift */,
+				04ED330E227C25D60092075E /* Borderable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		04ED3311227C269D0092075E /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				04ED330A227C23DD0092075E /* RoundBorderBtn.swift */,
+				04ED3312227C26AE0092075E /* RoundBtn.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		04ED3316227C35580092075E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04ED3317227C356C0092075E /* GradientView.swift */,
+				04ED3319227C45350092075E /* RoundView.swift */,
+				04ED331B228113F30092075E /* RoundBorderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,11 +441,18 @@
 			files = (
 				044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */,
 				044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */,
+				044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */,
 				044BC56E22793FD900FD7E5E /* 7_Settings.storyboard in Resources */,
+				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
+				044BC5B6227AD39200FD7E5E /* WorkSans-Regular.ttf in Resources */,
+				044BC5B5227AD39200FD7E5E /* WorkSans-Medium.ttf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
 				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
+				044BC5B4227AD39200FD7E5E /* WorkSans-SemiBold.ttf in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
 				044BC56A22793FA100FD7E5E /* 3_Wallet.storyboard in Resources */,
+				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
+				044BC5B7227AD39200FD7E5E /* WorkSans-Bold.ttf in Resources */,
 				044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */,
 				044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */,
 			);
@@ -346,13 +466,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
+				04ED331C228113F30092075E /* RoundBorderView.swift in Sources */,
+				044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */,
 				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
 				044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */,
 				044BC58C227944B000FD7E5E /* CustomTokenView.swift in Sources */,
 				044BC577227943F400FD7E5E /* WalletAddController.swift in Sources */,
+				04ED330F227C25D60092075E /* Borderable.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
+				044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */,
+				04ED3315227C29B40092075E /* PlanetView.swift in Sources */,
 				044BC59C2279A18B00FD7E5E /* TransferController.swift in Sources */,
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
 				044BC59E2279A2E800FD7E5E /* PList.swift in Sources */,
@@ -361,14 +486,21 @@
 				044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */,
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
+				04ED330B227C23DD0092075E /* RoundBorderBtn.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
+				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
+				04ED3313227C26AF0092075E /* RoundBtn.swift in Sources */,
+				044BC5BC227AE2C700FD7E5E /* PinView.swift in Sources */,
 				044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */,
 				044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */,
 				044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */,
+				04ED330D227C25BC0092075E /* Roundable.swift in Sources */,
+				04ED331A227C45350092075E /* RoundView.swift in Sources */,
 				044BC58A227944A400FD7E5E /* TokenListView.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,
+				044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

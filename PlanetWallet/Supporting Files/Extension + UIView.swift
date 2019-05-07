@@ -15,7 +15,6 @@ extension UIView {
     var WIDTH: CGFloat { return self.frame.size.width }
     var HEIGHT: CGFloat { return self.frame.size.height }
     
-    
     func dropShadow(radius: CGFloat, cornerRadius: CGFloat = 5.0) {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
@@ -39,13 +38,14 @@ extension UIView {
         let colorBottom = lastColor.cgColor
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.colors = [colorBottom, colorTop]
         gradientLayer.frame = self.bounds
         
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
         
         
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
 }

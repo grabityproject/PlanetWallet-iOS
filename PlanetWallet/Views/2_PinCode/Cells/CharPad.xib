@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Regular.ttf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharPad" customModule="PlanetWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="iN0-l3-epB" id="giy-Xa-pEI"/>
+                <outletCollection property="charBtnList" destination="ThJ-pP-DcT" collectionClass="NSMutableArray" id="ScG-We-qxV"/>
+                <outletCollection property="charBtnList" destination="cSG-ob-lOb" collectionClass="NSMutableArray" id="a81-sH-fg7"/>
+                <outletCollection property="charBtnList" destination="cXh-WF-WsP" collectionClass="NSMutableArray" id="V36-9E-qEf"/>
+                <outletCollection property="charBtnList" destination="lsL-eo-Fha" collectionClass="NSMutableArray" id="ooO-nm-6T5"/>
+                <outletCollection property="charBtnList" destination="LPg-9n-p0Z" collectionClass="NSMutableArray" id="68K-c7-nzd"/>
+                <outletCollection property="charBtnList" destination="IZP-uV-M4K" collectionClass="NSMutableArray" id="yPs-GZ-YYW"/>
+                <outletCollection property="charBtnList" destination="J7N-Hw-KRD" collectionClass="NSMutableArray" id="wOe-pI-8R0"/>
+                <outletCollection property="charBtnList" destination="9Bo-e0-cQF" collectionClass="NSMutableArray" id="phd-jL-sx5"/>
+                <outletCollection property="charBtnList" destination="o6j-rT-s42" collectionClass="NSMutableArray" id="5UB-vN-CBh"/>
+                <outletCollection property="charBtnList" destination="scB-l6-Zoe" collectionClass="NSMutableArray" id="h9N-Ny-HSp"/>
+                <outletCollection property="charBtnList" destination="eSR-BL-9gi" collectionClass="NSMutableArray" id="UMx-uI-uPs"/>
+                <outletCollection property="charBtnList" destination="gDR-gc-T3V" collectionClass="NSMutableArray" id="YK9-Qx-kd6"/>
+                <outletCollection property="charBtnList" destination="7D5-kU-Xcm" collectionClass="NSMutableArray" id="Q6m-F5-Hwi"/>
+                <outletCollection property="charBtnList" destination="QtA-pH-8v1" collectionClass="NSMutableArray" id="ip6-NI-yOl"/>
+                <outletCollection property="charBtnList" destination="QEE-sw-Fmt" collectionClass="NSMutableArray" id="KO7-zt-ilN"/>
+                <outletCollection property="charBtnList" destination="axJ-jx-qYy" collectionClass="NSMutableArray" id="rCX-Pa-25m"/>
+                <outletCollection property="charBtnList" destination="gFd-lR-SZB" collectionClass="NSMutableArray" id="NYf-QP-dTv"/>
+                <outletCollection property="charBtnList" destination="2C4-41-Va0" collectionClass="NSMutableArray" id="9L8-zg-xzH"/>
+                <outletCollection property="charBtnList" destination="GR4-0W-N3F" collectionClass="NSMutableArray" id="CPu-kW-44u"/>
+                <outletCollection property="charBtnList" destination="vXb-aH-Gkx" collectionClass="NSMutableArray" id="uSM-S2-aok"/>
+                <outletCollection property="charBtnList" destination="Hhe-D2-1t2" collectionClass="NSMutableArray" id="OHO-n3-tvo"/>
+                <outletCollection property="charBtnList" destination="t2q-1d-owX" collectionClass="NSMutableArray" id="Thq-HI-YMq"/>
+                <outletCollection property="charBtnList" destination="1fa-dE-ULi" collectionClass="NSMutableArray" id="KQ3-fa-lFt"/>
+                <outletCollection property="charBtnList" destination="O6i-cS-mTe" collectionClass="NSMutableArray" id="N7k-ub-Iei"/>
+                <outletCollection property="charBtnList" destination="4CA-y5-sB6" collectionClass="NSMutableArray" id="ciF-hs-6qG"/>
+                <outletCollection property="charBtnList" destination="b6L-VN-v7V" collectionClass="NSMutableArray" id="aCF-eh-8XY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="780" height="561"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ttL-GP-l8j">
+                    <rect key="frame" x="0.0" y="0.0" width="780" height="561"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cli-8Z-9Aa">
+                            <rect key="frame" x="0.0" y="0.0" width="780" height="140.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThJ-pP-DcT">
+                                    <rect key="frame" x="0.0" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="5Wo-IG-yNL"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSG-ob-lOb">
+                                    <rect key="frame" x="111.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="LXp-wX-RQY"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXh-WF-WsP">
+                                    <rect key="frame" x="223" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="E7k-L0-PaP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsL-eo-Fha">
+                                    <rect key="frame" x="334.5" y="0.0" width="111" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="hma-OU-h5Q"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-9n-p0Z">
+                                    <rect key="frame" x="445.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="4Zp-rA-TYm"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZP-uV-M4K">
+                                    <rect key="frame" x="557" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="Gj8-zh-gnw"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-Hw-KRD">
+                                    <rect key="frame" x="668.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="5Tu-Es-0z5"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8Dx-ub-yMa">
+                            <rect key="frame" x="0.0" y="140.5" width="780" height="140"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bo-e0-cQF">
+                                    <rect key="frame" x="0.0" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="rmh-cj-Xd6"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6j-rT-s42">
+                                    <rect key="frame" x="111.5" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="HDA-l2-00u"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scB-l6-Zoe">
+                                    <rect key="frame" x="223" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="nEQ-BI-7VP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSR-BL-9gi">
+                                    <rect key="frame" x="334.5" y="0.0" width="111" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="bTE-wz-pFe"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDR-gc-T3V">
+                                    <rect key="frame" x="445.5" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="L8X-PH-Rdv"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D5-kU-Xcm">
+                                    <rect key="frame" x="557" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="bna-58-baC"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtA-pH-8v1">
+                                    <rect key="frame" x="668.5" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="nxd-De-HrF"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XEc-ML-BOn">
+                            <rect key="frame" x="0.0" y="280.5" width="780" height="140.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEE-sw-Fmt">
+                                    <rect key="frame" x="0.0" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="3Ka-dS-x1a"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-jx-qYy">
+                                    <rect key="frame" x="111.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="TW0-Wx-dnz"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFd-lR-SZB">
+                                    <rect key="frame" x="223" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="oPb-XD-A3D"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2C4-41-Va0">
+                                    <rect key="frame" x="334.5" y="0.0" width="111" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="wDj-DP-1Gm"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GR4-0W-N3F">
+                                    <rect key="frame" x="445.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="04h-CG-zQh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXb-aH-Gkx">
+                                    <rect key="frame" x="557" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="rL6-rr-4P1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhe-D2-1t2">
+                                    <rect key="frame" x="668.5" y="0.0" width="111.5" height="140.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="y7d-TO-yPe"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QL5-lh-IOl">
+                            <rect key="frame" x="0.0" y="421" width="780" height="140"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CP-4o-abh">
+                                    <rect key="frame" x="0.0" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2q-1d-owX">
+                                    <rect key="frame" x="111.5" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="kA7-aZ-Ulr"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-dE-ULi">
+                                    <rect key="frame" x="223" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="ifB-qP-KFT"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6i-cS-mTe">
+                                    <rect key="frame" x="334.5" y="0.0" width="111" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="oI0-6n-fCL"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-y5-sB6">
+                                    <rect key="frame" x="445.5" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="7wX-Go-I9K"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-VN-v7V">
+                                    <rect key="frame" x="557" y="0.0" width="111.5" height="140"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="24"/>
+                                    <state key="normal" title="A">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="xrs-Lf-32U"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-Eo-8TS">
+                                    <rect key="frame" x="668.5" y="0.0" width="111.5" height="140"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6du-xG-Uud">
+                                            <rect key="frame" x="36" y="50" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Spu-pC-ddh"/>
+                                                <constraint firstAttribute="width" constant="40" id="Up1-Ex-0re"/>
+                                            </constraints>
+                                            <state key="normal" image="icKeyboardClear">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="didTouchedDeleteBtnOnCharPad:" destination="-1" eventType="touchUpInside" id="gpj-le-IB8"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="6du-xG-Uud" firstAttribute="centerX" secondItem="ahd-Eo-8TS" secondAttribute="centerX" id="Qbg-oN-ZyU"/>
+                                        <constraint firstItem="6du-xG-Uud" firstAttribute="centerY" secondItem="ahd-Eo-8TS" secondAttribute="centerY" id="rlI-bS-KCS"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ttL-GP-l8j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AxC-Xx-vQi"/>
+                <constraint firstItem="ttL-GP-l8j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Daa-NA-dBJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ttL-GP-l8j" secondAttribute="trailing" id="dVb-4o-j4c"/>
+                <constraint firstAttribute="bottom" secondItem="ttL-GP-l8j" secondAttribute="bottom" id="l2k-d5-agC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="300" y="-77.34375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icKeyboardClear" width="60" height="60"/>
+    </resources>
+</document>
