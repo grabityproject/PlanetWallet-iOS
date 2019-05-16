@@ -123,8 +123,22 @@ struct Utils {
         return formatter.string(from: Date())
     }
     
+    //MARK: - Font
+    func planetFont(style: FontStyle, size: CGFloat) -> UIFont? {
+        
+        return UIFont(name: style.rawValue, size: size)
+    }
+    
 }
 
+extension Utils {
+    enum FontStyle: String {
+        case BOLD = "WorkSans-Bold"
+        case SEMIBOLD = "WorkSans-SemiBold"
+        case MEDIUM = "WorkSans-Medium"
+        case REGULAR = "WorkSans-Regular"
+    }
+}
 
 extension Utils {
     /*

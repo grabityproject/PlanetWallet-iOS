@@ -10,7 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="WorkSans-Regular.ttf">
+        <array key="WorkSans-Bold.otf">
+            <string>WorkSans-Bold</string>
+        </array>
+        <array key="WorkSans-Regular.otf">
             <string>WorkSans-Regular</string>
         </array>
     </customFonts>
@@ -19,27 +22,37 @@
         <scene sceneID="lxX-gG-7ia">
             <objects>
                 <viewController storyboardIdentifier="PinCodeRegistrationController" id="TTs-8X-dJK" customClass="PinCodeRegistrationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Z48-bd-Ssy">
+                    <view key="view" contentMode="scaleToFill" id="Z48-bd-Ssy" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2F-2i-UtN">
                                 <rect key="frame" x="0.0" y="44" width="375" height="362"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpQ-zW-vGd">
-                                        <rect key="frame" x="70" y="128.66666666666666" width="235" height="34"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpQ-zW-vGd" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="64.666666666666686" y="119.66666666666667" width="246" height="40.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-oG-T4d">
-                                        <rect key="frame" x="79" y="171.66666666666666" width="217" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-oG-T4d" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="79" y="169.33333333333334" width="217" height="23.333333333333343"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-S7-Cx7" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="100.66666666666669" y="242" width="174" height="12"/>
+                                        <rect key="frame" x="100.66666666666669" y="244.33333333333331" width="174" height="12"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="174" id="EE6-7v-Pfc"/>
@@ -47,7 +60,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9jw-S7-Cx7" firstAttribute="top" secondItem="vUa-oG-T4d" secondAttribute="bottom" constant="51.5" id="MRv-X7-Zir"/>
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="centerY" secondItem="u2F-2i-UtN" secondAttribute="centerY" id="R4c-ae-FwO"/>
@@ -82,6 +95,11 @@
                             <constraint firstAttribute="bottom" secondItem="Pcr-62-DMD" secondAttribute="bottom" constant="60" id="x7E-xJ-7x1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zMS-BO-URX"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="charPad" destination="Pcr-62-DMD" id="mEI-kE-h02"/>
@@ -98,7 +116,7 @@
         <scene sceneID="tSi-bF-h1V">
             <objects>
                 <viewController storyboardIdentifier="PinCodeCertificationController" id="8Iy-fZ-BRG" customClass="PinCodeCertificationController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KS5-Yq-oka">
+                    <view key="view" contentMode="scaleToFill" id="KS5-Yq-oka" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -113,20 +131,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6v-ix-hvp">
                                 <rect key="frame" x="0.0" y="44" width="375" height="362"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-qN-REx">
-                                        <rect key="frame" x="74.666666666666671" y="129.66666666666666" width="225.66666666666663" height="33"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="verification code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-qN-REx" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="71.333333333333329" y="119.66666666666667" width="232.33333333333337" height="40.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP7-nu-37l">
-                                        <rect key="frame" x="79" y="171.66666666666666" width="217" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digit + alphabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP7-nu-37l" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="79" y="169.33333333333334" width="217" height="23.333333333333343"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
                                         <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-fe-2CY" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="100.66666666666669" y="242" width="174" height="12"/>
+                                        <rect key="frame" x="100.66666666666669" y="244.33333333333331" width="174" height="12"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="jKi-ey-Vck"/>
@@ -134,7 +152,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="wP7-nu-37l" firstAttribute="top" secondItem="QeC-qN-REx" secondAttribute="bottom" constant="9" id="6Du-Yg-hvv"/>
                                     <constraint firstItem="wP7-nu-37l" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Po-3M-jk6"/>
@@ -164,8 +182,10 @@
                     </view>
                     <connections>
                         <outlet property="charPad" destination="Txo-JP-Ch6" id="Qmx-Xx-zza"/>
+                        <outlet property="detailLb" destination="wP7-nu-37l" id="Zjn-9J-mp7"/>
                         <outlet property="numPad" destination="dE3-Uq-h3Y" id="q7p-oS-y1g"/>
                         <outlet property="pinView" destination="oTs-fe-2CY" id="i9J-fb-fKE"/>
+                        <outlet property="titleLb" destination="QeC-qN-REx" id="8ev-fr-GRs"/>
                         <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_walletadd" animates="NO" id="WKf-tH-rxL"/>
                         <segue destination="4dR-O6-8zh" kind="show" identifier="pincodecertification_to_main" animates="NO" id="JDt-4c-Y7h"/>
                     </connections>
@@ -182,13 +202,13 @@
             </objects>
             <point key="canvasLocation" x="1337" y="132"/>
         </scene>
-        <!--MainController-->
+        <!--mainNavigationController-->
         <scene sceneID="to7-F9-ND8">
             <objects>
-                <viewControllerPlaceholder storyboardName="4_Main" referencedIdentifier="MainController" id="4dR-O6-8zh" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="4_Main" referencedIdentifier="mainNavigationController" id="4dR-O6-8zh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjb-0h-4hG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="219"/>
+            <point key="canvasLocation" x="1362" y="191"/>
         </scene>
     </scenes>
 </document>

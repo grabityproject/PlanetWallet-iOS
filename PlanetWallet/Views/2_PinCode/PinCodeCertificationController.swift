@@ -17,6 +17,9 @@ class PinCodeCertificationController: PlanetWalletViewController {
         }
     }
     
+    @IBOutlet var titleLb: UILabel!
+    @IBOutlet var detailLb: UILabel!
+    
     @IBOutlet var pinView: PinView!
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
@@ -40,8 +43,6 @@ class PinCodeCertificationController: PlanetWalletViewController {
     override func setData() {
         
     }
-    
-    
     
     private func handleSuccessSignIn() {
         //TODO: - navigation
@@ -81,6 +82,11 @@ extension PinCodeCertificationController: CharPadDelegate {
             handleSuccessSignIn()
         }
         else {
+            titleLb.text = "Code incorrect"
+            titleLb.textColor = currentTheme.errorText
+            detailLb.text = "Please check your code"
+            detailLb.textColor = currentTheme.errorText
+            
             self.passwordStr = ""
             self.numPad.resetPassword()
             self.charPad.resetPassword()

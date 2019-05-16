@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +13,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="9of-xR-mHA"/>
-                <outletCollection property="pinList" destination="16o-8U-hpu" collectionClass="NSMutableArray" id="qTI-Yj-9PQ"/>
-                <outletCollection property="pinList" destination="cfH-dv-K5S" collectionClass="NSMutableArray" id="LXQ-5j-aIU"/>
-                <outletCollection property="pinList" destination="Tk4-JB-6vT" collectionClass="NSMutableArray" id="gaQ-0S-iLJ"/>
-                <outletCollection property="pinList" destination="K9f-h4-Wx1" collectionClass="NSMutableArray" id="Dkl-wZ-pqH"/>
-                <outletCollection property="pinList" destination="Xz9-4M-kGn" collectionClass="NSMutableArray" id="CrD-dg-jqz"/>
+                <outletCollection property="roundViewList" destination="16o-8U-hpu" collectionClass="NSMutableArray" id="epe-nC-5cJ"/>
+                <outletCollection property="roundViewList" destination="GJK-NK-NtS" collectionClass="NSMutableArray" id="aAP-Gj-bYK"/>
+                <outletCollection property="roundViewList" destination="y9Q-Bg-lKz" collectionClass="NSMutableArray" id="bqA-x4-ENE"/>
+                <outletCollection property="roundViewList" destination="swV-sD-IMl" collectionClass="NSMutableArray" id="MWZ-8o-78x"/>
+                <outletCollection property="roundViewList" destination="vRy-jI-avp" collectionClass="NSMutableArray" id="R9p-4J-KVk"/>
+                <outletCollection property="pinViewList" destination="5pV-m1-DqD" collectionClass="NSMutableArray" id="8js-0m-rKy"/>
+                <outletCollection property="pinViewList" destination="vGx-W7-474" collectionClass="NSMutableArray" id="gL7-6l-sJj"/>
+                <outletCollection property="pinViewList" destination="ZFh-y2-xs8" collectionClass="NSMutableArray" id="jhw-lB-2HD"/>
+                <outletCollection property="pinViewList" destination="kSl-it-mCF" collectionClass="NSMutableArray" id="NfW-70-rGd"/>
+                <outletCollection property="pinViewList" destination="ZlD-NC-x4t" collectionClass="NSMutableArray" id="FmU-Xu-2dy"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,38 +33,144 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Gpb-6x-Yqz">
                     <rect key="frame" x="0.0" y="0.0" width="174" height="11"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16o-8U-hpu">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16o-8U-hpu" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="12.5" height="11"/>
-                            <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pV-m1-DqD" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="4.5" width="12.5" height="2"/>
+                                    <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="Ie5-FV-CO2"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="5pV-m1-DqD" firstAttribute="leading" secondItem="16o-8U-hpu" secondAttribute="leading" id="dy1-fa-W1E"/>
+                                <constraint firstAttribute="trailing" secondItem="5pV-m1-DqD" secondAttribute="trailing" id="tRx-U8-ip0"/>
+                                <constraint firstItem="5pV-m1-DqD" firstAttribute="centerY" secondItem="16o-8U-hpu" secondAttribute="centerY" id="u1u-qZ-4zQ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfH-dv-K5S">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJK-NK-NtS" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="32.5" y="0.0" width="12" height="11"/>
-                            <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGx-W7-474" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="4.5" width="12" height="2"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="TSf-dx-ECf"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="vGx-W7-474" secondAttribute="trailing" id="glN-yS-LTq"/>
+                                <constraint firstItem="vGx-W7-474" firstAttribute="centerY" secondItem="GJK-NK-NtS" secondAttribute="centerY" id="koB-q9-m2V"/>
+                                <constraint firstItem="vGx-W7-474" firstAttribute="leading" secondItem="GJK-NK-NtS" secondAttribute="leading" id="uhf-p6-MWb"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tk4-JB-6vT">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9Q-Bg-lKz" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="64.5" y="0.0" width="12.5" height="11"/>
-                            <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFh-y2-xs8" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="4.5" width="12.5" height="2"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="Fmh-e7-194"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ZFh-y2-xs8" secondAttribute="trailing" id="QzF-lS-XY1"/>
+                                <constraint firstItem="ZFh-y2-xs8" firstAttribute="leading" secondItem="y9Q-Bg-lKz" secondAttribute="leading" id="d5l-ZU-g79"/>
+                                <constraint firstItem="ZFh-y2-xs8" firstAttribute="centerY" secondItem="y9Q-Bg-lKz" secondAttribute="centerY" id="p2C-gY-TTd"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9f-h4-Wx1">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swV-sD-IMl" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="97" y="0.0" width="12.5" height="11"/>
-                            <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSl-it-mCF" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="4.5" width="12.5" height="2"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="llY-DH-ENF"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="kSl-it-mCF" firstAttribute="centerY" secondItem="swV-sD-IMl" secondAttribute="centerY" id="HJQ-Xo-uiC"/>
+                                <constraint firstItem="kSl-it-mCF" firstAttribute="leading" secondItem="swV-sD-IMl" secondAttribute="leading" id="K2R-s0-dzI"/>
+                                <constraint firstAttribute="trailing" secondItem="kSl-it-mCF" secondAttribute="trailing" id="W2C-T8-mXY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsJ-1Y-cOY">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsJ-1Y-cOY" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="129.5" y="0.0" width="12" height="11"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKH-xH-GSj">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKH-xH-GSj" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="5.5" y="0.0" width="1" height="11"/>
-                                    <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="n11-CZ-4V6"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCG-es-9ro">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCG-es-9ro" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="5" width="12" height="1"/>
-                                    <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="o59-1b-OX0"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
                             </subviews>
                             <constraints>
@@ -70,10 +181,39 @@
                                 <constraint firstItem="lCG-es-9ro" firstAttribute="centerY" secondItem="lsJ-1Y-cOY" secondAttribute="centerY" id="rvg-z0-rlj"/>
                                 <constraint firstAttribute="bottom" secondItem="XKH-xH-GSj" secondAttribute="bottom" id="uKO-j8-Vdu"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xz9-4M-kGn">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRy-jI-avp" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="161.5" y="0.0" width="12.5" height="11"/>
-                            <color key="backgroundColor" red="0.34509803921568627" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZlD-NC-x4t" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="4.5" width="12.5" height="2"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="xLC-eY-81O"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ZlD-NC-x4t" secondAttribute="trailing" id="9E6-2s-KAS"/>
+                                <constraint firstItem="ZlD-NC-x4t" firstAttribute="centerY" secondItem="vRy-jI-avp" secondAttribute="centerY" id="dbt-QC-vCZ"/>
+                                <constraint firstItem="ZlD-NC-x4t" firstAttribute="leading" secondItem="vRy-jI-avp" secondAttribute="leading" id="vET-CC-Osp"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                    <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                 </stackView>

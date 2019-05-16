@@ -8,23 +8,86 @@
 
 import UIKit
 
-class MnemonicImportController: UIViewController {
+class MnemonicImportController: PlanetWalletViewController {
 
+    @IBOutlet var naviBar: NavigationBar!
+    @IBOutlet var pwTextfield: UITextField!
+    @IBOutlet var mnemonicTextView: UITextView!
+    @IBOutlet var errMsgContainerView: UIView!
+    @IBOutlet var invisibleBtn: UIButton!
+    @IBOutlet var continueBtn: PWButton!
+    
+    private var isValidMnemonic = false {
+        didSet {
+            if isValidMnemonic {
+                continueBtn.setEnabled(true, theme: currentTheme)
+                errMsgContainerView.isHidden = true
+            }
+            else {
+                continueBtn.setEnabled(false, theme: currentTheme)
+                errMsgContainerView.isHidden = false
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        viewInit()
+        setData()
+    }
+    
+    override func viewInit() {
+        super.viewInit()
+        
+        naviBar.delegate = self
+        
+        pwTextfield.delegate = self
+        mnemonicTextView.delegate = self
+    }
+    
+    override func setData() {
+        super.setData()
+    }
+    
+    @IBAction func didTouchedInvisible(_ sender: UIButton) {
+        pwTextfield.isSecureTextEntry = !pwTextfield.isSecureTextEntry
+    }
+    
+    private func isValid(mnemonic: String) -> Bool {
+        //TODO: - Logic
+        return false
+    }
+}
+
+
+extension MnemonicImportController: NavigationBarDelegate {
+    func didTouchedBarItem(_ sender: ToolBarButton) {
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+
+extension MnemonicImportController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
+    }
+    
+    // hides text views
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        else {
+            //TODO: - Logic
+            self.isValidMnemonic = true
+        }
+        return true
+    }
+}
+

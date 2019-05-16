@@ -8,46 +8,36 @@
 
 import UIKit
 
-class PlanetGenerateController: UIViewController {
+class PlanetGenerateController: PlanetWalletViewController {
 
-    @IBOutlet var planetViewBgContainer: UIView!
-    @IBOutlet var planetViewContainer: UIView!
-    var planetView: PlanetView?
-    var planetViewBg: PlanetView?
+    @IBOutlet var planetBgView: PlanetView!
+    @IBOutlet var planetView: PlanetView!
+    @IBOutlet var confirmLb: UILabel!
+    @IBOutlet var planetNameLb: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewInit()
+        setData()
+    }
+    
+    override func viewInit() {
+        super.viewInit()
+    }
 
+    @IBAction func didTouchedRefresh(_ sender: UIButton) {
+        //TODO: change planet
+        planetView.data = "Test"
+        planetBgView.data = "Test"
+    }
+    
+    @IBAction func didTouchedSelect(_ sender: UIButton) {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-//        let dimViewBg = GradientView(frame: planetViewBgContainer.bounds)
-//        dimViewBg.startColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-//        dimViewBg.endColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-//        dimViewBg.startLocation = 0
-//        dimViewBg.endLocation = 1
-//        dimViewBg.backgroundColor = .black
-//        dimViewBg.startColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-//        dimViewBg.lastColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-        
-//        planetViewBg = PlanetView(frame: planetViewBgContainer.bounds)
-//        planetViewBgContainer.addSubview(planetViewBg!)
-//        planetViewBgContainer.addSubview(dimViewBg)
-//
-//        planetView = PlanetView(frame: planetViewContainer.bounds)
-//        planetViewContainer.addSubview(planetView!)
+    @IBAction func didTouchedClose(_ sender: UIButton) {
+        self.dismiss(animated: false, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

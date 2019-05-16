@@ -6,11 +6,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="WorkSans-Regular.ttf">
+        <array key="WorkSans-Regular.otf">
             <string>WorkSans-Regular</string>
         </array>
     </customFonts>
@@ -41,7 +42,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xWi-7O-aJv">
                             <rect key="frame" x="0.0" y="0.0" width="390" height="110"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebx-MH-6iu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebx-MH-6iu" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="110"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -51,7 +52,7 @@
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="KBU-rP-swc"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCL-6h-ddj">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCL-6h-ddj" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="110"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
@@ -62,7 +63,7 @@
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="yXc-rQ-XcL"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20o-jz-Vwh">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20o-jz-Vwh" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="260" y="0.0" width="130" height="110"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -77,7 +78,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XgD-Uw-sed">
                             <rect key="frame" x="0.0" y="110" width="390" height="109.5"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jED-X6-dI1">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jED-X6-dI1" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="109.5"/>
                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -87,7 +88,7 @@
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="ywj-dF-nqg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5O-Xf-TmB">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5O-Xf-TmB" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="109.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -97,7 +98,7 @@
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="QbU-ez-kyH"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-Tx-3qd">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-Tx-3qd" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="260" y="0.0" width="130" height="109.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -112,10 +113,10 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-O5-MbZ">
                             <rect key="frame" x="0.0" y="219.5" width="390" height="110"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uM-fc-Dbw">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uM-fc-Dbw" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="110"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojp-sT-EPu">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojp-sT-EPu" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="110"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <state key="normal" title="1">
@@ -134,7 +135,7 @@
                                         <constraint firstItem="ojp-sT-EPu" firstAttribute="top" secondItem="1uM-fc-Dbw" secondAttribute="top" id="qwo-IW-Xs7"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u3-Io-rat">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u3-Io-rat" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="110"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -144,7 +145,7 @@
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="lPx-HZ-tXj"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zi8-E4-a9I">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zi8-E4-a9I" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="260" y="0.0" width="130" height="110"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -165,7 +166,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-KL-Zd5">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-KL-Zd5" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="109.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
@@ -178,13 +179,18 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sj-9J-UHA">
                                     <rect key="frame" x="260" y="0.0" width="130" height="109.5"/>
                                     <subviews>
-                                        <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ih0-4S-wkx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icKeyboardClear" translatesAutoresizingMaskIntoConstraints="NO" id="Mq5-kl-3Av" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                                             <rect key="frame" x="45" y="34.5" width="40" height="40"/>
+                                            <color key="tintColor" name="borderLight"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="GwZ-3G-A8v"/>
-                                                <constraint firstAttribute="width" constant="40" id="p1x-ga-9fI"/>
+                                                <constraint firstAttribute="width" constant="40" id="26A-aO-PQ0"/>
+                                                <constraint firstAttribute="height" constant="40" id="6n1-gR-DTl"/>
                                             </constraints>
-                                            <state key="normal" image="icKeyboardClear">
+                                        </imageView>
+                                        <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ih0-4S-wkx">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="109.5"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
@@ -194,8 +200,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="Ih0-4S-wkx" firstAttribute="centerX" secondItem="4sj-9J-UHA" secondAttribute="centerX" id="7Q1-2P-gzp"/>
-                                        <constraint firstItem="Ih0-4S-wkx" firstAttribute="centerY" secondItem="4sj-9J-UHA" secondAttribute="centerY" id="wKS-2j-Jp6"/>
+                                        <constraint firstItem="Mq5-kl-3Av" firstAttribute="centerX" secondItem="4sj-9J-UHA" secondAttribute="centerX" id="10g-ow-OnU"/>
+                                        <constraint firstItem="Ih0-4S-wkx" firstAttribute="leading" secondItem="4sj-9J-UHA" secondAttribute="leading" id="4L0-Ja-3rc"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ih0-4S-wkx" secondAttribute="bottom" id="X1S-rc-XDR"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ih0-4S-wkx" secondAttribute="trailing" id="YYK-8Z-wFw"/>
+                                        <constraint firstItem="Mq5-kl-3Av" firstAttribute="centerY" secondItem="4sj-9J-UHA" secondAttribute="centerY" id="Zv6-G1-y6Q"/>
+                                        <constraint firstItem="Ih0-4S-wkx" firstAttribute="top" secondItem="4sj-9J-UHA" secondAttribute="top" id="hfr-0Q-bEK"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -203,7 +213,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3J5-hL-edv" secondAttribute="trailing" id="Hqi-gM-0ge"/>
                 <constraint firstAttribute="bottom" secondItem="3J5-hL-edv" secondAttribute="bottom" id="RnV-l0-ELo"/>
@@ -217,5 +227,8 @@
     </objects>
     <resources>
         <image name="icKeyboardClear" width="60" height="60"/>
+        <namedColor name="borderLight">
+            <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

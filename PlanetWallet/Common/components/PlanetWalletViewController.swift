@@ -8,10 +8,7 @@
 
 import UIKit
 
-enum Theme {
-    case DARK
-    case LIGHT
-}
+
 
 class PlanetWalletViewController: UIViewController
 {
@@ -20,15 +17,27 @@ class PlanetWalletViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewInit()
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTheme( )
+        
+        onUpdateTheme(theme: currentTheme)
+//        updateTheme()
     }
     
-    func viewInit() { }
-    func setData() { }
+    func viewInit() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func setData() {
+        
+    }
+    
+    
     
     //MARK: - Segue
     func sendAction( segue:String , userInfo : Dictionary<String, Any>? ){
@@ -45,15 +54,46 @@ class PlanetWalletViewController: UIViewController
     }
     
     //MARK: - Theme
-    func updateTheme( ) {
-        if( beforeTheme != nil && beforeTheme != THEME ){
-            onUpdateTheme( theme: THEME )
+    var currentTheme: Theme {
+        return ThemeManager.currentTheme()
+    }
+    
+    var settingTheme: Theme {
+        switch currentTheme {
+        case .DARK:     return .LIGHT
+        case .LIGHT:    return .DARK
         }
-        beforeTheme = THEME;
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        switch currentTheme {
+        case .DARK:     return .lightContent
+        case .LIGHT:    return .default
+        }
+    }
+    
+    func updateTheme() {
+        if( beforeTheme != nil && beforeTheme != currentTheme ){
+            onUpdateTheme( theme: currentTheme )
+        }
+        beforeTheme = currentTheme;
     }
     
     func onUpdateTheme( theme : Theme ) {
+        findAllViews(view: self.view, theme: theme)
+    }
+    
+    func findAllViews( view:UIView, theme:Theme ){
         
+        if( view is Themable ){
+            (view as! Themable).setTheme(theme)
+        }
+        
+        if( view.subviews.count > 0 ){
+            view.subviews.forEach { (v) in
+                findAllViews(view: v, theme: theme)
+            }
+        }
     }
 
 }
