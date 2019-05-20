@@ -35,13 +35,8 @@ class CustomTokenController: PlanetWalletViewController {
             }
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewInit()
-        setData()
-    }
     
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
@@ -54,10 +49,12 @@ class CustomTokenController: PlanetWalletViewController {
         super.setData()
     }
 
+    //MARK: - IBAction
     @IBAction func didTouchedAddToken(_ sender: UIButton) {
         
     }
     
+    //MARK: - Private
     private func isValidAddress() -> Bool {
         //TODO: - valid logic
         return true

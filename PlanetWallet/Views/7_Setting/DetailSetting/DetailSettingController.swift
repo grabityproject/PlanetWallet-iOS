@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailSettingController: PlanetWalletViewController {
+class DetailSettingController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var currencyLb: UILabel!
@@ -37,7 +37,8 @@ class DetailSettingController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedChangePincode(_ sender: UIButton) {
-        
+        let segueID = Keys.Segue.DETAIL_SETTING_TO_PINCODE_CERTIFICATION
+        sendAction(segue: segueID, userInfo: ["segue": segueID])
     }
 }
 

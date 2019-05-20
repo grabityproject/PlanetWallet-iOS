@@ -7,5 +7,6 @@ target 'PlanetWallet' do
 
   inhibit_all_warnings!
   pod 'AlamofireObjectMapper', '~> 5.2', :inhibit_warnings => true
+  pod 'lottie-ios'
 
 end

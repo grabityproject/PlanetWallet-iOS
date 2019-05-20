@@ -8,23 +8,62 @@
 
 import UIKit
 
-class PrivateKeyImportController: UIViewController {
+class PrivateKeyImportController: PlanetWalletViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet var textField: PWTextField!
+    @IBOutlet var errMsgContainerView: UIView!
+    @IBOutlet var continueBtn: PWButton!
+    
+    private var isValidPrivateKey = false {
+        didSet {
+            if isValidPrivateKey {
+                continueBtn.setEnabled(true, theme: currentTheme)
+                errMsgContainerView.isHidden = true
+            }
+            else {
+                continueBtn.setEnabled(false, theme: currentTheme)
+                errMsgContainerView.isHidden = false
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Init
+    override func viewInit() {
+        super.viewInit()
+        textField.delegate = self
     }
-    */
+    
+    override func setData() {
+        super.setData()
+    }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedInvisible(_ sender: PWButton) {
+        
+        textField.isSecureTextEntry = !textField.isSecureTextEntry
+    }
+    
+    //MARK: - Private
+    private func isValid(mnemonic: String) -> Bool {
+        //TODO: - Logic
+        return false
+    }
+}
 
+extension PrivateKeyImportController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.text!.count > 1 {
+            isValidPrivateKey = true
+        }
+        else {
+            isValidPrivateKey = false
+        }
+        
+        return true
+    }
 }

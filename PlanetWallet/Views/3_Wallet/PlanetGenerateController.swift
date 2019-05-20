@@ -15,17 +15,12 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBOutlet var confirmLb: UILabel!
     @IBOutlet var planetNameLb: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewInit()
-        setData()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
     }
 
+    //MARK: - IBAction
     @IBAction func didTouchedRefresh(_ sender: UIButton) {
         //TODO: change planet
         planetView.data = "Test"

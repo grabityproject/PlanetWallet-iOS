@@ -8,19 +8,26 @@
 
 import UIKit
 
-class SettingController: PlanetWalletViewController {
+class SettingController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var darkThemeBtn: UIButton!
     @IBOutlet var lightThemeBtn: UIButton!
     
+    //MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Fade transition animation
+        self.view.subviews.forEach { (v) in
+            v.alpha = 0;
+            UIView.animate(withDuration: 0.2, animations: {
+                v.alpha = 1.0
+            })
+        }
     }
     
     override func viewInit() {
         super.viewInit()
-        
         naviBar.delegate = self
     }
     
@@ -28,24 +35,23 @@ class SettingController: PlanetWalletViewController {
         super.setData()
     }
     
+    //MARK: - IBAction
     @IBAction func didTouchedTheme(_ sender: UIButton) {
         
         if sender.tag == 0 {
             //DARK Theme
             darkThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
-            
             lightThemeBtn.layer.borderColor = settingTheme.border.cgColor
         }
         else {
             //Light Theme
             darkThemeBtn.layer.borderColor = settingTheme.border.cgColor
-            
             lightThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
         }
     }
     
     @IBAction func didTouchedFAQ(_ sender: UIButton) {
-        let dict = ["section": NoticeFAQController.Section.FAQ]
+        let dict = ["section": BoardController.Section.FAQ]
         sendAction(segue: Keys.Segue.SETTING_TO_ANNOUNCEMENTS, userInfo: dict)
     }
     
@@ -55,7 +61,15 @@ class SettingController: PlanetWalletViewController {
 extension SettingController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            navigationController?.popViewController(animated: false)
+            self.view.subviews.forEach { (v) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    v.alpha = 0
+                })
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.navigationController?.popViewController(animated: false)
+            }
         }
     }
 }

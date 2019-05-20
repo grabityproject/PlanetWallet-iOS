@@ -129,6 +129,19 @@ struct Utils {
         return UIFont(name: style.rawValue, size: size)
     }
     
+    //MARK: - UserDefaults
+    func setDefaults(for key: String, value: Any) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    func getDefaults<T>(for key: String) -> T? {
+        return UserDefaults.standard.value(forKey: key) as? T
+    }
+    
+    //MARK: - StatusBar
+    func statusBarHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.height
+    }
 }
 
 extension Utils {

@@ -8,21 +8,24 @@
 
 import UIKit
 
-class MnemonicExportController: PlanetWalletViewController {
+class MnemonicExportController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
         naviBar.delegate = self
     }
+
 }
 
 extension MnemonicExportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            //dismiss pincode certification vc
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
 }

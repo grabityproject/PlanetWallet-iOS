@@ -63,12 +63,27 @@ public protocol NavigationBarDelegate {
     }
     
     private func viewInit() {
-        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: UIScreen.main.bounds.width, height:UIApplication.shared.statusBarFrame.height + 68)
+        
+        let statusBarHeight = Utils.shared.statusBarHeight()
+        
+        self.frame = CGRect(x: self.frame.origin.x,
+                            y: self.frame.origin.y,
+                            width: UIScreen.main.bounds.width,
+                            height:statusBarHeight + 68)
         backgroundView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height);
-        labelTitle.frame = CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: self.frame.width, height: self.frame.height - UIApplication.shared.statusBarFrame.height);
-        leftImageView.frame = CGRect(x: 11, y: (self.frame.height - UIApplication.shared.statusBarFrame.height - 40)/2.0 + UIApplication.shared.statusBarFrame.height, width: 40, height: 40);
-        rightImageView.frame = CGRect(x: self.frame.width - 11 - 40, y: (self.frame.height - UIApplication.shared.statusBarFrame.height - 40)/2.0 + UIApplication.shared.statusBarFrame.height, width: 40, height: 40);
-        bottomBar.frame = CGRect(x: 0, y: self.frame.height-1, width: self.frame.width, height: 1);
+        labelTitle.frame = CGRect(x: 0, y: statusBarHeight, width: self.frame.width, height: self.frame.height - statusBarHeight);
+        leftImageView.frame = CGRect(x: 11,
+                                     y: (self.frame.height - statusBarHeight - 40)/2.0 + statusBarHeight,
+                                     width: 40,
+                                     height: 40);
+        rightImageView.frame = CGRect(x: self.frame.width - 11 - 40,
+                                      y: (self.frame.height - statusBarHeight - 40)/2.0 + statusBarHeight,
+                                      width: 40,
+                                      height: 40);
+        bottomBar.frame = CGRect(x: 0,
+                                 y: self.frame.height-1,
+                                 width: self.frame.width,
+                                 height: 1);
         
         labelTitle.textAlignment = .center
         labelTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold);

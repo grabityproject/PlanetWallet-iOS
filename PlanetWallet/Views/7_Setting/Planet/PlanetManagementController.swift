@@ -8,22 +8,18 @@
 
 import UIKit
 
-class PlanetManagementController: PlanetWalletViewController {
+class PlanetManagementController: SettingPlanetWalletController {
 
     private let cellID = "planetcell"
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var naviBar: NavigationBar!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.register(PlanetCell.self, forCellReuseIdentifier: cellID)
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
+        tableView.register(PlanetCell.self, forCellReuseIdentifier: cellID)
         naviBar.delegate = self
     }
     
@@ -58,7 +54,11 @@ extension PlanetManagementController: PlanetCellDelegate {
 extension PlanetManagementController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController")
+            self.navigationController?.pushViewController(importWalletVC, animated: true)
         }
     }
 }

@@ -24,7 +24,7 @@ struct DialCode: Mappable {
     }
 }
 
-class PhoneRegistrationController: PlanetWalletViewController {
+class PhoneRegistrationController: SettingPlanetWalletController {
 
     
     @IBOutlet var naviBar: NavigationBar!
@@ -41,16 +41,19 @@ class PhoneRegistrationController: PlanetWalletViewController {
     
     @IBOutlet var okBtn: PWButton!
     
+    private var firedTime = 30 {
+        didSet {
+            timeLb.text = String(format: "00:%02d", firedTime)
+            //"\(firedTime)"//00:00
+        }
+    }
     private var isValid = false {
         didSet {
             okBtn.setEnabled(isValid, theme: settingTheme)
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
@@ -59,14 +62,43 @@ class PhoneRegistrationController: PlanetWalletViewController {
         codeTextField.delegate = self
     }
     
+    private func startTimer() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if self.firedTime > 0 {
+                self.firedTime -= 1
+                self.startTimer()
+            }
+        }
+    }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedOK(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func didTouchedSend(_ sender: UIButton) {
         if codeContainer.isHidden {
             codeContainer.isHidden = false
+            
+            startTimer()
         }
     }
     
     @IBAction func didTouchedDialCode(_ sender: UIButton) {
-        guard let url = URL(string: "https://grabity.io/resources/web/dialcode.json") else { return }
+        self.phoneTextField.resignFirstResponder()
+        self.codeTextField.resignFirstResponder()
+        
+        self.fetchDialCode { (dialCodeList) in
+            let popup = PopupCountryCode(dataSource: dialCodeList)
+            popup.show(controller: self)
+            
+            //Touched Handler
+            popup.handler = { [weak self] (dialCode) in
+                guard let strongSelf = self else { return }
+                strongSelf.dialCodeLb.text = dialCode?.code
+                popup.dismiss()
+            }
+        }
         /*
         Alamofire.request(url).responseJSON { (response) in
             
@@ -81,25 +113,22 @@ class PhoneRegistrationController: PlanetWalletViewController {
             }
         }
          */
+    }
+    
+    //MARK: - Network
+    private func fetchDialCode(completion: @escaping ([DialCode]) -> Void) {
+        guard let url = URL(string: "https://grabity.io/resources/web/dialcode.json") else { return }
         
         Alamofire.request(url)
             .validate()
             .responseArray(keyPath: "result") {
                 (response: DataResponse<[DialCode]>) in
-            switch response.result {
-            case .success(let codeList):
-                let popup = PopupCountryCode(dataSource: codeList)
-                popup.show(controller: self)
-                
-                //Touched Handler
-                popup.handler = { [weak self] (dialCode) in
-                    guard let strongSelf = self else { return }
-                    strongSelf.dialCodeLb.text = dialCode?.code
-                    popup.dismiss()
+                switch response.result {
+                case .success(let codeList):
+                    completion(codeList)
+                case .failure(let err):
+                    print(err.localizedDescription)
                 }
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
         }
     }
 }
@@ -107,7 +136,7 @@ class PhoneRegistrationController: PlanetWalletViewController {
 extension PhoneRegistrationController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -117,13 +146,39 @@ extension PhoneRegistrationController: UITextFieldDelegate {
         guard textField.tag == 1 else { return }
         
         codeTextFieldContainer.layer.borderColor = settingTheme.borderPoint.cgColor
-        self.isValid = true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField.tag == 1 else { return }
         
         codeTextFieldContainer.layer.borderColor = settingTheme.border.cgColor
-        self.isValid = false
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let textFieldText = textField.text else { return false }
+        
+        let newLength = textFieldText.utf16.count + string.utf16.count - range.length
+        
+        if newLength >= 1 {
+            isValid = true
+        }
+        else {
+            isValid = false
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        sendBtn.setEnabled(false, theme: settingTheme)
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

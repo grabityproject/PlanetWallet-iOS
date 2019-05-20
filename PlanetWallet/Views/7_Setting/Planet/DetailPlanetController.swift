@@ -8,14 +8,11 @@
 
 import UIKit
 
-class DetailPlanetController: PlanetWalletViewController {
+class DetailPlanetController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -24,12 +21,26 @@ class DetailPlanetController: PlanetWalletViewController {
     override func setData() {
         super.setData()
     }
+    
+    @IBAction func didTouchedExportBtns(_ sender: UIButton) {
+        var segueID = ""
+        if sender.tag == 0 {
+            segueID = Keys.Segue.MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION
+        }
+        else {
+            segueID = Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
+        }
+        
+        sendAction(segue: segueID, userInfo: ["segue": segueID])
+    }
+    
+    
 }
 
 extension DetailPlanetController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

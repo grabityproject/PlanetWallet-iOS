@@ -176,16 +176,17 @@ class ThemeManager {
     
     // ThemeManager
     static func currentTheme() -> Theme {
-        if let storedTheme = (UserDefaults.standard.value(forKey: Keys.Userdefaults.THEME) as AnyObject).integerValue {
-            return Theme(rawValue: storedTheme)!
+        
+        if let storedTheme: Int? = Utils.shared.getDefaults(for: Keys.Userdefaults.THEME),
+            let currentTheme = storedTheme {
+            return Theme(rawValue: currentTheme)!
         } else {
             return .DARK
         }
     }
     
     static func setTheme(_ theme: Theme) {
-        UserDefaults.standard.setValue(theme.rawValue, forKey: Keys.Userdefaults.THEME)
-        UserDefaults.standard.synchronize()
+        Utils.shared.setDefaults(for: Keys.Userdefaults.THEME, value: theme.rawValue)
     }
     
     static func applyTheme(theme: Theme) {

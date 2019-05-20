@@ -13,18 +13,14 @@ extension AccountController {
         case NICKNAME, EMAIL, PHONE, CONNECT
     }
 }
-class AccountController: PlanetWalletViewController {
+class AccountController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var nickNameLb: PWLabel!
     @IBOutlet var emailLb: PWLabel!
     @IBOutlet var phoneLb: PWLabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -39,7 +35,7 @@ class AccountController: PlanetWalletViewController {
 extension AccountController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,17 +15,19 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SplashController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <segue destination="gRa-zE-Y3q" kind="show" identifier="splash_to_pincoderegistration" animates="NO" id="cUV-dl-Qub"/>
+                        <segue destination="VN5-Gg-UYH" kind="show" identifier="splash_to_pincodecertification" animates="NO" id="NM3-Vy-enh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="226" y="16"/>
         </scene>
         <!--PinCodeRegistrationController-->
         <scene sceneID="vmg-XE-tyd">
@@ -33,7 +35,15 @@
                 <viewControllerPlaceholder storyboardName="2_PinCode" referencedIdentifier="PinCodeRegistrationController" id="gRa-zE-Y3q" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRk-ru-mKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="717" y="348"/>
+            <point key="canvasLocation" x="40" y="514"/>
+        </scene>
+        <!--PinCodeCertificationController-->
+        <scene sceneID="XDU-75-4Ix">
+            <objects>
+                <viewControllerPlaceholder storyboardName="2_PinCode" referencedIdentifier="PinCodeCertificationController" id="VN5-Gg-UYH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytp-vI-omc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="514"/>
         </scene>
     </scenes>
 </document>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NicknameRegistrationController: PlanetWalletViewController {
+class NicknameRegistrationController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var textField: PWTextField!
@@ -21,10 +21,7 @@ class NicknameRegistrationController: PlanetWalletViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -35,12 +32,16 @@ class NicknameRegistrationController: PlanetWalletViewController {
         super.setData()
     }
 
+    //MARK: - IBAction
+    @IBAction func didTouchedSave(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension NicknameRegistrationController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -48,12 +49,38 @@ extension NicknameRegistrationController: NavigationBarDelegate {
 extension NicknameRegistrationController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textFieldContainer.layer.borderColor = settingTheme.borderPoint.cgColor
-        self.isValid = true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textFieldContainer.layer.borderColor = settingTheme.border.cgColor
-        self.isValid = false
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let textFieldText = textField.text else { return false }
+        
+        let newLength = textFieldText.utf16.count + string.utf16.count - range.length
+        
+        if newLength >= 1 {
+            isValid = true
+        }
+        else {
+            isValid = false
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        saveBtn.setEnabled(false, theme: settingTheme)
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }
 

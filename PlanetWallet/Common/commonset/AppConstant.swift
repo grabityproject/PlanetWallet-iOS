@@ -18,16 +18,6 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let SCREEN_MAX_LENGTH = max(SCREEN_WIDTH, SCREEN_HEIGHT)
 let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
-//var THEME: Theme {
-//    get {
-//        return UserDefaults.standard.bool(forKey: "environment.theme") ? Theme.LIGHT : Theme.DARK
-//    }
-//}
-//
-//func setTheme( theme: Theme ){
-//    UserDefaults.standard.set(theme == Theme.LIGHT, forKey: "environment.theme")
-//}
-
 struct Keys {
     struct Userdefaults {
         static let THEME = "theme"
@@ -35,10 +25,18 @@ struct Keys {
     }
     
     struct Segue {
-        static let TO_PINCODE_REGISTRATION = "splash_to_pincoderegistration"
+        
+        //Splash
+        static let SPLASH_TO_PINCODE_REGISTRATION = "splash_to_pincoderegistration"
+        static let SPLASH_TO_PINCODE_CERTIFICATION = "splash_to_pincodecertification"
+        
+        //PinCode
         static let PINCODE_REGISTRATION_TO_CERTIFICATION = "pincoderegistration_to_pincodecertification"
-        static let TO_WALLETADD = "pincodecertification_to_walletadd"
-        static let PINCODE_REGISTRATION_TO_MAIN = "pincodecertification_to_main"
+        static let PINCODE_CERTIFICATION_TO_WALLETADD = "pincodecertification_to_walletadd"
+        static let PINCODE_CERTIFICATION_TO_MAIN = "pincodecertification_to_main"
+        static let PINCODE_CERTIFICATION_TO_REGISTRATION = "pincodecertification_to_pincoderegistration"
+        static let PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT = "pincodecertification_to_mnemonicexport"
+        static let PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT = "pincodecertification_to_privatekeyexport"
         
         //WALLET ADD
         static let WALLET_IMPORT_TO_MNEMONIC_IMPORT = "walletimport_to_mnemonicImport"
@@ -60,5 +58,11 @@ struct Keys {
         //Setting_PlanetManagement
         static let PLANET_MANAGEMENT_TO_DETAIL_PLANET = "planetmanagement_to_detailplanet"
         
+        //Detail Plannet
+        static let MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION = "mnemonicexport_to_pincodecertification"
+        static let PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION = "privatekeyexport_to_pincodecertification"
+        
+        //Detail setting
+        static let DETAIL_SETTING_TO_PINCODE_CERTIFICATION = "detailsetting_to_pincodecetrification"
     }
 }

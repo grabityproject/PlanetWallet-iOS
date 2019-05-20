@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NoticeFAQController {
+extension BoardController {
     enum Section {
         case Announcements, FAQ
         
@@ -28,7 +28,7 @@ extension NoticeFAQController {
     }
 }
 
-class NoticeFAQController: PlanetWalletViewController {
+class BoardController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var tableView: UITableView!
@@ -42,6 +42,7 @@ class NoticeFAQController: PlanetWalletViewController {
         }
     }
     
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
@@ -55,7 +56,7 @@ class NoticeFAQController: PlanetWalletViewController {
     }
 }
 
-extension NoticeFAQController: NavigationBarDelegate {
+extension BoardController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
             self.navigationController?.popViewController(animated: false)
@@ -63,7 +64,7 @@ extension NoticeFAQController: NavigationBarDelegate {
     }
 }
 
-extension NoticeFAQController: UITableViewDelegate, UITableViewDataSource {
+extension BoardController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count
     }

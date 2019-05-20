@@ -52,13 +52,7 @@ class TokenListController: PlanetWalletViewController {
     @IBOutlet var textField: UITextField!
     @IBOutlet var tableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewInit()
-        setData()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         

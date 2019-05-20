@@ -8,7 +8,22 @@
 
 import UIKit
 
-
+extension PinCodeCertificationController {
+    private enum From: String {
+        case SPLASH, REGISTRATION, RESET, TRANSFER, MNEMONIC_EXPORT, PRIVATEKEY_EXPORT
+        
+        func segueID() -> String {
+            switch self {
+            case .SPLASH:               return Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION
+            case .REGISTRATION:         return Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION
+            case .RESET:                return Keys.Segue.DETAIL_SETTING_TO_PINCODE_CERTIFICATION
+            case .TRANSFER:             return ""
+            case .MNEMONIC_EXPORT:      return Keys.Segue.MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION
+            case .PRIVATEKEY_EXPORT:    return Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
+            }
+        }
+    }
+}
 class PinCodeCertificationController: PlanetWalletViewController {
     
     private var passwordStr = "" {
@@ -24,30 +39,56 @@ class PinCodeCertificationController: PlanetWalletViewController {
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewInit()
-        setData()
-    }
+    private var fromSegue = From.SPLASH
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         charPad.delegate = self
         numPad.delegate = self
-    }
-    
-    override func setData() {
         
     }
     
+    override func setData() {
+        if let fromSegueID = userInfo?["segue"] as? String {
+            if fromSegueID == From.SPLASH.segueID() {
+                fromSegue = .SPLASH
+            }
+            else if fromSegueID == From.REGISTRATION.segueID() {
+                fromSegue = .REGISTRATION
+            }
+            else if fromSegueID == From.RESET.segueID() {
+                fromSegue = .RESET
+            }
+            else if fromSegueID == From.TRANSFER.segueID() {
+                fromSegue = .TRANSFER
+            }
+            else if fromSegueID == From.MNEMONIC_EXPORT.segueID() {
+                fromSegue = .MNEMONIC_EXPORT
+            }
+            else if fromSegueID == From.PRIVATEKEY_EXPORT.segueID() {
+                fromSegue = .PRIVATEKEY_EXPORT
+            }
+        }
+    }
+    
+    //MARK: - Private 
     private func handleSuccessSignIn() {
-        //TODO: - navigation
-        //이전 vc에 따라 다음 vc가 정해짐
-        sendAction(segue: Keys.Segue.TO_WALLETADD, userInfo: nil)
+        switch fromSegue {
+        case .SPLASH:
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
+        case .REGISTRATION:
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_WALLETADD, userInfo: nil)
+        case .RESET:
+            let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
+            sendAction(segue: segueID, userInfo: ["segue": segueID])
+        case .MNEMONIC_EXPORT:
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
+        case .PRIVATEKEY_EXPORT:
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: nil)
+        case .TRANSFER:
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     private func showNumberPad(_ isNumberPad: Bool) {
@@ -75,7 +116,7 @@ extension PinCodeCertificationController: NumberPadDelegate {
 
 extension PinCodeCertificationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
-        guard let savedPassword = UserDefaults.standard.value(forKey: "pincode") as? String else { return }
+        guard let savedPassword: String? = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else { return }
         
         self.passwordStr = passwordStr + char
         if passwordStr == savedPassword {    // Success to sign in

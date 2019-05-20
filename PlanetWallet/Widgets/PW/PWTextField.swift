@@ -70,6 +70,7 @@ import UIKit
     @objc func clearClicked(sender:UIButton)
     {
         self.text = ""
+        _ = self.delegate?.textFieldShouldClear?(self)
     }
     
     func setTheme(_ theme: Theme) {

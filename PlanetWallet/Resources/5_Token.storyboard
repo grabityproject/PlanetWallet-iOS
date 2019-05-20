@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gYD-Ub-tKI">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,11 +24,11 @@
             <objects>
                 <viewController storyboardIdentifier="TokenAddController" id="gYD-Ub-tKI" customClass="TokenAddController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qqx-6O-QMl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-sA-7sH" customClass="NavigationBar" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="F8V-Sr-abz"/>
@@ -58,116 +58,108 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u17-LU-Zu1">
-                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-V3-UG8" userLabel="MenuBar">
+                                <rect key="frame" x="0.0" y="88" width="414" height="59"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSN-P4-roy">
-                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u17-LU-Zu1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nin-LR-XZe">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="43"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSN-P4-roy">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="58"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nin-LR-XZe" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="57"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="14"/>
+                                                        <state key="normal" title="Add Token">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="nYj-Jg-Ebp"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="14"/>
-                                                <state key="normal" title="Add Token">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
-                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorDark">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorLight">
-                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="nYj-Jg-Ebp"/>
-                                                </connections>
-                                            </button>
+                                                <constraints>
+                                                    <constraint firstItem="nin-LR-XZe" firstAttribute="top" secondItem="bSN-P4-roy" secondAttribute="top" id="2aX-6p-7EZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="nin-LR-XZe" secondAttribute="bottom" constant="1" id="9dJ-2Y-IfP"/>
+                                                    <constraint firstItem="nin-LR-XZe" firstAttribute="leading" secondItem="bSN-P4-roy" secondAttribute="leading" id="fNG-lq-HuL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nin-LR-XZe" secondAttribute="trailing" id="wRy-6F-q0k"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkx-rb-gxH">
+                                                <rect key="frame" x="207" y="0.0" width="207" height="58"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0s-23-0A2" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="57"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                                        <state key="normal" title="Custom Token">
+                                                            <color key="titleColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="hrN-me-AXC"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="H0s-23-0A2" secondAttribute="bottom" constant="1" id="Dv8-NW-q0F"/>
+                                                    <constraint firstItem="H0s-23-0A2" firstAttribute="top" secondItem="lkx-rb-gxH" secondAttribute="top" id="Fey-55-79Y"/>
+                                                    <constraint firstItem="H0s-23-0A2" firstAttribute="leading" secondItem="lkx-rb-gxH" secondAttribute="leading" id="I0n-Y0-3jf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="H0s-23-0A2" secondAttribute="trailing" id="JXE-on-KBa"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2B-b7-f20" userLabel="indicator">
+                                        <rect key="frame" x="0.0" y="58" width="207" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="nin-LR-XZe" firstAttribute="top" secondItem="bSN-P4-roy" secondAttribute="top" id="2aX-6p-7EZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="nin-LR-XZe" secondAttribute="bottom" constant="1" id="9dJ-2Y-IfP"/>
-                                            <constraint firstItem="nin-LR-XZe" firstAttribute="leading" secondItem="bSN-P4-roy" secondAttribute="leading" id="fNG-lq-HuL"/>
-                                            <constraint firstAttribute="trailing" secondItem="nin-LR-XZe" secondAttribute="trailing" id="wRy-6F-q0k"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkx-rb-gxH">
-                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0s-23-0A2">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="43"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
-                                                <state key="normal" title="Custom Token">
-                                                    <color key="titleColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorDark">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorLight">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="hrN-me-AXC"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="H0s-23-0A2" secondAttribute="bottom" constant="1" id="Dv8-NW-q0F"/>
-                                            <constraint firstItem="H0s-23-0A2" firstAttribute="top" secondItem="lkx-rb-gxH" secondAttribute="top" id="Fey-55-79Y"/>
-                                            <constraint firstItem="H0s-23-0A2" firstAttribute="leading" secondItem="lkx-rb-gxH" secondAttribute="leading" id="I0n-Y0-3jf"/>
-                                            <constraint firstAttribute="trailing" secondItem="H0s-23-0A2" secondAttribute="trailing" id="JXE-on-KBa"/>
+                                            <constraint firstAttribute="height" constant="1" id="7F0-Cw-bDa"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="BOO-Nl-EGl"/>
+                                    <constraint firstItem="b2B-b7-f20" firstAttribute="width" secondItem="YXf-V3-UG8" secondAttribute="width" multiplier="1/2" id="BbY-mP-eYN"/>
+                                    <constraint firstItem="b2B-b7-f20" firstAttribute="top" secondItem="u17-LU-Zu1" secondAttribute="bottom" id="FPq-33-agi"/>
+                                    <constraint firstItem="u17-LU-Zu1" firstAttribute="top" secondItem="YXf-V3-UG8" secondAttribute="top" id="HL1-4n-Bc5"/>
+                                    <constraint firstItem="b2B-b7-f20" firstAttribute="leading" secondItem="YXf-V3-UG8" secondAttribute="leading" id="ODk-PX-S55"/>
+                                    <constraint firstItem="u17-LU-Zu1" firstAttribute="leading" secondItem="YXf-V3-UG8" secondAttribute="leading" id="Phm-9b-QWe"/>
+                                    <constraint firstAttribute="trailing" secondItem="u17-LU-Zu1" secondAttribute="trailing" id="YPB-SH-CQ1"/>
+                                    <constraint firstAttribute="bottom" secondItem="b2B-b7-f20" secondAttribute="bottom" id="ewQ-KP-XDZ"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boh-dm-M1Q">
-                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
+                                <rect key="frame" x="0.0" y="147" width="414" height="715"/>
                                 <connections>
-                                    <segue destination="HI9-wV-VNG" kind="embed" identifier="containerViewSegue" id="bss-EM-b2s"/>
+                                    <segue destination="LwC-2B-6eK" kind="embed" identifier="containerViewSegue" id="3Bn-JX-VM0"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YXf-V3-UG8" firstAttribute="height" secondItem="Qqx-6O-QMl" secondAttribute="height" multiplier="0.066" id="FvD-uL-Uq4"/>
                             <constraint firstItem="boh-dm-M1Q" firstAttribute="leading" secondItem="DUZ-nb-IMd" secondAttribute="leading" id="HNO-6E-QkK"/>
                             <constraint firstItem="DUZ-nb-IMd" firstAttribute="trailing" secondItem="boh-dm-M1Q" secondAttribute="trailing" id="LaY-ge-hAa"/>
+                            <constraint firstItem="boh-dm-M1Q" firstAttribute="top" secondItem="YXf-V3-UG8" secondAttribute="bottom" id="Orb-7n-xdL"/>
                             <constraint firstItem="LmE-sA-7sH" firstAttribute="leading" secondItem="DUZ-nb-IMd" secondAttribute="leading" id="PZE-7U-G02"/>
                             <constraint firstItem="DUZ-nb-IMd" firstAttribute="trailing" secondItem="LmE-sA-7sH" secondAttribute="trailing" id="aLl-U9-lhz"/>
-                            <constraint firstItem="boh-dm-M1Q" firstAttribute="top" secondItem="u17-LU-Zu1" secondAttribute="bottom" id="cn5-AV-Qzj"/>
-                            <constraint firstItem="u17-LU-Zu1" firstAttribute="leading" secondItem="DUZ-nb-IMd" secondAttribute="leading" id="cul-IY-ywM"/>
+                            <constraint firstItem="YXf-V3-UG8" firstAttribute="leading" secondItem="DUZ-nb-IMd" secondAttribute="leading" id="cBR-oF-5Gy"/>
+                            <constraint firstItem="DUZ-nb-IMd" firstAttribute="trailing" secondItem="YXf-V3-UG8" secondAttribute="trailing" id="d78-gT-BH9"/>
                             <constraint firstItem="DUZ-nb-IMd" firstAttribute="bottom" secondItem="boh-dm-M1Q" secondAttribute="bottom" id="frI-lj-Mzk"/>
-                            <constraint firstItem="u17-LU-Zu1" firstAttribute="top" secondItem="LmE-sA-7sH" secondAttribute="bottom" id="jUQ-q6-mfY"/>
                             <constraint firstItem="LmE-sA-7sH" firstAttribute="top" secondItem="Qqx-6O-QMl" secondAttribute="top" id="lbA-8o-KxA"/>
-                            <constraint firstItem="DUZ-nb-IMd" firstAttribute="trailing" secondItem="u17-LU-Zu1" secondAttribute="trailing" id="ncX-sB-WpU"/>
+                            <constraint firstItem="YXf-V3-UG8" firstAttribute="top" secondItem="LmE-sA-7sH" secondAttribute="bottom" id="lcM-GK-3P8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DUZ-nb-IMd"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ea4-fp-6iL"/>
                     <connections>
                         <outlet property="AddTokenMenuBtn" destination="nin-LR-XZe" id="Kah-yi-27v"/>
-                        <outlet property="addTokenMenuView" destination="bSN-P4-roy" id="Uns-x3-6QI"/>
                         <outlet property="customTokenMenuBtn" destination="H0s-23-0A2" id="kjG-lh-jK3"/>
-                        <outlet property="customTokenMenuView" destination="lkx-rb-gxH" id="b95-zS-OX0"/>
+                        <outlet property="indicatorLeftAnchorConstraint" destination="ODk-PX-S55" id="4O7-uc-OpB"/>
+                        <outlet property="menuBarIndicator" destination="b2B-b7-f20" id="B8h-JM-KLE"/>
                         <outlet property="naviBar" destination="LmE-sA-7sH" id="58i-BF-f47"/>
                     </connections>
                 </viewController>
@@ -175,16 +167,24 @@
             </objects>
             <point key="canvasLocation" x="-1480.8" y="-44.527736131934034"/>
         </scene>
+        <!--Token Page Controller-->
+        <scene sceneID="gJx-gU-wzZ">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="LwC-2B-6eK" customClass="TokenPageController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PSY-NX-T7N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-705" y="-45"/>
+        </scene>
         <!--Item 2-->
         <scene sceneID="Qz3-1Y-CL5">
             <objects>
-                <viewController id="8k5-pv-lkV" customClass="CustomTokenController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vKa-St-Blw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="486"/>
+                <viewController storyboardIdentifier="CustomTokenController" id="8k5-pv-lkV" customClass="CustomTokenController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="vKa-St-Blw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25k-Yh-wX9" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="21" y="411" width="334" height="55"/>
+                                <rect key="frame" x="21" y="787" width="373" height="55"/>
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Abn-ou-gTP"/>
@@ -203,19 +203,19 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tb-ye-L9I" userLabel="ContractContainer">
-                                <rect key="frame" x="0.0" y="60" width="375" height="64.5"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="64.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contract Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-4f-qfd">
-                                        <rect key="frame" x="21" y="0.0" width="119" height="20.5"/>
+                                        <rect key="frame" x="21" y="0.0" width="110" height="16.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQF-NL-4xN" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="21" y="31.5" width="333" height="33"/>
+                                        <rect key="frame" x="21" y="27.5" width="372" height="37"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvq-Ao-bXo">
-                                                <rect key="frame" x="15" y="0.0" width="303" height="33"/>
+                                                <rect key="frame" x="15" y="0.0" width="342" height="37"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -253,7 +253,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgH-mW-odf" userLabel="ErrContainer">
-                                <rect key="frame" x="0.0" y="136.5" width="375" height="17"/>
+                                <rect key="frame" x="0.0" y="160.5" width="414" height="17"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is not a valid Contract address." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okl-lt-EIu">
                                         <rect key="frame" x="21" y="0.0" width="225" height="16.5"/>
@@ -262,7 +262,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageWarning" translatesAutoresizingMaskIntoConstraints="NO" id="TBF-og-IaT">
-                                        <rect key="frame" x="337" y="-1.5" width="20" height="20"/>
+                                        <rect key="frame" x="376" y="-1.5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="ISd-wR-XEl"/>
                                             <constraint firstAttribute="height" constant="20" id="LJ7-xB-4jP"/>
@@ -279,22 +279,22 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZW7-6t-fPD">
-                                <rect key="frame" x="0.0" y="144.5" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="168.5" width="414" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f71-ap-zMz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-eG-aP1">
-                                                <rect key="frame" x="21" y="0.0" width="95.5" height="20.5"/>
+                                                <rect key="frame" x="21" y="0.0" width="88.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOu-bo-Ysx" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="21" y="31.5" width="334" height="33.5"/>
+                                                <rect key="frame" x="21" y="27.5" width="373" height="37.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hE6-KH-NLI">
-                                                        <rect key="frame" x="15" y="0.0" width="304" height="33.5"/>
+                                                        <rect key="frame" x="15" y="0.0" width="343" height="37.5"/>
                                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -331,19 +331,19 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dni-4B-Oo8">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="85" width="414" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decimals of Precision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjN-kE-PKI">
-                                                <rect key="frame" x="21" y="0.0" width="147.5" height="20.5"/>
+                                                <rect key="frame" x="21" y="0.0" width="135.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9TG-rr-tn2" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="21" y="31.5" width="334" height="33.5"/>
+                                                <rect key="frame" x="21" y="27.5" width="373" height="37.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oyy-sb-yV7">
-                                                        <rect key="frame" x="15" y="0.0" width="304" height="33.5"/>
+                                                        <rect key="frame" x="15" y="0.0" width="343" height="37.5"/>
                                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -421,13 +421,13 @@
         <!--Item 1-->
         <scene sceneID="yGa-hs-uo9">
             <objects>
-                <viewController id="nDq-H0-mBq" customClass="TokenListController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TokenListController" id="nDq-H0-mBq" customClass="TokenListController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Nu-6n-ejt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="486"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXI-Zw-8qH" userLabel="textfieldContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ft2-C4-6Ff">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="55"/>
@@ -447,7 +447,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEo-i7-ycl">
-                                        <rect key="frame" x="50" y="0.0" width="325" height="55"/>
+                                        <rect key="frame" x="50" y="0.0" width="364" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
@@ -468,13 +468,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haven’t found what you’re looking for?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDL-J9-urC">
-                                <rect key="frame" x="66.5" y="138" width="242.5" height="16.5"/>
+                                <rect key="frame" x="86" y="138" width="242.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4pS-rX-dU5">
-                                <rect key="frame" x="0.0" y="55" width="375" height="431"/>
+                                <rect key="frame" x="0.0" y="55" width="414" height="807"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nDq-H0-mBq" id="f3a-XI-qnX"/>
@@ -507,24 +507,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7P-cL-2Rb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="169.56521739130437" y="-373.66071428571428"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="GH4-F1-cyQ">
-            <objects>
-                <tabBarController id="HI9-wV-VNG" sceneMemberID="viewController">
-                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D2h-tY-Dsi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="nDq-H0-mBq" kind="relationship" relationship="viewControllers" id="Jso-R3-KJQ"/>
-                        <segue destination="8k5-pv-lkV" kind="relationship" relationship="viewControllers" id="buI-YC-wdk"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ydH-k9-596" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-713" y="-40"/>
         </scene>
     </scenes>
     <resources>

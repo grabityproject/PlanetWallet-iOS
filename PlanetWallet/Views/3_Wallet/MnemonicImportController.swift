@@ -10,7 +10,6 @@ import UIKit
 
 class MnemonicImportController: PlanetWalletViewController {
 
-    @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var pwTextfield: UITextField!
     @IBOutlet var mnemonicTextView: UITextView!
     @IBOutlet var errMsgContainerView: UIView!
@@ -30,17 +29,9 @@ class MnemonicImportController: PlanetWalletViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        viewInit()
-        setData()
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
-        
-        naviBar.delegate = self
         
         pwTextfield.delegate = self
         mnemonicTextView.delegate = self
@@ -50,23 +41,16 @@ class MnemonicImportController: PlanetWalletViewController {
         super.setData()
     }
     
+    //MARK: - IBAction
     @IBAction func didTouchedInvisible(_ sender: UIButton) {
         pwTextfield.isSecureTextEntry = !pwTextfield.isSecureTextEntry
     }
     
+    //MARK: - Private
     private func isValid(mnemonic: String) -> Bool {
         //TODO: - Logic
         return false
     }
-}
-
-
-extension MnemonicImportController: NavigationBarDelegate {
-    func didTouchedBarItem(_ sender: ToolBarButton) {
-        
-    }
-    
-
 }
 
 

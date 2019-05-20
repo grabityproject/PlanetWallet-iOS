@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Medium.otf">
+            <string>WorkSans-Medium</string>
+        </array>
+        <array key="WorkSans-Regular.otf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ETHCoinCell" customModule="PlanetWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="amountLb" destination="2Qe-kX-GhK" id="24k-NV-LKl"/>
+                <outlet property="coinIconImg" destination="K5T-1h-MPD" id="FHw-yN-IUb"/>
+                <outlet property="coinLb" destination="YEW-xQ-oEs" id="b3G-Qw-Cas"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="meB-yW-JRp"/>
+                <outlet property="currencyLb" destination="smp-3K-oxv" id="KXE-fh-H1R"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconETH" translatesAutoresizingMaskIntoConstraints="NO" id="K5T-1h-MPD">
+                    <rect key="frame" x="20" y="25" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="bGC-d6-lOg"/>
+                        <constraint firstAttribute="height" constant="20" id="xWe-Iv-2kc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-xQ-oEs" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="50" y="23.5" width="32" height="23.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
+                    <color key="textColor" name="textColorDark"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="190,888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qe-kX-GhK" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="269.5" y="11.5" width="60.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="16"/>
+                    <color key="textColor" name="textColorDark"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageArrowRightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-N7-O64" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="340" y="25" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="DQ9-hS-waa"/>
+                        <constraint firstAttribute="width" constant="20" id="WA6-hi-yLl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-3K-oxv" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="273.5" y="37" width="56.5" height="17.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="12"/>
+                    <color key="textColor" name="detailTextDark"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcm-Xw-Dyc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <connections>
+                        <action selector="didTouched:" destination="-1" eventType="touchUpInside" id="Qfz-Fd-o5D"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="x2p-N7-O64" firstAttribute="leading" secondItem="2Qe-kX-GhK" secondAttribute="trailing" constant="10" id="4F2-ZW-ffc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Pcm-Xw-Dyc" secondAttribute="bottom" id="61z-F2-D8A"/>
+                <constraint firstItem="x2p-N7-O64" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="EOV-Id-Rhw"/>
+                <constraint firstItem="K5T-1h-MPD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="EPB-4Z-ERf"/>
+                <constraint firstAttribute="trailing" secondItem="x2p-N7-O64" secondAttribute="trailing" constant="15" id="KMm-mD-2mC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pcm-Xw-Dyc" secondAttribute="trailing" id="Q7b-1C-DCL"/>
+                <constraint firstItem="YEW-xQ-oEs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R4e-s3-Qha"/>
+                <constraint firstItem="Pcm-Xw-Dyc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="klX-Xn-KSd"/>
+                <constraint firstItem="smp-3K-oxv" firstAttribute="top" secondItem="2Qe-kX-GhK" secondAttribute="bottom" constant="2" id="kxR-E3-7eb"/>
+                <constraint firstItem="smp-3K-oxv" firstAttribute="trailing" secondItem="2Qe-kX-GhK" secondAttribute="trailing" id="lFw-Az-SK2"/>
+                <constraint firstItem="Pcm-Xw-Dyc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="p5a-qj-3KK"/>
+                <constraint firstItem="K5T-1h-MPD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qRy-Df-eob"/>
+                <constraint firstItem="2Qe-kX-GhK" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rq8-VI-X7T"/>
+                <constraint firstItem="YEW-xQ-oEs" firstAttribute="leading" secondItem="K5T-1h-MPD" secondAttribute="trailing" constant="10" id="sbW-Ew-EU4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="akW-5e-2uZ" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
+            <color key="textColor" name="textColorDark"/>
+            <nil key="highlightedColor"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="imageArrowRightBlue" width="30" height="30"/>
+        <image name="tokenIconETH" width="30" height="30"/>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorDark">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
