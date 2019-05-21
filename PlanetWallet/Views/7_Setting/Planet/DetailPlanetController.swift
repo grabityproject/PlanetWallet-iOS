@@ -34,7 +34,6 @@ class DetailPlanetController: SettingPlanetWalletController {
         sendAction(segue: segueID, userInfo: ["segue": segueID])
     }
     
-    
 }
 
 extension DetailPlanetController: NavigationBarDelegate {

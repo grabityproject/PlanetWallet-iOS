@@ -8,18 +8,29 @@
 
 import UIKit
 
+enum Universe {
+    case ETH
+    case BTC
+}
+
 class MainController: PlanetWalletViewController {
 
-    private let cellID = "coincell"
+    var universe: Universe = .ETH
     
     @IBOutlet var bgPlanetContainer: UIView!
+    @IBOutlet var bgPlanetContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet var bgPlanetView: PlanetView!
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: UIView!
+    @IBOutlet var footerView: UIView!
     
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
+    
+    var dataSources: [UITableViewDataSource] = []
+    let ethDataSource = ETHCoinDataSource()
+    let btcDataSource = BTCTransactionDataSource()
     
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +47,28 @@ class MainController: PlanetWalletViewController {
         super.viewInit()
         naviBar.delegate = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        configureTableView()
+        createRippleView()
+    }
+    
+    override func setData() {
+        super.setData()
+    }
+    
+    //MARK: - Private
+    private func configureTableView() {
+        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
+        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
         headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.5)
         
+        ethDataSource.coinList = [Coin(), Coin()]
+        ethDataSource.delegate = self
+        btcDataSource.transactionList = [BTCTransaction(), BTCTransaction()]
+        dataSources = [ethDataSource, btcDataSource]
+        tableView.dataSource = dataSources[0]
+    }
+    
+    private func createRippleView() {
         self.rippleView = UIView(frame: CGRect(x: 31, y: naviBar.leftImageView.frame.origin.y + naviBar.leftImageView.frame.height/2.0, width: 0, height: 0))
         rippleView.alpha = 0
         rippleView.backgroundColor = settingTheme.backgroundColor
@@ -47,8 +77,21 @@ class MainController: PlanetWalletViewController {
         self.view.addSubview(rippleView)
     }
     
-    override func setData() {
-        super.setData()
+    private func updateUniverse() {
+        switch universe {
+        case .ETH:
+            universe = .BTC
+            tableView.dataSource = dataSources[1]
+            naviBar.title = "BTC"
+            footerView.isHidden = true
+        case .BTC:
+            universe = .ETH
+            tableView.dataSource = dataSources[0]
+            naviBar.title = "ETH"
+            footerView.isHidden = false
+        }
+        
+        tableView.reloadData()
     }
 }
 
@@ -59,8 +102,12 @@ extension MainController: NavigationBarDelegate {
             //Ripple animation transition
             UIView.animate(withDuration: 0.4, animations: {
                 self.rippleView.alpha = 1
-                self.rippleView.layer.cornerRadius = self.view.bounds.height * 2.0 * 1.4 / 2
-                self.rippleView.bounds = CGRect(x: 31, y: self.naviBar.leftImageView.frame.origin.y + self.naviBar.leftImageView.frame.height/2.0, width: self.view.bounds.height * 2.0 * 1.4, height: self.view.bounds.height * 2.0 * 1.4)
+                let rippleViewMaxRadius = self.view.bounds.height * 2.0 * 1.4
+                self.rippleView.layer.cornerRadius = rippleViewMaxRadius / 2
+                self.rippleView.bounds = CGRect(x: 31,
+                                                y: self.naviBar.leftImageView.frame.origin.y + self.naviBar.leftImageView.frame.height/2.0,
+                                                width: rippleViewMaxRadius,
+                                                height: rippleViewMaxRadius)
             }) { (isSuccess) in
                 if isSuccess {
                     //perform segue
@@ -69,50 +116,43 @@ extension MainController: NavigationBarDelegate {
             }
             
         case .RIGHT:
-            print("touched Right bar item")
+            updateUniverse()
         }
     }
 }
 
-extension MainController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = .clear
-
-//        cell.alpha = 0
-        cell.textLabel?.text = "test"
-        cell.textLabel?.textColor = .white
-        return cell
+extension MainController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 375))
-//        headerView.backgroundColor = .red
-//        return headerView
-//    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /*
+         Don’t perform data binding at this point, because there’s no cell on screen yet.
+         For this you can use tableView:willDisplayCell:forRowAtIndexPath: method
+         which can be implemented in the delegate of UITableView.
+         
+         The method called exactly before showing cell in UITableView’s bounds.
+         */
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = tableView.contentOffset.y
-        print(offsetY)
-        if offsetY < 0
-        {
-            let maxOffsetY = tableView.contentSize.height - tableView.bounds.height - tableView.contentInset.bottom - (SCREEN_HEIGHT * 0.5)
-            let percentage = offsetY / maxOffsetY
-            
-            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: percentage + 1, y: percentage + 1)
+        
+        if offsetY < 0 {
+            let scale = 1 + ((-offsetY) * 2 / bgPlanetContainer.frame.height)
+            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
         }
-        else if offsetY == 0 {
-            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x, y: -150)
-        }
-        else
-        {
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x, y: -150 - offsetY)
+        else {
+            print(bgPlanetContainerTopConstraint.constant - offsetY)
+            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
+                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
         }
     }
 }
 
+extension MainController: ETHCoinCellDelegate {
+    func didSelected(index: IndexPath) {
+        print(index)
+    }
+}

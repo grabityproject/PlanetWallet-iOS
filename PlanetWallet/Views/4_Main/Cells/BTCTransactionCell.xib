@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Medium.otf">
+            <string>WorkSans-Medium</string>
+        </array>
+        <array key="WorkSans-Regular.otf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BTCTransactionCell" customModule="PlanetWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="amountLb" destination="hAH-Qc-E6F" id="N1n-jd-0Uk"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="EZW-45-JzR"/>
+                <outlet property="dateLb" destination="auQ-eI-Xio" id="MCW-0S-AYw"/>
+                <outlet property="planetNameLb" destination="YmR-rS-YJs" id="z3n-FZ-Iil"/>
+                <outlet property="upDownImgView" destination="g9F-D7-tum" id="ifz-wa-WeM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-UZ-ID7">
+                    <rect key="frame" x="20" y="13" width="90" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korbin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmR-rS-YJs" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="23.5"/>
+                            <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="16"/>
+                            <color key="textColor" name="textColorDark"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 13, 11:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auQ-eI-Xio" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="23.5" width="90" height="20.5"/>
+                            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                            <color key="textColor" name="detailTextDark"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-ju-D7u">
+                    <rect key="frame" x="256" y="14" width="99" height="42.5"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageBtcDiscrease" translatesAutoresizingMaskIntoConstraints="NO" id="g9F-D7-tum">
+                            <rect key="frame" x="79" y="0.0" width="20" height="20"/>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zog-1s-gzA">
+                            <rect key="frame" x="0.0" y="22" width="99" height="20.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2313223" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAH-Qc-E6F" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="67" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                    <color key="textColor" name="textColorDark"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlI-MA-u65" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="72" y="0.0" width="27" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                    <color key="textColor" name="detailTextDark"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ux-ju-D7u" secondAttribute="trailing" constant="20" id="7Fg-ps-OPo"/>
+                <constraint firstItem="KOK-UZ-ID7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="P5F-KQ-yRv"/>
+                <constraint firstItem="KOK-UZ-ID7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Rxy-mt-bhf"/>
+                <constraint firstItem="6ux-ju-D7u" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="foC-WJ-7Ky"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="36" y="32"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="imageBtcDiscrease" width="20" height="20"/>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorDark">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -55,7 +55,6 @@ class TokenAddController: PlanetWalletViewController {
             selectedMenu = .CUSTOM_TOKEN
         }
         
-        
         if let moveToVC = tokenPageController?.orderedViewControllers[selectedMenu.rawValue] {
             tokenPageController?.currentPageIdx = selectedMenu.rawValue
             tokenPageController?.setViewControllers([moveToVC],
@@ -90,7 +89,6 @@ class TokenAddController: PlanetWalletViewController {
             customTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
         }
     }
-    
 }
 
 extension TokenAddController: TokenPageDelegate {
@@ -106,7 +104,7 @@ extension TokenAddController: TokenPageDelegate {
 
 extension TokenAddController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

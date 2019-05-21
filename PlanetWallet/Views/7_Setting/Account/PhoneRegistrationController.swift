@@ -41,12 +41,15 @@ class PhoneRegistrationController: SettingPlanetWalletController {
     
     @IBOutlet var okBtn: PWButton!
     
-    private var firedTime = 30 {
+    private var firedTime = 180 {
         didSet {
-            timeLb.text = String(format: "00:%02d", firedTime)
-            //"\(firedTime)"//00:00
+            let min = firedTime / 60
+            let sec = firedTime % 60
+            timeLb.text = String(format: "%2d:%02d", min, sec)
         }
     }
+    var timer = Timer()
+    
     private var isValid = false {
         didSet {
             okBtn.setEnabled(isValid, theme: settingTheme)
@@ -129,6 +132,22 @@ class PhoneRegistrationController: SettingPlanetWalletController {
                 case .failure(let err):
                     print(err.localizedDescription)
                 }
+        }
+    }
+    
+    private func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: (#selector(updateTimer)),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc private func updateTimer() {
+        if firedTime < 1 {
+            timer.invalidate()
+        } else {
+            firedTime -= 1
         }
     }
 }
