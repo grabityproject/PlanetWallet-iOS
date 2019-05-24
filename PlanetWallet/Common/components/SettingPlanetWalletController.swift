@@ -10,10 +10,4 @@ import UIKit
 
 class SettingPlanetWalletController: PlanetWalletViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        switch currentTheme {
-        case .DARK:     return .default
-        case .LIGHT:    return .lightContent
-        }
-    }
 }

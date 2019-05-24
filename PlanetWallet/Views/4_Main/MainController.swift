@@ -20,6 +20,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var bgPlanetContainer: UIView!
     @IBOutlet var bgPlanetContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet var bgPlanetView: PlanetView!
+    @IBOutlet var dimGradientView: GradientView!
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: UIView!
@@ -32,6 +33,8 @@ class MainController: PlanetWalletViewController {
     let ethDataSource = ETHCoinDataSource()
     let btcDataSource = BTCTransactionDataSource()
     
+    var topMenuLauncher: TopMenuLauncher?
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +44,11 @@ class MainController: PlanetWalletViewController {
             self.rippleView.layer.cornerRadius = 0
             self.rippleView.bounds = CGRect(x: 25, y: 25, width: 0, height: 0)
         })
+        
+        self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
+        topMenuLauncher?.delegate = self
+        
+//        dimGradientView.setTheme(theme: currentTheme)
     }
     
     override func viewInit() {
@@ -53,6 +61,12 @@ class MainController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
+    }
+    
+    override func onUpdateTheme(theme: Theme) {
+        super.onUpdateTheme(theme: theme)
+        topMenuLauncher?.setTheme(theme)
+        dimGradientView.setTheme(theme: theme)
     }
     
     //MARK: - Private
@@ -127,13 +141,7 @@ extension MainController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        /*
-         Don’t perform data binding at this point, because there’s no cell on screen yet.
-         For this you can use tableView:willDisplayCell:forRowAtIndexPath: method
-         which can be implemented in the delegate of UITableView.
-         
-         The method called exactly before showing cell in UITableView’s bounds.
-         */
+        findAllViews(view: cell, theme: currentTheme)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -154,5 +162,11 @@ extension MainController: UITableViewDelegate {
 extension MainController: ETHCoinCellDelegate {
     func didSelected(index: IndexPath) {
         print(index)
+    }
+}
+
+extension MainController: MenuLauncherDelegate {
+    func didSelected() {
+        print("top menu selected")
     }
 }

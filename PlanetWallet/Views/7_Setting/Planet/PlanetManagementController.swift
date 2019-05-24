@@ -32,7 +32,7 @@ class PlanetManagementController: SettingPlanetWalletController {
 extension PlanetManagementController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PlanetCell
-        cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -43,10 +43,12 @@ extension PlanetManagementController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-}
-
-extension PlanetManagementController: PlanetCellDelegate {
-    func didTouchedMoreBtn(indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: currentTheme)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         sendAction(segue: Keys.Segue.PLANET_MANAGEMENT_TO_DETAIL_PLANET, userInfo: nil)
     }
 }
@@ -57,7 +59,7 @@ extension PlanetManagementController: NavigationBarDelegate {
             self.navigationController?.popViewController(animated: true)
         }
         else {
-            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController")
+            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletAddController")
             self.navigationController?.pushViewController(importWalletVC, animated: true)
         }
     }

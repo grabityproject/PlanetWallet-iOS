@@ -13,10 +13,15 @@ class SettingController: SettingPlanetWalletController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var darkThemeBtn: UIButton!
     @IBOutlet var lightThemeBtn: UIButton!
+    @IBOutlet var helloLb: PWLabel!
     
     //MARK: - Init
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewInit() {
+        super.viewInit()
+        naviBar.delegate = self
+        
+        updateThemeUI()
+        
         //Fade transition animation
         self.view.subviews.forEach { (v) in
             v.alpha = 0;
@@ -26,11 +31,6 @@ class SettingController: SettingPlanetWalletController {
         }
     }
     
-    override func viewInit() {
-        super.viewInit()
-        naviBar.delegate = self
-    }
-    
     override func setData() {
         super.setData()
     }
@@ -38,16 +38,17 @@ class SettingController: SettingPlanetWalletController {
     //MARK: - IBAction
     @IBAction func didTouchedTheme(_ sender: UIButton) {
         
+        updateThemeUI()
         if sender.tag == 0 {
             //DARK Theme
-            darkThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
-            lightThemeBtn.layer.borderColor = settingTheme.border.cgColor
+            currentTheme = .DARK
         }
         else {
             //Light Theme
-            darkThemeBtn.layer.borderColor = settingTheme.border.cgColor
-            lightThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
+            currentTheme = .LIGHT
         }
+        
+        updateThemeUI()
     }
     
     @IBAction func didTouchedFAQ(_ sender: UIButton) {
@@ -55,7 +56,17 @@ class SettingController: SettingPlanetWalletController {
         sendAction(segue: Keys.Segue.SETTING_TO_ANNOUNCEMENTS, userInfo: dict)
     }
     
-    
+    //MARK: - Private
+    private func updateThemeUI() {
+        switch currentTheme {
+        case .DARK:
+            darkThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
+            lightThemeBtn.layer.borderColor = settingTheme.border.cgColor
+        case .LIGHT:
+            darkThemeBtn.layer.borderColor = settingTheme.border.cgColor
+            lightThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
+        }
+    }
 }
 
 extension SettingController: NavigationBarDelegate {

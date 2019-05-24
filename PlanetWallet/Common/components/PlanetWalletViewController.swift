@@ -24,7 +24,6 @@ class PlanetWalletViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         onUpdateTheme(theme: currentTheme)
 //        updateTheme()
     }
@@ -55,7 +54,13 @@ class PlanetWalletViewController: UIViewController
     
     //MARK: - Theme
     var currentTheme: Theme {
-        return ThemeManager.currentTheme()
+        get {
+            return ThemeManager.currentTheme()
+        }
+        set {
+            ThemeManager.setTheme(newValue)
+            onUpdateTheme(theme: currentTheme)
+        }
     }
     
     var settingTheme: Theme {
@@ -66,9 +71,15 @@ class PlanetWalletViewController: UIViewController
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        switch currentTheme {
-        case .DARK:     return .lightContent
-        case .LIGHT:    return .default
+        var r : CGFloat = -1
+        var g : CGFloat = -1
+        var b : CGFloat = -1
+        var a : CGFloat = -1
+        self.view.backgroundColor?.getRed(&r, green: &g, blue: &b, alpha: &a)
+        if( r+g+b+a > 0 ){
+            return ( r > 0.5 && g > 0.5 && b > 0.5 ) ? .default : .lightContent
+        }else{
+            return .default
         }
     }
     
@@ -81,7 +92,10 @@ class PlanetWalletViewController: UIViewController
     
     func onUpdateTheme( theme : Theme ) {
         findAllViews(view: self.view, theme: theme)
+        setNeedsStatusBarAppearanceUpdate()
     }
+    
+    
     
     func findAllViews( view:UIView, theme:Theme ){
         
@@ -91,6 +105,7 @@ class PlanetWalletViewController: UIViewController
         
         if( view.subviews.count > 0 ){
             view.subviews.forEach { (v) in
+
                 findAllViews(view: v, theme: theme)
             }
         }

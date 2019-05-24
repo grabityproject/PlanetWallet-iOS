@@ -22,6 +22,7 @@ struct Keys {
     struct Userdefaults {
         static let THEME = "theme"
         static let PINCODE = "pincode"
+        static let BIOMETRICS = "biometrics"
     }
     
     struct Segue {

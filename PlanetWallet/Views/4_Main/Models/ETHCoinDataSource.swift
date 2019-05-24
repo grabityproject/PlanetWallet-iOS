@@ -24,6 +24,7 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ETHCoinCell
+        cell.backgroundColor = .clear
         cell.delegate = self.delegate
         
         return cell

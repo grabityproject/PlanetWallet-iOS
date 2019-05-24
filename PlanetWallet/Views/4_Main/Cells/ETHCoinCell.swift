@@ -42,7 +42,7 @@ class ETHCoinCell: UITableViewCell {
         Bundle.main.loadNibNamed("ETHCoinCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        containerView.backgroundColor = ThemeManager.currentTheme().backgroundColor
+
         addSubview(containerView)
     }
 

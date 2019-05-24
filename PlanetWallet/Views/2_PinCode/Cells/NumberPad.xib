@@ -48,6 +48,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="KBU-rP-swc"/>
                                     </connections>
@@ -59,6 +67,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="yXc-rQ-XcL"/>
                                     </connections>
@@ -69,6 +85,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="Ceb-28-7Fj"/>
                                     </connections>
@@ -84,6 +108,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="ywj-dF-nqg"/>
                                     </connections>
@@ -94,6 +126,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="QbU-ez-kyH"/>
                                     </connections>
@@ -104,6 +144,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="NGh-hc-bkV"/>
                                     </connections>
@@ -113,34 +161,38 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-O5-MbZ">
                             <rect key="frame" x="0.0" y="219.5" width="390" height="110"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uM-fc-Dbw" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojp-sT-EPu" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="110"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojp-sT-EPu" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="110"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="1">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="pWC-Jk-1Ia"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="ojp-sT-EPu" firstAttribute="leading" secondItem="1uM-fc-Dbw" secondAttribute="leading" id="7ng-MB-9Ta"/>
-                                        <constraint firstAttribute="bottom" secondItem="ojp-sT-EPu" secondAttribute="bottom" id="b2o-nk-3Gk"/>
-                                        <constraint firstAttribute="trailing" secondItem="ojp-sT-EPu" secondAttribute="trailing" id="ezN-Kn-eYK"/>
-                                        <constraint firstItem="ojp-sT-EPu" firstAttribute="top" secondItem="1uM-fc-Dbw" secondAttribute="top" id="qwo-IW-Xs7"/>
-                                    </constraints>
-                                </view>
+                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    <state key="normal" title="1">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="pWC-Jk-1Ia"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u3-Io-rat" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="110"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="lPx-HZ-tXj"/>
                                     </connections>
@@ -151,6 +203,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="Reh-Cx-r5c"/>
                                     </connections>
@@ -172,6 +232,14 @@
                                     <state key="normal" title="1">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="sCB-ul-7Ju"/>
                                     </connections>
@@ -186,6 +254,9 @@
                                                 <constraint firstAttribute="width" constant="40" id="26A-aO-PQ0"/>
                                                 <constraint firstAttribute="height" constant="40" id="6n1-gR-DTl"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageKeyboardClearBlack"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ih0-4S-wkx">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="109.5"/>
@@ -227,8 +298,15 @@
     </objects>
     <resources>
         <image name="icKeyboardClear" width="60" height="60"/>
+        <image name="imageKeyboardClearBlack" width="60" height="60"/>
         <namedColor name="borderLight">
             <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorLight">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -22,6 +22,11 @@ class DetailPlanetController: SettingPlanetWalletController {
         super.setData()
     }
     
+    override func onUpdateTheme(theme: Theme) {
+        super.onUpdateTheme(theme: theme)
+    }
+    
+    
     @IBAction func didTouchedExportBtns(_ sender: UIButton) {
         var segueID = ""
         if sender.tag == 0 {

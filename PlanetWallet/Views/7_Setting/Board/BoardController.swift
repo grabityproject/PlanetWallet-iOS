@@ -59,7 +59,7 @@ class BoardController: SettingPlanetWalletController {
 extension BoardController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
@@ -80,6 +80,10 @@ extension BoardController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return section.cellHeight()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
     }
     
 }

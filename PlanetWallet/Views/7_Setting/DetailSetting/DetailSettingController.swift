@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class DetailSettingController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var currencyLb: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet var biometricSwitch: PWSwitch!
     
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
+        biometricSwitch.delegate = self
     }
     
     override func setData() {
@@ -45,7 +44,13 @@ class DetailSettingController: SettingPlanetWalletController {
 extension DetailSettingController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
         }
+    }
+}
+
+extension DetailSettingController: PWSwitchDelegate {
+    func didSwitch(_ sender: Any?, isOn: Bool) {
+        Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: isOn)
     }
 }

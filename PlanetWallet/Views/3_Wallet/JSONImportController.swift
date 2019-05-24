@@ -17,18 +17,17 @@ class JSONImportController: PlanetWalletViewController {
     
     private var isValidJSON = false {
         didSet {
-            if isValidJSON {
-                continueBtn.setEnabled(true, theme: currentTheme)
-                errMsgContainerView.isHidden = true
-            }
-            else {
-                continueBtn.setEnabled(false, theme: currentTheme)
-                errMsgContainerView.isHidden = false
-            }
+            updateValidUI()
         }
     }
     
     //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateValidUI()
+    }
+    
     override func viewInit() {
         super.viewInit()
         textField.delegate = self
@@ -48,6 +47,17 @@ class JSONImportController: PlanetWalletViewController {
     private func isValid(mnemonic: String) -> Bool {
         //TODO: - Logic
         return false
+    }
+    
+    private func updateValidUI() {
+        if isValidJSON {
+            continueBtn.setEnabled(true, theme: currentTheme)
+            errMsgContainerView.isHidden = true
+        }
+        else {
+            continueBtn.setEnabled(false, theme: currentTheme)
+            errMsgContainerView.isHidden = false
+        }
     }
 }
 

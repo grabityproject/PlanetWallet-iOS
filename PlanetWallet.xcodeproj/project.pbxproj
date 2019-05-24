@@ -55,6 +55,12 @@
 		044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5C2227B000700FD7E5E /* NumberPad.swift */; };
 		044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5C4227BCDD500FD7E5E /* CharPad.xib */; };
 		044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5C6227BCDE300FD7E5E /* CharPad.swift */; };
+		045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045049452294E7040046E343 /* LocalAuthentication.framework */; };
+		0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5F622966D52008307D8 /* TopMenuLauncher.swift */; };
+		0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5F822966D7E008307D8 /* TopMenuView.xib */; };
+		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
+		0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5FC22966E15008307D8 /* TopMenuCell.xib */; };
+		0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FE22966E23008307D8 /* TopMenuCell.swift */; };
 		04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4D22818BD100758E56 /* Extension + UIButton.swift */; };
 		04738B502282749C00758E56 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ColorTheme.swift */; };
 		04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E3E228AA91900049F89 /* PWSwitch.swift */; };
@@ -156,6 +162,12 @@
 		044BC5C2227B000700FD7E5E /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		044BC5C4227BCDD500FD7E5E /* CharPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharPad.xib; sourceTree = "<group>"; };
 		044BC5C6227BCDE300FD7E5E /* CharPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharPad.swift; sourceTree = "<group>"; };
+		045049452294E7040046E343 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		0468C5F622966D52008307D8 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
+		0468C5F822966D7E008307D8 /* TopMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
+		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
+		0468C5FC22966E15008307D8 /* TopMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuCell.xib; sourceTree = "<group>"; };
+		0468C5FE22966E23008307D8 /* TopMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
 		04738B4D22818BD100758E56 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		04738B4F2282749C00758E56 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
@@ -213,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +264,8 @@
 				0429A70022929DDE00E88ACF /* ETHCoinCell.swift */,
 				04116B2C2293992E00CFD921 /* BTCTransactionCell.xib */,
 				04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */,
+				0468C5FC22966E15008307D8 /* TopMenuCell.xib */,
+				0468C5FE22966E23008307D8 /* TopMenuCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -396,6 +411,7 @@
 		044BC56122793E0900FD7E5E /* 4_Main */ = {
 			isa = PBXGroup;
 			children = (
+				0468C5F522966D45008307D8 /* popups */,
 				04116B302293DA8600CFD921 /* Models */,
 				0429A6F7229248DD00E88ACF /* Cells */,
 				044BC5822279446E00FD7E5E /* MainController.swift */,
@@ -508,6 +524,16 @@
 			path = MainSetting;
 			sourceTree = "<group>";
 		};
+		0468C5F522966D45008307D8 /* popups */ = {
+			isa = PBXGroup;
+			children = (
+				0468C5F622966D52008307D8 /* TopMenuLauncher.swift */,
+				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
+				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
+			);
+			path = popups;
+			sourceTree = "<group>";
+		};
 		04C82C7222840A6B00235883 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +619,7 @@
 		F538829195BCEB2F0014B4EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				045049452294E7040046E343 /* LocalAuthentication.framework */,
 				635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */,
 			);
 			name = Frameworks;
@@ -681,6 +708,7 @@
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
 				04D188E22283F931001F35E9 /* 7_Settings.storyboard in Resources */,
+				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
 				044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */,
 				04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */,
@@ -688,6 +716,7 @@
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04C82CAE22890EAD00235883 /* 7_1_Planet.storyboard in Resources */,
 				04C82C8E2288FE1300235883 /* 3_Wallet.storyboard in Resources */,
+				0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */,
 				04772E43228AB65B00049F89 /* CountryCodeCell.xib in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
 				044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */,
@@ -787,6 +816,7 @@
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
 				04116B322293DAAD00CFD921 /* ETHCoinDataSource.swift in Sources */,
 				044BC59E2279A2E800FD7E5E /* PList.swift in Sources */,
+				0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */,
 				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,
 				04C82CA622890DE600235883 /* NicknameRegistrationController.swift in Sources */,
 				044BC59022794ED200FD7E5E /* Utils.swift in Sources */,
@@ -800,6 +830,7 @@
 				04C82CB222890F4700235883 /* AccountController.swift in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,
 				04EFA27B228A5FEE0062CA0B /* PopupCountryCode.swift in Sources */,
+				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
 				04C82CA822890DF500235883 /* MnemonicExportController.swift in Sources */,
 				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
@@ -812,6 +843,7 @@
 				04116B342293DB9500CFD921 /* BTCTransactionDataSource.swift in Sources */,
 				04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */,
 				04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */,
+				0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
 				04C82C80228429C000235883 /* PWView.swift in Sources */,

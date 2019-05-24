@@ -25,32 +25,29 @@ extension TokenListController {
 
 class TokenListController: PlanetWalletViewController {
     
-    let cellID = "tokencell"
+    private let cellID = "tokencell"
+    
+    @IBOutlet var textFieldContainer: UIView!
+    @IBOutlet var textField: UITextField!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var notFoundLb: UILabel!
     
     var tokenList: [Token] = [Token]()
-    
     var tokenListFiltered: [Token] = [Token]()
     var search:String=""
     var isSearching = false {
         didSet {
             if isSearching {
-                if tokenListFiltered.isEmpty {
-                    tableView.isHidden = true
-                }
-                else {
-                    tableView.isHidden = false
-                }
+                notFoundLb.isHidden = !tokenListFiltered.isEmpty
+                tableView.isHidden = tokenListFiltered.isEmpty
             }
             else {
+                notFoundLb.isHidden = true
                 tableView.isHidden = false
                 tokenListFiltered.removeAll()
             }
         }
     }
-    
-    @IBOutlet var textFieldContainer: UIView!
-    @IBOutlet var textField: UITextField!
-    @IBOutlet var tableView: UITableView!
     
     //MARK: - Init
     override func viewInit() {
@@ -103,24 +100,34 @@ extension TokenListController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.search = ""
+        isSearching = false
+        tableView.reloadData()
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.isSearching = false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.isEmpty
-        {
+        if string.isEmpty { //backspace
             search = String(search.dropLast())
-            isSearching = false
-            self.tableView.reloadData()
-            return true
+            if search.isEmpty {
+                isSearching = false
+                self.tableView.reloadData()
+                return true
+            }
+        }
+        else {
+            search = textField.text! + string
         }
         
-        search = textField.text! + string
         self.tokenListFiltered = tokenList.filter({ return $0.name.uppercased().contains(search.uppercased()) })
         isSearching = true
         
-
         self.tableView.reloadData()
         return true
     }
@@ -155,6 +162,10 @@ extension TokenListController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: currentTheme)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching == false {
             return tokenList.count
@@ -172,6 +183,7 @@ extension TokenListController: UITableViewDelegate, UITableViewDataSource {
 extension TokenListController: TokenCellDelegate {
     func didSelected(indexPath: IndexPath, isRegistered: Bool) {
         tokenList[indexPath.row].isRegistered = isRegistered
+        tableView.reloadData()
     }
     
 }

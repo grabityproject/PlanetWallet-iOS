@@ -25,6 +25,25 @@ class CountryCodeTableController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(CountryCodeCell.self, forCellReuseIdentifier: cellID)
         self.tableView.rowHeight = 48.0
+        
+        switch ThemeManager.currentTheme() {
+        case .DARK:     tableView.backgroundColor = UIColor.white
+        case .LIGHT:    tableView.backgroundColor = UIColor(named: "borderDark")
+        }
+    }
+    
+    func findAllViews( view:UIView, theme:Theme ){
+        
+        if( view is Themable ){
+            (view as! Themable).setTheme(theme)
+        }
+        
+        if( view.subviews.count > 0 ){
+            view.subviews.forEach { (v) in
+                
+                findAllViews(view: v, theme: theme)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,6 +61,10 @@ class CountryCodeTableController: UITableViewController {
         else {
             return 0
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,6 +105,8 @@ class PopupCountryCode: AbsSlideUpView, CountryCodeTableDelegate {
     public func setData() {
         tableController.datasource = dataSource
     }
+    
+    
     
     func didTouchedCode(dialCode: DialCode?) {
         handler?(dialCode)

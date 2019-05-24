@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Regular.otf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopMenuCell" customModule="PlanetWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="iN0-l3-epB" id="rzp-Ev-9G1"/>
+                <outlet property="nameLb" destination="whX-tA-YSO" id="6Nr-DQ-Frd"/>
+                <outlet property="planetView" destination="QyJ-s5-Rxf" id="e0j-iL-tfg"/>
+                <outlet property="universeLb" destination="NtF-NI-r0m" id="RXH-qS-6XY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyJ-s5-Rxf" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="20" y="16.5" width="22" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="3DT-Kq-ePv"/>
+                        <constraint firstAttribute="width" constant="22" id="c8G-e7-cOP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="data" value="문규송"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satriani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whX-tA-YSO" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="52" y="17.5" width="52.5" height="20.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                    <color key="textColor" name="textColorDark"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" name="textColorLight"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageArrowRightGray" translatesAutoresizingMaskIntoConstraints="NO" id="PDY-Tr-Ebl" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="337" y="17.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="K42-BY-2Kf"/>
+                        <constraint firstAttribute="width" constant="20" id="qrm-Ai-NWD"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageArrowRightBlue"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH Universe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtF-NI-r0m" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="238" y="17.5" width="91" height="20.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                    <color key="textColor" name="detailTextDark"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" red="0.81176470588235294" green="0.81176470588235294" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgr-cf-dCX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <connections>
+                        <action selector="didTouched:" destination="-1" eventType="touchUpInside" id="5bX-c5-JqH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" name="borderDark"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zgr-cf-dCX" secondAttribute="bottom" id="7mE-H2-kja"/>
+                <constraint firstItem="QyJ-s5-Rxf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="FzT-d0-QDM"/>
+                <constraint firstItem="PDY-Tr-Ebl" firstAttribute="leading" secondItem="NtF-NI-r0m" secondAttribute="trailing" constant="8" id="Ry5-kM-kJg"/>
+                <constraint firstItem="whX-tA-YSO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SZR-uZ-FAZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zgr-cf-dCX" secondAttribute="trailing" id="Uhi-8c-7xY"/>
+                <constraint firstItem="Zgr-cf-dCX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZK9-9w-u4F"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PDY-Tr-Ebl" secondAttribute="trailing" constant="18" id="dLq-4c-jqB"/>
+                <constraint firstItem="Zgr-cf-dCX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ev8-x8-VjB"/>
+                <constraint firstItem="QyJ-s5-Rxf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="h2J-56-c5e"/>
+                <constraint firstItem="PDY-Tr-Ebl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iyI-Ug-jBY"/>
+                <constraint firstItem="whX-tA-YSO" firstAttribute="leading" secondItem="QyJ-s5-Rxf" secondAttribute="trailing" constant="10" id="r9d-02-i7g"/>
+                <constraint firstItem="NtF-NI-r0m" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zRl-Wj-9AB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="132" y="152.47376311844079"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="imageArrowRightBlue" width="30" height="30"/>
+        <image name="imageArrowRightGray" width="30" height="30"/>
+        <namedColor name="borderDark">
+            <color red="0.11764705882352941" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorDark">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorLight">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

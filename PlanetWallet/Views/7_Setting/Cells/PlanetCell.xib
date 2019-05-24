@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,6 @@
                 <outlet property="addressLb" destination="KeS-nq-46v" id="MHb-Y3-1he"/>
                 <outlet property="coinLb" destination="Yt5-pa-dQS" id="Fb8-dH-c5J"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="Y44-mE-msA"/>
-                <outlet property="moreBtn" destination="Ku3-1N-DKc" id="iGQ-l9-Q9p"/>
                 <outlet property="planetNameLb" destination="aIY-ax-hH9" id="7b0-kw-qA9"/>
                 <outlet property="planetView" destination="z3R-e6-OjC" id="rQw-aR-fCD"/>
             </connections>
@@ -34,33 +34,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-e6-OjC" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="10" width="80" height="80"/>
+                    <rect key="frame" x="0.0" y="18" width="64" height="64"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="KgC-xX-esY"/>
-                        <constraint firstAttribute="width" constant="80" id="MoB-y8-0RS"/>
+                        <constraint firstAttribute="height" constant="64" id="KgC-xX-esY"/>
+                        <constraint firstAttribute="width" constant="64" id="MoB-y8-0RS"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="data" value="asdas"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satriani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-ax-hH9" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="102" y="56" width="60.5" height="23.5"/>
+                    <rect key="frame" x="86" y="56" width="60.5" height="23.5"/>
                     <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ku3-1N-DKc">
-                    <rect key="frame" x="294" y="15" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="MF9-zk-1si"/>
-                        <constraint firstAttribute="width" constant="40" id="Na1-xT-FYg"/>
-                    </constraints>
-                    <state key="normal" image="imageMypageMoreBlue"/>
-                    <connections>
-                        <action selector="didTouchedMore:" destination="-1" eventType="touchUpInside" id="OQ8-bs-JCm"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x124A…bEF9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeS-nq-46v" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="240" y="57.5" width="94" height="20.5"/>
                     <constraints>
@@ -69,16 +63,26 @@
                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" name="detailTextDark"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOC-As-rse">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOC-As-rse" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="99" width="334" height="1"/>
                     <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="E08-H2-NFx"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                            <color key="value" name="borderDark"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt5-pa-dQS" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="102" y="25" width="40" height="20"/>
+                    <rect key="frame" x="86" y="25" width="40" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="5cY-fC-nAG"/>
@@ -91,13 +95,18 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="aIY-ax-hH9" firstAttribute="leading" secondItem="z3R-e6-OjC" secondAttribute="trailing" constant="22" id="0QR-t8-588"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ku3-1N-DKc" secondAttribute="trailing" id="0mu-iP-chr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KeS-nq-46v" secondAttribute="trailing" id="2qU-6R-GfL"/>
                 <constraint firstItem="HOC-As-rse" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EgV-Yb-no0"/>
                 <constraint firstItem="Yt5-pa-dQS" firstAttribute="leading" secondItem="aIY-ax-hH9" secondAttribute="leading" id="Gw4-jz-07o"/>
@@ -108,14 +117,23 @@
                 <constraint firstItem="aIY-ax-hH9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="6" id="WyQ-zh-1Sv"/>
                 <constraint firstAttribute="bottom" secondItem="HOC-As-rse" secondAttribute="bottom" id="ld8-fr-X8E"/>
                 <constraint firstItem="z3R-e6-OjC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zcy-Q7-NQB"/>
-                <constraint firstItem="Ku3-1N-DKc" firstAttribute="centerY" secondItem="Yt5-pa-dQS" secondAttribute="centerY" id="znN-o2-CJd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="34.782608695652179" y="34.821428571428569"/>
         </view>
     </objects>
     <resources>
-        <image name="imageMypageMoreBlue" width="60" height="60"/>
+        <namedColor name="borderDark">
+            <color red="0.11764705882352941" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

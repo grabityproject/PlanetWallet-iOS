@@ -36,7 +36,19 @@ class CountryCodeCell: UITableViewCell {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         addSubview(containerView)
+    }
+    
+    func findAllViews( view:UIView, theme:Theme ){
         
+        if( view is Themable ){
+            (view as! Themable).setTheme(theme)
+        }
         
+        if( view.subviews.count > 0 ){
+            view.subviews.forEach { (v) in
+                
+                findAllViews(view: v, theme: theme)
+            }
+        }
     }
 }

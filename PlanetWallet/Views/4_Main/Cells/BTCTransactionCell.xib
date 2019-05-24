@@ -76,7 +76,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ux-ju-D7u" secondAttribute="trailing" constant="20" id="7Fg-ps-OPo"/>
                 <constraint firstItem="KOK-UZ-ID7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="P5F-KQ-yRv"/>

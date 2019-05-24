@@ -38,10 +38,9 @@ class PinView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         addSubview(containerView)
-        
+
         selectedColor = ThemeManager.currentTheme().mainText
 
-        
         roundViewList.forEach({ $0.backgroundColor = unSelectedColor })
         pinViewList.forEach( { $0.backgroundColor = ThemeManager.currentTheme().pinCode })
     }

@@ -14,10 +14,17 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var confirmLb: UILabel!
     @IBOutlet var planetNameLb: UILabel!
+    @IBOutlet var gradientView: GradientView!
     
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        gradientView.setTheme(theme: currentTheme)
     }
 
     //MARK: - IBAction
@@ -32,7 +39,7 @@ class PlanetGenerateController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -34,6 +34,11 @@ class TokenAddController: PlanetWalletViewController {
     }
     
     //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateMenuBar()
+    }
+    
     override func viewInit() {
         super.viewInit()
         
