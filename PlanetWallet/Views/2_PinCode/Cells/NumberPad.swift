@@ -18,7 +18,7 @@ class NumberPad: UIView {
     weak var delegate: NumberPadDelegate?
     
     @IBOutlet var containerView: UIView!
-    @IBOutlet var numBtnList: [UIButton]!
+    @IBOutlet var numBtnList: [PWButton]!
     
     private var numberDataList = [0,1,2,3,4,5,6,7,8,9]
     var pw_number = ""

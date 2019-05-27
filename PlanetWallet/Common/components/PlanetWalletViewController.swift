@@ -8,10 +8,7 @@
 
 import UIKit
 
-enum Theme {
-    case DARK
-    case LIGHT
-}
+
 
 class PlanetWalletViewController: UIViewController
 {
@@ -20,15 +17,26 @@ class PlanetWalletViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewInit()
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTheme( )
+        onUpdateTheme(theme: currentTheme)
+//        updateTheme()
     }
     
-    func viewInit() { }
-    func setData() { }
+    func viewInit() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func setData() {
+        
+    }
+    
+    
     
     //MARK: - Segue
     func sendAction( segue:String , userInfo : Dictionary<String, Any>? ){
@@ -45,15 +53,62 @@ class PlanetWalletViewController: UIViewController
     }
     
     //MARK: - Theme
-    func updateTheme( ) {
-        if( beforeTheme != nil && beforeTheme != THEME ){
-            onUpdateTheme( theme: THEME )
+    var currentTheme: Theme {
+        get {
+            return ThemeManager.currentTheme()
         }
-        beforeTheme = THEME;
+        set {
+            ThemeManager.setTheme(newValue)
+            onUpdateTheme(theme: currentTheme)
+        }
+    }
+    
+    var settingTheme: Theme {
+        switch currentTheme {
+        case .DARK:     return .LIGHT
+        case .LIGHT:    return .DARK
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        var r : CGFloat = -1
+        var g : CGFloat = -1
+        var b : CGFloat = -1
+        var a : CGFloat = -1
+        self.view.backgroundColor?.getRed(&r, green: &g, blue: &b, alpha: &a)
+        if( r+g+b+a > 0 ){
+            return ( r > 0.5 && g > 0.5 && b > 0.5 ) ? .default : .lightContent
+        }else{
+            return .default
+        }
+    }
+    
+    func updateTheme() {
+        if( beforeTheme != nil && beforeTheme != currentTheme ){
+            onUpdateTheme( theme: currentTheme )
+        }
+        beforeTheme = currentTheme;
     }
     
     func onUpdateTheme( theme : Theme ) {
+        findAllViews(view: self.view, theme: theme)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    
+    
+    func findAllViews( view:UIView, theme:Theme ){
         
+        if( view is Themable ){
+            (view as! Themable).setTheme(theme)
+        }
+        
+        if( view.subviews.count > 0 ){
+            view.subviews.forEach { (v) in
+
+                findAllViews(view: v, theme: theme)
+            }
+        }
     }
 
 }

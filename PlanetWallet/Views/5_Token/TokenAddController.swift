@@ -8,23 +8,108 @@
 
 import UIKit
 
-class TokenAddController: UIViewController {
+class TokenAddController: PlanetWalletViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    enum Menu: Int {
+        case ADD_TOKEN = 0
+        case CUSTOM_TOKEN
+    }
+    @IBOutlet var naviBar: NavigationBar!
+    
+    @IBOutlet var AddTokenMenuBtn: UIButton!
+    @IBOutlet var customTokenMenuBtn: UIButton!
+    @IBOutlet var menuBarIndicator: UIView!
+    @IBOutlet var indicatorLeftAnchorConstraint: NSLayoutConstraint!
+    
+    private var tokenPageController: TokenPageController? {
+        didSet {
+            tokenPageController?.pageDelegate = self
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var selectedMenu: Menu = .ADD_TOKEN {
+        didSet {
+            updateMenuBar()
+        }
     }
-    */
+    
+    //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateMenuBar()
+    }
+    
+    override func viewInit() {
+        super.viewInit()
+        
+        self.naviBar.delegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerViewSegue" {
+            tokenPageController = segue.destination as? TokenPageController
+        }
+    }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedMenubar(_ sender: UIButton) {
+        if sender.tag == Menu.ADD_TOKEN.rawValue {
+            selectedMenu = .ADD_TOKEN
+        }
+        else if sender.tag == Menu.CUSTOM_TOKEN.rawValue {
+            selectedMenu = .CUSTOM_TOKEN
+        }
+        
+        if let moveToVC = tokenPageController?.orderedViewControllers[selectedMenu.rawValue] {
+            tokenPageController?.currentPageIdx = selectedMenu.rawValue
+            tokenPageController?.setViewControllers([moveToVC],
+                                                    direction: .forward,
+                                                    animated: false,
+                                                    completion: nil)
+        }
+    }
 
+    //MARK: - Private
+    private func updateMenuBar() {
+        switch selectedMenu {
+        case .ADD_TOKEN:
+            indicatorLeftAnchorConstraint.constant = 0
+            
+            AddTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
+            AddTokenMenuBtn.setTitleColor(currentTheme.mainText, for: .normal)
+            AddTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
+            
+            customTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
+            customTokenMenuBtn.setTitleColor(currentTheme.detailText, for: .normal)
+            customTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+        case .CUSTOM_TOKEN:
+            indicatorLeftAnchorConstraint.constant = AddTokenMenuBtn.frame.width
+            
+            AddTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
+            AddTokenMenuBtn.setTitleColor(currentTheme.detailText, for: .normal)
+            AddTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+            
+            customTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
+            customTokenMenuBtn.setTitleColor(currentTheme.mainText, for: .normal)
+            customTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
+        }
+    }
 }
+
+extension TokenAddController: TokenPageDelegate {
+    func didScroll(offset: CGFloat) {
+        self.indicatorLeftAnchorConstraint.constant = offset
+    }
+    
+    func didMoveToPage(index: Int) {
+        self.selectedMenu = Menu(rawValue: index) ?? .ADD_TOKEN
+    }
+}
+
+
+extension TokenAddController: NavigationBarDelegate {
+    func didTouchedBarItem(_ sender: ToolBarButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+

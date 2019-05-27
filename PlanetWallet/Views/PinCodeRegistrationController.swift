@@ -8,6 +8,19 @@
 
 import UIKit
 
+extension PinCodeRegistrationController {
+    private enum From {
+        case SPLASH, CERTIFICATION
+        
+        func segueID() -> String {
+            switch self {
+            case .SPLASH:           return Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION
+            case .CERTIFICATION:     return Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
+            }
+        }
+    }
+}
+
 class PinCodeRegistrationController: PlanetWalletViewController {
     
     private var passwordStr = "" {
@@ -20,38 +33,26 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewInit()
-        setData()
-    }
+    private var fromSegue = From.SPLASH
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+    //MARK: - Init
     override func viewInit() {
         charPad.delegate = self
         numPad.delegate = self
     }
     
     override func setData() {
-        
+        if let fromSegueID = userInfo?["segue"] as? String {
+            if fromSegueID == From.SPLASH.segueID() {
+                fromSegue = .SPLASH
+            }
+            else if fromSegueID == From.CERTIFICATION.segueID() {
+                fromSegue = .CERTIFICATION
+            }
+        }
     }
     
-    
-    
-    private func moveToHomeVC() {
-        //        if isAppLaunchedEnter {
-        //            let vc = UIStoryboard(name: "3_Home", bundle: nil).instantiateViewController(withIdentifier: "mainNavigation")
-        //            self.present(vc, animated: true, completion: nil)
-        //        }
-        //        else {
-        //            dismiss(animated: true, completion: nil)
-        //        }
-    }
-    
+    //MARK: - Private
     private func showNumberPad(_ isNumberPad: Bool) {
         if isNumberPad {
             charPad.isHidden = true
@@ -63,6 +64,16 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         }
     }
     
+    private func handleCompleteRegistration(_ pw: String) {
+        Utils.shared.setDefaults(for: Keys.Userdefaults.PINCODE, value: pw)
+        
+        switch fromSegue {
+        case .SPLASH:
+            sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION, userInfo: nil)
+        case .CERTIFICATION:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension PinCodeRegistrationController: NumberPadDelegate {
@@ -70,7 +81,6 @@ extension PinCodeRegistrationController: NumberPadDelegate {
         if num.count == 4 {
             showNumberPad(false)
         }
-        
         passwordStr = num
     }
 }
@@ -79,10 +89,8 @@ extension PinCodeRegistrationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
         //Register pincode
         passwordStr += char
-        UserDefaults.standard.set(passwordStr, forKey: "pincode")
         
-        //move to certification pincode
-        sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION, userInfo: nil)
+        handleCompleteRegistration(passwordStr)
     }
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {

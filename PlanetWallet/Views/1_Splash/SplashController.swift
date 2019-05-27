@@ -7,27 +7,52 @@
 //
 
 import UIKit
+import Lottie
 
 class SplashController: PlanetWalletViewController {
     
     private var isPinRegistered = true
+    let animationView = AnimationView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //MARK: - Init
+    override func viewInit() {
+        super.viewInit()
+        
+        let animation = Animation.named("splash")
+        self.animationView.animation = animation
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.contentMode = .scaleAspectFit
+        view.addSubview(animationView)
+        
+        NSLayoutConstraint.activate([animationView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                                     animationView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                                     animationView.rightAnchor.constraint(equalTo: view.rightAnchor)])
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        guard let _ = UserDefaults.standard.value(forKey: "pincode") else {
+        animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (isSuccess) in
+            if isSuccess {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.checkEntryPoint()
+                }
+            }
+        }
+    }
+    
+    //MARK: - Private 
+    private func checkEntryPoint() {
+        
+        guard let _: String? = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {
             isPinRegistered = false
-            sendAction(segue: Keys.Segue.TO_PINCODE_REGISTRATION, userInfo: nil)
+            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION, userInfo: nil)
             return
         }
         
         if isPinRegistered {
-            let pinCodeCertificationVC = UIStoryboard(name: "2_PinCode", bundle: nil).instantiateViewController(withIdentifier: "PinCodeCertificationController")
-            self.present(pinCodeCertificationVC, animated: false, completion: nil)
+            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION, userInfo: nil)
         }
     }
 }

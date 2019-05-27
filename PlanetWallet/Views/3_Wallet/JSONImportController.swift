@@ -8,23 +8,75 @@
 
 import UIKit
 
-class JSONImportController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class JSONImportController: PlanetWalletViewController {
+    
+    @IBOutlet var textField: PWTextField!
+    @IBOutlet var jsonTextView: PWTextView!
+    @IBOutlet var continueBtn: PWButton!
+    @IBOutlet var errMsgContainerView: UIView!
+    
+    private var isValidJSON = false {
+        didSet {
+            updateValidUI()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateValidUI()
     }
-    */
+    
+    override func viewInit() {
+        super.viewInit()
+        textField.delegate = self
+        jsonTextView.delegate = self
+    }
+    
+    override func setData() {
+        super.setData()
+    }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedInvisible(_ sender: UIButton) {
+        textField.isSecureTextEntry = !textField.isSecureTextEntry
+    }
+    
+    //MARK: - Private
+    private func isValid(mnemonic: String) -> Bool {
+        //TODO: - Logic
+        return false
+    }
+    
+    private func updateValidUI() {
+        if isValidJSON {
+            continueBtn.setEnabled(true, theme: currentTheme)
+            errMsgContainerView.isHidden = true
+        }
+        else {
+            continueBtn.setEnabled(false, theme: currentTheme)
+            errMsgContainerView.isHidden = false
+        }
+    }
+}
 
+extension JSONImportController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    // hides text views
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        else {
+            //TODO: - Logic
+            self.isValidJSON = true
+        }
+        return true
+    }
 }

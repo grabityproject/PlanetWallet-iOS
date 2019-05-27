@@ -12,10 +12,15 @@ class PinView: UIView {
     
     @IBOutlet var containerView: UIView!
     
-    @IBOutlet var pinList: [UIView]!
+    @IBOutlet var roundViewList: [PWView]!
+    @IBOutlet var pinViewList: [UIView]!
     
-    private let selectedColor = 0xEB3E54
-    private let unSelectedColor = 0x585F6F
+    //selected round view color
+    private var selectedColor: UIColor!
+    //unselected round view color
+    private let unSelectedColor = UIColor.clear
+    //pin view color
+    private let pinColor = ThemeManager.currentTheme().pinCode
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,60 +38,29 @@ class PinView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         addSubview(containerView)
-        
-        setCircularPin()
-    }
 
-    private func setCircularPin() {
-        pinList.forEach { (pin) in
-            pin.layer.cornerRadius = pin.frame.size.width/2
-            pin.layer.masksToBounds = true
-        }
+        selectedColor = ThemeManager.currentTheme().mainText
+
+        roundViewList.forEach({ $0.backgroundColor = unSelectedColor })
+        pinViewList.forEach( { $0.backgroundColor = ThemeManager.currentTheme().pinCode })
     }
     
     public func setSelectedColor(_ position: Int) {
         
-        if position == 0 {
-            pinList[0].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: unSelectedColor)
-        }
-        else if position == 1 {
-            pinList[0].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: unSelectedColor)
-        }
-        else if position == 2 {
-            pinList[0].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: unSelectedColor)
-        }
-        else if position == 3 {
-            pinList[0].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: unSelectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: unSelectedColor)
-        }
-        else if position == 4 {
-            pinList[0].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: unSelectedColor)
-        }
-        else if position == 5 {
-            pinList[0].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[1].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[2].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[3].backgroundColor = UIColor(rgb: selectedColor)
-            pinList[4].backgroundColor = UIColor(rgb: selectedColor)
+        let pinWidth = roundViewList[0].frame.size.width
+        
+        for i in 0..<pinViewList.count {
+            if i < position {
+                roundViewList[i].backgroundColor = selectedColor
+                roundViewList[i].cornerRadius = pinWidth/2
+                
+                pinViewList[i].backgroundColor = unSelectedColor
+            }
+            else {
+                roundViewList[i].backgroundColor = unSelectedColor
+                
+                pinViewList[i].backgroundColor = pinColor
+            }
         }
     }
 }
