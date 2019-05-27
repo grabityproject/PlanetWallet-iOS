@@ -18,8 +18,7 @@ class SplashController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         
-        let animation = Animation.named("splash")
-        self.animationView.animation = animation
+        self.animationView.animation = Animation.named("splash")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
         view.addSubview(animationView)
@@ -45,7 +44,7 @@ class SplashController: PlanetWalletViewController {
     //MARK: - Private 
     private func checkEntryPoint() {
         
-        guard let _: String? = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {
+        guard let _: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {
             isPinRegistered = false
             sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION, userInfo: nil)
             return

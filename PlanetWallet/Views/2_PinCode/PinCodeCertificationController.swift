@@ -116,7 +116,7 @@ extension PinCodeCertificationController: NumberPadDelegate {
 
 extension PinCodeCertificationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
-        guard let savedPassword: String? = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else { return }
+        guard let savedPassword: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else { return }
         
         self.passwordStr = passwordStr + char
         if passwordStr == savedPassword {    // Success to sign in

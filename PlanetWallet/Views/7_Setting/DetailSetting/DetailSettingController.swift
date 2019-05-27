@@ -15,6 +15,7 @@ class DetailSettingController: SettingPlanetWalletController {
     @IBOutlet var currencyLb: UILabel!
     @IBOutlet var biometricSwitch: PWSwitch!
     
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -25,6 +26,7 @@ class DetailSettingController: SettingPlanetWalletController {
         super.setData()
     }
     
+    //MARK: - IBAction
     @IBAction func didTouchedCurrency(_ sender: UIButton) {
         let popup = PopupCurrency()
         popup.show(controller: self)

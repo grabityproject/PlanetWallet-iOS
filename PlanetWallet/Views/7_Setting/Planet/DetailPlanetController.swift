@@ -11,6 +11,7 @@ import UIKit
 class DetailPlanetController: SettingPlanetWalletController {
 
     @IBOutlet var naviBar: NavigationBar!
+    @IBOutlet var hidePlanetSwitch: PWSwitch!
     
     //MARK: - Init
     override func viewInit() {
@@ -21,11 +22,6 @@ class DetailPlanetController: SettingPlanetWalletController {
     override func setData() {
         super.setData()
     }
-    
-    override func onUpdateTheme(theme: Theme) {
-        super.onUpdateTheme(theme: theme)
-    }
-    
     
     @IBAction func didTouchedExportBtns(_ sender: UIButton) {
         var segueID = ""

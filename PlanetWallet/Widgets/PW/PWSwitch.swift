@@ -63,8 +63,8 @@ public protocol PWSwitchDelegate{
             UIView.animate(withDuration: 0.3) {
                 self.circleView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
                 self.maskCircleView.frame = CGRect(x: 13, y: 5, width: 20, height: 20)
-                self.maskCircleView.backgroundColor = self.theme == .LIGHT ? self.themeColor : self.defaultColor;
-                self.backgroundColor = self.theme == .LIGHT ? self.themeColor : self.defaultColor;
+                self.maskCircleView.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
+                self.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
             }
         }
     }
@@ -88,11 +88,11 @@ public protocol PWSwitchDelegate{
         self.theme = theme;
         if( !self.isOn ){
             if( theme == .LIGHT){
-                self.maskCircleView.backgroundColor = self.themeColor
-                self.backgroundColor = self.themeColor
-            }else{
                 self.maskCircleView.backgroundColor = self.defaultColor
                 self.backgroundColor = self.defaultColor
+            }else{
+                self.maskCircleView.backgroundColor = self.themeColor
+                self.backgroundColor = self.themeColor
             }
         }
     }

@@ -59,6 +59,12 @@
 		04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F18229B90C200DC3CFD /* Extension + CALayer.swift */; };
 		04675F1C229BB01900DC3CFD /* LauncherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04675F1A229BB01900DC3CFD /* LauncherView.xib */; };
 		04675F1D229BB01900DC3CFD /* MainLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F1B229BB01900DC3CFD /* MainLauncher.swift */; };
+		04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */; };
+		04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F23229BD38500DC3CFD /* refreshAnim1.json */; };
+		04675F29229BD3A200DC3CFD /* refreshAnim2.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F27229BD3A200DC3CFD /* refreshAnim2.json */; };
+		04675F2A229BD3A200DC3CFD /* refreshAnim3.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F28229BD3A200DC3CFD /* refreshAnim3.json */; };
+		04675F2D229BD97900DC3CFD /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04675F2C229BD97900DC3CFD /* RefreshContents.xib */; };
+		04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F2E229BD99D00DC3CFD /* RefreshContents.swift */; };
 		0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5F622966D52008307D8 /* TopMenuLauncher.swift */; };
 		0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5F822966D7E008307D8 /* TopMenuView.xib */; };
 		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
@@ -169,6 +175,12 @@
 		04675F18229B90C200DC3CFD /* Extension + CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + CALayer.swift"; sourceTree = "<group>"; };
 		04675F1A229BB01900DC3CFD /* LauncherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LauncherView.xib; sourceTree = "<group>"; };
 		04675F1B229BB01900DC3CFD /* MainLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLauncher.swift; sourceTree = "<group>"; };
+		04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuLauncher.swift; sourceTree = "<group>"; };
+		04675F23229BD38500DC3CFD /* refreshAnim1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim1.json; sourceTree = "<group>"; };
+		04675F27229BD3A200DC3CFD /* refreshAnim2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim2.json; sourceTree = "<group>"; };
+		04675F28229BD3A200DC3CFD /* refreshAnim3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim3.json; sourceTree = "<group>"; };
+		04675F2C229BD97900DC3CFD /* RefreshContents.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
+		04675F2E229BD99D00DC3CFD /* RefreshContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshContents.swift; sourceTree = "<group>"; };
 		0468C5F622966D52008307D8 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
 		0468C5F822966D7E008307D8 /* TopMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
 		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
@@ -272,6 +284,8 @@
 				04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */,
 				0468C5FC22966E15008307D8 /* TopMenuCell.xib */,
 				0468C5FE22966E23008307D8 /* TopMenuCell.swift */,
+				04675F2C229BD97900DC3CFD /* RefreshContents.xib */,
+				04675F2E229BD99D00DC3CFD /* RefreshContents.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -328,7 +342,7 @@
 		044BC55A22793D9100FD7E5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				041113932292A63100E0222D /* splash.json */,
+				04675F2B229BD3D100DC3CFD /* Animations */,
 				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
@@ -531,6 +545,17 @@
 			path = MainSetting;
 			sourceTree = "<group>";
 		};
+		04675F2B229BD3D100DC3CFD /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				04675F23229BD38500DC3CFD /* refreshAnim1.json */,
+				04675F27229BD3A200DC3CFD /* refreshAnim2.json */,
+				04675F28229BD3A200DC3CFD /* refreshAnim3.json */,
+				041113932292A63100E0222D /* splash.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		0468C5F522966D45008307D8 /* popups */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +564,7 @@
 				0468C5F622966D52008307D8 /* TopMenuLauncher.swift */,
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
+				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
 			);
 			path = popups;
 			sourceTree = "<group>";
@@ -702,6 +728,7 @@
 				04C82CB022890EC200235883 /* 7_3_DetailSetting.storyboard in Resources */,
 				04C82CAC22890E9A00235883 /* 7_2_Account.storyboard in Resources */,
 				044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */,
+				04675F29229BD3A200DC3CFD /* refreshAnim2.json in Resources */,
 				044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */,
 				044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */,
 				0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */,
@@ -709,6 +736,8 @@
 				041113942292A63100E0222D /* splash.json in Resources */,
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
+				04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */,
+				04675F2D229BD97900DC3CFD /* RefreshContents.xib in Resources */,
 				04675F1C229BB01900DC3CFD /* LauncherView.xib in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04EFA27D228A601A0062CA0B /* PopupCountryCode.xib in Resources */,
@@ -717,6 +746,7 @@
 				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
+				04675F2A229BD3A200DC3CFD /* refreshAnim3.json in Resources */,
 				04D188E22283F931001F35E9 /* 7_Settings.storyboard in Resources */,
 				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
@@ -812,6 +842,7 @@
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
+				04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
 				044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */,
@@ -838,6 +869,7 @@
 				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F1D229BB01900DC3CFD /* MainLauncher.swift in Sources */,
+				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04C82CB222890F4700235883 /* AccountController.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,

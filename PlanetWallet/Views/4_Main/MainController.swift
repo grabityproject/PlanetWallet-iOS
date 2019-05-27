@@ -29,13 +29,17 @@ class MainController: PlanetWalletViewController {
     
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
+    var refreshControl: UIRefreshControl!
+    var refreshCustomView: UIView!
     
     var dataSources: [UITableViewDataSource] = []
     let ethDataSource = ETHCoinDataSource()
     let btcDataSource = BTCTransactionDataSource()
     
     var topMenuLauncher: TopMenuLauncher?
+//    var bottomMenuLauncher: BottomMenuLauncher?
     
+    var bottomLauncher = MainLauncher()
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,11 +55,10 @@ class MainController: PlanetWalletViewController {
         self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
         topMenuLauncher?.delegate = self
         
-        bottomLauncher.frame = CGRect(x: 0, y: SCREEN_HEIGHT - 80, width: SCREEN_WIDTH, height: 80)
-        self.view.addSubview(bottomLauncher)
+//        self.bottomMenuLauncher = BottomMenuLauncher()
     }
     
-    let bottomLauncher = MainLauncher()
+    
     
     override func viewInit() {
         super.viewInit()
@@ -67,10 +70,15 @@ class MainController: PlanetWalletViewController {
         
         configureTableView()
         createRippleView()
+        
+        bottomLauncher.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+//        self.view.addSubview(bottomLauncher)
     }
     
     override func setData() {
         super.setData()
+        
+        self.fetchData()
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -80,6 +88,9 @@ class MainController: PlanetWalletViewController {
     }
     
     //MARK: - Private
+    private func fetchData() {
+    }
+    
     private func configureTableView() {
         tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
         tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
@@ -90,6 +101,13 @@ class MainController: PlanetWalletViewController {
         btcDataSource.transactionList = [BTCTransaction(), BTCTransaction()]
         dataSources = [ethDataSource, btcDataSource]
         tableView.dataSource = dataSources[0]
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.yellow
+        refreshControl.tintColor = UIColor.clear
+        tableView.addSubview(refreshControl!)
+        
+        self.loadCustomRefreshContents()
     }
     
     private func createRippleView() {
@@ -121,6 +139,14 @@ class MainController: PlanetWalletViewController {
         
         tableView.reloadData()
     }
+    
+    private func loadCustomRefreshContents() {
+        
+        refreshCustomView = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)![0] as! UIView
+        refreshCustomView.frame = refreshControl.bounds
+
+        refreshControl.addSubview(refreshCustomView)
+    }
 }
 
 extension MainController: NavigationBarDelegate {
@@ -145,6 +171,16 @@ extension MainController: NavigationBarDelegate {
             
         case .RIGHT:
             updateUniverse()
+        }
+    }
+}
+
+extension MainController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let refreshControl = refreshControl else { return }
+        if refreshControl.isRefreshing {
+            //refresh control animation
+            
         }
     }
 }
