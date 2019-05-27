@@ -45,8 +45,6 @@ class GradientView: UIView {
             layer.startPoint = CGPoint(x: 0.5, y: 0)
             layer.endPoint = CGPoint (x: 0.5, y: 1)
         }
-        
-        setNeedsDisplay()
     }
     
     func setTheme(theme: Theme) {

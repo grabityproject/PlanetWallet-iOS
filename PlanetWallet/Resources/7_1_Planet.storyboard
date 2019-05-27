@@ -695,13 +695,13 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sSa-AS-DWf" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="305" height="55"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageDark" value="imageInputClearBlack"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageLight" value="imageInputClearBlue"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                <color key="value" name="detailTextDark"/>
+                                                <color key="value" name="textColorDark"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>

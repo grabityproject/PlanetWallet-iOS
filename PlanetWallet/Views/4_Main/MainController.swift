@@ -25,6 +25,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var footerView: UIView!
+    @IBOutlet var footerBtnContainer: UIView!
     
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
@@ -38,8 +39,10 @@ class MainController: PlanetWalletViewController {
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         //Ripple animation transition
         UIView.animate(withDuration: 0.4, animations: {
+            self.rippleView.backgroundColor = self.settingTheme.backgroundColor
             self.rippleView.alpha = 0
             self.rippleView.layer.cornerRadius = 0
             self.rippleView.bounds = CGRect(x: 25, y: 25, width: 0, height: 0)
@@ -47,13 +50,15 @@ class MainController: PlanetWalletViewController {
         
         self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
         topMenuLauncher?.delegate = self
-        
-//        dimGradientView.setTheme(theme: currentTheme)
     }
     
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
+        
+        footerBtnContainer.layer.addBorder(edges: [.left,.bottom,.right],
+                                           color: currentTheme.border,
+                                           thickness: 1)
         
         configureTableView()
         createRippleView()
@@ -65,8 +70,8 @@ class MainController: PlanetWalletViewController {
     
     override func onUpdateTheme(theme: Theme) {
         super.onUpdateTheme(theme: theme)
+        dimGradientView.setTheme(theme: currentTheme)
         topMenuLauncher?.setTheme(theme)
-        dimGradientView.setTheme(theme: theme)
     }
     
     //MARK: - Private
@@ -83,7 +88,11 @@ class MainController: PlanetWalletViewController {
     }
     
     private func createRippleView() {
-        self.rippleView = UIView(frame: CGRect(x: 31, y: naviBar.leftImageView.frame.origin.y + naviBar.leftImageView.frame.height/2.0, width: 0, height: 0))
+
+        self.rippleView = UIView(frame: CGRect(x: 31,
+                                               y: naviBar.leftImageView.frame.origin.y + naviBar.leftImageView.frame.height/2.0,
+                                               width: 0,
+                                               height: 0))
         rippleView.alpha = 0
         rippleView.backgroundColor = settingTheme.backgroundColor
         rippleView.layer.cornerRadius = 0
