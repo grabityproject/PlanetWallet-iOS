@@ -57,6 +57,8 @@
 		044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5C6227BCDE300FD7E5E /* CharPad.swift */; };
 		045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045049452294E7040046E343 /* LocalAuthentication.framework */; };
 		04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F18229B90C200DC3CFD /* Extension + CALayer.swift */; };
+		04675F1C229BB01900DC3CFD /* LauncherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04675F1A229BB01900DC3CFD /* LauncherView.xib */; };
+		04675F1D229BB01900DC3CFD /* MainLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F1B229BB01900DC3CFD /* MainLauncher.swift */; };
 		0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5F622966D52008307D8 /* TopMenuLauncher.swift */; };
 		0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5F822966D7E008307D8 /* TopMenuView.xib */; };
 		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
@@ -165,6 +167,8 @@
 		044BC5C6227BCDE300FD7E5E /* CharPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharPad.swift; sourceTree = "<group>"; };
 		045049452294E7040046E343 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		04675F18229B90C200DC3CFD /* Extension + CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + CALayer.swift"; sourceTree = "<group>"; };
+		04675F1A229BB01900DC3CFD /* LauncherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LauncherView.xib; sourceTree = "<group>"; };
+		04675F1B229BB01900DC3CFD /* MainLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLauncher.swift; sourceTree = "<group>"; };
 		0468C5F622966D52008307D8 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
 		0468C5F822966D7E008307D8 /* TopMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
 		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
@@ -530,6 +534,8 @@
 		0468C5F522966D45008307D8 /* popups */ = {
 			isa = PBXGroup;
 			children = (
+				04675F1A229BB01900DC3CFD /* LauncherView.xib */,
+				04675F1B229BB01900DC3CFD /* MainLauncher.swift */,
 				0468C5F622966D52008307D8 /* TopMenuLauncher.swift */,
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
@@ -703,6 +709,7 @@
 				041113942292A63100E0222D /* splash.json in Resources */,
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
+				04675F1C229BB01900DC3CFD /* LauncherView.xib in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04EFA27D228A601A0062CA0B /* PopupCountryCode.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
@@ -830,6 +837,7 @@
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
 				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
+				04675F1D229BB01900DC3CFD /* MainLauncher.swift in Sources */,
 				04C82CB222890F4700235883 /* AccountController.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,

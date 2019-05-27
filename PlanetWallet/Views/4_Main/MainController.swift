@@ -50,7 +50,12 @@ class MainController: PlanetWalletViewController {
         
         self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
         topMenuLauncher?.delegate = self
+        
+        bottomLauncher.frame = CGRect(x: 0, y: SCREEN_HEIGHT - 80, width: SCREEN_WIDTH, height: 80)
+        self.view.addSubview(bottomLauncher)
     }
+    
+    let bottomLauncher = MainLauncher()
     
     override func viewInit() {
         super.viewInit()
