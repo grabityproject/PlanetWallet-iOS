@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailPlanetController: SettingPlanetWalletController {
+class DetailPlanetController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var hidePlanetSwitch: PWSwitch!

@@ -18,6 +18,8 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let SCREEN_MAX_LENGTH = max(SCREEN_WIDTH, SCREEN_HEIGHT)
 let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
+
+
 struct Keys {
     struct Userdefaults {
         static let THEME = "theme"
@@ -43,6 +45,7 @@ struct Keys {
         static let WALLET_IMPORT_TO_MNEMONIC_IMPORT = "walletimport_to_mnemonicImport"
         static let WALLET_IMPORT_TO_PRIVATEKEY_IMPORT = "walletimport_to_privatekeyimport"
         static let WALLET_IMPORT_TO_JSON_IMPORT = "walletimport_to_jsonimport"
+        static let WALLET_ADD_TO_PALNET_GENERATE = "walletadd_to_planetgenerate"
         
         //MAIN
         static let MAIN_TO_SETTING = "main_to_setting"
@@ -58,6 +61,7 @@ struct Keys {
         
         //Setting_PlanetManagement
         static let PLANET_MANAGEMENT_TO_DETAIL_PLANET = "planetmanagement_to_detailplanet"
+        static let PLANET_MANAGEMENT_TO_WALLET_ADD = "planetmanagement_to_walletadd"
         
         //Detail Plannet
         static let MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION = "mnemonicexport_to_pincodecertification"

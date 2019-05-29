@@ -24,7 +24,7 @@ struct DialCode: Mappable {
     }
 }
 
-class PhoneRegistrationController: SettingPlanetWalletController {
+class PhoneRegistrationController: PlanetWalletViewController {
 
     
     @IBOutlet var naviBar: NavigationBar!

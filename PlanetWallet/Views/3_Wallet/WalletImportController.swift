@@ -132,13 +132,16 @@ extension WalletImportController: WalletImportPageDelegate {
 
 extension WalletImportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
-        if let naviCon = navigationController {
-            //from setting
-            naviCon.popViewController(animated: true)
-        }
-        else {
-            //from first sign in
-            self.dismiss(animated: true, completion: nil)
-        }
+        
+        self.dismissDetail()
+        
+//        if let naviCon = navigationController {
+//            //from setting
+//            naviCon.popViewController(animated: true)
+//        }
+//        else {
+//            //from first sign in
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmailRegistrationController: SettingPlanetWalletController {
+class EmailRegistrationController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var textField: PWTextField!

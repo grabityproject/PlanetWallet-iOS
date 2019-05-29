@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrivateKeyExportController: SettingPlanetWalletController {
+class PrivateKeyExportController: PlanetWalletViewController {
     
     @IBOutlet var naviBar: NavigationBar!
     

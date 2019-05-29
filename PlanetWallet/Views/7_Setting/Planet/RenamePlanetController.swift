@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RenamePlanetController: SettingPlanetWalletController {
+class RenamePlanetController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var nameTextfieldContainer: PWView!

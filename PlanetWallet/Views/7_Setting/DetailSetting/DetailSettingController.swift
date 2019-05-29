@@ -9,7 +9,7 @@
 import UIKit
 import LocalAuthentication
 
-class DetailSettingController: SettingPlanetWalletController {
+class DetailSettingController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var currencyLb: UILabel!

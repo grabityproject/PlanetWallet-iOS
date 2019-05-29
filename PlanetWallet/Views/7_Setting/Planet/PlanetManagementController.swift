@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlanetManagementController: SettingPlanetWalletController {
+class PlanetManagementController: PlanetWalletViewController {
 
     private let cellID = "planetcell"
     
@@ -59,8 +59,10 @@ extension PlanetManagementController: NavigationBarDelegate {
             self.navigationController?.popViewController(animated: true)
         }
         else {
-            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletAddController")
-            self.navigationController?.pushViewController(importWalletVC, animated: true)
+            let segueID = Keys.Segue.PLANET_MANAGEMENT_TO_WALLET_ADD
+            sendAction(segue: segueID, userInfo: ["segue": segueID])
+//            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletAddController")
+//            self.navigationController?.pushViewController(importWalletVC, animated: true)
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MnemonicExportController: SettingPlanetWalletController {
+class MnemonicExportController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     

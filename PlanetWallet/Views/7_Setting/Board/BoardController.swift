@@ -28,7 +28,7 @@ extension BoardController {
     }
 }
 
-class BoardController: SettingPlanetWalletController {
+class BoardController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var tableView: UITableView!

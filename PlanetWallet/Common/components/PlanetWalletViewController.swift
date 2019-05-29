@@ -8,9 +8,7 @@
 
 import UIKit
 
-
-
-class PlanetWalletViewController: UIViewController
+class PlanetWalletViewController: UIViewController, NetworkDelegate
 {
     var userInfo : Dictionary<String, Any>?
     var beforeTheme : Theme?
@@ -111,4 +109,7 @@ class PlanetWalletViewController: UIViewController
         }
     }
 
+    func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
+    }
 }

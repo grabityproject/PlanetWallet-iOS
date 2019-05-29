@@ -12,7 +12,6 @@
 		04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */; };
 		04116B322293DAAD00CFD921 /* ETHCoinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B312293DAAD00CFD921 /* ETHCoinDataSource.swift */; };
 		04116B342293DB9500CFD921 /* BTCTransactionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */; };
-		0429A6F62292452400E88ACF /* SettingPlanetWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A6F52292452400E88ACF /* SettingPlanetWalletController.swift */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
 		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
@@ -119,6 +118,16 @@
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
 		04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */; };
 		04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */; };
+		04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */; };
+		04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */; };
+		04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */; };
+		04FBCA4B229E679400DEEDD9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA4A229E679400DEEDD9 /* Post.swift */; };
+		04FBCA4D229E67A200DEEDD9 /* Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA4C229E67A200DEEDD9 /* Get.swift */; };
+		04FBCA4F229E67ED00DEEDD9 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA4E229E67ED00DEEDD9 /* NetworkDelegate.swift */; };
+		04FBCA51229E7FBA00DEEDD9 /* Patch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA50229E7FBA00DEEDD9 /* Patch.swift */; };
+		04FBCA54229E801400DEEDD9 /* Put.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA52229E801300DEEDD9 /* Put.swift */; };
+		04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA53229E801400DEEDD9 /* Delete.swift */; };
+		04FBCA57229E908100DEEDD9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA56229E908100DEEDD9 /* Route.swift */; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +137,6 @@
 		04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionCell.swift; sourceTree = "<group>"; };
 		04116B312293DAAD00CFD921 /* ETHCoinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinDataSource.swift; sourceTree = "<group>"; };
 		04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionDataSource.swift; sourceTree = "<group>"; };
-		0429A6F52292452400E88ACF /* SettingPlanetWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPlanetWalletController.swift; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
 		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
@@ -237,6 +245,16 @@
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableFooter.xib; sourceTree = "<group>"; };
 		04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableFooter.swift; sourceTree = "<group>"; };
+		04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupUniverse.xib; sourceTree = "<group>"; };
+		04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUniverse.swift; sourceTree = "<group>"; };
+		04FBCA4A229E679400DEEDD9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		04FBCA4C229E67A200DEEDD9 /* Get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get.swift; sourceTree = "<group>"; };
+		04FBCA4E229E67ED00DEEDD9 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
+		04FBCA50229E7FBA00DEEDD9 /* Patch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patch.swift; sourceTree = "<group>"; };
+		04FBCA52229E801300DEEDD9 /* Put.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Put.swift; sourceTree = "<group>"; };
+		04FBCA53229E801400DEEDD9 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
+		04FBCA56229E908100DEEDD9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D7FED223D66DB8595508E7 /* Pods-PlanetWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.debug.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -340,7 +358,7 @@
 		044BC55922793D8800FD7E5E /* MiniFrameWork */ = {
 			isa = PBXGroup;
 			children = (
-				04ED3314227C29B40092075E /* PlanetView.swift */,
+				04FBCA49229E678000DEEDD9 /* networktask */,
 			);
 			path = MiniFrameWork;
 			sourceTree = "<group>";
@@ -379,6 +397,7 @@
 				04738B4F2282749C00758E56 /* ColorTheme.swift */,
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
 				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
+				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -388,6 +407,7 @@
 			children = (
 				044BC58F22794ED200FD7E5E /* Utils.swift */,
 				044BC59D2279A2E800FD7E5E /* PList.swift */,
+				04FBCA56229E908100DEEDD9 /* Route.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -409,6 +429,7 @@
 		044BC55E22793DAC00FD7E5E /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				04ED3314227C29B40092075E /* PlanetView.swift */,
 				040E5FCF228E87F000F568D0 /* PW */,
 				04DAC113228967D3005AA183 /* AbsSlideUpView.swift */,
 				04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */,
@@ -449,6 +470,7 @@
 		044BC56222793E3400FD7E5E /* 3_Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				04FBCA44229E5B7A00DEEDD9 /* Popups */,
 				044BC576227943F400FD7E5E /* WalletAddController.swift */,
 				044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */,
 				044BC57A2279441F00FD7E5E /* WalletImportController.swift */,
@@ -514,7 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */,
-				0429A6F52292452400E88ACF /* SettingPlanetWalletController.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -648,6 +669,28 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		04FBCA44229E5B7A00DEEDD9 /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */,
+				04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */,
+			);
+			path = Popups;
+			sourceTree = "<group>";
+		};
+		04FBCA49229E678000DEEDD9 /* networktask */ = {
+			isa = PBXGroup;
+			children = (
+				04FBCA53229E801400DEEDD9 /* Delete.swift */,
+				04FBCA52229E801300DEEDD9 /* Put.swift */,
+				04FBCA4A229E679400DEEDD9 /* Post.swift */,
+				04FBCA4C229E67A200DEEDD9 /* Get.swift */,
+				04FBCA4E229E67ED00DEEDD9 /* NetworkDelegate.swift */,
+				04FBCA50229E7FBA00DEEDD9 /* Patch.swift */,
+			);
+			path = networktask;
+			sourceTree = "<group>";
+		};
 		A0315CB8F9480C007E773A4C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +793,7 @@
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
+				04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */,
 				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
@@ -833,21 +877,25 @@
 				04C82CA022890DB900235883 /* EmailRegistrationController.swift in Sources */,
 				04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */,
 				04C82C7F228429C000235883 /* PWButton.swift in Sources */,
+				04FBCA57229E908100DEEDD9 /* Route.swift in Sources */,
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
 				04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */,
 				044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */,
+				04FBCA51229E7FBA00DEEDD9 /* Patch.swift in Sources */,
 				04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */,
 				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
 				0444A961228C041600232748 /* NoticeCell.swift in Sources */,
 				044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */,
-				0429A6F62292452400E88ACF /* SettingPlanetWalletController.swift in Sources */,
 				044BC58C227944B000FD7E5E /* CustomTokenController.swift in Sources */,
 				044BC577227943F400FD7E5E /* WalletAddController.swift in Sources */,
+				04FBCA4B229E679400DEEDD9 /* Post.swift in Sources */,
+				04FBCA54229E801400DEEDD9 /* Put.swift in Sources */,
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
+				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
 				04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
@@ -871,6 +919,7 @@
 				04772E41228AB5F000049F89 /* CountryCodeCell.swift in Sources */,
 				04C82CAA22890E0400235883 /* PrivateKeyExportController.swift in Sources */,
 				044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */,
+				04FBCA4F229E67ED00DEEDD9 /* NetworkDelegate.swift in Sources */,
 				04C82C9E22890DA800235883 /* RenamePlanetController.swift in Sources */,
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
 				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
@@ -884,6 +933,7 @@
 				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
 				04C82CA822890DF500235883 /* MnemonicExportController.swift in Sources */,
+				04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */,
 				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
 				04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */,
 				044BC5BC227AE2C700FD7E5E /* PinView.swift in Sources */,
@@ -896,12 +946,14 @@
 				04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */,
 				0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
+				04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
 				04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */,
 				04C82C80228429C000235883 /* PWView.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,
 				04C82C9C22890D9500235883 /* DetailSettingController.swift in Sources */,
+				04FBCA4D229E67A200DEEDD9 /* Get.swift in Sources */,
 				044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */,
 				04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */,
 				04C82C83228429C000235883 /* PWLabel.swift in Sources */,

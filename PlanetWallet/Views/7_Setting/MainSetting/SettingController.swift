@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingController: SettingPlanetWalletController {
+class SettingController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var darkThemeBtn: UIButton!

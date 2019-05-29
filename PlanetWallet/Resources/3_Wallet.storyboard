@@ -306,7 +306,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="UW6-YT-ToD" kind="presentation" identifier="walletadd_to_planetgenerate" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="9ge-HZ-xSe"/>
+                                            <action selector="didTouchedCreatePlanet:" destination="Hv1-Te-vQD" eventType="touchUpInside" id="aDF-Al-UkX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5R1-fY-eTZ" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -337,7 +337,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="m0F-ap-uIf" kind="show" identifier="walletadd_to_walletimport" id="4Rq-UP-Nif"/>
+                                            <action selector="didTouchedImportPlanet:" destination="Hv1-Te-vQD" eventType="touchUpInside" id="Lpg-kj-kxd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -351,15 +351,39 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imgWalletaddBlack"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageToolbarCloseGray" translatesAutoresizingMaskIntoConstraints="NO" id="Cpy-o5-XVV" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="10" y="40" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="EIm-bF-3M6"/>
+                                    <constraint firstAttribute="height" constant="40" id="yNx-qT-kUp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageToolbarCloseBlue"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVe-vW-azH">
+                                <rect key="frame" x="10" y="40" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="TEf-GT-Ptt"/>
+                                    <constraint firstAttribute="height" constant="40" id="lvK-HX-6TV"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="didTouchedCloseBtn:" destination="Hv1-Te-vQD" eventType="touchUpInside" id="vpY-ks-S6g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Cpy-o5-XVV" firstAttribute="leading" secondItem="qg2-Z9-WSX" secondAttribute="leading" constant="10" id="1lt-c6-6Me"/>
                             <constraint firstItem="xDd-Rl-AGZ" firstAttribute="leading" secondItem="qg2-Z9-WSX" secondAttribute="leading" constant="30" id="5AA-e5-A3J"/>
                             <constraint firstItem="qg2-Z9-WSX" firstAttribute="trailing" secondItem="i46-L5-es3" secondAttribute="trailing" constant="37" id="8HV-0t-1Gx"/>
                             <constraint firstItem="qg2-Z9-WSX" firstAttribute="trailing" secondItem="xDd-Rl-AGZ" secondAttribute="trailing" constant="31" id="JCA-V8-lzz"/>
+                            <constraint firstItem="xVe-vW-azH" firstAttribute="leading" secondItem="qg2-Z9-WSX" secondAttribute="leading" constant="10" id="MSn-J1-N4g"/>
+                            <constraint firstItem="Cpy-o5-XVV" firstAttribute="top" secondItem="qg2-Z9-WSX" secondAttribute="top" constant="20" id="Srz-bq-Ncv"/>
                             <constraint firstItem="i46-L5-es3" firstAttribute="centerY" secondItem="59e-IL-LXh" secondAttribute="centerY" constant="-64" id="Vcx-5H-pfj"/>
                             <constraint firstItem="xDd-Rl-AGZ" firstAttribute="height" secondItem="59e-IL-LXh" secondAttribute="height" multiplier="0.181" id="bxw-eL-8rD"/>
                             <constraint firstItem="i46-L5-es3" firstAttribute="leading" secondItem="qg2-Z9-WSX" secondAttribute="leading" constant="38" id="dSG-ei-gDa"/>
+                            <constraint firstItem="xVe-vW-azH" firstAttribute="top" secondItem="qg2-Z9-WSX" secondAttribute="top" constant="20" id="iWB-bV-sAn"/>
                             <constraint firstItem="qg2-Z9-WSX" firstAttribute="bottom" secondItem="xDd-Rl-AGZ" secondAttribute="bottom" constant="20" id="mr6-LP-zy8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qg2-Z9-WSX"/>
@@ -369,6 +393,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="closeBtn" destination="xVe-vW-azH" id="NZd-og-kuj"/>
+                        <segue destination="m0F-ap-uIf" kind="show" identifier="walletadd_to_walletimport" id="aVu-HZ-2EP"/>
+                        <segue destination="UW6-YT-ToD" kind="presentation" identifier="walletadd_to_planetgenerate" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="tN4-aQ-tao"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fC3-yF-ClI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1230,6 +1259,7 @@
         <image name="imageInputInvisibleGray" width="60" height="60"/>
         <image name="imageToolbarBackBlue" width="60" height="60"/>
         <image name="imageToolbarBackGray" width="60" height="60"/>
+        <image name="imageToolbarCloseBlue" width="60" height="60"/>
         <image name="imageToolbarCloseGray" width="60" height="60"/>
         <image name="imageWarning" width="30" height="30"/>
         <image name="imgWalletadd" width="450" height="450"/>

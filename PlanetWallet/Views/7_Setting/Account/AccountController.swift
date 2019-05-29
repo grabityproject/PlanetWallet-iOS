@@ -13,7 +13,7 @@ extension AccountController {
         case NICKNAME, EMAIL, PHONE, CONNECT
     }
 }
-class AccountController: SettingPlanetWalletController {
+class AccountController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var nickNameLb: PWLabel!

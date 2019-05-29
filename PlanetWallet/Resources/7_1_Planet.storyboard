@@ -19,6 +19,14 @@
         </array>
     </customFonts>
     <scenes>
+        <!--WalletAddController-->
+        <scene sceneID="hlK-vd-IiT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="WalletAddController" id="Hka-AR-G8g" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J6V-db-sip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="-1126"/>
+        </scene>
         <!--Planet Management Controller-->
         <scene sceneID="gcU-i3-Q7f">
             <objects>
@@ -99,6 +107,7 @@
                         <outlet property="naviBar" destination="oAY-eM-laI" id="3in-as-tof"/>
                         <outlet property="tableView" destination="REg-gT-NYY" id="sKb-un-36J"/>
                         <segue destination="E5w-YC-LwZ" kind="show" identifier="planetmanagement_to_detailplanet" id="mD5-CV-2i0"/>
+                        <segue destination="Hka-AR-G8g" kind="presentation" identifier="planetmanagement_to_walletadd" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="9pa-DF-7uC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHD-Iw-ug4" userLabel="First Responder" sceneMemberID="firstResponder"/>

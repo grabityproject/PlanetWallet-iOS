@@ -8,5 +8,5 @@
 
 import UIKit
 
-class DetailBoardController: SettingPlanetWalletController {
+class DetailBoardController: PlanetWalletViewController {
 }
