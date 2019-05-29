@@ -15,11 +15,22 @@ struct Coin {
 class ETHCoinDataSource: NSObject, UITableViewDataSource {
     
     public let cellID = "ethereumCoinCell"
-    var coinList: [Coin] = []
+    var coinList: [Coin]? = []
     var delegate: ETHCoinCellDelegate?
     
+    override init() {
+        super.init()
+        
+        self.coinList = [Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin()]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coinList.count
+        if let list = coinList {
+            return list.count
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

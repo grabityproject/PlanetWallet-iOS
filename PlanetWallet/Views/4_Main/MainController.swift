@@ -8,14 +8,31 @@
 
 import UIKit
 
-enum Universe {
+enum UniverseType {
     case ETH
     case BTC
+    
+    func description() -> String {
+        switch self {
+        case .ETH:      return "ETH Universe"
+        case .BTC:      return "BTC Universe"
+        }
+    }
 }
 
 class MainController: PlanetWalletViewController {
 
-    var universe: Universe = .ETH
+    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [Coin()], transactions: nil) {
+        didSet {
+            self.updateUniverse()
+        }
+    }
+    
+//    var universe: UniverseType = .ETH {
+//        didSet {
+//            self.updateUniverse()
+//        }
+//    }
     
     @IBOutlet var bgPlanetContainer: UIView!
     @IBOutlet var bgPlanetContainerTopConstraint: NSLayoutConstraint!
@@ -24,13 +41,14 @@ class MainController: PlanetWalletViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: UIView!
-    @IBOutlet var footerView: UIView!
-    @IBOutlet var footerBtnContainer: UIView!
+    @IBOutlet var planetView: PlanetView!
+    @IBOutlet var footerView: MainTableFooter!
+    
     
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
     var refreshControl: UIRefreshControl!
-    var refreshCustomView: UIView!
+    let refreshContents = RefreshContents()
     
     var dataSources: [UITableViewDataSource] = []
     let ethDataSource = ETHCoinDataSource()
@@ -54,7 +72,6 @@ class MainController: PlanetWalletViewController {
         
         self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
         topMenuLauncher?.delegate = self
-        
 //        self.bottomMenuLauncher = BottomMenuLauncher()
     }
     
@@ -64,50 +81,57 @@ class MainController: PlanetWalletViewController {
         super.viewInit()
         naviBar.delegate = self
         
-        footerBtnContainer.layer.addBorder(edges: [.left,.bottom,.right],
-                                           color: currentTheme.border,
-                                           thickness: 1)
-        
         configureTableView()
         createRippleView()
         
         bottomLauncher.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
 //        self.view.addSubview(bottomLauncher)
+        
+        naviBar.backgroundView.alpha = 0
     }
     
     override func setData() {
         super.setData()
         
-        self.fetchData()
+        self.fetchData { (_) in }
     }
     
     override func onUpdateTheme(theme: Theme) {
         super.onUpdateTheme(theme: theme)
         dimGradientView.setTheme(theme: currentTheme)
         topMenuLauncher?.setTheme(theme)
+        
+        footerView.setTheme(theme)
     }
     
     //MARK: - Private
-    private func fetchData() {
+    private func fetchData(completion: @escaping (Bool) -> Void) {
+        //do something
+        completion(true)
     }
     
     private func configureTableView() {
-        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
-        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
-        headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.5)
-        
-        ethDataSource.coinList = [Coin(), Coin()]
-        ethDataSource.delegate = self
-        btcDataSource.transactionList = [BTCTransaction(), BTCTransaction()]
-        dataSources = [ethDataSource, btcDataSource]
-        tableView.dataSource = dataSources[0]
-        
+        //Refresh control
         refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = UIColor.yellow
+        refreshControl.backgroundColor = .clear
         refreshControl.tintColor = UIColor.clear
         tableView.addSubview(refreshControl!)
         
         self.loadCustomRefreshContents()
+        
+        //TableView
+        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
+        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
+
+        ethDataSource.delegate = self
+        dataSources = [ethDataSource, btcDataSource]
+        tableView.dataSource = dataSources[0]
+        tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
+                                              left: 0, bottom: 80, right: 0)
+        
+        //Header, Footer
+        headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.5)
+        footerView.delegate = self
     }
     
     private func createRippleView() {
@@ -123,29 +147,30 @@ class MainController: PlanetWalletViewController {
         self.view.addSubview(rippleView)
     }
     
+    private func loadCustomRefreshContents() {
+        refreshContents.frame = refreshControl.bounds
+        refreshContents.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        refreshControl.addSubview(refreshContents)
+    }
+    
     private func updateUniverse() {
-        switch universe {
+        let type = universe.type
+        switch type {
         case .ETH:
-            universe = .BTC
-            tableView.dataSource = dataSources[1]
-            naviBar.title = "BTC"
-            footerView.isHidden = true
-        case .BTC:
-            universe = .ETH
+            ethDataSource.coinList = universe.coinList
             tableView.dataSource = dataSources[0]
             naviBar.title = "ETH"
+            footerView.isEthUniverse = true
             footerView.isHidden = false
+        case .BTC:
+            btcDataSource.transactionList = universe.transactionList
+            tableView.dataSource = dataSources[1]
+            naviBar.title = "BTC"
+            footerView.isEthUniverse = false
+            footerView.isHidden = !btcDataSource.transactionList!.isEmpty
         }
         
         tableView.reloadData()
-    }
-    
-    private func loadCustomRefreshContents() {
-        
-        refreshCustomView = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)![0] as! UIView
-        refreshCustomView.frame = refreshControl.bounds
-
-        refreshControl.addSubview(refreshCustomView)
     }
 }
 
@@ -170,7 +195,7 @@ extension MainController: NavigationBarDelegate {
             }
             
         case .RIGHT:
-            updateUniverse()
+            print("touched navibar right item")
         }
     }
 }
@@ -178,9 +203,53 @@ extension MainController: NavigationBarDelegate {
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
-        if refreshControl.isRefreshing {
+        if ( refreshControl.isRefreshing && refreshContents.isAnimating == false ) {
             //refresh control animation
+            refreshContents.playAnimation()
+            self.fetchData { (isSuccess) in
+                if isSuccess {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.refreshContents.stopAnimation()
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = tableView.contentOffset.y
+        
+        if offsetY < 0 {
+            // update background planet view scale
+            naviBar.backgroundView.alpha = 0
+            let scale = 1 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
+            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             
+            
+            // update refresh control
+            let pullDistance = max(0.0, -self.refreshControl!.frame.origin.y)
+            let pullRatio = min( max(pullDistance, 0.0), 100.0) / 100.0
+            refreshContents.playAnimation(with: pullRatio)
+        }
+        else {
+            // update background planet view scale
+            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
+                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
+            
+            
+            let start = planetView.frame.origin.y + planetView.height/3.0 - naviBar.HEIGHT
+            let end =  planetView.frame.origin.y + planetView.height - naviBar.HEIGHT
+            let moveRange = end - start
+            let current = ( offsetY - start ) > 0 ? offsetY - start : 0
+            let alpha = current/moveRange
+            
+            
+            if( current > moveRange ){
+                naviBar.backgroundView.alpha = 1.0
+            }else{
+                naviBar.backgroundView.alpha = alpha
+            }
         }
     }
 }
@@ -194,29 +263,24 @@ extension MainController: UITableViewDelegate {
         findAllViews(view: cell, theme: currentTheme)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = tableView.contentOffset.y
-        
-        if offsetY < 0 {
-            let scale = 1 + ((-offsetY) * 2 / bgPlanetContainer.frame.height)
-            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
-        }
-        else {
-            print(bgPlanetContainerTopConstraint.constant - offsetY)
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
-                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
-        }
-    }
+    
 }
 
 extension MainController: ETHCoinCellDelegate {
-    func didSelected(index: IndexPath) {
+    func didSelectedETHCoin(index: IndexPath) {
         print(index)
     }
 }
 
-extension MainController: MenuLauncherDelegate {
-    func didSelected() {
-        print("top menu selected")
+extension MainController: TopMenuLauncherDelegate {
+    func didSelectedUniverse(_ universe: Universe) {
+        self.universe = universe
+        
+    }
+}
+
+extension MainController: MainTableFooterDelegate {
+    func didTouchedManageToken() {
+        performSegue(withIdentifier: Keys.Segue.MAIN_TO_TOKEN_ADD, sender: nil)
     }
 }

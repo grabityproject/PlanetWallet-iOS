@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ETHCoinCellDelegate {
-    func didSelected(index: IndexPath)
+    func didSelectedETHCoin(index: IndexPath)
 }
 
 class ETHCoinCell: UITableViewCell {
@@ -50,7 +50,7 @@ class ETHCoinCell: UITableViewCell {
         if  let tableView = self.superview as? UITableView,
             let indexPath = tableView.indexPath(for: self)
         {
-            delegate?.didSelected(index: indexPath)
+            delegate?.didSelectedETHCoin(index: indexPath)
         }
     }
     

@@ -52,6 +52,7 @@ class GradientView: UIView {
         case .DARK:
             self.firstColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
             self.secondColor = UIColor(red: 0, green: 0, blue: 0)
+            self.alpha = 1.0
         case .LIGHT:
             self.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.45)
             self.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.8)

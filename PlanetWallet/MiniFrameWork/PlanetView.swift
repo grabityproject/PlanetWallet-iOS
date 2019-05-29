@@ -18,7 +18,6 @@ class PlanetView: UIView {
             self.hashArray = Array(sha256Hash)
             self.backgroundColor = UIColor.clear
             self.layer.masksToBounds = true;
-            self.layer.cornerRadius = self.frame.width/2.0;
             setNeedsDisplay();
         }
     }
@@ -83,6 +82,8 @@ class PlanetView: UIView {
         self.layer.sublayers?.removeAll();
         width = rect.height
         height = rect.width
+        
+        self.layer.cornerRadius = self.bounds.width/2.0;
         
         // Main
         let pattern = patterns[ getValueFromByte( input: hashArray[ 0 ], range: patterns.count )  ];

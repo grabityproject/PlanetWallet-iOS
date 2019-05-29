@@ -117,6 +117,8 @@
 		04EFA27B228A5FEE0062CA0B /* PopupCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27A228A5FEE0062CA0B /* PopupCountryCode.swift */; };
 		04EFA27D228A601A0062CA0B /* PopupCountryCode.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04EFA27C228A601A0062CA0B /* PopupCountryCode.xib */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
+		04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */; };
+		04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -233,6 +235,8 @@
 		04EFA27A228A5FEE0062CA0B /* PopupCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCountryCode.swift; sourceTree = "<group>"; };
 		04EFA27C228A601A0062CA0B /* PopupCountryCode.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupCountryCode.xib; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableFooter.xib; sourceTree = "<group>"; };
+		04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableFooter.swift; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D7FED223D66DB8595508E7 /* Pods-PlanetWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.debug.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				0468C5FE22966E23008307D8 /* TopMenuCell.swift */,
 				04675F2C229BD97900DC3CFD /* RefreshContents.xib */,
 				04675F2E229BD99D00DC3CFD /* RefreshContents.swift */,
+				04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */,
+				04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 				04675F1C229BB01900DC3CFD /* LauncherView.xib in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04EFA27D228A601A0062CA0B /* PopupCountryCode.xib in Resources */,
+				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
 				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
@@ -890,6 +897,7 @@
 				0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
+				04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */,
 				04C82C80228429C000235883 /* PWView.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,

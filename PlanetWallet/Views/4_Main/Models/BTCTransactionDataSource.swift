@@ -15,10 +15,21 @@ struct BTCTransaction {
 class BTCTransactionDataSource: NSObject, UITableViewDataSource {
     let cellID = "btcTransactionHistoryCell"
     
-    var transactionList: [BTCTransaction] = []
+    var transactionList: [BTCTransaction]? = []
+    
+    override init() {
+        super.init()
+        
+        self.transactionList = [BTCTransaction()]
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionList.count
+        if let list = transactionList {
+            return list.count
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

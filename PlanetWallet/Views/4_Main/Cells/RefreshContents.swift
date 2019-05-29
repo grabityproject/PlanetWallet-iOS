@@ -14,6 +14,8 @@ class RefreshContents: UIView {
     @IBOutlet var containerView: UIView!
     private let animationView = AnimationView()
     
+    public var isAnimating = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,6 +30,7 @@ class RefreshContents: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
+        
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.frame = self.bounds
         self.addSubview(containerView)
@@ -35,19 +38,33 @@ class RefreshContents: UIView {
         self.animationView.animation = Animation.named("refreshAnim1")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
+        animationView.backgroundColor = .clear
         containerView.addSubview(animationView)
         
         NSLayoutConstraint.activate([animationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     animationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                                     animationView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40),
                                      animationView.widthAnchor.constraint(equalToConstant: 60),
                                      animationView.heightAnchor.constraint(equalToConstant: 60)])
     }
     
     public func playAnimation() {
-        animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (isSuccess) in
-            if isSuccess {
-                
-            }
+        isAnimating = true
+        animationView.animation = Animation.named("refreshAnim2")
+        animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in
+        }
+    }
+    
+    public func playAnimation(with progress: CGFloat) {
+        animationView.animation = Animation.named("refreshAnim1")
+        animationView.currentProgress = progress
+    }
+    
+    public func stopAnimation() {
+        animationView.animation = Animation.named("refreshAnim3")
+        animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) {
+            (_) in
+            self.animationView.stop()
+            self.isAnimating = false
         }
     }
 }

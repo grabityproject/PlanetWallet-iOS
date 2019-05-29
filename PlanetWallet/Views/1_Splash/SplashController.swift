@@ -31,7 +31,7 @@ class SplashController: PlanetWalletViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (isSuccess) in
             if isSuccess {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

@@ -49,9 +49,7 @@ class BottomMenuLauncher: NSObject {
             dimView.backgroundColor = .clear
             dimView.isHidden = true
             
-            window.addSubview(triggerView)
-            window.addSubview(dimView)
-            window.addSubview(launcherView)
+            window.addSubviews(triggerView, dimView, launcherView)
         }
         
         configureGesture()

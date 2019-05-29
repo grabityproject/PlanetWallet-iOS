@@ -72,23 +72,13 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgr-cf-dCX">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                    <connections>
-                        <action selector="didTouched:" destination="-1" eventType="touchUpInside" id="5bX-c5-JqH"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" name="borderDark"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zgr-cf-dCX" secondAttribute="bottom" id="7mE-H2-kja"/>
                 <constraint firstItem="QyJ-s5-Rxf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="FzT-d0-QDM"/>
                 <constraint firstItem="PDY-Tr-Ebl" firstAttribute="leading" secondItem="NtF-NI-r0m" secondAttribute="trailing" constant="8" id="Ry5-kM-kJg"/>
                 <constraint firstItem="whX-tA-YSO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SZR-uZ-FAZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zgr-cf-dCX" secondAttribute="trailing" id="Uhi-8c-7xY"/>
-                <constraint firstItem="Zgr-cf-dCX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZK9-9w-u4F"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PDY-Tr-Ebl" secondAttribute="trailing" constant="18" id="dLq-4c-jqB"/>
-                <constraint firstItem="Zgr-cf-dCX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ev8-x8-VjB"/>
                 <constraint firstItem="QyJ-s5-Rxf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="h2J-56-c5e"/>
                 <constraint firstItem="PDY-Tr-Ebl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iyI-Ug-jBY"/>
                 <constraint firstItem="whX-tA-YSO" firstAttribute="leading" secondItem="QyJ-s5-Rxf" secondAttribute="trailing" constant="10" id="r9d-02-i7g"/>

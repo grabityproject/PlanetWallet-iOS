@@ -8,13 +8,27 @@
 
 import UIKit
 
-protocol MenuLauncherDelegate {
-    func didSelected()
+protocol TopMenuLauncherDelegate {
+    func didSelectedUniverse(_ universe: Universe)
+}
+
+struct Universe {
+    var type: UniverseType = .ETH
+    let name: String
+    let coinList: [Coin]?
+    let transactionList: [BTCTransaction]?
+    
+    init(type: UniverseType, name: String, coinList: [Coin]?, transactions: [BTCTransaction]?) {
+        self.type = type
+        self.name = name
+        self.coinList = coinList
+        self.transactionList = transactions
+    }
 }
 
 class TopMenuLauncher: NSObject {
     
-    var delegate: MenuLauncherDelegate?
+    var delegate: TopMenuLauncherDelegate?
     var triggerView: UIView?
     
     private let menuView: TopMenuView = {
@@ -28,8 +42,23 @@ class TopMenuLauncher: NSObject {
     private let cellHeight: CGFloat = 55
     private let height: CGFloat = 310
     
-    let settings: [String] = {
-        return ["1","2","3","4"]
+    let universeList: [Universe] = {
+        let btcUniverse = Universe(type: .BTC,
+                                   name: "REGAL-III",
+                                   coinList: nil,
+                                   transactions: [BTCTransaction(),BTCTransaction(),BTCTransaction()])
+        
+        let ethUniverse = Universe(type: .ETH,
+                                   name: "Alien",
+                                   coinList: [Coin(),Coin(),Coin(),Coin()],
+                                   transactions: nil)
+        
+        let btcUniverse2 = Universe(type: .BTC,
+                                   name: "REGAL-I",
+                                   coinList: nil,
+                                   transactions: [])
+        
+        return [btcUniverse, ethUniverse, btcUniverse2]
     }()
     
     
@@ -52,8 +81,7 @@ class TopMenuLauncher: NSObject {
             dimView.backgroundColor = .clear
             dimView.isHidden = true
             
-            window.addSubview(dimView)
-            window.addSubview(menuView)
+            window.addSubviews(dimView, menuView)
         }
         
         configureGesture()
@@ -62,7 +90,8 @@ class TopMenuLauncher: NSObject {
     
     //MARK: - Interface
     @objc public func handleDismiss() {
-        UIView.animate(withDuration: 0.8) {
+        dimView.isHidden = true
+        UIView.animate(withDuration: 0.3) {
             self.menuView.frame = CGRect(x: 0,
                                          y: -self.menuView.frame.height,
                                          width: self.menuView.frame.width,
@@ -200,7 +229,7 @@ class TopMenuLauncher: NSObject {
 
 extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settings.count
+        return universeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -208,7 +237,9 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuView.cellId, for: indexPath) as! TopMenuCell
         
         cell.backgroundColor = .clear
-        cell.nameLb.text = settings[indexPath.row]
+        cell.nameLb.text = universeList[indexPath.row].name
+        cell.universeLb.text = universeList[indexPath.row].type.description()
+        
         return cell
     }
     
@@ -227,17 +258,8 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-        //
-        //            if let window = UIApplication.shared.keyWindow {
-        //                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-        //            }
-        //        }) { (completed: Bool) in
-        //
-        //            let setting = self.settings[indexPath.item]
-        //            self.delegate?.didSelected()
-        //            print("success to select \(setting) item")
-        //        }
+        delegate?.didSelectedUniverse(universeList[indexPath.row])
+        self.handleDismiss()
     }
 }
 

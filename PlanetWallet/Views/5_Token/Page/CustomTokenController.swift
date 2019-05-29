@@ -23,6 +23,8 @@ class CustomTokenController: PlanetWalletViewController {
     
     private var isValidAddr = false {
         didSet {
+            addTokenBtn.setEnabled(isValidAddr, theme: currentTheme)
+            
             if isValidAddr {
                 UIView.animate(withDuration: 1.5) {
                     self.errContainerView.isHidden = true
@@ -41,10 +43,6 @@ class CustomTokenController: PlanetWalletViewController {
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
-        
-        contractTextfield.delegate = self
-        symbolTextfield.delegate = self
-        decimalsTextfield.delegate = self
     }
     
     override func setData() {
@@ -67,17 +65,29 @@ extension CustomTokenController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
-        addTokenBtn.setEnabled(isValidAddress(), theme: currentTheme)
-        
         return true
     }
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        guard textField.tag == 0 else { return false }
+        
+        textField.text = ""
+        addTokenBtn.setEnabled(false, theme: currentTheme)
+        textField.resignFirstResponder()
+        return false
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if contractTextfield.text!.count > 1 {
-            isValidAddr = false
+        guard let textFieldText = textField.text else { return false }
+        guard textField.tag == 0 else { return false }
+        
+        let newLength = textFieldText.utf16.count + string.utf16.count - range.length
+        
+        if newLength >= 1 {
+            isValidAddr = true
         }
         else {
-            isValidAddr = true
+            isValidAddr = false
         }
         
         return true

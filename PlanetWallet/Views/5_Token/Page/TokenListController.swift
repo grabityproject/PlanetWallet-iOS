@@ -27,7 +27,7 @@ class TokenListController: PlanetWalletViewController {
     
     private let cellID = "tokencell"
     
-    @IBOutlet var textFieldContainer: UIView!
+    @IBOutlet var textFieldContainer: PWView!
     @IBOutlet var textField: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: UILabel!
