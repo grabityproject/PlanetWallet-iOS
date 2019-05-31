@@ -173,7 +173,7 @@
                                                 <real key="value" value="38"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.1176470588" green="0.1176470588" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -203,7 +203,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                                                 <connections>
                                                     <action selector="didTouchedSelect:" destination="UW6-YT-ToD" eventType="touchUpInside" id="JQX-48-9bZ"/>
-                                                    <segue destination="Umk-xz-uWI" kind="show" identifier="planetgerate_to_mainnavigation" animates="NO" id="diF-Me-wYr"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -270,9 +269,12 @@
                         <outlet property="planetBgView" destination="279-ba-jES" id="dbf-RA-cr5"/>
                         <outlet property="planetNameLb" destination="9Nt-W9-nEf" id="OEB-nf-nbv"/>
                         <outlet property="planetView" destination="QTE-bK-KeN" id="fIS-Ge-40v"/>
+                        <segue destination="Umk-xz-uWI" kind="show" identifier="planetgerate_to_mainnavigation" id="ee8-Ga-eXL"/>
+                        <segue destination="Zbi-dO-1fj" kind="unwind" identifier="unwind_to_mainnavi" unwindAction="unwindToMainNavigationControllerWithSegue:" id="3mE-Au-a2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmE-zL-nhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zbi-dO-1fj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="538" y="-590"/>
         </scene>

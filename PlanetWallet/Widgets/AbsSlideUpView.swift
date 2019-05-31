@@ -12,6 +12,13 @@ import UIKit
 class AbsSlideUpView: PWView, UIGestureRecognizerDelegate {
     
     private var background : UIView = UIView()
+    public var dimAlpha: CGFloat {
+        switch ThemeManager.currentTheme() {
+        case .DARK:     return 0.5
+        case .LIGHT:    return 0.1
+        }
+    }
+    
     var contentView : UIView?
     private var controller : UIViewController?
     
@@ -52,8 +59,13 @@ class AbsSlideUpView: PWView, UIGestureRecognizerDelegate {
     public func show( controller:UIViewController ) {
         self.controller = controller;
         createView();
+        
+        if let v = contentView{
+            v.frame = CGRect(x: 30.5, y: ( controller.view.frame.height - v.frame.size.height )/2.0, width: controller.view.frame.width - 30.5*2.0, height: v.frame.height)
+        }
+        
         UIView.animate(withDuration: 0.4) {
-            self.background.alpha = 0.1
+            self.background.alpha = self.dimAlpha
             self.contentView?.frame = CGRect(
                 x: (self.bounds.width - (self.contentView?.bounds.width)!)/2,
                 y: (self.bounds.height - (self.contentView?.bounds.height)!)/2,

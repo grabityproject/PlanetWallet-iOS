@@ -19,23 +19,25 @@ class PlanetGenerateController: PlanetWalletViewController {
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         gradientView.setTheme(theme: currentTheme)
     }
-
+    
     //MARK: - IBAction
     @IBAction func didTouchedRefresh(_ sender: UIButton) {
         //TODO: change planet
-        planetView.data = "Test"
-        planetBgView.data = "Test"
+        let randomStr = NSUUID().uuidString
+        planetView.data = randomStr
+        planetBgView.data = randomStr
     }
     
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        
+        if let _ = userInfo?["segue"] { //from main controller
+            performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
+        }
+        else {
+            performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
+        }
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {

@@ -10,6 +10,7 @@ import UIKit
 
 protocol CountryCodeTableDelegate {
     func didTouchedCode(dialCode: DialCode?)
+    func tableviewDidScroll(scrollView: UIScrollView)
 }
 
 class CountryCodeTableController: UITableViewController {
@@ -30,6 +31,8 @@ class CountryCodeTableController: UITableViewController {
         case .DARK:     tableView.backgroundColor = UIColor.white
         case .LIGHT:    tableView.backgroundColor = UIColor(named: "borderDark")
         }
+        
+        
     }
     
     func findAllViews( view:UIView, theme:Theme ){
@@ -70,9 +73,20 @@ class CountryCodeTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didTouchedCode(dialCode: datasource?[indexPath.row])
     }
+    
+    var isFirstScrollDelegated = true
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isFirstScrollDelegated == true {
+            isFirstScrollDelegated = false
+            return
+        }
+        
+        delegate?.tableviewDidScroll(scrollView: scrollView)
+    }
 }
 
-class PopupCountryCode: AbsSlideUpView, CountryCodeTableDelegate {
+class PopupCountryCode: AbsSlideUpView {
     
     public var handler: ((DialCode?) -> Void)?
     
@@ -81,6 +95,9 @@ class PopupCountryCode: AbsSlideUpView, CountryCodeTableDelegate {
     let tableController = CountryCodeTableController()
     
     var dataSource: [DialCode]?
+    
+    let bottomGradientView = GradientView()
+    let topGradientView = GradientView()
     
     convenience init(dataSource: [DialCode]) {
         self.init()
@@ -96,19 +113,51 @@ class PopupCountryCode: AbsSlideUpView, CountryCodeTableDelegate {
         
         containerView.layer.cornerRadius = 5.0
         containerView.layer.masksToBounds = true
-        containerView.addSubview(tableController.view)
-        tableController.view.frame = containerView.bounds
+        
+        tableController.view.frame = CGRect(x: 0, y: 15, width: containerView.bounds.width, height: containerView.bounds.height - (15*2))
         tableController.delegate = self
+        containerView.addSubview(tableController.view)
+
+        let tableFrame = tableController.view.frame
+        //top gradientView
+        topGradientView.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        topGradientView.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        topGradientView.frame = CGRect(x: 0, y: tableFrame.minY, width: tableFrame.width, height: 15)
+        containerView.addSubview(topGradientView)
+        
+        //bottom gradientView
+        bottomGradientView.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        bottomGradientView.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        bottomGradientView.frame = CGRect(x: 0, y: tableFrame.maxY - 15, width: tableFrame.width, height: 15)
+        containerView.addSubview(bottomGradientView)
+        
         setData()
     }
     
     public func setData() {
         tableController.datasource = dataSource
     }
-    
-    
+}
+
+extension PopupCountryCode: CountryCodeTableDelegate {
+    func tableviewDidScroll(scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            //you reached end of the table
+        }
+        
+        if scrollView.contentOffset.y == 0 {
+            //you reached top of the table
+            print("you reached top")
+        }
+        else {
+            
+        }
+    }
     
     func didTouchedCode(dialCode: DialCode?) {
-        handler?(dialCode)
+        self.handler?(dialCode)
     }
 }

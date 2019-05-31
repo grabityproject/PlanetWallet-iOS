@@ -46,11 +46,13 @@ struct Keys {
         static let WALLET_IMPORT_TO_PRIVATEKEY_IMPORT = "walletimport_to_privatekeyimport"
         static let WALLET_IMPORT_TO_JSON_IMPORT = "walletimport_to_jsonimport"
         static let WALLET_ADD_TO_PALNET_GENERATE = "walletadd_to_planetgenerate"
+        static let PLANET_GENERATE_TO_MAIN = "planetgerate_to_mainnavigation"
         
         //MAIN
         static let MAIN_TO_SETTING = "main_to_setting"
         static let MAIN_TO_TOKEN_ADD = "main_to_tokenadd"
         static let MAIN_TO_TRANSFER = "main_to_transfer"
+        static let MAIN_UNWIND = "unwind_to_mainnavi"
         
         //Setting
         static let SETTING_TO_PLANET_MANAGEMENT = "setting_to_planetmanagemnet"

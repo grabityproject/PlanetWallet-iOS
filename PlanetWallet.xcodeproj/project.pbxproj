@@ -16,6 +16,8 @@
 		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
+		044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 044A43DC22A0BD3300274B04 /* splash_wh.json */; };
+		044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43DE22A0C59D00274B04 /* MainNavigationController.swift */; };
 		044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54622793D3F00FD7E5E /* AppDelegate.swift */; };
 		044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54822793D3F00FD7E5E /* SplashController.swift */; };
 		044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */; };
@@ -141,6 +143,8 @@
 		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		044A43DC22A0BD3300274B04 /* splash_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_wh.json; sourceTree = "<group>"; };
+		044A43DE22A0C59D00274B04 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		044BC54322793D3F00FD7E5E /* PlanetWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC54622793D3F00FD7E5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		044BC54822793D3F00FD7E5E /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -463,6 +467,7 @@
 				04116B302293DA8600CFD921 /* Models */,
 				0429A6F7229248DD00E88ACF /* Cells */,
 				044BC5822279446E00FD7E5E /* MainController.swift */,
+				044A43DE22A0C59D00274B04 /* MainNavigationController.swift */,
 			);
 			path = 4_Main;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 		04675F2B229BD3D100DC3CFD /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				044A43DC22A0BD3300274B04 /* splash_wh.json */,
 				04675F23229BD38500DC3CFD /* refreshAnim1.json */,
 				04675F27229BD3A200DC3CFD /* refreshAnim2.json */,
 				04675F28229BD3A200DC3CFD /* refreshAnim3.json */,
@@ -809,6 +815,7 @@
 				04C82C8E2288FE1300235883 /* 3_Wallet.storyboard in Resources */,
 				0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */,
 				04772E43228AB65B00049F89 /* CountryCodeCell.xib in Resources */,
+				044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
 				044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */,
 			);
@@ -892,6 +899,7 @@
 				04FBCA54229E801400DEEDD9 /* Put.swift in Sources */,
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
+				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,

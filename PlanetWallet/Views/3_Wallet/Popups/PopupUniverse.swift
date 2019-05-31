@@ -10,7 +10,7 @@ import UIKit
 
 class PopupUniverse: AbsSlideUpView {
 
-    @IBOutlet var containerView: UIView!
+    @IBOutlet var containerView: PWView!
     
     public var handler: ((UniverseType) -> Void)?
     
@@ -23,8 +23,7 @@ class PopupUniverse: AbsSlideUpView {
         findAllViews(view: contentView!, theme: ThemeManager.currentTheme())
     }
     
-    func findAllViews( view:UIView, theme:Theme ){
-        
+    func findAllViews(view:UIView, theme:Theme){
         if( view is Themable ){
             (view as! Themable).setTheme(theme)
         }

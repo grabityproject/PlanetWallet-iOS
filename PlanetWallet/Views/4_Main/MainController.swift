@@ -72,7 +72,7 @@ class MainController: PlanetWalletViewController {
         
         self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
         topMenuLauncher?.delegate = self
-//        self.bottomMenuLauncher = BottomMenuLauncher()
+        
     }
     
     
@@ -85,7 +85,7 @@ class MainController: PlanetWalletViewController {
         createRippleView()
         
         bottomLauncher.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-//        self.view.addSubview(bottomLauncher)
+        self.view.addSubview(bottomLauncher)
         
         naviBar.backgroundView.alpha = 0
     }
@@ -233,7 +233,7 @@ extension MainController: UIScrollViewDelegate {
             refreshContents.playAnimation(with: pullRatio)
         }
         else {
-            // update background planet view scale
+            
             bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
                                                      y: bgPlanetContainerTopConstraint.constant - offsetY)
             

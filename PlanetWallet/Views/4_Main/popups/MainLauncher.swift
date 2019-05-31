@@ -51,10 +51,10 @@ class MainLauncher: UIView {
         addSubview(launcherView)
         
         triggerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(triggerPanAction));
-//        backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(backgroundPanAction));
+        backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(backgroundPanAction));
         
         launcherView.addGestureRecognizer(triggerPanGesture)
-//        background.addGestureRecognizer(backgroundPanGesture)
+        background.addGestureRecognizer(backgroundPanGesture)
 
         background.isUserInteractionEnabled = false;
         
@@ -69,52 +69,52 @@ class MainLauncher: UIView {
     }
     
     
-//    @objc func backgroundPanAction(_ sender: Any) {
-//        
-//        
-//        if(  backgroundPanGesture.state == UIGestureRecognizer.State.changed  ){
-//            
-//            let movePoint : CGFloat  = UIScreen.main.bounds.height - launcherView.frame.height + backgroundPanGesture.translation(in: background).y
-//            if( movePoint > UIScreen.main.bounds.height - launcherView.frame.height
-//                && movePoint < UIScreen.main.bounds.height - 80 ){
-//                
-//                let movePercent = (movePoint - ( UIScreen.main.bounds.height - 160 ) ) / 80
-//                if( movePercent > 0 ){
-//                    self.containerView.alpha = ( 1.0 - movePercent )*1.2
-//                    self.blurView.alpha = movePercent
-//                }
-//                launcherView.frame = CGRect(x: 0, y: movePoint, width: launcherView.frame.width, height: launcherView.frame.height)
-//                
-//            }
-//            
-//            
-//        }else if(  backgroundPanGesture.state == UIGestureRecognizer.State.ended  ){
-//            
-//            UIView.animate(withDuration: 0.2) {
-//                if( -self.launcherView.frame.height*4.0/5.0 < ( -self.launcherView.frame.height + self.backgroundPanGesture.translation(in: self.background).y ) && self.isOpen ){
-//                    self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-//                    self.containerView.alpha = 0
-//                    self.blurView.alpha = 1
-//                    self.isOpen = false;
-//                    
-//                    self.background.isUserInteractionEnabled = false;
-//                    
-//                }else{
-//                    if( self.isOpen ){
-//                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-//                        self.containerView.alpha = 1
-//                        self.blurView.alpha = 0
-//                        
-//                    }else{
-//                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-//                        self.containerView.alpha = 0
-//                        self.blurView.alpha = 1
-//                        
-//                    }
-//                }
-//            }
-//        }
-//    }
+    @objc func backgroundPanAction(_ sender: Any) {
+        
+        
+        if(  backgroundPanGesture.state == UIGestureRecognizer.State.changed  ){
+            
+            let movePoint : CGFloat  = UIScreen.main.bounds.height - launcherView.frame.height + backgroundPanGesture.translation(in: background).y
+            if( movePoint > UIScreen.main.bounds.height - launcherView.frame.height
+                && movePoint < UIScreen.main.bounds.height - 80 ){
+                
+                let movePercent = (movePoint - ( UIScreen.main.bounds.height - 160 ) ) / 80
+                if( movePercent > 0 ){
+                    self.containerView.alpha = ( 1.0 - movePercent )*1.2
+                    self.blurView.alpha = movePercent
+                }
+                launcherView.frame = CGRect(x: 0, y: movePoint, width: launcherView.frame.width, height: launcherView.frame.height)
+                
+            }
+            
+            
+        }else if(  backgroundPanGesture.state == UIGestureRecognizer.State.ended  ){
+            
+            UIView.animate(withDuration: 0.2) {
+                if( -self.launcherView.frame.height*4.0/5.0 < ( -self.launcherView.frame.height + self.backgroundPanGesture.translation(in: self.background).y ) && self.isOpen ){
+                    self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+                    self.containerView.alpha = 0
+                    self.blurView.alpha = 1
+                    self.isOpen = false;
+                    
+                    self.background.isUserInteractionEnabled = false;
+                    
+                }else{
+                    if( self.isOpen ){
+                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+                        self.containerView.alpha = 1
+                        self.blurView.alpha = 0
+                        
+                    }else{
+                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+                        self.containerView.alpha = 0
+                        self.blurView.alpha = 1
+                        
+                    }
+                }
+            }
+        }
+    }
     
     @objc func triggerPanAction(_ sender: Any) {
         

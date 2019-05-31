@@ -16,8 +16,11 @@ class PopupCurrency: AbsSlideUpView {
     
     override func setXib() {
         super.setXib()
-        
         Bundle.main.loadNibNamed("PopupCurrency", owner: self, options: nil)
+        
+        containerView.layer.cornerRadius = 5.0
+        containerView.layer.masksToBounds = true
+        
         contentView = containerView
         
         findAllViews(view: contentView!, theme: ThemeManager.currentTheme())

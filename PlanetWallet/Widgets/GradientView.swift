@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class GradientView: UIView {
+class GradientView: PWView {
     
     @IBInspectable var firstColor: UIColor = UIColor.clear {
         didSet {
