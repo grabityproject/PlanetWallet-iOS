@@ -117,7 +117,7 @@ class PopupCountryCode: AbsSlideUpView {
         tableController.view.frame = CGRect(x: 0, y: 15, width: containerView.bounds.width, height: containerView.bounds.height - (15*2))
         tableController.delegate = self
         containerView.addSubview(tableController.view)
-
+/*
         let tableFrame = tableController.view.frame
         //top gradientView
         topGradientView.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
@@ -130,7 +130,7 @@ class PopupCountryCode: AbsSlideUpView {
         bottomGradientView.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         bottomGradientView.frame = CGRect(x: 0, y: tableFrame.maxY - 15, width: tableFrame.width, height: 15)
         containerView.addSubview(bottomGradientView)
-        
+  */
         setData()
     }
     
@@ -146,14 +146,18 @@ extension PopupCountryCode: CountryCodeTableDelegate {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
             //you reached end of the table
+            bottomGradientView.isHidden = true
+        }
+        else {
+            bottomGradientView.isHidden = false
         }
         
         if scrollView.contentOffset.y == 0 {
             //you reached top of the table
-            print("you reached top")
+            topGradientView.isHidden = true
         }
         else {
-            
+            topGradientView.isHidden = false
         }
     }
     

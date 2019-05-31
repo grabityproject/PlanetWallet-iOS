@@ -18,6 +18,7 @@
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
 		044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 044A43DC22A0BD3300274B04 /* splash_wh.json */; };
 		044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43DE22A0C59D00274B04 /* MainNavigationController.swift */; };
+		044A43E322A117C100274B04 /* TEstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43E222A117C100274B04 /* TEstViewController.swift */; };
 		044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54622793D3F00FD7E5E /* AppDelegate.swift */; };
 		044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54822793D3F00FD7E5E /* SplashController.swift */; };
 		044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */; };
@@ -145,6 +146,7 @@
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		044A43DC22A0BD3300274B04 /* splash_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_wh.json; sourceTree = "<group>"; };
 		044A43DE22A0C59D00274B04 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		044A43E222A117C100274B04 /* TEstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEstViewController.swift; sourceTree = "<group>"; };
 		044BC54322793D3F00FD7E5E /* PlanetWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC54622793D3F00FD7E5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		044BC54822793D3F00FD7E5E /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				044BC55922793D8800FD7E5E /* MiniFrameWork */,
 				044BC55E22793DAC00FD7E5E /* Widgets */,
 				044BC55822793D8100FD7E5E /* Common */,
+				044A43E222A117C100274B04 /* TEstViewController.swift */,
 			);
 			path = PlanetWallet;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				04772E41228AB5F000049F89 /* CountryCodeCell.swift in Sources */,
 				04C82CAA22890E0400235883 /* PrivateKeyExportController.swift in Sources */,
 				044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */,
+				044A43E322A117C100274B04 /* TEstViewController.swift in Sources */,
 				04FBCA4F229E67ED00DEEDD9 /* NetworkDelegate.swift in Sources */,
 				04C82C9E22890DA800235883 /* RenamePlanetController.swift in Sources */,
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,

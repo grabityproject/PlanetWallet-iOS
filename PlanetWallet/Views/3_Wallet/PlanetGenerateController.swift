@@ -20,7 +20,8 @@ class PlanetGenerateController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         
-        gradientView.setTheme(theme: currentTheme)
+//        gradientView.updateView()
+//        gradientView.setTheme(theme: currentTheme)
     }
     
     //MARK: - IBAction
