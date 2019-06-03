@@ -219,10 +219,9 @@ class BottomMenuLauncher: NSObject {
         if(  backgroundPanGesture.state == UIGestureRecognizer.State.changed  ){
             
             let movePoint : CGFloat  = UIScreen.main.bounds.height - launcherView.frame.height + backgroundPanGesture.translation(in: dimView).y
-            if( movePoint > UIScreen.main.bounds.height - launcherView.frame.height
-                && movePoint < UIScreen.main.bounds.height - 80 ){
+            if( movePoint > UIScreen.main.bounds.height - launcherView.frame.height && movePoint < topPosition.y ){
 
-                let movePercent = (movePoint - ( UIScreen.main.bounds.height - 160 ) ) / 80
+                let movePercent = ( movePoint - ( UIScreen.main.bounds.height - 240 ) ) / 80
                 if( movePercent > 0 ){
                     self.launcherView.alpha = ( 1.0 - movePercent )*1.2
                     self.triggerView.alpha = movePercent

@@ -132,6 +132,7 @@
 		04FBCA54229E801400DEEDD9 /* Put.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA52229E801300DEEDD9 /* Put.swift */; };
 		04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA53229E801400DEEDD9 /* Delete.swift */; };
 		04FBCA57229E908100DEEDD9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA56229E908100DEEDD9 /* Route.swift */; };
+		15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -263,6 +264,7 @@
 		04FBCA52229E801300DEEDD9 /* Put.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Put.swift; sourceTree = "<group>"; };
 		04FBCA53229E801400DEEDD9 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		04FBCA56229E908100DEEDD9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityBlurVIew.swift; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D7FED223D66DB8595508E7 /* Pods-PlanetWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.debug.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				04DAC113228967D3005AA183 /* AbsSlideUpView.swift */,
 				04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */,
 				04ED3317227C356C0092075E /* GradientView.swift */,
+				15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04C82CB222890F4700235883 /* AccountController.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
+				15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,
 				04EFA27B228A5FEE0062CA0B /* PopupCountryCode.swift in Sources */,
 				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,

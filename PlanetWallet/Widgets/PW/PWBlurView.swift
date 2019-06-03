@@ -8,16 +8,39 @@
 
 import UIKit
 
-class PWBlurView: UIVisualEffectView, Themable {
+class PWBlurView: UIView, Themable {
+    
+    private var blur:IntensityBlurVIew!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        viewInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        viewInit()
+    }
+    
+    override var frame: CGRect{
+        didSet{
+            self.blur?.frame = self.bounds
+        }
+    }
+    
+    override func layoutSubviews() {
+        viewInit()
+    }
+    
+    func viewInit(){
+        if( blur == nil ){
+            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+            addSubview(self.blur)
+        }
+        self.blur.frame = self.bounds
+    }
 
     func setTheme(_ theme: Theme) {
-        if( theme == .DARK ){
-            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-            self.effect = blurEffect
-        }else{
-            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-            self.effect = blurEffect
-        }
     }
 
 }

@@ -241,19 +241,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-pt-fi9">
                                 <rect key="frame" x="0.0" y="587" width="375" height="240"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQr-YZ-SLA" customClass="PWBlurView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="-39" y="0.0" width="414" height="240"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sxH-Lu-KTK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-Fb-zMW" customClass="PWBlurView" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="414" id="4C0-1P-TkK"/>
-                                            <constraint firstAttribute="height" constant="240" id="Ihy-e3-toU"/>
-                                        </constraints>
-                                        <blurEffect style="dark"/>
-                                    </visualEffectView>
+                                    </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpA-rX-jiv" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="17" width="45" height="45"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -315,7 +306,6 @@
                                 <constraints>
                                     <constraint firstItem="g0d-MI-xsW" firstAttribute="leading" secondItem="Pa4-sM-5ti" secondAttribute="trailing" constant="4" id="14o-TG-tlT"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="leading" secondItem="jpA-rX-jiv" secondAttribute="trailing" constant="10" id="6oJ-NP-vGd"/>
-                                    <constraint firstAttribute="bottom" secondItem="wQr-YZ-SLA" secondAttribute="bottom" id="8e5-Nx-4bY"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="bottom" secondItem="g0d-MI-xsW" secondAttribute="bottom" id="CTt-8B-fla"/>
                                     <constraint firstItem="wej-QY-Zhn" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" constant="20" id="Gsr-SL-bv1"/>
                                     <constraint firstItem="jpA-rX-jiv" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" constant="17" id="H8c-Qb-V43"/>
@@ -323,10 +313,12 @@
                                     <constraint firstItem="gnN-eW-fcF" firstAttribute="leading" secondItem="jpA-rX-jiv" secondAttribute="trailing" constant="10" id="LKH-na-PEG"/>
                                     <constraint firstItem="jpA-rX-jiv" firstAttribute="leading" secondItem="ImE-pt-fi9" secondAttribute="leading" constant="20" id="Lbe-mC-gmA"/>
                                     <constraint firstItem="g0d-MI-xsW" firstAttribute="top" secondItem="Pa4-sM-5ti" secondAttribute="top" id="Opb-0K-Jwq"/>
+                                    <constraint firstAttribute="bottom" secondItem="b7M-Fb-zMW" secondAttribute="bottom" id="S1M-C4-mmM"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="top" secondItem="gnN-eW-fcF" secondAttribute="bottom" constant="4" id="Ufl-Qr-YbH"/>
-                                    <constraint firstItem="wQr-YZ-SLA" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" id="Xp3-68-92V"/>
-                                    <constraint firstAttribute="trailing" secondItem="wQr-YZ-SLA" secondAttribute="trailing" id="b4k-tO-Mod"/>
                                     <constraint firstAttribute="height" constant="240" id="cyr-zT-9wk"/>
+                                    <constraint firstItem="b7M-Fb-zMW" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" id="jqm-jn-6cr"/>
+                                    <constraint firstAttribute="trailing" secondItem="b7M-Fb-zMW" secondAttribute="trailing" id="mKu-rt-Kbn"/>
+                                    <constraint firstItem="b7M-Fb-zMW" firstAttribute="leading" secondItem="ImE-pt-fi9" secondAttribute="leading" id="mav-56-Pqg"/>
                                     <constraint firstAttribute="trailing" secondItem="wej-QY-Zhn" secondAttribute="trailing" constant="16" id="qAj-sC-0Ui"/>
                                     <constraint firstAttribute="width" constant="414" id="rs7-Wo-CVl"/>
                                     <constraint firstAttribute="bottom" secondItem="jpA-rX-jiv" secondAttribute="bottom" constant="97" id="uGB-Sh-ndo"/>
