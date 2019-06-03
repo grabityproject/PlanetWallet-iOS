@@ -27,6 +27,8 @@ class BottomMenuLauncher: NSObject {
     var tapGesture : UITapGestureRecognizer!
     
     var topPosition : CGPoint!
+    
+    public var labelError : UIView!
 
     //MARK: - Init
     init( controller:UIViewController, trigger:UIView, clickTrigger:UIView ) {
@@ -67,7 +69,6 @@ class BottomMenuLauncher: NSObject {
     }
     
     @objc func onClick(_ sender:Any){
-        print("onCLick")
         if( !isOpen ){
             UIView.animate(withDuration: 0.2) {
                 self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
@@ -76,6 +77,13 @@ class BottomMenuLauncher: NSObject {
                 self.isOpen = true;
                 self.triggerAreaView.isUserInteractionEnabled  = false;
                 self.dimView.isHidden = false;
+                if let label = self.labelError{
+                    label.frame = CGRect(x: 0,
+                                         y: UIScreen.main.bounds.height - self.launcherView.frame.height - label.frame.height,
+                                         width: label.frame.width,
+                                         height: label.frame.height)
+                    label.alpha = 0
+                }
             }
         }
     }
@@ -91,10 +99,17 @@ class BottomMenuLauncher: NSObject {
                     
                     self.launcherView.alpha = -( ( triggerPanGesture.translation(in: launcherView).y ) / 80)*1.2
                     self.triggerView.alpha = ( 1.0 + ( ( triggerPanGesture.translation(in: launcherView).y ) / 80) )
+                    self.labelError?.alpha = ( 1.0 + ( ( triggerPanGesture.translation(in: launcherView).y ) / 80) )
                     
                     launcherView.frame = CGRect(x: 0, y: movePoint, width: launcherView.frame.width, height: launcherView.frame.height)
                     triggerView.frame = CGRect(x: triggerView.frame.origin.x, y: movePoint, width: triggerView.frame.width, height: triggerView.frame.height)
                     
+                    if let label = labelError{
+                        label.frame = CGRect(x: label.frame.origin.x,
+                                             y: movePoint - label.frame.height,
+                                             width: label.frame.width,
+                                             height: label.frame.height)
+                    }
                 }
                 
             }else{
@@ -107,12 +122,18 @@ class BottomMenuLauncher: NSObject {
                     if( movePercent > 0 ){
                         self.launcherView.alpha = ( 1.0 - movePercent )*1.2
                         self.triggerView.alpha = movePercent
+                        self.labelError?.alpha = movePoint
                     }
 
                     launcherView.frame = CGRect(x: 0, y: movePoint, width: launcherView.frame.width, height: launcherView.frame.height)
                     triggerView.frame = CGRect(x: triggerView.frame.origin.x, y: movePoint, width: triggerView.frame.width, height: triggerView.frame.height)
 
-                    
+                    if let label = labelError{
+                        label.frame = CGRect(x: label.frame.origin.x,
+                                             y: movePoint - label.frame.height,
+                                             width: label.frame.width,
+                                             height: label.frame.height)
+                    }
                 }
             }
             
@@ -131,12 +152,21 @@ class BottomMenuLauncher: NSObject {
                 }else if( UIScreen.main.bounds.height - self.launcherView.frame.height*4.0/5.0 < ( UIScreen.main.bounds.height - self.launcherView.frame.height + self.triggerPanGesture.translation(in:
                     
                     self.launcherView).y ) && self.isOpen ){
-                    self.launcherView.frame = CGRect(x: 0, y: self.topPosition.y, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+                    self.launcherView.frame = CGRect(x: 0, y: self.topPosition.y, width: self.launcherView.frame.width, height: self.launcherView.frame.height)
+                    
+                    
+                    if let label =  self.labelError{
+                        label.frame = CGRect(x: label.frame.origin.x,
+                                             y: self.topPosition.y - label.frame.height,
+                                             width: label.frame.width,
+                                             height: label.frame.height)
+                        label.alpha = 1
+                    }
+                    
                     self.launcherView.alpha = 0
                     self.triggerView.alpha = 1
                     self.isOpen = false;
                     self.triggerAreaView.isUserInteractionEnabled  = true;
-                    
                     self.dimView.isHidden = true;
                     
                 }else{
@@ -146,12 +176,32 @@ class BottomMenuLauncher: NSObject {
                         self.triggerView.alpha = 0
                         self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
                         
+                        
+                        if let label = self.labelError{
+                            label.frame = CGRect(x: label.frame.origin.x,
+                                                 y: UIScreen.main.bounds.height - self.launcherView.frame.height - label.frame.height,
+                                                 width: label.frame.width,
+                                                 height: label.frame.height)
+                            label.alpha = 0
+                        }
+                        
                     }else{
                         self.launcherView.frame = CGRect(x: 0, y: self.topPosition.y, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
                         self.launcherView.alpha = 0
                         self.triggerView.alpha = 1
                         self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
+                        
+                        
+                        if let label =  self.labelError{
+                            label.frame = CGRect(x: label.frame.origin.x,
+                                                 y: self.topPosition.y - label.frame.height,
+                                                 width: label.frame.width,
+                                                 height: label.frame.height)
 
+                            label.alpha = 1
+                        }
+                        
+                        
                     }
                 }
             }
@@ -176,9 +226,19 @@ class BottomMenuLauncher: NSObject {
                 if( movePercent > 0 ){
                     self.launcherView.alpha = ( 1.0 - movePercent )*1.2
                     self.triggerView.alpha = movePercent
+                    self.labelError?.alpha = movePercent
                 }
                 launcherView.frame = CGRect(x: 0, y: movePoint, width: launcherView.frame.width, height: launcherView.frame.height)
                 triggerView.frame = CGRect(x: triggerView.frame.origin.x, y: movePoint, width: triggerView.frame.width, height: triggerView.frame.height)
+                
+                
+                if let label =  self.labelError{
+                    label.frame =  CGRect(x: label.frame.origin.x,
+                                          y: movePoint - label.frame.height,
+                                          width: label.frame.width,
+                                          height: label.frame.height)
+                }
+                
 
             }
             
@@ -195,6 +255,14 @@ class BottomMenuLauncher: NSObject {
 
                     self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
                     self.dimView.isHidden = true;
+                    
+                    if let label =  self.labelError{
+                        label.frame =  CGRect(x: 0,
+                                              y: self.topPosition.y - label.frame.height,
+                                              width: label.frame.width,
+                                              height: label.frame.height);
+                        label.alpha = 1
+                    }
 
                 }else{
                     if( self.isOpen ){
@@ -203,12 +271,31 @@ class BottomMenuLauncher: NSObject {
                         self.triggerView.alpha = 0
                         self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
 
+                        
+                        if let label =  self.labelError{
+                            label.frame = CGRect(x: label.frame.origin.x,
+                                                 y: UIScreen.main.bounds.height - self.launcherView.frame.height - label.frame.height,
+                                                 width: label.frame.width,
+                                                 height: label.frame.height)
+                            
+                            label.alpha = 0
+                        }
 
                     }else{
                         self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
                         self.launcherView.alpha = 0
                         self.triggerView.alpha = 1
                         self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
+                        
+                        
+                        if let label =  self.labelError{
+                            label.frame =  CGRect(x: label.frame.origin.x,
+                                                  y: self.topPosition.y - label.frame.height,
+                                                  width: label.frame.width,
+                                                  height: label.frame.height)
+                            
+                            label.alpha = 1
+                        }
 
                     }
                 }

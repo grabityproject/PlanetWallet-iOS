@@ -39,6 +39,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var footerView: MainTableFooter!
     
+    @IBOutlet weak var labelError: UILabel!
     
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
@@ -60,6 +61,7 @@ class MainController: PlanetWalletViewController {
     override func viewDidLayoutSubviews() {
         if( bottomMenuLauncher == nil ){
             bottomMenuLauncher = BottomMenuLauncher(controller: self, trigger: bottomMenu, clickTrigger: btnBottomLauncher)
+            bottomMenuLauncher?.labelError = labelError;
         }
     }
     
