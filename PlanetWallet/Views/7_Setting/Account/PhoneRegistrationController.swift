@@ -102,20 +102,6 @@ class PhoneRegistrationController: PlanetWalletViewController {
                 popup.dismiss()
             }
         }
-        /*
-        Alamofire.request(url).responseJSON { (response) in
-            
-            var returnVO: NSDictionary = response.result.value as! NSDictionary;
-            
-            if( (returnVO.value(forKey: "success") as! Bool) ){
-                if( returnVO.value(forKey: "result") is NSArray ){
-                    var result:NSArray = returnVO.value(forKey: "result") as! NSArray
-                    print(( result[0] as! NSDictionary ).value(forKey: "code"))
-                    
-                }
-            }
-        }
-         */
     }
     
     //MARK: - Network
@@ -192,6 +178,7 @@ extension PhoneRegistrationController: UITextFieldDelegate {
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text = ""
         sendBtn.setEnabled(false, theme: settingTheme)
+        okBtn.setEnabled(false, theme: settingTheme)
         textField.resignFirstResponder()
         return false
     }

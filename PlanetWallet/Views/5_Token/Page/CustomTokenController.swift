@@ -43,6 +43,10 @@ class CustomTokenController: PlanetWalletViewController {
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
+        
+        contractTextfield.delegate = self
+        symbolTextfield.delegate = self
+        decimalsTextfield.delegate = self
     }
     
     override func setData() {
@@ -79,7 +83,7 @@ extension CustomTokenController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text else { return false }
-        guard textField.tag == 0 else { return false }
+        guard textField.tag == 0 else { return true }
         
         let newLength = textFieldText.utf16.count + string.utf16.count - range.length
         

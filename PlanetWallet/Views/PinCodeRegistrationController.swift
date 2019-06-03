@@ -83,7 +83,8 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             
             switch fromSegue {
             case .SPLASH:
-                sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION, userInfo: nil)
+                sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION,
+                           userInfo: ["segue" : Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION])
             case .CERTIFICATION:
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }

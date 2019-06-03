@@ -17,6 +17,9 @@
         <array key="WorkSans-Regular.otf">
             <string>WorkSans-Regular</string>
         </array>
+        <array key="WorkSans-SemiBold.otf">
+            <string>WorkSans-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Token Add Controller-->
@@ -203,13 +206,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25k-Yh-wX9" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25k-Yh-wX9" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="21" y="787" width="373" height="55"/>
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Abn-ou-gTP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                 <state key="normal" title="Add Token">
                                     <color key="titleColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -222,6 +225,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                         <color key="value" name="disableTextLight"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -357,9 +363,6 @@
                                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageDark" value="imageInputClearBlue"/>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageLight" value="imageInputClearBlack"/>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="8k5-pv-lkV" id="R8Q-Aa-Bib"/>
-                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -428,9 +431,6 @@
                                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageLight" value="imageInputClearBlack"/>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="clearImageDark" value="imageInputClearBlue"/>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="8k5-pv-lkV" id="reQ-MK-izO"/>
-                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -501,10 +501,10 @@
                         <outlet property="addTokenBtn" destination="25k-Yh-wX9" id="gPu-4c-gcM"/>
                         <outlet property="contractTextFieldContainer" destination="gQF-NL-4xN" id="6lh-dJ-muj"/>
                         <outlet property="contractTextfield" destination="Yvq-Ao-bXo" id="KK0-1D-Nfz"/>
-                        <outlet property="decimalsTextfield" destination="oyy-sb-yV7" id="1aC-MJ-TuX"/>
+                        <outlet property="decimalsTextfield" destination="oyy-sb-yV7" id="CcA-ow-uwV"/>
                         <outlet property="errContainerConstraint" destination="xrw-dT-xQF" id="r9b-GW-oWp"/>
                         <outlet property="errContainerView" destination="XgH-mW-odf" id="plV-e0-NuR"/>
-                        <outlet property="symbolTextfield" destination="hE6-KH-NLI" id="9Xb-vD-zm6"/>
+                        <outlet property="symbolTextfield" destination="hE6-KH-NLI" id="mHj-3R-Rgq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbr-To-PPf" userLabel="First Responder" sceneMemberID="firstResponder"/>

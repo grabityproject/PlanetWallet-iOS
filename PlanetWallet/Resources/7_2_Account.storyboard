@@ -705,7 +705,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-w5-1L5">
-                                <rect key="frame" x="20" y="128" width="374" height="276"/>
+                                <rect key="frame" x="20" y="128" width="374" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKy-f9-rDS" userLabel="PhoneContainer">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
@@ -851,11 +851,11 @@
                                             <constraint firstItem="uJj-ou-Ip1" firstAttribute="leading" secondItem="mdG-5t-CR4" secondAttribute="trailing" constant="10" id="zvE-Aq-m4l"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-cL-tI9" userLabel="CodeContainer">
-                                        <rect key="frame" x="0.0" y="148" width="374" height="128"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-cL-tI9" userLabel="CodeContainer">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="65"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfo-qn-I5o" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="73" width="374" height="55"/>
+                                                <rect key="frame" x="0.0" y="10" width="374" height="55"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NyA-Gx-htN" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="0.0" width="289" height="55"/>
@@ -912,7 +912,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code that was sent to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S1-nk-vaS" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="219.5" height="63"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="219.5" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" name="detailTextLight"/>
                                                 <nil key="highlightedColor"/>

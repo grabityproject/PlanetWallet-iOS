@@ -73,7 +73,7 @@ class TopMenuLauncher: NSObject {
             menuView.collectionView.delegate = self
             
             menuView.frame = CGRect(x: 0,
-                                    y: -height,
+                                    y: -height - 15,
                                     width: window.frame.width,
                                     height: height)
             
@@ -94,7 +94,7 @@ class TopMenuLauncher: NSObject {
         
         UIView.animate(withDuration: 0.3, animations: {
             self.menuView.frame = CGRect(x: 0,
-                                         y: -self.menuView.frame.height,
+                                         y: -self.menuView.frame.height - 15,
                                          width: self.menuView.frame.width,
                                          height: self.menuView.frame.height)
         }) { (_) in //refresh selection cell
@@ -131,7 +131,10 @@ class TopMenuLauncher: NSObject {
         let width = window.bounds.width
 
         let triggerViewPositionY = triggerView!.frame.midY
-        menuView.frame = CGRect(x: 0, y: location.y - height + triggerViewPositionY, width: width, height: height)
+        menuView.frame = CGRect(x: 0,
+                                y: location.y - height + triggerViewPositionY,
+                                width: width,
+                                height: height)
         
         let maxY = menuView.frame.maxY
         //위로 올릴지 아래로 내릴지 판단하는 기준
@@ -151,7 +154,7 @@ class TopMenuLauncher: NSObject {
             }
             else {
                 UIView.animate(withDuration: 0.25) {
-                    self.menuView.frame = CGRect(x: 0, y: -self.height, width: width, height: self.height)
+                    self.menuView.frame = CGRect(x: 0, y: -self.height - 15, width: width, height: self.height)
                 }
             }
         }
@@ -182,7 +185,7 @@ class TopMenuLauncher: NSObject {
             }
             else {  //end gesture
                 UIView.animate(withDuration: 0.25) {
-                    self.menuView.frame = CGRect(x: 0, y: -self.height, width: width, height: self.height)
+                    self.menuView.frame = CGRect(x: 0, y: -self.height - 15, width: width, height: self.height)
                 }
                 dimView.isHidden = true
             }
@@ -197,8 +200,9 @@ class TopMenuLauncher: NSObject {
                                          width: self.menuView.frame.width,
                                          height: self.menuView.frame.height)
         }, completion: { (_) in
-            self.dimView.isHidden = false
         })
+        
+        self.dimView.isHidden = false
     }
     
     public func setTheme(_ theme: Theme) {
