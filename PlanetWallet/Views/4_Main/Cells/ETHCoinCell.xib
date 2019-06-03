@@ -83,26 +83,16 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcm-Xw-Dyc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                    <connections>
-                        <action selector="didTouched:" destination="-1" eventType="touchUpInside" id="Qfz-Fd-o5D"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="x2p-N7-O64" firstAttribute="leading" secondItem="2Qe-kX-GhK" secondAttribute="trailing" constant="10" id="4F2-ZW-ffc"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Pcm-Xw-Dyc" secondAttribute="bottom" id="61z-F2-D8A"/>
                 <constraint firstItem="x2p-N7-O64" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="EOV-Id-Rhw"/>
                 <constraint firstItem="K5T-1h-MPD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="EPB-4Z-ERf"/>
                 <constraint firstAttribute="trailing" secondItem="x2p-N7-O64" secondAttribute="trailing" constant="15" id="KMm-mD-2mC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pcm-Xw-Dyc" secondAttribute="trailing" id="Q7b-1C-DCL"/>
                 <constraint firstItem="YEW-xQ-oEs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R4e-s3-Qha"/>
-                <constraint firstItem="Pcm-Xw-Dyc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="klX-Xn-KSd"/>
                 <constraint firstItem="smp-3K-oxv" firstAttribute="top" secondItem="2Qe-kX-GhK" secondAttribute="bottom" constant="2" id="kxR-E3-7eb"/>
                 <constraint firstItem="smp-3K-oxv" firstAttribute="trailing" secondItem="2Qe-kX-GhK" secondAttribute="trailing" id="lFw-Az-SK2"/>
-                <constraint firstItem="Pcm-Xw-Dyc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="p5a-qj-3KK"/>
                 <constraint firstItem="K5T-1h-MPD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qRy-Df-eob"/>
                 <constraint firstItem="2Qe-kX-GhK" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rq8-VI-X7T"/>
                 <constraint firstItem="YEW-xQ-oEs" firstAttribute="leading" secondItem="K5T-1h-MPD" secondAttribute="trailing" constant="10" id="sbW-Ew-EU4"/>

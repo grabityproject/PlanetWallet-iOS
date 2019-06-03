@@ -27,9 +27,10 @@ class TopMenuCell: UICollectionViewCell {
         commonInit()
     }
     
-    //MARK: - IBAction
-    @IBAction func didTouched(_ sender: UIButton) {
-        
+    override var isSelected: Bool {
+        didSet {
+            self.containerView.backgroundColor = isSelected ? ThemeManager.currentTheme().border : UIColor.clear
+        }
     }
     
     //MARK: - Private
@@ -39,4 +40,7 @@ class TopMenuCell: UICollectionViewCell {
         containerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(containerView)
     }
+    
+    
+
 }

@@ -91,11 +91,14 @@ class TopMenuLauncher: NSObject {
     //MARK: - Interface
     @objc public func handleDismiss() {
         dimView.isHidden = true
-        UIView.animate(withDuration: 0.3) {
+        
+        UIView.animate(withDuration: 0.3, animations: {
             self.menuView.frame = CGRect(x: 0,
                                          y: -self.menuView.frame.height,
                                          width: self.menuView.frame.width,
                                          height: self.menuView.frame.height)
+        }) { (_) in //refresh selection cell
+            self.menuView.collectionView.reloadData()
         }
     }
     
@@ -239,6 +242,10 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
         cell.backgroundColor = .clear
         cell.nameLb.text = universeList[indexPath.row].name
         cell.universeLb.text = universeList[indexPath.row].type.description()
+    
+        let selectedView = UIView()
+        selectedView.backgroundColor = ThemeManager.currentTheme().border
+        cell.selectedBackgroundView = selectedView
         
         return cell
     }

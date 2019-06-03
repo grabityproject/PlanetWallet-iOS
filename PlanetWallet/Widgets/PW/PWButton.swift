@@ -14,6 +14,7 @@ import UIKit
     private var defaultBorderColor: UIColor?
     private var defaultTextNormalColor: UIColor?
     private var defaultTextHighlightColor: UIColor?
+    private var defaultBackgroundHighlightColor: UIColor?
     private var defaultTextDisableColor: UIColor?
     
     @IBInspectable var themeBackgroundColor: UIColor?{
@@ -36,7 +37,7 @@ import UIKit
     
     @IBInspectable var themeTextHighlightColor: UIColor?{
         didSet{
-            self.defaultTextHighlightColor = self.titleColor(for: .highlighted)
+//            self.defaultTextHighlightColor = self.titleColor(for: .highlighted)
         }
     }
     
@@ -46,6 +47,93 @@ import UIKit
         }
     }
     
+    @IBInspectable var highlightedCategory: Int = 0
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        commonInit()
+    }
+    
+    override open var isHighlighted: Bool {
+        didSet {
+            
+            if highlightedCategory == 1 {
+                //Type A
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    backgroundColor = isHighlighted ? UIColor(red: 92, green: 89, blue: 100) : .white
+                    self.setTitleColor(.black, for: .highlighted)
+                }
+                else {
+                    backgroundColor = isHighlighted ? UIColor(red: 92, green: 89, blue: 100) : .black
+                    self.setTitleColor(.white, for: .highlighted)
+                }
+            }
+            else if highlightedCategory == 2 {
+                //Type B
+                let errColor = UIColor(red: 255, green: 0, blue: 80)
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    self.layer.borderColor = isHighlighted ? errColor.cgColor : UIColor(red: 30, green: 30, blue: 40).cgColor
+                    self.setTitleColor(errColor, for: .highlighted)
+                }
+                else {
+                    self.layer.borderColor = isHighlighted ? errColor.cgColor : UIColor(red: 237, green: 237, blue: 237).cgColor
+                    self.setTitleColor(errColor, for: .highlighted)
+                }
+            }
+            else if highlightedCategory == 3 {
+                //Type C
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    backgroundColor = isHighlighted ? UIColor(red: 30, green: 30, blue: 40) : .clear
+                }
+                else {
+                    backgroundColor = isHighlighted ? UIColor(red: 237, green: 237, blue: 237) : .clear
+                }
+            }
+            else if highlightedCategory == 4 {
+                //Type A reverse
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    backgroundColor = isHighlighted ? UIColor(red: 92, green: 89, blue: 100) : .black
+                    setTitleColor(.white, for: .highlighted)
+                }
+                else {
+                    backgroundColor = isHighlighted ? UIColor(red: 92, green: 89, blue: 100) : .white
+                    setTitleColor(.black, for: .highlighted)
+                }
+            }
+            else if highlightedCategory == 5 {
+                //Type B reverse
+                let errColor = UIColor(red: 255, green: 0, blue: 80)
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    self.layer.borderColor = isHighlighted ? errColor.cgColor : UIColor(red: 237, green: 237, blue: 237).cgColor
+                    self.setTitleColor(errColor, for: .highlighted)
+                }
+                else {
+                    self.layer.borderColor = isHighlighted ? errColor.cgColor : UIColor(red: 30, green: 30, blue: 40).cgColor
+                    self.setTitleColor(errColor, for: .highlighted)
+                }
+            }
+            else if highlightedCategory == 6 {
+                //Type C reverse
+                if ThemeManager.currentTheme() == Theme.DARK {
+                    backgroundColor = isHighlighted ? UIColor(red: 237, green: 237, blue: 237) : .clear
+                }
+                else {
+                    backgroundColor = isHighlighted ? UIColor(red: 30, green: 30, blue: 40) : .clear
+                }
+            }
+        }
+    }
+    
+    private func commonInit() {
+        
+    }
     
     func setTheme(_ theme: Theme) {
         if( theme == Theme.LIGHT ){
@@ -59,7 +147,7 @@ import UIKit
                 defaultTextNormalColor = self.titleColor(for: .normal);
             }
             if( defaultTextHighlightColor == nil ){
-                defaultTextHighlightColor = self.titleColor(for: .highlighted);
+//                defaultTextHighlightColor = self.titleColor(for: .highlighted);
             }
             if( defaultTextDisableColor == nil ){
                 defaultTextDisableColor = self.titleColor(for: .disabled);
@@ -67,7 +155,8 @@ import UIKit
             
             self.backgroundColor = self.themeBackgroundColor
             self.setTitleColor(themeTextNormalColor, for: .normal);
-            self.setTitleColor(themeTextHighlightColor, for: .highlighted);
+//            self.setTitleColor(themeTextHighlightColor, for: .highlighted);
+            
             self.setTitleColor(themeTextDisableColor, for: .disabled);
             self.layer.borderColor = themeBorderColor?.cgColor;
             
@@ -79,7 +168,7 @@ import UIKit
                 self.setTitleColor(defaultTextNormalColor, for: .normal);
             }
             if( self.defaultTextHighlightColor != nil ){
-                self.setTitleColor(defaultTextHighlightColor, for: .highlighted);
+//                self.setTitleColor(defaultTextHighlightColor, for: .highlighted);
             }
             if( self.defaultTextDisableColor != nil ){
                 self.setTitleColor(defaultTextDisableColor, for: .disabled);

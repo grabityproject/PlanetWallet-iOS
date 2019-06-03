@@ -16,7 +16,6 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
     
     public let cellID = "ethereumCoinCell"
     var coinList: [Coin]? = []
-    var delegate: ETHCoinCellDelegate?
     
     override init() {
         super.init()
@@ -36,7 +35,10 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ETHCoinCell
         cell.backgroundColor = .clear
-        cell.delegate = self.delegate
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = ThemeManager.currentTheme().border//UIColor(red: 30, green: 30, blue: 40)
+        cell.selectedBackgroundView = selectedView
         
         return cell
     }

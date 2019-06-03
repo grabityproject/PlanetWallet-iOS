@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol ETHCoinCellDelegate {
-    func didSelectedETHCoin(index: IndexPath)
-}
-
 class ETHCoinCell: UITableViewCell {
-
-    var delegate: ETHCoinCellDelegate?
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var coinIconImg: UIImageView!
@@ -34,8 +28,8 @@ class ETHCoinCell: UITableViewCell {
         commonInit()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func prepareForReuse() {
+        self.selectedBackgroundView = nil
     }
     
     private func commonInit() {
@@ -44,14 +38,8 @@ class ETHCoinCell: UITableViewCell {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         addSubview(containerView)
-    }
-
-    @IBAction func didTouched(_ sender: UIButton) {
-        if  let tableView = self.superview as? UITableView,
-            let indexPath = tableView.indexPath(for: self)
-        {
-            delegate?.didSelectedETHCoin(index: indexPath)
-        }
+        
+        
     }
     
 }

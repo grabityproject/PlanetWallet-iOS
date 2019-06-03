@@ -166,7 +166,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2u-Q8-J3R" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2u-Q8-J3R" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="592" width="335" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="2FI-Tk-HZU"/>
@@ -190,6 +190,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                         <color key="value" name="errorText"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -756,7 +759,7 @@
                                 <color key="textColor" name="errorText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-h7-Y6U" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-h7-Y6U" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="592" width="335" height="55"/>
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -778,6 +781,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                         <color key="value" name="disableTextDark"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

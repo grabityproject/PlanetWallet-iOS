@@ -76,6 +76,7 @@ class MainController: PlanetWalletViewController {
             lightDimGradientView.isHidden = false
         }
         
+        tableView.reloadData()
     }
     
     
@@ -122,7 +123,6 @@ class MainController: PlanetWalletViewController {
         tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
         tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
 
-        ethDataSource.delegate = self
         dataSources = [ethDataSource, btcDataSource]
         tableView.dataSource = dataSources[0]
         tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
@@ -262,12 +262,8 @@ extension MainController: UITableViewDelegate {
         findAllViews(view: cell, theme: currentTheme)
     }
     
-    
-}
-
-extension MainController: ETHCoinCellDelegate {
-    func didSelectedETHCoin(index: IndexPath) {
-        print(index)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
     }
 }
 
