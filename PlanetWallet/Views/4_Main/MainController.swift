@@ -50,9 +50,19 @@ class MainController: PlanetWalletViewController {
     let btcDataSource = BTCTransactionDataSource()
     
     var topMenuLauncher: TopMenuLauncher?
-//    var bottomMenuLauncher: BottomMenuLauncher?
+    var bottomMenuLauncher: BottomMenuLauncher?
     
-    var bottomLauncher = MainLauncher()
+    @IBOutlet var bottomMenu: UIView!
+    @IBOutlet var btnBottomLauncher: PWImageView!
+    @IBOutlet var bottomBlurView: UIView!
+    
+    
+    override func viewDidLayoutSubviews() {
+        if( bottomMenuLauncher == nil ){
+            bottomMenuLauncher = BottomMenuLauncher(controller: self, trigger: bottomMenu, clickTrigger: btnBottomLauncher)
+        }
+    }
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -101,6 +111,7 @@ class MainController: PlanetWalletViewController {
         super.onUpdateTheme(theme: theme)
         
         topMenuLauncher?.setTheme(theme)
+        bottomMenuLauncher?.setTheme(theme)
         footerView.setTheme(theme)
     }
     
@@ -126,7 +137,7 @@ class MainController: PlanetWalletViewController {
         dataSources = [ethDataSource, btcDataSource]
         tableView.dataSource = dataSources[0]
         tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
-                                              left: 0, bottom: 80, right: 0)
+                                              left: 0, bottom: 130, right: 0)
         
         //Header, Footer
         headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.5)

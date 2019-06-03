@@ -12,9 +12,11 @@ class PWBlurView: UIVisualEffectView, Themable {
 
     func setTheme(_ theme: Theme) {
         if( theme == .DARK ){
-            self.effect = UIBlurEffect(style: .dark)
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+            self.effect = blurEffect
         }else{
-            self.effect = UIBlurEffect(style: .light)
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+            self.effect = blurEffect
         }
     }
 

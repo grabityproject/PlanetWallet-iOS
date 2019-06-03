@@ -18,7 +18,7 @@ class BottomMenuLauncher: NSObject {
     private let triggerAreaView: UIView = UIView()
     private let clicktriggerAreaView : UIView = UIView()
     
-    private var launcherView: BottomMeneView!;
+    private var launcherView: BottomMenuView!;
 
     private let dimView = UIView()
     
@@ -35,19 +35,24 @@ class BottomMenuLauncher: NSObject {
         self.clicktriggerView = clickTrigger
         self.topPosition = CGPoint(x: trigger.frame.origin.x, y: trigger.frame.origin.y)
         
-        launcherView = BottomMeneView(frame: CGRect(x: trigger.frame.origin.x, y: trigger.frame.origin.y, width: trigger.frame.width, height: 0))
+        launcherView = BottomMenuView(frame: CGRect(x: trigger.frame.origin.x, y: trigger.frame.origin.y, width: trigger.frame.width, height: 0))
         
         triggerAreaView.frame = trigger.frame
-        clicktriggerAreaView.frame = clickTrigger.frame;
+        
+        let clickTriggerWidth = clickTrigger.frame.width
+        clicktriggerAreaView.frame = CGRect(x: triggerView.frame.width - clickTriggerWidth - 16,
+                                            y: 20,
+                                            width: clickTriggerWidth,
+                                            height: clickTriggerWidth)
+        
         
         dimView.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height - launcherView.frame.height + 40)
         dimView.backgroundColor = .clear
         dimView.isHidden = true
-        launcherView.alpha = 0;
+        launcherView.alpha = 0
         
-        
-        triggerAreaView.addSubview(clicktriggerAreaView)
         controller.view.addSubviews(launcherView, triggerAreaView, dimView)
+        triggerAreaView.addSubview(clicktriggerAreaView)
         
         triggerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(triggerPanAction));
         triggerAreaView.addGestureRecognizer(triggerPanGesture)
@@ -57,17 +62,19 @@ class BottomMenuLauncher: NSObject {
 
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClick))
         clicktriggerAreaView.addGestureRecognizer(tapGesture)
-        
+
         setTheme(ThemeManager.currentTheme())
     }
     
     @objc func onClick(_ sender:Any){
+        print("onCLick")
         if( !isOpen ){
             UIView.animate(withDuration: 0.2) {
                 self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
                 self.launcherView.alpha = 1.0
                 self.triggerView.alpha = 0
                 self.isOpen = true;
+                self.triggerAreaView.isUserInteractionEnabled  = false;
                 self.dimView.isHidden = false;
             }
         }
@@ -119,6 +126,7 @@ class BottomMenuLauncher: NSObject {
                     self.triggerView.alpha = 0
                     self.isOpen = true;
                     self.dimView.isHidden = false;
+                    self.triggerAreaView.isUserInteractionEnabled  = false;
                     
                 }else if( UIScreen.main.bounds.height - self.launcherView.frame.height*4.0/5.0 < ( UIScreen.main.bounds.height - self.launcherView.frame.height + self.triggerPanGesture.translation(in:
                     
@@ -127,6 +135,7 @@ class BottomMenuLauncher: NSObject {
                     self.launcherView.alpha = 0
                     self.triggerView.alpha = 1
                     self.isOpen = false;
+                    self.triggerAreaView.isUserInteractionEnabled  = true;
                     
                     self.dimView.isHidden = true;
                     
@@ -182,6 +191,7 @@ class BottomMenuLauncher: NSObject {
                     self.launcherView.alpha = 0
                     self.triggerView.alpha = 1
                     self.isOpen = false;
+                    self.triggerAreaView.isUserInteractionEnabled  = true;
 
                     self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
                     self.dimView.isHidden = true;
@@ -213,7 +223,7 @@ class BottomMenuLauncher: NSObject {
             launcherView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0).cgColor
             launcherView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
             launcherView.layer.shadowRadius = 8
-            launcherView.layer.shadowOpacity = 0.45
+            launcherView.layer.shadowOpacity = 0.2
             launcherView.layer.masksToBounds = false
         }else{
             launcherView.dropShadow(radius: 0, cornerRadius: 0)

@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import QRCode
 
-class BottomMeneView: UIView {
+protocol BottomMenuDelegate {
+    func didTouchedCopy(_ addr: String)
+    func didTouchedSend()
+}
 
+class BottomMenuView: UIView {
+
+    var delegate: BottomMenuDelegate?
+    
+    @IBOutlet var qrCodeImgView: UIImageView!
     @IBOutlet var containerView: UIView!
+    @IBOutlet var planetView: PlanetView!
+    @IBOutlet var addressLb: UILabel!
+    @IBOutlet var amountLb: UILabel!
+    @IBOutlet var coinTypeLb: UILabel!
     
     
     override init(frame: CGRect) {
@@ -33,5 +46,21 @@ class BottomMeneView: UIView {
         self.addSubview(containerView)
         
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: containerView.frame.height)
+        
+        var qrCode = QRCode("ansrbthd")
+        qrCode?.errorCorrection = .High
+        self.qrCodeImgView.image = qrCode?.image
+        
+    }
+    
+    @IBAction func didTouchedCopy(_ sender: UIButton) {
+        if let addr = addressLb.text {
+            UIPasteboard.general.string = addr
+            delegate?.didTouchedCopy(addr)
+        }
+    }
+    
+    @IBAction func didTouchedSend(_ sender: UIButton) {
+        delegate?.didTouchedSend()
     }
 }

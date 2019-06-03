@@ -18,7 +18,7 @@ class MainTableFooter: UIView {
     
     @IBOutlet var containerView: PWView!
     @IBOutlet var manageTokenContainer: UIView!
-    @IBOutlet var manateTokenBtnContainer: UIView!
+    @IBOutlet var manageTokenBtnContainer: UIView!
     
     @IBOutlet var btcTransactionEmptyMsgLb: PWLabel!
     
@@ -41,9 +41,7 @@ class MainTableFooter: UIView {
     }
     
     public func setTheme(_ theme: Theme) {
-        manateTokenBtnContainer.layer.addBorder(edges: [.left,.bottom,.right],
-                                                color: theme.border,
-                                                thickness: 1)
+        manageTokenBtnContainer.layer.borderColor = ThemeManager.currentTheme().border.cgColor
     }
     
     private func commonInit() {
@@ -52,9 +50,11 @@ class MainTableFooter: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(containerView)
         
-        manateTokenBtnContainer.layer.addBorder(edges: [.left,.bottom,.right],
-                                                color: ThemeManager.currentTheme().border,
-                                                thickness: 1)
+        manageTokenBtnContainer.layer.borderColor = ThemeManager.currentTheme().border.cgColor
+        manageTokenBtnContainer.layer.borderWidth = 1
+        
+        manageTokenBtnContainer.layer.cornerRadius = 8
+        manageTokenBtnContainer.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
 
     private func updateUI() {

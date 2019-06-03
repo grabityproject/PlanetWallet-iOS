@@ -208,7 +208,7 @@ class TopMenuLauncher: NSObject {
             menuView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0).cgColor
             menuView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
             menuView.layer.shadowRadius = 8
-            menuView.layer.shadowOpacity = 0.45
+            menuView.layer.shadowOpacity = 0.2
             menuView.layer.masksToBounds = false
         }else{
             menuView.dropShadow(radius: 0, cornerRadius: 0)

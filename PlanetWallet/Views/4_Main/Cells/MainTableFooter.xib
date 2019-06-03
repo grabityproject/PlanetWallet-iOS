@@ -20,8 +20,8 @@
             <connections>
                 <outlet property="btcTransactionEmptyMsgLb" destination="ZbB-KM-7aH" id="oZx-qE-KRt"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="OFh-8h-0wN"/>
+                <outlet property="manageTokenBtnContainer" destination="iED-jL-xFu" id="RvE-bz-p92"/>
                 <outlet property="manageTokenContainer" destination="bFq-od-fG0" id="Oa6-cm-aMh"/>
-                <outlet property="manateTokenBtnContainer" destination="iED-jL-xFu" id="RvE-bz-p92"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -45,7 +45,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view tag="999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iED-jL-xFu" userLabel="ManageTokenBtnContainer">
-                            <rect key="frame" x="112" y="1" width="190" height="50"/>
+                            <rect key="frame" x="112" y="0.0" width="190" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ8-Bd-a0l" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="47" y="13.5" width="110" height="23.5"/>
@@ -105,7 +105,7 @@
                         <constraint firstItem="evM-zZ-LgV" firstAttribute="leading" secondItem="bFq-od-fG0" secondAttribute="leading" id="LgS-4L-Ckh"/>
                         <constraint firstAttribute="trailing" secondItem="evM-zZ-LgV" secondAttribute="trailing" id="ZID-5M-JXi"/>
                         <constraint firstItem="evM-zZ-LgV" firstAttribute="top" secondItem="bFq-od-fG0" secondAttribute="top" id="eKG-mA-I7J"/>
-                        <constraint firstItem="iED-jL-xFu" firstAttribute="top" secondItem="evM-zZ-LgV" secondAttribute="bottom" id="rLQ-4L-u6K"/>
+                        <constraint firstItem="iED-jL-xFu" firstAttribute="top" secondItem="evM-zZ-LgV" secondAttribute="bottom" constant="-1" id="rLQ-4L-u6K"/>
                     </constraints>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t made any transaction yet :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbB-KM-7aH" userLabel="EmptyMsgLb" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">

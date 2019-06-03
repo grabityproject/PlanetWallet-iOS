@@ -5,10 +5,12 @@ PODS:
     - ObjectMapper (~> 3.4)
   - lottie-ios (3.0.3)
   - ObjectMapper (3.4.2)
+  - QRCode (2.0)
 
 DEPENDENCIES:
   - AlamofireObjectMapper (~> 5.2)
   - lottie-ios
+  - QRCode
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - AlamofireObjectMapper
     - lottie-ios
     - ObjectMapper
+    - QRCode
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
   lottie-ios: 06e0b54aab85ba128e332687d7f4ac4861a7a7ae
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
 
-PODFILE CHECKSUM: 8e0b3260745b8497b8f8ecea00c115a837a8d73d
+PODFILE CHECKSUM: 25c018b8a9588fd88e8572be68303893ea9ac0c0
 
 COCOAPODS: 1.6.0
