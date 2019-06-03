@@ -96,9 +96,13 @@ class PopupCountryCode: AbsSlideUpView {
     
     var dataSource: [DialCode]?
     
-    let bottomGradientView = GradientView()
-    let topGradientView = GradientView()
+    let darkBottomGradientView = GradientView()
+    let darkTopGradientView = GradientView()
     
+    let lightBottomGradientView = GradientView()
+    let lightTopGradientView = GradientView()
+    
+    //MARK: - Init
     convenience init(dataSource: [DialCode]) {
         self.init()
         
@@ -109,55 +113,104 @@ class PopupCountryCode: AbsSlideUpView {
         super.setXib()
         
         Bundle.main.loadNibNamed("PopupCountryCode", owner: self, options: nil)
-        contentView = containerView
         
+        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.layer.cornerRadius = 5.0
         containerView.layer.masksToBounds = true
+        containerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH - (32*2), height: SCREEN_HEIGHT * 0.67)
+        contentView = containerView
         
         tableController.view.frame = CGRect(x: 0, y: 15, width: containerView.bounds.width, height: containerView.bounds.height - (15*2))
         tableController.delegate = self
         containerView.addSubview(tableController.view)
-/*
-        let tableFrame = tableController.view.frame
-        //top gradientView
-        topGradientView.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
-        topGradientView.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
-        topGradientView.frame = CGRect(x: 0, y: tableFrame.minY, width: tableFrame.width, height: 15)
-        containerView.addSubview(topGradientView)
         
-        //bottom gradientView
-        bottomGradientView.firstColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
-        bottomGradientView.secondColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
-        bottomGradientView.frame = CGRect(x: 0, y: tableFrame.maxY - 15, width: tableFrame.width, height: 15)
-        containerView.addSubview(bottomGradientView)
-  */
+        createGradientView()
+
         setData()
     }
     
     public func setData() {
         tableController.datasource = dataSource
     }
+    
+    //MARK: - Private
+    private func createGradientView() {
+        
+        let tableFrame = tableController.view.frame
+        
+        //top gradientView
+        lightTopGradientView.startColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        lightTopGradientView.endColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        lightTopGradientView.frame = CGRect(x: 0, y: tableFrame.minY, width: tableFrame.width, height: 15)
+        containerView.addSubview(lightTopGradientView)
+        
+        //bottom gradientView
+        lightBottomGradientView.startColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        lightBottomGradientView.endColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        lightBottomGradientView.frame = CGRect(x: 0, y: tableFrame.maxY - 15, width: tableFrame.width, height: 15)
+        containerView.addSubview(lightBottomGradientView)
+        
+        //top gradientView
+        darkTopGradientView.startColor = UIColor(red: 30, green: 30, blue: 40, alpha: 1)
+        darkTopGradientView.endColor = UIColor(red: 30, green: 30, blue: 40, alpha: 0)
+        darkTopGradientView.frame = CGRect(x: 0, y: tableFrame.minY, width: tableFrame.width, height: 15)
+        containerView.addSubview(darkTopGradientView)
+        
+        //bottom gradientView
+        darkBottomGradientView.startColor = UIColor(red: 30, green: 30, blue: 40, alpha: 0)
+        darkBottomGradientView.endColor = UIColor(red: 30, green: 30, blue: 40, alpha: 1)
+        darkBottomGradientView.frame = CGRect(x: 0, y: tableFrame.maxY - 15, width: tableFrame.width, height: 15)
+        containerView.addSubview(darkBottomGradientView)
+        
+        if ThemeManager.currentTheme() == .DARK {
+            darkTopGradientView.isHidden = true
+            darkBottomGradientView.isHidden = true
+            
+            lightTopGradientView.isHidden = false
+            lightBottomGradientView.isHidden = false
+        }
+        else {
+            darkTopGradientView.isHidden = false
+            darkBottomGradientView.isHidden = false
+            
+            lightTopGradientView.isHidden = true
+            lightBottomGradientView.isHidden = true
+        }
+    }
 }
 
 extension PopupCountryCode: CountryCodeTableDelegate {
     func tableviewDidScroll(scrollView: UIScrollView) {
+        
+        var bottomGradient: GradientView?
+        var topGradient: GradientView?
+        
+        if ThemeManager.currentTheme() == .DARK {
+            bottomGradient = lightBottomGradientView
+            topGradient = lightTopGradientView
+        }
+        else {
+            bottomGradient = darkBottomGradientView
+            topGradient = darkTopGradientView
+        }
+        
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
             //you reached end of the table
-            bottomGradientView.isHidden = true
+            bottomGradient?.isHidden = true
         }
         else {
-            bottomGradientView.isHidden = false
+            bottomGradient?.isHidden = false
         }
         
         if scrollView.contentOffset.y == 0 {
             //you reached top of the table
-            topGradientView.isHidden = true
+            topGradient?.isHidden = true
         }
         else {
-            topGradientView.isHidden = false
+            topGradient?.isHidden = false
         }
     }
     

@@ -14,14 +14,24 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var confirmLb: UILabel!
     @IBOutlet var planetNameLb: UILabel!
-    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var darkGradientView: GradientView!
+    @IBOutlet var lightGradientView: GradientView!
     
     //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if( ThemeManager.currentTheme() == .DARK ){
+            darkGradientView.isHidden = false
+            lightGradientView.isHidden = true
+        }else{
+            darkGradientView.isHidden = true
+            lightGradientView.isHidden = false
+        }
+    }
+    
     override func viewInit() {
         super.viewInit()
-        
-//        gradientView.updateView()
-//        gradientView.setTheme(theme: currentTheme)
     }
     
     //MARK: - IBAction

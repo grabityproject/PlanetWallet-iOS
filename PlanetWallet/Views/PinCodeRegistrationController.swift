@@ -29,11 +29,15 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         }
     }
     
+    @IBOutlet var titleLb: PWLabel!
+    @IBOutlet var detailLb: PWLabel!
     @IBOutlet var pinView: PinView!
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
     
     private var fromSegue = From.SPLASH
+    private var isConfirmedPW = false
+    private var pwBeforeConfirmed = ""
     
     //MARK: - Init
     override func viewInit() {
@@ -65,14 +69,39 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     }
     
     private func handleCompleteRegistration(_ pw: String) {
-        Utils.shared.setDefaults(for: Keys.Userdefaults.PINCODE, value: pw)
         
-        switch fromSegue {
-        case .SPLASH:
-            sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION, userInfo: nil)
-        case .CERTIFICATION:
-            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        guard isConfirmedPW else {
+            titleLb.text = "Confirm code"
+            pwBeforeConfirmed = pw
+            isConfirmedPW = true
+            setNumberPad(position: 0)
+            return
         }
+        
+        if pw == pwBeforeConfirmed {
+            Utils.shared.setDefaults(for: Keys.Userdefaults.PINCODE, value: pw)
+            
+            switch fromSegue {
+            case .SPLASH:
+                sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION, userInfo: nil)
+            case .CERTIFICATION:
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+        else {
+            titleLb.text = "Code incorrect"
+            titleLb.textColor = currentTheme.errorText
+            detailLb.text = "Please check your code"
+            detailLb.textColor = currentTheme.errorText
+
+            self.pinView.setSelectedColor(0)
+            self.numPad.resetPassword()
+            self.charPad.resetPassword()
+            
+            showNumberPad(true)
+        }
+        
+        
     }
 }
 
@@ -95,12 +124,19 @@ extension PinCodeRegistrationController: CharPadDelegate {
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
         if isBack {
-            pinView.setSelectedColor(3)
-            numPad.deleteLastPW()
-            showNumberPad(true)
+            setNumberPad(position: 3)
         }
     }
     
-    
+    private func setNumberPad(position: Int = 0) {
+        pinView.setSelectedColor(position)
+        if position == 0 {
+            numPad.resetPassword()
+        }
+        else if position == 3 {
+            numPad.deleteLastPW()
+        }
+        showNumberPad(true)
+    }
 }
 

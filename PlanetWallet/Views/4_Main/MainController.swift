@@ -28,12 +28,6 @@ class MainController: PlanetWalletViewController {
         }
     }
     
-//    var universe: UniverseType = .ETH {
-//        didSet {
-//            self.updateUniverse()
-//        }
-//    }
-    
     @IBOutlet var bgPlanetContainer: UIView!
     @IBOutlet var bgPlanetContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet var bgPlanetView: PlanetView!
@@ -64,7 +58,7 @@ class MainController: PlanetWalletViewController {
         super.viewWillAppear(animated)
         
         //Ripple animation transition
-        UIView.animate(withDuration: 2.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.rippleView.backgroundColor = self.settingTheme.backgroundColor
             self.rippleView.alpha = 0
             self.rippleView.layer.cornerRadius = 0
@@ -92,11 +86,7 @@ class MainController: PlanetWalletViewController {
         
         configureTableView()
         createRippleView()
-        
-//        darkDimGradientView.frame = bgPlanetContainer.bounds
-//        bottomLauncher.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-//        self.view.addSubview(bottomLauncher)
-        
+
         naviBar.backgroundView.alpha = 0
     }
     
@@ -107,12 +97,9 @@ class MainController: PlanetWalletViewController {
     }
     
     override func onUpdateTheme(theme: Theme) {
-        print("on update theme")
         super.onUpdateTheme(theme: theme)
-//        dimGradientView.updateView()
-//        dimGradientView.setTheme(theme: theme)
-        topMenuLauncher?.setTheme(theme)
         
+        topMenuLauncher?.setTheme(theme)
         footerView.setTheme(theme)
     }
     
@@ -191,7 +178,7 @@ extension MainController: NavigationBarDelegate {
         switch sender {
         case .LEFT:
             //Ripple animation transition
-            UIView.animate(withDuration: 2.4, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
                 self.rippleView.alpha = 1
                 let rippleViewMaxRadius = self.view.bounds.height * 2.0 * 1.4
                 self.rippleView.layer.cornerRadius = rippleViewMaxRadius / 2
@@ -229,7 +216,7 @@ extension MainController: UIScrollViewDelegate {
         }
     }
     
-    /*
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = tableView.contentOffset.y
         
@@ -246,11 +233,8 @@ extension MainController: UIScrollViewDelegate {
             refreshContents.playAnimation(with: pullRatio)
         }
         else {
-            
             bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
                                                      y: bgPlanetContainerTopConstraint.constant - offsetY)
-            dimGradientView.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
-                                                   y: bgPlanetContainerTopConstraint.constant - offsetY)
             
             let start = planetView.frame.origin.y + planetView.height/3.0 - naviBar.HEIGHT
             let end =  planetView.frame.origin.y + planetView.height - naviBar.HEIGHT
@@ -266,7 +250,7 @@ extension MainController: UIScrollViewDelegate {
             }
         }
     }
- */
+
 }
 
 extension MainController: UITableViewDelegate {

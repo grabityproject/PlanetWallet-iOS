@@ -104,8 +104,10 @@
                     </view>
                     <connections>
                         <outlet property="charPad" destination="Pcr-62-DMD" id="mEI-kE-h02"/>
+                        <outlet property="detailLb" destination="vUa-oG-T4d" id="TXi-KB-oRp"/>
                         <outlet property="numPad" destination="Iyy-aY-PXK" id="QNG-Yl-OSd"/>
                         <outlet property="pinView" destination="9jw-S7-Cx7" id="Vva-Ha-Iyi"/>
+                        <outlet property="titleLb" destination="dpQ-zW-vGd" id="kvM-LA-PDF"/>
                         <segue destination="8Iy-fZ-BRG" kind="show" identifier="pincoderegistration_to_pincodecertification" animates="NO" id="Clq-6k-gta"/>
                     </connections>
                 </viewController>
