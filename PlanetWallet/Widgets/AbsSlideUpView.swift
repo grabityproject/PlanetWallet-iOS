@@ -60,13 +60,16 @@ class AbsSlideUpView: PWView, UIGestureRecognizerDelegate {
         self.controller = controller;
         createView();
         
-        if let v = contentView{
-            v.frame = CGRect(x: 30.5, y: ( controller.view.frame.height - v.frame.size.height )/2.0, width: controller.view.frame.width - 30.5*2.0, height: v.frame.height)
-        }
+        guard let v = contentView else { return }
+        
+        v.frame = CGRect(x: 30.5,
+                         y: controller.view.frame.height,//( controller.view.frame.height - v.frame.size.height )/2.0,
+                         width: controller.view.frame.width - 30.5*2.0,
+                         height: v.frame.height)
         
         UIView.animate(withDuration: 0.4) {
             self.background.alpha = self.dimAlpha
-            self.contentView?.frame = CGRect(
+            v.frame = CGRect(
                 x: (self.bounds.width - (self.contentView?.bounds.width)!)/2,
                 y: (self.bounds.height - (self.contentView?.bounds.height)!)/2,
                 width: (self.contentView?.bounds.width)!,

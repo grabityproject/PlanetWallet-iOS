@@ -32,6 +32,8 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     override func viewInit() {
         super.viewInit()
+        guard let fromSegueID = userInfo?["segue"] as? String else { return }
+        print(fromSegueID)
     }
     
     //MARK: - IBAction
@@ -43,10 +45,12 @@ class PlanetGenerateController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        if let _ = userInfo?["segue"] { //from main controller
+        guard let fromSegueID = userInfo?["segue"] as? String else { return }
+        
+        if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
             performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
         }
-        else {
+        else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
             performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
         }
     }

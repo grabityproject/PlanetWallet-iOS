@@ -33,7 +33,7 @@
         <!--Planet Generate Controller-->
         <scene sceneID="aLR-Tk-YQR">
             <objects>
-                <viewController id="UW6-YT-ToD" customClass="PlanetGenerateController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlanetGenerateController" id="UW6-YT-ToD" customClass="PlanetGenerateController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Nz-ic-7Pd" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

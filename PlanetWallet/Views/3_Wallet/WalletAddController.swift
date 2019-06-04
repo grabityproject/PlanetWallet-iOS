@@ -36,34 +36,27 @@ class WalletAddController: PlanetWalletViewController {
     
     @IBAction func didTouchedCreatePlanet(_ sender: UIButton) {
         
-        if let segue = userInfo?["segue"] as? String, segue == Keys.Segue.PINCODE_CERTIFICATION_TO_WALLETADD {
-            //from certification
-            sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE, userInfo: nil)
-        }
-        else {
-            //from settings
-            let popup = PopupUniverse()
+        let popup = PopupUniverse()
+        
+        popup.show(controller: self)
+        popup.handler = { [weak self] (universe) in
+            guard let strongSelf = self else { return }
+            popup.dismiss()
             
-            popup.show(controller: self)
-            popup.handler = { [weak self] (universe) in
-                guard let strongSelf = self else { return }
-                popup.dismiss()
-                
-                if let fromSegue = strongSelf.userInfo?["segue"] as? String {
-                    let userInfo = ["universe" : universe.description(), "segue" : fromSegue]
-                    strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
-                                          userInfo: userInfo)
-                }
-                else {
-                    strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
-                                          userInfo: ["universe" : universe.description()])
-                }
+            if let _ = strongSelf.userInfo?["segue"] as? String {
+                let userInfo = ["universe" : universe.description(),
+                                "segue" : Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE]
+                strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
+                                      userInfo: userInfo)
+            }
+            else {
+                strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
+                                      userInfo: ["universe" : universe.description()])
             }
         }
     }
     
     @IBAction func didTouchedImportPlanet(_ sender: UIButton) {
-        
         let importPlanetController = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController")
         self.presentDetail(importPlanetController)
     }

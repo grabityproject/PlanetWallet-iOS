@@ -204,7 +204,7 @@
                         <outlet property="numPad" destination="dE3-Uq-h3Y" id="q7p-oS-y1g"/>
                         <outlet property="pinView" destination="oTs-fe-2CY" id="i9J-fb-fKE"/>
                         <outlet property="titleLb" destination="QeC-qN-REx" id="8ev-fr-GRs"/>
-                        <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_walletadd" animates="NO" id="WKf-tH-rxL"/>
+                        <segue destination="Fx2-3Q-ztL" kind="show" identifier="pincodecertification_to_planetgenerate" animates="NO" id="WKf-tH-rxL"/>
                         <segue destination="4dR-O6-8zh" kind="show" identifier="pincodecertification_to_main" animates="NO" id="JDt-4c-Y7h"/>
                         <segue destination="TTs-8X-dJK" kind="show" identifier="pincodecertification_to_pincoderegistration" id="f9N-gD-wbp"/>
                         <segue destination="aAK-og-Lal" kind="presentation" identifier="pincodecertification_to_mnemonicexport" modalPresentationStyle="fullScreen" id="oQS-nA-k7l"/>
@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="591" y="134"/>
         </scene>
-        <!--WalletAddController-->
+        <!--PlanetGenerateController-->
         <scene sceneID="Yhf-dt-1Pc">
             <objects>
-                <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="WalletAddController" id="Fx2-3Q-ztL" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="PlanetGenerateController" id="Fx2-3Q-ztL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dn1-V9-yQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="132"/>

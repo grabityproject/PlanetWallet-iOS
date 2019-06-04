@@ -35,7 +35,8 @@ struct Keys {
         
         //PinCode
         static let PINCODE_REGISTRATION_TO_CERTIFICATION = "pincoderegistration_to_pincodecertification"
-        static let PINCODE_CERTIFICATION_TO_WALLETADD = "pincodecertification_to_walletadd"
+        static let PINCODE_CERTIFICATION_TO_PLANET_GENERATE = "pincodecertification_to_planetgenerate"
+//        static let PINCODE_CERTIFICATION_TO_WALLETADD = "pincodecertification_to_walletadd"
         static let PINCODE_CERTIFICATION_TO_MAIN = "pincodecertification_to_main"
         static let PINCODE_CERTIFICATION_TO_REGISTRATION = "pincodecertification_to_pincoderegistration"
         static let PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT = "pincodecertification_to_mnemonicexport"
@@ -45,7 +46,7 @@ struct Keys {
         static let WALLET_IMPORT_TO_MNEMONIC_IMPORT = "walletimport_to_mnemonicImport"
         static let WALLET_IMPORT_TO_PRIVATEKEY_IMPORT = "walletimport_to_privatekeyimport"
         static let WALLET_IMPORT_TO_JSON_IMPORT = "walletimport_to_jsonimport"
-        static let WALLET_ADD_TO_PALNET_GENERATE = "walletadd_to_planetgenerate"
+        static let WALLET_ADD_TO_PLANET_GENERATE = "walletadd_to_planetgenerate"
         static let PLANET_GENERATE_TO_MAIN = "planetgerate_to_mainnavigation"
         static let MNEMONIC_IMPORT_TO_PLANET_NAME = "mnemonicimport_to_planetname"
         static let JSON_IMPORT_TO_PLANET_NAME = "jsonimport_to_planetname"
