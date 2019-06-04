@@ -44,6 +44,13 @@ class PrivateKeyImportController: PlanetWalletViewController {
         textField.isSecureTextEntry = !textField.isSecureTextEntry
     }
     
+    @IBAction func didTouchedContinue(_ sender: UIButton) {
+        //TODO: - wallet info
+        let info = ["":""]
+        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
+    }
+    
+    
     //MARK: - Private
     private func isValid(mnemonic: String) -> Bool {
         //TODO: - Logic

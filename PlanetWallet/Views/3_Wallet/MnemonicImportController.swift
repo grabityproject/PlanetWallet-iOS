@@ -49,6 +49,13 @@ class MnemonicImportController: PlanetWalletViewController {
         pwTextfield.isSecureTextEntry = !pwTextfield.isSecureTextEntry
     }
     
+    @IBAction func didTouchedContinue(_ sender: UIButton) {
+        //TODO: - wallet info
+        let info = ["":""]
+        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+    }
+    
+    
     //MARK: - Private
     private func isValid(mnemonic: String) -> Bool {
         //TODO: - Logic

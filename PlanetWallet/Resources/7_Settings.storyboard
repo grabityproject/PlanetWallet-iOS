@@ -126,9 +126,6 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipH-AX-Ij8">
                                                         <rect key="frame" x="0.0" y="0.0" width="118" height="95.5"/>
-                                                        <connections>
-                                                            <segue destination="pa5-B5-5Nc" kind="show" identifier="setting_to_account" id="B5b-7y-TvS"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -572,14 +569,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCh-NK-1tX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="238" y="-424"/>
-        </scene>
-        <!--AccountController-->
-        <scene sceneID="efE-wV-W5G">
-            <objects>
-                <viewControllerPlaceholder storyboardName="7_2_Account" referencedIdentifier="AccountController" id="pa5-B5-5Nc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UfZ-uq-eoc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="676" y="-431"/>
         </scene>
         <!--DetailSettingController-->
         <scene sceneID="9h1-ce-A8g">

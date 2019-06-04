@@ -240,7 +240,7 @@ extension MainController: UIScrollViewDelegate {
         if offsetY < 0 {
             // update background planet view scale
             naviBar.backgroundView.alpha = 0
-            let scale = 1.0 + (-offsetY * 0.001)
+            let scale = 1.0 + (-offsetY * 0.01)
 //            let scale = 1.0 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             

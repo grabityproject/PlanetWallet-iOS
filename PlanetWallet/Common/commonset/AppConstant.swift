@@ -47,6 +47,10 @@ struct Keys {
         static let WALLET_IMPORT_TO_JSON_IMPORT = "walletimport_to_jsonimport"
         static let WALLET_ADD_TO_PALNET_GENERATE = "walletadd_to_planetgenerate"
         static let PLANET_GENERATE_TO_MAIN = "planetgerate_to_mainnavigation"
+        static let MNEMONIC_IMPORT_TO_PLANET_NAME = "mnemonicimport_to_planetname"
+        static let JSON_IMPORT_TO_PLANET_NAME = "jsonimport_to_planetname"
+        static let PRIVATEKEY_IMPORT_TO_PLANET_NAME = "privatekeyimport_to_planetname"
+        
         
         //MAIN
         static let MAIN_TO_SETTING = "main_to_setting"
@@ -56,7 +60,6 @@ struct Keys {
         
         //Setting
         static let SETTING_TO_PLANET_MANAGEMENT = "setting_to_planetmanagemnet"
-        static let SETTING_TO_ACCOUNT = "setting_to_account"
         static let SETTING_TO_DETAIL_SETTING = "setting_to_detailsetting"
         static let SETTING_TO_ANNOUNCEMENTS = "setting_to_announcements"
         static let SETTING_TO_FAQ = "setting_to_faq"
