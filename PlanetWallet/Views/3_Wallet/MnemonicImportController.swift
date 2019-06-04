@@ -11,7 +11,11 @@ import UIKit
 class MnemonicImportController: PlanetWalletViewController {
 
     @IBOutlet var pwTextfield: UITextField!
+    @IBOutlet var pwTextFieldContainer: PWView!
+    
     @IBOutlet var mnemonicTextView: UITextView!
+    @IBOutlet var mnemonicTextViewContainer: PWView!
+    
     @IBOutlet var errMsgContainerView: UIView!
     @IBOutlet var invisibleBtn: UIButton!
     @IBOutlet var continueBtn: PWButton!
@@ -64,24 +68,56 @@ class MnemonicImportController: PlanetWalletViewController {
 }
 
 
-extension MnemonicImportController: UITextFieldDelegate, UITextViewDelegate {
+extension MnemonicImportController: UITextFieldDelegate {
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        pwTextfield.text = ""
+        pwTextfield.resignFirstResponder()
+        
+        return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
         return true
     }
+}
+
+extension MnemonicImportController: UITextViewDelegate {
     
-    // hides text views
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        mnemonicTextViewContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        mnemonicTextViewContainer.layer.borderColor = currentTheme.border.cgColor
+    }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
             return false
         }
-        else {
-            //TODO: - Logic
-            self.isValidMnemonic = true
+        
+        //TODO: - Logic
+        let newLength = textView.text.utf16.count + text.utf16.count - range.length
+        
+        if newLength >= 1 {
+            isValidMnemonic = true
         }
+        else {
+            isValidMnemonic = false
+        }
+        
         return true
     }
 }
-

@@ -91,8 +91,6 @@ class MainController: PlanetWalletViewController {
         tableView.reloadData()
     }
     
-    
-    
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -116,6 +114,12 @@ class MainController: PlanetWalletViewController {
         bottomMenuLauncher?.setTheme(theme)
         footerView.setTheme(theme)
     }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedCopyAddr(_ sender: UIButton) {
+        
+    }
+    
     
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
@@ -236,9 +240,9 @@ extension MainController: UIScrollViewDelegate {
         if offsetY < 0 {
             // update background planet view scale
             naviBar.backgroundView.alpha = 0
-            let scale = 1 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
+            let scale = 1.0 + (-offsetY * 0.001)
+//            let scale = 1.0 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
-            
             
             // update refresh control
             let pullDistance = max(0.0, -self.refreshControl!.frame.origin.y)
@@ -246,6 +250,8 @@ extension MainController: UIScrollViewDelegate {
             refreshContents.playAnimation(with: pullRatio)
         }
         else {
+            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+            
             bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
                                                      y: bgPlanetContainerTopConstraint.constant - offsetY)
             

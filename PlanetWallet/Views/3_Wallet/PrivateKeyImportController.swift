@@ -10,7 +10,9 @@ import UIKit
 
 class PrivateKeyImportController: PlanetWalletViewController {
 
+    @IBOutlet var pwTextFieldContainer: PWView!
     @IBOutlet var textField: PWTextField!
+    
     @IBOutlet var errMsgContainerView: UIView!
     @IBOutlet var continueBtn: PWButton!
     
@@ -60,14 +62,34 @@ class PrivateKeyImportController: PlanetWalletViewController {
     }
 }
 
-extension PrivateKeyImportController: UITextFieldDelegate, UITextViewDelegate {
+extension PrivateKeyImportController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        isValidPrivateKey = false
+        textField.resignFirstResponder()
+        
+        return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.text!.count > 1 {
+        
+        guard let textFieldText = textField.text else { return false }
+        let length = textFieldText.utf16.count + string.utf16.count - range.length
+        
+        if length >= 1 {
             isValidPrivateKey = true
         }
         else {

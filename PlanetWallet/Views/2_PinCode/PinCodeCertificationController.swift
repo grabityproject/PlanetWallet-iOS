@@ -77,7 +77,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
         case .SPLASH:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
         case .REGISTRATION:
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_WALLETADD, userInfo: nil)
+            let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_WALLETADD
+            sendAction(segue: segueID, userInfo: ["segue": segueID])
         case .RESET:
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
             sendAction(segue: segueID, userInfo: ["segue": segueID])

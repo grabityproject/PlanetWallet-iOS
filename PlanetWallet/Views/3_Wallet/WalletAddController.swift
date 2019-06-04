@@ -36,22 +36,28 @@ class WalletAddController: PlanetWalletViewController {
     
     @IBAction func didTouchedCreatePlanet(_ sender: UIButton) {
         
-        //popup
-        let popup = PopupUniverse()
-        
-        popup.show(controller: self)
-        popup.handler = { [weak self] (universe) in
-            guard let strongSelf = self else { return }
-            popup.dismiss()
+        if let segue = userInfo?["segue"] as? String, segue == Keys.Segue.PINCODE_CERTIFICATION_TO_WALLETADD {
+            //from certification
+            sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE, userInfo: nil)
+        }
+        else {
+            //from settings
+            let popup = PopupUniverse()
             
-            if let fromSegue = strongSelf.userInfo?["segue"] as? String {
-                let userInfo = ["universe" : universe.description(),"segue" : fromSegue]
-                strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
-                                      userInfo: userInfo)
-            }
-            else {
-                strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
-                                      userInfo: ["universe" : universe.description()])
+            popup.show(controller: self)
+            popup.handler = { [weak self] (universe) in
+                guard let strongSelf = self else { return }
+                popup.dismiss()
+                
+                if let fromSegue = strongSelf.userInfo?["segue"] as? String {
+                    let userInfo = ["universe" : universe.description(), "segue" : fromSegue]
+                    strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
+                                          userInfo: userInfo)
+                }
+                else {
+                    strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PALNET_GENERATE,
+                                          userInfo: ["universe" : universe.description()])
+                }
             }
         }
     }

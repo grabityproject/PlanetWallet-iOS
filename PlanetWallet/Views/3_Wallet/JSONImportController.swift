@@ -10,8 +10,13 @@ import UIKit
 
 class JSONImportController: PlanetWalletViewController {
     
+    
+    @IBOutlet var pwTextFieldContainer: PWView!
     @IBOutlet var textField: PWTextField!
+    
+    @IBOutlet var textViewContainer: PWView!
     @IBOutlet var jsonTextView: PWTextView!
+    
     @IBOutlet var continueBtn: PWButton!
     @IBOutlet var errMsgContainerView: UIView!
     
@@ -61,22 +66,52 @@ class JSONImportController: PlanetWalletViewController {
     }
 }
 
-extension JSONImportController: UITextFieldDelegate, UITextViewDelegate {
+extension JSONImportController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
-    // hides text views
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        isValidJSON = false
+        textField.resignFirstResponder()
+        
+        return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        pwTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
+    }
+}
+
+extension JSONImportController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
             return false
         }
-        else {
-            //TODO: - Logic
-            self.isValidJSON = true
+        
+        let length = textView.text.utf16.count + text.utf16.count - range.length
+        if length >= 1 {
+            isValidJSON = true
         }
+        else {
+            isValidJSON = false
+        }
+        
         return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textViewContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textViewContainer.layer.borderColor = currentTheme.border.cgColor
     }
 }
