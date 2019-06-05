@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Lottie
 
 class MainController: PlanetWalletViewController {
 
+    var statusHeight : CGFloat = 0;
     var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [ERCToken()], transactions: nil) {
         didSet {
             self.updateUniverse()
@@ -32,7 +34,8 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     var rippleView: UIView!
     var refreshControl: UIRefreshControl!
-    let refreshContents = RefreshContents()
+//    let refreshContents = RefreshContents()
+    @IBOutlet weak var loadingViewWrapper: UIView!
     
     var dataSources: [UITableViewDataSource] = []
     let ethDataSource = ETHCoinDataSource()
@@ -51,6 +54,11 @@ class MainController: PlanetWalletViewController {
             bottomMenuLauncher = BottomMenuLauncher(controller: self, trigger: bottomMenu, clickTrigger: btnBottomLauncher)
             bottomMenuLauncher?.labelError = labelError;
         }
+        
+        bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
+                                         y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
+                                         width: SCREEN_WIDTH * 410.0 / 375.0,
+                                         height: SCREEN_WIDTH * 410.0 / 375.0)
     }
     
     //MARK: - Init
@@ -81,6 +89,7 @@ class MainController: PlanetWalletViewController {
     
     override func viewInit() {
         super.viewInit()
+        statusHeight = UIApplication.shared.statusBarFrame.height;
         naviBar.delegate = self
         
         configureTableView()
@@ -121,7 +130,6 @@ class MainController: PlanetWalletViewController {
         refreshControl.backgroundColor = .clear
         refreshControl.tintColor = UIColor.clear
         tableView.addSubview(refreshControl!)
-        
         self.loadCustomRefreshContents()
         
         //TableView
@@ -134,7 +142,9 @@ class MainController: PlanetWalletViewController {
                                               left: 0, bottom: 130, right: 0)
         
         //Header, Footer
-        headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.5)
+        
+        planetView.frame = CGRect(x: ( SCREEN_WIDTH - (SCREEN_WIDTH*170.0/375.0) ) / 2.0, y: planetView.frame.origin.y, width: (SCREEN_WIDTH*170.0/375.0), height: (SCREEN_WIDTH*170.0/375.0))
+        headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH * 330.0/375.0)
         footerView.delegate = self
     }
     
@@ -151,10 +161,17 @@ class MainController: PlanetWalletViewController {
         self.view.addSubview(rippleView)
     }
     
+    var animationView : AnimationView!
+    var isAnimation : Bool = false
+    
     private func loadCustomRefreshContents() {
-        refreshContents.frame = refreshControl.bounds
-        refreshContents.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        refreshControl.addSubview(refreshContents)
+        loadingViewWrapper.frame = CGRect(x: loadingViewWrapper.frame.origin.x, y: naviBar.frame.height + Utils.shared.statusBarHeight(), width: loadingViewWrapper.frame.width, height: loadingViewWrapper.frame.height)
+        animationView = AnimationView()
+        animationView.frame = CGRect(x: 0, y: 0, width: loadingViewWrapper.frame.width, height: loadingViewWrapper.frame.height)
+        loadingViewWrapper.addSubview(animationView)
+        animationView.animation = Animation.named("refreshLoading")
+        animationView.contentMode = .scaleAspectFit
+        isAnimation = false
     }
     
     private func updateUniverse() {
@@ -204,16 +221,18 @@ extension MainController: NavigationBarDelegate {
     }
 }
 
+
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
-        if ( refreshControl.isRefreshing && refreshContents.isAnimating == false ) {
+        if ( refreshControl.isRefreshing && self.isAnimation == false ) {
             //refresh control animation
-            refreshContents.playAnimation()
+            
+            self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
             self.fetchData { (isSuccess) in
                 if isSuccess {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        self.refreshContents.stopAnimation()
+                        self.animationView.stop()
                         self.refreshControl.endRefreshing()
                     }
                 }
@@ -222,42 +241,83 @@ extension MainController: UIScrollViewDelegate {
     }
     
     
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = tableView.contentOffset.y
+        let offsetY = ( tableView.contentOffset.y + self.statusHeight + scrollView.contentInset.top )
         
-        if offsetY < 0 {
-            // update background planet view scale
-
+        if( tableView.contentOffset.y  >  planetView.frame.origin.y + planetView.frame.height/3.0 - naviBar.frame.height  ){
+            let startPosition = (  planetView.frame.origin.y + planetView.frame.height/3.0 + self.statusHeight + scrollView.contentInset.top - naviBar.frame.height)
+            let moveRange = planetView.frame.height*2.0/3.0
+            let movePosition = offsetY - startPosition
+            naviBar.backgroundView.alpha = movePosition / moveRange
+        }else{
             naviBar.backgroundView.alpha = 0
-            let scale = 1.0 + (-(offsetY + UIApplication.shared.statusBarFrame.height + scrollView.contentInset.top ) * 0.001)
-            print((offsetY + UIApplication.shared.statusBarFrame.height + scrollView.contentInset.top ))
-//            let scale = 1.0 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
+        }
+        
+        if( offsetY > 0){
+            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+//            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
+//                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
+            
+            
+        }else{
+            let scale = 1.0 - offsetY/(self.view.frame.width/2.0)*0.5
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             
-            // update refresh control
             let pullDistance = max(0.0, -self.refreshControl!.frame.origin.y)
-            let pullRatio = min( max(pullDistance, 0.0), 100.0) / 100.0
-            refreshContents.playAnimation(with: pullRatio)
-        }
-        else {
-            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+            let pullRatio = max(pullDistance, 0.0) / 60.0
             
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
-                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
-            
-            let start = planetView.frame.origin.y + planetView.height/3.0 - naviBar.HEIGHT
-            let end =  planetView.frame.origin.y + planetView.height - naviBar.HEIGHT
-            let moveRange = end - start
-            let current = ( offsetY - start ) > 0 ? offsetY - start : 0
-            let alpha = current/moveRange
-            
-            
-            if( current > moveRange ){
-                naviBar.backgroundView.alpha = 1.0
+            if( pullRatio < 1.0 ){
+                loadingViewWrapper.alpha = pullRatio
             }else{
-                naviBar.backgroundView.alpha = alpha
+                loadingViewWrapper.alpha = 1
             }
+            
+            if( refreshControl.isRefreshing ){
+                self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
+            }else{
+                animationView.currentProgress = pullRatio - floor(pullRatio)
+            }
+            
         }
+    
+//
+//
+//        if offsetY <= 0 {
+//            // update background planet view scale
+//
+//            naviBar.backgroundView.alpha = 0
+//            let scale = 1.0 + (-offsetY * 0.001)
+//
+//            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+//
+//            // update refresh control
+//            let pullDistance = max(0.0, -self.refreshControl!.frame.origin.y)
+//            let pullRatio = min( max(pullDistance, 0.0), 100.0) / 100.0
+////            refreshContents.playAnimation(with: pullRatio)
+//            if( !isAnimation )
+//            {
+//                loadingViewWrapper.alpha = pullRatio
+//                animationView.currentProgress = pullRatio
+//            }
+//        }
+//        else {
+//            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+//            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
+//                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
+//
+//            let start = planetView.frame.origin.y + planetView.height/3.0 - naviBar.HEIGHT
+//            let end =  planetView.frame.origin.y + planetView.height - naviBar.HEIGHT
+//            let moveRange = end - start
+//            let current = ( offsetY - start ) > 0 ? offsetY - start : 0
+//            let alpha = current/moveRange
+//
+//            if( current > moveRange ){
+//                naviBar.backgroundView.alpha = 1.0
+//            }else{
+//                naviBar.backgroundView.alpha = alpha
+//            }
+//        }
     }
 
 }

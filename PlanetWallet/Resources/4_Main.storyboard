@@ -58,7 +58,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                                <color key="value" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,11 +113,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="gy3-pp-zw7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tw9-My-Aoq" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="103" y="41.5" width="169" height="169"/>
+                                            <rect key="frame" x="103" y="40" width="169" height="169"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="tw9-My-Aoq" secondAttribute="height" multiplier="1:1" id="scK-9V-BFl"/>
@@ -127,10 +127,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQe-8d-ie6">
-                                            <rect key="frame" x="0.0" y="210.5" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="225" width="375" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cxp-rY-NMa">
-                                                    <rect key="frame" x="118.5" y="24.5" width="138" height="70"/>
+                                                    <rect key="frame" x="118.5" y="0.0" width="138" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel-III" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                             <rect key="frame" x="23" y="0.0" width="92" height="35"/>
@@ -168,7 +168,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38K-y5-an8">
-                                                    <rect key="frame" x="118.5" y="59.5" width="138" height="35"/>
+                                                    <rect key="frame" x="118.5" y="35" width="138" height="35"/>
                                                     <connections>
                                                         <action selector="didTouchedCopyAddr:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="ZUt-G2-ClO"/>
                                                     </connections>
@@ -181,29 +181,29 @@
                                                 <constraint firstItem="38K-y5-an8" firstAttribute="top" secondItem="xNi-iT-56P" secondAttribute="top" id="aCX-Ta-TN8"/>
                                                 <constraint firstItem="38K-y5-an8" firstAttribute="trailing" secondItem="xNi-iT-56P" secondAttribute="trailing" id="adt-SP-iqp"/>
                                                 <constraint firstItem="cxp-rY-NMa" firstAttribute="centerX" secondItem="jQe-8d-ie6" secondAttribute="centerX" id="b7f-Wn-wcJ"/>
-                                                <constraint firstItem="cxp-rY-NMa" firstAttribute="centerY" secondItem="jQe-8d-ie6" secondAttribute="centerY" id="f8c-2t-fkP"/>
+                                                <constraint firstItem="cxp-rY-NMa" firstAttribute="top" secondItem="jQe-8d-ie6" secondAttribute="top" id="f8c-2t-fkP"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="tw9-My-Aoq" firstAttribute="centerX" secondItem="gy3-pp-zw7" secondAttribute="centerX" id="MCy-Rx-AcY"/>
-                                        <constraint firstItem="jQe-8d-ie6" firstAttribute="top" secondItem="tw9-My-Aoq" secondAttribute="bottom" id="P9o-GK-733"/>
+                                        <constraint firstItem="jQe-8d-ie6" firstAttribute="top" secondItem="tw9-My-Aoq" secondAttribute="bottom" constant="16" id="P9o-GK-733"/>
                                         <constraint firstItem="jQe-8d-ie6" firstAttribute="leading" secondItem="gy3-pp-zw7" secondAttribute="leading" id="SYx-GG-cj7"/>
                                         <constraint firstAttribute="trailing" secondItem="jQe-8d-ie6" secondAttribute="trailing" id="dGJ-ye-Cbv"/>
-                                        <constraint firstItem="tw9-My-Aoq" firstAttribute="centerY" secondItem="gy3-pp-zw7" secondAttribute="centerY" constant="-39" id="hvl-G9-Nyj"/>
+                                        <constraint firstItem="tw9-My-Aoq" firstAttribute="top" secondItem="gy3-pp-zw7" secondAttribute="top" constant="40" id="hvl-G9-Nyj"/>
                                         <constraint firstItem="tw9-My-Aoq" firstAttribute="width" secondItem="gy3-pp-zw7" secondAttribute="width" multiplier="0.45" id="kn5-75-4Ds"/>
                                         <constraint firstAttribute="bottom" secondItem="jQe-8d-ie6" secondAttribute="bottom" id="toZ-Uv-MTx"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="tqV-Mi-NOI" customClass="MainTableFooter" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="402" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="352" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="guR-Y4-RQB">
-                                        <rect key="frame" x="0.0" y="358" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="308" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="guR-Y4-RQB" id="TlO-67-3RG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -247,6 +247,14 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="defaultRightImage" value="imageToolbarMutiuniverseGray"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="themeRightImage" value="imageToolbarMutiuniverseBlue"/>
                                 </userDefinedRuntimeAttributes>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-ZI-g2O">
+                                <rect key="frame" x="170" y="88" width="35" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="4b9-us-rz3"/>
+                                    <constraint firstAttribute="height" constant="35" id="pCR-oZ-gq8"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet Keep safe here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK">
                                 <rect key="frame" x="0.0" y="545" width="375" height="42"/>
@@ -366,7 +374,9 @@
                             <constraint firstItem="jLA-gy-bOK" firstAttribute="leading" secondItem="k7D-IZ-L6L" secondAttribute="leading" id="ca2-cy-3FW"/>
                             <constraint firstItem="3px-DW-HXl" firstAttribute="top" secondItem="gpI-PO-C1H" secondAttribute="top" id="eUA-jk-IPd"/>
                             <constraint firstItem="sj3-TY-bbB" firstAttribute="top" secondItem="gpI-PO-C1H" secondAttribute="top" id="hLk-nm-JbQ"/>
+                            <constraint firstItem="vRD-ZI-g2O" firstAttribute="top" secondItem="k7D-IZ-L6L" secondAttribute="top" constant="68" id="kTb-Tx-JtP"/>
                             <constraint firstItem="3px-DW-HXl" firstAttribute="trailing" secondItem="k7D-IZ-L6L" secondAttribute="trailing" id="lwd-gS-jQw"/>
+                            <constraint firstItem="vRD-ZI-g2O" firstAttribute="centerX" secondItem="gpI-PO-C1H" secondAttribute="centerX" id="mwl-4K-dXW"/>
                             <constraint firstItem="sj3-TY-bbB" firstAttribute="bottom" secondItem="gpI-PO-C1H" secondAttribute="bottom" id="piS-I9-zI6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Na1-r1-juP" secondAttribute="trailing" constant="-34" id="rtV-Do-wCN"/>
                         </constraints>
@@ -390,6 +400,7 @@
                         <outlet property="headerView" destination="gy3-pp-zw7" id="IfF-5E-YaS"/>
                         <outlet property="labelError" destination="jLA-gy-bOK" id="T9t-nT-i2U"/>
                         <outlet property="lightDimGradientView" destination="Ff0-ee-A5F" id="9aj-Af-G38"/>
+                        <outlet property="loadingViewWrapper" destination="vRD-ZI-g2O" id="lzd-99-pyk"/>
                         <outlet property="naviBar" destination="3px-DW-HXl" id="47j-DX-T4G"/>
                         <outlet property="planetView" destination="tw9-My-Aoq" id="0TN-RP-rzC"/>
                         <outlet property="tableView" destination="sj3-TY-bbB" id="jpb-mv-XB0"/>
