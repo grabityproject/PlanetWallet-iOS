@@ -21,6 +21,10 @@ public protocol NavigationBarDelegate {
     
     public var delegate : NavigationBarDelegate?
     
+    static var height: CGFloat {
+        return Utils.shared.statusBarHeight() + 68
+    }
+    
     var backgroundView : UIView = UIView()
     var leftImageView : UIImageView = UIImageView()
     var rightImageView : UIImageView = UIImageView()

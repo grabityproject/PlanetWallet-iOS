@@ -8,19 +8,15 @@
 
 import UIKit
 
-struct Coin {
-    
-}
-
 class ETHCoinDataSource: NSObject, UITableViewDataSource {
     
     public let cellID = "ethereumCoinCell"
-    var coinList: [Coin]? = []
+    var coinList: [ERCToken]? = []
     
     override init() {
         super.init()
         
-        self.coinList = [Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin(), Coin()]
+        self.coinList = [ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken()]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

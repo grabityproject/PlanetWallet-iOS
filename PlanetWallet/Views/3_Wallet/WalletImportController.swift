@@ -76,45 +76,21 @@ class WalletImportController: PlanetWalletViewController {
         case .MNEMONIC:
             indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 0)
             
-            mnemonicBtn.backgroundColor = currentTheme.backgroundColor
-            mnemonicBtn.setTitleColor(currentTheme.mainText, for: .normal)
-            mnemonicBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
-            
-            jsonBtn.backgroundColor = currentTheme.backgroundColor
-            jsonBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            jsonBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
-            
-            privateKeyBtn.backgroundColor = currentTheme.backgroundColor
-            privateKeyBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            privateKeyBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+            mnemonicBtn.setMenuItemSelected(true, theme: currentTheme)
+            jsonBtn.setMenuItemSelected(false, theme: currentTheme)
+            privateKeyBtn.setMenuItemSelected(false, theme: currentTheme)
         case .JSON:
             indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 1)
-            
-            mnemonicBtn.backgroundColor = currentTheme.backgroundColor
-            mnemonicBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            mnemonicBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
-            
-            jsonBtn.backgroundColor = currentTheme.backgroundColor
-            jsonBtn.setTitleColor(currentTheme.mainText, for: .normal)
-            jsonBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
-            
-            privateKeyBtn.backgroundColor = currentTheme.backgroundColor
-            privateKeyBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            privateKeyBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+
+            mnemonicBtn.setMenuItemSelected(false, theme: currentTheme)
+            jsonBtn.setMenuItemSelected(true, theme: currentTheme)
+            privateKeyBtn.setMenuItemSelected(false, theme: currentTheme)
         case .PRIVATEKEY:
             indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 2)
-            
-            mnemonicBtn.backgroundColor = currentTheme.backgroundColor
-            mnemonicBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            mnemonicBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
-            
-            jsonBtn.backgroundColor = currentTheme.backgroundColor
-            jsonBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            jsonBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
-            
-            privateKeyBtn.backgroundColor = currentTheme.backgroundColor
-            privateKeyBtn.setTitleColor(currentTheme.mainText, for: .normal)
-            privateKeyBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
+
+            mnemonicBtn.setMenuItemSelected(false, theme: currentTheme)
+            jsonBtn.setMenuItemSelected(false, theme: currentTheme)
+            privateKeyBtn.setMenuItemSelected(true, theme: currentTheme)
         }
     }
 }
@@ -134,14 +110,5 @@ extension WalletImportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         
         self.dismissDetail()
-        
-//        if let naviCon = navigationController {
-//            //from setting
-//            naviCon.popViewController(animated: true)
-//        }
-//        else {
-//            //from first sign in
-//            self.dismiss(animated: true, completion: nil)
-//        }
     }
 }

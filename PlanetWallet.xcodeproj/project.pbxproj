@@ -107,6 +107,9 @@
 		04CC0843228CFB6A00A8272B /* TokenPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0842228CFB6A00A8272B /* TokenPageController.swift */; };
 		04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0844228D390800A8272B /* WalletImportPageController.swift */; };
 		04D188E22283F931001F35E9 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D188E12283F931001F35E9 /* 7_Settings.storyboard */; };
+		04D359EE22A74FD700BA2182 /* ERCToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359ED22A74FD700BA2182 /* ERCToken.swift */; };
+		04D359F022A74FFC00BA2182 /* UniverseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359EF22A74FFC00BA2182 /* UniverseType.swift */; };
+		04D359F422A7542900BA2182 /* RippleAnimationLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */; };
 		04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC113228967D3005AA183 /* AbsSlideUpView.swift */; };
 		04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC1162289685E005AA183 /* PopupCurrency.swift */; };
 		04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DAC11822896876005AA183 /* PopupCurrency.xib */; };
@@ -234,6 +237,9 @@
 		04CC0842228CFB6A00A8272B /* TokenPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPageController.swift; sourceTree = "<group>"; };
 		04CC0844228D390800A8272B /* WalletImportPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPageController.swift; sourceTree = "<group>"; };
 		04D188E12283F931001F35E9 /* 7_Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
+		04D359ED22A74FD700BA2182 /* ERCToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERCToken.swift; sourceTree = "<group>"; };
+		04D359EF22A74FFC00BA2182 /* UniverseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseType.swift; sourceTree = "<group>"; };
+		04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationLauncher.swift; sourceTree = "<group>"; };
 		04DAC113228967D3005AA183 /* AbsSlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsSlideUpView.swift; sourceTree = "<group>"; };
 		04DAC1162289685E005AA183 /* PopupCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCurrency.swift; sourceTree = "<group>"; };
 		04DAC11822896876005AA183 /* PopupCurrency.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupCurrency.xib; sourceTree = "<group>"; };
@@ -293,6 +299,8 @@
 			children = (
 				04116B312293DAAD00CFD921 /* ETHCoinDataSource.swift */,
 				04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */,
+				04D359ED22A74FD700BA2182 /* ERCToken.swift */,
+				04D359EF22A74FFC00BA2182 /* UniverseType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -597,6 +605,7 @@
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
 				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
+				04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */,
 			);
 			path = popups;
 			sourceTree = "<group>";
@@ -874,6 +883,7 @@
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
 				04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */,
 				044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */,
+				04D359EE22A74FD700BA2182 /* ERCToken.swift in Sources */,
 				04FBCA51229E7FBA00DEEDD9 /* Patch.swift in Sources */,
 				04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */,
 				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
@@ -885,6 +895,7 @@
 				04FBCA54229E801400DEEDD9 /* Put.swift in Sources */,
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
+				04D359F422A7542900BA2182 /* RippleAnimationLauncher.swift in Sources */,
 				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */,
@@ -942,6 +953,7 @@
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
+				04D359F022A74FFC00BA2182 /* UniverseType.swift in Sources */,
 				04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */,
 				04C82C80228429C000235883 /* PWView.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,

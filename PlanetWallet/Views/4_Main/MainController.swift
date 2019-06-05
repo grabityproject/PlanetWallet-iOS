@@ -8,21 +8,9 @@
 
 import UIKit
 
-enum UniverseType {
-    case ETH
-    case BTC
-    
-    func description() -> String {
-        switch self {
-        case .ETH:      return "ETH Universe"
-        case .BTC:      return "BTC Universe"
-        }
-    }
-}
-
 class MainController: PlanetWalletViewController {
 
-    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [Coin()], transactions: nil) {
+    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [ERCToken()], transactions: nil) {
         didSet {
             self.updateUniverse()
         }
@@ -239,8 +227,10 @@ extension MainController: UIScrollViewDelegate {
         
         if offsetY < 0 {
             // update background planet view scale
+
             naviBar.backgroundView.alpha = 0
-            let scale = 1.0 + (-offsetY * 0.01)
+            let scale = 1.0 + (-(offsetY + UIApplication.shared.statusBarFrame.height + scrollView.contentInset.top ) * 0.001)
+            print((offsetY + UIApplication.shared.statusBarFrame.height + scrollView.contentInset.top ))
 //            let scale = 1.0 + ( ( -offsetY ) * 5 / bgPlanetContainer.frame.height)
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             

@@ -15,10 +15,10 @@ protocol TopMenuLauncherDelegate {
 struct Universe {
     var type: UniverseType = .ETH
     let name: String
-    let coinList: [Coin]?
+    let coinList: [ERCToken]?
     let transactionList: [BTCTransaction]?
     
-    init(type: UniverseType, name: String, coinList: [Coin]?, transactions: [BTCTransaction]?) {
+    init(type: UniverseType, name: String, coinList: [ERCToken]?, transactions: [BTCTransaction]?) {
         self.type = type
         self.name = name
         self.coinList = coinList
@@ -50,7 +50,7 @@ class TopMenuLauncher: NSObject {
         
         let ethUniverse = Universe(type: .ETH,
                                    name: "Alien",
-                                   coinList: [Coin(),Coin(),Coin(),Coin()],
+                                   coinList: [ERCToken(),ERCToken(),ERCToken(),ERCToken()],
                                    transactions: nil)
         
         let btcUniverse2 = Universe(type: .BTC,

@@ -16,7 +16,7 @@ class TokenAddController: PlanetWalletViewController {
     }
     @IBOutlet var naviBar: NavigationBar!
     
-    @IBOutlet var AddTokenMenuBtn: UIButton!
+    @IBOutlet var addTokenMenuBtn: UIButton!
     @IBOutlet var customTokenMenuBtn: UIButton!
     @IBOutlet var menuBarIndicator: UIView!
     @IBOutlet var indicatorLeftAnchorConstraint: NSLayoutConstraint!
@@ -75,23 +75,13 @@ class TokenAddController: PlanetWalletViewController {
         case .ADD_TOKEN:
             indicatorLeftAnchorConstraint.constant = 0
             
-            AddTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
-            AddTokenMenuBtn.setTitleColor(currentTheme.mainText, for: .normal)
-            AddTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
-            
-            customTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
-            customTokenMenuBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            customTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+            addTokenMenuBtn.setMenuItemSelected(true, theme: currentTheme)
+            customTokenMenuBtn.setMenuItemSelected(false, theme: currentTheme)
         case .CUSTOM_TOKEN:
-            indicatorLeftAnchorConstraint.constant = AddTokenMenuBtn.frame.width
+            indicatorLeftAnchorConstraint.constant = addTokenMenuBtn.frame.width
             
-            AddTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
-            AddTokenMenuBtn.setTitleColor(currentTheme.detailText, for: .normal)
-            AddTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
-            
-            customTokenMenuBtn.backgroundColor = currentTheme.backgroundColor
-            customTokenMenuBtn.setTitleColor(currentTheme.mainText, for: .normal)
-            customTokenMenuBtn.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
+            addTokenMenuBtn.setMenuItemSelected(false, theme: currentTheme)
+            customTokenMenuBtn.setMenuItemSelected(true, theme: currentTheme)
         }
     }
 }

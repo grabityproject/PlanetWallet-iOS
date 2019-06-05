@@ -11,16 +11,8 @@ import UIKit
 class WalletAddController: PlanetWalletViewController {
     
     @IBOutlet var closeBtn: UIButton!
-    @IBOutlet var createPlanetBtn: PWButton!{
-        didSet {
-            createPlanetBtn.titleLabel?.font = Utils.shared.planetFont(style: .SEMIBOLD, size: 18)
-        }
-    }
-    @IBOutlet var importPlanetBtn: PWButton!{
-        didSet {
-            importPlanetBtn.titleLabel?.font = Utils.shared.planetFont(style: .SEMIBOLD, size: 18)
-        }
-    }
+    @IBOutlet var createPlanetBtn: PWButton!
+    @IBOutlet var importPlanetBtn: PWButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

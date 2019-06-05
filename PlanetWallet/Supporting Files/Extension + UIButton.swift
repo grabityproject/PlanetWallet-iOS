@@ -21,4 +21,17 @@ extension UIButton {
             self.setTitleColor(theme.disableText, for: .normal)
         }
     }
+    
+    func setMenuItemSelected(_ isSelected: Bool, theme: Theme) {
+        if isSelected {
+            self.backgroundColor = theme.backgroundColor
+            self.setTitleColor(theme.mainText, for: .normal)
+            self.titleLabel?.font = Utils.shared.planetFont(style: .BOLD, size: 14)
+        }
+        else {
+            self.backgroundColor = theme.backgroundColor
+            self.setTitleColor(theme.detailText, for: .normal)
+            self.titleLabel?.font = Utils.shared.planetFont(style: .REGULAR, size: 14)
+        }
+    }
 }
