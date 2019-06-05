@@ -117,7 +117,7 @@
         <!--Detail Planet Controller-->
         <scene sceneID="m0b-Iz-DYq">
             <objects>
-                <viewController id="E5w-YC-LwZ" customClass="DetailPlanetController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailPlanetController" id="E5w-YC-LwZ" customClass="DetailPlanetController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CWZ-NL-MZ4" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

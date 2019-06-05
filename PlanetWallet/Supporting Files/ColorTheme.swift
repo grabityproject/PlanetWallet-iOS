@@ -185,6 +185,20 @@ class ThemeManager {
         }
     }
     
+    static func settingTheme() -> Theme {
+        
+        if let storedTheme: Int? = Utils.shared.getDefaults(for: Keys.Userdefaults.THEME),
+            let currentTheme = storedTheme {
+            
+            switch Theme(rawValue: currentTheme)! {
+            case .DARK:     return .LIGHT
+            case .LIGHT:    return .DARK
+            }
+        } else {
+            return .LIGHT
+        }
+    }
+    
     static func setTheme(_ theme: Theme) {
         Utils.shared.setDefaults(for: Keys.Userdefaults.THEME, value: theme.rawValue)
     }

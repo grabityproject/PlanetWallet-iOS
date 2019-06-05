@@ -60,6 +60,7 @@ struct Keys {
         static let MAIN_UNWIND = "unwind_to_mainnavi"
         
         //Setting
+        static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"
         static let SETTING_TO_PLANET_MANAGEMENT = "setting_to_planetmanagemnet"
         static let SETTING_TO_DETAIL_SETTING = "setting_to_detailsetting"
         static let SETTING_TO_ANNOUNCEMENTS = "setting_to_announcements"

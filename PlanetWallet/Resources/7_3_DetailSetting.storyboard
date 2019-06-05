@@ -167,7 +167,7 @@
                                     <constraint firstItem="BKr-74-lgr" firstAttribute="top" secondItem="OQc-l0-Q45" secondAttribute="top" constant="25" id="nwN-4h-VTT"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6oZ-C7-2qx">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6oZ-C7-2qx">
                                 <rect key="frame" x="0.0" y="295" width="414" height="56"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYf-la-H7u">

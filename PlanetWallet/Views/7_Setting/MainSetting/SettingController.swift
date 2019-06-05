@@ -14,6 +14,7 @@ class SettingController: PlanetWalletViewController {
     @IBOutlet var darkThemeBtn: UIButton!
     @IBOutlet var lightThemeBtn: UIButton!
     @IBOutlet var helloLb: PWLabel!
+    @IBOutlet var currencyLb: PWLabel!
     
     //MARK: - Init
     override func viewInit() {
@@ -54,6 +55,30 @@ class SettingController: PlanetWalletViewController {
     @IBAction func didTouchedFAQ(_ sender: UIButton) {
         let dict = ["section": BoardController.Section.FAQ]
         sendAction(segue: Keys.Segue.SETTING_TO_ANNOUNCEMENTS, userInfo: dict)
+    }
+    
+    @IBAction func didTouchedCurrency(_ sender: UIButton) {
+        let popup = PopupCurrency()
+        popup.show(controller: self)
+        popup.handler = { [weak self](currency) in
+            guard let strongSelf = self else { return }
+            strongSelf.currencyLb.text = currency
+            popup.dismiss()
+        }
+    }
+    
+    
+    @IBAction func didTouchedMyPlanet(_ sender: UIButton) {
+        
+        //TODO: - model
+//        let planetInfo
+        sendAction(segue: Keys.Segue.SETTING_TO_DETAIL_PLANET, userInfo: nil)
+    }
+    
+    @IBAction func didTouchedManagePlanets(_ sender: UIButton) {
+        //TODO: - model
+        //        let exceptPlanet
+        sendAction(segue: Keys.Segue.SETTING_TO_PLANET_MANAGEMENT, userInfo: nil)
     }
     
     //MARK: - Private

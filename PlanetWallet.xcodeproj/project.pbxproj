@@ -25,13 +25,8 @@
 		044A43E322A117C100274B04 /* TEstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43E222A117C100274B04 /* TEstViewController.swift */; };
 		044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54622793D3F00FD7E5E /* AppDelegate.swift */; };
 		044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC54822793D3F00FD7E5E /* SplashController.swift */; };
-		044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */; };
 		044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54D22793D4000FD7E5E /* Assets.xcassets */; };
-		044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */; };
-		044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */; };
 		044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56722793F8800FD7E5E /* 4_Main.storyboard */; };
-		044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC56B22793FC400FD7E5E /* 5_Token.storyboard */; };
-		044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044BC570227943A400FD7E5E /* 6_Transfer.storyboard */; };
 		044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */; };
 		044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */; };
 		044BC577227943F400FD7E5E /* WalletAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC576227943F400FD7E5E /* WalletAddController.swift */; };
@@ -79,6 +74,17 @@
 		04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E3E228AA91900049F89 /* PWSwitch.swift */; };
 		04772E41228AB5F000049F89 /* CountryCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E40228AB5F000049F89 /* CountryCodeCell.swift */; };
 		04772E43228AB65B00049F89 /* CountryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04772E42228AB65B00049F89 /* CountryCodeCell.xib */; };
+		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
+		04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */; };
+		04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BB22A794E9007A17A3 /* 5_Token.storyboard */; };
+		04A551C522A794EF007A17A3 /* 1_Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BC22A794EA007A17A3 /* 1_Splash.storyboard */; };
+		04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BD22A794EB007A17A3 /* 7_2_Account.storyboard */; };
+		04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BE22A794EC007A17A3 /* 3_Wallet.storyboard */; };
+		04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BF22A794EC007A17A3 /* 7_1_Planet.storyboard */; };
+		04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C022A794ED007A17A3 /* LaunchScreen.storyboard */; };
+		04A551CA22A794EF007A17A3 /* 7_3_DetailSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C122A794EE007A17A3 /* 7_3_DetailSetting.storyboard */; };
+		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
+		04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */; };
 		04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C7322840A7F00235883 /* PlanetCell.xib */; };
 		04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C7522840A8F00235883 /* PlanetCell.swift */; };
 		04C82C7E228429C000235883 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C77228429BF00235883 /* PWTextField.swift */; };
@@ -92,24 +98,18 @@
 		04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C862288FAE400235883 /* WorkSans-Regular.otf */; };
 		04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C872288FAE400235883 /* WorkSans-SemiBold.otf */; };
 		04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C882288FAE400235883 /* WorkSans-Medium.otf */; };
-		04C82C8E2288FE1300235883 /* 3_Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C8D2288FE1300235883 /* 3_Wallet.storyboard */; };
 		04C82C9422890D4700235883 /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C9322890D4700235883 /* BoardController.swift */; };
 		04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C9522890D6400235883 /* DetailBoardController.swift */; };
 		04C82C9C22890D9500235883 /* DetailSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C9B22890D9500235883 /* DetailSettingController.swift */; };
 		04C82C9E22890DA800235883 /* RenamePlanetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C9D22890DA800235883 /* RenamePlanetController.swift */; };
 		04C82CA822890DF500235883 /* MnemonicExportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CA722890DF500235883 /* MnemonicExportController.swift */; };
 		04C82CAA22890E0400235883 /* PrivateKeyExportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CA922890E0400235883 /* PrivateKeyExportController.swift */; };
-		04C82CAC22890E9A00235883 /* 7_2_Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C82CAB22890E9A00235883 /* 7_2_Account.storyboard */; };
-		04C82CAE22890EAD00235883 /* 7_1_Planet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C82CAD22890EAD00235883 /* 7_1_Planet.storyboard */; };
-		04C82CB022890EC200235883 /* 7_3_DetailSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C82CAF22890EC200235883 /* 7_3_DetailSetting.storyboard */; };
 		04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CB322890F6600235883 /* PlanetManagementController.swift */; };
 		04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CB722891FCC00235883 /* DetailPlanetController.swift */; };
 		04CC0843228CFB6A00A8272B /* TokenPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0842228CFB6A00A8272B /* TokenPageController.swift */; };
 		04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0844228D390800A8272B /* WalletImportPageController.swift */; };
-		04D188E22283F931001F35E9 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D188E12283F931001F35E9 /* 7_Settings.storyboard */; };
 		04D359EE22A74FD700BA2182 /* ERCToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359ED22A74FD700BA2182 /* ERCToken.swift */; };
 		04D359F022A74FFC00BA2182 /* UniverseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359EF22A74FFC00BA2182 /* UniverseType.swift */; };
-		04D359F422A7542900BA2182 /* RippleAnimationLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */; };
 		04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC113228967D3005AA183 /* AbsSlideUpView.swift */; };
 		04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC1162289685E005AA183 /* PopupCurrency.swift */; };
 		04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DAC11822896876005AA183 /* PopupCurrency.xib */; };
@@ -154,14 +154,9 @@
 		044BC54322793D3F00FD7E5E /* PlanetWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC54622793D3F00FD7E5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		044BC54822793D3F00FD7E5E /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
-		044BC54B22793D3F00FD7E5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/1_Splash.storyboard; sourceTree = "<group>"; };
 		044BC54D22793D4000FD7E5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		044BC55022793D4000FD7E5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		044BC55222793D4000FD7E5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
 		044BC56722793F8800FD7E5E /* 4_Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 4_Main.storyboard; sourceTree = "<group>"; };
-		044BC56B22793FC400FD7E5E /* 5_Token.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
-		044BC570227943A400FD7E5E /* 6_Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
 		044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PinCodeRegistrationController.swift; path = PlanetWallet/Views/PinCodeRegistrationController.swift; sourceTree = SOURCE_ROOT; };
 		044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCertificationController.swift; sourceTree = "<group>"; };
 		044BC576227943F400FD7E5E /* WalletAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAddController.swift; sourceTree = "<group>"; };
@@ -209,6 +204,17 @@
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
 		04772E40228AB5F000049F89 /* CountryCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeCell.swift; sourceTree = "<group>"; };
 		04772E42228AB65B00049F89 /* CountryCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeCell.xib; sourceTree = "<group>"; };
+		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
+		04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
+		04A551BB22A794E9007A17A3 /* 5_Token.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
+		04A551BC22A794EA007A17A3 /* 1_Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 1_Splash.storyboard; sourceTree = "<group>"; };
+		04A551BD22A794EB007A17A3 /* 7_2_Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_2_Account.storyboard; sourceTree = "<group>"; };
+		04A551BE22A794EC007A17A3 /* 3_Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 3_Wallet.storyboard; sourceTree = "<group>"; };
+		04A551BF22A794EC007A17A3 /* 7_1_Planet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_1_Planet.storyboard; sourceTree = "<group>"; };
+		04A551C022A794ED007A17A3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04A551C122A794EE007A17A3 /* 7_3_DetailSetting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_3_DetailSetting.storyboard; sourceTree = "<group>"; };
+		04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
+		04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationView.swift; sourceTree = "<group>"; };
 		04C82C7322840A7F00235883 /* PlanetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetCell.xib; sourceTree = "<group>"; };
 		04C82C7522840A8F00235883 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 		04C82C77228429BF00235883 /* PWTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWTextField.swift; sourceTree = "<group>"; };
@@ -222,24 +228,18 @@
 		04C82C862288FAE400235883 /* WorkSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.otf"; sourceTree = "<group>"; };
 		04C82C872288FAE400235883 /* WorkSans-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-SemiBold.otf"; sourceTree = "<group>"; };
 		04C82C882288FAE400235883 /* WorkSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.otf"; sourceTree = "<group>"; };
-		04C82C8D2288FE1300235883 /* 3_Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 3_Wallet.storyboard; sourceTree = "<group>"; };
 		04C82C9322890D4700235883 /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		04C82C9522890D6400235883 /* DetailBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBoardController.swift; sourceTree = "<group>"; };
 		04C82C9B22890D9500235883 /* DetailSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSettingController.swift; sourceTree = "<group>"; };
 		04C82C9D22890DA800235883 /* RenamePlanetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamePlanetController.swift; sourceTree = "<group>"; };
 		04C82CA722890DF500235883 /* MnemonicExportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicExportController.swift; sourceTree = "<group>"; };
 		04C82CA922890E0400235883 /* PrivateKeyExportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyExportController.swift; sourceTree = "<group>"; };
-		04C82CAB22890E9A00235883 /* 7_2_Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_2_Account.storyboard; sourceTree = "<group>"; };
-		04C82CAD22890EAD00235883 /* 7_1_Planet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_1_Planet.storyboard; sourceTree = "<group>"; };
-		04C82CAF22890EC200235883 /* 7_3_DetailSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_3_DetailSetting.storyboard; sourceTree = "<group>"; };
 		04C82CB322890F6600235883 /* PlanetManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetManagementController.swift; sourceTree = "<group>"; };
 		04C82CB722891FCC00235883 /* DetailPlanetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlanetController.swift; sourceTree = "<group>"; };
 		04CC0842228CFB6A00A8272B /* TokenPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPageController.swift; sourceTree = "<group>"; };
 		04CC0844228D390800A8272B /* WalletImportPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPageController.swift; sourceTree = "<group>"; };
-		04D188E12283F931001F35E9 /* 7_Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
 		04D359ED22A74FD700BA2182 /* ERCToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERCToken.swift; sourceTree = "<group>"; };
 		04D359EF22A74FFC00BA2182 /* UniverseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseType.swift; sourceTree = "<group>"; };
-		04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationLauncher.swift; sourceTree = "<group>"; };
 		04DAC113228967D3005AA183 /* AbsSlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsSlideUpView.swift; sourceTree = "<group>"; };
 		04DAC1162289685E005AA183 /* PopupCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCurrency.swift; sourceTree = "<group>"; };
 		04DAC11822896876005AA183 /* PopupCurrency.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupCurrency.xib; sourceTree = "<group>"; };
@@ -375,21 +375,21 @@
 		044BC55A22793D9100FD7E5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04A551C022A794ED007A17A3 /* LaunchScreen.storyboard */,
+				04A551BC22A794EA007A17A3 /* 1_Splash.storyboard */,
+				04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */,
+				04A551BE22A794EC007A17A3 /* 3_Wallet.storyboard */,
+				044BC56722793F8800FD7E5E /* 4_Main.storyboard */,
+				04A551BB22A794E9007A17A3 /* 5_Token.storyboard */,
+				04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */,
+				04A551B822A7948A007A17A3 /* 7_Settings.storyboard */,
+				04A551BF22A794EC007A17A3 /* 7_1_Planet.storyboard */,
+				04A551BD22A794EB007A17A3 /* 7_2_Account.storyboard */,
+				04A551C122A794EE007A17A3 /* 7_3_DetailSetting.storyboard */,
 				04675F2B229BD3D100DC3CFD /* Animations */,
 				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
-				044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */,
-				044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */,
-				044BC56522793F7B00FD7E5E /* 2_PinCode.storyboard */,
-				04C82C8D2288FE1300235883 /* 3_Wallet.storyboard */,
-				044BC56722793F8800FD7E5E /* 4_Main.storyboard */,
-				044BC56B22793FC400FD7E5E /* 5_Token.storyboard */,
-				044BC570227943A400FD7E5E /* 6_Transfer.storyboard */,
-				04D188E12283F931001F35E9 /* 7_Settings.storyboard */,
-				04C82CAD22890EAD00235883 /* 7_1_Planet.storyboard */,
-				04C82CAB22890E9A00235883 /* 7_2_Account.storyboard */,
-				04C82CAF22890EC200235883 /* 7_3_DetailSetting.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -605,7 +605,7 @@
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
 				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
-				04D359F322A7542900BA2182 /* RippleAnimationLauncher.swift */,
+				04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */,
 			);
 			path = popups;
 			sourceTree = "<group>";
@@ -759,6 +759,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				"zh-Hans",
 			);
 			mainGroup = 044BC53A22793D3F00FD7E5E;
 			productRefGroup = 044BC54422793D3F00FD7E5E /* Products */;
@@ -775,17 +777,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C82CB022890EC200235883 /* 7_3_DetailSetting.storyboard in Resources */,
-				04C82CAC22890E9A00235883 /* 7_2_Account.storyboard in Resources */,
-				044BC56C22793FC400FD7E5E /* 5_Token.storyboard in Resources */,
 				04675F29229BD3A200DC3CFD /* refreshAnim2.json in Resources */,
-				044BC55122793D4000FD7E5E /* LaunchScreen.storyboard in Resources */,
 				044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */,
 				0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */,
+				04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */,
 				04116B2D2293992E00CFD921 /* BTCTransactionCell.xib in Resources */,
+				04A551C522A794EF007A17A3 /* 1_Splash.storyboard in Resources */,
 				041113942292A63100E0222D /* splash.json in Resources */,
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
+				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
 				04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */,
 				04675F2D229BD97900DC3CFD /* RefreshContents.xib in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
@@ -793,25 +794,26 @@
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
 				04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */,
-				044BC571227943A400FD7E5E /* 6_Transfer.storyboard in Resources */,
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
 				04675F2A229BD3A200DC3CFD /* refreshAnim3.json in Resources */,
-				04D188E22283F931001F35E9 /* 7_Settings.storyboard in Resources */,
 				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
-				044BC56622793F7B00FD7E5E /* 2_PinCode.storyboard in Resources */,
 				04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */,
+				04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */,
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
+				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
+				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
-				04C82CAE22890EAD00235883 /* 7_1_Planet.storyboard in Resources */,
-				04C82C8E2288FE1300235883 /* 3_Wallet.storyboard in Resources */,
+				04A551CA22A794EF007A17A3 /* 7_3_DetailSetting.storyboard in Resources */,
+				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
+				04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */,
 				0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */,
 				04772E43228AB65B00049F89 /* CountryCodeCell.xib in Resources */,
 				044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */,
+				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
 				0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */,
-				044BC54C22793D3F00FD7E5E /* 1_Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,7 +897,6 @@
 				04FBCA54229E801400DEEDD9 /* Put.swift in Sources */,
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
-				04D359F422A7542900BA2182 /* RippleAnimationLauncher.swift in Sources */,
 				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */,
@@ -903,6 +904,7 @@
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
+				04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */,
 				04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
@@ -968,30 +970,12 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		044BC54A22793D3F00FD7E5E /* 1_Splash.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				044BC54B22793D3F00FD7E5E /* Base */,
-			);
-			name = 1_Splash.storyboard;
-			sourceTree = "<group>";
-		};
-		044BC54F22793D4000FD7E5E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				044BC55022793D4000FD7E5E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		044BC55322793D4000FD7E5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1053,6 +1037,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
