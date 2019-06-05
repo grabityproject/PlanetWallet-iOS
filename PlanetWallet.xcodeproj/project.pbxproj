@@ -85,6 +85,7 @@
 		04A551CA22A794EF007A17A3 /* 7_3_DetailSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C122A794EE007A17A3 /* 7_3_DetailSetting.storyboard */; };
 		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
 		04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */; };
+		04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A551CE22A7C459007A17A3 /* refreshLoading.json */; };
 		04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C7322840A7F00235883 /* PlanetCell.xib */; };
 		04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C7522840A8F00235883 /* PlanetCell.swift */; };
 		04C82C7E228429C000235883 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C77228429BF00235883 /* PWTextField.swift */; };
@@ -215,6 +216,7 @@
 		04A551C122A794EE007A17A3 /* 7_3_DetailSetting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_3_DetailSetting.storyboard; sourceTree = "<group>"; };
 		04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
 		04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationView.swift; sourceTree = "<group>"; };
+		04A551CE22A7C459007A17A3 /* refreshLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshLoading.json; sourceTree = "<group>"; };
 		04C82C7322840A7F00235883 /* PlanetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetCell.xib; sourceTree = "<group>"; };
 		04C82C7522840A8F00235883 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 		04C82C77228429BF00235883 /* PWTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWTextField.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 		04675F2B229BD3D100DC3CFD /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				04A551CE22A7C459007A17A3 /* refreshLoading.json */,
 				044A43DC22A0BD3300274B04 /* splash_wh.json */,
 				04675F23229BD38500DC3CFD /* refreshAnim1.json */,
 				04675F27229BD3A200DC3CFD /* refreshAnim2.json */,
@@ -813,6 +816,7 @@
 				044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */,
 				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
+				04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */,
 				0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
