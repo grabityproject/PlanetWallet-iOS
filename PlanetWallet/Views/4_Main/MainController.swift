@@ -209,7 +209,8 @@ extension MainController: NavigationBarDelegate {
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
-        if ( refreshControl.isRefreshing && self.isAnimation == false ) {
+        
+        if ( refreshControl.isRefreshing && self.isAnimation ) {
             //refresh control animation
             
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
@@ -236,27 +237,29 @@ extension MainController: UIScrollViewDelegate {
         }else{
             naviBar.backgroundView.alpha = 0
         }
-        print("offset Y : \(offsetY), \(scrollView.contentInset.top)")
+
+        print(offsetY)
         if( offsetY > 0){
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
-                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
+//            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
+//                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
             
-            if ( refreshControl.isRefreshing && self.isAnimation == true ) {
-                let pullRatio = offsetY / loadingViewWrapper.frame.height
-                if pullRatio < 1.0 {
-                    loadingViewWrapper.alpha = 1 - pullRatio
-                }
-                else {
-                    loadingViewWrapper.alpha = 0
-                    self.animationView.stop()
-                    self.refreshControl.endRefreshing()
-                }
+            if ( refreshControl.isRefreshing ) {
+                self.refreshControl.endRefreshing()
+                self.animationView.stop()
+                self.loadingViewWrapper.alpha = 0
+//                let pullRatio = offsetY / loadingViewWrapper.frame.height
+//                print(pullRatio)
+//                if pullRatio < 1.0 {
+//                    loadingViewWrapper.alpha = 1 - pullRatio
+//                }
+//                else {
+//                    loadingViewWrapper.alpha = 0
+//                }
             }
             
         } else {
-            
-            print("-----------------offset Y : \(offsetY), \(scrollView.contentInset.top)")
+            print("         \(offsetY)")
             let scale = 1.0 - offsetY/(self.view.frame.width/2.0)*0.5
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             
