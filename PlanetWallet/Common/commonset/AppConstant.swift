@@ -58,6 +58,7 @@ struct Keys {
         static let MAIN_TO_TOKEN_ADD = "main_to_tokenadd"
         static let MAIN_TO_TRANSFER = "main_to_transfer"
         static let MAIN_UNWIND = "unwind_to_mainnavi"
+        static let MAIN_TO_PINCODECERTIFICATION = "main_to_pincodecertification"
         
         //Setting
         static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"
@@ -71,6 +72,7 @@ struct Keys {
         static let PLANET_MANAGEMENT_TO_WALLET_ADD = "planetmanagement_to_walletadd"
         
         //Detail Plannet
+        static let DETAIL_PLANET_TO_RENAME_PLANET = "detailplanet_to_renameplanet"
         static let MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION = "mnemonicexport_to_pincodecertification"
         static let PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION = "privatekeyexport_to_pincodecertification"
         

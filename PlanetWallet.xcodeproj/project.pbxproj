@@ -62,8 +62,6 @@
 		04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F23229BD38500DC3CFD /* refreshAnim1.json */; };
 		04675F29229BD3A200DC3CFD /* refreshAnim2.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F27229BD3A200DC3CFD /* refreshAnim2.json */; };
 		04675F2A229BD3A200DC3CFD /* refreshAnim3.json in Resources */ = {isa = PBXBuildFile; fileRef = 04675F28229BD3A200DC3CFD /* refreshAnim3.json */; };
-		04675F2D229BD97900DC3CFD /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04675F2C229BD97900DC3CFD /* RefreshContents.xib */; };
-		04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F2E229BD99D00DC3CFD /* RefreshContents.swift */; };
 		0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5F622966D52008307D8 /* TopMenuLauncher.swift */; };
 		0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5F822966D7E008307D8 /* TopMenuView.xib */; };
 		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
@@ -193,8 +191,6 @@
 		04675F23229BD38500DC3CFD /* refreshAnim1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim1.json; sourceTree = "<group>"; };
 		04675F27229BD3A200DC3CFD /* refreshAnim2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim2.json; sourceTree = "<group>"; };
 		04675F28229BD3A200DC3CFD /* refreshAnim3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshAnim3.json; sourceTree = "<group>"; };
-		04675F2C229BD97900DC3CFD /* RefreshContents.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
-		04675F2E229BD99D00DC3CFD /* RefreshContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshContents.swift; sourceTree = "<group>"; };
 		0468C5F622966D52008307D8 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
 		0468C5F822966D7E008307D8 /* TopMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
 		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
@@ -299,25 +295,31 @@
 		04116B302293DA8600CFD921 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				04116B312293DAAD00CFD921 /* ETHCoinDataSource.swift */,
-				04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */,
 				04D359ED22A74FD700BA2182 /* ERCToken.swift */,
 				04D359EF22A74FFC00BA2182 /* UniverseType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
+		04180DE022AE00B800AB3246 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				04116B312293DAAD00CFD921 /* ETHCoinDataSource.swift */,
+				04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		0429A6F7229248DD00E88ACF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */,
 				0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */,
 				0429A70022929DDE00E88ACF /* ETHCoinCell.swift */,
 				04116B2C2293992E00CFD921 /* BTCTransactionCell.xib */,
 				04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */,
 				0468C5FC22966E15008307D8 /* TopMenuCell.xib */,
 				0468C5FE22966E23008307D8 /* TopMenuCell.swift */,
-				04675F2C229BD97900DC3CFD /* RefreshContents.xib */,
-				04675F2E229BD99D00DC3CFD /* RefreshContents.swift */,
 				04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */,
 				04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */,
 			);
@@ -472,7 +474,8 @@
 		044BC56122793E0900FD7E5E /* 4_Main */ = {
 			isa = PBXGroup;
 			children = (
-				0468C5F522966D45008307D8 /* popups */,
+				04180DE022AE00B800AB3246 /* DataSources */,
+				0468C5F522966D45008307D8 /* Popups */,
 				04116B302293DA8600CFD921 /* Models */,
 				0429A6F7229248DD00E88ACF /* Cells */,
 				044BC5822279446E00FD7E5E /* MainController.swift */,
@@ -599,7 +602,7 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
-		0468C5F522966D45008307D8 /* popups */ = {
+		0468C5F522966D45008307D8 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
 				0444D09B22A512D5001E412C /* BottomMenuView.swift */,
@@ -608,9 +611,8 @@
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
 				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
-				04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */,
 			);
-			path = popups;
+			path = Popups;
 			sourceTree = "<group>";
 		};
 		04C82C7222840A6B00235883 /* Cells */ = {
@@ -791,7 +793,6 @@
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
 				04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */,
-				04675F2D229BD97900DC3CFD /* RefreshContents.xib in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
@@ -909,7 +910,6 @@
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
 				04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */,
-				04675F2F229BD99D00DC3CFD /* RefreshContents.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
 				044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */,

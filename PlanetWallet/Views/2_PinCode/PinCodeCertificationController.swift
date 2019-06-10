@@ -10,7 +10,7 @@ import UIKit
 
 extension PinCodeCertificationController {
     private enum From: String {
-        case SPLASH, REGISTRATION, RESET, TRANSFER, MNEMONIC_EXPORT, PRIVATEKEY_EXPORT
+        case SPLASH, REGISTRATION, RESET, TRANSFER, MNEMONIC_EXPORT, PRIVATEKEY_EXPORT, MAIN
         
         func segueID() -> String {
             switch self {
@@ -20,6 +20,7 @@ extension PinCodeCertificationController {
             case .TRANSFER:             return ""
             case .MNEMONIC_EXPORT:      return Keys.Segue.MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION
             case .PRIVATEKEY_EXPORT:    return Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
+            case .MAIN:                 return Keys.Segue.MAIN_TO_PINCODECERTIFICATION
             }
         }
     }
@@ -68,6 +69,9 @@ class PinCodeCertificationController: PlanetWalletViewController {
             else if fromSegueID == From.PRIVATEKEY_EXPORT.segueID() {
                 fromSegue = .PRIVATEKEY_EXPORT
             }
+            else if fromSegueID == From.MAIN.segueID() {
+                fromSegue = .MAIN
+            }
         }
     }
     
@@ -88,6 +92,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: nil)
         case .TRANSFER:
             self.dismiss(animated: true, completion: nil)
+        case .MAIN:
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
         }
         
     }

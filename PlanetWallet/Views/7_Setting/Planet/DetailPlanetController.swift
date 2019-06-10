@@ -35,6 +35,11 @@ class DetailPlanetController: PlanetWalletViewController {
         sendAction(segue: segueID, userInfo: ["segue": segueID])
     }
     
+    @IBAction func didTouchedEditName(_ sender: UIButton) {
+        //TODO: - send model
+//        let planetname =
+        sendAction(segue: Keys.Segue.DETAIL_PLANET_TO_RENAME_PLANET, userInfo: nil)
+    }
 }
 
 extension DetailPlanetController: NavigationBarDelegate {

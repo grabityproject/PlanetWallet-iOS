@@ -256,16 +256,35 @@
                                     <constraint firstAttribute="height" constant="35" id="pCR-oZ-gq8"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet Keep safe here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK">
+                            <button opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK">
                                 <rect key="frame" x="0.0" y="545" width="375" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="yCQ-e9-ODo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Your Planet Keep safe ">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="14" name="WorkSans-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="here">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="14" name="WorkSans-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="didTouchedError:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="xvw-Ct-KRp"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-pt-fi9">
                                 <rect key="frame" x="0.0" y="587" width="375" height="240"/>
                                 <subviews>
@@ -407,6 +426,7 @@
                         <segue destination="jYR-7T-aVN" kind="show" identifier="main_to_transfer" animates="NO" id="ggG-BA-aGA"/>
                         <segue destination="oky-eY-4iW" kind="show" identifier="main_to_setting" animates="NO" id="JN4-AP-6ud"/>
                         <segue destination="2Da-Zc-beW" kind="show" identifier="main_to_tokenadd" id="vhI-Yx-pEa"/>
+                        <segue destination="WEJ-Fv-EyR" kind="presentation" identifier="main_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qQA-Rv-vrL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tem-yv-J6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +439,7 @@
                 <viewControllerPlaceholder storyboardName="5_Token" referencedIdentifier="TokenAddController" id="2Da-Zc-beW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qlk-ng-SlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="-73"/>
+            <point key="canvasLocation" x="772" y="45"/>
         </scene>
         <!--TransferController-->
         <scene sceneID="2ZS-ad-0Ng">
@@ -435,7 +455,15 @@
                 <viewControllerPlaceholder storyboardName="7_Settings" referencedIdentifier="SettingController" id="oky-eY-4iW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BoW-Px-7dJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="341"/>
+            <point key="canvasLocation" x="759" y="198"/>
+        </scene>
+        <!--PinCodeCertificationController-->
+        <scene sceneID="7hz-bG-xGS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="2_PinCode" referencedIdentifier="PinCodeCertificationController" id="WEJ-Fv-EyR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmj-g6-vw9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="826" y="273"/>
         </scene>
     </scenes>
     <resources>

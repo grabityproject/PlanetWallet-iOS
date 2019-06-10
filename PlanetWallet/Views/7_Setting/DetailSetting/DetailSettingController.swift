@@ -12,7 +12,6 @@ import LocalAuthentication
 class DetailSettingController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
-    @IBOutlet var currencyLb: UILabel!
     @IBOutlet var biometricSwitch: PWSwitch!
     
     //MARK: - Init
@@ -27,16 +26,6 @@ class DetailSettingController: PlanetWalletViewController {
     }
     
     //MARK: - IBAction
-    @IBAction func didTouchedCurrency(_ sender: UIButton) {
-        let popup = PopupCurrency()
-        popup.show(controller: self)
-        popup.handler = { [weak self](currency) in
-            guard let strongSelf = self else { return }
-            strongSelf.currencyLb.text = currency
-            popup.dismiss()
-        }
-    }
-    
     @IBAction func didTouchedChangePincode(_ sender: UIButton) {
         let segueID = Keys.Segue.DETAIL_SETTING_TO_PINCODE_CERTIFICATION
         sendAction(segue: segueID, userInfo: ["segue": segueID])
