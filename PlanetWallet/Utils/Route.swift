@@ -8,14 +8,14 @@
 
 class Route{
     
-    private let url : String = "http://13.209.47.168/api/"
+    private static let baseURL : String = "http://test.planetwallet.io"
     
     static func URL(_ segments : String...) -> String {
         var result : String = ""
         for segment in segments{
-            result += ( segment + "/" )
+            result += ( "/" + segment )
         }
-        return result
+        return Route.baseURL + result
     }
     
 }

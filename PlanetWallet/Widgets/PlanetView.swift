@@ -14,7 +14,7 @@ class PlanetView: UIView {
     
     @IBInspectable var data: String = "" {
         didSet {
-            let sha256Hash = sha256(data: self.data.data(using: .utf8)!)
+            let sha256Hash = Crypto.sha256(self.data.data(using: .utf8)!)
             self.hashArray = Array(sha256Hash)
             self.backgroundColor = UIColor.clear
             self.layer.masksToBounds = true;
@@ -681,14 +681,6 @@ class PlanetView: UIView {
         fillLayer.fillColor = UIColor.red.cgColor
         
         layer.mask = fillLayer;
-    }
-    
-    func sha256(data : Data) -> Data {
-        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
-        data.withUnsafeBytes {
-            _ = CC_SHA256($0, CC_LONG(data.count), &hash)
-        }
-        return Data(bytes: hash)
     }
     
     func getValueFromByte( input:UInt8, range:Int )->Int {

@@ -3,30 +3,42 @@ PODS:
   - AlamofireObjectMapper (5.2.0):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
+  - BigInt (3.1.0):
+    - SipHash (~> 1.2)
   - lottie-ios (3.0.3)
   - ObjectMapper (3.4.2)
   - QRCode (2.0)
+  - secp256k1.swift (0.1.4)
+  - SipHash (1.2.2)
 
 DEPENDENCIES:
   - AlamofireObjectMapper (~> 5.2)
+  - BigInt
   - lottie-ios
   - QRCode
+  - secp256k1.swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - BigInt
     - lottie-ios
     - ObjectMapper
     - QRCode
+    - secp256k1.swift
+    - SipHash
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   lottie-ios: 06e0b54aab85ba128e332687d7f4ac4861a7a7ae
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
 
-PODFILE CHECKSUM: 25c018b8a9588fd88e8572be68303893ea9ac0c0
+PODFILE CHECKSUM: 976dcf3c042a114eaaf73b5f6954120f6a44d5e0
 
 COCOAPODS: 1.6.0

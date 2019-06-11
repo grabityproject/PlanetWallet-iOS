@@ -44,7 +44,7 @@ class Post {
                 (result) in
                 switch result{
                 case .success(let upload, _, _):
-                    
+
                     upload.response(completionHandler: { (dataResponse) in
                         
                         if let response = dataResponse.response{

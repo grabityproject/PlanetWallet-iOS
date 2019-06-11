@@ -9,5 +9,7 @@ target 'PlanetWallet' do
   pod 'AlamofireObjectMapper', '~> 5.2', :inhibit_warnings => true
   pod 'lottie-ios'
   pod "QRCode"
-  
+  pod 'BigInt'
+  pod 'secp256k1.swift'
+
 end
