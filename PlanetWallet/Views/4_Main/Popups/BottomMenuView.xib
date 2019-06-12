@@ -35,14 +35,14 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uqq-e7-WuN" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="167.5" y="16" width="40" height="4"/>
-                    <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="UKk-Go-0Mp"/>
                         <constraint firstAttribute="height" constant="4" id="fAy-LE-SCV"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
-                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="2"/>
@@ -118,7 +118,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFL-SS-FXo" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="20" y="351" width="162.5" height="55"/>
+                    <rect key="frame" x="20" y="382" width="162.5" height="55"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="mAm-Ao-fGc"/>
@@ -149,7 +149,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH8-wJ-w2O" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="192.5" y="351" width="162.5" height="55"/>
+                    <rect key="frame" x="192.5" y="382" width="162.5" height="55"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="nnb-1v-q0e"/>
@@ -205,8 +205,8 @@
                 <constraint firstItem="aH8-wJ-w2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="5" id="IQa-Z9-gzG"/>
                 <constraint firstItem="Uqq-e7-WuN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="NzX-fR-6A1"/>
                 <constraint firstItem="aH8-wJ-w2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="192" id="Q6D-1b-0dt"/>
-                <constraint firstItem="rFL-SS-FXo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="351" id="RBD-DB-zGp"/>
-                <constraint firstItem="aH8-wJ-w2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="351" id="Vjj-0V-nWE"/>
+                <constraint firstItem="rFL-SS-FXo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="382" id="RBD-DB-zGp"/>
+                <constraint firstItem="aH8-wJ-w2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="382" id="Vjj-0V-nWE"/>
                 <constraint firstItem="4f0-iG-Q2C" firstAttribute="top" secondItem="Uqq-e7-WuN" secondAttribute="bottom" constant="30" id="cgk-xn-izv"/>
                 <constraint firstItem="GEP-Ga-2w6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eHb-fj-YdE"/>
                 <constraint firstItem="GEP-Ga-2w6" firstAttribute="top" secondItem="4f0-iG-Q2C" secondAttribute="bottom" constant="40" id="ery-rB-k3A"/>

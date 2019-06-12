@@ -63,7 +63,7 @@ struct Keys {
         //Setting
         static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"
         static let SETTING_TO_PLANET_MANAGEMENT = "setting_to_planetmanagemnet"
-        static let SETTING_TO_DETAIL_SETTING = "setting_to_detailsetting"
+        static let SETTING_TO_SECURITY = "setting_to_security"
         static let SETTING_TO_ANNOUNCEMENTS = "setting_to_announcements"
         static let SETTING_TO_FAQ = "setting_to_faq"
         
@@ -77,6 +77,6 @@ struct Keys {
         static let PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION = "privatekeyexport_to_pincodecertification"
         
         //Detail setting
-        static let DETAIL_SETTING_TO_PINCODE_CERTIFICATION = "detailsetting_to_pincodecetrification"
+        static let SECURITY_TO_PINCODE_CERTIFICATION = "security_to_pincodecetrification"
     }
 }

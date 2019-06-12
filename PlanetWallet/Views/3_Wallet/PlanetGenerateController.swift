@@ -12,10 +12,11 @@ class PlanetGenerateController: PlanetWalletViewController {
 
     @IBOutlet var planetBgView: PlanetView!
     @IBOutlet var planetView: PlanetView!
-    @IBOutlet var confirmLb: UILabel!
-    @IBOutlet var planetNameLb: UILabel!
     @IBOutlet var darkGradientView: GradientView!
     @IBOutlet var lightGradientView: GradientView!
+    @IBOutlet var nameTextView: BlinkingTextView!
+    
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
@@ -32,8 +33,13 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     override func viewInit() {
         super.viewInit()
-        guard let fromSegueID = userInfo?["segue"] as? String else { return }
-        print(fromSegueID)
+        nameTextView.delegateBlinking = self
+        
+    }
+    
+    override func setData() {
+        super.setData()
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
     }
     
     //MARK: - IBAction
@@ -59,4 +65,31 @@ class PlanetGenerateController: PlanetWalletViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func didTap() {
+        self.view.endEditing(true)
+    }
+    
+    //MARK: - Notification
+    override func keyboardWillShow(notification: NSNotification) {
+        if let tapGesture = tapGestureRecognizer {
+            view.addGestureRecognizer(tapGesture)
+        }
+    }
+    
+    override func keyboardWillHide(notification: NSNotification) {
+        if let tapGesture = tapGestureRecognizer {
+            view.removeGestureRecognizer(tapGesture)
+        }
+    }
+}
+
+extension PlanetGenerateController: BlinkingTextViewDelegate {
+    
+    func didEndEditing(_ textView: BlinkingTextView) {
+        
+    }
+    
+    func didBeginEditing(_ textView: BlinkingTextView) {
+        
+    }
 }

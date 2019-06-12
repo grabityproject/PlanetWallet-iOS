@@ -189,7 +189,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKd-Mc-YP7">
                                                         <rect key="frame" x="0.0" y="0.0" width="131.5" height="128"/>
                                                         <connections>
-                                                            <segue destination="0Ao-hJ-dmH" kind="show" identifier="setting_to_detailsetting" id="bPC-io-em3"/>
+                                                            <segue destination="0Ao-hJ-dmH" kind="show" identifier="setting_to_security" id="bPC-io-em3"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -619,10 +619,10 @@
             </objects>
             <point key="canvasLocation" x="597" y="-435"/>
         </scene>
-        <!--DetailSettingController-->
+        <!--SecurityController-->
         <scene sceneID="9h1-ce-A8g">
             <objects>
-                <viewControllerPlaceholder storyboardName="7_3_DetailSetting" referencedIdentifier="DetailSettingController" id="0Ao-hJ-dmH" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="7_3_Security" referencedIdentifier="SecurityController" id="0Ao-hJ-dmH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFi-Gn-ut3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1072" y="-435"/>

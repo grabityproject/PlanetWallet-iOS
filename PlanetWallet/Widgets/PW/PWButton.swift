@@ -49,17 +49,6 @@ import UIKit
     
     @IBInspectable var highlightedCategory: Int = 0
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
     
     override open var isHighlighted: Bool {
         didSet {
@@ -130,11 +119,7 @@ import UIKit
             }
         }
     }
-    
-    private func commonInit() {
-        
-    }
-    
+
     func setTheme(_ theme: Theme) {
         if( theme == Theme.LIGHT ){
             if( defaultBackgroundColor == nil ){

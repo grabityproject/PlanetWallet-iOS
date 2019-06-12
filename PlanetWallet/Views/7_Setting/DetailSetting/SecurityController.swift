@@ -1,5 +1,5 @@
 //
-//  DetailSettingController.swift
+//  SecurityController.swift
 //  PlanetWallet
 //
 //  Created by grabity on 13/05/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import LocalAuthentication
 
-class DetailSettingController: PlanetWalletViewController {
+class SecurityController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var biometricSwitch: PWSwitch!
@@ -27,12 +27,12 @@ class DetailSettingController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedChangePincode(_ sender: UIButton) {
-        let segueID = Keys.Segue.DETAIL_SETTING_TO_PINCODE_CERTIFICATION
+        let segueID = Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
         sendAction(segue: segueID, userInfo: ["segue": segueID])
     }
 }
 
-extension DetailSettingController: NavigationBarDelegate {
+extension SecurityController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
             self.navigationController?.popViewController(animated: true)
@@ -40,7 +40,7 @@ extension DetailSettingController: NavigationBarDelegate {
     }
 }
 
-extension DetailSettingController: PWSwitchDelegate {
+extension SecurityController: PWSwitchDelegate {
     func didSwitch(_ sender: Any?, isOn: Bool) {
         Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: isOn)
     }

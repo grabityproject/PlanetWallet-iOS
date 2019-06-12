@@ -23,17 +23,27 @@ class PlanetWalletViewController: UIViewController, NetworkDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onUpdateTheme(theme: currentTheme)
-//        updateTheme()
     }
     
     func viewInit() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide),
+                                               name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     func setData() {
-        
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+    }
     
     
     //MARK: - Segue

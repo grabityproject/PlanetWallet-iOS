@@ -11,10 +11,9 @@ import UIKit
 class PlanetNameController: PlanetWalletViewController {
     @IBOutlet var planetBgView: PlanetView!
     @IBOutlet var planetView: PlanetView!
-    @IBOutlet var confirmLb: UILabel!
-    @IBOutlet var planetNameLb: UILabel!
     @IBOutlet var darkGradientView: GradientView!
     @IBOutlet var lightGradientView: GradientView!
+    @IBOutlet var nameTextView: BlinkingTextView!
     
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
@@ -36,12 +35,6 @@ class PlanetNameController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedSelect(_ sender: UIButton) {
         performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
-//        if let _ = userInfo?["segue"] { //from main controller
-//            performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
-//        }
-//        else {
-//            performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
-//        }
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {

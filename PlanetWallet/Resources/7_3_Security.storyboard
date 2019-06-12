@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Detail Setting Controller-->
+        <!--Security Controller-->
         <scene sceneID="GN6-Vl-qSd">
             <objects>
-                <viewController storyboardIdentifier="DetailSettingController" id="Zer-f1-QSD" customClass="DetailSettingController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecurityController" id="Zer-f1-QSD" customClass="SecurityController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yHq-cg-9ws" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,7 +163,7 @@
                     <connections>
                         <outlet property="biometricSwitch" destination="2cp-r2-7Lq" id="pWG-pi-tb8"/>
                         <outlet property="naviBar" destination="YM4-gE-I7t" id="j6E-qA-8yk"/>
-                        <segue destination="sRc-bR-poa" kind="presentation" identifier="detailsetting_to_pincodecetrification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="zbK-eT-IBe"/>
+                        <segue destination="sRc-bR-poa" kind="presentation" identifier="security_to_pincodecetrification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="zbK-eT-IBe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfJ-s8-07y" userLabel="First Responder" sceneMemberID="firstResponder"/>

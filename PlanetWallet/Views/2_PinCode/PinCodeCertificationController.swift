@@ -16,7 +16,7 @@ extension PinCodeCertificationController {
             switch self {
             case .SPLASH:               return Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION
             case .REGISTRATION:         return Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION
-            case .RESET:                return Keys.Segue.DETAIL_SETTING_TO_PINCODE_CERTIFICATION
+            case .RESET:                return Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
             case .TRANSFER:             return ""
             case .MNEMONIC_EXPORT:      return Keys.Segue.MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION
             case .PRIVATEKEY_EXPORT:    return Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
