@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import ObjectMapper
 
 class SplashController: PlanetWalletViewController{
     
@@ -48,6 +49,23 @@ class SplashController: PlanetWalletViewController{
             Post(self).action( Route.URL("planet","ETH"), requestCode: 0, resultCode: 0, data: param)
         }
          */
+        
+        Get(self).action(Route.URL("erc20"), requestCode: 0, resultCode: 0, data: nil)
+        
+        
+        //DB Test
+        /*
+        try! PlanetWalletDBManger.shared.insertTest()
+        try! PlanetWalletDBManger.shared.insertTest()
+        try! PlanetWalletDBManger.shared.loadTest()
+         */
+        
+        if PlanetWalletDBManger.shared.database.columnExists("addedField", inTableWithName: "Test") {
+            print("success to update tables")
+        }
+        else {
+            print("failed to update tables")
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -77,12 +95,31 @@ class SplashController: PlanetWalletViewController{
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        print("success : \(success)")
-        print("requestCode : \(requestCode)")
-        print("resultCode : \(resultCode)")
-        print("statusCode : \(statusCode)")
-        print("results : \(result)")
-        print(dictionary!)
+        if let resultJson = result as? [Dictionary<String, Any>]
+        {
+            let tokens:[ERCTokenSample] = Mapper<ERCTokenSample>().mapArray(JSONArray: resultJson)
+        }
+    }
+}
+
+
+class ERCTokenSample: Mappable {
+    var contractAddress: String?
+    var decimal: Int?
+    var imgPath: String?
+    var name: String?
+    var symbol: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        self.contractAddress     <- map["contract_address"]
+        self.decimal             <- map["decimal"]
+        self.imgPath             <- map["img_path"]
+        self.name                <- map["name"]
+        self.symbol              <- map["symbol"]
     }
 }
 

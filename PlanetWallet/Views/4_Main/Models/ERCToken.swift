@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum ERCTokenType {
-    
-}
-
 struct ERCToken {
 //    let contract: String
 //    let name: String

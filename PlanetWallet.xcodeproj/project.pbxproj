@@ -118,6 +118,9 @@
 		04D3A0E022B0D26200E54E96 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0DA22B0D26200E54E96 /* FMDatabaseQueue.m */; };
 		04D3A0E222B0D3AE00E54E96 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0E122B0D3AE00E54E96 /* DBManager.swift */; };
 		04D3A0E422B0F41D00E54E96 /* PlanetWalletDBManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0E322B0F41D00E54E96 /* PlanetWalletDBManger.swift */; };
+		04D9D34822B1E43C00B66E79 /* BTCTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */; };
+		04D9D34B22B1E46D00B66E79 /* BTCTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34A22B1E46D00B66E79 /* BTCTransaction.swift */; };
+		04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */; };
 		04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC113228967D3005AA183 /* AbsSlideUpView.swift */; };
 		04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC1162289685E005AA183 /* PopupCurrency.swift */; };
 		04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DAC11822896876005AA183 /* PopupCurrency.xib */; };
@@ -263,6 +266,9 @@
 		04D3A0DA22B0D26200E54E96 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		04D3A0E122B0D3AE00E54E96 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		04D3A0E322B0F41D00E54E96 /* PlanetWalletDBManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetWalletDBManger.swift; sourceTree = "<group>"; };
+		04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionViewModel.swift; sourceTree = "<group>"; };
+		04D9D34A22B1E46D00B66E79 /* BTCTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransaction.swift; sourceTree = "<group>"; };
+		04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Double.swift"; sourceTree = "<group>"; };
 		04DAC113228967D3005AA183 /* AbsSlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsSlideUpView.swift; sourceTree = "<group>"; };
 		04DAC1162289685E005AA183 /* PopupCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCurrency.swift; sourceTree = "<group>"; };
 		04DAC11822896876005AA183 /* PopupCurrency.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupCurrency.xib; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 			children = (
 				04D359ED22A74FD700BA2182 /* ERCToken.swift */,
 				04D359EF22A74FFC00BA2182 /* UniverseType.swift */,
+				04D9D34A22B1E46D00B66E79 /* BTCTransaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -438,6 +445,7 @@
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
 				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
 				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
+				04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -502,6 +510,7 @@
 		044BC56122793E0900FD7E5E /* 4_Main */ = {
 			isa = PBXGroup;
 			children = (
+				04D9D34922B1E44000B66E79 /* ViewModel */,
 				04180DE022AE00B800AB3246 /* DataSources */,
 				0468C5F522966D45008307D8 /* Popups */,
 				04116B302293DA8600CFD921 /* Models */,
@@ -704,6 +713,14 @@
 				04D3A0E322B0F41D00E54E96 /* PlanetWalletDBManger.swift */,
 			);
 			path = FMDB;
+			sourceTree = "<group>";
+		};
+		04D9D34922B1E44000B66E79 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04DAC1152289683D005AA183 /* Popups */ = {
@@ -986,6 +1003,7 @@
 				04116B322293DAAD00CFD921 /* ETHCoinDataSource.swift in Sources */,
 				044BC59E2279A2E800FD7E5E /* PList.swift in Sources */,
 				0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */,
+				04D9D34B22B1E46D00B66E79 /* BTCTransaction.swift in Sources */,
 				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,
 				044BC59022794ED200FD7E5E /* Utils.swift in Sources */,
 				04772E41228AB5F000049F89 /* CountryCodeCell.swift in Sources */,
@@ -995,10 +1013,12 @@
 				04FBCA4F229E67ED00DEEDD9 /* NetworkDelegate.swift in Sources */,
 				04C82C9E22890DA800235883 /* RenamePlanetController.swift in Sources */,
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
+				04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */,
 				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
+				04D9D34822B1E43C00B66E79 /* BTCTransactionViewModel.swift in Sources */,
 				15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */,
 				04D3A0DF22B0D26200E54E96 /* FMResultSet.m in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,

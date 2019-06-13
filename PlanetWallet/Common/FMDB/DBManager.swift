@@ -17,6 +17,7 @@ class DBManager: NSObject {
         case createDBError
         case updateDBError
         case noNamed
+        case executeStatementsError
     }
     
     override init() {

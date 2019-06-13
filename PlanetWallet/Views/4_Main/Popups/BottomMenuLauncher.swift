@@ -12,13 +12,14 @@ class BottomMenuLauncher: NSObject {
     
     var isOpen : Bool = false
     
+    private var view: UIView!
     private var triggerView : UIView!
     private var clicktriggerView : UIView!
     
     private let triggerAreaView: UIView = UIView()
     private let clicktriggerAreaView : UIView = UIView()
     
-    private var launcherView: BottomMenuView!;
+    private var launcherView: BottomMenuView!
 
     private let dimView = UIView()
     
@@ -31,13 +32,16 @@ class BottomMenuLauncher: NSObject {
     public var labelError : UIView!
 
     //MARK: - Init
-    init( controller:UIViewController, trigger:UIView, clickTrigger:UIView ) {
+    init( controller:UIViewController, trigger:UIView, clickTrigger:UIView, delegate: BottomMenuDelegate? ) {
         super.init()
+        
+        self.view = controller.view
         self.triggerView = trigger
         self.clicktriggerView = clickTrigger
         self.topPosition = CGPoint(x: trigger.frame.origin.x, y: trigger.frame.origin.y)
         
         launcherView = BottomMenuView(frame: CGRect(x: trigger.frame.origin.x, y: trigger.frame.origin.y, width: trigger.frame.width, height: 0))
+        launcherView.delegate = delegate
         
         triggerAreaView.frame = trigger.frame
         
@@ -70,21 +74,7 @@ class BottomMenuLauncher: NSObject {
     
     @objc func onClick(_ sender:Any){
         if( !isOpen ){
-            UIView.animate(withDuration: 0.2) {
-                self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-                self.launcherView.alpha = 1.0
-                self.triggerView.alpha = 0
-                self.isOpen = true;
-                self.triggerAreaView.isUserInteractionEnabled  = false;
-                self.dimView.isHidden = false;
-                if let label = self.labelError{
-                    label.frame = CGRect(x: 0,
-                                         y: UIScreen.main.bounds.height - self.launcherView.frame.height - label.frame.height,
-                                         width: label.frame.width,
-                                         height: label.frame.height)
-                    label.alpha = 0
-                }
-            }
+            self.show()
         }
     }
     
@@ -326,6 +316,47 @@ class BottomMenuLauncher: NSObject {
             view.subviews.forEach { (v) in
                 
                 findAllViews(view: v, theme: theme)
+            }
+        }
+    }
+    
+    //MARK: - Interface
+    public func show() {
+        if isOpen == true { return }
+        UIView.animate(withDuration: 0.2) {
+            self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+            self.launcherView.alpha = 1.0
+            self.triggerView.alpha = 0
+            self.isOpen = true;
+            self.triggerAreaView.isUserInteractionEnabled  = false;
+            self.dimView.isHidden = false;
+            if let label = self.labelError{
+                label.frame = CGRect(x: 0,
+                                     y: UIScreen.main.bounds.height - self.launcherView.frame.height - label.frame.height,
+                                     width: label.frame.width,
+                                     height: label.frame.height)
+                label.alpha = 0
+            }
+        }
+    }
+    
+    public func hide() {
+        if isOpen == false { return }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+            self.launcherView.alpha = 0.0
+            self.triggerView.alpha = 1.0
+            self.isOpen = false
+            self.triggerAreaView.isUserInteractionEnabled = true
+            self.dimView.isHidden = true
+            if let label = self.labelError {
+                let safeAreaBottom = self.view.safeAreaInsets.bottom
+                label.frame = CGRect(x: 0,
+                                     y: UIScreen.main.bounds.height - (safeAreaBottom + 80) - label.frame.height,
+                                     width: label.frame.width,
+                                     height: label.frame.height)
+                label.alpha = 1.0
             }
         }
     }

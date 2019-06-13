@@ -423,7 +423,7 @@
                         <outlet property="naviBar" destination="3px-DW-HXl" id="47j-DX-T4G"/>
                         <outlet property="planetView" destination="tw9-My-Aoq" id="0TN-RP-rzC"/>
                         <outlet property="tableView" destination="sj3-TY-bbB" id="jpb-mv-XB0"/>
-                        <segue destination="jYR-7T-aVN" kind="show" identifier="main_to_transfer" animates="NO" id="ggG-BA-aGA"/>
+                        <segue destination="jYR-7T-aVN" kind="show" identifier="main_to_transfer" id="ggG-BA-aGA"/>
                         <segue destination="oky-eY-4iW" kind="show" identifier="main_to_setting" animates="NO" id="JN4-AP-6ud"/>
                         <segue destination="2Da-Zc-beW" kind="show" identifier="main_to_tokenadd" id="vhI-Yx-pEa"/>
                         <segue destination="WEJ-Fv-EyR" kind="presentation" identifier="main_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qQA-Rv-vrL"/>

@@ -8,19 +8,12 @@
 
 import UIKit
 
-struct BTCTransaction {
-    
-}
-
 class BTCTransactionDataSource: NSObject, UITableViewDataSource {
     let cellID = "btcTransactionHistoryCell"
     
     var transactionList: [BTCTransaction]? = []
-    
     override init() {
         super.init()
-        
-        self.transactionList = [BTCTransaction()]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +29,11 @@ class BTCTransactionDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! BTCTransactionCell
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        
+        if let transaction = transactionList?[indexPath.row]
+        {
+            let viewModel = BTCTransactionViewModel(transaction)
+            cell.viewModel = viewModel
+        }
         return cell
     }
     

@@ -174,8 +174,8 @@ extension Utils {
         ///2018-09-12T14:11:54+0000
         case BASIC_TZ = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
         ///Sep 02, 2018
-        case MMMddyyyy = "MMM dd,yyyy"
+        case MMMddyyyy = "MMM dd, yyyy"
         ///Sep 02, 14:11
-        case MMMddHHmm = "MMM dd,HH:mm"
+        case MMMddHHmm = "MMM dd, HH:mm"
     }
 }

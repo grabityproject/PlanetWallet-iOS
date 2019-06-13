@@ -24,19 +24,41 @@ class Get {
             if let response = dataResponse.response{
                 if let resultData = dataResponse.data{
                     do {
-                        let resultJSON = try JSONSerialization.jsonObject(with: resultData, options: [])
-                        self.delegate?.onReceive(true, requestCode: requestCode, resultCode: resultCode, statusCode: response.statusCode, result: resultJSON, dictionary: resultJSON as? Dictionary<String, Any>)
+                        if let resultJSON = try JSONSerialization.jsonObject(with: resultData, options: []) as? Dictionary<String, Any> {
+                            
+                            self.delegate?.onReceive(true,
+                                                     requestCode: requestCode,
+                                                     resultCode: resultCode,
+                                                     statusCode: response.statusCode,
+                                                     result: resultJSON["result"],
+                                                     dictionary: resultJSON)
+                        }
                     }
                     catch {
-                        self.delegate?.onReceive(true, requestCode: requestCode, resultCode: resultCode, statusCode: response.statusCode, result:String(data: resultData, encoding: .utf8), dictionary: nil)
+                        self.delegate?.onReceive(true,
+                                                 requestCode: requestCode,
+                                                 resultCode: resultCode,
+                                                 statusCode: response.statusCode,
+                                                 result:String(data: resultData, encoding: .utf8),
+                                                 dictionary: nil)
                     }
                 }else{
-                    self.delegate?.onReceive(false, requestCode: requestCode, resultCode: resultCode, statusCode: response.statusCode, result:nil, dictionary: nil)
+                    self.delegate?.onReceive(false,
+                                             requestCode: requestCode,
+                                             resultCode: resultCode,
+                                             statusCode: response.statusCode,
+                                             result:nil,
+                                             dictionary: nil)
                 }
                 
             }else{
 
-                self.delegate?.onReceive(false, requestCode: requestCode, resultCode: resultCode, statusCode:0, result: dataResponse.error?.localizedDescription, dictionary:nil)
+                self.delegate?.onReceive(false,
+                                         requestCode: requestCode,
+                                         resultCode: resultCode,
+                                         statusCode:0,
+                                         result: dataResponse.error?.localizedDescription,
+                                         dictionary:nil)
             }
             
         }

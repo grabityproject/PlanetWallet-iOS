@@ -44,9 +44,11 @@ class TopMenuLauncher: NSObject {
     
     let universeList: [Universe] = {
         let btcUniverse = Universe(type: .BTC,
-                                   name: "REGAL-III",
+                                   name: "REGAL_III",
                                    coinList: nil,
-                                   transactions: [BTCTransaction(),BTCTransaction(),BTCTransaction()])
+                                   transactions: [BTCTransaction(amount: 10.023, to: "Alien", from: "REGAL_III", date: Date(), direction: .OUT_COMING),
+                                                  BTCTransaction(amount: 0.1194, to: "REGAL_III", from: "REGAL-I", date: Date(), direction: .IN_COMING),
+                                                  BTCTransaction(amount: 1.0003, to: "REGAL_III", from: "Alien", date: Date(), direction: .IN_COMING)])
         
         let ethUniverse = Universe(type: .ETH,
                                    name: "Alien",

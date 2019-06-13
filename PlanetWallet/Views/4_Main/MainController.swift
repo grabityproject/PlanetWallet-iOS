@@ -56,7 +56,10 @@ class MainController: PlanetWalletViewController {
     
     override func viewDidLayoutSubviews() {
         if( bottomMenuLauncher == nil ){
-            bottomMenuLauncher = BottomMenuLauncher(controller: self, trigger: bottomMenu, clickTrigger: btnBottomLauncher)
+            bottomMenuLauncher = BottomMenuLauncher(controller: self,
+                                                    trigger: bottomMenu,
+                                                    clickTrigger: btnBottomLauncher,
+                                                    delegate: self)
             bottomMenuLauncher?.labelError = labelError;
         }
         
@@ -90,6 +93,7 @@ class MainController: PlanetWalletViewController {
         super.viewWillDisappear(animated)
         
         hideRefreshContents()
+//        bottomMenuLauncher?.hide()
     }
     
     override func viewInit() {
@@ -205,6 +209,7 @@ class MainController: PlanetWalletViewController {
     }
 }
 
+//MARK: - NavigationBarDelegate
 extension MainController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         switch sender {
@@ -220,7 +225,7 @@ extension MainController: NavigationBarDelegate {
     }
 }
 
-
+//MARK: - UIScrollViewDelegate
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
@@ -295,6 +300,7 @@ extension MainController: UIScrollViewDelegate {
 
 }
 
+//MARK: - UITableViewDelegate
 extension MainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
@@ -309,15 +315,31 @@ extension MainController: UITableViewDelegate {
     }
 }
 
+//MARK: - TopMenuLauncherDelegate
 extension MainController: TopMenuLauncherDelegate {
     func didSelectedUniverse(_ universe: Universe) {
         self.universe = universe
+    }
+}
+
+//MARK: - BottomMenuDelegate
+extension MainController: BottomMenuDelegate {
+    func didTouchedSend() {
+        bottomMenuLauncher?.hide()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: nil)
+        }
+    }
+    
+    func didTouchedCopy(_ addr: String) {
         
     }
 }
 
+//MARK: - MainTableFooterDelegate
 extension MainController: MainTableFooterDelegate {
     func didTouchedManageToken() {
         performSegue(withIdentifier: Keys.Segue.MAIN_TO_TOKEN_ADD, sender: nil)
     }
 }
+

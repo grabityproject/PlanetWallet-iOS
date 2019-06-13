@@ -15,7 +15,16 @@ class BTCTransactionCell: UITableViewCell {
     @IBOutlet var dateLb: PWLabel!
     @IBOutlet var amountLb: UILabel!
     
-    @IBOutlet var upDownImgView: UIImageView!
+    @IBOutlet var directionImgView: UIImageView!
+    
+    public var viewModel: BTCTransactionViewModel? {
+        didSet {
+            self.amountLb.text = viewModel?.amount
+            self.dateLb.text = viewModel?.date
+            self.planetNameLb.text = viewModel?.name
+            self.directionImgView.image = viewModel?.directionImg
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

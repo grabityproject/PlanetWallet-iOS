@@ -17,7 +17,29 @@
                     <view key="view" contentMode="scaleToFill" id="Vih-Oq-YH4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfy-eO-enm">
+                                <rect key="frame" x="176" y="433" width="62" height="30"/>
+                                <state key="normal" title="QR Code"/>
+                                <connections>
+                                    <action selector="didTouchedQRCode:" destination="ETN-79-SLg" eventType="touchUpInside" id="Xq4-Jf-bQ8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-NC-cRy">
+                                <rect key="frame" x="184" y="523" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTouched:" destination="ETN-79-SLg" eventType="touchUpInside" id="MJj-Gk-LbO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mfy-eO-enm" firstAttribute="centerY" secondItem="Vih-Oq-YH4" secondAttribute="centerY" id="8cA-4C-ogp"/>
+                            <constraint firstItem="mfy-eO-enm" firstAttribute="centerX" secondItem="Vih-Oq-YH4" secondAttribute="centerX" id="DTt-kW-Eo7"/>
+                            <constraint firstItem="kYp-NC-cRy" firstAttribute="centerX" secondItem="Vih-Oq-YH4" secondAttribute="centerX" id="Qsf-I9-0T0"/>
+                            <constraint firstItem="kYp-NC-cRy" firstAttribute="top" secondItem="mfy-eO-enm" secondAttribute="bottom" constant="60" id="n82-ye-6hr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="35X-Uj-96g"/>
                     </view>
                 </viewController>
