@@ -9,19 +9,35 @@
 import UIKit
 import AVFoundation
 
-class TransferController: UIViewController {
+class TransferController: PlanetWalletViewController {
 
     private var session: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
     private var qrCodeFrameView: UIView?
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.qr]
     
+    @IBOutlet var addressLb: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    @IBOutlet var slider: PWSlider!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        checkClipboard()
     }
+    
+    override func onUpdateTheme(theme: Theme) {
+        super.onUpdateTheme(theme: theme)
+        
+        self.addressLb.setColoredAddress()
+    }
+    
+    private func checkClipboard() {
+        if let copiedStr = Utils.shared.getClipboard() {
+            
+        }
+    }
+    
     
     private func configurateCapture() {
         if session == nil {
@@ -98,6 +114,8 @@ class TransferController: UIViewController {
     }
     
     @IBAction func didTouchedQRCode(_ sender: UIButton) {
+        Toast(text: "Copied to Clipboard").show()
+        /*
         if session == nil {
             session = AVCaptureSession()
         }
@@ -109,7 +127,9 @@ class TransferController: UIViewController {
         else {
             configurateCapture()
         }
+         */
     }
+    
 }
 
 extension TransferController: AVCaptureMetadataOutputObjectsDelegate {

@@ -111,7 +111,6 @@ class ERCTokenSample: Mappable {
     var symbol: String?
     
     required init?(map: Map) {
-        
     }
     
     func mapping(map: Map) {

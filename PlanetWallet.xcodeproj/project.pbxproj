@@ -15,6 +15,12 @@
 		04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
 		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
+		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
+		042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41122B34CF300666DF9 /* Extension + UILabel.swift */; };
+		042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41322B36BFE00666DF9 /* PWSlider.swift */; };
+		042FF41622B3774300666DF9 /* QROverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41522B3774300666DF9 /* QROverlay.swift */; };
+		042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */; };
+		042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
 		0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09B22A512D5001E412C /* BottomMenuView.swift */; };
@@ -154,6 +160,12 @@
 		04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetNameController.swift; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
 		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
+		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		042FF41122B34CF300666DF9 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
+		042FF41322B36BFE00666DF9 /* PWSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWSlider.swift; sourceTree = "<group>"; };
+		042FF41522B3774300666DF9 /* QROverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlay.swift; sourceTree = "<group>"; };
+		042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomMenuTokenView.xib; sourceTree = "<group>"; };
+		042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuTokenView.swift; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		0444D09B22A512D5001E412C /* BottomMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
@@ -320,6 +332,7 @@
 				04C82C7A228429BF00235883 /* PWTextView.swift */,
 				04C82C79228429BF00235883 /* PWView.swift */,
 				04C82C7D228429C000235883 /* Themable.swift */,
+				042FF41322B36BFE00666DF9 /* PWSlider.swift */,
 			);
 			path = PW;
 			sourceTree = "<group>";
@@ -357,6 +370,30 @@
 				04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		042FF40F22B34CC100666DF9 /* Extension + UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				044BC59122794EFC00FD7E5E /* Extension + Color.swift */,
+				044BC5932279704900FD7E5E /* Extension + UIView.swift */,
+				04738B4D22818BD100758E56 /* Extension + UIButton.swift */,
+				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
+				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
+				042FF41122B34CF300666DF9 /* Extension + UILabel.swift */,
+			);
+			path = "Extension + UIKit";
+			sourceTree = "<group>";
+		};
+		042FF41022B34CDC00666DF9 /* Extension + Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				044BC5952279705C00FD7E5E /* Extension + String.swift */,
+				044BC5972279707800FD7E5E /* Extension + Array.swift */,
+				044BC599227970A000FD7E5E /* Extension + Data.swift */,
+				04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */,
+			);
+			path = "Extension + Foundation";
 			sourceTree = "<group>";
 		};
 		044BC53A22793D3F00FD7E5E = {
@@ -435,17 +472,10 @@
 		044BC55B22793D9900FD7E5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				044BC59122794EFC00FD7E5E /* Extension + Color.swift */,
-				044BC5932279704900FD7E5E /* Extension + UIView.swift */,
-				044BC5952279705C00FD7E5E /* Extension + String.swift */,
-				044BC5972279707800FD7E5E /* Extension + Array.swift */,
-				044BC599227970A000FD7E5E /* Extension + Data.swift */,
-				04738B4D22818BD100758E56 /* Extension + UIButton.swift */,
+				042FF41022B34CDC00666DF9 /* Extension + Foundation */,
+				042FF40F22B34CC100666DF9 /* Extension + UIKit */,
 				04738B4F2282749C00758E56 /* ColorTheme.swift */,
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
-				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
-				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
-				04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -485,6 +515,7 @@
 				04ED3317227C356C0092075E /* GradientView.swift */,
 				15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */,
 				04D3A0CB22B0996500E54E96 /* BlinkingTextView.swift */,
+				042FF40D22B3342C00666DF9 /* Toast.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -552,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				044BC59B2279A18B00FD7E5E /* TransferController.swift */,
+				042FF41522B3774300666DF9 /* QROverlay.swift */,
 			);
 			path = 6_Transfer;
 			sourceTree = "<group>";
@@ -648,6 +680,8 @@
 				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
 				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
 				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
+				042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */,
+				042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -859,6 +893,7 @@
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
+				042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */,
 				04675F26229BD38500DC3CFD /* refreshAnim1.json in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
@@ -1025,7 +1060,9 @@
 				04D3A0DE22B0D26200E54E96 /* FMDatabaseAdditions.m in Sources */,
 				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
+				042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */,
 				04C82CA822890DF500235883 /* MnemonicExportController.swift in Sources */,
+				042FF40E22B3342C00666DF9 /* Toast.swift in Sources */,
 				04D3A0DD22B0D26200E54E96 /* FMDatabase.m in Sources */,
 				04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */,
 				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
@@ -1046,7 +1083,9 @@
 				04D3A0E022B0D26200E54E96 /* FMDatabaseQueue.m in Sources */,
 				04D359F022A74FFC00BA2182 /* UniverseType.swift in Sources */,
 				04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */,
+				042FF41622B3774300666DF9 /* QROverlay.swift in Sources */,
 				04C82C80228429C000235883 /* PWView.swift in Sources */,
+				042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,
 				04C82C9C22890D9500235883 /* SecurityController.swift in Sources */,
@@ -1054,6 +1093,7 @@
 				044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */,
 				04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */,
 				04C82C83228429C000235883 /* PWLabel.swift in Sources */,
+				042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var footerView: MainTableFooter!
+    @IBOutlet var addressLb: PWLabel!
     
     @IBOutlet weak var labelError: UIButton!
     
@@ -43,10 +44,11 @@ class MainController: PlanetWalletViewController {
     
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
+    var bottomMenuTokenView = BottomMenuTokenView()
     
     @IBOutlet var bottomMenu: UIView!
     @IBOutlet var btnBottomLauncher: PWImageView!
-    @IBOutlet var bottomBlurView: UIView!
+
     
     let rippleAnimationView = RippleAnimationView()
     var animationView : AnimationView!
@@ -61,6 +63,9 @@ class MainController: PlanetWalletViewController {
                                                     clickTrigger: btnBottomLauncher,
                                                     delegate: self)
             bottomMenuLauncher?.labelError = labelError;
+            
+            bottomMenuTokenView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+            self.view.addSubview(bottomMenuTokenView)
         }
         
         bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
@@ -102,7 +107,7 @@ class MainController: PlanetWalletViewController {
         
         configureTableView()
         createRippleView()
-
+        
         naviBar.backgroundView.alpha = 0
     }
     
@@ -118,11 +123,17 @@ class MainController: PlanetWalletViewController {
         topMenuLauncher?.setTheme(theme)
         bottomMenuLauncher?.setTheme(theme)
         footerView.setTheme(theme)
+        
+        
     }
-    
+
     //MARK: - IBAction
     @IBAction func didTouchedCopyAddr(_ sender: UIButton) {
-        
+        bottomMenuTokenView.show()
+//        if let addr = addressLb.text {
+//            Utils.shared.copyToClipboard(addr)
+//            Toast(text: "Copied to Clipboard").show()
+//        }
     }
     
     @IBAction func didTouchedError(_ sender: UIButton) {
@@ -332,7 +343,7 @@ extension MainController: BottomMenuDelegate {
     }
     
     func didTouchedCopy(_ addr: String) {
-        
+        Utils.shared.copyToClipboard(addr)
     }
 }
 

@@ -30,7 +30,8 @@ public protocol NavigationBarDelegate {
     var rightImageView : UIImageView = UIImageView()
     var labelTitle: UILabel = UILabel()
     var bottomBar : UIView = UIView()
-
+    var titleWithView: UIView = UIView()
+    
     @IBInspectable var title : String!{
         get{
             return labelTitle.text
@@ -75,7 +76,7 @@ public protocol NavigationBarDelegate {
                             width: UIScreen.main.bounds.width,
                             height:statusBarHeight + 68)
         backgroundView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height);
-        labelTitle.frame = CGRect(x: 0, y: statusBarHeight, width: self.frame.width, height: self.frame.height - statusBarHeight);
+        
         leftImageView.frame = CGRect(x: 11,
                                      y: (self.frame.height - statusBarHeight - 40)/2.0 + statusBarHeight,
                                      width: 40,
@@ -88,6 +89,13 @@ public protocol NavigationBarDelegate {
                                  y: self.frame.height-1,
                                  width: self.frame.width,
                                  height: 1);
+        
+//        titleWithView.frame = CGRect(x: leftImageView.frame.maxX,
+//                                     y: statusBarHeight,
+//                                     width: rightImageView.frame.minX - leftImageView.frame.maxX,
+//                                     height: self.frame.height - statusBarHeight)
+        
+        labelTitle.frame = CGRect(x: 0, y: statusBarHeight, width: self.frame.width, height: self.frame.height - statusBarHeight);
         
         labelTitle.textAlignment = .center
         labelTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold);
@@ -105,6 +113,17 @@ public protocol NavigationBarDelegate {
         addSubview(leftImageView)
         addSubview(rightImageView)
         addSubview(bottomBar)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let constraintSize = CGSize(
+            width: self.frame.width * (280.0 / 320.0),
+            height: CGFloat.greatestFiniteMagnitude
+        )
+        let textLabelSize = self.labelTitle.sizeThatFits(constraintSize)
+        
     }
     
     func setTheme(_ theme: Theme) {

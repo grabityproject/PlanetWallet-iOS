@@ -44,6 +44,24 @@ struct Utils {
     
     
     //MARK: - Valid
+    func isValid(planetName: String) -> Bool {
+        let regex = ".*[^A-Za-z0-9_].*"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: [])
+            if regex.firstMatch(in: planetName, options: [], range: NSMakeRange(0, planetName.count)) != nil {
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        catch {
+            print("Planet name isn't valid")
+            return false
+        }
+    }
+    
     func isValid(email: String) -> Bool {
         var returnValue = true
         let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
@@ -73,6 +91,28 @@ struct Utils {
         return result
     }
     
+    //MARK: - Coin Address
+    ///0xf291b69799516156fAA7F9ed4c39536335Ab797A -> 0xf291...797A
+    ///3Gvgi1WpEZ73CNmQviecrnyiWrnqRhjJm1 -> 3Gvg...jJm1
+    func trimAddress(_ addr: String) -> String {
+        
+        let prefix = addr[0..<2]
+        if prefix == "0x" { //ETH
+            return addr[0..<6] + "..." + addr[addr.count-4..<addr.count]
+        }
+        else { //Others
+            return addr[0..<4] + "..." + addr[addr.count-4..<addr.count]
+        }
+    }
+    
+    //MARK: - Clipboard
+    func copyToClipboard(_ str: String) {
+        UIPasteboard.general.string = str
+    }
+    
+    func getClipboard() -> String? {
+        return UIPasteboard.general.string
+    }
     
     //MARK: - Date
     func changeDateFormat(date: String, beforFormat: DateFormat, afterFormat: DateFormat) -> String? {

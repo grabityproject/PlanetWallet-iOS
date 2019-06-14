@@ -409,6 +409,7 @@
                     <navigationItem key="navigationItem" id="sQ5-Qt-e8Q"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="addressLb" destination="V2s-Rl-Lg9" id="DHR-rq-c1c"/>
                         <outlet property="bgPlanetContainer" destination="Na1-r1-juP" id="axZ-i3-fvV"/>
                         <outlet property="bgPlanetContainerTopConstraint" destination="RYa-rQ-ufP" id="N77-2F-qt4"/>
                         <outlet property="bgPlanetView" destination="IKe-el-f6a" id="4ib-6l-LDa"/>

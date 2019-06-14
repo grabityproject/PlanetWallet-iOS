@@ -155,7 +155,7 @@
                         <constraint firstAttribute="height" constant="55" id="nnb-1v-q0e"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
-                    <state key="normal" title="Send">
+                    <state key="normal" title="Transfer">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
