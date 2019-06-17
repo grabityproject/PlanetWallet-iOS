@@ -33,7 +33,7 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
         cell.backgroundColor = .clear
         
         let selectedView = UIView()
-        selectedView.backgroundColor = ThemeManager.currentTheme().border//UIColor(red: 30, green: 30, blue: 40)
+        selectedView.backgroundColor = ThemeManager.currentTheme().border
         cell.selectedBackgroundView = selectedView
         
         return cell

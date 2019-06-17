@@ -91,6 +91,10 @@
 		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
 		04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */; };
 		04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A551CE22A7C459007A17A3 /* refreshLoading.json */; };
+		04BA0B0A22B7623100A25A93 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0922B7623100A25A93 /* ContactCell.swift */; };
+		04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0B22B7625700A25A93 /* ContactCell.xib */; };
+		04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */; };
+		04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */; };
 		04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C7322840A7F00235883 /* PlanetCell.xib */; };
 		04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C7522840A8F00235883 /* PlanetCell.swift */; };
 		04C82C7E228429C000235883 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C77228429BF00235883 /* PWTextField.swift */; };
@@ -238,6 +242,10 @@
 		04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
 		04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationView.swift; sourceTree = "<group>"; };
 		04A551CE22A7C459007A17A3 /* refreshLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshLoading.json; sourceTree = "<group>"; };
+		04BA0B0922B7623100A25A93 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		04BA0B0B22B7625700A25A93 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
+		04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactAddrCell.xib; sourceTree = "<group>"; };
+		04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAddrCell.swift; sourceTree = "<group>"; };
 		04C82C7322840A7F00235883 /* PlanetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetCell.xib; sourceTree = "<group>"; };
 		04C82C7522840A8F00235883 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 		04C82C77228429BF00235883 /* PWTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWTextField.swift; sourceTree = "<group>"; };
@@ -582,6 +590,7 @@
 		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				04BA0B0822B7621100A25A93 /* Cells */,
 				044BC59B2279A18B00FD7E5E /* TransferController.swift */,
 				042FF41522B3774300666DF9 /* QROverlay.swift */,
 			);
@@ -684,6 +693,17 @@
 				042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */,
 			);
 			path = Popups;
+			sourceTree = "<group>";
+		};
+		04BA0B0822B7621100A25A93 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				04BA0B0922B7623100A25A93 /* ContactCell.swift */,
+				04BA0B0B22B7625700A25A93 /* ContactCell.xib */,
+				04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */,
+				04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		04C82C7222840A6B00235883 /* Cells */ = {
@@ -904,11 +924,13 @@
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
 				04675F2A229BD3A200DC3CFD /* refreshAnim3.json in Resources */,
 				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
+				04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
 				04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */,
 				04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */,
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
+				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
@@ -997,6 +1019,7 @@
 				04FBCA57229E908100DEEDD9 /* Route.swift in Sources */,
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
 				04D3A0E422B0F41D00E54E96 /* PlanetWalletDBManger.swift in Sources */,
+				04BA0B0A22B7623100A25A93 /* ContactCell.swift in Sources */,
 				047A2CA122AF7D130053D153 /* Crypto.swift in Sources */,
 				04D3A0DC22B0D26200E54E96 /* FMDatabasePool.m in Sources */,
 				04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */,
@@ -1022,6 +1045,7 @@
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
+				04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */,
 				04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,

@@ -100,13 +100,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="akW-5e-2uZ" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
-            <color key="textColor" name="textColorDark"/>
-            <nil key="highlightedColor"/>
-        </label>
     </objects>
     <resources>
         <image name="imageArrowRightBlue" width="30" height="30"/>

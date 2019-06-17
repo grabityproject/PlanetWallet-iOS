@@ -202,7 +202,6 @@ class BottomMenuLauncher: NSObject {
     
     @objc func backgroundPanAction(_ sender: Any) {
         
-        
         if(  backgroundPanGesture.state == UIGestureRecognizer.State.changed  ){
             
             let movePoint : CGFloat  = UIScreen.main.bounds.height - launcherView.frame.height + backgroundPanGesture.translation(in: dimView).y

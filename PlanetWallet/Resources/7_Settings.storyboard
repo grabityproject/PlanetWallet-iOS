@@ -559,7 +559,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8X2-Zr-1sd">
-                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="752"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noticecell" id="dV6-I3-JJg">
@@ -582,7 +582,7 @@
                             <constraint firstItem="8X2-Zr-1sd" firstAttribute="leading" secondItem="6kG-MV-1dh" secondAttribute="leading" id="GYc-sg-JaV"/>
                             <constraint firstItem="6kG-MV-1dh" firstAttribute="trailing" secondItem="8X2-Zr-1sd" secondAttribute="trailing" id="KWu-zD-mzM"/>
                             <constraint firstItem="6kG-MV-1dh" firstAttribute="bottom" secondItem="8X2-Zr-1sd" secondAttribute="bottom" id="RHm-1F-rji"/>
-                            <constraint firstItem="8X2-Zr-1sd" firstAttribute="top" secondItem="6kG-MV-1dh" secondAttribute="top" constant="88" id="X6A-2d-JKd"/>
+                            <constraint firstItem="8X2-Zr-1sd" firstAttribute="top" secondItem="6kG-MV-1dh" secondAttribute="top" constant="66" id="X6A-2d-JKd"/>
                             <constraint firstItem="vfD-B3-2uy" firstAttribute="top" secondItem="XK2-cJ-Y3f" secondAttribute="top" id="h5B-BV-xBf"/>
                             <constraint firstItem="vfD-B3-2uy" firstAttribute="trailing" secondItem="6kG-MV-1dh" secondAttribute="trailing" id="mGf-Wr-HLm"/>
                             <constraint firstItem="vfD-B3-2uy" firstAttribute="leading" secondItem="6kG-MV-1dh" secondAttribute="leading" id="xVr-Yp-uUG"/>

@@ -64,7 +64,8 @@ class MainController: PlanetWalletViewController {
                                                     delegate: self)
             bottomMenuLauncher?.labelError = labelError;
             
-            bottomMenuTokenView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+            bottomMenuTokenView.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+            bottomMenuTokenView.delegate = self
             self.view.addSubview(bottomMenuTokenView)
         }
         
@@ -129,11 +130,11 @@ class MainController: PlanetWalletViewController {
 
     //MARK: - IBAction
     @IBAction func didTouchedCopyAddr(_ sender: UIButton) {
-        bottomMenuTokenView.show()
-//        if let addr = addressLb.text {
-//            Utils.shared.copyToClipboard(addr)
-//            Toast(text: "Copied to Clipboard").show()
-//        }
+        
+        if let addr = addressLb.text {
+            Utils.shared.copyToClipboard(addr)
+            Toast(text: "Copied to Clipboard").show()
+        }
     }
     
     @IBAction func didTouchedError(_ sender: UIButton) {
@@ -322,7 +323,7 @@ extension MainController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        bottomMenuTokenView.show()
     }
 }
 
@@ -344,6 +345,21 @@ extension MainController: BottomMenuDelegate {
     
     func didTouchedCopy(_ addr: String) {
         Utils.shared.copyToClipboard(addr)
+    }
+}
+
+//MARK: - BottomMenuTokenDelegate
+extension MainController: BottomMenuTokenDelegate {
+    func didTouchedTokenSend() {
+        bottomMenuTokenView.hide()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: nil)
+        }
+    }
+    
+    func didTouchedTokenCopy(_ addr: String) {
+        Utils.shared.copyToClipboard(addr)
+        Toast(text: "Copied to Clipboard").show()
     }
 }
 

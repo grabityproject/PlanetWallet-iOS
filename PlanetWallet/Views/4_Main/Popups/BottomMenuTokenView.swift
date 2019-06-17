@@ -8,11 +8,26 @@
 
 import UIKit
 
+protocol BottomMenuTokenDelegate {
+    func didTouchedTokenCopy(_ addr: String)
+    func didTouchedTokenSend()
+}
+
 class BottomMenuTokenView: UIView {
 
+    var delegate: BottomMenuTokenDelegate?
+    
     @IBOutlet var dimView: UIView!
     @IBOutlet var containerView: UIView!
-    @IBOutlet var popupContentView: UIView!
+    @IBOutlet var drawerView: UIView!
+    
+    
+    @IBOutlet var qrImgView: UIImageView!
+    @IBOutlet var planetView: PlanetView!
+    
+    @IBOutlet var tokenNameLb: UILabel!
+    @IBOutlet var planetNameLb: UILabel!
+    @IBOutlet var addressLb: UILabel!
     
     var backgroundPanGesture : UIPanGestureRecognizer!
     
@@ -34,9 +49,9 @@ class BottomMenuTokenView: UIView {
         containerView.frame = self.bounds
         self.addSubview(containerView)
         
-        popupContentView.layer.cornerRadius = 25
-        popupContentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        popupContentView.layer.masksToBounds = true
+        drawerView.layer.cornerRadius = 25
+        drawerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        drawerView.layer.masksToBounds = true
         
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(backgroundPanAction));
         dimView.addGestureRecognizer(backgroundPanGesture)
@@ -46,11 +61,13 @@ class BottomMenuTokenView: UIView {
     
     //MARK: - IBAction
     @IBAction func didTouchedTransfer(_ sender: UIButton) {
-        hide()
+        delegate?.didTouchedTokenSend()
     }
     
     @IBAction func didTouchedCopy(_ sender: UIButton) {
-        
+        if let addrStr = addressLb.text {
+            delegate?.didTouchedTokenCopy(addrStr)
+        }
     }
     
     //MARK: - Interface
@@ -77,13 +94,13 @@ class BottomMenuTokenView: UIView {
         findAllViews(view: containerView, theme: theme)
         
         if( theme == .LIGHT ){
-            popupContentView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0).cgColor
-            popupContentView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
-            popupContentView.layer.shadowRadius = 8
-            popupContentView.layer.shadowOpacity = 0.2
-            popupContentView.layer.masksToBounds = false
+            drawerView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0).cgColor
+            drawerView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
+            drawerView.layer.shadowRadius = 8
+            drawerView.layer.shadowOpacity = 0.2
+            drawerView.layer.masksToBounds = false
         }else{
-            popupContentView.dropShadow(radius: 0, cornerRadius: 0)
+            drawerView.dropShadow(radius: 0, cornerRadius: 0)
         }
     }
     
@@ -134,19 +151,6 @@ class BottomMenuTokenView: UIView {
                                         y: 0,
                                         width: self.frame.width,
                                         height: self.frame.height);
-//                    if( self.isOpen ){
-//                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-//                        self.launcherView.alpha = 1
-//                        self.triggerView.alpha = 0
-//                        self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: UIScreen.main.bounds.height - self.launcherView.frame.height, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
-//
-//                    }else{
-//                        self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 80, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-//                        self.launcherView.alpha = 0
-//                        self.triggerView.alpha = 1
-//                        self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
-//
-//                    }
                 }
             }
             
