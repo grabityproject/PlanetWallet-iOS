@@ -67,11 +67,8 @@ class NumberPad: UIView {
             pw_number = String(pw_number.dropLast())
         }
         else {
-            if pw_number.count > 3 { return }
-            else {
-                if let selectedNumber = sender.titleLabel?.text {
-                    pw_number = pw_number + selectedNumber
-                }
+            if let selectedNumber = sender.titleLabel?.text {
+                pw_number = pw_number + selectedNumber
             }
         }
         delegate?.didTouchedNumberPad(pw_number)

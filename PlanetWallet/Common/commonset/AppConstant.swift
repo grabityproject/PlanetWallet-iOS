@@ -78,5 +78,10 @@ struct Keys {
         
         //Detail setting
         static let SECURITY_TO_PINCODE_CERTIFICATION = "security_to_pincodecetrification"
+        
+        //Transfer
+        static let TRANSFER_TO_QRCAPTURE = "transfer_to_qrcapture"
+        static let TRANSFER_TO_TRANSFER_AMOUNT = "transfer_to_transferamount"
+        static let TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM = "transferamount_to_transferconfirm"
     }
 }

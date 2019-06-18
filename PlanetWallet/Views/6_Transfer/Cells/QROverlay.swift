@@ -11,8 +11,8 @@ import UIKit
 class QROverlay: UIView {
     
     var path: UIBezierPath!
-    let padding: CGFloat = 50
-    let lineWidth: CGFloat = 3
+    let padding: CGFloat = 5
+    let lineWidth: CGFloat = 2
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,38 +36,16 @@ class QROverlay: UIView {
         self.createRoundedRect(corner: .topRight)
         self.createRoundedRect(corner: .bottomLeft)
         self.createRoundedRect(corner: .bottomRight)
-        
-        //-----큰 사각형
-        self.createRectangle()
-        
-        //-----Dim Layer
-        createDimLayer(rect: rect, portionRect: transparentRect)
-        
+
         //-----
         createOverlayLayer(rect: rect, portionRect: transparentRect)
-        
-    }
-    
-    private func createDimLayer(rect: CGRect, portionRect: CGRect) {
-        let dimLayer = CAShapeLayer()
-        dimLayer.frame = rect
-        dimLayer.fillColor = UIColor(white: 0, alpha: 0.55).cgColor
-        dimLayer.fillRule = CAShapeLayerFillRule.evenOdd
-        dimLayer.cornerRadius = 15
-        dimLayer.masksToBounds = true
-        let dimLayerPath = UIBezierPath(rect: rect)
-        dimLayerPath.append(UIBezierPath(rect: portionRect))
-        
-        dimLayer.path = dimLayerPath.cgPath
-        
-        self.layer.addSublayer(dimLayer)
     }
     
     private func createOverlayLayer(rect: CGRect, portionRect: CGRect) {
         //-----Cover layer
         let layer = CAShapeLayer()
         layer.path = path.cgPath
-        layer.fillColor = UIColor.red.cgColor
+        layer.fillColor = UIColor(red: 255, green: 0, blue: 80).cgColor
         layer.frame = self.bounds
         self.layer.addSublayer(layer)
         
@@ -91,29 +69,11 @@ class QROverlay: UIView {
         layer.mask = maskLayer
     }
     
-    func createRectangle() {
-        let width = frame.size.width - (padding * 2)
-        if path == nil {
-            path = UIBezierPath(rect: CGRect(x: padding,
-                                             y: padding,
-                                             width: width,
-                                             height: width))
-        }
-        else {
-            path.append(UIBezierPath(rect: CGRect(x: padding,
-                                                  y: padding,
-                                                  width: width,
-                                                  height: width)))
-        }
-    }
     
     func createRoundedRect(corner: UIRectCorner) {
-        
-        
-        let roundRectWidth: CGFloat = 20
+        let roundRectWidth: CGFloat = 28
         
         let size = CGSize(width: roundRectWidth, height: roundRectWidth)
-        
         var origin: CGPoint!
         
         switch corner {
@@ -134,7 +94,7 @@ class QROverlay: UIView {
             break
         }
         
-        let cornerRadSize = CGSize(width: 5.0, height: 0)
+        let cornerRadSize = CGSize(width: 8.0, height: 0)
         let rect = CGRect(origin: origin, size: size)
         if path == nil {
             path = UIBezierPath(roundedRect: rect,

@@ -30,7 +30,6 @@ public protocol NavigationBarDelegate {
     var rightImageView : UIImageView = UIImageView()
     var labelTitle: UILabel = UILabel()
     var bottomBar : UIView = UIView()
-    var titleWithView: UIView = UIView()
     
     @IBInspectable var title : String!{
         get{
@@ -90,11 +89,6 @@ public protocol NavigationBarDelegate {
                                  width: self.frame.width,
                                  height: 1);
         
-//        titleWithView.frame = CGRect(x: leftImageView.frame.maxX,
-//                                     y: statusBarHeight,
-//                                     width: rightImageView.frame.minX - leftImageView.frame.maxX,
-//                                     height: self.frame.height - statusBarHeight)
-        
         labelTitle.frame = CGRect(x: 0, y: statusBarHeight, width: self.frame.width, height: self.frame.height - statusBarHeight);
         
         labelTitle.textAlignment = .center
@@ -107,7 +101,6 @@ public protocol NavigationBarDelegate {
         rightImageView.isUserInteractionEnabled = true;
         
         
-        
         addSubview(backgroundView)
         addSubview(labelTitle)
         addSubview(leftImageView)
@@ -115,16 +108,23 @@ public protocol NavigationBarDelegate {
         addSubview(bottomBar)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    /*
+    let titleWithPlanetView = UIView()
+    
+    public func setTitleWithPlanetView(_ title: String) {
+        let padding: CGFloat = 60
+        let statusBarHeight = Utils.shared.statusBarHeight()
         
-        let constraintSize = CGSize(
-            width: self.frame.width * (280.0 / 320.0),
-            height: CGFloat.greatestFiniteMagnitude
-        )
-        let textLabelSize = self.labelTitle.sizeThatFits(constraintSize)
+        titleWithPlanetView.frame = CGRect(x: padding,
+                                           y: (self.frame.height - statusBarHeight - 40)/2.0 + statusBarHeight,
+                                           width: self.frame.width - (padding * 2),
+                                           height: 40)
+        titleWithPlanetView.backgroundColor = .red
+        self.addSubview(titleWithPlanetView)
         
+        let planetView = PlanetView()
     }
+    */
     
     func setTheme(_ theme: Theme) {
         if( theme == .LIGHT){

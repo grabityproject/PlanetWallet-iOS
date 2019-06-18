@@ -8,10 +8,10 @@
 
 import UIKit
 
-class PWSlider: UISlider {
+class PWSlider: UISlider, Themable {
 
     @IBInspectable var trackHeight: CGFloat = 3.9
-    
+    @IBInspectable var themeMaxTrackColor: UIColor = UIColor(red: 30, green: 30, blue: 80)
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         var result = super.trackRect(forBounds: bounds)
         result.origin.x = 0
@@ -20,5 +20,11 @@ class PWSlider: UISlider {
         return result
     }
     
-
+    func setTheme(_ theme: Theme) {
+        if( theme == Theme.LIGHT ){
+            self.maximumTrackTintColor = themeMaxTrackColor
+        }else{
+            self.maximumTrackTintColor = UIColor(red: 30, green: 30, blue: 40)
+        }
+    }
 }

@@ -26,6 +26,8 @@
 		0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09B22A512D5001E412C /* BottomMenuView.swift */; };
 		0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444D09C22A512D6001E412C /* BottomMenuView.xib */; };
 		0444D0A022A51400001E412C /* PWBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09F22A51400001E412C /* PWBlurView.swift */; };
+		04491C2022B8988C00A5DC14 /* TransferAmountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */; };
+		04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */; };
 		044A43DD22A0BD3300274B04 /* splash_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 044A43DC22A0BD3300274B04 /* splash_wh.json */; };
 		044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43DE22A0C59D00274B04 /* MainNavigationController.swift */; };
 		044A43E322A117C100274B04 /* TEstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A43E222A117C100274B04 /* TEstViewController.swift */; };
@@ -73,6 +75,7 @@
 		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
 		0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5FC22966E15008307D8 /* TopMenuCell.xib */; };
 		0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FE22966E23008307D8 /* TopMenuCell.swift */; };
+		0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472831222B878F7002EF9E5 /* QRCaptureController.swift */; };
 		04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4D22818BD100758E56 /* Extension + UIButton.swift */; };
 		04738B502282749C00758E56 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ColorTheme.swift */; };
 		04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E3E228AA91900049F89 /* PWSwitch.swift */; };
@@ -175,6 +178,8 @@
 		0444D09B22A512D5001E412C /* BottomMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
 		0444D09C22A512D6001E412C /* BottomMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuView.xib; sourceTree = "<group>"; };
 		0444D09F22A51400001E412C /* PWBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWBlurView.swift; sourceTree = "<group>"; };
+		04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAmountController.swift; sourceTree = "<group>"; };
+		04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmController.swift; sourceTree = "<group>"; };
 		044A43DC22A0BD3300274B04 /* splash_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_wh.json; sourceTree = "<group>"; };
 		044A43DE22A0C59D00274B04 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		044A43E222A117C100274B04 /* TEstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEstViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
 		0468C5FC22966E15008307D8 /* TopMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuCell.xib; sourceTree = "<group>"; };
 		0468C5FE22966E23008307D8 /* TopMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
+		0472831222B878F7002EF9E5 /* QRCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCaptureController.swift; sourceTree = "<group>"; };
 		04738B4D22818BD100758E56 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		04738B4F2282749C00758E56 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
@@ -592,7 +598,9 @@
 			children = (
 				04BA0B0822B7621100A25A93 /* Cells */,
 				044BC59B2279A18B00FD7E5E /* TransferController.swift */,
-				042FF41522B3774300666DF9 /* QROverlay.swift */,
+				0472831222B878F7002EF9E5 /* QRCaptureController.swift */,
+				04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */,
+				04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */,
 			);
 			path = 6_Transfer;
 			sourceTree = "<group>";
@@ -698,6 +706,7 @@
 		04BA0B0822B7621100A25A93 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				042FF41522B3774300666DF9 /* QROverlay.swift */,
 				04BA0B0922B7623100A25A93 /* ContactCell.swift */,
 				04BA0B0B22B7625700A25A93 /* ContactCell.xib */,
 				04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */,
@@ -1016,6 +1025,7 @@
 			files = (
 				04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */,
 				04C82C7F228429C000235883 /* PWButton.swift in Sources */,
+				04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */,
 				04FBCA57229E908100DEEDD9 /* Route.swift in Sources */,
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
 				04D3A0E422B0F41D00E54E96 /* PlanetWalletDBManger.swift in Sources */,
@@ -1050,6 +1060,7 @@
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
 				044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */,
+				04491C2022B8988C00A5DC14 /* TransferAmountController.swift in Sources */,
 				04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */,
 				0444D0A022A51400001E412C /* PWBlurView.swift in Sources */,
 				0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */,
@@ -1082,6 +1093,7 @@
 				04D3A0DF22B0D26200E54E96 /* FMResultSet.m in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,
 				04D3A0DE22B0D26200E54E96 /* FMDatabaseAdditions.m in Sources */,
+				0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */,
 				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
 				042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */,
