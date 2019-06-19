@@ -72,6 +72,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         
         guard isConfirmedPW else {
             titleLb.text = "Confirm code"
+            passwordStr = ""
             pwBeforeConfirmed = pw
             isConfirmedPW = true
             setNumberPad(position: 0)
@@ -96,22 +97,25 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             detailLb.textColor = currentTheme.errorText
 
             self.pinView.setSelectedColor(0)
-            self.numPad.resetPassword()
             self.charPad.resetPassword()
+            self.passwordStr = ""
             
             showNumberPad(true)
         }
-        
-        
     }
 }
 
 extension PinCodeRegistrationController: NumberPadDelegate {
+    func didTouchedDelete() {
+        passwordStr = String(passwordStr.dropLast())
+    }
+    
     func didTouchedNumberPad(_ num: String) {
-        if num.count == 4 {
+        if passwordStr.count == 3 {
             showNumberPad(false)
         }
-        passwordStr = num
+        
+        passwordStr += num
     }
 }
 
@@ -119,24 +123,18 @@ extension PinCodeRegistrationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
         //Register pincode
         passwordStr += char
-        
         handleCompleteRegistration(passwordStr)
     }
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
         if isBack {
             setNumberPad(position: 3)
+            passwordStr = String(passwordStr.dropLast())
         }
     }
     
     private func setNumberPad(position: Int = 0) {
         pinView.setSelectedColor(position)
-        if position == 0 {
-            numPad.resetPassword()
-        }
-        else if position == 3 {
-            numPad.deleteLastPW()
-        }
         showNumberPad(true)
     }
 }

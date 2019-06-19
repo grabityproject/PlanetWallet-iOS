@@ -112,12 +112,16 @@ class PinCodeCertificationController: PlanetWalletViewController {
 }
 
 extension PinCodeCertificationController: NumberPadDelegate {
+    func didTouchedDelete() {
+        passwordStr = String(passwordStr.dropLast())
+    }
+    
     func didTouchedNumberPad(_ num: String) {
-        if num.count == 4 {
+        if passwordStr.count == 3 {
             showNumberPad(false)
         }
         
-        passwordStr = num
+        passwordStr += num
     }
 }
 
@@ -136,7 +140,6 @@ extension PinCodeCertificationController: CharPadDelegate {
             detailLb.textColor = currentTheme.errorText
             
             self.passwordStr = ""
-            self.numPad.resetPassword()
             self.charPad.resetPassword()
             
             showNumberPad(true)
@@ -145,9 +148,8 @@ extension PinCodeCertificationController: CharPadDelegate {
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
         if isBack {
-            pinView.setSelectedColor(3)
-            numPad.deleteLastPW()
             showNumberPad(true)
+            passwordStr = String(passwordStr.dropLast())
         }
     }
     

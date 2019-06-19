@@ -25,16 +25,24 @@ class TransferAmountController: PlanetWalletViewController {
     }
     @IBOutlet var titlePlanetView: PlanetView!
     
-    var amountCoin = 0.0 {
+    var inputAmount = "" {
         didSet {
-            displayLb.text = "\(amountCoin)"
-            let currency = amountCoin * 1230
-            fiatDisplayLb.text = "\(currency)"
-            
-            if amountCoin > 0 {
-                submitBtn.setEnabled(true, theme: currentTheme)
+            if let inputNum = Double(inputAmount) {
+                displayLb.text = inputAmount
+                let currency = inputNum * 1230
+                fiatDisplayLb.text = "\(currency)"
+                
+                if inputNum > 0 {
+                    submitBtn.setEnabled(true, theme: currentTheme)
+                }
+                else {
+                    submitBtn.setEnabled(false, theme: currentTheme)
+                }
             }
-            else {
+            else if inputAmount.isEmpty {
+                inputAmount = "0"
+                displayLb.text = "0"
+                fiatDisplayLb.text = "0"
                 submitBtn.setEnabled(false, theme: currentTheme)
             }
         }
@@ -55,6 +63,8 @@ class TransferAmountController: PlanetWalletViewController {
         
         self.titleWithPlanetContainer.bringSubviewToFront(naviBar)
         self.titlePlanetView.data = titlePlanetNameLb.text!
+        
+        self.inputAmount = "0"
     }
     
     //MARK: - IBAction
@@ -66,13 +76,26 @@ class TransferAmountController: PlanetWalletViewController {
 }
 
 extension TransferAmountController: NumberPadDelegate {
+    func didTouchedDelete() {
+        self.inputAmount = String(inputAmount.dropLast())
+    }
+    
     func didTouchedNumberPad(_ num: String) {
-        if num == "" {
-            self.amountCoin = 0.0
+        if let _ = Int(num) {
+            if inputAmount == "0" {
+                inputAmount = num
+            }
+            else {
+                self.inputAmount += num
+            }
         }
         else {
-            if let number = Double(num) {
-                self.amountCoin = number
+            if inputAmount.contains(".") == true { return }
+            if inputAmount.isEmpty || inputAmount == "0" {
+                self.inputAmount = "0."
+            }
+            else {
+                self.inputAmount += "."
             }
         }
     }

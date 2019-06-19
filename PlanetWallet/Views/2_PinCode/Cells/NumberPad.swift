@@ -11,6 +11,7 @@ import UIKit
 protocol NumberPadDelegate: class {
     //Number Pad에서 버튼을 눌렀을 때
     func didTouchedNumberPad(_ num: String)
+    func didTouchedDelete()
 }
 
 class NumberPad: UIView {
@@ -21,21 +22,23 @@ class NumberPad: UIView {
     @IBOutlet var numBtnList: [PWButton]!
     @IBOutlet var pointBtn: UIButton!
     
+    // key pad에 .(point)가 필요한지
     public var shouldPoint: Bool = false {
         didSet {
             if shouldPoint {
                 pointBtn.setTitle(".", for: .normal)
                 pointBtn.isEnabled = true
+                setKeyPad(true)
             }
             else {
                 pointBtn.setTitle("", for: .normal)
                 pointBtn.isEnabled = false
+                setKeyPad(false)
             }
         }
     }
     
-    private var numberDataList = [0,1,2,3,4,5,6,7,8,9]
-    var pw_number = ""
+    private var numberDataList = [1,2,3,4,5,6,7,8,9,0]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,35 +61,30 @@ class NumberPad: UIView {
         setKeyPad()
     }
 
-    public func setKeyPad() {
-        
-        let shuffledNumberDataList = numberDataList.shuffled()
-        
-        for (idx,btn) in numBtnList.enumerated() {
-            btn.setTitle("\(shuffledNumberDataList[idx])", for: .normal)
+    public func setKeyPad(_ isArranged: Bool = false) {
+        if isArranged {
+            for (idx,btn) in numBtnList.enumerated() {
+                btn.setTitle("\(numberDataList[idx])", for: .normal)
+            }
         }
-    }
-    
-    public func deleteLastPW() {
-        pw_number = String(pw_number.dropLast())
-    }
-    
-    public func resetPassword() {
-        pw_number = ""
+        else {
+            let shuffledNumberDataList = numberDataList.shuffled()
+            for (idx,btn) in numBtnList.enumerated() {
+                btn.setTitle("\(shuffledNumberDataList[idx])", for: .normal)
+            }
+        }
     }
     
     @IBAction func didTouchedNumPad(_ sender: UIButton) {
         
         if sender.tag == 1 {    // Delete button
-            if pw_number.count < 1 { return }
-            pw_number = String(pw_number.dropLast())
+            delegate?.didTouchedDelete()
         }
         else {
             if let selectedNumber = sender.titleLabel?.text {
-                pw_number = pw_number + selectedNumber
+                delegate?.didTouchedNumberPad(selectedNumber)
             }
         }
-        delegate?.didTouchedNumberPad(pw_number)
     }
 
     
