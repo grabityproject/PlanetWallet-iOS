@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="WorkSans-Medium.otf">
+            <string>WorkSans-Medium</string>
+        </array>
         <array key="WorkSans-Regular.otf">
             <string>WorkSans-Regular</string>
         </array>
@@ -19,6 +22,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NumberPad" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="RdB-Mf-4hp"/>
+                <outlet property="pointBtn" destination="XKS-pl-dM1" id="29X-LW-6uN"/>
                 <outletCollection property="numBtnList" destination="ebx-MH-6iu" collectionClass="NSMutableArray" id="2HH-N1-Dvk"/>
                 <outletCollection property="numBtnList" destination="vCL-6h-ddj" collectionClass="NSMutableArray" id="o6e-W7-tah"/>
                 <outletCollection property="numBtnList" destination="20o-jz-Vwh" collectionClass="NSMutableArray" id="rAs-Xf-PS3"/>
@@ -220,11 +224,23 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CPA-Oo-AdE">
                             <rect key="frame" x="0.0" y="329.5" width="390" height="109.5"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-pl-dM1">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-pl-dM1" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="109.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="28"/>
                                     <state key="normal">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" name="textColorLight"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextHighlightColor">
+                                            <color key="value" name="detailTextDark"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTouchedNumPad:" destination="-1" eventType="touchUpInside" id="a5M-1j-g8X"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-KL-Zd5" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="130" y="0.0" width="130" height="109.5"/>

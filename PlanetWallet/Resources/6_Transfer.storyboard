@@ -732,13 +732,32 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="didTouchedConfirm:" destination="ekD-Ro-HFD" eventType="touchUpInside" id="tlC-KJ-DDF"/>
                                     <action selector="didTouchedSubmit:" destination="BHi-uj-C1t" eventType="touchUpInside" id="Brg-FI-87t"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nqe-zD-6Ik">
+                                <rect key="frame" x="315" y="438.5" width="39" height="32.5"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Reset">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="14" name="WorkSans-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="didTouchedResetGas:" destination="ekD-Ro-HFD" eventType="touchUpInside" id="rTG-a2-bP4"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjs-zQ-6bF" userLabel="Fee Container">
                                 <rect key="frame" x="21" y="438.5" width="333" height="154"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ya4-WZ-3VU" customClass="PWSlider" customModule="PlanetWallet" customModuleProvider="target">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="ya4-WZ-3VU" customClass="PWSlider" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="-2" y="0.0" width="337" height="31"/>
                                         <color key="minimumTrackTintColor" name="errorText"/>
                                         <color key="maximumTrackTintColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -751,6 +770,9 @@
                                                 <color key="value" red="0.92941176470588238" green="0.92941176470588238" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didChanged:" destination="ekD-Ro-HFD" eventType="valueChanged" id="Mar-ZA-agL"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-fW-0DS">
                                         <rect key="frame" x="0.0" y="35" width="33.5" height="20.5"/>
@@ -764,7 +786,7 @@
                                         <color key="textColor" name="errorText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-zC-E5u">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-zC-E5u" userLabel="Advanced Options Container">
                                         <rect key="frame" x="133" y="75.5" width="200" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rx-YJ-nIc" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -790,6 +812,9 @@
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-X8-3mh">
                                                 <rect key="frame" x="50.5" y="0.0" width="149.5" height="20"/>
+                                                <connections>
+                                                    <action selector="didTouchedAdvancedOpt:" destination="ekD-Ro-HFD" eventType="touchUpInside" id="SNA-Z0-mOa"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -824,6 +849,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ukF-wZ-NLs" firstAttribute="height" secondItem="6g8-F1-nGN" secondAttribute="height" multiplier="0.082" id="46V-O0-VIp"/>
+                            <constraint firstItem="Nqe-zD-6Ik" firstAttribute="top" secondItem="Yjs-zQ-6bF" secondAttribute="top" id="6X7-Sl-Z2o"/>
                             <constraint firstItem="hZb-Vf-LAF" firstAttribute="trailing" secondItem="q6W-VG-PMV" secondAttribute="trailing" id="BW6-MM-cz6"/>
                             <constraint firstItem="q6W-VG-PMV" firstAttribute="leading" secondItem="hZb-Vf-LAF" secondAttribute="leading" id="E05-7w-rU3"/>
                             <constraint firstItem="06x-Ng-Eqq" firstAttribute="top" secondItem="6g8-F1-nGN" secondAttribute="top" id="JJi-9y-jvB"/>
@@ -840,6 +866,7 @@
                             <constraint firstItem="9s9-Ve-49P" firstAttribute="leading" secondItem="hZb-Vf-LAF" secondAttribute="leading" constant="21" id="khk-Xs-oAG"/>
                             <constraint firstItem="Yjs-zQ-6bF" firstAttribute="top" secondItem="qfd-gI-2bs" secondAttribute="bottom" constant="15" id="nbB-fv-fAl"/>
                             <constraint firstItem="hZb-Vf-LAF" firstAttribute="trailing" secondItem="ukF-wZ-NLs" secondAttribute="trailing" constant="21" id="ndK-8o-CFq"/>
+                            <constraint firstItem="Nqe-zD-6Ik" firstAttribute="trailing" secondItem="Yjs-zQ-6bF" secondAttribute="trailing" id="oIK-le-E4T"/>
                             <constraint firstItem="qfd-gI-2bs" firstAttribute="top" secondItem="9s9-Ve-49P" secondAttribute="bottom" constant="15" id="sfM-TH-jOZ"/>
                             <constraint firstItem="hZb-Vf-LAF" firstAttribute="bottom" secondItem="ukF-wZ-NLs" secondAttribute="bottom" constant="20" id="sfZ-Z9-bVl"/>
                             <constraint firstItem="06x-Ng-Eqq" firstAttribute="leading" secondItem="6g8-F1-nGN" secondAttribute="leading" id="syc-LZ-qhP"/>
@@ -854,10 +881,43 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="fromLb" destination="XtS-I2-Cbe" id="gpY-iV-KY1"/>
+                        <outlet property="gasContainer" destination="Yjs-zQ-6bF" id="brs-DK-g5E"/>
+                        <outlet property="gasFeeLb" destination="UE8-AB-GaN" id="tBH-Fx-99O"/>
+                        <outlet property="naviBar" destination="06x-Ng-Eqq" id="h5V-Ns-csV"/>
+                        <outlet property="resetBtn" destination="Nqe-zD-6Ik" id="wqv-YC-yPG"/>
+                        <outlet property="slider" destination="ya4-WZ-3VU" id="bEP-oX-ZVQ"/>
+                        <outlet property="transferAmountLb" destination="bID-2q-oyL" id="JAf-bg-8eL"/>
+                        <segue destination="pHw-cc-Vrn" kind="presentation" identifier="transferconfirm_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="1e1-hT-iIu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qlw-1k-BE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2029.5999999999999" y="-113.79310344827587"/>
+        </scene>
+        <!--PinCodeCertificationController-->
+        <scene sceneID="8G1-re-ss7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="2_PinCode" referencedIdentifier="PinCodeCertificationController" id="pHw-cc-Vrn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7AH-IE-tR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="-530"/>
+        </scene>
+        <!--Tx Receipt Controller-->
+        <scene sceneID="CPC-v8-6ro">
+            <objects>
+                <viewController storyboardIdentifier="TxReceiptController" id="qCf-hv-6aZ" customClass="TxReceiptController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wBR-Ym-ei0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Oym-t1-XMy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWE-IL-CwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2940" y="-121"/>
         </scene>
         <!--Capture Controller-->
         <scene sceneID="slC-14-oHz">

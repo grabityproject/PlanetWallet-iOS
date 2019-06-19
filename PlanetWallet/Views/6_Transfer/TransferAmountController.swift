@@ -46,6 +46,8 @@ class TransferAmountController: PlanetWalletViewController {
         
         keyPad.delegate = self
         naviBar.delegate = self
+        
+        keyPad.shouldPoint = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -19,6 +19,20 @@ class NumberPad: UIView {
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var numBtnList: [PWButton]!
+    @IBOutlet var pointBtn: UIButton!
+    
+    public var shouldPoint: Bool = false {
+        didSet {
+            if shouldPoint {
+                pointBtn.setTitle(".", for: .normal)
+                pointBtn.isEnabled = true
+            }
+            else {
+                pointBtn.setTitle("", for: .normal)
+                pointBtn.isEnabled = false
+            }
+        }
+    }
     
     private var numberDataList = [0,1,2,3,4,5,6,7,8,9]
     var pw_number = ""
@@ -62,6 +76,7 @@ class NumberPad: UIView {
     }
     
     @IBAction func didTouchedNumPad(_ sender: UIButton) {
+        
         if sender.tag == 1 {    // Delete button
             if pw_number.count < 1 { return }
             pw_number = String(pw_number.dropLast())

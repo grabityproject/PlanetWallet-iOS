@@ -17,7 +17,7 @@ extension PinCodeCertificationController {
             case .SPLASH:               return Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION
             case .REGISTRATION:         return Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION
             case .RESET:                return Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
-            case .TRANSFER:             return ""
+            case .TRANSFER:             return Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION
             case .MNEMONIC_EXPORT:      return Keys.Segue.MNEMONIC_EXPORT_TO_PINCODE_CERTIFICATION
             case .PRIVATEKEY_EXPORT:    return Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
             case .MAIN:                 return Keys.Segue.MAIN_TO_PINCODECERTIFICATION
@@ -91,7 +91,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
         case .PRIVATEKEY_EXPORT:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: nil)
         case .TRANSFER:
-            self.dismiss(animated: true, completion: nil)
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_TX_RECEIPT, userInfo: nil)
         case .MAIN:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
         }
