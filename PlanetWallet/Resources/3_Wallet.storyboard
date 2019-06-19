@@ -28,7 +28,7 @@
                 <viewControllerPlaceholder storyboardName="4_Main" referencedIdentifier="mainNavigationController" id="Umk-xz-uWI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="quQ-ge-ZIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1151" y="-591"/>
+            <point key="canvasLocation" x="1158" y="-617"/>
         </scene>
         <!--Planet Generate Controller-->
         <scene sceneID="aLR-Tk-YQR">
@@ -290,7 +290,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmE-zL-nhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Zbi-dO-1fj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="535.20000000000005" y="-592.35382308845578"/>
+            <point key="canvasLocation" x="537" y="-617"/>
         </scene>
         <!--Wallet Add Controller-->
         <scene sceneID="JRM-8F-vJv">
@@ -657,7 +657,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Json File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRe-Fg-EnO" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="186.66666666666666" width="93" height="16.333333333333343"/>
+                                <rect key="frame" x="20" y="190.33333333333334" width="103" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -668,7 +668,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znE-hZ-xCP" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="111.66666666666669" width="335" height="55"/>
+                                <rect key="frame" x="20" y="115.33333333333331" width="335" height="55"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageInputInvisibleDarkgray" translatesAutoresizingMaskIntoConstraints="NO" id="bGu-Jx-vf4" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="289" y="8" width="40" height="40"/>
@@ -740,7 +740,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEC-It-Oel" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="214" width="335" height="237"/>
+                                <rect key="frame" x="20" y="221.66666666666663" width="335" height="237"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="84D-wU-uzO" customClass="PWTextView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="17" width="305" height="203"/>
@@ -804,7 +804,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba6-c5-9TD" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="98" height="16.666666666666671"/>
+                                <rect key="frame" x="20" y="84" width="107" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -815,7 +815,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-41-gS9">
-                                <rect key="frame" x="20" y="456" width="331" height="25"/>
+                                <rect key="frame" x="20" y="463.66666666666669" width="331" height="25"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--------------------------------------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Lgl-IS-v5e">
                                         <rect key="frame" x="0.0" y="5" width="306" height="15"/>
@@ -824,7 +824,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageWarning" translatesAutoresizingMaskIntoConstraints="NO" id="39k-6w-v5T">
-                                        <rect key="frame" x="311" y="2.6666666666666856" width="20" height="20"/>
+                                        <rect key="frame" x="311" y="2.6666666666666288" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="wPQ-KK-3Tc"/>
                                             <constraint firstAttribute="width" constant="20" id="yeP-dK-56h"/>
@@ -1012,7 +1012,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageWarning" translatesAutoresizingMaskIntoConstraints="NO" id="Ih3-6d-lCP">
-                                        <rect key="frame" x="326" y="2.3333333333333428" width="20" height="20"/>
+                                        <rect key="frame" x="326" y="2.6666666666666856" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="pQa-1D-jCC"/>
                                             <constraint firstAttribute="width" constant="20" id="rdj-Ot-GGl"/>
@@ -1211,7 +1211,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageWarning" translatesAutoresizingMaskIntoConstraints="NO" id="NPo-hd-3Ox">
-                                        <rect key="frame" x="315" y="2.3333333333333144" width="20" height="20"/>
+                                        <rect key="frame" x="315" y="2.6666666666666288" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="2lJ-1z-IY4"/>
                                             <constraint firstAttribute="height" constant="20" id="r6B-Ev-PDD"/>
