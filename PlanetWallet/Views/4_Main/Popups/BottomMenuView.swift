@@ -14,6 +14,9 @@ protocol BottomMenuDelegate {
     func didTouchedSend()
 }
 
+/*
+ Coin(ETH / BTC)과 관련된 팝업뷰
+ */
 class BottomMenuView: UIView {
 
     var delegate: BottomMenuDelegate?
@@ -24,7 +27,6 @@ class BottomMenuView: UIView {
     @IBOutlet var addressLb: UILabel!
     @IBOutlet var amountLb: UILabel!
     @IBOutlet var coinTypeLb: UILabel!
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

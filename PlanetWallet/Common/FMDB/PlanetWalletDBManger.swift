@@ -12,12 +12,9 @@ class PlanetWalletDBManger : DBManager {
 
     static let shared: PlanetWalletDBManger = PlanetWalletDBManger()
     
-    private let tableName = "Test"
-    private let fieldID = "id"
-    private let fieldName = "name"
-    
+        
     override func getDatabaseVersion() -> UInt32 {
-        return 3
+        return 0
     }
     
     override func getDatabseName() -> String? {
@@ -25,14 +22,42 @@ class PlanetWalletDBManger : DBManager {
     }
 
     override func createTables(_ database: FMDatabase) -> Bool {
-        let createTableQuery = "create table " + tableName +
-            " (" +
-            "\(fieldID) integer primary key autoincrement not null, " +
-            "\(fieldName) TEXT" +
-            ")"
-        
         do {
-            try database.executeUpdate(createTableQuery, values: nil)
+            
+            
+            let createPlanetTable = "CREATE TABLE Planet( " +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "keyId TEXT," +
+                "pathIndex TEXT," +
+                "name TEXT," +
+                "address TEXT," +
+                "balance TEXT," +
+                "coinType TEXT," +
+                "coinName TEXT," +
+                "symbol TEXT," +
+                "hide TEXT," +
+                "decimals TEXT" +
+            ")"
+            let createERC20Table = "CREATE TABLE ERC20( " +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "keyId TEXT," +
+                "balance TEXT," +
+                "name TEXT," +
+                "symbol TEXT," +
+                "decimals TEXT," +
+                "contract TEXT" +
+            ")";
+            
+            let keyPairTable = "CREATE TABLE KeyPair( " +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "keyId TEXT," +
+                "value TEXT," +
+                "master TEXT" +
+            ")";
+            
+            try database.executeUpdate(createPlanetTable, values: nil)
+            try database.executeUpdate(createERC20Table, values: nil)
+            try database.executeUpdate(keyPairTable, values: nil)
             return true
         }
         catch {
@@ -40,80 +65,9 @@ class PlanetWalletDBManger : DBManager {
         }
     }
     
-    override func updateTables(_ database: FMDatabase) -> Bool {
+    override func updateTables(_ database: FMDatabase, _ oldVersion: UInt32, _ newVersion: UInt32) -> Bool {
         
         return true
-        
-        //Test update table
-        /*
-        if openDatabase() {
-            if !(database.columnExists(tableName, columnName: "addedField")) {
-                
-                let alterTable = "ALTER TABLE \(tableName) ADD COLUMN addedField TEXT"
-                if database.executeUpdate(alterTable, withArgumentsIn: []) {
-                    print("new column added")
-                }
-                else {
-                    print("issue in operation")
-                }
-                return true
-            }
-        }
- 
-        return false
-         */
-    }
-    
-    public func insertTest() throws {
-        if openDatabase() {
-            let id = Int.random(in: 0..<10000)
-            let name = "ansrbthd\(id)"
-            let query = "insert into " + tableName +
-                " (" +
-                    "\(fieldID), " +
-                    "\(fieldName)" +
-                ")" +
-                " values " +
-                "('\(id)', '\(name)'" +
-                ");"
-            
-            if database.executeStatements(query) {
-                database.close()
-            }
-            else {
-                database.close()
-                throw DBError.executeStatementsError
-            }
-        }
-        else {
-            throw DBError.unableOpenDBError
-        }
-    }
-    
-    public func loadTest() throws {
-        if openDatabase() {
-            let query = "select * from \(tableName)"
-            
-            do {
-                let results = try database.executeQuery(query, values: nil)
-                
-                while results.next() {
-                    if let id = results.string(forColumn: fieldID),
-                        let name = results.string(forColumn: fieldName) {
-                        print("id : \(id), name : \(name)")
-                    }
-                }
-                
-                database.close()
-            }
-            catch {
-                database.close()
-                throw DBError.executeStatementsError
-            }
-        }
-        else {
-           throw DBError.unableOpenDBError
-        }
     }
     
 }

@@ -21,14 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func createDatabase() {
-        PlanetWalletDBManger.shared;
-//        DBManager()
-//        if DBManager.shared.createDatabase() {
-//            print("success to create database")
-//        }
-//        else {
-//            print("already created database")
-//        }
+        _ = PlanetWalletDBManger.shared
     }
 
     private func setNavigationBar() {

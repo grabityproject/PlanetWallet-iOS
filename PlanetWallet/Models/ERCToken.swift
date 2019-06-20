@@ -9,6 +9,34 @@
 import Foundation
 import ObjectMapper
 
+class ERC20: Mappable {
+    
+    var _id : String?
+    var keyId : String?
+    var balance : String?
+    var name : String?
+    var symbol : String?
+    var decimals : String?
+    var contract : String?
+    
+    required init?(map: Map) {
+    }
+    
+    init() {
+        
+    }
+    
+    func mapping(map: Map) {
+        self._id     <- map["_id"]
+        self.keyId             <- map["keyId"]
+        self.balance             <- map["balance"]
+        self.name                <- map["name"]
+        self.symbol              <- map["symbol"]
+        self.decimals                <- map["decimals"]
+        self.contract              <- map["contract"]
+    }
+}
+
 class ERCToken: Mappable {
     var contractAddress: String?
     var decimal: Int?

@@ -464,7 +464,7 @@
                 <viewControllerPlaceholder storyboardName="2_PinCode" referencedIdentifier="PinCodeCertificationController" id="WEJ-Fv-EyR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmj-g6-vw9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="273"/>
+            <point key="canvasLocation" x="824" y="273"/>
         </scene>
     </scenes>
     <resources>

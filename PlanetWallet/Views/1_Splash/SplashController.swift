@@ -8,7 +8,7 @@
 
 import UIKit
 import Lottie
-
+import ObjectMapper
 
 class SplashController: PlanetWalletViewController{
     
@@ -20,8 +20,8 @@ class SplashController: PlanetWalletViewController{
         super.viewInit()
         
         switch currentTheme {
-        case .DARK:         self.animationView.animation = Animation.named("splash")
-        case .LIGHT:        self.animationView.animation = Animation.named("splash_wh")
+        case .DARK:         self.animationView.animation = Animation.named("splash_03_bk")
+        case .LIGHT:        self.animationView.animation = Animation.named("splash_03_wh")
         }
 
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,18 +54,58 @@ class SplashController: PlanetWalletViewController{
         
         
         //DB Test
-        /*
-        try! PlanetWalletDBManger.shared.insertTest()
-        try! PlanetWalletDBManger.shared.insertTest()
-        try! PlanetWalletDBManger.shared.loadTest()
-         */
+        let erc = ERC20()
+        erc.keyId = "INSERT"
+        erc.balance = "4444"
+        erc.contract = "aadasdasdasd"
         
-        if PlanetWalletDBManger.shared.database.columnExists("addedField", inTableWithName: "Test") {
-            print("success to update tables")
+        PlanetWalletDBManger.shared.insert(erc)
+        
+//
+//
+        
+//        PlanetWalletDBManger.shared.insert(erc)
+        
+        let list = try! PlanetWalletDBManger.shared.select(ERC20.self)
+        list.forEach { (token) in
+            print()
+            print(token.keyId)
+            print(token.balance)
+            print(token.contract)
+            print()
         }
-        else {
-            print("failed to update tables")
+        
+        
+        erc.balance = "kdjdjdj"
+        print(PlanetWalletDBManger.shared.update(erc, "keyId = 'INSERT' AND balance='4444'"))
+        
+        
+        let list3 = try! PlanetWalletDBManger.shared.select(ERC20.self)
+        list3.forEach { (token) in
+            print()
+            print(token.keyId)
+            print(token.balance)
+            print(token.contract)
+            print()
         }
+        
+        print(PlanetWalletDBManger.shared.delete(erc, "keyId = 'INSERT'"))
+        
+        let list34 = try! PlanetWalletDBManger.shared.select(ERC20.self)
+        list34.forEach { (token) in
+            print()
+            print(token.keyId)
+            print(token.balance)
+            print(token.contract)
+            print()
+        }
+        
+        
+//        try! PlanetWalletDBManger.shared.insertTest()
+//        try! PlanetWalletDBManger.shared.select("Test", TestObject.self)
+//        try! PlanetWalletDBManger.shared.loadTest()
+        
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -105,5 +145,17 @@ class SplashController: PlanetWalletViewController{
 }
 
 
-
+class TestObject: Mappable {
+    var id: String?
+    var name: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        self.id             <- map["id"]
+        self.name           <- map["name"]
+    }
+}
 
