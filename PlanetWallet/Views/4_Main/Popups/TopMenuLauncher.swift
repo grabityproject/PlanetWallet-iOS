@@ -12,20 +12,6 @@ protocol TopMenuLauncherDelegate {
     func didSelectedUniverse(_ universe: Universe)
 }
 
-struct Universe {
-    var type: UniverseType = .ETH
-    let name: String
-    let coinList: [ERCToken]?
-    let transactionList: [BTCTransaction]?
-    
-    init(type: UniverseType, name: String, coinList: [ERCToken]?, transactions: [BTCTransaction]?) {
-        self.type = type
-        self.name = name
-        self.coinList = coinList
-        self.transactionList = transactions
-    }
-}
-
 class TopMenuLauncher: NSObject {
     
     var delegate: TopMenuLauncherDelegate?
@@ -52,7 +38,7 @@ class TopMenuLauncher: NSObject {
         
         let ethUniverse = Universe(type: .ETH,
                                    name: "Alien",
-                                   coinList: [ERCToken(),ERCToken(),ERCToken(),ERCToken()],
+                                   coinList: [ERCToken(name: "Grabity", symbol: "GBT", decimal: "18", contractAdd: "0xsdanjkasdfb", imgPath: nil)],
                                    transactions: nil)
         
         let btcUniverse2 = Universe(type: .BTC,

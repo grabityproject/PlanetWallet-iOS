@@ -13,7 +13,7 @@ class MainController: PlanetWalletViewController {
 
     var statusHeight: CGFloat { return Utils.shared.statusBarHeight() }
     
-    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [ERCToken()], transactions: nil) {
+    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [ERCToken(name: "Grabity", symbol: "GBT", decimal: "18", contractAdd: "0xsdanjkasdfb", imgPath: nil)], transactions: nil) {
         didSet {
             self.updateUniverse()
         }
@@ -197,12 +197,14 @@ class MainController: PlanetWalletViewController {
         case .ETH:
             ethDataSource.coinList = universe.coinList
             tableView.dataSource = dataSources[0]
+            tableView.allowsSelection = true
             naviBar.title = "ETH"
             footerView.isEthUniverse = true
             footerView.isHidden = false
         case .BTC:
             btcDataSource.transactionList = universe.transactionList
             tableView.dataSource = dataSources[1]
+            tableView.allowsSelection = false
             naviBar.title = "BTC"
             footerView.isEthUniverse = false
             footerView.isHidden = !btcDataSource.transactionList!.isEmpty

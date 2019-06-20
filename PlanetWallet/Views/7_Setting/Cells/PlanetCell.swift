@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlanetCell: UITableViewCell {
+class PlanetCell: PWTableCell {
     
     @IBOutlet var containerView: PWView!
     @IBOutlet var planetView: PlanetView!
@@ -16,24 +16,9 @@ class PlanetCell: UITableViewCell {
     @IBOutlet var planetNameLb: PWLabel!
     @IBOutlet var addressLb: PWLabel!
     
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("PlanetCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

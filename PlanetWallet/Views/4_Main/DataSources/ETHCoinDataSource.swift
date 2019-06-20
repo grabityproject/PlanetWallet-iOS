@@ -16,7 +16,7 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
     override init() {
         super.init()
         
-        self.coinList = [ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken(), ERCToken()]
+        self.coinList = [ERCToken(name: "Grabity", symbol: "GBT", decimal: "18", contractAdd: "0xsdanjkasdfb", imgPath: nil)]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,11 +30,8 @@ class ETHCoinDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ETHCoinCell
-        cell.backgroundColor = .clear
         
-        let selectedView = UIView()
-        selectedView.backgroundColor = ThemeManager.currentTheme().border
-        cell.selectedBackgroundView = selectedView
+        
         
         return cell
     }

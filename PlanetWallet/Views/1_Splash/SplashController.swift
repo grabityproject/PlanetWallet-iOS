@@ -8,7 +8,7 @@
 
 import UIKit
 import Lottie
-import ObjectMapper
+
 
 class SplashController: PlanetWalletViewController{
     
@@ -49,8 +49,8 @@ class SplashController: PlanetWalletViewController{
             Post(self).action( Route.URL("planet","ETH"), requestCode: 0, resultCode: 0, data: param)
         }
          */
-        
-        Get(self).action(Route.URL("erc20"), requestCode: 0, resultCode: 0, data: nil)
+//        Get(self).action(Route.URL("ETH","Planet2"), requestCode: 0, resultCode: 0, data: nil)
+//        Get(self).action(Route.URL("erc20"), requestCode: 0, resultCode: 0, data: nil)
         
         
         //DB Test
@@ -95,30 +95,15 @@ class SplashController: PlanetWalletViewController{
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
         if let resultJson = result as? [Dictionary<String, Any>]
         {
-            let tokens:[ERCTokenSample] = Mapper<ERCTokenSample>().mapArray(JSONArray: resultJson)
+            print(result)
+//            let tokens:[ERCToken] = Mapper<ERCToken>().mapArray(JSONArray: resultJson)
         }
     }
 }
 
 
-class ERCTokenSample: Mappable {
-    var contractAddress: String?
-    var decimal: Int?
-    var imgPath: String?
-    var name: String?
-    var symbol: String?
-    
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        self.contractAddress     <- map["contract_address"]
-        self.decimal             <- map["decimal"]
-        self.imgPath             <- map["img_path"]
-        self.name                <- map["name"]
-        self.symbol              <- map["symbol"]
-    }
-}
+
 

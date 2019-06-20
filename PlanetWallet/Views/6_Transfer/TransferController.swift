@@ -19,6 +19,11 @@ extension TransferController {
 
 class TransferController: PlanetWalletViewController {
 
+    let dummyContacts = [Contact(name: "song0", address: "0xanj123xax1241c231x2c1", type: .ETH),
+                         Contact(name: "song1", address: "0x1421c46btdh2431x2c1", type: .ETH),
+                         Contact(name: "song2", address: "0xcv346225c234c5cx2c1", type: .ETH),
+                         Contact(name: "song3", address: "0x2v642325c23hiklll56", type: .ETH)]
+    
     private let contactCellID = "contactCell"
     private let contactAddressCellID = "contractAddressCell"
     @IBOutlet var naviBar: NavigationBar!
@@ -115,13 +120,14 @@ extension TransferController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dummyContacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: contractCellID) as! ContactCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: contactAddressCellID, for: indexPath) as! ContactAddrCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: contactCellID) as! ContactCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: contactAddressCellID, for: indexPath) as! ContactAddrCell
+        cell.contact = dummyContacts[indexPath.row]
+       
         return cell
     }
     

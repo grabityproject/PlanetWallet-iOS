@@ -12,7 +12,7 @@ protocol TokenCellDelegate: class {
     func didSelected(indexPath: IndexPath, isRegistered: Bool)
 }
 
-class TokenCell: UITableViewCell {
+class TokenCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var iconImgView: UIImageView!
@@ -30,23 +30,9 @@ class TokenCell: UITableViewCell {
         }
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("TokenCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

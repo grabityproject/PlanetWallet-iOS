@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BTCTransactionCell: UITableViewCell {
+class BTCTransactionCell: PWTableCell {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var planetNameLb: PWLabel!
@@ -26,19 +26,9 @@ class BTCTransactionCell: UITableViewCell {
         }
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("BTCTransactionCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

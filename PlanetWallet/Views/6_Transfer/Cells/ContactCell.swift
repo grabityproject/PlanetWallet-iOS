@@ -8,26 +8,25 @@
 
 import UIKit
 
-class ContactCell: UITableViewCell {
+class ContactCell: PWTableCell {
     
-    @IBOutlet var containerView: PWView!
-    @IBOutlet var planetView: PlanetView!
-    @IBOutlet var planetName: PWLabel!
-    @IBOutlet var addressLb: PWLabel!
+    @IBOutlet private var containerView: PWView!
+    @IBOutlet private var planetView: PlanetView!
+    @IBOutlet private var planetName: PWLabel!
+    @IBOutlet private var addressLb: PWLabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        commonInit()
+    public var contact: Contact? {
+        didSet {
+            guard let contact = contact else { return }
+            self.planetName.text = contact.name
+            self.planetView.data = contact.name
+            self.addressLb.text = contact.address
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("ContactCell", owner: self, options: nil)
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.frame = self.bounds

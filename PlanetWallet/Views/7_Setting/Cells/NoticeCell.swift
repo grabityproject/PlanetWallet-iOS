@@ -8,36 +8,20 @@
 
 import UIKit
 
-class NoticeCell: UITableViewCell {
+class NoticeCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var titleLb: PWLabel!
     @IBOutlet var dateLb: PWLabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("NoticeCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         addSubview(containerView)
-        
-        
     }
 
     @IBAction func didTouched(_ sender: UIButton) {

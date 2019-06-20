@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETHCoinCell: UITableViewCell {
+class ETHCoinCell: PWTableCell {
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var coinIconImg: UIImageView!
@@ -16,30 +16,14 @@ class ETHCoinCell: UITableViewCell {
     @IBOutlet var amountLb: PWLabel!
     @IBOutlet var currencyLb: PWLabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    override func prepareForReuse() {
-        self.selectedBackgroundView = nil
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("ETHCoinCell", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
         addSubview(containerView)
-        
-        
     }
     
 }

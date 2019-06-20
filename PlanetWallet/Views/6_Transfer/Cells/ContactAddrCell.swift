@@ -8,25 +8,14 @@
 
 import UIKit
 
-class ContactAddrCell: UITableViewCell {
+class ContactAddrCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var addressLb: PWLabel!
     
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func commonInit() {
+        super.commonInit()
         
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
         Bundle.main.loadNibNamed("ContactAddrCell", owner: self, options: nil)
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.frame = self.bounds

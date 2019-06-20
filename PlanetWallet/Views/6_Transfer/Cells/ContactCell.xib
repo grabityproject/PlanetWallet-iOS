@@ -63,7 +63,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="15n-44-e6n" firstAttribute="leading" secondItem="bdP-dJ-sqq" secondAttribute="trailing" constant="20" id="4He-wT-F1f"/>
                 <constraint firstItem="bdP-dJ-sqq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="21" id="6ou-nR-Zie"/>
@@ -78,7 +78,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
-                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="132" y="152.92353823088456"/>
