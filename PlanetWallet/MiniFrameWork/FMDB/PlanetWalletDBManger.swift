@@ -1,5 +1,5 @@
 //
-//  PlanetWalletDBManger.swift
+//  PWDBManager.swift
 //  PlanetWallet
 //
 //  Created by grabity on 12/06/2019.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-class PlanetWalletDBManger : DBManager {
+class PWDBManager : DBManager {
 
-    static let shared: PlanetWalletDBManger = PlanetWalletDBManger()
+    static let shared: PWDBManager = PWDBManager()
     
         
     override func getDatabaseVersion() -> UInt32 {

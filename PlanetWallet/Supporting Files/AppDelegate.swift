@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func createDatabase() {
-        _ = PlanetWalletDBManger.shared
+        _ = PWDBManager.shared
     }
 
     private func setNavigationBar() {

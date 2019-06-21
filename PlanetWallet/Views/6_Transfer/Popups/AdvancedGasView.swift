@@ -16,19 +16,61 @@ class AdvancedGasView: UIView {
 
     var delegate: AdvancedGasViewDelegate?
     
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var drawerView: UIView!
+    
     @IBOutlet var containerView: UIView!
     @IBOutlet var contentView: UIView!
     @IBOutlet var dimView: UIView!
-    @IBOutlet var gasTextField: PWTextField!
-    @IBOutlet var gasTextFieldContainer: PWView!
+    @IBOutlet var gasPriceContainer: PWView!
+    @IBOutlet var gasPriceBtn: UIButton!
+    @IBOutlet var gasLimitBtn: UIButton!
+    @IBOutlet var gasLimitContainer: PWView!
     
-    @IBOutlet var gasLimitTextField: PWTextField!
-    @IBOutlet var gasLimitTextFieldContainer: PWView!
+    @IBOutlet var keyPad: UIView!
     
-    var gasPrice = 20
-    var gasLimit = 210000
+    var hasGasPriceFocus = true {
+        didSet {
+            if hasGasPriceFocus {
+                if let gasStr = gasPriceBtn.titleLabel?.text {
+                    self.inputText = gasStr
+                }
+                
+                self.gasPriceContainer.layer.borderColor = UIColor.black.cgColor
+                self.gasLimitContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
+                self.gasPriceBtn.setTitleColor(.black, for: .normal)
+                self.gasLimitBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
+            }
+            else {
+                if let gasLimitStr = gasLimitBtn.titleLabel?.text {
+                    self.inputText = gasLimitStr
+                }
+                
+                self.gasLimitContainer.layer.borderColor = UIColor.black.cgColor
+                self.gasPriceContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
+                self.gasPriceBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
+                self.gasLimitBtn.setTitleColor(.black, for: .normal)
+            }
+        }
+    }
     
-    var backgroundTapGesture : UITapGestureRecognizer!
+    var inputText = "\(AdvancedGasView.DEFAULT_GAS_PRICE)" {
+        didSet {
+            print(inputText)
+            if hasGasPriceFocus {
+                self.gasPriceBtn.setTitle(inputText, for: .normal)
+            }
+            else {
+                self.gasLimitBtn.setTitle(inputText, for: .normal)
+            }
+        }
+    }
+    
+    static let DEFAULT_GAS_PRICE = 20
+    static let DEFAULT_GAS_LIMIT = 210000
+    
+    var drawerPanGesture: UIPanGestureRecognizer!
+    var backgroundPanGesture: UIPanGestureRecognizer!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,22 +94,12 @@ class AdvancedGasView: UIView {
         contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         contentView.layer.masksToBounds = true
         
-        backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction));
-        dimView.addGestureRecognizer(backgroundTapGesture)
-        
-        gasLimitTextField.delegate = self
-        gasTextField.delegate = self
+        drawerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
+        drawerView.addGestureRecognizer(drawerPanGesture)
+        backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
+        backgroundView.addGestureRecognizer(backgroundPanGesture)
         
         setTheme(ThemeManager.currentTheme())
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIWindow.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardWillHide),
-                                               name: UIWindow.keyboardWillHideNotification,
-                                               object: nil)
     }
     
     //MARK: - Interface
@@ -91,12 +123,8 @@ class AdvancedGasView: UIView {
     }
     
     public func reset() {
-        self.gasTextField.text = "\(gasPrice)"
-        self.gasLimitTextField.text = "\(gasLimit)"
-    }
-
-    @objc func backgroundTapAction(_ recognizer: UITapGestureRecognizer) {
-        self.hide()
+        self.gasPriceBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_PRICE)", for: .normal)
+        self.gasLimitBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_LIMIT)", for: .normal)
     }
     
     //MARK: - Private
@@ -112,55 +140,76 @@ class AdvancedGasView: UIView {
         }
     }
     
+    
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
-        if let gas = Int(gasTextField.text!), let limit = Int(gasLimitTextField.text!) {
+        
+        if let gas = Int(gasPriceBtn.titleLabel!.text!),
+            let limit = Int(gasLimitBtn.titleLabel!.text!)
+        {
             delegate?.didTouchedSave(gas, gasLimit: limit)
         }
         
         self.hide()
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
-            if self.frame.origin.y == 0 {
-                self.frame.origin.y = -keyboardHeight
-            }
+    @IBAction func didTouchedCancel(_ sender: UIButton) {
+        self.hide()
+    }
+    
+    @IBAction func didTouchedGasPrice(_ sender: UIButton) {
+        hasGasPriceFocus = true
+    }
+    
+    @IBAction func didTouchedGasLimit(_ sender: UIButton) {
+        hasGasPriceFocus = false
+    }
+    
+    @IBAction func didTouchedKey(_ sender: UIButton) {
+        if sender.tag == 0 {
+            guard let text = sender.titleLabel?.text else { return }
+            inputText += text
+        }
+        else { //delete btn
+            inputText = String(inputText.dropLast())
         }
     }
     
-    @objc func keyboardWillHide(notification: NSNotification){
-        print("keyboard will hide")
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
+    
+    @objc func drawerPanAction(_ recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizer.State.changed {
             
-            if self.frame.origin.y != 0 {
-                self.frame.origin.y += keyboardHeight
+            let movePoint : CGFloat  = recognizer.translation(in: dimView).y
+            
+            if movePoint > 0 {
+                self.frame = CGRect(x: 0,
+                                    y: movePoint,
+                                    width: self.frame.width,
+                                    height: self.frame.height)
+            }
+        }
+        else if recognizer.state == UIGestureRecognizer.State.ended
+        {
+            let updownBorder = self.frame.height * 0.8
+            let movePoint = recognizer.translation(in: self.dimView).y
+            
+            
+            UIView.animate(withDuration: 0.2) {
+                if( -updownBorder <  -self.frame.height + movePoint ){
+                    self.frame = CGRect(x: 0,
+                                        y: SCREEN_HEIGHT,
+                                        width: self.frame.width,
+                                        height: self.frame.height);
+
+                }
+                else {
+                    self.frame = CGRect(x: 0,
+                                        y: 0,
+                                        width: self.frame.width,
+                                        height: self.frame.height);
+                }
             }
         }
     }
 }
 
-extension AdvancedGasView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 0 {
-            self.gasTextFieldContainer.layer.borderColor = UIColor.black.cgColor
-        }
-        else {
-            self.gasLimitTextFieldContainer.layer.borderColor = UIColor.black.cgColor
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == 0 {
-            self.gasTextFieldContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
-        }
-        else {
-            self.gasLimitTextFieldContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
-        }
-    }
-}

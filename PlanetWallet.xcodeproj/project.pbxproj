@@ -80,8 +80,8 @@
 		0481534422BB1E890099F7E5 /* Universe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534322BB1E890099F7E5 /* Universe.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		0481534822BB3A160099F7E5 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534722BB3A150099F7E5 /* Coin.swift */; };
-		0481534B22BB70E60099F7E5 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 0481534922BB70E50099F7E5 /* splash_03_wh.json */; };
-		0481534C22BB70E60099F7E5 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 0481534A22BB70E50099F7E5 /* splash_03_bk.json */; };
+		049559EB22BC6D5300A2DE46 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 049559E922BC6D5300A2DE46 /* splash_03_bk.json */; };
+		049559EC22BC6D5300A2DE46 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 049559EA22BC6D5300A2DE46 /* splash_03_wh.json */; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
 		04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */; };
 		04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BB22A794E9007A17A3 /* 5_Token.storyboard */; };
@@ -236,8 +236,8 @@
 		0481534322BB1E890099F7E5 /* Universe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universe.swift; sourceTree = "<group>"; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		0481534722BB3A150099F7E5 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
-		0481534922BB70E50099F7E5 /* splash_03_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_wh.json; sourceTree = "<group>"; };
-		0481534A22BB70E50099F7E5 /* splash_03_bk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_bk.json; sourceTree = "<group>"; };
+		049559E922BC6D5300A2DE46 /* splash_03_bk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_bk.json; sourceTree = "<group>"; };
+		049559EA22BC6D5300A2DE46 /* splash_03_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_wh.json; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
 		04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
 		04A551BB22A794E9007A17A3 /* 5_Token.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
@@ -442,7 +442,6 @@
 		044BC55822793D8100FD7E5E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				04D3A0CD22B0D24E00E54E96 /* FMDB */,
 				044BC5A2227A9FE700FD7E5E /* components */,
 				044BC5A1227A9FD100FD7E5E /* commonset */,
 			);
@@ -452,6 +451,7 @@
 		044BC55922793D8800FD7E5E /* MiniFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				04D3A0CD22B0D24E00E54E96 /* FMDB */,
 				04FBCA49229E678000DEEDD9 /* networktask */,
 			);
 			path = MiniFrameWork;
@@ -675,8 +675,8 @@
 		04675F2B229BD3D100DC3CFD /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				0481534A22BB70E50099F7E5 /* splash_03_bk.json */,
-				0481534922BB70E50099F7E5 /* splash_03_wh.json */,
+				049559E922BC6D5300A2DE46 /* splash_03_bk.json */,
+				049559EA22BC6D5300A2DE46 /* splash_03_wh.json */,
 				04A551CE22A7C459007A17A3 /* refreshLoading.json */,
 			);
 			path = Animations;
@@ -926,7 +926,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0481534B22BB70E60099F7E5 /* splash_03_wh.json in Resources */,
 				044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */,
 				0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */,
 				04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */,
@@ -936,6 +935,7 @@
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
 				042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */,
+				049559EC22BC6D5300A2DE46 /* splash_03_wh.json in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
@@ -953,8 +953,8 @@
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
 				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
-				0481534C22BB70E60099F7E5 /* splash_03_bk.json in Resources */,
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
+				049559EB22BC6D5300A2DE46 /* splash_03_bk.json in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
 				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
 				04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */,
@@ -1286,7 +1286,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/Common/FMDB/PlanetWallet-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1309,7 +1309,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/Common/FMDB/PlanetWallet-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

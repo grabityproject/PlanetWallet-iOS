@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import BigInt
 
 struct Utils {
     
@@ -112,6 +112,16 @@ struct Utils {
     
     func getClipboard() -> String? {
         return UIPasteboard.general.string
+    }
+    
+    //MARK: - Unit
+    func gweiToETH(_ gwei: Int) -> Double {
+        return Double(gwei) / pow(10, 9)
+    }
+    
+    func ethToGWEI(_ eth: Double) -> Double {
+        
+        return eth * pow(10, 9)
     }
     
     //MARK: - Date

@@ -1027,6 +1027,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="UE8-AB-GaN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="noV-i8-Xtd" secondAttribute="trailing" constant="15" id="TmR-YM-P6b"/>
                                             <constraint firstItem="UE8-AB-GaN" firstAttribute="centerY" secondItem="fkC-Xs-Jha" secondAttribute="centerY" id="Uud-Oe-Vdc"/>
                                             <constraint firstItem="noV-i8-Xtd" firstAttribute="centerY" secondItem="fkC-Xs-Jha" secondAttribute="centerY" id="gVk-BW-Jwg"/>
                                             <constraint firstAttribute="trailing" secondItem="UE8-AB-GaN" secondAttribute="trailing" id="mEj-Vn-EuT"/>
