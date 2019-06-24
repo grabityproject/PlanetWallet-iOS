@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ETHCoinCell" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="amountLb" destination="2Qe-kX-GhK" id="24k-NV-LKl"/>
-                <outlet property="coinIconImg" destination="K5T-1h-MPD" id="FHw-yN-IUb"/>
+                <outlet property="coinIconImgView" destination="K5T-1h-MPD" id="FHw-yN-IUb"/>
                 <outlet property="coinLb" destination="YEW-xQ-oEs" id="b3G-Qw-Cas"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="meB-yW-JRp"/>
                 <outlet property="currencyLb" destination="smp-3K-oxv" id="KXE-fh-H1R"/>

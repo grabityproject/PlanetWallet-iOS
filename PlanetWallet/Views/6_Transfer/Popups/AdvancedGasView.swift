@@ -125,6 +125,8 @@ class AdvancedGasView: UIView {
     public func reset() {
         self.gasPriceBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_PRICE)", for: .normal)
         self.gasLimitBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_LIMIT)", for: .normal)
+        self.hasGasPriceFocus = true
+        self.inputText = "\(AdvancedGasView.DEFAULT_GAS_PRICE)"
     }
     
     //MARK: - Private
@@ -154,6 +156,7 @@ class AdvancedGasView: UIView {
     }
     
     @IBAction func didTouchedCancel(_ sender: UIButton) {
+        self.reset()
         self.hide()
     }
     
@@ -180,7 +183,6 @@ class AdvancedGasView: UIView {
         if recognizer.state == UIGestureRecognizer.State.changed {
             
             let movePoint : CGFloat  = recognizer.translation(in: dimView).y
-            
             if movePoint > 0 {
                 self.frame = CGRect(x: 0,
                                     y: movePoint,
@@ -192,7 +194,6 @@ class AdvancedGasView: UIView {
         {
             let updownBorder = self.frame.height * 0.8
             let movePoint = recognizer.translation(in: self.dimView).y
-            
             
             UIView.animate(withDuration: 0.2) {
                 if( -updownBorder <  -self.frame.height + movePoint ){

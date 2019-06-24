@@ -10,10 +10,13 @@ import UIKit
 import Lottie
 import ObjectMapper
 
+
 class SplashController: PlanetWalletViewController{
     
     private var isPinRegistered = true
     let animationView = AnimationView()
+    
+    var planet : Planet?
     
     //MARK: - Init
     override func viewInit() {
@@ -36,7 +39,47 @@ class SplashController: PlanetWalletViewController{
     
     override func setData() {
         super.setData()
+        
+
+        /*
+        let planet = Planet()
+        planet.address = "0x123123123123123123123123"
+        planet.name = "Name"
+        planet.coinType = 60
+        planet.decimals = "18"
+        planet.hide = "N"
+        planet.keyId = "alsdkmalsdkmalsdkmalskdmalksdmalskdmlaskdmalksmd"
+
+        print(planet.coinType)
+        
+        print(planet.toJSON())
+        print(planet.toJSONString())
+        
+        print(PWDBManager.shared.insert(planet))
+        print(try! PWDBManager.shared.select(Planet.self))
+         */
+
+        /*
+        let planet = Planet()
+        planet.address = "0x36072b48604d6d83b5bb304d36887b00213433d5"
+        planet.planet = "I_am_moon"
+        planet.signature = Signer.sign(planet.planet!, privateKey: "BA40B4A0375F46A04C75FD737971CECF873A4AE09E48B0FF82C7E3F086E95D7C")
+
+        Post(self).action(Route.URL("planet", CoinType.ETH.name ), requestCode: 0, resultCode: 0, data: planet.toJSON())
+         */
+        
+        
+//
+//        planet.items = Array<MainItem>()
+//        planet.items?.append(ETH())
+//        planet.items?.append(ERC20())
+//
+//        print(Signer.sign("Planet2", privateKey: "BA40B4A0375F46A04C75FD737971CECF873A4AE09E48B0FF82C7E3F086E95D7C"))
+        
+        
     }
+    
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -65,12 +108,32 @@ class SplashController: PlanetWalletViewController{
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        
-        if let resultJson = result as? [Dictionary<String, Any>]
-        {
-            print(result)
-//            let tokens:[ERCToken] = Mapper<ERCToken>().mapArray(JSONArray: resultJson)
+
+        if let dict = dictionary{
+            if let returnVo = ReturnVO(JSON: dict){
+                print(returnVo.result)
+                
+                
+                
+                
+                //
+                //            print( Bool( dict["success"] as! NSNumber ) )
+                //            print(dict["success"])
+                //            print(dict["result"])
+                
+                //            if( Bool( ){
+                //               let result = Planet(JSON: dict["result"])
+                //            }
+                
+            }
         }
+        
+        
+//        if let resultJson = result as? [Dictionary<String, Any>]
+//        {
+//            print(result)
+////            let tokens:[ERCToken] = Mapper<ERCToken>().mapArray(JSONArray: resultJson)
+//        }
     }
 }
 

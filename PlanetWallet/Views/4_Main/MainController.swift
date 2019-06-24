@@ -13,9 +13,9 @@ class MainController: PlanetWalletViewController {
 
     var statusHeight: CGFloat { return Utils.shared.statusBarHeight() }
     
-    var universe: Universe = Universe(type: .ETH, name: "defaults", coinList: [ERCToken(name: "Grabity", symbol: "GBT", decimal: "18", contractAdd: "0xsdanjkasdfb", imgPath: nil)], transactions: nil) {
+    var planet: Planet? {
         didSet {
-            self.updateUniverse()
+            updatePlanet()
         }
     }
     
@@ -30,6 +30,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var footerView: MainTableFooter!
     @IBOutlet var addressLb: PWLabel!
+    @IBOutlet var planetNameLb: PWLabel!
     
     @IBOutlet weak var labelError: UIButton!
     
@@ -38,9 +39,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet weak var loadingViewWrapper: UIView!
     var didRefreshed = false
     
-    var dataSources: [UITableViewDataSource] = []
-    let ethDataSource = ETHCoinDataSource()
-    let btcDataSource = BTCTransactionDataSource()
+    let dataSource = mainTableDataSource()
     
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
@@ -92,6 +91,8 @@ class MainController: PlanetWalletViewController {
             lightDimGradientView.isHidden = false
         }
         
+        self.fetchData { (_) in }
+        
         tableView.reloadData()
     }
     
@@ -110,12 +111,14 @@ class MainController: PlanetWalletViewController {
         createRippleView()
         
         naviBar.backgroundView.alpha = 0
+        
+        
     }
     
     override func setData() {
         super.setData()
         
-        self.fetchData { (_) in }
+        
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -147,7 +150,7 @@ class MainController: PlanetWalletViewController {
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
         //do something
-        completion(true)
+        topMenuLauncher?.planetList = try! PWDBManager.shared.select(Planet.self)
     }
     
     private func configureTableView() {
@@ -159,11 +162,10 @@ class MainController: PlanetWalletViewController {
         self.loadCustomRefreshContents()
         
         //TableView
-        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: ethDataSource.cellID)
-        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: btcDataSource.cellID)
-
-        dataSources = [ethDataSource, btcDataSource]
-        tableView.dataSource = dataSources[0]
+        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: dataSource.ethCellID)
+        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: dataSource.btcCellID)
+        tableView.dataSource = dataSource
+        
         tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
                                               left: 0, bottom: 130, right: 0)
         
@@ -191,23 +193,38 @@ class MainController: PlanetWalletViewController {
         animationView.contentMode = .scaleAspectFit
     }
     
-    private func updateUniverse() {
-        let type = universe.type
-        switch type {
-        case .ETH:
-            ethDataSource.coinList = universe.coinList
-            tableView.dataSource = dataSources[0]
-            tableView.allowsSelection = true
-            naviBar.title = "ETH"
-            footerView.isEthUniverse = true
-            footerView.isHidden = false
-        case .BTC:
-            btcDataSource.transactionList = universe.transactionList
-            tableView.dataSource = dataSources[1]
-            tableView.allowsSelection = false
-            naviBar.title = "BTC"
-            footerView.isEthUniverse = false
-            footerView.isHidden = !btcDataSource.transactionList!.isEmpty
+    private func updatePlanet() {
+        
+        if let selectPlanet = planet,
+            let type = planet?.coinType,
+            let planetKeyId = planet?.keyId
+        {
+            if type == CoinType.ETH.coinType { //ETH
+                dataSource.coinList = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(planetKeyId)'")
+                footerView.isEthUniverse = true
+                footerView.isHidden = false
+                
+                tableView.allowsSelection = true
+            }
+            else if type == CoinType.BTC.coinType { //BTC
+                dataSource.coinList = [BTC()]
+                
+                tableView.allowsSelection = false
+                
+                footerView.isEthUniverse = false
+                footerView.isHidden = !dataSource.coinList!.isEmpty
+            }
+            //binding naviBar
+            naviBar.title = CoinType.of( selectPlanet.coinType! ).name
+            
+            //binding headerView
+            guard let planetNameStr = selectPlanet.name else{
+                tableView.reloadData()
+                return
+            }
+            addressLb.text = Utils.shared.trimAddress(selectPlanet.address!)
+            planetNameLb.text = planetNameStr
+            planetView.data = planetNameStr
         }
         
         tableView.reloadData()
@@ -331,9 +348,12 @@ extension MainController: UITableViewDelegate {
 
 //MARK: - TopMenuLauncherDelegate
 extension MainController: TopMenuLauncherDelegate {
-    func didSelectedUniverse(_ universe: Universe) {
-        self.universe = universe
+    func didSelected(planet: Planet) {
+        self.planet = planet
     }
+//    func didSelectedUniverse(_ universe: Universe) {
+//        self.universe = universe
+//    }
 }
 
 //MARK: - BottomMenuDelegate

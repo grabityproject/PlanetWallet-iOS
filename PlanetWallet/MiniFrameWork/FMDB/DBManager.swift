@@ -108,7 +108,7 @@ class DBManager: NSObject {
         if tableName == "" {
             tableName = String(describing: type)
         }
-        print(tableName)
+        
         var conditionString = condition;
         
         if conditionString != "" {
@@ -128,8 +128,14 @@ class DBManager: NSObject {
                             row.updateValue(v, forKey: k)
                         }
                     }
-                    print(row)
 
+                    if let i = row["coinType"] as? Int {
+                        print("integer")
+                    }
+                    else if let s = row["coinType"] as? String {
+                        print("string")
+                    }
+                    
                     if let obj = T.init(JSON: row) {
                         resultArray.append(obj)
                     }
@@ -150,21 +156,15 @@ class DBManager: NSObject {
         
     }
     
-    
-    
-    
     func insert<T:Mappable>(_ object:T, _ table:String = "" ) -> Bool {
         var tableName = table
         if tableName == "" {
             tableName = String(describing: type(of: object.self))
         }
-        print(tableName)
+
         let dict = object.toJSON()
         var columns = ""
         var values = ""
-        
-        print(dict)
-        
         
         dict.forEach { (arg0) in
             let (key, value) = arg0
@@ -172,6 +172,8 @@ class DBManager: NSObject {
             columns += key + ","
             if let v = value as? String {
                 values += "'" + v + "',"
+            }else if let v = value as? Int {
+                values += "'" + String(v) + "',"
             }
             
         }
@@ -188,6 +190,7 @@ class DBManager: NSObject {
                 return result
             }
             else {
+                print("Failed to open db")
                 return false;
             }
             

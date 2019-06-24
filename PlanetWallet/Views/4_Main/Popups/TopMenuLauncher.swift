@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TopMenuLauncherDelegate {
-    func didSelectedUniverse(_ universe: Universe)
+    func didSelected(planet: Planet)
 }
 
 class TopMenuLauncher: NSObject {
@@ -28,28 +28,14 @@ class TopMenuLauncher: NSObject {
     private let cellHeight: CGFloat = 55
     private let height: CGFloat = 310
     
-    let universeList: [Universe] = {
-        let btcUniverse = Universe(type: .BTC,
-                                   name: "REGAL_III",
-                                   coinList: nil,
-                                   transactions: [BTCTransaction(amount: 10.023, to: "Alien", from: "REGAL_III", date: Date(), direction: .OUT_COMING),
-                                                  BTCTransaction(amount: 0.1194, to: "REGAL_III", from: "REGAL-I", date: Date(), direction: .IN_COMING),
-                                                  BTCTransaction(amount: 1.0003, to: "REGAL_III", from: "Alien", date: Date(), direction: .IN_COMING)])
-        
-        let ethUniverse = Universe(type: .ETH,
-                                   name: "Alien",
-                                   coinList: [ERCToken(name: "Grabity", symbol: "GBT", decimal: "18", contractAdd: "0xsdanjkasdfb", imgPath: nil)],
-                                   transactions: nil)
-        
-        let btcUniverse2 = Universe(type: .BTC,
-                                   name: "REGAL-I",
-                                   coinList: nil,
-                                   transactions: [])
-        
-        return [btcUniverse, ethUniverse, btcUniverse2]
-    }()
-    
-    
+    public var planetList: [Planet]? {
+        didSet {
+            planetList?.forEach({ (planet) in
+                print(planet.coinType)
+            })
+            menuView.collectionView.reloadData()
+        }
+    }
     
     //MARK: - Init
     convenience init(triggerView: UIView) {
@@ -224,20 +210,28 @@ class TopMenuLauncher: NSObject {
 
 extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return universeList.count
+        if let list = planetList {
+            return list.count
+        }
+        else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuView.cellId, for: indexPath) as! TopMenuCell
         
-        cell.backgroundColor = .clear
-        cell.nameLb.text = universeList[indexPath.row].name
-        cell.universeLb.text = universeList[indexPath.row].type.description()
-    
-        let selectedView = UIView()
-        selectedView.backgroundColor = ThemeManager.currentTheme().border
-        cell.selectedBackgroundView = selectedView
+        if let list = planetList {
+            cell.backgroundColor = .clear
+            cell.nameLb.text = list[indexPath.row].name
+            cell.universeLb.text = "adfjlasfnl"//cell.universeLb.text = planetList[indexPath.row].type.description()
+            
+            
+            let selectedView = UIView()
+            selectedView.backgroundColor = ThemeManager.currentTheme().border
+            cell.selectedBackgroundView = selectedView
+        }
         
         return cell
     }
@@ -257,7 +251,9 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.didSelectedUniverse(universeList[indexPath.row])
+        guard let list = planetList else { return }
+        
+        delegate?.didSelected(planet: list[indexPath.row])
         self.handleDismiss()
     }
 }

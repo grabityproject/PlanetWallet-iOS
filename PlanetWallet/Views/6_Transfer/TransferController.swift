@@ -42,22 +42,22 @@ class TransferController: PlanetWalletViewController {
     var contactListFiltered: [String] = []
     
     var search:String = ""
-    var isSearching = false {
-        didSet {
-            if isSearching {
-                state = .RESULTS
+//    var isSearching = false {
+//        didSet {
+//            if isSearching {
+////                state = .RESULTS
 //                if contactListFiltered.isEmpty {
 //                    state = .NOT_FOUND
 //                }
 //                else {
 //                    state = .RESULTS
 //                }
-            }
-            else {
-                state = .DEFAULT
-            }
-        }
-    }
+//            }
+//            else {
+//                state = .DEFAULT
+//            }
+//        }
+//    }
     
     //MARK: - Init
     override func viewInit() {
@@ -97,6 +97,34 @@ class TransferController: PlanetWalletViewController {
             self.notFoundLb.isHidden = true
             self.paseClipboardBtn.isHidden = true
         }
+    }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+     
+        if let dict = dictionary{
+            if let returnVo = ReturnVO(JSON: dict){
+                if( returnVo.success! ){
+                    let items = returnVo.result as! Array<Dictionary<String, Any?>>
+                    
+                    if( items.count == 0 ){
+                        
+                        // serach text perfect address address cell 1ea
+                        
+                        // no result items
+                        
+                        
+                    }else{
+                        // DataSource update
+                    }
+                    
+                    items.forEach { (item) in
+                        let planet = Planet(JSON: item)
+                        print(planet?.toJSON())
+                    }
+                }
+            }
+        }
+        
     }
 }
 
@@ -149,35 +177,28 @@ extension TransferController: UITextFieldDelegate {
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.search = ""
-        isSearching = false
+//        isSearching = false
         tableView.reloadData()
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.isSearching = false
+//        self.isSearching = false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty { //backspace
             search = String(search.dropLast())
-            if search.isEmpty {
-                isSearching = false
-                self.tableView.reloadData()
-                return true
-            }
         }
         else {
             search = textField.text! + string
         }
         
-        //TODO: - API Network
-//        self.contactListFiltered = contactList.filter({ return $0.name.uppercased().contains(search.uppercased()) })
-        isSearching = true
+        Get(self).action(Route.URL("planet", "search", CoinType.ETH.name ),requestCode: 0, resultCode: 0, data:["q":search] )
         
-        self.tableView.reloadData()
         return true
     }
+    
 }
 

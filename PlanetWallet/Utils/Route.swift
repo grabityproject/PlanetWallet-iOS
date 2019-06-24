@@ -8,7 +8,7 @@
 
 class Route{
     
-    private static let baseURL : String = "http://test.planetwallet.io"
+    private static let baseURL : String = "https://test.planetwallet.io"
     
     static func URL(_ segments : String...) -> String {
         var result : String = ""

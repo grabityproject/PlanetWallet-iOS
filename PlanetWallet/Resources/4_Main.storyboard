@@ -422,6 +422,7 @@
                         <outlet property="lightDimGradientView" destination="Ff0-ee-A5F" id="9aj-Af-G38"/>
                         <outlet property="loadingViewWrapper" destination="vRD-ZI-g2O" id="lzd-99-pyk"/>
                         <outlet property="naviBar" destination="3px-DW-HXl" id="47j-DX-T4G"/>
+                        <outlet property="planetNameLb" destination="9QB-wS-Ubw" id="hhj-AH-m8k"/>
                         <outlet property="planetView" destination="tw9-My-Aoq" id="0TN-RP-rzC"/>
                         <outlet property="tableView" destination="sj3-TY-bbB" id="jpb-mv-XB0"/>
                         <segue destination="jYR-7T-aVN" kind="show" identifier="main_to_transfer" id="ggG-BA-aGA"/>

@@ -168,6 +168,7 @@ public class Crypto {
     
     static var context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
     
+    
     // throws SECP256K1Error
     static func signer(hash: Data, privateKey: Data, useExtraEntropy: Bool = false) -> String? {
         do {

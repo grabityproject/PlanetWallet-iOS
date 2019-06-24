@@ -119,6 +119,15 @@ struct Utils {
         return Double(gwei) / pow(10, 9)
     }
     
+    func gweiToETH(_ gwei: Int) -> String? {
+        let eth = Double(gwei) / pow(10, 9)
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 9
+        return formatter.string(from: eth as NSNumber)
+    }
+    
     func ethToGWEI(_ eth: Double) -> Double {
         
         return eth * pow(10, 9)

@@ -15,15 +15,15 @@ extension TransferConfirmController {
         case FAST = 8
         case FASTEST = 12
         
-        func getGasGWEI() -> Double {
-            var gasGWEI = 0.0
+        func getGasGWEI() -> Int {
+            var gasGWEI = 0
             //TODO: - Gas station API
             
             switch self {
-            case .SAFE_LOW:     gasGWEI = 10.0
-            case .AVERAGE:      gasGWEI = 100.0
-            case .FAST:         gasGWEI = 100.0
-            case .FASTEST:      gasGWEI = 150.0
+            case .SAFE_LOW:     gasGWEI = 10
+            case .AVERAGE:      gasGWEI = 20
+            case .FAST:         gasGWEI = 100
+            case .FASTEST:      gasGWEI = 150
             }
             
             return gasGWEI
@@ -46,7 +46,10 @@ class TransferConfirmController: PlanetWalletViewController {
     var gasStep: GasStep = .AVERAGE {
         didSet {
             slider.value = Float(gasStep.rawValue)
-            gasFeeLb.text = "\(self.gasStep.getGasGWEI()) \(coinType.getUnit())"
+            let gwei = self.gasStep.getGasGWEI()
+            if let ethStr: String = Utils.shared.gweiToETH(gwei) {
+                gasFeeLb.text = "\(ethStr) \(coinType.getUnit())"
+            }
         }
     }
     var isAdvancedGasOptions = false {
@@ -102,11 +105,10 @@ class TransferConfirmController: PlanetWalletViewController {
 
 extension TransferConfirmController: AdvancedGasViewDelegate {
     func didTouchedSave(_ gas: Int, gasLimit: Int) {
-        print("gas fee : \(gas) Gwei, limit : \(gasLimit)")
-        
-        let gasETH = String(format: "%.8f", Utils.shared.gweiToETH(gas))
-        self.gasFeeLb.text = "\(gasETH) ETH"
-        self.isAdvancedGasOptions = true
+        if let ethStr: String = Utils.shared.gweiToETH(gas) {
+            self.gasFeeLb.text = "\(ethStr) ETH"
+            self.isAdvancedGasOptions = true
+        }
     }
 }
 
