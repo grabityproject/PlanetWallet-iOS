@@ -47,7 +47,9 @@ class MainController: PlanetWalletViewController {
     
     @IBOutlet var bottomMenu: UIView!
     @IBOutlet var btnBottomLauncher: PWImageView!
-
+    @IBOutlet var bottomMenuBalanceLb: PWLabel!
+    @IBOutlet var bottomMenuCoinTypeLb: PWLabel!
+    @IBOutlet var bottomMenuPlanetView: PlanetView!
     
     let rippleAnimationView = RippleAnimationView()
     var animationView : AnimationView!
@@ -56,16 +58,21 @@ class MainController: PlanetWalletViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if( bottomMenuLauncher == nil ){
+        if bottomMenuLauncher == nil {
             bottomMenuLauncher = BottomMenuLauncher(controller: self,
                                                     trigger: bottomMenu,
                                                     clickTrigger: btnBottomLauncher,
                                                     delegate: self)
-            bottomMenuLauncher?.labelError = labelError;
+            bottomMenuLauncher?.labelError = labelError
             
             bottomMenuTokenView.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
             bottomMenuTokenView.delegate = self
             self.view.addSubview(bottomMenuTokenView)
+        }
+        
+        if topMenuLauncher == nil {
+            self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
+            topMenuLauncher?.delegate = self
         }
         
         bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
@@ -80,9 +87,6 @@ class MainController: PlanetWalletViewController {
         
         rippleAnimationView.dismiss()
         
-        self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
-        topMenuLauncher?.delegate = self
-        
         if( ThemeManager.currentTheme() == .DARK ){
             darkDimGradientView.isHidden = false
             lightDimGradientView.isHidden = true
@@ -91,16 +95,19 @@ class MainController: PlanetWalletViewController {
             lightDimGradientView.isHidden = false
         }
         
-        self.fetchData { (_) in }
-        
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.fetchData { (_) in }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         hideRefreshContents()
-//        bottomMenuLauncher?.hide()
     }
     
     override func viewInit() {
@@ -111,14 +118,10 @@ class MainController: PlanetWalletViewController {
         createRippleView()
         
         naviBar.backgroundView.alpha = 0
-        
-        
     }
     
     override func setData() {
         super.setData()
-        
-        
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -127,8 +130,6 @@ class MainController: PlanetWalletViewController {
         topMenuLauncher?.setTheme(theme)
         bottomMenuLauncher?.setTheme(theme)
         footerView.setTheme(theme)
-        
-        
     }
 
     //MARK: - IBAction
@@ -150,7 +151,11 @@ class MainController: PlanetWalletViewController {
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
         //do something
-        topMenuLauncher?.planetList = try! PWDBManager.shared.select(Planet.self)
+        let planetList = try! PWDBManager.shared.select(Planet.self, "Planet", "hide = 'N'")
+        topMenuLauncher?.planetList = planetList
+        
+        //TODO: - setting previous selected planet
+        self.planet = planetList.first
     }
     
     private func configureTableView() {
@@ -200,7 +205,8 @@ class MainController: PlanetWalletViewController {
             let planetKeyId = planet?.keyId
         {
             if type == CoinType.ETH.coinType { //ETH
-                dataSource.coinList = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(planetKeyId)'")
+                dataSource.coinList = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(planetKeyId)' AND hide='N'")
+                dataSource.coinList?.insert(ETH(), at: 0)
                 footerView.isEthUniverse = true
                 footerView.isHidden = false
                 
@@ -225,6 +231,14 @@ class MainController: PlanetWalletViewController {
             addressLb.text = Utils.shared.trimAddress(selectPlanet.address!)
             planetNameLb.text = planetNameStr
             planetView.data = planetNameStr
+            
+            //binding bottomLauncher
+            bottomMenuLauncher?.planet = selectPlanet
+            bottomMenuBalanceLb.text = selectPlanet.balance
+            bottomMenuCoinTypeLb.text = selectPlanet.symbol
+            if let address = selectPlanet.address {
+                bottomMenuPlanetView.data = address
+            }
         }
         
         tableView.reloadData()
@@ -361,7 +375,7 @@ extension MainController: BottomMenuDelegate {
     func didTouchedSend() {
         bottomMenuLauncher?.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: nil)
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: ["planet": self.planet])
         }
     }
     
@@ -375,7 +389,7 @@ extension MainController: BottomMenuTokenDelegate {
     func didTouchedTokenSend() {
         bottomMenuTokenView.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: nil)
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: ["planet": self.planet])
         }
     }
     
@@ -388,7 +402,9 @@ extension MainController: BottomMenuTokenDelegate {
 //MARK: - MainTableFooterDelegate
 extension MainController: MainTableFooterDelegate {
     func didTouchedManageToken() {
-        performSegue(withIdentifier: Keys.Segue.MAIN_TO_TOKEN_ADD, sender: nil)
+        
+        sendAction(segue: Keys.Segue.MAIN_TO_TOKEN_ADD, userInfo: ["planet":planet])
+        
     }
 }
 

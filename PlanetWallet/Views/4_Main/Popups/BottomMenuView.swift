@@ -26,7 +26,6 @@ class BottomMenuView: UIView {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var addressLb: UILabel!
     @IBOutlet var amountLb: UILabel!
-    @IBOutlet var coinTypeLb: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +36,17 @@ class BottomMenuView: UIView {
         super.init(coder: aDecoder)
         commonInit()
     }
+    //MARK: - Interface
+    public func setPlanet(_ planet: Planet) {
+        if let planetName = planet.name, let address = planet.address {
+            self.planetView.data = planetName
+            self.addressLb.text = address
+            self.qrCodeImgView.image = QRCode(address)?.image
+        }
+        self.amountLb.text = planet.balance
+    }
     
+    //MARK: - Private
     private func commonInit() {
         Bundle.main.loadNibNamed("BottomMenuView", owner: self, options: nil)
         containerView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: containerView.frame.height)

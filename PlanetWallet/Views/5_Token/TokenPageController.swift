@@ -15,11 +15,19 @@ protocol TokenPageDelegate {
 
 class TokenPageController: UIPageViewController {
 
+    var userInfo: Dictionary<String,Any>?
     var pageDelegate: TokenPageDelegate?
     
     lazy var orderedViewControllers: [UIViewController] = {
-        return [UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "TokenListController"),
-                UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "CustomTokenController")]
+        
+        let page1: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "TokenListController") as! PlanetWalletViewController
+        let page2: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "CustomTokenController") as! PlanetWalletViewController
+        
+        page1.userInfo = self.userInfo
+        page2.userInfo = self.userInfo
+        
+        return [page1,
+                page2]
     }()
     
     lazy var scrollView: UIScrollView? = {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TokenCellDelegate: class {
-    func didSelected(indexPath: IndexPath, isRegistered: Bool)
+    func didSelected(indexPath: IndexPath)
 }
 
 class TokenCell: PWTableCell {
@@ -22,13 +22,6 @@ class TokenCell: PWTableCell {
     @IBOutlet var checkedImgView: PWImageView!
     
     weak var delegate: TokenCellDelegate?
-    var tokenInfo: TokenListController.Token? {
-        didSet {
-            iconImgView.image = tokenInfo?.icon
-            nameLb.text = tokenInfo?.name
-            nameLb.textColor = ThemeManager.currentTheme().mainText
-        }
-    }
     
     override func commonInit() {
         super.commonInit()
@@ -42,14 +35,11 @@ class TokenCell: PWTableCell {
     
     @IBAction func didTouchedSelection(_ sender: UIButton) {
 
-        if let tokenInfo = tokenInfo,
-            let tableView = self.superview as? UITableView,
-            let indexPath = tableView.indexPath(for: self)
+        if let tableView = self.superview as? UITableView,
+           let indexPath = tableView.indexPath(for: self)
         {
-            tokenInfo.isRegistered = !tokenInfo.isRegistered
-            self.checkedImgView.isHidden = !tokenInfo.isRegistered
-            
-            delegate?.didSelected(indexPath: indexPath, isRegistered: tokenInfo.isRegistered)
+
+            delegate?.didSelected(indexPath: indexPath )
         }
     }
     

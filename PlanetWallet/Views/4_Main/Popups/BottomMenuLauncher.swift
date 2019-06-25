@@ -12,6 +12,13 @@ class BottomMenuLauncher: NSObject {
     
     var isOpen : Bool = false
     
+    var planet: Planet? {
+        didSet {
+            guard let planet = self.planet else { return }
+            launcherView.setPlanet(planet)
+        }
+    }
+    
     private var view: UIView!
     private var triggerView : UIView!
     private var clicktriggerView : UIView!

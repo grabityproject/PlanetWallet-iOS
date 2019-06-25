@@ -91,6 +91,7 @@
 		0481534422BB1E890099F7E5 /* Universe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534322BB1E890099F7E5 /* Universe.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		0481534822BB3A160099F7E5 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534722BB3A150099F7E5 /* Coin.swift */; };
+		048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */; };
 		049559EB22BC6D5300A2DE46 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 049559E922BC6D5300A2DE46 /* splash_03_bk.json */; };
 		049559EC22BC6D5300A2DE46 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 049559EA22BC6D5300A2DE46 /* splash_03_wh.json */; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
@@ -155,6 +156,8 @@
 		04ED33212281506C0092075E /* TokenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ED33202281506C0092075E /* TokenCell.xib */; };
 		04ED3323228150800092075E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3322228150800092075E /* TokenCell.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
+		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
+		04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6E022C1BE830079E08A /* TokenAdapter.swift */; };
 		04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */; };
 		04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */; };
 		04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */; };
@@ -258,6 +261,7 @@
 		0481534322BB1E890099F7E5 /* Universe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universe.swift; sourceTree = "<group>"; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		0481534722BB3A150099F7E5 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
 		049559E922BC6D5300A2DE46 /* splash_03_bk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_bk.json; sourceTree = "<group>"; };
 		049559EA22BC6D5300A2DE46 /* splash_03_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_wh.json; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 		04ED33202281506C0092075E /* TokenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenCell.xib; sourceTree = "<group>"; };
 		04ED3322228150800092075E /* TokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
+		04F7D6E022C1BE830079E08A /* TokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAdapter.swift; sourceTree = "<group>"; };
 		04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableFooter.xib; sourceTree = "<group>"; };
 		04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableFooter.swift; sourceTree = "<group>"; };
 		04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
@@ -622,6 +628,7 @@
 				04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */,
 				04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */,
 				040863A722B8F2A700B88EE1 /* TxReceiptController.swift */,
+				048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */,
 			);
 			path = 6_Transfer;
 			sourceTree = "<group>";
@@ -660,6 +667,8 @@
 			isa = PBXGroup;
 			children = (
 				044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */,
+				04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */,
+				04F7D6E022C1BE830079E08A /* TokenAdapter.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1094,6 +1103,7 @@
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
 				04E0B54322B9E16200E1C3E0 /* AdvancedGasView.swift in Sources */,
+				048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */,
 				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */,
@@ -1106,6 +1116,7 @@
 				04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
+				04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */,
 				044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */,
 				045AA9C022C082DE005EA387 /* MainItem.swift in Sources */,
 				04491C2022B8988C00A5DC14 /* TransferAmountController.swift in Sources */,
@@ -1137,6 +1148,7 @@
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
 				04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */,
 				0481534822BB3A160099F7E5 /* Coin.swift in Sources */,
+				04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */,
 				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,

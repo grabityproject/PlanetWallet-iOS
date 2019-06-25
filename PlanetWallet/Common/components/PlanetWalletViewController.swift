@@ -53,11 +53,30 @@ class PlanetWalletViewController: UIViewController, NetworkDelegate
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let passingData = sender as? Dictionary<String, Any>,
-            let vc = segue.destination as? PlanetWalletViewController
-        {
-            vc.userInfo = passingData
+        if let vc = segue.destination as? PlanetWalletViewController{
+            
+            
+        
+            print("여기야? \(segue.identifier)")
+            if let passingData = sender as? Dictionary<String, Any>{
+                vc.userInfo = passingData
+            }else{
+                print("데이터가 ㅇ벗네?!222")
+            }
+            
+        }else{
+            
+            print("여긴데")
+            if let passingData = sender as? Dictionary<String, Any>{
+                
+                segue.destination.setValue(passingData, forKey: "userInfo")
+            }else{
+                print("데이터가 ㅇ벗네?!")
+            }
+            
         }
+        
+        
     }
     
     //MARK: - Theme

@@ -24,6 +24,7 @@ class TokenAddController: PlanetWalletViewController {
     private var tokenPageController: TokenPageController? {
         didSet {
             tokenPageController?.pageDelegate = self
+            tokenPageController?.userInfo = self.userInfo
         }
     }
     

@@ -11,22 +11,13 @@ import UIKit
 class ContactCell: PWTableCell {
     
     @IBOutlet private var containerView: PWView!
-    @IBOutlet private var planetView: PlanetView!
-    @IBOutlet private var planetName: PWLabel!
-    @IBOutlet private var addressLb: PWLabel!
-    
-    public var contact: Contact? {
-        didSet {
-            guard let contact = contact else { return }
-            self.planetName.text = contact.name
-            self.planetView.data = contact.name
-            self.addressLb.text = contact.address
-        }
-    }
+    @IBOutlet public var planetView: PlanetView!
+    @IBOutlet public var planetName: PWLabel!
+    @IBOutlet public var addressLb: PWLabel!
     
     override func commonInit() {
         super.commonInit()
-        
+
         Bundle.main.loadNibNamed("ContactCell", owner: self, options: nil)
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.frame = self.bounds
