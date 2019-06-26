@@ -14,7 +14,6 @@ class TopMenuView: PWView {
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var nameLb: PWLabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,8 +33,6 @@ class TopMenuView: PWView {
         containerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         containerView.layer.masksToBounds = true
         self.addSubview(containerView)
-        
-        nameLb.font = Utils.shared.planetFont(style: .MEDIUM, size: 16)
         
         collectionView.register(TopMenuCell.self, forCellWithReuseIdentifier: cellId)
     }

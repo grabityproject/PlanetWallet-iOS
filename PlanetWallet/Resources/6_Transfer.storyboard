@@ -828,7 +828,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="04I-gh-8P2">
                                         <rect key="frame" x="21" y="28" width="333" height="117.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttw-7j-6fk">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttw-7j-6fk" userLabel="ToPlanetInfoContainer">
                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="46.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0y-Jv-RkE" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
@@ -1210,7 +1210,11 @@
                         <outlet property="naviBar" destination="06x-Ng-Eqq" id="h5V-Ns-csV"/>
                         <outlet property="resetBtn" destination="Nqe-zD-6Ik" id="wqv-YC-yPG"/>
                         <outlet property="slider" destination="ya4-WZ-3VU" id="bEP-oX-ZVQ"/>
+                        <outlet property="toPlanetAddressLb" destination="GcG-pM-TSp" id="haS-az-fgL"/>
+                        <outlet property="toPlanetNameLb" destination="AT4-Os-mVd" id="9WC-ch-GT2"/>
+                        <outlet property="toPlanetView" destination="v0y-Jv-RkE" id="pUa-kF-oqY"/>
                         <outlet property="transferAmountLb" destination="bID-2q-oyL" id="JAf-bg-8eL"/>
+                        <outlet property="transferAmountMainLb" destination="skz-UZ-kEA" id="lhh-kw-90H"/>
                         <segue destination="pHw-cc-Vrn" kind="presentation" identifier="transferconfirm_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="1e1-hT-iIu"/>
                     </connections>
                 </viewController>

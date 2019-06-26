@@ -60,7 +60,7 @@ extension PlanetManagementController: NavigationBarDelegate {
         }
         else {
             let segueID = Keys.Segue.PLANET_MANAGEMENT_TO_WALLET_ADD
-            sendAction(segue: segueID, userInfo: ["segue": segueID])
+            sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
 //            let importWalletVC = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletAddController")
 //            self.navigationController?.pushViewController(importWalletVC, animated: true)
         }

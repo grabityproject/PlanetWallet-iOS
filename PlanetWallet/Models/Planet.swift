@@ -13,7 +13,7 @@ class Planet: Mappable {
     //db
     var _id: Int?
     var keyId: String?
-    var pathIdex: Int?
+    var pathIndex: Int?
     var coinType: Int?
     var symbol: String?
     var decimals: String?
@@ -41,13 +41,14 @@ class Planet: Mappable {
     func mapping(map: Map) {
         _id         <- map["_id"]
         keyId       <- map["keyId"]
-        pathIdex    <- map["pathIdex"]
+        pathIndex    <- map["pathIdex"]
         coinType    <- map["coinType"]
         symbol      <- map["symbol"]
         decimals    <- map["decimals"]
         hide        <- map["hide"] //Y,N
         address     <- map["address"]
         name        <- map["name"]
+        balance     <- map["balance"]
         
         signature   <- map["signature"]
         planet      <- map["planet"]

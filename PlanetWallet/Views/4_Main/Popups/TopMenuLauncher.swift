@@ -30,9 +30,7 @@ class TopMenuLauncher: NSObject {
     
     public var planetList: [Planet]? {
         didSet {
-            planetList?.forEach({ (planet) in
-                print(planet.coinType)
-            })
+            
             menuView.collectionView.reloadData()
         }
     }
@@ -225,8 +223,10 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
         if let list = planetList {
             cell.backgroundColor = .clear
             cell.nameLb.text = list[indexPath.row].name
-            cell.universeLb.text = "adfjlasfnl"//cell.universeLb.text = planetList[indexPath.row].type.description()
             
+            if let list = planetList, let symbol = list[indexPath.row].symbol {
+                cell.universeLb.text = "\(symbol) Universe"
+            }
             
             let selectedView = UIView()
             selectedView.backgroundColor = ThemeManager.currentTheme().border

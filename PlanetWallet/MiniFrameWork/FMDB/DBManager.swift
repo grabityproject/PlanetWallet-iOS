@@ -129,13 +129,6 @@ class DBManager: NSObject {
                         }
                     }
 
-                    if let i = row["coinType"] as? Int {
-                        print("integer")
-                    }
-                    else if let s = row["coinType"] as? String {
-                        print("string")
-                    }
-                    
                     if let obj = T.init(JSON: row) {
                         resultArray.append(obj)
                     }

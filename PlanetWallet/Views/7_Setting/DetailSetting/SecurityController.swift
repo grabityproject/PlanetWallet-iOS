@@ -28,7 +28,7 @@ class SecurityController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedChangePincode(_ sender: UIButton) {
         let segueID = Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
-        sendAction(segue: segueID, userInfo: ["segue": segueID])
+        sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
     }
 }
 

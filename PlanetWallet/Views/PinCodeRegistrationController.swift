@@ -46,7 +46,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     }
     
     override func setData() {
-        if let fromSegueID = userInfo?["segue"] as? String {
+        if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
             if fromSegueID == From.SPLASH.segueID() {
                 fromSegue = .SPLASH
             }
@@ -85,7 +85,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             switch fromSegue {
             case .SPLASH:
                 sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION,
-                           userInfo: ["segue" : Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION])
+                           userInfo: [Keys.UserInfo.fromSegue : Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION])
             case .CERTIFICATION:
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }

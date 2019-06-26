@@ -21,15 +21,23 @@ import UIKit
  */
 
 extension UILabel {
-    func setColoredAddress(_ font: UIFont = Utils.shared.planetFont(style: .SEMIBOLD, size: 18)!) {
+    func setColoredAddress(_ font: UIFont = Utils.shared.planetFont(style: .SEMIBOLD, size: 18)!,
+                           defaultColor: UIColor = ThemeManager.currentTheme().mainText)
+    {
         guard let text = self.text else { return }
         let effectColor = UIColor(red: 255, green: 0, blue: 80)
         
         let attrText = NSMutableAttributedString(string: text)
         if text[0..<2] == "0x" { //ETH
             attrText.addAttribute(NSAttributedString.Key.foregroundColor,
+                                  value: defaultColor,
+                                  range: NSMakeRange(0, 2))
+            attrText.addAttribute(NSAttributedString.Key.foregroundColor,
                                   value: effectColor,
                                   range: NSMakeRange(2, 4))
+            attrText.addAttribute(NSAttributedString.Key.foregroundColor,
+                                  value: ThemeManager.currentTheme().mainText,
+                                  range: NSMakeRange(6, text.count - 10)) //0x1111xxx1111 (13 - 2 - 4 - 4)
             attrText.addAttribute(NSAttributedString.Key.foregroundColor,
                                   value: effectColor,
                                   range: NSMakeRange(text.count - 4, 4))
@@ -38,6 +46,9 @@ extension UILabel {
             attrText.addAttribute(NSAttributedString.Key.foregroundColor,
                                   value: effectColor,
                                   range: NSMakeRange(0, 4))
+            attrText.addAttribute(NSAttributedString.Key.foregroundColor,
+                                  value: defaultColor,
+                                  range: NSMakeRange(4, text.count - 8))
             attrText.addAttribute(NSAttributedString.Key.foregroundColor,
                                   value: effectColor,
                                   range: NSMakeRange(text.count - 4, 4))

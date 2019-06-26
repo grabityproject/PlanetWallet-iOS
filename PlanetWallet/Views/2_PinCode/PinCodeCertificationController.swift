@@ -50,7 +50,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
     }
     
     override func setData() {
-        if let fromSegueID = userInfo?["segue"] as? String {
+        if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
             if fromSegueID == From.SPLASH.segueID() {
                 fromSegue = .SPLASH
             }
@@ -82,10 +82,10 @@ class PinCodeCertificationController: PlanetWalletViewController {
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
         case .REGISTRATION:
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE
-            sendAction(segue: segueID, userInfo: ["segue": segueID])
+            sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
         case .RESET:
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
-            sendAction(segue: segueID, userInfo: ["segue": segueID])
+            sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
         case .MNEMONIC_EXPORT:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
         case .PRIVATEKEY_EXPORT:

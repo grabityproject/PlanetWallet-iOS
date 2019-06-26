@@ -10,6 +10,22 @@ import UIKit
 
 class TransferAmountController: PlanetWalletViewController {
     
+    var fromPlanet: Planet?
+    var toPlanet: Planet?
+    var erc20: ERC20?
+    
+    var availableBalance: Double = 0.0 {
+        didSet {
+            if let erc20 = self.erc20, let symbol = erc20.symbol {
+                self.availableAmountLb.text = "\(availableBalance) \(symbol)"
+            }
+            else if let fromPlanet = fromPlanet, let symbol = fromPlanet.symbol {
+                self.availableAmountLb.text = "\(availableBalance) \(symbol)"
+            }
+            
+        }
+    }
+    
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var keyPad: NumberPad!
     @IBOutlet var availableAmountLb: UILabel!
@@ -32,7 +48,7 @@ class TransferAmountController: PlanetWalletViewController {
                 let currency = inputNum * 1230
                 fiatDisplayLb.text = "\(currency)"
                 
-                if inputNum > 0 {
+                if inputNum > 0 && self.availableBalance >= inputNum {
                     submitBtn.setEnabled(true, theme: currentTheme)
                 }
                 else {
@@ -58,6 +74,45 @@ class TransferAmountController: PlanetWalletViewController {
         keyPad.shouldPoint = true
     }
     
+    override func setData() {
+        super.setData()
+        
+        if let userInfo = userInfo,
+            let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
+            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet
+        {
+            self.fromPlanet = fromPlanet
+            self.toPlanet = toPlanet
+            
+            //ERC20 or Coin
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
+                let balance = Double(erc20.balance ?? "0")
+            {
+                self.erc20 = erc20
+                availableBalance = balance
+            }
+            else {
+                availableBalance = Double(fromPlanet.balance ?? "0") ?? 0
+            }
+            
+            //Planet or Address
+            if let toPlanetName = toPlanet.name {
+                titlePlanetNameLb.text = toPlanetName
+                titlePlanetView.isHidden = false
+                titlePlanetView.data = toPlanetName
+                print("to : \(toPlanetName)")
+            }
+            else {
+                titlePlanetNameLb.text = toPlanet.address
+                titlePlanetView.isHidden = true
+                print("to : \(toPlanet.address!)")
+            }
+            
+            //From Planet
+            print("from : \(fromPlanet.name!)")
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -70,7 +125,11 @@ class TransferAmountController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedSubmit(_ sender: UIButton) {
         
-        sendAction(segue: Keys.Segue.TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM, userInfo: nil)
+        sendAction(segue: Keys.Segue.TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM,
+                   userInfo: [Keys.UserInfo.toPlanet: toPlanet as Any,
+                              Keys.UserInfo.planet: fromPlanet as Any,
+                              Keys.UserInfo.erc20: erc20 as Any,
+                              Keys.UserInfo.transferAmount: Double(inputAmount) as Any])
     }
     
 }

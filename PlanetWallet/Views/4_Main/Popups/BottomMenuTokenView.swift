@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QRCode
 
 protocol BottomMenuTokenDelegate {
     func didTouchedTokenCopy(_ addr: String)
@@ -16,11 +17,12 @@ protocol BottomMenuTokenDelegate {
 class BottomMenuTokenView: UIView {
 
     var delegate: BottomMenuTokenDelegate?
+    var planet: Planet?
+    var erc20: ERC20?
     
     @IBOutlet var dimView: UIView!
     @IBOutlet var containerView: UIView!
     @IBOutlet var drawerView: UIView!
-    
     
     @IBOutlet var qrImgView: UIImageView!
     @IBOutlet var planetView: PlanetView!
@@ -30,6 +32,12 @@ class BottomMenuTokenView: UIView {
     @IBOutlet var addressLb: UILabel!
     
     var backgroundPanGesture : UIPanGestureRecognizer!
+    
+    convenience init(planet: Planet) {
+        self.init(frame: CGRect.zero)
+        
+        self.planet = planet
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,8 +78,15 @@ class BottomMenuTokenView: UIView {
         }
     }
     
+    
+    
     //MARK: - Interface
-    public func show() {
+    public func show(erc: ERC20, planet: Planet) {
+        self.erc20 = erc
+        self.planet = planet
+        
+        setUI(erc, planet: planet)
+        
         UIView.animate(withDuration: 0.25) {
             self.frame = CGRect(x: 0,
                                 y: 0,
@@ -81,6 +96,7 @@ class BottomMenuTokenView: UIView {
     }
     
     public func hide() {
+        
         UIView.animate(withDuration: 0.25) {
             self.frame = CGRect(x: 0,
                                 y: SCREEN_HEIGHT,
@@ -90,6 +106,16 @@ class BottomMenuTokenView: UIView {
     }
     
     //MARK: - Private
+    private func setUI(_ erc20: ERC20, planet: Planet) {
+        tokenNameLb.text = erc20.name
+        if let planetName = planet.name, let addr = planet.address {
+            planetView.data = planetName
+            planetNameLb.text = planetName
+            addressLb.text = addr
+            qrImgView.image = QRCode(addr)?.image
+        }
+    }
+    
     private func setTheme(_ theme: Theme) {
         findAllViews(view: containerView, theme: theme)
         
@@ -122,9 +148,6 @@ class BottomMenuTokenView: UIView {
         if(  backgroundPanGesture.state == UIGestureRecognizer.State.changed  ){
             
             let movePoint : CGFloat  = backgroundPanGesture.translation(in: dimView).y
-
-            print(-self.frame.height * 0.8)
-            print(-self.frame.height + movePoint)
             
             if movePoint > 0 {
                 self.frame = CGRect(x: 0,

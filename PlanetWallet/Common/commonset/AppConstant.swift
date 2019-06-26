@@ -21,6 +21,14 @@ let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 
 struct Keys {
+    struct UserInfo {
+        static let planet = "planet"
+        static let fromSegue = "fromSegue"
+        static let erc20 = "erc20"
+        static let toPlanet = "toPlanet"
+        static let transferAmount = "transferAmount"
+    }
+    
     struct Userdefaults {
         static let THEME = "theme"
         static let PINCODE = "pincode"

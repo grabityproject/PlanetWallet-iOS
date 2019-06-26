@@ -15,7 +15,6 @@
             <connections>
                 <outlet property="collectionView" destination="WoC-zK-da8" id="KSh-S6-dH1"/>
                 <outlet property="containerView" destination="Jy3-mv-QNa" id="hZ6-sy-IEG"/>
-                <outlet property="nameLb" destination="LWP-re-gVn" id="GnY-2b-lzm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,17 +32,6 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alien name 23141" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWP-re-gVn" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="22" y="68" width="136.5" height="20"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" name="detailTextDark"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-Gc-26D" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="169" y="287" width="37" height="5"/>
                     <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,8 +56,6 @@
                 <constraint firstAttribute="bottom" secondItem="Lyc-Gc-26D" secondAttribute="bottom" constant="18" id="GI7-5t-TNN"/>
                 <constraint firstItem="WoC-zK-da8" firstAttribute="leading" secondItem="Gdr-qL-8oU" secondAttribute="leading" id="XLa-il-rWY"/>
                 <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="Gdr-qL-8oU" secondAttribute="top" constant="47" id="Ysq-rF-fMO"/>
-                <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="LWP-re-gVn" secondAttribute="bottom" constant="3" id="hTD-TH-faY"/>
-                <constraint firstItem="LWP-re-gVn" firstAttribute="leading" secondItem="Gdr-qL-8oU" secondAttribute="leading" constant="22" id="kBK-lr-Guk"/>
                 <constraint firstItem="Gdr-qL-8oU" firstAttribute="trailing" secondItem="WoC-zK-da8" secondAttribute="trailing" id="zno-8L-eVr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -85,9 +71,6 @@
     <resources>
         <namedColor name="borderPointDark">
             <color red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="detailTextDark">
-            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

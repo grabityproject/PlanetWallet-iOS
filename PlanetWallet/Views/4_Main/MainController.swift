@@ -43,13 +43,14 @@ class MainController: PlanetWalletViewController {
     
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
-    var bottomMenuTokenView = BottomMenuTokenView()
+    var bottomMenuTokenView: BottomMenuTokenView?
     
     @IBOutlet var bottomMenu: UIView!
     @IBOutlet var btnBottomLauncher: PWImageView!
     @IBOutlet var bottomMenuBalanceLb: PWLabel!
     @IBOutlet var bottomMenuCoinTypeLb: PWLabel!
     @IBOutlet var bottomMenuPlanetView: PlanetView!
+    @IBOutlet var bottomMenuNameLb: PWLabel!
     
     let rippleAnimationView = RippleAnimationView()
     var animationView : AnimationView!
@@ -58,6 +59,12 @@ class MainController: PlanetWalletViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
+        if topMenuLauncher == nil {
+            self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
+            topMenuLauncher?.delegate = self
+        }
+        
         if bottomMenuLauncher == nil {
             bottomMenuLauncher = BottomMenuLauncher(controller: self,
                                                     trigger: bottomMenu,
@@ -65,15 +72,15 @@ class MainController: PlanetWalletViewController {
                                                     delegate: self)
             bottomMenuLauncher?.labelError = labelError
             
-            bottomMenuTokenView.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-            bottomMenuTokenView.delegate = self
-            self.view.addSubview(bottomMenuTokenView)
+            bottomMenuTokenView = BottomMenuTokenView()
+            bottomMenuTokenView?.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+            bottomMenuTokenView?.delegate = self
+            self.view.addSubview(bottomMenuTokenView!)
+            
+            self.fetchData { (_) in }
         }
         
-        if topMenuLauncher == nil {
-            self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
-            topMenuLauncher?.delegate = self
-        }
+        
         
         bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
                                          y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
@@ -95,14 +102,10 @@ class MainController: PlanetWalletViewController {
             lightDimGradientView.isHidden = false
         }
         
+        self.fetchData { (_) in }
         tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.fetchData { (_) in }
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -137,7 +140,7 @@ class MainController: PlanetWalletViewController {
         
         if let addr = addressLb.text {
             Utils.shared.copyToClipboard(addr)
-            Toast(text: "Copied to Clipboard").show()
+            showCopyToast()
         }
     }
     
@@ -145,7 +148,7 @@ class MainController: PlanetWalletViewController {
         //go to back up Mnemonic or Private key
         //TODO : - navigate page
         let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
-        sendAction(segue: segue, userInfo: ["segue": segue])
+        sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue])
     }
     
     //MARK: - Private
@@ -206,7 +209,12 @@ class MainController: PlanetWalletViewController {
         {
             if type == CoinType.ETH.coinType { //ETH
                 dataSource.coinList = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(planetKeyId)' AND hide='N'")
-                dataSource.coinList?.insert(ETH(), at: 0)
+                if let ethAddr = selectPlanet.address {
+                    dataSource.coinList?.insert(ETH(planetKeyId,
+                                                    balance: selectPlanet.balance ?? "0",
+                                                    address: ethAddr),
+                                                at: 0)
+                }
                 footerView.isEthUniverse = true
                 footerView.isHidden = false
                 
@@ -224,20 +232,25 @@ class MainController: PlanetWalletViewController {
             naviBar.title = CoinType.of( selectPlanet.coinType! ).name
             
             //binding headerView
-            guard let planetNameStr = selectPlanet.name else{
-                tableView.reloadData()
-                return
+            if let planetNameStr = selectPlanet.name, let planetAddr = selectPlanet.address {
+                addressLb.text = Utils.shared.trimAddress(planetAddr)
+                planetNameLb.text = planetNameStr
+                planetView.data = planetNameStr
+                bgPlanetView.data = planetNameStr
             }
-            addressLb.text = Utils.shared.trimAddress(selectPlanet.address!)
-            planetNameLb.text = planetNameStr
-            planetView.data = planetNameStr
             
             //binding bottomLauncher
             bottomMenuLauncher?.planet = selectPlanet
-            bottomMenuBalanceLb.text = selectPlanet.balance
+            if selectPlanet.balance == "" {
+                bottomMenuBalanceLb.text = "0"
+            }
+            else {
+                bottomMenuBalanceLb.text = selectPlanet.balance ?? "0"
+            }
             bottomMenuCoinTypeLb.text = selectPlanet.symbol
-            if let address = selectPlanet.address {
-                bottomMenuPlanetView.data = address
+            if let planetName = selectPlanet.name {
+                bottomMenuNameLb.text = "\(planetName) Balance"
+                bottomMenuPlanetView.data = planetName
             }
         }
         
@@ -250,7 +263,10 @@ class MainController: PlanetWalletViewController {
             self.refreshControl.endRefreshing()
             self.didRefreshed = true
         }
-        
+    }
+    
+    private func showCopyToast() {
+        Toast(text: "Copied to Clipboard").show()
     }
 }
 
@@ -279,11 +295,9 @@ extension MainController: UIScrollViewDelegate {
             
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
             
-            self.fetchData { (_) in
-                if refreshControl.isRefreshing {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        self.hideRefreshContents()
-                    }
+            if refreshControl.isRefreshing {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.hideRefreshContents()
                 }
             }
         }
@@ -356,7 +370,17 @@ extension MainController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        bottomMenuTokenView.show()
+        guard let selectedPlanet = planet else { return }
+        
+        if let mainItemList = dataSource.coinList {
+            if let erc20 = mainItemList[indexPath.row] as? ERC20 {
+                bottomMenuTokenView?.show(erc: erc20, planet: selectedPlanet)
+            }
+            else if let eth = mainItemList[indexPath.row] as? ETH {
+                bottomMenuLauncher?.planet = selectedPlanet
+                bottomMenuLauncher?.show()
+            }
+        }
     }
 }
 
@@ -375,11 +399,14 @@ extension MainController: BottomMenuDelegate {
     func didTouchedSend() {
         bottomMenuLauncher?.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: ["planet": self.planet])
+            guard let selectedPlanet = self.planet else { return }
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                            userInfo: [Keys.UserInfo.planet: selectedPlanet])
         }
     }
     
     func didTouchedCopy(_ addr: String) {
+        showCopyToast()
         Utils.shared.copyToClipboard(addr)
     }
 }
@@ -387,24 +414,29 @@ extension MainController: BottomMenuDelegate {
 //MARK: - BottomMenuTokenDelegate
 extension MainController: BottomMenuTokenDelegate {
     func didTouchedTokenSend() {
-        bottomMenuTokenView.hide()
+        guard let selectedERC20 = bottomMenuTokenView?.erc20 else { return }
+        
+        bottomMenuTokenView?.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: ["planet": self.planet])
+            guard let selectedPlanet = self.planet else { return }
+            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                            userInfo: [Keys.UserInfo.planet: selectedPlanet,
+                                       Keys.UserInfo.erc20 : selectedERC20])
         }
     }
     
     func didTouchedTokenCopy(_ addr: String) {
         Utils.shared.copyToClipboard(addr)
-        Toast(text: "Copied to Clipboard").show()
+        showCopyToast()
     }
 }
 
 //MARK: - MainTableFooterDelegate
 extension MainController: MainTableFooterDelegate {
     func didTouchedManageToken() {
-        
-        sendAction(segue: Keys.Segue.MAIN_TO_TOKEN_ADD, userInfo: ["planet":planet])
-        
+        guard let selectedPlanet = self.planet else { return }
+        sendAction(segue: Keys.Segue.MAIN_TO_TOKEN_ADD,
+                   userInfo: [Keys.UserInfo.planet:selectedPlanet])
     }
 }
 

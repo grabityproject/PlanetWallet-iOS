@@ -25,7 +25,7 @@ class BottomMenuView: UIView {
     @IBOutlet var containerView: UIView!
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var addressLb: UILabel!
-    @IBOutlet var amountLb: UILabel!
+    @IBOutlet var planetNameLb: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,11 +39,11 @@ class BottomMenuView: UIView {
     //MARK: - Interface
     public func setPlanet(_ planet: Planet) {
         if let planetName = planet.name, let address = planet.address {
+            self.planetNameLb.text = planetName
             self.planetView.data = planetName
             self.addressLb.text = address
             self.qrCodeImgView.image = QRCode(address)?.image
         }
-        self.amountLb.text = planet.balance
     }
     
     //MARK: - Private

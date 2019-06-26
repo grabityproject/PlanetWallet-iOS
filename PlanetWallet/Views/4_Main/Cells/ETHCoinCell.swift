@@ -27,10 +27,27 @@ class ETHCoinCell: PWTableCell {
             if let balance = erc20.balance {
                 if balance == "" { amountLb.text = "0"}
                 else { amountLb.text = balance }
-                currencyLb.text = "000000" //TODO: - CoinMarketCap API
+                currencyLb.text = "0 USD" //TODO: - CoinMarketCap API
+            }
+            else {
+                amountLb.text = "0"
+                currencyLb.text = "0 USD"
             }
             
             coinLb.text = erc20.name
+        }
+    }
+    
+    public var eth: ETH? {
+        didSet {
+            guard let eth = self.eth else { return }
+            coinIconImgView.image = eth.iconImg
+            
+            if eth.balance == "" { amountLb.text = "0"}
+            else { amountLb.text = eth.balance  }
+            currencyLb.text = "000000"
+            
+            coinLb.text = eth.name
         }
     }
     

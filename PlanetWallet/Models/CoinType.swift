@@ -34,7 +34,7 @@ struct CoinType {
     static let ETH = StructCoinType(coinType: 60, name: "ETH", coinName: "Ethereum", defaultUnit: "ETH", minimumUnit: "wei", precision: 18)
     static let ERC20 = StructCoinType(coinType: -60, name: "ERC20", coinName: "ERC20", defaultUnit: nil, minimumUnit: nil, precision: nil)
     
-    static func of(_ coinType:Int ) -> StructCoinType{
+    static func of(_ coinType:Int ) -> StructCoinType {
         switch coinType {
         case CoinType.BTC.coinType:
             return CoinType.BTC

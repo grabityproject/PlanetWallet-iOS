@@ -20,6 +20,8 @@ extension TransferController {
 class TransferController: PlanetWalletViewController {
 
     var planet:Planet?
+    var erc20: ERC20?
+    
     var adapter : PlanetSearchAdapter?
     
     @IBOutlet var naviBar: NavigationBar!
@@ -38,16 +40,19 @@ class TransferController: PlanetWalletViewController {
     
     override func setData() {
         
-        if let userInfo = self.userInfo, let planet = userInfo["planet"] as? Planet{
+        if let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet
+        {
             self.planet = planet
             
             adapter = PlanetSearchAdapter(tableView, []);
             adapter?.delegates.append(self)
-            updateUI()
             
-        }else{
-            // TODO: 죽자
-            print("No data")
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20 {
+                self.erc20 = erc20
+            }
+            
+            updateUI()
         }
     }
     
@@ -55,21 +60,29 @@ class TransferController: PlanetWalletViewController {
     @IBAction func didTouchedPasteClipboard(_ sender: UIButton) {
         if let copiedStr = Utils.shared.getClipboard() {
             textField.text = copiedStr
-//            Get(self).action(Route.URL("planet", "search", CoinType.ETH.name ),requestCode: 0, resultCode: 0, data:["q":copiedStr] )
+
         }
     }
     
     //MARK: - Private
     private func updateUI() {
+        guard let planet = planet else { return }
         
-        if let a = adapter{
-            if( a.dataSource.count == 0 && search.count == 0 ){
+        if let erc20 = erc20, let erc20Name = erc20.name {
+            naviBar.title = "Transfer \(erc20Name)"
+        }
+        else if let coinSymbol = planet.symbol {
+            naviBar.title = "Transfer \(coinSymbol)"
+        }
+        
+        if let adapter = adapter {
+            if( adapter.dataSource.count == 0 && search.count == 0 ){
                 
                 self.tableView.isHidden = true
                 self.notFoundLb.isHidden = true
                 self.paseClipboardBtn.isHidden = Utils.shared.getClipboard() == nil
                 
-            }else if( a.dataSource.count == 0 && search.count != 0 ){
+            }else if( adapter.dataSource.count == 0 && search.count != 0 ){
                 
                 self.tableView.isHidden = true
                 self.notFoundLb.isHidden = false
@@ -98,10 +111,10 @@ class TransferController: PlanetWalletViewController {
                         if( search.count >= 40 ){
                             // serach text perfect address address cell 1ea
                             //TODO: - check validate Address
-                            let planet = Planet()
-                            planet.address = self.search
-                            results.append(planet)
-                            
+                            let addressPlanet = Planet()
+                            addressPlanet.address = self.search
+                            addressPlanet.coinType = self.planet?.coinType
+                            results.append(addressPlanet)
                         }
                         
                     }else{
@@ -109,7 +122,6 @@ class TransferController: PlanetWalletViewController {
                         items.forEach { (item) in
                             results.append(Planet(JSON: item)!)
                         }
-
                     }
                     
                     adapter?.dataSetNotify(results)
@@ -127,7 +139,11 @@ extension TransferController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT, userInfo: ["Planet":adapter?.dataSource[indexPath.row]])
+        
+        sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
+                   userInfo: [Keys.UserInfo.toPlanet: adapter?.dataSource[indexPath.row] as Any,
+                              Keys.UserInfo.planet: self.planet as Any,
+                              Keys.UserInfo.erc20: self.erc20 as Any])
     }
 }
 

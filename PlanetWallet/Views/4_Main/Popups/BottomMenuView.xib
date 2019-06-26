@@ -22,8 +22,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomMenuView" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="addressLb" destination="eWq-yd-qWQ" id="ZdS-dg-ogK"/>
-                <outlet property="amountLb" destination="GEP-Ga-2w6" id="ue1-oc-gnU"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="K86-P6-J2M"/>
+                <outlet property="planetNameLb" destination="GEP-Ga-2w6" id="ue1-oc-gnU"/>
                 <outlet property="planetView" destination="DIY-Nd-ckh" id="c3D-2L-0ML"/>
                 <outlet property="qrCodeImgView" destination="dH5-t7-0zN" id="ekX-XD-FGx"/>
             </connections>

@@ -38,6 +38,12 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var fromLb: PWLabel!
     @IBOutlet var gasFeeLb: PWLabel!
     @IBOutlet var transferAmountLb: PWLabel!
+    @IBOutlet var transferAmountMainLb: PWLabel!
+    
+    @IBOutlet var toPlanetNameLb: PWLabel!
+    @IBOutlet var toPlanetAddressLb: PWLabel!
+    @IBOutlet var toPlanetView: PlanetView!
+    
     
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var gasContainer: UIView!
@@ -73,6 +79,43 @@ class TransferConfirmController: PlanetWalletViewController {
                                         height: SCREEN_HEIGHT)
         advancedGasPopup.delegate = self
         self.view.addSubview(advancedGasPopup)
+        
+        
+    }
+    
+    override func setData() {
+        super.setData()
+        
+        gasStep = .AVERAGE
+
+        if let userInfo = userInfo,
+            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
+            let amount = userInfo[Keys.UserInfo.transferAmount] as? Double
+        {
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20 {
+                transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
+                transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
+            }
+            else {
+                transferAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
+                transferAmountMainLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
+            }
+            
+            fromLb.text = fromPlanet.name ?? ""
+            
+            if let toPlanetName = toPlanet.name {
+                toPlanetNameLb.text = toPlanetName
+                toPlanetView.data = toPlanetName
+                toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
+            }
+            else {
+                toPlanetNameLb.isHidden = true
+                toPlanetView.isHidden = true
+                toPlanetAddressLb.text = toPlanet.address
+                toPlanetAddressLb.setColoredAddress()
+            }
+        }
     }
     
     
@@ -81,7 +124,7 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBAction func didTouchedConfirm(_ sender: UIButton) {
         let segueID = Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION
         
-        sendAction(segue: segueID, userInfo: ["segue" : segueID])
+        sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue : segueID])
     }
     
     @IBAction func didChanged(_ sender: PWSlider) {

@@ -37,7 +37,14 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
             item.addressLb.text = data.address
             item.addressLb.setColoredAddress()
             
-            
+            if let coinType = data.coinType {
+                if coinType == CoinType.BTC.coinType {
+                    item.iconImgView.image = ThemeManager.currentTheme().transferBTCImg
+                }
+                else if coinType == CoinType.ETH.coinType {
+                    item.iconImgView.image = ThemeManager.currentTheme().transferETHImg
+                }
+            }
         }else {
             let item = cell as! ContactCell
             item.planetName.text = data.name

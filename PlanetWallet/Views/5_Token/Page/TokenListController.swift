@@ -62,15 +62,15 @@ class TokenListController: PlanetWalletViewController {
                                                                  attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
                                                                               NSAttributedString.Key.font: placeHolderFont])
         }
-        
         textField.delegate = self
-        
     }
     
     override func setData() {
         super.setData()
         
-        if let userInfo = self.userInfo, let planet = userInfo["planet"] as? Planet{
+        if let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet
+        {
             self.planet = planet
             
             tokenAdapter = TokenAdapter(tableView, tokenList)
@@ -78,11 +78,7 @@ class TokenListController: PlanetWalletViewController {
             
             Get(self).action(Route.URL("erc20"), requestCode: 0, resultCode: 0, data: nil)
             
-        }else{
-            // TODO: 죽자
-            print("No data")
         }
-        
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -124,11 +120,9 @@ class TokenListController: PlanetWalletViewController {
 }
 
 extension TokenListController: UITableViewDelegate{
- 
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         // DataBase Input
-        
         if let erc20 = tokenAdapter?.dataSource[indexPath.row],
             let keyId = planet?.keyId,
             let erc20Contract = erc20.contract
@@ -153,7 +147,6 @@ extension TokenListController: UITableViewDelegate{
                 _ = PWDBManager.shared.insert(erc20)
             }
         }
-        
     }
 }
 

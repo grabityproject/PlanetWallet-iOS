@@ -13,17 +13,7 @@ class mainTableDataSource: NSObject, UITableViewDataSource {
     public let ethCellID = "ethereumCoinCell"
     public let btcCellID = "btcTransactionHistoryCell"
 
-    var coinList: [MainItem]? {
-        didSet {
-            guard let list = coinList else { return }
-            guard let coin = list.first else { return }
-            
-            if type(of: coin) == ERC20.self {
-                
-            }
-            
-        }
-    }
+    var coinList: [MainItem]?
     
     override init() {
         super.init()
@@ -47,6 +37,11 @@ class mainTableDataSource: NSObject, UITableViewDataSource {
         else if type(of: coin) == BTC.self {
             let cell = tableView.dequeueReusableCell(withIdentifier: btcCellID, for: indexPath) as! BTCTransactionCell
             //TODO: - Binding
+            return cell
+        }
+        else if type(of: coin) == ETH.self {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ethCellID, for: indexPath) as! ETHCoinCell
+            cell.eth = coin as? ETH
             return cell
         }
         else {

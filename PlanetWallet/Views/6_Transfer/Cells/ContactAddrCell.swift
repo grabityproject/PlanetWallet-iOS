@@ -12,6 +12,7 @@ class ContactAddrCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var addressLb: PWLabel!
+    @IBOutlet var iconImgView: UIImageView!
     
     override func commonInit() {
         super.commonInit()
@@ -21,7 +22,7 @@ class ContactAddrCell: PWTableCell {
         containerView.frame = self.bounds
         
         self.addSubview(containerView)
-        
-        addressLb.setColoredAddress()
     }
+    
+    
 }

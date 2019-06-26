@@ -32,7 +32,7 @@ class DetailPlanetController: PlanetWalletViewController {
             segueID = Keys.Segue.PRIVATEKEY_EXPORT_TO_PINCODE_CERTIFICATION
         }
         
-        sendAction(segue: segueID, userInfo: ["segue": segueID])
+        sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
     }
     
     @IBAction func didTouchedEditName(_ sender: UIButton) {

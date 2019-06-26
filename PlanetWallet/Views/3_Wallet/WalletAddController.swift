@@ -17,7 +17,7 @@ class WalletAddController: PlanetWalletViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let _ = userInfo?["segue"] {
+        if let _ = userInfo?[Keys.UserInfo.fromSegue] {
             //from main controller
             closeBtn.isHidden = false
         }
@@ -35,9 +35,9 @@ class WalletAddController: PlanetWalletViewController {
             guard let strongSelf = self else { return }
             popup.dismiss()
             
-            if let _ = strongSelf.userInfo?["segue"] as? String {
+            if let _ = strongSelf.userInfo?[Keys.UserInfo.fromSegue] as? String {
                 let userInfo = ["universe" : universe.description(),
-                                "segue" : Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE]
+                                Keys.UserInfo.fromSegue : Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE]
                 strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
                                       userInfo: userInfo)
             }

@@ -416,6 +416,7 @@
                         <outlet property="bottomMenu" destination="ImE-pt-fi9" id="rSe-HH-1hx"/>
                         <outlet property="bottomMenuBalanceLb" destination="Pa4-sM-5ti" id="Lwf-6n-XNu"/>
                         <outlet property="bottomMenuCoinTypeLb" destination="g0d-MI-xsW" id="tsj-UJ-ur2"/>
+                        <outlet property="bottomMenuNameLb" destination="gnN-eW-fcF" id="q5g-cC-Cw4"/>
                         <outlet property="bottomMenuPlanetView" destination="jpA-rX-jiv" id="of4-iD-fMD"/>
                         <outlet property="btnBottomLauncher" destination="wej-QY-Zhn" id="aLl-fE-aSI"/>
                         <outlet property="darkDimGradientView" destination="wqQ-cu-t5w" id="3au-Rp-ygi"/>

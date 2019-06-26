@@ -51,7 +51,7 @@ class PlanetGenerateController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        guard let fromSegueID = userInfo?["segue"] as? String else { return }
+        guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
         
         if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
             performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
