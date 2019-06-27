@@ -14,6 +14,10 @@ class KeyPair: Mappable {
     var value: String?
     var master: String?
     
+    init() {
+        
+    }
+    
     required init?(map: Map) {
     }
     

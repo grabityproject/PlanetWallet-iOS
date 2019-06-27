@@ -1,6 +1,0 @@
-framework module Pods_PlanetWallet {
-  umbrella header "Pods-PlanetWallet-umbrella.h"
-
-  export *
-  module * { export * }
-}
