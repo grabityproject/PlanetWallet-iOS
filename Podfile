@@ -11,5 +11,6 @@ target 'PlanetWallet' do
   pod "QRCode"
   pod 'BigInt'
   pod 'secp256k1.swift'
+  pod 'CryptoSwift'
 
 end
