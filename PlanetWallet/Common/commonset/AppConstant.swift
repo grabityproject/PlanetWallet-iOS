@@ -27,6 +27,7 @@ struct Keys {
         static let erc20 = "erc20"
         static let toPlanet = "toPlanet"
         static let transferAmount = "transferAmount"
+        static let gasFee = "gasFee"
     }
     
     struct Userdefaults {
@@ -66,7 +67,8 @@ struct Keys {
         static let MAIN_TO_SETTING = "main_to_setting"
         static let MAIN_TO_TOKEN_ADD = "main_to_tokenadd"
         static let MAIN_TO_TRANSFER = "main_to_transfer"
-        static let MAIN_UNWIND = "unwind_to_mainnavi"
+        static let MAIN_NAVI_UNWIND = "unwind_to_mainnavi"
+        static let MAIN_UNWIND = "unwind_to_main"
         static let MAIN_TO_PINCODECERTIFICATION = "main_to_pincodecertification"
         
         //Setting

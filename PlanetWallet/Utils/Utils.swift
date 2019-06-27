@@ -236,5 +236,7 @@ extension Utils {
         case MMMddyyyy = "MMM dd, yyyy"
         ///Sep 02, 14:11
         case MMMddHHmm = "MMM dd, HH:mm"
+        ///2019. 06. 13 13:05:10
+        case yyyyMMddHHmmss = "yyyy. MM. dd HH:mm:ss"
     }
 }

@@ -32,6 +32,8 @@ class TransferController: PlanetWalletViewController {
     
     var search:String = ""
     
+    var qrCaptureController: QRCaptureController?
+    
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
@@ -53,6 +55,14 @@ class TransferController: PlanetWalletViewController {
             }
             
             updateUI()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let destination = segue.destination as? QRCaptureController {
+            qrCaptureController = destination
+            qrCaptureController?.delegate = self
         }
     }
     
@@ -98,6 +108,8 @@ class TransferController: PlanetWalletViewController {
         }
     }
     
+    
+    //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
      
         if let dict = dictionary{
@@ -190,3 +202,13 @@ extension TransferController: UITextFieldDelegate {
     
 }
 
+extension TransferController: QRCaptureDelegate {
+    func didCapturedQRCode(_ address: String) {
+        textField.text = address
+        let addressPlanet = Planet()
+        addressPlanet.address = address
+        addressPlanet.coinType = self.planet?.coinType
+        adapter?.dataSetNotify([addressPlanet])
+        updateUI()
+    }
+}

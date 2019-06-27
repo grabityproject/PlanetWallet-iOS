@@ -9,26 +9,29 @@
 import UIKit
 
 extension TransferConfirmController {
-    enum GasStep: Int {
-        case SAFE_LOW = 0
-        case AVERAGE = 4
-        case FAST = 8
-        case FASTEST = 12
+    struct Gas {
+        enum Step: Int {
+            case SAFE_LOW = 0
+            case AVERAGE = 4
+            case FAST = 8
+            case FASTEST = 12
+        }
         
-        func getGasGWEI() -> Int {
-            var gasGWEI = 0
-            //TODO: - Gas station API
-            
-            switch self {
-            case .SAFE_LOW:     gasGWEI = 10
-            case .AVERAGE:      gasGWEI = 20
-            case .FAST:         gasGWEI = 100
-            case .FASTEST:      gasGWEI = 150
+        public var safeLow: Int = 0
+        public var average: Int = 0
+        public var fast: Int = 0
+        public var fastest: Int = 0
+
+        public func getGas(step: Gas.Step) -> Int {
+            switch step {
+            case .SAFE_LOW:     return self.safeLow
+            case .AVERAGE:      return self.average
+            case .FAST:         return self.fast
+            case .FASTEST:      return self.fastest
             }
-            
-            return gasGWEI
         }
     }
+    
 }
 
 class TransferConfirmController: PlanetWalletViewController {
@@ -40,21 +43,28 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var transferAmountLb: PWLabel!
     @IBOutlet var transferAmountMainLb: PWLabel!
     
+    @IBOutlet var toPlanetContainer: UIView!
     @IBOutlet var toPlanetNameLb: PWLabel!
     @IBOutlet var toPlanetAddressLb: PWLabel!
     @IBOutlet var toPlanetView: PlanetView!
     
+    @IBOutlet var toAddressContainer: UIView!
+    @IBOutlet var toAddressCoinImgView: PWImageView!
+    @IBOutlet var toAddressLb: PWLabel!
     
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var gasContainer: UIView!
     @IBOutlet var slider: PWSlider!
     var coinType: UniverseType = .ETH
-    var gasStep: GasStep = .AVERAGE {
+    var gas: Gas?
+    var gasStep: Gas.Step = .AVERAGE {
         didSet {
             slider.value = Float(gasStep.rawValue)
-            let gwei = self.gasStep.getGasGWEI()
-            if let ethStr: String = Utils.shared.gweiToETH(gwei) {
-                gasFeeLb.text = "\(ethStr) \(coinType.getUnit())"
+            
+            if let gasGWEI = self.gas?.getGas(step: self.gasStep),
+                let gasETHStr: String = Utils.shared.gweiToETH(gasGWEI)
+            {
+                gasFeeLb.text = "\(gasETHStr) \(coinType.getUnit())"
             }
         }
     }
@@ -80,14 +90,6 @@ class TransferConfirmController: PlanetWalletViewController {
         advancedGasPopup.delegate = self
         self.view.addSubview(advancedGasPopup)
         
-        
-    }
-    
-    override func setData() {
-        super.setData()
-        
-        gasStep = .AVERAGE
-
         if let userInfo = userInfo,
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
@@ -98,6 +100,14 @@ class TransferConfirmController: PlanetWalletViewController {
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
             else {
+                guard let coinType = fromPlanet.coinType else { return }
+                if coinType == CoinType.BTC.coinType {
+                    toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
+                }
+                else if coinType == CoinType.ETH.coinType {
+                    toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
+                }
+                
                 transferAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
             }
@@ -105,17 +115,27 @@ class TransferConfirmController: PlanetWalletViewController {
             fromLb.text = fromPlanet.name ?? ""
             
             if let toPlanetName = toPlanet.name {
+                toPlanetContainer.isHidden = false
+                toAddressContainer.isHidden = true
+                
                 toPlanetNameLb.text = toPlanetName
                 toPlanetView.data = toPlanetName
                 toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
             }
             else {
-                toPlanetNameLb.isHidden = true
-                toPlanetView.isHidden = true
-                toPlanetAddressLb.text = toPlanet.address
-                toPlanetAddressLb.setColoredAddress()
+                toPlanetContainer.isHidden = true
+                toAddressContainer.isHidden = false
+                
+                toAddressLb.text = toPlanet.address
+                toAddressLb.setColoredAddress()
             }
         }
+    }
+    
+    override func setData() {
+        super.setData()
+        
+        Get(self).action(Route.URL("gas"))
     }
     
     
@@ -123,15 +143,17 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedConfirm(_ sender: UIButton) {
         let segueID = Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION
+        userInfo?[Keys.UserInfo.fromSegue] = segueID
+        userInfo?[Keys.UserInfo.gasFee] = gasFeeLb.text
         
-        sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue : segueID])
+        sendAction(segue: segueID, userInfo: self.userInfo)
     }
     
     @IBAction func didChanged(_ sender: PWSlider) {
         let step: Float = 4.0
         let roundedStepValue = round(sender.value / step) * step
         
-        self.gasStep = GasStep(rawValue: Int(roundedStepValue)) ?? .AVERAGE
+        self.gasStep = Gas.Step(rawValue: Int(roundedStepValue)) ?? .AVERAGE
     }
     
     @IBAction func didTouchedAdvancedOpt(_ sender: UIButton) {
@@ -143,6 +165,23 @@ class TransferConfirmController: PlanetWalletViewController {
         self.gasStep = .AVERAGE
         self.isAdvancedGasOptions = !isAdvancedGasOptions
         self.advancedGasPopup.reset()
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary else { return }
+        
+        if let safeLow = dict["safeLow"] as? Int,
+            let average = dict["average"] as? Int,
+            let fast = dict["fast"] as? Int,
+            let fastest = dict["fastest"] as? Int
+        {
+            self.gas = Gas(safeLow: safeLow,
+                average: average,
+                fast: fast,
+                fastest: fastest)
+            self.gasStep = .AVERAGE
+        }
     }
 }
 

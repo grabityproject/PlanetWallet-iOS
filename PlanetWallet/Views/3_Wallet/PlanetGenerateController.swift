@@ -54,7 +54,7 @@ class PlanetGenerateController: PlanetWalletViewController {
         guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
         
         if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
-            performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
+            performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
         }
         else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
             performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)

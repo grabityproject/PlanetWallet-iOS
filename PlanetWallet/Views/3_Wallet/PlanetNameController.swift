@@ -34,7 +34,7 @@ class PlanetNameController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        performSegue(withIdentifier: Keys.Segue.MAIN_UNWIND, sender: nil)
+        performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {

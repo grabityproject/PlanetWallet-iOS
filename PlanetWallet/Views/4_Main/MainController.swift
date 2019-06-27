@@ -151,6 +151,8 @@ class MainController: PlanetWalletViewController {
         sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue])
     }
     
+    @IBAction func unwindToMainController(segue:UIStoryboardSegue) { }
+    
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
         //do something
@@ -268,6 +270,8 @@ class MainController: PlanetWalletViewController {
     private func showCopyToast() {
         Toast(text: "Copied to Clipboard").show()
     }
+    
+    
 }
 
 //MARK: - NavigationBarDelegate

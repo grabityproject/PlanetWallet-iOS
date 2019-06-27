@@ -9,7 +9,13 @@
 import UIKit
 import AVFoundation
 
+protocol QRCaptureDelegate {
+    func didCapturedQRCode(_ address: String)
+}
+
 class QRCaptureController: PlanetWalletViewController {
+    
+    var delegate: QRCaptureDelegate?
     
     @IBOutlet var preview: UIView!
     
@@ -105,6 +111,18 @@ class QRCaptureController: PlanetWalletViewController {
         }
     }
     
+    private func isValidBitcoinAddress(_ addr: String) -> Bool {
+        let fullAddress = addr.components(separatedBy: ":")
+        if fullAddress.count == 2 && fullAddress[0] == "bitcoin" {
+            let pattern = "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$"
+            let r = fullAddress[1].startIndex..<fullAddress[1].endIndex
+            let r2 = fullAddress[1].range(of: pattern, options: .regularExpression)
+            return r == r2
+        } else {
+            return false
+        }
+    }
+    
     //MARK: - IBAction
     @IBAction func didTouchedClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -123,10 +141,19 @@ extension QRCaptureController: AVCaptureMetadataOutputObjectsDelegate {
         if supportedCodeTypes.contains(metaObj.type) {
             
             if metaObj.stringValue != nil {
-                
-                if let matched = matches(for: "0x[0-9a-fA-F]{40}$", in: metaObj.stringValue!).first {
-                    print(matched)
+                var address: String?
+                if let ethMatched = matches(for: "0x[0-9a-fA-F]{40}$", in: metaObj.stringValue!).first {
+                    address = ethMatched
                 }
+                else if let btcMatched = matches(for: "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$", in: metaObj.stringValue!).first {
+                    address = btcMatched
+                }
+                
+                if let addressStr = address {
+                    delegate?.didCapturedQRCode(addressStr)
+                    dismiss(animated: true, completion: nil)
+                }
+                
             }
         }
     }
