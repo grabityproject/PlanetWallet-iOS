@@ -55,16 +55,17 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var gasContainer: UIView!
     @IBOutlet var slider: PWSlider!
-    var coinType: UniverseType = .ETH
+    var coinType = CoinType.ETH
     var gas: Gas?
     var gasStep: Gas.Step = .AVERAGE {
         didSet {
             slider.value = Float(gasStep.rawValue)
             
             if let gasGWEI = self.gas?.getGas(step: self.gasStep),
-                let gasETHStr: String = Utils.shared.gweiToETH(gasGWEI)
+                let gasETHStr: String = Utils.shared.gweiToETH(gasGWEI),
+                let defaultUnit = coinType.defaultUnit
             {
-                gasFeeLb.text = "\(gasETHStr) \(coinType.getUnit())"
+                gasFeeLb.text = "\(gasETHStr) \(defaultUnit)"
             }
         }
     }
@@ -119,7 +120,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 toAddressContainer.isHidden = true
                 
                 toPlanetNameLb.text = toPlanetName
-                toPlanetView.data = toPlanetName
+                toPlanetView.data = toPlanet.address ?? ""
                 toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
             }
             else {
@@ -137,7 +138,6 @@ class TransferConfirmController: PlanetWalletViewController {
         
         Get(self).action(Route.URL("gas"))
     }
-    
     
     
     //MARK: - IBAction
@@ -171,23 +171,27 @@ class TransferConfirmController: PlanetWalletViewController {
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary else { return }
         
-        if let safeLow = dict["safeLow"] as? Int,
-            let average = dict["average"] as? Int,
-            let fast = dict["fast"] as? Int,
-            let fastest = dict["fastest"] as? Int
+        if let resultVO = ReturnVO(JSON: dict),
+            let item = resultVO.result as? Dictionary<String, Any>
         {
-            self.gas = Gas(safeLow: safeLow,
-                average: average,
-                fast: fast,
-                fastest: fastest)
+            
+            guard let safeLow = Double(item["safeLow"] as! String) else { return }
+            guard let average = Double(item["standard"] as! String) else { return }
+            guard let fast = Double(item["fast"] as! String) else { return }
+            guard let fastest = Double(item["fastest"] as! String) else { return }
+            
+            self.gas = Gas(safeLow: Int(safeLow),
+                           average: Int(average),
+                           fast: Int(fast),
+                           fastest: Int(fastest))
             self.gasStep = .AVERAGE
         }
     }
 }
 
 extension TransferConfirmController: AdvancedGasViewDelegate {
-    func didTouchedSave(_ gas: Int, gasLimit: Int) {
-        if let ethStr: String = Utils.shared.gweiToETH(gas) {
+    func didTouchedSave(_ gasPrice: Int) {
+        if let ethStr: String = Utils.shared.gweiToETH(gasPrice) {
             self.gasFeeLb.text = "\(ethStr) ETH"
             self.isAdvancedGasOptions = true
         }

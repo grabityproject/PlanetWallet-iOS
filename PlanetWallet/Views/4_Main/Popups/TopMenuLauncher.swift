@@ -224,9 +224,11 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
             cell.backgroundColor = .clear
             cell.nameLb.text = list[indexPath.row].name
             
-            if let list = planetList, let symbol = list[indexPath.row].symbol {
+            if let list = planetList, let symbol = list[indexPath.row].symbol, let address = list[indexPath.row].address {
                 cell.universeLb.text = "\(symbol) Universe"
+                cell.planetView.data = address
             }
+            
             
             let selectedView = UIView()
             selectedView.backgroundColor = ThemeManager.currentTheme().border

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AdvancedGasViewDelegate {
-    func didTouchedSave(_ gas: Int, gasLimit: Int)
+    func didTouchedSave(_ gasPrice: Int)
 }
 
 class AdvancedGasView: UIView {
@@ -26,6 +26,7 @@ class AdvancedGasView: UIView {
     @IBOutlet var gasPriceBtn: UIButton!
     @IBOutlet var gasLimitBtn: UIButton!
     @IBOutlet var gasLimitContainer: PWView!
+    @IBOutlet var gasFeesLb: UILabel!
     
     @IBOutlet var keyPad: UIView!
     
@@ -58,10 +59,28 @@ class AdvancedGasView: UIView {
         didSet {
             print(inputText)
             if hasGasPriceFocus {
-                self.gasPriceBtn.setTitle(inputText, for: .normal)
+                gasPrice = inputText
             }
             else {
-                self.gasLimitBtn.setTitle(inputText, for: .normal)
+                gasLimit = inputText
+            }
+        }
+    }
+    
+    var gasPrice: String = "\(AdvancedGasView.DEFAULT_GAS_PRICE)" {
+        didSet {
+            self.gasPriceBtn.setTitle(inputText, for: .normal)
+            if let gas = Int(gasPrice), let limit = Int(gasLimit) {
+                self.gasFeesLb.text = "Fees: \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+            }
+        }
+    }
+    
+    var gasLimit: String = "\(AdvancedGasView.DEFAULT_GAS_LIMIT)" {
+        didSet {
+            self.gasLimitBtn.setTitle(inputText, for: .normal)
+            if let gas = Int(gasPrice), let limit = Int(gasLimit) {
+                self.gasFeesLb.text = "Fees: \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
             }
         }
     }
@@ -98,6 +117,10 @@ class AdvancedGasView: UIView {
         drawerView.addGestureRecognizer(drawerPanGesture)
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
         backgroundView.addGestureRecognizer(backgroundPanGesture)
+        
+        if let gas = Int(gasPrice), let limit = Int(gasLimit) {
+            self.gasFeesLb.text = "Fees: \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+        }
         
         setTheme(ThemeManager.currentTheme())
     }
@@ -142,17 +165,27 @@ class AdvancedGasView: UIView {
         }
     }
     
+    private func calculateGasPrice(gas: Int, limit: Int) -> Int {
+        return gas * limit
+    }
     
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
-        
-        if let gas = Int(gasPriceBtn.titleLabel!.text!),
-            let limit = Int(gasLimitBtn.titleLabel!.text!)
-        {
-            delegate?.didTouchedSave(gas, gasLimit: limit)
+        if gasPrice == "" || gasLimit == "" {
+            Toast(text: "공백 x").show()
         }
         
-        self.hide()
+        if let gas = Int(gasPrice),
+            let limit = Int(gasLimit)
+        {
+            if gas > 0 && limit > 21000 {
+                delegate?.didTouchedSave(calculateGasPrice(gas: gas, limit: limit))
+                self.hide()
+            }
+            else {
+                Toast(text: "최소 금액 x").show()
+            }
+        }
     }
     
     @IBAction func didTouchedCancel(_ sender: UIButton) {

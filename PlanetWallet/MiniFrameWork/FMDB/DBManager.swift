@@ -238,6 +238,7 @@ class DBManager: NSObject {
         
         if( condition.count > 0 ){
             if openDatabase() {
+                print("DELETE FROM \(tableName) WHERE \(condition)")
                 let result = database.executeStatements("DELETE FROM \(tableName) WHERE \(condition)")
                 database.close()
                 return result

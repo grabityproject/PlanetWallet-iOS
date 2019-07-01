@@ -12,7 +12,7 @@ class PopupUniverse: AbsSlideUpView {
 
     @IBOutlet var containerView: PWView!
     
-    public var handler: ((UniverseType) -> Void)?
+    public var handler: ((StructCoinType) -> Void)?
     
     override func setXib() {
         super.setXib()
@@ -38,12 +38,10 @@ class PopupUniverse: AbsSlideUpView {
     
     @IBAction func didTouched(_ sender: UIButton) {
         if sender.tag == 0 {
-            //BTC
-            handler?(UniverseType.BTC)
+            handler?(CoinType.BTC)
         }
         else {
-            //ETH
-            handler?(UniverseType.ETH)
+            handler?(CoinType.ETH)
         }
     }
     

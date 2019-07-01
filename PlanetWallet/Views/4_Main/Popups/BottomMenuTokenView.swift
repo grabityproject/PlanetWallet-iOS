@@ -109,7 +109,7 @@ class BottomMenuTokenView: UIView {
     private func setUI(_ erc20: ERC20, planet: Planet) {
         tokenNameLb.text = erc20.name
         if let planetName = planet.name, let addr = planet.address {
-            planetView.data = planetName
+            planetView.data = addr
             planetNameLb.text = planetName
             addressLb.text = addr
             qrImgView.image = QRCode(addr)?.image

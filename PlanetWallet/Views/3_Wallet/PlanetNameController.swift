@@ -15,6 +15,8 @@ class PlanetNameController: PlanetWalletViewController {
     @IBOutlet var lightGradientView: GradientView!
     @IBOutlet var nameTextView: BlinkingTextView!
     
+    var planet: Planet?
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,18 +28,51 @@ class PlanetNameController: PlanetWalletViewController {
             darkGradientView.isHidden = true
             lightGradientView.isHidden = false
         }
+        
+        if let planet = self.planet, let address = planet.address {
+            planetBgView.data = address
+            planetView.data = address
+        }
     }
     
     override func viewInit() {
         super.viewInit()
     }
     
+    override func setData() {
+        super.setData()
+        
+        if let userInfo = userInfo, let planet = userInfo[Keys.UserInfo.planet] as? Planet {
+            self.planet = planet
+        }
+    }
+    
     //MARK: - IBAction
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
+        
+        self.planet?.name = nameTextView.text
+        
+        if let planet = self.planet, let coinType = planet.coinType{
+            
+            let request = Planet()
+            request.signature = Signer.sign(planet.name!, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
+            request.planet = planet.name
+            request.address = planet.address
+            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON())
+        }
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        if let dict = dictionary, let planet = self.planet, let response = ReturnVO(JSON: dict), let isSuccess = response.success {
+            if isSuccess {
+                PlanetStore.shared.save(planet)
+                sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
+            }
+        }
+        
     }
 }

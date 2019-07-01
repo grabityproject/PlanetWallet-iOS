@@ -59,7 +59,7 @@ class TxReceiptController: PlanetWalletViewController {
                 toAddressContainer.isHidden = true
                 
                 toPlanetNameLb.text = toPlanetName
-                toPlanetView.data = toPlanetName
+                toPlanetView.data = toPlanet.address ?? ""
                 toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
             }
             else {

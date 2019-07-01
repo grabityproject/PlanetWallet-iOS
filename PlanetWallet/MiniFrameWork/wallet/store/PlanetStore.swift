@@ -26,6 +26,10 @@ class PlanetStore {
         }
     }
     
+    func get(_ keyId:String)->Planet?{
+        return m[keyId]
+    }
+    
     func list(_ symbol:String = "", _ containsHide:Bool = true )->[Planet]{
         var condition = ""
         

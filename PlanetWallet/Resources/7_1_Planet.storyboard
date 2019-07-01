@@ -471,8 +471,14 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="addressLb" destination="JuE-4O-TaH" id="TQg-9C-7b8"/>
+                        <outlet property="coinAddressLb" destination="cwg-Kn-UNz" id="xHT-cq-V8A"/>
                         <outlet property="hidePlanetSwitch" destination="umC-gn-ThG" id="6r8-VL-GBM"/>
+                        <outlet property="mnemonicContainer" destination="WID-Y8-C4k" id="exx-ez-Ibc"/>
                         <outlet property="naviBar" destination="t5t-WL-grU" id="2eF-R7-K1d"/>
+                        <outlet property="planetNameLb" destination="2Wi-RO-Hmk" id="xWL-Am-QuO"/>
+                        <outlet property="planetView" destination="DoQ-mN-xyc" id="LMX-FK-gw3"/>
+                        <outlet property="universeLb" destination="oLg-Li-o7N" id="s9G-g1-awW"/>
                         <segue destination="251-dQ-CzM" kind="presentation" identifier="detailplanet_to_renameplanet" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="7JE-IU-UiN"/>
                     </connections>
                 </viewController>
@@ -633,6 +639,7 @@
                     </view>
                     <connections>
                         <outlet property="naviBar" destination="tny-zI-HHX" id="69C-6X-y5q"/>
+                        <outlet property="textView" destination="BGb-d7-c5e" id="KAt-Y2-XkY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10M-C2-Dtg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -941,6 +948,7 @@
                     </view>
                     <connections>
                         <outlet property="naviBar" destination="avI-Pa-2qR" id="t0O-Oi-AJb"/>
+                        <outlet property="textView" destination="Vki-9w-Jie" id="Sut-Hg-1Tv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83c-hM-IZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>

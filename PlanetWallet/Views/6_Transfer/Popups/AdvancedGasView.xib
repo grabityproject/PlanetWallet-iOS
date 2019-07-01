@@ -29,6 +29,7 @@
                 <outlet property="contentView" destination="QWp-gu-y47" id="8pB-i5-ERX"/>
                 <outlet property="dimView" destination="1v8-YE-CPz" id="UsI-Pk-cij"/>
                 <outlet property="drawerView" destination="cDp-Xe-tbb" id="nNz-2C-z3i"/>
+                <outlet property="gasFeesLb" destination="NIW-WL-3RC" id="ApC-hd-KuG"/>
                 <outlet property="gasLimitBtn" destination="bjl-Xs-8qx" id="b50-uo-Ov8"/>
                 <outlet property="gasLimitContainer" destination="Cf9-f5-87J" id="Q8j-or-uC9"/>
                 <outlet property="gasPriceBtn" destination="Yxg-kj-YqP" id="D4E-Qv-L8a"/>

@@ -14,7 +14,25 @@ public protocol PWSwitchDelegate{
 
 @IBDesignable class PWSwitch: UIView, Themable {
     
-    @IBInspectable var isOn: Bool = false;
+    @IBInspectable var isOn: Bool = false {
+        didSet {
+            if( isOn ){
+                UIView.animate(withDuration: 0.3) {
+                    self.circleView.frame = CGRect(x: self.frame.width - self.circleView.frame.width - 5, y: 5, width: 20, height: 20)
+                    self.maskCircleView.frame = CGRect(x: self.frame.width, y: 5, width: 20, height: 20)
+                    self.maskCircleView.backgroundColor =  UIColor.init(displayP3Red: 1, green: 0, blue: 80.0/255.0, alpha: 1)
+                    self.backgroundColor = UIColor.init(displayP3Red: 1, green: 0, blue: 80.0/255.0, alpha: 1)
+                }
+            }else{
+                UIView.animate(withDuration: 0.3) {
+                    self.circleView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
+                    self.maskCircleView.frame = CGRect(x: 13, y: 5, width: 20, height: 20)
+                    self.maskCircleView.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
+                    self.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
+                }
+            }
+        }
+    }
     private var theme:Theme = .DARK;
     
     private var defaultColor : UIColor = UIColor.init(displayP3Red: 92.0/255.0, green: 89.0/255.0, blue: 100.0/255.0, alpha: 1.0);
@@ -51,21 +69,6 @@ public protocol PWSwitchDelegate{
         isOn = !isOn;
         if( delegate != nil ){
             delegate?.didSwitch(self, isOn: self.isOn)
-        }
-        if( isOn ){
-            UIView.animate(withDuration: 0.3) {
-                self.circleView.frame = CGRect(x: self.frame.width - self.circleView.frame.width - 5, y: 5, width: 20, height: 20)
-                self.maskCircleView.frame = CGRect(x: self.frame.width, y: 5, width: 20, height: 20)
-                self.maskCircleView.backgroundColor =  UIColor.init(displayP3Red: 1, green: 0, blue: 80.0/255.0, alpha: 1)
-                self.backgroundColor = UIColor.init(displayP3Red: 1, green: 0, blue: 80.0/255.0, alpha: 1)
-            }
-        }else{
-            UIView.animate(withDuration: 0.3) {
-                self.circleView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
-                self.maskCircleView.frame = CGRect(x: 13, y: 5, width: 20, height: 20)
-                self.maskCircleView.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
-                self.backgroundColor = self.theme == .LIGHT ? self.defaultColor : self.themeColor;
-            }
         }
     }
     

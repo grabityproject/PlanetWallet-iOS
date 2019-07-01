@@ -18,7 +18,9 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let SCREEN_MAX_LENGTH = max(SCREEN_WIDTH, SCREEN_HEIGHT)
 let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
+let APP_DELEGATE:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+var PINCODE = APP_DELEGATE.pinCode
 
 struct Keys {
     struct UserInfo {
@@ -28,6 +30,7 @@ struct Keys {
         static let toPlanet = "toPlanet"
         static let transferAmount = "transferAmount"
         static let gasFee = "gasFee"
+        static let universe = "universe"
     }
     
     struct Userdefaults {

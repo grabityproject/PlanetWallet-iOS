@@ -38,10 +38,37 @@ class Planet: Mappable {
     required init?(map: Map) {
     }
     
+    func getPrivateKey( keyPairStore:KeyPairStore, pinCode:[String] )->String{
+        if let keyId = self.keyId{
+            do {
+                let hdKeyPair = try keyPairStore.getKeyPair(keyId: keyId, pin: pinCode)
+                if let privateKey = hdKeyPair.privateKey{
+                    return privateKey.hexString
+                }
+            } catch {
+                print(error)
+            }
+        }
+        return ""
+    }
+    
+    func getMnemonic( keyPairStore:KeyPairStore, pinCode:[String] )->String{
+        if let keyId = self.keyId, let pathIndex = pathIndex, let coinType = coinType{
+            if pathIndex == -2{
+                return KeyPairStore.shared.getPhrase(keyId: keyId, pinCode: pinCode)
+            }else if pathIndex >= 0{
+                return KeyPairStore.shared.getPhrase(coreCoinType: coinType, pinCode: pinCode)
+            }else{
+                return ""
+            }
+        }
+        return ""
+    }
+    
     func mapping(map: Map) {
         _id         <- map["_id"]
         keyId       <- map["keyId"]
-        pathIndex    <- map["pathIdex"]
+        pathIndex    <- map["pathIndex"]
         coinType    <- map["coinType"]
         symbol      <- map["symbol"]
         decimals    <- map["decimals"]

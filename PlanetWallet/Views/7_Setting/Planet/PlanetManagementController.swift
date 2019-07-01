@@ -15,6 +15,10 @@ class PlanetManagementController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var naviBar: NavigationBar!
     
+    var planet:Planet?
+    
+    var adapter: PlanetManageAdapter?
+    
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
@@ -24,32 +28,49 @@ class PlanetManagementController: PlanetWalletViewController {
     }
     
     override func setData() {
-        super.setData()
+        adapter = PlanetManageAdapter(self.tableView, [])
+        adapter?.delegates.append(self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
+    }
+    
+    func fetchData(){
+        if let userInfo = userInfo{
+            self.planet = (userInfo[Keys.UserInfo.planet] as! Planet)
+            
+            if let planet = planet, let keyID = planet.keyId {
+                var list = PlanetStore.shared.list()
+                
+                var removeIndex = -1
+                for i in 0..<list.count {
+                    if list[i].keyId == keyID {
+                        removeIndex = i
+                        break
+                    }
+                }
+                
+                if( removeIndex >= 0 ){
+                    list.remove(at: removeIndex)
+                }
+                adapter?.dataSetNotify(list)
+            }
+        }
     }
 
 }
 
-extension PlanetManagementController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PlanetCell
-        cell.selectionStyle = .none
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
+extension PlanetManagementController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         findAllViews(view: cell, theme: currentTheme)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendAction(segue: Keys.Segue.PLANET_MANAGEMENT_TO_DETAIL_PLANET, userInfo: nil)
+        if let planet = adapter?.dataSource[indexPath.row] {
+            sendAction(segue: Keys.Segue.PLANET_MANAGEMENT_TO_DETAIL_PLANET, userInfo: [Keys.UserInfo.planet: planet])
+        }
     }
 }
 

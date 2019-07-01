@@ -15,12 +15,18 @@ protocol WalletImportPageDelegate {
 
 class WalletImportPageController: UIPageViewController {
 
+    var userInfo: Dictionary<String,Any>?
     var pageDelegate: WalletImportPageDelegate?
     
     lazy var orderedViewControllers: [UIViewController] = {
-        return [UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "MnemonicImportController"),
-                UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "JSONImportController"),
-                UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "PrivateKeyImportController")]
+        
+        let page1 = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "MnemonicImportController") as! PlanetWalletViewController
+        let page2 = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "PrivateKeyImportController") as! PlanetWalletViewController
+        
+        page1.userInfo = self.userInfo
+        page2.userInfo = self.userInfo
+        
+        return [page1, page2]
     }()
     
     lazy var scrollView: UIScrollView? = {
@@ -52,7 +58,7 @@ class WalletImportPageController: UIPageViewController {
                                completion: nil)
         }
     }
-
+//waste october switch off arrest click sock tape student reflect cloud security
 }
 
 extension WalletImportPageController: UIPageViewControllerDelegate {

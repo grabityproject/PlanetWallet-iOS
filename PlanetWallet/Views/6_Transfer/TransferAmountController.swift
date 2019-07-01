@@ -99,7 +99,8 @@ class TransferAmountController: PlanetWalletViewController {
             if let toPlanetName = toPlanet.name {
                 titlePlanetNameLb.text = toPlanetName
                 titlePlanetView.isHidden = false
-                titlePlanetView.data = toPlanetName
+                guard let address = toPlanet.address else { return }
+                titlePlanetView.data = address
             }
             else if let address = toPlanet.address {
                 titlePlanetNameLb.text = Utils.shared.trimAddress(address)

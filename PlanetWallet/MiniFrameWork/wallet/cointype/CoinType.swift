@@ -26,6 +26,18 @@ struct StructCoinType{
         self.precision = precision
     }
     
+    func description() -> String {
+        
+        if self.coinType == CoinType.BTC.coinType {
+            return "BTC Universe"
+        }
+        else if self.coinType == CoinType.ETH.coinType {
+            return "ETH Universe"
+        }
+        else {
+            return ""
+        }
+    }
 }
 
 struct CoinType {

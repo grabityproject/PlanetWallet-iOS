@@ -33,6 +33,63 @@ class KeyPairStore: HDKeyPairStore {
         }
     }
     
+    func changePinCode( before:[String], after:[String] ){
+        
+        let keyPairs = try! PWDBManager.shared.select(KeyPair.self)
+        
+        keyPairs.forEach { (keyPair) in
+            
+            if let value = keyPair.value{
+                
+                // Encrypt
+                let privateKeyPlain = try! defaultCrypter?.doubleDecrypt(encrypted: dataFromBufData(value, index: 0), pin: before)
+                let publicKeyPlain = defaultCrypter?.singleDecrypt(encrypted: dataFromBufData(value, index: 1))
+                let chainCodePlain = defaultCrypter?.singleDecrypt(encrypted: dataFromBufData(value, index: 2))
+                var mnemonicPlain = dataFromBufData(value, index: 3)
+                if mnemonicPlain.count > 0{
+                    mnemonicPlain =  try!(defaultCrypter?.doubleDecrypt(encrypted: dataFromBufData(value, index: 3), pin: before))!
+                }
+                
+                // Decrypt
+                let privateKeyEnc = try! defaultCrypter?.doubleEncrypt(data: privateKeyPlain!, pin: after)
+                let publicKeyEnc = defaultCrypter?.singleEncrypt(data: publicKeyPlain!)
+                let chainCodeEnc = defaultCrypter?.singleEncrypt(data: chainCodePlain!)
+                var mnemonicEnc:Data?
+                if mnemonicPlain.count > 0{
+                    mnemonicEnc =  try! ((defaultCrypter?.doubleEncrypt(data: mnemonicPlain, pin: after))!)
+                }
+                
+                
+                if let privateKey = privateKeyEnc, let publicKey = publicKeyEnc, let chainCode = chainCodeEnc{
+                    if let mnemonic = mnemonicEnc{
+                        // with mnemonic
+                        keyPair.value = bufData([ privateKey, publicKey, chainCode, mnemonic ])
+                        if let keyId = keyPair.keyId{
+                            _ = PWDBManager.shared.update(keyPair, "keyId = '\(keyId)'")
+                        }
+                    }else{
+                        // without mnemonic
+                        keyPair.value = bufData([ privateKey, publicKey, chainCode ])
+                        if let keyId = keyPair.keyId{
+                            _ = PWDBManager.shared.update(keyPair, "keyId = '\(keyId)'")
+                        }
+                    }
+                }
+                
+                
+            }
+            
+        }
+
+        keyPairMap.removeAll()
+        let selectList:[KeyPair] = try! PWDBManager.shared.select(KeyPair.self)
+        selectList.forEach { (keyPair) in
+            if let keyId = keyPair.keyId{
+                keyPairMap[keyId] = keyPair
+            }
+        }
+    }
+    
     func saveKeyPair(keyPair: HDKeyPair, pin: [String]) throws -> String {
         let privateKey = try! defaultCrypter?.doubleEncrypt(data: keyPair.privateKey ?? Data(), pin: pin)
         let publicKey = defaultCrypter?.singleEncrypt(data: keyPair.publicKey)
@@ -69,11 +126,15 @@ class KeyPairStore: HDKeyPairStore {
             
             if( keyPairMap[keyId] == nil ){
                 _ = PWDBManager.shared.insert(insertData)
-            }else{
-                _ = PWDBManager.shared.update(insertData, "keyId='\(keyId)'")
+              keyPairMap[keyId] = insertData
+//            }else{
+//                if let master = keyPairMap[keyId]?.master{
+//                    if Int(master) > 0{
+//
+//                    }
+//                }
+//                _ = PWDBManager.shared.update(insertData, "keyId='\(keyId)'")
             }
-            
-            keyPairMap[keyId] = insertData
         }
         return keyPair.id!
     }
@@ -145,7 +206,7 @@ class KeyPairStore: HDKeyPairStore {
     
     func deleteKeyPair(keyId: String) throws {
         if let keyPair:KeyPair = keyPairMap[keyId]{
-            _ = PWDBManager.shared.delete(keyPair, "keyId = '\(keyId)'")
+            _ = PWDBManager.shared.delete(keyPair, "keyId = '\(keyId)' AND master < 0")
             keyPairMap.remove(at: keyPairMap.index(forKey: keyId)!)
         }
     }

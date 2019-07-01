@@ -10,7 +10,7 @@ import UIKit
 
 extension WalletImportController {
     enum Menu: Int {
-        case MNEMONIC, JSON, PRIVATEKEY
+        case MNEMONIC, PRIVATEKEY
     }
 }
 
@@ -18,7 +18,6 @@ class WalletImportController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var mnemonicBtn: PWButton!
-    @IBOutlet var jsonBtn: PWButton!
     @IBOutlet var privateKeyBtn: PWButton!
     @IBOutlet var indicatorLeftAnchorConstraint: NSLayoutConstraint!
     
@@ -43,9 +42,14 @@ class WalletImportController: PlanetWalletViewController {
         naviBar.delegate = self
     }
     
+    override func setData() {
+        super.setData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "container_to_walletImportPage" {
             walletImportPageController = segue.destination as? WalletImportPageController
+            walletImportPageController?.userInfo = self.userInfo
         }
     }
 
@@ -53,9 +57,6 @@ class WalletImportController: PlanetWalletViewController {
     @IBAction func didTouchedMenu(_ sender: UIButton) {
         if sender.tag == Menu.MNEMONIC.rawValue {
             selectedMenu = .MNEMONIC
-        }
-        else if sender.tag == Menu.JSON.rawValue {
-            selectedMenu = .JSON
         }
         else {
             selectedMenu = .PRIVATEKEY
@@ -77,19 +78,11 @@ class WalletImportController: PlanetWalletViewController {
             indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 0)
             
             mnemonicBtn.setMenuItemSelected(true, theme: currentTheme)
-            jsonBtn.setMenuItemSelected(false, theme: currentTheme)
             privateKeyBtn.setMenuItemSelected(false, theme: currentTheme)
-        case .JSON:
+        case .PRIVATEKEY:
             indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 1)
 
             mnemonicBtn.setMenuItemSelected(false, theme: currentTheme)
-            jsonBtn.setMenuItemSelected(true, theme: currentTheme)
-            privateKeyBtn.setMenuItemSelected(false, theme: currentTheme)
-        case .PRIVATEKEY:
-            indicatorLeftAnchorConstraint.constant = (mnemonicBtn.frame.width * 2)
-
-            mnemonicBtn.setMenuItemSelected(false, theme: currentTheme)
-            jsonBtn.setMenuItemSelected(false, theme: currentTheme)
             privateKeyBtn.setMenuItemSelected(true, theme: currentTheme)
         }
     }

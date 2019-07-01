@@ -15,8 +15,21 @@ class SettingController: PlanetWalletViewController {
     @IBOutlet var lightThemeBtn: UIButton!
     @IBOutlet var helloLb: PWLabel!
     @IBOutlet var currencyLb: PWLabel!
+    @IBOutlet var planetView: PlanetView!
+    
+    var selectedPlanet: Planet? {
+        didSet {
+            updatePlanetUI()
+        }
+    }
     
     //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updatePlanetUI()
+    }
+    
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -34,6 +47,17 @@ class SettingController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
+        
+        if let userInfo = userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let address = planet.address,
+            let name = planet.name
+        {
+            self.selectedPlanet = planet
+            self.planetView.data = address
+            self.helloLb.text = "You'r on\n\(name)"
+        }
+        
     }
     
     //MARK: - IBAction
@@ -70,15 +94,13 @@ class SettingController: PlanetWalletViewController {
     
     @IBAction func didTouchedMyPlanet(_ sender: UIButton) {
         
-        //TODO: - model
-//        let planetInfo
-        sendAction(segue: Keys.Segue.SETTING_TO_DETAIL_PLANET, userInfo: nil)
+        sendAction(segue: Keys.Segue.SETTING_TO_DETAIL_PLANET, userInfo: userInfo)
     }
     
     @IBAction func didTouchedManagePlanets(_ sender: UIButton) {
-        //TODO: - model
-        //        let exceptPlanet
-        sendAction(segue: Keys.Segue.SETTING_TO_PLANET_MANAGEMENT, userInfo: nil)
+        
+        sendAction(segue: Keys.Segue.SETTING_TO_PLANET_MANAGEMENT, userInfo: userInfo)
+        
     }
     
     //MARK: - Private
@@ -90,6 +112,16 @@ class SettingController: PlanetWalletViewController {
         case .LIGHT:
             darkThemeBtn.layer.borderColor = settingTheme.border.cgColor
             lightThemeBtn.layer.borderColor = settingTheme.errorText.cgColor
+        }
+    }
+    
+    private func updatePlanetUI() {
+        if let planet = self.selectedPlanet,
+            let address = planet.address,
+            let name = planet.name
+        {
+            self.planetView.data = address
+            self.helloLb.text = "You'r on\n\(name)"
         }
     }
 }

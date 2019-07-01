@@ -16,6 +16,8 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBOutlet var lightGradientView: GradientView!
     @IBOutlet var nameTextView: BlinkingTextView!
     
+    var planet:Planet?
+    
     var tapGestureRecognizer: UITapGestureRecognizer?
     
     //MARK: - Init
@@ -40,25 +42,124 @@ class PlanetGenerateController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        
+        guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
+        
+        if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
+        
+            if let userInfo = userInfo, let coinType = userInfo[Keys.UserInfo.universe] as? String{
+                
+                if( coinType == CoinType.BTC.name ){
+                    
+                    let btcMaster = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: PINCODE)
+                    if( btcMaster == nil ){
+                        generateBTC()
+                    }else{
+                        addBTC()
+                    }
+                    
+                }else if( coinType == CoinType.ETH.name ){
+                    addETH()
+                }
+                
+            }else{
+               print("coinType 못가져옴")
+            }
+            
+        }
+        else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
+            generateETH()
+        }
+    }
+    
+    func generateETH(){
+        EthereumManager.shared.generateMaster(pinCode: PINCODE)
+        self.planet = EthereumManager.shared.addPlanet(index: 0, pinCode: PINCODE)
+        planetView.data = planet!.address!
+        planetBgView.data =  planet!.address!
+    }
+    
+    func generateBTC(){
+        BitCoinManager.shared.generateMaster(pinCode: PINCODE)
+        self.planet = BitCoinManager.shared.addPlanet(index: 0, pinCode: PINCODE)
+        planetView.data = planet!.address!
+        planetBgView.data =  planet!.address!
+    }
+    
+    func addETH(){
+        if let planet = planet, let keyId = planet.keyId {
+            do{
+                _ = try KeyPairStore.shared.deleteKeyPair(keyId: keyId)
+                if let pathIndex = planet.pathIndex{
+                    self.planet =  EthereumManager.shared.addPlanet(index: pathIndex + 1, pinCode: PINCODE)
+                }
+            }catch{
+                print(error)
+            }
+        }else{
+            
+            self.planet = EthereumManager.shared.addPlanet(pinCode: PINCODE)
+            
+        }
+        planetView.data = planet!.address!
+        planetBgView.data =  planet!.address!
+    }
+    
+    func addBTC(){
+        if let planet = planet, let keyId = planet.keyId {
+            do{
+                _ = try KeyPairStore.shared.deleteKeyPair(keyId: keyId)
+                if let pathIndex = planet.pathIndex{
+                    self.planet =  BitCoinManager.shared.addPlanet(index: pathIndex + 1, pinCode: PINCODE)
+                }
+            }catch{
+                print(error)
+            }
+        }else{
+            
+            self.planet = BitCoinManager.shared.addPlanet(pinCode: PINCODE)
+            
+        }
+        planetView.data = planet!.address!
+        planetBgView.data =  planet!.address!
     }
     
     //MARK: - IBAction
     @IBAction func didTouchedRefresh(_ sender: UIButton) {
         //TODO: change planet
-        let randomStr = NSUUID().uuidString
-        planetView.data = randomStr
-        planetBgView.data = randomStr
-    }
-    
-    @IBAction func didTouchedSelect(_ sender: UIButton) {
         guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
         
         if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
-            performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
+            
+            if let userInfo = userInfo, let coinType = userInfo[Keys.UserInfo.universe] as? String{
+                
+                if( coinType == CoinType.BTC.name ){
+                    addBTC()
+                }else if( coinType == CoinType.ETH.name ){
+                    addETH()
+                }
+            }
         }
         else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
-            performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
+            generateETH()
         }
+        
+    }
+    
+    @IBAction func didTouchedSelect(_ sender: UIButton) {
+        self.planet?.name = nameTextView.text
+        
+        if let planet = self.planet, let coinType = planet.coinType{
+            
+            let request = Planet()
+            request.signature = Signer.sign(planet.name!, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
+            request.planet = planet.name
+            request.address = planet.address
+            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON())
+            
+        }
+        
+        
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {
@@ -80,6 +181,31 @@ class PlanetGenerateController: PlanetWalletViewController {
         if let tapGesture = tapGestureRecognizer {
             view.removeGestureRecognizer(tapGesture)
         }
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        print(dictionary)
+        if let dict = dictionary{
+            let response = ReturnVO(JSON: dict)
+            if( response!.success! ){
+                PlanetStore.shared.save(planet!)
+                
+                guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
+                
+                if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
+                    performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
+                }
+                else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
+                    performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
+                }
+            }
+            else {
+                //TODO: -Alarm Message
+                print(dict)
+            }
+        }
+        
     }
 }
 

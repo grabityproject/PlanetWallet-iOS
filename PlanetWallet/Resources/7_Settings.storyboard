@@ -511,6 +511,7 @@
                         <outlet property="helloLb" destination="ueu-lc-khI" id="gzl-ES-ZwV"/>
                         <outlet property="lightThemeBtn" destination="pGq-Ky-pEW" id="1B7-BW-7wA"/>
                         <outlet property="naviBar" destination="UfI-eD-RjW" id="fex-Tk-Mud"/>
+                        <outlet property="planetView" destination="PCC-kw-0Pt" id="ozC-VM-97w"/>
                         <segue destination="zxA-kA-L1K" kind="show" identifier="setting_to_planetmanagemnet" id="Wrj-5x-U32"/>
                         <segue destination="Nfh-UR-Y9q" kind="show" identifier="setting_to_detailplanet" id="JlL-Wd-49B"/>
                     </connections>

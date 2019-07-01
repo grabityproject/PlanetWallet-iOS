@@ -14,9 +14,9 @@ class WalletAddController: PlanetWalletViewController {
     @IBOutlet var createPlanetBtn: PWButton!
     @IBOutlet var importPlanetBtn: PWButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    //MARK: - Init
+    override func viewInit() {
         if let _ = userInfo?[Keys.UserInfo.fromSegue] {
             //from main controller
             closeBtn.isHidden = false
@@ -27,30 +27,42 @@ class WalletAddController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedCreatePlanet(_ sender: UIButton) {
-        
         let popup = PopupUniverse()
         
         popup.show(controller: self)
-        popup.handler = { [weak self] (universe) in
+        popup.handler = { [weak self] (coinType) in
             guard let strongSelf = self else { return }
             popup.dismiss()
             
             if let _ = strongSelf.userInfo?[Keys.UserInfo.fromSegue] as? String {
-                let userInfo = ["universe" : universe.description(),
+                let userInfo = [Keys.UserInfo.universe : coinType.name,
                                 Keys.UserInfo.fromSegue : Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE]
                 strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
                                       userInfo: userInfo)
             }
             else {
                 strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
-                                      userInfo: ["universe" : universe.description()])
+                                      userInfo: [Keys.UserInfo.universe : coinType.name])
             }
         }
     }
     
     @IBAction func didTouchedImportPlanet(_ sender: UIButton) {
-        let importPlanetController = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController")
-        self.presentDetail(importPlanetController)
+        let popup = PopupUniverse()
+        
+        popup.show(controller: self)
+        popup.handler = { [weak self] (coinType) in
+            guard let strongSelf = self else { return }
+            popup.dismiss()
+            
+            let userInfo = [Keys.UserInfo.universe : coinType.name]
+            
+            if let importPlanetController = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController") as? WalletImportController {
+                
+                importPlanetController.userInfo = userInfo
+                strongSelf.presentDetail(importPlanetController)
+            }
+        }
     }
     
     @IBAction func didTouchedCloseBtn(_ sender: UIButton) {

@@ -79,7 +79,13 @@ class PinCodeCertificationController: PlanetWalletViewController {
     private func handleSuccessSignIn() {
         switch fromSegue {
         case .SPLASH:
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
+            if( PlanetStore.shared.list().count == 0 ){
+                let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE
+                sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
+            }else{
+                sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
+            }
+            
         case .REGISTRATION:
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE
             sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
@@ -87,9 +93,9 @@ class PinCodeCertificationController: PlanetWalletViewController {
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
             sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
         case .MNEMONIC_EXPORT:
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: userInfo)
         case .PRIVATEKEY_EXPORT:
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: nil)
+            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: userInfo)
         case .TRANSFER:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_TX_RECEIPT, userInfo: self.userInfo)
         case .MAIN:
@@ -127,23 +133,28 @@ extension PinCodeCertificationController: NumberPadDelegate {
 
 extension PinCodeCertificationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
-        guard let savedPassword: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else { return }
-        
         self.passwordStr = passwordStr + char
-        if passwordStr == savedPassword {    // Success to sign in
-            handleSuccessSignIn()
-        }
-        else {
-            titleLb.text = "Code incorrect"
-            titleLb.textColor = currentTheme.errorText
-            detailLb.text = "Please check your code"
-            detailLb.textColor = currentTheme.errorText
+        
+        if let savedPassword = KeyStore.shared.getValue(key: Keys.Userdefaults.PINCODE, pin: passwordStr.map{ String($0) }),
+            let inputPassword = passwordStr.data(using: .utf8){
             
-            self.passwordStr = ""
-            self.charPad.resetPassword()
-            
-            showNumberPad(true)
+            if( savedPassword.hexString == Crypto.sha256(inputPassword).hexString ){
+                PINCODE = passwordStr.map{ String($0) }
+                handleSuccessSignIn()
+                return
+            }
         }
+        
+        titleLb.text = "Code incorrect"
+        titleLb.textColor = currentTheme.errorText
+        detailLb.text = "Please check your code"
+        detailLb.textColor = currentTheme.errorText
+        
+        self.passwordStr = ""
+        self.charPad.resetPassword()
+        
+        showNumberPad(true)
+        
     }
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {

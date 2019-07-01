@@ -42,9 +42,16 @@ class KeyStore {
         if let crypter = defaultCrypter{
             do{
                 if let encBase64 = UserDefaults.standard.value(forKey: key){
-                    let encBase64Data = Data(base64Encoded: encBase64 as! String)
-                    let encData = try crypter.doubleDecrypt(encrypted: encBase64Data!, pin: pin)
-                    return encData
+                    if let encBase64Str = encBase64 as? String {
+                        let encBase64Data = Data(base64Encoded: encBase64Str)
+                        let encData = try crypter.doubleDecrypt(encrypted: encBase64Data!, pin: pin)
+                        return encData
+                    }
+                    else {
+                        print("not string")
+                        return nil
+                    }
+                    
                 }
             }catch{
                 print(error)

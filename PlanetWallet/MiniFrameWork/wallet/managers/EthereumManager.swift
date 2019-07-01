@@ -29,37 +29,41 @@ class EthereumManager{
     }
     
     func importMnemonic( mnemonicPhrase:String, passPhrase:String = "", pinCode:[String]) -> Planet {
-        
-        let mnemonic = mnemonicPhrase.components(separatedBy: " ")
-        let seed = try! ObjcMnemonicService().createSeed(mnemonic: mnemonic, passphrase: passPhrase)
-
-        let masterKeyPair = try! ObjcHDKeyPairService().deriveHDMasterKey(seed: seed)
-
-        let ethCoinAccountPath = PcwfUtils.getHDPath(hdPathString: "44H/60H/0H")
-        let ethCoinAccountkey = try! ObjcHDKeyPairService().deriveHDKeyPair(parentKeyPair: masterKeyPair, hdPath: ethCoinAccountPath)
-        _ = try! KeyPairStore.shared.saveKeyPair(keyPair: ethCoinAccountkey, pin: pinCode)
-
-        let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: ethCoinAccountkey, hdPath: [0,0])
-        _ = try! KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, phrase:mnemonicPhrase , pin: pinCode)
-
-        let childKeyId = try! KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-        let account = try! service?.createHDWalletAccount(keyId: ethCoinAccountkey.id!, currencyType: CoinType.ETH.name, definedCurrency: DefinedCurrency.ETH, hdPathString: "0/0")
-        
-        let planet:Planet = Planet()
-        planet.keyId = childKeyId
-        planet.address = account?.address
-        planet.coinType = CoinType.ETH.coinType
-        if let precision = CoinType.ETH.precision{
-            planet.decimals = "\(precision)"
+        do {
+            let mnemonic = mnemonicPhrase.components(separatedBy: " ")
+            let seed = try ObjcMnemonicService().createSeed(mnemonic: mnemonic, passphrase: passPhrase)
+            
+            let masterKeyPair = try ObjcHDKeyPairService().deriveHDMasterKey(seed: seed)
+            
+            let ethCoinAccountPath = PcwfUtils.getHDPath(hdPathString: "44H/60H/0H")
+            let ethCoinAccountkey = try ObjcHDKeyPairService().deriveHDKeyPair(parentKeyPair: masterKeyPair, hdPath: ethCoinAccountPath)
+            _ = try KeyPairStore.shared.saveKeyPair(keyPair: ethCoinAccountkey, pin: pinCode)
+            
+            let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: ethCoinAccountkey, hdPath: [0,0])
+            _ = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, phrase:mnemonicPhrase , pin: pinCode)
+            
+            let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
+            let account = try service?.createHDWalletAccount(keyId: ethCoinAccountkey.id!, currencyType: CoinType.ETH.name, definedCurrency: DefinedCurrency.ETH, hdPathString: "0/0")
+            
+            let planet:Planet = Planet()
+            planet.keyId = childKeyId
+            planet.address = account?.address
+            planet.coinType = CoinType.ETH.coinType
+            if let precision = CoinType.ETH.precision{
+                planet.decimals = "\(precision)"
+            }
+            planet.hide = "N"
+            planet.symbol = CoinType.ETH.name
+            planet.pathIndex = -2
+            
+            
+            _ = try KeyPairStore.shared.deleteKeyPair(keyId: ethCoinAccountkey.id!)
+            
+            return planet
+        } catch {
+            print(error)
         }
-        planet.hide = "N"
-        planet.symbol = CoinType.ETH.name
-        planet.pathIndex = -2
-        
-        
-        _ = try! KeyPairStore.shared.deleteKeyPair(keyId: ethCoinAccountkey.id!)
-        
-        return planet
+        return Planet()
     }
     
     func importPrivateKey( privKey:String, pinCode:[String]) -> Planet {
@@ -93,6 +97,43 @@ class EthereumManager{
         return planet
     }
     
+    
+    func addPlanet( pinCode:[String] )->Planet{
+        
+        let planets = PlanetStore.shared.list(CoinType.ETH.name, false)
+        var index = -1
+        planets.forEach { (planet) in
+            if let pathIndex = planet.pathIndex{
+                if index <= pathIndex{
+                    index = pathIndex
+                }
+            }
+        }
+        index = index + 1
+        
+        let masterKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.ETH.coinType, pin: pinCode)
+        let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
+        
+        let childKeyId = try! KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
+        let account = try! service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!,
+                                                          currencyType: CoinType.ETH.name,
+                                                          definedCurrency: DefinedCurrency.ETH,
+                                                          hdPathString: "0/\(index)")
+        
+        
+        let planet:Planet = Planet()
+        planet.keyId = childKeyId
+        planet.address = account?.address
+        planet.coinType = CoinType.ETH.coinType
+        if let precision = CoinType.ETH.precision{
+            planet.decimals = "\(precision)"
+        }
+        planet.hide = "N"
+        planet.symbol = CoinType.ETH.name
+        planet.pathIndex = index
+        
+        return planet
+    }
     
     func addPlanet( index:Int, pinCode:[String] )->Planet{
         
@@ -128,8 +169,12 @@ class EthereumManager{
         let ethCoinAccountPath = PcwfUtils.getHDPath(hdPathString: "44H/60H/0H")
         let ethCoinAccountkey = try! ObjcHDKeyPairService().deriveHDKeyPair(parentKeyPair: masterKeyPair, hdPath: ethCoinAccountPath)
 
-        if let _:HDKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.ETH.coinType, pin: pinCode){
+        if let mk:HDKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.ETH.coinType, pin: pinCode){
+            let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: mk, hdPath: [0, 0])
             _ = PWDBManager.shared.delete(KeyPair(), "master='\(CoinType.ETH.coinType)'")
+            if let keyId = childKeyPair.id{
+                _ = PWDBManager.shared.delete(KeyPair(), "keyId='\(keyId)'")
+            }
         }
         _ = try! KeyPairStore.shared.saveMasterKeyPair(coreCoinType: CoinType.ETH.coinType, phrase: mnemonicPhrase, keyPair: ethCoinAccountkey, pin: pinCode)
         

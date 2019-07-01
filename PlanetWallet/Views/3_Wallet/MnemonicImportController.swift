@@ -20,6 +20,8 @@ class MnemonicImportController: PlanetWalletViewController {
     @IBOutlet var invisibleBtn: UIButton!
     @IBOutlet var continueBtn: PWButton!
     
+    var planet:Planet = Planet()
+    
     private var isValidMnemonic = false {
         didSet {
             updateValidUI()
@@ -42,6 +44,14 @@ class MnemonicImportController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
+        if let userInfo = userInfo, let universeType = userInfo[Keys.UserInfo.universe] as? String {
+            if universeType == CoinType.BTC.name {
+                planet.coinType = CoinType.BTC.coinType
+            }
+            else if universeType == CoinType.ETH.name {
+                planet.coinType = CoinType.ETH.coinType
+            }
+        }
     }
     
     //MARK: - IBAction
@@ -50,9 +60,47 @@ class MnemonicImportController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedContinue(_ sender: UIButton) {
-        //TODO: - wallet info
-        let info = ["":""]
-        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+        if let coinType = planet.coinType{
+        
+            if coinType == CoinType.BTC.coinType{
+                
+                planet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+                
+                if let keyId = planet.keyId{
+                    
+                    if PlanetStore.shared.get(keyId) != nil{
+                        
+                        //TODO: - Alert Message
+                        Toast.init(text: "-------겹침!!!!------").show()
+                        
+                    }else{
+                        let info = [Keys.UserInfo.planet:planet]
+                        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+                        return
+                    }
+                }
+                
+            }else if coinType == CoinType.ETH.coinType{
+                
+                planet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+                
+                if let keyId = planet.keyId{
+                    
+                    if PlanetStore.shared.get(keyId) != nil{
+                        //TODO: - Alert Message
+                        Toast.init(text: "-------겹침!!!!------").show()
+                        
+                    }else{
+                        let info = [Keys.UserInfo.planet:planet]
+                        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+                        return
+                    }
+                }
+                
+            }
+        
+        }
+        
     }
     
     

@@ -40,7 +40,7 @@ class BottomMenuView: UIView {
     public func setPlanet(_ planet: Planet) {
         if let planetName = planet.name, let address = planet.address {
             self.planetNameLb.text = planetName
-            self.planetView.data = planetName
+            self.planetView.data = address
             self.addressLb.text = address
             self.qrCodeImgView.image = QRCode(address)?.image
         }

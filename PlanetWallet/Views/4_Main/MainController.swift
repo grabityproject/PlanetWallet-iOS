@@ -156,11 +156,20 @@ class MainController: PlanetWalletViewController {
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
         //do something
-        let planetList = try! PWDBManager.shared.select(Planet.self, "Planet", "hide = 'N'")
+        let planetList = PlanetStore.shared.list("", true)
         topMenuLauncher?.planetList = planetList
         
-        //TODO: - setting previous selected planet
-        self.planet = planetList.first
+        if let keyId:String = Utils.shared.getDefaults(for: "SelectedPlanet"){
+            if let planet = PlanetStore.shared.get(keyId){
+                planet.balance = "100"
+                PlanetStore.shared.update(planet)
+                self.planet = planet
+            }else{
+                self.planet = planetList.first
+            }
+        }else {
+            self.planet = planetList.first
+        }
     }
     
     private func configureTableView() {
@@ -209,8 +218,11 @@ class MainController: PlanetWalletViewController {
             let type = planet?.coinType,
             let planetKeyId = planet?.keyId
         {
+            Utils.shared.setDefaults(for: "SelectedPlanet", value: planetKeyId)
+            
             if type == CoinType.ETH.coinType { //ETH
-                dataSource.coinList = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(planetKeyId)' AND hide='N'")
+                
+                dataSource.coinList = ERC20Store.shared.list(planetKeyId, false)
                 if let ethAddr = selectPlanet.address {
                     dataSource.coinList?.insert(ETH(planetKeyId,
                                                     balance: selectPlanet.balance ?? "0",
@@ -233,26 +245,28 @@ class MainController: PlanetWalletViewController {
             //binding naviBar
             naviBar.title = CoinType.of( selectPlanet.coinType! ).name
             
-            //binding headerView
+            
             if let planetNameStr = selectPlanet.name, let planetAddr = selectPlanet.address {
+                
+                //binding headerView
                 addressLb.text = Utils.shared.trimAddress(planetAddr)
                 planetNameLb.text = planetNameStr
-                planetView.data = planetNameStr
-                bgPlanetView.data = planetNameStr
-            }
-            
-            //binding bottomLauncher
-            bottomMenuLauncher?.planet = selectPlanet
-            if selectPlanet.balance == "" {
-                bottomMenuBalanceLb.text = "0"
-            }
-            else {
-                bottomMenuBalanceLb.text = selectPlanet.balance ?? "0"
-            }
-            bottomMenuCoinTypeLb.text = selectPlanet.symbol
-            if let planetName = selectPlanet.name {
-                bottomMenuNameLb.text = "\(planetName) Balance"
-                bottomMenuPlanetView.data = planetName
+                planetView.data = planetAddr
+                bgPlanetView.data = planetAddr
+                
+                //binding bottomLauncher
+                bottomMenuLauncher?.planet = selectPlanet
+                if selectPlanet.balance == "" {
+                    bottomMenuBalanceLb.text = "0"
+                }
+                else {
+                    bottomMenuBalanceLb.text = selectPlanet.balance ?? "0"
+                }
+                bottomMenuCoinTypeLb.text = selectPlanet.symbol
+                if let planetName = selectPlanet.name {
+                    bottomMenuNameLb.text = "\(planetName) Balance"
+                    bottomMenuPlanetView.data = planetAddr
+                }
             }
         }
         
@@ -281,7 +295,8 @@ extension MainController: NavigationBarDelegate {
         case .LEFT:
             rippleAnimationView.show { (isSuccess) in
                 if isSuccess {
-                    self.sendAction(segue: Keys.Segue.MAIN_TO_SETTING, userInfo: nil)
+                    guard let planet = self.planet else { return }
+                    self.sendAction(segue: Keys.Segue.MAIN_TO_SETTING, userInfo: [Keys.UserInfo.planet: planet])
                 }
             }
         case .RIGHT:
@@ -380,7 +395,7 @@ extension MainController: UITableViewDelegate {
             if let erc20 = mainItemList[indexPath.row] as? ERC20 {
                 bottomMenuTokenView?.show(erc: erc20, planet: selectedPlanet)
             }
-            else if let eth = mainItemList[indexPath.row] as? ETH {
+            else if let _ = mainItemList[indexPath.row] as? ETH {
                 bottomMenuLauncher?.planet = selectedPlanet
                 bottomMenuLauncher?.show()
             }
@@ -393,9 +408,6 @@ extension MainController: TopMenuLauncherDelegate {
     func didSelected(planet: Planet) {
         self.planet = planet
     }
-//    func didSelectedUniverse(_ universe: Universe) {
-//        self.universe = universe
-//    }
 }
 
 //MARK: - BottomMenuDelegate

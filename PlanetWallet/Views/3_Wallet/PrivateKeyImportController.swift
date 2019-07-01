@@ -22,6 +22,8 @@ class PrivateKeyImportController: PlanetWalletViewController {
         }
     }
     
+    var planet:Planet = Planet()
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,6 +38,15 @@ class PrivateKeyImportController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
+        
+        if let userInfo = userInfo, let universeType = userInfo[Keys.UserInfo.universe] as? String {
+            if universeType == CoinType.BTC.name {
+                planet.coinType = CoinType.BTC.coinType
+            }
+            else if universeType == CoinType.ETH.name {
+                planet.coinType = CoinType.ETH.coinType
+            }
+        }
     }
     
     //MARK: - IBAction
@@ -45,9 +56,39 @@ class PrivateKeyImportController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedContinue(_ sender: UIButton) {
-        //TODO: - wallet info
-        let info = ["":""]
-        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
+        
+        if let coinType = planet.coinType, let privateKey = textField.text {
+            
+            if coinType == CoinType.BTC.coinType{
+                planet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                
+                if let keyId = planet.keyId{
+                    if PlanetStore.shared.get(keyId) != nil{
+                        //TODO: - Alert Message
+                        Toast.init(text: "-------겹침!!!!------").show()
+                    }else{
+                        let info = [Keys.UserInfo.planet:planet]
+                        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
+                        return
+                    }
+                }
+
+            }else if coinType == CoinType.ETH.coinType{
+                planet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                
+                if let keyId = planet.keyId{
+                    if PlanetStore.shared.get(keyId) != nil{
+                        //TODO: - Alert Message
+                        Toast.init(text: "-------겹침!!!!------").show()
+                    }else{
+                        let info = [Keys.UserInfo.planet:planet]
+                        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
+                        return
+                    }
+                }
+            }
+            
+        }
     }
     
     

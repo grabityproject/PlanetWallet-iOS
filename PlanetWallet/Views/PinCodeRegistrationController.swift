@@ -80,14 +80,28 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         }
         
         if pw == pwBeforeConfirmed {
-            Utils.shared.setDefaults(for: Keys.Userdefaults.PINCODE, value: pw)
+            let passwordArr = pw.map { String($0) }
             
             switch fromSegue {
             case .SPLASH:
-                sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION,
-                           userInfo: [Keys.UserInfo.fromSegue : Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION])
+                if let pwData = pw.data(using: .utf8) {
+                    KeyStore.shared.setValue(key: Keys.Userdefaults.PINCODE, data: Crypto.sha256(pwData), pin: passwordArr)
+                    sendAction(segue: Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION,
+                               userInfo: [Keys.UserInfo.fromSegue : Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION])
+                }
             case .CERTIFICATION:
-                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                
+                // change pincode and db logic
+                if let pwData = pw.data(using: .utf8) {
+                    
+                    KeyPairStore.shared.changePinCode(before: PINCODE, after: passwordArr)
+                    
+                    KeyStore.shared.setValue(key: Keys.Userdefaults.PINCODE, data: Crypto.sha256(pwData), pin: passwordArr)
+                    PINCODE = passwordArr
+                    
+                    self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            
+                }
             }
         }
         else {
@@ -121,7 +135,6 @@ extension PinCodeRegistrationController: NumberPadDelegate {
 
 extension PinCodeRegistrationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
-        //Register pincode
         passwordStr += char
         handleCompleteRegistration(passwordStr)
     }

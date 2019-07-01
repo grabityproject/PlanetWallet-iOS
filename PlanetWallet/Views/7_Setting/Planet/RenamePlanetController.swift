@@ -21,6 +21,12 @@ class RenamePlanetController: PlanetWalletViewController {
             saveBtn.setEnabled(isValid, theme: settingTheme)
         }
     }
+    
+    var planet: Planet? {
+        didSet {
+            updatePlanetUI()
+        }
+    }
 
     //MARK: - Init
     override func viewInit() {
@@ -32,14 +38,48 @@ class RenamePlanetController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
+        
+        if let userInfo = userInfo, let planet = userInfo[Keys.UserInfo.planet] as? Planet{
+            self.planet = planet
+        }
     }
     
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
-        //TODO: - Logic
-        self.dismiss(animated: true, completion: nil)
+        if let planet = self.planet,
+            let newName = nameTextField.text,
+            let coinType = planet.coinType
+        {
+            let request = Planet()
+            request.signature = Signer.sign(newName, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
+            request.planet = newName
+            request.address = planet.address
+            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON())
+        }
     }
     
+    //MARK: - Private
+    private func updatePlanetUI() {
+        if let planet = planet, let name = planet.name {
+            nameTextField.placeholder = name
+        }
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        if let dict = dictionary{
+            let response = ReturnVO(JSON: dict)
+            if( response!.success! ){
+                if let planet = planet {
+                    planet.name = nameTextField.text
+                    PlanetStore.shared.update(planet)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+        
+        
+    }
 }
 
 extension RenamePlanetController: UITextFieldDelegate {
