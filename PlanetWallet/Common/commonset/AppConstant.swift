@@ -31,6 +31,7 @@ struct Keys {
         static let transferAmount = "transferAmount"
         static let gasFee = "gasFee"
         static let universe = "universe"
+        static let selectedPlanet = "selectedPlanet"
     }
     
     struct Userdefaults {

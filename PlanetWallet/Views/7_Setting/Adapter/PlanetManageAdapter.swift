@@ -25,10 +25,13 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
     override func bindData(cell: UITableViewCell, data: Planet, position: Int) {
         setCellHeight(height: 100)
         let planetCell = cell as! PlanetCell
-        planetCell.addressLb.text = data.address
+        if let address = data.address {
+            planetCell.addressLb.text = Utils.shared.trimAddress(address)
+            planetCell.planetView.data = address
+        }
+        
         planetCell.planetNameLb.text = data.name
         planetCell.coinLb.text = data.symbol
-        planetCell.planetView.data = data.address!
     }
     
 }

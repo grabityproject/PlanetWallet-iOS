@@ -69,34 +69,58 @@ class BitCoinManager{
     }
     
     func importPrivateKey( privKey:String, pinCode:[String]) -> Planet {
-        let privateKeyBuffer:[UInt8] = PcwfUtils.hexStringToBytes(hexString: privKey)
-        var publicKeyBuffer:[UInt8] = [UInt8](repeating: 0, count: 200)
-        var pub_len:Int32 = 200
-        GenPubkeyFromPriKey(privateKeyBuffer, Int32(privateKeyBuffer.count), &publicKeyBuffer, &pub_len)
-        publicKeyBuffer.removeSubrange(Range(NSRange(location: Int(pub_len), length: publicKeyBuffer.count - Int(pub_len)))!)
-        
-        let keyPair:HDKeyPair = HDKeyPair()
-        keyPair.id = PcwfUtils.byteArrayToHexString(bytes: publicKeyBuffer)
-        keyPair.privateKey = Data(hexString: PcwfUtils.byteArrayToHexString(bytes: privateKeyBuffer))
-        keyPair.publicKey = Data(hexString: PcwfUtils.byteArrayToHexString(bytes: publicKeyBuffer))
-        keyPair.chainCode = Data()
-        
-        _ = try! KeyPairStore.shared.saveKeyPair(keyPair: keyPair, pin: pinCode)
-        
-        let account = try! service?.createBasicAccount(keyId: keyPair.id!, currencyType: CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC)
-        
-        let planet:Planet = Planet()
-        planet.keyId = keyPair.id
-        planet.address = account?.address
-        planet.coinType = CoinType.BTC.coinType
-        if let precision = CoinType.BTC.precision{
-            planet.decimals = "\(precision)"
+    
+        do {
+            var privateKeyBuffer:[UInt8] = [UInt8]()
+            
+            if let privateKeyFromWif = Utils.shared.convertWIFToPrivateKey(privKey){
+                //WIF Format
+                privateKeyBuffer = PcwfUtils.hexStringToBytes(hexString: privateKeyFromWif)
+            }
+            else {
+                //Hex Format
+                
+                privateKeyBuffer = PcwfUtils.hexStringToBytes(hexString: privKey)
+            }
+            
+            if privateKeyBuffer.count == 32{
+                
+                var publicKeyBuffer:[UInt8] = [UInt8](repeating: 0, count: 200)
+                var pub_len:Int32 = 200
+                GenPubkeyFromPriKey(privateKeyBuffer, Int32(privateKeyBuffer.count), &publicKeyBuffer, &pub_len)
+                publicKeyBuffer.removeSubrange(Range(NSRange(location: Int(pub_len), length: publicKeyBuffer.count - Int(pub_len)))!)
+                
+                let keyPair:HDKeyPair = HDKeyPair()
+                keyPair.id = PcwfUtils.byteArrayToHexString(bytes: publicKeyBuffer)
+                keyPair.privateKey = Data(hexString: PcwfUtils.byteArrayToHexString(bytes: privateKeyBuffer))
+                keyPair.publicKey = Data(hexString: PcwfUtils.byteArrayToHexString(bytes: publicKeyBuffer))
+                keyPair.chainCode = Data()
+                
+                _ = try KeyPairStore.shared.saveKeyPair(keyPair: keyPair, pin: pinCode)
+                
+                let account = try service?.createBasicAccount(keyId: keyPair.id!,
+                                                               currencyType: CoinType.BTC.name,
+                                                               definedCurrency: DefinedCurrency.BTC)
+                
+                let planet:Planet = Planet()
+                planet.keyId = keyPair.id
+                planet.address = account?.address
+                planet.coinType = CoinType.BTC.coinType
+                if let precision = CoinType.BTC.precision{
+                    planet.decimals = "\(precision)"
+                }
+                planet.hide = "N"
+                planet.symbol = CoinType.BTC.name
+                planet.pathIndex = -1
+                
+                return planet
+                
+            }
+            
+        } catch  {
+            print(error)
         }
-        planet.hide = "N"
-        planet.symbol = CoinType.BTC.name
-        planet.pathIndex = -1
-        
-        return planet
+        return Planet()
     }
     
     

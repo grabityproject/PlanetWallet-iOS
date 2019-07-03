@@ -201,6 +201,56 @@ struct Utils {
     func statusBarHeight() -> CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
+    
+    
+    func convertPrivateKeyToWIF(_ privKey: String,_ compress:Bool = true ) -> String? {
+        if let privKeyData = privKey.hexadecimal, let prefix = Data(hexString: "0x80") {
+            var wif = prefix + privKeyData
+            if( compress ){
+                wif += Data(hexString: "0x01")!
+            }
+            let doubleSHA256 = Crypto.sha256(Crypto.sha256(wif))
+            let checkSum = doubleSHA256.prefix(4)
+            wif += checkSum
+            return String(base58Encoding: wif)
+        }
+        return nil
+    }
+    
+    func convertWIFToPrivateKey(_ wifPrivKey:String )->String?{
+        if let decodePrivKey = Data(base58Decoding: wifPrivKey){
+            
+            if wifPrivKey.first == "L" || wifPrivKey.first == "K" {
+                
+                let checkSum = decodePrivKey.subdata(in: Range(NSMakeRange(decodePrivKey.count - 4, 4))!)
+                var data = decodePrivKey.subdata(in: Range(NSMakeRange(0, decodePrivKey.count - 4))!)
+                
+                data = Crypto.sha256(Crypto.sha256(data))
+                if data.subdata(in: Range(NSMakeRange(0, 4))!).hexString == checkSum.hexString{
+
+                    var privateKey = decodePrivKey.subdata(in: Range(NSMakeRange(0, decodePrivKey.count - 4))!)
+                    if( privateKey.count == 34 && privateKey.last == 0x01 ){
+                        privateKey = privateKey.subdata(in: Range(NSMakeRange(1, privateKey.count - 2))!)
+                    }
+                    return privateKey.hexString
+                }
+                
+            }
+            else if wifPrivKey.first == "5" {
+                
+                let checkSum = decodePrivKey.subdata(in: Range(NSMakeRange(decodePrivKey.count - 4, 4))!)
+                var data = decodePrivKey.subdata(in: Range(NSMakeRange(0, decodePrivKey.count - 4))!)
+                data = Crypto.sha256(Crypto.sha256(data))
+                if data.subdata(in: Range(NSMakeRange(0, 4))!).hexString == checkSum.hexString{
+                    let privateKey = decodePrivKey.subdata(in: Range(NSMakeRange(1, decodePrivKey.count - 5))!)
+                    return privateKey.hexString
+                }
+                
+            }
+        }
+        return nil
+    }
+    
 }
 
 extension Utils {

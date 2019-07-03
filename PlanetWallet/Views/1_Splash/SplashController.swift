@@ -21,7 +21,7 @@ class SplashController: PlanetWalletViewController{
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
-        
+
         switch currentTheme {
         case .DARK:         self.animationView.animation = Animation.named("splash_03_bk")
         case .LIGHT:        self.animationView.animation = Animation.named("splash_03_wh")
@@ -37,9 +37,15 @@ class SplashController: PlanetWalletViewController{
                                      animationView.rightAnchor.constraint(equalTo: view.rightAnchor)])
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        animationView.stop()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (isSuccess) in
             if isSuccess {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

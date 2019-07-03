@@ -159,7 +159,7 @@ class MainController: PlanetWalletViewController {
         let planetList = PlanetStore.shared.list("", true)
         topMenuLauncher?.planetList = planetList
         
-        if let keyId:String = Utils.shared.getDefaults(for: "SelectedPlanet"){
+        if let keyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet){
             if let planet = PlanetStore.shared.get(keyId){
                 planet.balance = "100"
                 PlanetStore.shared.update(planet)
@@ -218,7 +218,7 @@ class MainController: PlanetWalletViewController {
             let type = planet?.coinType,
             let planetKeyId = planet?.keyId
         {
-            Utils.shared.setDefaults(for: "SelectedPlanet", value: planetKeyId)
+            Utils.shared.setDefaults(for: Keys.UserInfo.selectedPlanet, value: planetKeyId)
             
             if type == CoinType.ETH.coinType { //ETH
                 

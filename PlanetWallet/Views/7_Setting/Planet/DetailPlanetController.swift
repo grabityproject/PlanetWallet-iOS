@@ -13,6 +13,7 @@ class DetailPlanetController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var hidePlanetSwitch: PWSwitch!
     @IBOutlet var mnemonicContainer: UIView!
+    @IBOutlet var privateKeyContainer: UIView!
     
     @IBOutlet var universeLb: PWLabel!
     @IBOutlet var planetNameLb: PWLabel!

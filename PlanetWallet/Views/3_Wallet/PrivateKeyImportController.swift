@@ -60,7 +60,8 @@ class PrivateKeyImportController: PlanetWalletViewController {
         if let coinType = planet.coinType, let privateKey = textField.text {
             
             if coinType == CoinType.BTC.coinType{
-                planet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+//                BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                let planet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
                 
                 if let keyId = planet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
@@ -72,9 +73,12 @@ class PrivateKeyImportController: PlanetWalletViewController {
                         return
                     }
                 }
+                else {
+                    Toast.init(text: "-------올바른 개인키 x!!!!------").show()
+                }
 
             }else if coinType == CoinType.ETH.coinType{
-                planet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                let planet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
                 
                 if let keyId = planet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
@@ -85,6 +89,9 @@ class PrivateKeyImportController: PlanetWalletViewController {
                         sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
                         return
                     }
+                }
+                else {
+                    Toast.init(text: "-------올바른 개인키 x!!!!------").show()
                 }
             }
             

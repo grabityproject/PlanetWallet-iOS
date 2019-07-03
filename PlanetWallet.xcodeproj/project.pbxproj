@@ -162,6 +162,7 @@
 		04ED33212281506C0092075E /* TokenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ED33202281506C0092075E /* TokenCell.xib */; };
 		04ED3323228150800092075E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3322228150800092075E /* TokenCell.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
+		04F61DD722CB229B00D6759A /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F61DD622CB229B00D6759A /* Base58.swift */; };
 		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
 		04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6E022C1BE830079E08A /* TokenAdapter.swift */; };
 		04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */; };
@@ -358,6 +359,7 @@
 		04ED33202281506C0092075E /* TokenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenCell.xib; sourceTree = "<group>"; };
 		04ED3322228150800092075E /* TokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		04F61DD622CB229B00D6759A /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
 		04F7D6E022C1BE830079E08A /* TokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAdapter.swift; sourceTree = "<group>"; };
 		04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableFooter.xib; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				04FBCA56229E908100DEEDD9 /* Route.swift */,
 				047A2CA022AF7D130053D153 /* Crypto.swift */,
 				045AA9C122C0AC45005EA387 /* Signer.swift */,
+				04F61DD622CB229B00D6759A /* Base58.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1183,6 +1186,7 @@
 				040CCD5F22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift in Sources */,
 				04D359EE22A74FD700BA2182 /* ERC20.swift in Sources */,
 				04FBCA51229E7FBA00DEEDD9 /* Patch.swift in Sources */,
+				04F61DD722CB229B00D6759A /* Base58.swift in Sources */,
 				04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */,
 				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
 				0444A961228C041600232748 /* NoticeCell.swift in Sources */,
