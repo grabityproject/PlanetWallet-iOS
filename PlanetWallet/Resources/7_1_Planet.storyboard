@@ -193,6 +193,7 @@
                                             <constraint firstAttribute="trailing" secondItem="DoQ-mN-xyc" secondAttribute="trailing" constant="21" id="fHT-zS-Bs8"/>
                                             <constraint firstItem="DoQ-mN-xyc" firstAttribute="centerY" secondItem="2Wi-RO-Hmk" secondAttribute="centerY" id="hfq-zR-1Mh"/>
                                             <constraint firstItem="cPL-ut-wOh" firstAttribute="leading" secondItem="CAg-HF-iiR" secondAttribute="leading" id="kG0-xD-aeh"/>
+                                            <constraint firstItem="DoQ-mN-xyc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Wi-RO-Hmk" secondAttribute="trailing" constant="50" id="wWV-Kl-3fw"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yqr-zl-E5X">
@@ -544,10 +545,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEo-cd-kKi">
-                                <rect key="frame" x="20" y="248" width="335" height="25"/>
+                                <rect key="frame" x="20" y="243.5" width="335" height="25"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save the Mnemonic Phrase safely." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-BZ-H4P">
-                                        <rect key="frame" x="0.0" y="2.5" width="232.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="4.5" width="215" height="16.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" name="errorText"/>
                                         <nil key="highlightedColor"/>
@@ -570,7 +571,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup Mnemonic Phrase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoV-aE-7eI" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108" width="177" height="21"/>
+                                <rect key="frame" x="20" y="108" width="165.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextLight"/>
                                 <nil key="highlightedColor"/>
@@ -581,7 +582,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQa-bj-Vuh" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="140" width="335" height="100"/>
+                                <rect key="frame" x="20" y="135.5" width="335" height="100"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet consectetaur cillium adipisicing pecu sed do eiusmod tempor" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGb-d7-c5e" customClass="PWTextView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="17" width="305" height="66"/>
@@ -688,7 +689,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0l-d6-bh5" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="134.5" width="335" height="55"/>
+                                <rect key="frame" x="20" y="138.5" width="335" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sSa-AS-DWf" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="305" height="55"/>
@@ -731,7 +732,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Planet name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-lg-Woz" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108" width="115" height="16.5"/>
+                                <rect key="frame" x="20" y="108" width="128" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -742,7 +743,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet name will be shown to others." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yz9-1o-sVW">
-                                <rect key="frame" x="20" y="199.5" width="262.5" height="16.5"/>
+                                <rect key="frame" x="20" y="203.5" width="290.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="errorText"/>
                                 <nil key="highlightedColor"/>

@@ -79,7 +79,7 @@ class BitCoinManager{
             }
             else {
                 //Hex Format
-                
+                guard privKey.count == 64 else { return Planet() }
                 privateKeyBuffer = PcwfUtils.hexStringToBytes(hexString: privKey)
             }
             

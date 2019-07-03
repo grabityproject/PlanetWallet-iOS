@@ -24,12 +24,21 @@ class MnemonicExportController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
-        if let userInfo = userInfo, let planet = userInfo[Keys.UserInfo.planet] as? Planet{
-            self.planet = planet
+        
+        if let userInfo = userInfo {
+            if let planet = userInfo[Keys.UserInfo.planet] as? Planet {
+                self.planet = planet
+                textView.text = planet.getMnemonic(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
+            }
             
-            textView.text = planet.getMnemonic(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
-            print(textView.text)
+            if let from = userInfo[Keys.UserInfo.fromSegue] as? String {
+                if from == Keys.Segue.MAIN_TO_PINCODECERTIFICATION {
+                    Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonic, value: true)
+                }
+            }
         }
+        
+        
     }
 
 }

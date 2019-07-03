@@ -99,7 +99,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
         case .TRANSFER:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_TX_RECEIPT, userInfo: self.userInfo)
         case .MAIN:
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: nil)
+            let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT
+            sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.MAIN_TO_PINCODECERTIFICATION])
         }
         
     }

@@ -92,6 +92,10 @@ class MainController: PlanetWalletViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let shouldBackup: Bool = Utils.shared.getDefaults(for: Keys.UserInfo.shouldBackUpMnemonic) {
+            if shouldBackup { labelError.isHidden = true }
+        }
+        
         rippleAnimationView.dismiss()
         
         if( ThemeManager.currentTheme() == .DARK ){
@@ -137,8 +141,7 @@ class MainController: PlanetWalletViewController {
 
     //MARK: - IBAction
     @IBAction func didTouchedCopyAddr(_ sender: UIButton) {
-        
-        if let addr = addressLb.text {
+        if let addr = self.planet?.address {
             Utils.shared.copyToClipboard(addr)
             showCopyToast()
         }

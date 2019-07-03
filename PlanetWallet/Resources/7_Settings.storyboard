@@ -43,7 +43,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're on Korbin0402" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueu-lc-khI" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="139" y="29" width="136.5" height="70"/>
+                                                <rect key="frame" x="15" y="29" width="384" height="70"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -56,7 +56,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ueu-lc-khI" secondAttribute="trailing" constant="15" id="0oU-jp-MLn"/>
                                             <constraint firstItem="ueu-lc-khI" firstAttribute="centerX" secondItem="9vW-cs-pBp" secondAttribute="centerX" id="BI6-4t-r6b"/>
+                                            <constraint firstItem="ueu-lc-khI" firstAttribute="leading" secondItem="9vW-cs-pBp" secondAttribute="leading" constant="15" id="WZU-RT-ILC"/>
                                             <constraint firstItem="ueu-lc-khI" firstAttribute="centerY" secondItem="9vW-cs-pBp" secondAttribute="centerY" id="wXc-cJ-iHf"/>
                                         </constraints>
                                     </view>

@@ -67,6 +67,10 @@ class EthereumManager{
     }
     
     func importPrivateKey( privKey:String, pinCode:[String]) -> Planet {
+        guard ( privKey.count == 66 && String(privKey.prefix(2)) == "0x" ) || ( privKey.count == 64 ) else {
+            return Planet()
+        }
+        
         let privateKeyBuffer:[UInt8] = PcwfUtils.hexStringToBytes(hexString: privKey)
         var publicKeyBuffer:[UInt8] = [UInt8](repeating: 0, count: 200)
         var pub_len:Int32 = 200

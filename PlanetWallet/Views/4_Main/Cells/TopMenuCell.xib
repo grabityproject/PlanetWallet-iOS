@@ -40,8 +40,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="data" value="문규송"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satriani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whX-tA-YSO" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="52" y="17.5" width="52.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Satrianiafgaksdhfjkashkjfajsdfhslafhlsdhfkhl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whX-tA-YSO" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="52" y="17.5" width="181" height="20.5"/>
                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                     <color key="textColor" name="textColorDark"/>
                     <nil key="highlightedColor"/>
@@ -75,6 +75,7 @@
             </subviews>
             <color key="backgroundColor" name="borderDark"/>
             <constraints>
+                <constraint firstItem="NtF-NI-r0m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="whX-tA-YSO" secondAttribute="trailing" constant="5" id="Aja-Yb-24Z"/>
                 <constraint firstItem="QyJ-s5-Rxf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="FzT-d0-QDM"/>
                 <constraint firstItem="PDY-Tr-Ebl" firstAttribute="leading" secondItem="NtF-NI-r0m" secondAttribute="trailing" constant="8" id="Ry5-kM-kJg"/>
                 <constraint firstItem="whX-tA-YSO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SZR-uZ-FAZ"/>

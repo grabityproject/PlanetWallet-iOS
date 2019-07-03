@@ -130,10 +130,10 @@
                                             <rect key="frame" x="0.0" y="225" width="375" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cxp-rY-NMa">
-                                                    <rect key="frame" x="118.5" y="0.0" width="138" height="70"/>
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel-III" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                            <rect key="frame" x="23" y="0.0" width="92" height="35"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel-IIIadfhioahdoifhioahsdiohfohasdhoashdfhoiasdhiof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="35"/>
                                                             <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="24"/>
                                                             <color key="textColor" red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNi-iT-56P">
-                                                            <rect key="frame" x="0.0" y="35" width="138" height="35"/>
+                                                            <rect key="frame" x="108.5" y="35" width="138" height="35"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x124A…bEF9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2s-Rl-Lg9" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="108" height="35"/>
@@ -166,6 +166,10 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="9QB-wS-Ubw" secondAttribute="trailing" id="JxW-8J-9hC"/>
+                                                        <constraint firstItem="9QB-wS-Ubw" firstAttribute="leading" secondItem="cxp-rY-NMa" secondAttribute="leading" id="Uiw-gT-rsV"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38K-y5-an8">
                                                     <rect key="frame" x="118.5" y="35" width="138" height="35"/>
@@ -182,6 +186,8 @@
                                                 <constraint firstItem="38K-y5-an8" firstAttribute="trailing" secondItem="xNi-iT-56P" secondAttribute="trailing" id="adt-SP-iqp"/>
                                                 <constraint firstItem="cxp-rY-NMa" firstAttribute="centerX" secondItem="jQe-8d-ie6" secondAttribute="centerX" id="b7f-Wn-wcJ"/>
                                                 <constraint firstItem="cxp-rY-NMa" firstAttribute="top" secondItem="jQe-8d-ie6" secondAttribute="top" id="f8c-2t-fkP"/>
+                                                <constraint firstItem="cxp-rY-NMa" firstAttribute="leading" secondItem="jQe-8d-ie6" secondAttribute="leading" constant="10" id="smf-Y1-XSN"/>
+                                                <constraint firstAttribute="trailing" secondItem="cxp-rY-NMa" secondAttribute="trailing" constant="10" id="xWP-kk-IM5"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -301,8 +307,8 @@
                                             <constraint firstAttribute="height" constant="45" id="hEF-AS-7vZ"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.9829341" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa4-sM-5ti" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="37" width="96.5" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="13.9829341126789398126894691826389639861" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa4-sM-5ti" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="75" y="37" width="194" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="niQ-cw-lMP"/>
                                         </constraints>
@@ -310,8 +316,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Planet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnN-eW-fcF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="17" width="43.5" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlanetNameBlahlBlahBlahlBlahBlahlBlahBlahlBlah Balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnN-eW-fcF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="75" y="17" width="234" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="8gD-YX-lO6"/>
                                         </constraints>
@@ -325,7 +331,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-MI-xsW" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="175.5" y="37" width="36" height="21"/>
+                                        <rect key="frame" x="273" y="37" width="36" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="77m-yn-2JY"/>
                                         </constraints>
@@ -354,6 +360,7 @@
                                     <constraint firstItem="g0d-MI-xsW" firstAttribute="leading" secondItem="Pa4-sM-5ti" secondAttribute="trailing" constant="4" id="14o-TG-tlT"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="leading" secondItem="jpA-rX-jiv" secondAttribute="trailing" constant="10" id="6oJ-NP-vGd"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="bottom" secondItem="g0d-MI-xsW" secondAttribute="bottom" id="CTt-8B-fla"/>
+                                    <constraint firstItem="wej-QY-Zhn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g0d-MI-xsW" secondAttribute="trailing" constant="10" id="DMu-0l-jbq"/>
                                     <constraint firstItem="wej-QY-Zhn" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" constant="20" id="Gsr-SL-bv1"/>
                                     <constraint firstItem="jpA-rX-jiv" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" constant="17" id="H8c-Qb-V43"/>
                                     <constraint firstItem="gnN-eW-fcF" firstAttribute="top" secondItem="jpA-rX-jiv" secondAttribute="top" id="Krv-Je-TBK"/>
@@ -363,6 +370,7 @@
                                     <constraint firstAttribute="bottom" secondItem="b7M-Fb-zMW" secondAttribute="bottom" id="S1M-C4-mmM"/>
                                     <constraint firstItem="Pa4-sM-5ti" firstAttribute="top" secondItem="gnN-eW-fcF" secondAttribute="bottom" constant="4" id="Ufl-Qr-YbH"/>
                                     <constraint firstAttribute="height" constant="240" id="cyr-zT-9wk"/>
+                                    <constraint firstItem="wej-QY-Zhn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gnN-eW-fcF" secondAttribute="trailing" constant="10" id="fl0-93-XqY"/>
                                     <constraint firstItem="b7M-Fb-zMW" firstAttribute="top" secondItem="ImE-pt-fi9" secondAttribute="top" id="jqm-jn-6cr"/>
                                     <constraint firstAttribute="trailing" secondItem="b7M-Fb-zMW" secondAttribute="trailing" id="mKu-rt-Kbn"/>
                                     <constraint firstItem="b7M-Fb-zMW" firstAttribute="leading" secondItem="ImE-pt-fi9" secondAttribute="leading" id="mav-56-Pqg"/>
