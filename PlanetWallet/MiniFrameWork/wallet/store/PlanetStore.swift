@@ -38,7 +38,12 @@ class PlanetStore {
         }
         
         if !containsHide {
-            condition = "\(condition) AND hide='N'"
+            if condition == "" {
+                condition = "hide = 'N'"
+            }
+            else {
+                condition = "\(condition) AND hide = 'N'"
+            }
         }
         
         do {

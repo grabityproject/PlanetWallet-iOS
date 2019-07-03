@@ -157,7 +157,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjl-Xs-8qx">
                                                     <rect key="frame" x="15" y="0.0" width="132.5" height="49.5"/>
                                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
-                                                    <state key="normal" title="210000">
+                                                    <state key="normal" title="21000">
                                                         <color key="titleColor" name="detailTextLight"/>
                                                     </state>
                                                     <connections>

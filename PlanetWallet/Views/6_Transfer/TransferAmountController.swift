@@ -45,13 +45,17 @@ class TransferAmountController: PlanetWalletViewController {
         didSet {
             if let inputNum = Double(inputAmount) {
                 displayLb.text = inputAmount
-                let currency = inputNum * 1230
-                fiatDisplayLb.text = "\(currency)"
                 
-                if inputNum > 0 && self.availableBalance >= inputNum {
+                if inputNum >= 0 && self.availableBalance >= inputNum {
+                    //TODO: - Fiat Currency
+                    let currency = inputNum * 1230
+                    fiatDisplayLb.text = "\(currency)"
+                    fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
                     submitBtn.setEnabled(true, theme: currentTheme)
                 }
                 else {
+                    fiatDisplayLb.text = "You don’t have enough amount to send"
+                    fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
                     submitBtn.setEnabled(false, theme: currentTheme)
                 }
             }
@@ -113,7 +117,9 @@ class TransferAmountController: PlanetWalletViewController {
         super.viewWillAppear(animated)
         
         self.titleWithPlanetContainer.bringSubviewToFront(naviBar)
-        self.titlePlanetView.data = titlePlanetNameLb.text!
+        if let toAddress = toPlanet?.address {
+            self.titlePlanetView.data = toAddress
+        }
         
         self.inputAmount = "0"
     }

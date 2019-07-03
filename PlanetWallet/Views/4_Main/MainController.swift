@@ -148,8 +148,6 @@ class MainController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedError(_ sender: UIButton) {
-        //go to back up Mnemonic or Private key
-        //TODO : - navigate page
         let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
         sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue])
     }
@@ -158,8 +156,7 @@ class MainController: PlanetWalletViewController {
     
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
-        //do something
-        let planetList = PlanetStore.shared.list("", true)
+        let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
         
         if let keyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet){

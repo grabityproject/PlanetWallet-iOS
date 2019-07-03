@@ -55,6 +55,7 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var gasContainer: UIView!
     @IBOutlet var slider: PWSlider!
+    
     var coinType = CoinType.ETH
     var gas: Gas?
     var gasStep: Gas.Step = .AVERAGE {
@@ -179,11 +180,11 @@ class TransferConfirmController: PlanetWalletViewController {
             guard let average = Double(item["standard"] as! String) else { return }
             guard let fast = Double(item["fast"] as! String) else { return }
             guard let fastest = Double(item["fastest"] as! String) else { return }
-            
-            self.gas = Gas(safeLow: Int(safeLow),
-                           average: Int(average),
-                           fast: Int(fast),
-                           fastest: Int(fastest))
+                
+            self.gas = Gas(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                           average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                           fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                           fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
             self.gasStep = .AVERAGE
         }
     }

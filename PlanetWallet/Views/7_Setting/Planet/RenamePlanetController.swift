@@ -101,16 +101,23 @@ extension RenamePlanetController: UITextFieldDelegate {
         
         guard let textFieldText = textField.text else { return false }
         
+        //input type : alphabet, decimal, underbar
+        do {
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z0-9_].*", options: [])
+            if regex.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) != nil {
+                return false
+            }
+        }
+        catch {
+            print("ERROR")
+        }
+        
         let newLength = textFieldText.utf16.count + string.utf16.count - range.length
         
-        if newLength >= 1 {
-            isValid = true
-        }
-        else {
-            isValid = false
-        }
+        if newLength >= 1 { isValid = true }
+        else { isValid = false }
         
-        return true
+        return newLength <= 30
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {

@@ -47,10 +47,11 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
             }
         }else {
             let item = cell as! ContactCell
+            if let address = data.address {
+                item.planetView.data = address
+                item.addressLb.text = Utils.shared.trimAddress(address)
+            }
             item.planetName.text = data.name
-            item.planetView.data = data.address!
-            item.addressLb.text = data.address
-            
         }
         
         setCellHeight(height: 85)

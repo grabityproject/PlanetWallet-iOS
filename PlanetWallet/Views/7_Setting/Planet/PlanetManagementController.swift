@@ -42,7 +42,7 @@ class PlanetManagementController: PlanetWalletViewController {
             self.planet = (userInfo[Keys.UserInfo.planet] as! Planet)
             
             if let planet = planet, let keyID = planet.keyId {
-                var list = PlanetStore.shared.list()
+                var list = PlanetStore.shared.list("", false)
                 
                 var removeIndex = -1
                 for i in 0..<list.count {

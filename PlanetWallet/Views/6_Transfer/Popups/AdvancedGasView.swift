@@ -86,7 +86,7 @@ class AdvancedGasView: UIView {
     }
     
     static let DEFAULT_GAS_PRICE = 20
-    static let DEFAULT_GAS_LIMIT = 210000
+    static let DEFAULT_GAS_LIMIT = 21000
     
     var drawerPanGesture: UIPanGestureRecognizer!
     var backgroundPanGesture: UIPanGestureRecognizer!
