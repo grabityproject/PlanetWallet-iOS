@@ -9,7 +9,7 @@
 import UIKit
 
 extension TransferConfirmController {
-    struct Gas {
+    struct GasInfo {
         enum Step: Int {
             case SAFE_LOW = 0
             case AVERAGE = 4
@@ -22,7 +22,7 @@ extension TransferConfirmController {
         public var fast: Int = 0
         public var fastest: Int = 0
 
-        public func getGas(step: Gas.Step) -> Int {
+        public func getGas(step: GasInfo.Step) -> Int {
             switch step {
             case .SAFE_LOW:     return self.safeLow
             case .AVERAGE:      return self.average
@@ -31,8 +31,8 @@ extension TransferConfirmController {
             }
         }
     }
-    
 }
+
 
 class TransferConfirmController: PlanetWalletViewController {
 
@@ -56,20 +56,54 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var gasContainer: UIView!
     @IBOutlet var slider: PWSlider!
     
+    @IBOutlet var confirmBtn: PWButton!
+    
     var coinType = CoinType.ETH
-    var gas: Gas?
-    var gasStep: Gas.Step = .AVERAGE {
+    var gas: GasInfo?
+    var gasFee: Double = 0.0 {
+        didSet {
+            guard let planet = self.planet else { return }
+            
+            if let _ = self.erc20 {
+                gasFeeLb.text = "\(gasFee) ETH"
+                
+                guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else { return }
+                if self.availableAmount >= transferAmount && ethBalance >= self.gasFee {
+                    confirmBtn.setEnabled(true, theme: currentTheme)
+                }
+                else {
+                    confirmBtn.setEnabled(false, theme: currentTheme)
+                }
+            }
+            else {
+                if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
+                    gasFeeLb.text = "\(gasFee) \(coinType.defaultUnit ?? "")"
+                    
+                    let totalAmount = self.transferAmount + self.gasFee
+                    if self.availableAmount >= totalAmount {
+                        confirmBtn.setEnabled(true, theme: currentTheme)
+                    }
+                    else {
+                        confirmBtn.setEnabled(false, theme: currentTheme)
+                    }
+                }
+            }
+        }
+    }
+    
+    var gasStep: GasInfo.Step = .AVERAGE {
         didSet {
             slider.value = Float(gasStep.rawValue)
             
             if let gasGWEI = self.gas?.getGas(step: self.gasStep),
                 let gasETHStr: String = Utils.shared.gweiToETH(gasGWEI),
-                let defaultUnit = coinType.defaultUnit
+                let gasETH = Double(gasETHStr)
             {
-                gasFeeLb.text = "\(gasETHStr) \(defaultUnit)"
+                gasFee = gasETH
             }
         }
     }
+    
     var isAdvancedGasOptions = false {
         didSet {
             gasContainer.isHidden = isAdvancedGasOptions
@@ -78,6 +112,11 @@ class TransferConfirmController: PlanetWalletViewController {
     }
     
     var advancedGasPopup = AdvancedGasView()
+    
+    var planet: Planet?
+    var erc20: ERC20?
+    var transferAmount = 0.0
+    var availableAmount = 0.0
     
     //MARK: - Init
     override func viewInit() {
@@ -97,16 +136,31 @@ class TransferConfirmController: PlanetWalletViewController {
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
             let amount = userInfo[Keys.UserInfo.transferAmount] as? Double
         {
-            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20 {
+            self.planet = fromPlanet
+            self.transferAmount = amount
+            
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
+                let balance = Double(erc20.balance ?? "0")
+            {
+                self.erc20 = erc20
+                self.coinType = CoinType.ERC20
+                self.availableAmount = balance
+                
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
             else {
-                guard let coinType = fromPlanet.coinType else { return }
+                guard let coinType = fromPlanet.coinType,
+                    let balanceStr = planet?.balance,
+                    let balance = Double(balanceStr) else { return }
+                self.availableAmount = balance
+                
                 if coinType == CoinType.BTC.coinType {
+                    self.coinType = CoinType.BTC
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
                 }
                 else if coinType == CoinType.ETH.coinType {
+                    self.coinType = CoinType.ETH
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
                 }
                 
@@ -154,7 +208,7 @@ class TransferConfirmController: PlanetWalletViewController {
         let step: Float = 4.0
         let roundedStepValue = round(sender.value / step) * step
         
-        self.gasStep = Gas.Step(rawValue: Int(roundedStepValue)) ?? .AVERAGE
+        self.gasStep = GasInfo.Step(rawValue: Int(roundedStepValue)) ?? .AVERAGE
     }
     
     @IBAction func didTouchedAdvancedOpt(_ sender: UIButton) {
@@ -175,13 +229,12 @@ class TransferConfirmController: PlanetWalletViewController {
         if let resultVO = ReturnVO(JSON: dict),
             let item = resultVO.result as? Dictionary<String, Any>
         {
-            
             guard let safeLow = Double(item["safeLow"] as! String) else { return }
             guard let average = Double(item["standard"] as! String) else { return }
             guard let fast = Double(item["fast"] as! String) else { return }
             guard let fastest = Double(item["fastest"] as! String) else { return }
                 
-            self.gas = Gas(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+            self.gas = GasInfo(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
                            average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
                            fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
                            fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))

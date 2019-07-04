@@ -88,13 +88,15 @@ class MainController: PlanetWalletViewController {
                                          height: SCREEN_WIDTH * 410.0 / 375.0)
     }
     
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let shouldBackup: Bool = Utils.shared.getDefaults(for: Keys.UserInfo.shouldBackUpMnemonic) {
-            if shouldBackup { labelError.isHidden = true }
-        }
+        self.fetchData { (_) in }
+        
+        self.updateBackupError()
+        
         
         rippleAnimationView.dismiss()
         
@@ -105,8 +107,7 @@ class MainController: PlanetWalletViewController {
             darkDimGradientView.isHidden = true
             lightDimGradientView.isHidden = false
         }
-        
-        self.fetchData { (_) in }
+
         tableView.reloadData()
     }
     
@@ -148,8 +149,19 @@ class MainController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedError(_ sender: UIButton) {
-        let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
-        sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue])
+        if let planet = planet, let type = planet.coinType
+        {
+            if CoinType.BTC.coinType == type {
+                Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonicBTC, value: true)
+            }
+            else if CoinType.ETH.coinType == type {
+                Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonicETH, value: true)
+            }
+            
+            let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
+            sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue,
+                                                Keys.UserInfo.planet: planet])
+        }
     }
     
     @IBAction func unwindToMainController(segue:UIStoryboardSegue) { }
@@ -169,6 +181,25 @@ class MainController: PlanetWalletViewController {
             }
         }else {
             self.planet = planetList.first
+        }
+    }
+    
+    private func updateBackupError() {
+        if let planet = planet, let type = planet.coinType, let pathIdx = planet.pathIndex
+        {
+            if pathIdx >= 0 {//Generate Planet
+                labelError.isHidden = false
+                
+                if CoinType.BTC.coinType == type && UserDefaults.standard.bool(forKey: Keys.UserInfo.shouldBackUpMnemonicBTC) {
+                    labelError.isHidden = true
+                }
+                else if CoinType.ETH.coinType == type && UserDefaults.standard.bool(forKey: Keys.UserInfo.shouldBackUpMnemonicETH) {
+                    labelError.isHidden = true
+                }
+            }
+            else { //Import Planet
+                labelError.isHidden = true
+            }
         }
     }
     
@@ -213,6 +244,8 @@ class MainController: PlanetWalletViewController {
     }
     
     private func updatePlanet() {
+        
+        self.updateBackupError()
         
         if let selectPlanet = planet,
             let type = planet?.coinType,

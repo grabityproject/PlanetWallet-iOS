@@ -147,7 +147,13 @@ class PlanetGenerateController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedSelect(_ sender: UIButton) {
-        self.planet?.name = nameTextView.text
+        
+        if nameTextView.text.contains(" ") {
+            self.planet?.name = nameTextView.text.trimmingCharacters(in: .whitespaces)
+        }
+        else {
+            self.planet?.name = nameTextView.text
+        }
         
         if let planet = self.planet, let coinType = planet.coinType{
             
@@ -185,7 +191,6 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        print(dictionary)
         if let dict = dictionary{
             let response = ReturnVO(JSON: dict)
             if( response!.success! ){
@@ -201,8 +206,11 @@ class PlanetGenerateController: PlanetWalletViewController {
                 }
             }
             else {
-                //TODO: -Alarm Message
-                print(dict)
+                if let errDic = response?.result as? [String: Any],
+                    let errorMsg = errDic["errorMsg"] as? String
+                {
+                    Toast(text: errorMsg).show()
+                }
             }
         }
         

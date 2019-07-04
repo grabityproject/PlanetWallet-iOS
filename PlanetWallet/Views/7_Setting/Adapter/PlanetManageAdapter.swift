@@ -30,6 +30,15 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
             planetCell.planetView.data = address
         }
         
+        if let isHide = data.hide {
+            if isHide == "Y" {
+                planetCell.containerView.alpha = 0.5
+            }
+            else if isHide == "N" {
+                planetCell.containerView.alpha = 1.0
+            }
+        }
+        
         planetCell.planetNameLb.text = data.name
         planetCell.coinLb.text = data.symbol
     }

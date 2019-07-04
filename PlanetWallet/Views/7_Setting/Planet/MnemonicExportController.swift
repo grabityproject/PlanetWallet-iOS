@@ -29,16 +29,9 @@ class MnemonicExportController: PlanetWalletViewController {
             if let planet = userInfo[Keys.UserInfo.planet] as? Planet {
                 self.planet = planet
                 textView.text = planet.getMnemonic(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
-            }
-            
-            if let from = userInfo[Keys.UserInfo.fromSegue] as? String {
-                if from == Keys.Segue.MAIN_TO_PINCODECERTIFICATION {
-                    Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonic, value: true)
-                }
+                print(textView.text)
             }
         }
-        
-        
     }
 
 }

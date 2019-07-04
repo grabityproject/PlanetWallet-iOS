@@ -138,71 +138,87 @@ class BitCoinManager{
         }
         index = index + 1
         
-        let masterKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode)
-        let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
-        
-        let childKeyId = try! KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-        let account = try! service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
-        
-        
-        let planet:Planet = Planet()
-        planet.keyId = childKeyId
-        planet.address = account?.address
-        planet.coinType = CoinType.BTC.coinType
-        if let precision = CoinType.BTC.precision{
-            planet.decimals = "\(precision)"
+        do {
+            let masterKeyPair = try KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode)
+            let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
+            
+            let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
+            let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
+            
+            
+            let planet:Planet = Planet()
+            planet.keyId = childKeyId
+            planet.address = account?.address
+            planet.coinType = CoinType.BTC.coinType
+            if let precision = CoinType.BTC.precision{
+                planet.decimals = "\(precision)"
+            }
+            planet.hide = "N"
+            planet.symbol = CoinType.BTC.name
+            planet.pathIndex = index
+            
+            return planet
         }
-        planet.hide = "N"
-        planet.symbol = CoinType.BTC.name
-        planet.pathIndex = index
-        
-        return planet
+        catch {
+            print("Add BTC planet error : \(error)")
+            return Planet()
+        }
     }
     
     
     func addPlanet( index:Int, pinCode:[String] )->Planet{
         
-        let masterKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode)
-        let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
-        
-        let childKeyId = try! KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-        let account = try! service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
-        
-        
-        let planet:Planet = Planet()
-        planet.keyId = childKeyId
-        planet.address = account?.address
-        planet.coinType = CoinType.BTC.coinType
-        if let precision = CoinType.BTC.precision{
-            planet.decimals = "\(precision)"
+        do {
+            let masterKeyPair = try KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode)
+            let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
+            
+            let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
+            let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
+            
+            
+            let planet:Planet = Planet()
+            planet.keyId = childKeyId
+            planet.address = account?.address
+            planet.coinType = CoinType.BTC.coinType
+            if let precision = CoinType.BTC.precision{
+                planet.decimals = "\(precision)"
+            }
+            planet.hide = "N"
+            planet.symbol = CoinType.BTC.name
+            planet.pathIndex = index
+            
+            return planet
         }
-        planet.hide = "N"
-        planet.symbol = CoinType.BTC.name
-        planet.pathIndex = index
-        
-        return planet
+        catch {
+            print("Add BTC planet error : \(error)")
+            return Planet()
+        }
     }
     
     func generateMaster( pinCode:[String]) {
-        let mnemonic = try! ObjcMnemonicService().generateMnemonic(entropySize: 128)
-        let mnemonicPhrase = mnemonic.joined(separator: " ")
-        
-        let seed = try! ObjcMnemonicService().createSeed(mnemonic: mnemonic, passphrase: "")
-        
-        let masterKeyPair = try! ObjcHDKeyPairService().deriveHDMasterKey(seed: seed)
-        
-        let btcCoinAccountPath = PcwfUtils.getHDPath(hdPathString: "44H/0H/0H")
-        let btcCoinAccountkey = try! ObjcHDKeyPairService().deriveHDKeyPair(parentKeyPair: masterKeyPair, hdPath: btcCoinAccountPath)
-        
-        if let mk:HDKeyPair = try! KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode){
-            let childKeyPair = try! hdKeyPairService.deriveHDKeyPair(parentKeyPair: mk, hdPath: [0, 0])
-            _ = PWDBManager.shared.delete(KeyPair(), "master='\(CoinType.BTC.coinType)'")
-            if let keyId = childKeyPair.id{
-                _ = PWDBManager.shared.delete(KeyPair(), "keyId='\(keyId)'")
+        do {
+            let mnemonic = try ObjcMnemonicService().generateMnemonic(entropySize: 128)
+            let mnemonicPhrase = mnemonic.joined(separator: " ")
+            
+            let seed = try ObjcMnemonicService().createSeed(mnemonic: mnemonic, passphrase: "")
+            
+            let masterKeyPair = try ObjcHDKeyPairService().deriveHDMasterKey(seed: seed)
+            
+            let btcCoinAccountPath = PcwfUtils.getHDPath(hdPathString: "44H/0H/0H")
+            let btcCoinAccountkey = try ObjcHDKeyPairService().deriveHDKeyPair(parentKeyPair: masterKeyPair, hdPath: btcCoinAccountPath)
+            
+            if let mk:HDKeyPair = try KeyPairStore.shared.getMasterKeyPair(coreCoinType: CoinType.BTC.coinType, pin: pinCode){
+                let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: mk, hdPath: [0, 0])
+                _ = PWDBManager.shared.delete(KeyPair(), "master='\(CoinType.BTC.coinType)'")
+                if let keyId = childKeyPair.id{
+                    _ = PWDBManager.shared.delete(KeyPair(), "keyId='\(keyId)'")
+                }
             }
+            _ = try KeyPairStore.shared.saveMasterKeyPair(coreCoinType: CoinType.BTC.coinType, phrase: mnemonicPhrase, keyPair: btcCoinAccountkey, pin: pinCode)
         }
-        _ = try! KeyPairStore.shared.saveMasterKeyPair(coreCoinType: CoinType.BTC.coinType, phrase: mnemonicPhrase, keyPair: btcCoinAccountkey, pin: pinCode)
-        
+        catch {
+            print("Generate BTC master error : \(error)")
+        }
     }
     
     

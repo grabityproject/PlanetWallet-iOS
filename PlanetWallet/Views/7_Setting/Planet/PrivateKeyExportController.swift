@@ -30,7 +30,7 @@ class PrivateKeyExportController: PlanetWalletViewController {
             let privateKey = planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
             
             textView.text = planet.coinType == CoinType.BTC.coinType ? Utils.shared.convertPrivateKeyToWIF(privateKey) : privateKey
-            
+            print(textView.text)
             
         }
     }

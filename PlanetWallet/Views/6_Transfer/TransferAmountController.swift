@@ -46,7 +46,7 @@ class TransferAmountController: PlanetWalletViewController {
             if let inputNum = Double(inputAmount) {
                 displayLb.text = inputAmount
                 
-                if inputNum >= 0 && self.availableBalance >= inputNum {
+                if 0 <= inputNum && inputNum <= self.availableBalance {
                     //TODO: - Fiat Currency
                     let currency = inputNum * 1230
                     fiatDisplayLb.text = "\(currency)"

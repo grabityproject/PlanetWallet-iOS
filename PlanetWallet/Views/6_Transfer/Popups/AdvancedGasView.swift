@@ -178,7 +178,7 @@ class AdvancedGasView: UIView {
         if let gas = Int(gasPrice),
             let limit = Int(gasLimit)
         {
-            if gas > 0 && limit > 21000 {
+            if gas > 0 && limit >= AdvancedGasView.DEFAULT_GAS_LIMIT {
                 delegate?.didTouchedSave(calculateGasPrice(gas: gas, limit: limit))
                 self.hide()
             }

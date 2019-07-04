@@ -1421,6 +1421,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="confirmBtn" destination="ukF-wZ-NLs" id="Kl4-Ow-sYE"/>
                         <outlet property="fromLb" destination="XtS-I2-Cbe" id="gpY-iV-KY1"/>
                         <outlet property="gasContainer" destination="Yjs-zQ-6bF" id="brs-DK-g5E"/>
                         <outlet property="gasFeeLb" destination="UE8-AB-GaN" id="tBH-Fx-99O"/>

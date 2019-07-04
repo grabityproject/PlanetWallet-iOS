@@ -60,41 +60,36 @@ class PrivateKeyImportController: PlanetWalletViewController {
         if let coinType = planet.coinType, let privateKey = textField.text {
             
             if coinType == CoinType.BTC.coinType{
-//                BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
-                let planet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                let importedPlanet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
                 
-                if let keyId = planet.keyId{
+                if let keyId = importedPlanet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
-                        //TODO: - Alert Message
-                        Toast.init(text: "-------겹침!!!!------").show()
+                        Toast.init(text: "The private key already exists.").show()
                     }else{
-                        let info = [Keys.UserInfo.planet:planet]
+                        let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
                         return
                     }
                 }
                 else {
-                    Toast.init(text: "-------올바른 개인키 x!!!!------").show()
+                    Toast.init(text: "It is not a valid format.").show()
                 }
-
             }else if coinType == CoinType.ETH.coinType{
-                let planet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                let importedPlanet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
                 
-                if let keyId = planet.keyId{
+                if let keyId = importedPlanet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
-                        //TODO: - Alert Message
-                        Toast.init(text: "-------겹침!!!!------").show()
+                        Toast.init(text: "The private key already exists.").show()
                     }else{
-                        let info = [Keys.UserInfo.planet:planet]
+                        let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
                         return
                     }
                 }
                 else {
-                    Toast.init(text: "-------올바른 개인키 x!!!!------").show()
+                    Toast.init(text: "It is not a valid format.").show()
                 }
             }
-            
         }
     }
     
@@ -140,8 +135,19 @@ extension PrivateKeyImportController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         guard let textFieldText = textField.text else { return false }
+        //Regex 0...9 && a...f && A...F
+        do {
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z0-9].*", options: [])
+            if regex.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) != nil {
+                isValidPrivateKey = false
+                return false
+            }
+        }
+        catch {
+            print("ERROR")
+        }
+        
         let length = textFieldText.utf16.count + string.utf16.count - range.length
         
         if length >= 1 {

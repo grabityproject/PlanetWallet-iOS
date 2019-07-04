@@ -72,6 +72,13 @@ class PlanetNameController: PlanetWalletViewController {
                 PlanetStore.shared.save(planet)
                 sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
             }
+            else {
+                if let errDic = response.result as? [String: Any],
+                    let errorMsg = errDic["errorMsg"] as? String
+                {
+                    Toast(text: errorMsg).show()
+                }
+            }
         }
         
     }

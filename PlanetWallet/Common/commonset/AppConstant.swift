@@ -32,7 +32,8 @@ struct Keys {
         static let gasFee = "gasFee"
         static let universe = "universe"
         static let selectedPlanet = "selectedPlanet"
-        static let shouldBackUpMnemonic = "shouldBackUpMnemonic"
+        static let shouldBackUpMnemonicETH = "shouldBackUpMnemonicETH"
+        static let shouldBackUpMnemonicBTC = "shouldBackUpMnemonicBTC"
     }
     
     struct Userdefaults {

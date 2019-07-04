@@ -16,6 +16,9 @@ class PlanetCell: PWTableCell {
     @IBOutlet var planetNameLb: PWLabel!
     @IBOutlet var addressLb: PWLabel!
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    }
+    
     override func commonInit() {
         super.commonInit()
         

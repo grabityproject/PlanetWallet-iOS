@@ -64,37 +64,39 @@ class MnemonicImportController: PlanetWalletViewController {
         
             if coinType == CoinType.BTC.coinType{
                 
-                planet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+                let importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
                 
-                if let keyId = planet.keyId{
+                if let keyId = importedPlanet.keyId{
                     
                     if PlanetStore.shared.get(keyId) != nil{
-                        
-                        //TODO: - Alert Message
-                        Toast.init(text: "-------겹침!!!!------").show()
+                        Toast.init(text: "The Mnemonic already exists.").show()
                         
                     }else{
-                        let info = [Keys.UserInfo.planet:planet]
+                        let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
                         return
                     }
                 }
-                
+                else {
+                    Toast.init(text: "It is not a valid format.").show()
+                }
             }else if coinType == CoinType.ETH.coinType{
                 
-                planet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+                let importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
                 
-                if let keyId = planet.keyId{
+                if let keyId = importedPlanet.keyId{
                     
                     if PlanetStore.shared.get(keyId) != nil{
-                        //TODO: - Alert Message
-                        Toast.init(text: "-------겹침!!!!------").show()
+                        Toast.init(text: "The Mnemonic already exists.").show()
                         
                     }else{
-                        let info = [Keys.UserInfo.planet:planet]
+                        let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
                         return
                     }
+                }
+                else {
+                    Toast.init(text: "It is not a valid format.").show()
                 }
                 
             }
