@@ -125,7 +125,18 @@ struct Utils {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 9
+        
         return formatter.string(from: eth as NSNumber)
+    }
+    
+    func gweiToETH(_ gwei: Int) -> Double? {
+        let eth = Double(gwei) / pow(10, 9)
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 9
+        
+        return formatter.number(from: "\(eth)") as? Double
     }
     
     func ethToGWEI(_ eth: Double) -> Double {
@@ -202,7 +213,7 @@ struct Utils {
         return UIApplication.shared.statusBarFrame.height
     }
     
-    
+    //MARK: - WIF
     func convertPrivateKeyToWIF(_ privKey: String,_ compress:Bool = true ) -> String? {
         if let privKeyData = privKey.hexadecimal, let prefix = Data(hexString: "0x80") {
             var wif = prefix + privKeyData

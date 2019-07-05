@@ -65,7 +65,8 @@ class TransferConfirmController: PlanetWalletViewController {
             guard let planet = self.planet else { return }
             
             if let _ = self.erc20 {
-                gasFeeLb.text = "\(gasFee) ETH"
+                
+                gasFeeLb.text = "\(gasFee.toString()) ETH"
                 
                 guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else { return }
                 if self.availableAmount >= transferAmount && ethBalance >= self.gasFee {
@@ -77,7 +78,7 @@ class TransferConfirmController: PlanetWalletViewController {
             }
             else {
                 if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
-                    gasFeeLb.text = "\(gasFee) \(coinType.defaultUnit ?? "")"
+                    gasFeeLb.text = "\(gasFee.toString()) \(coinType.defaultUnit ?? "")"
                     
                     let totalAmount = self.transferAmount + self.gasFee
                     if self.availableAmount >= totalAmount {
@@ -94,10 +95,9 @@ class TransferConfirmController: PlanetWalletViewController {
     var gasStep: GasInfo.Step = .AVERAGE {
         didSet {
             slider.value = Float(gasStep.rawValue)
-            
+
             if let gasGWEI = self.gas?.getGas(step: self.gasStep),
-                let gasETHStr: String = Utils.shared.gweiToETH(gasGWEI),
-                let gasETH = Double(gasETHStr)
+                let gasETH: Double = Utils.shared.gweiToETH(gasGWEI)
             {
                 gasFee = gasETH
             }

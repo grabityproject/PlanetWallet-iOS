@@ -53,6 +53,13 @@ class TransferAmountController: PlanetWalletViewController {
                     fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
                     submitBtn.setEnabled(true, theme: currentTheme)
                 }
+                else if inputNum == 0 {
+                    inputAmount = "0"
+                    displayLb.text = "0"
+                    fiatDisplayLb.text = "0"
+                    fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
+                    submitBtn.setEnabled(false, theme: currentTheme)
+                }
                 else {
                     fiatDisplayLb.text = "You don’t have enough amount to send"
                     fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
@@ -63,6 +70,7 @@ class TransferAmountController: PlanetWalletViewController {
                 inputAmount = "0"
                 displayLb.text = "0"
                 fiatDisplayLb.text = "0"
+                fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
                 submitBtn.setEnabled(false, theme: currentTheme)
             }
         }

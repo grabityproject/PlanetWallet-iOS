@@ -50,6 +50,11 @@ class PlanetNameController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedSelect(_ sender: UIButton) {
         
+        if nameTextView.text.isEmpty {
+            Toast(text: "Input planet name").show()
+            return
+        }
+        
         self.planet?.name = nameTextView.text
         
         if let planet = self.planet, let coinType = planet.coinType{

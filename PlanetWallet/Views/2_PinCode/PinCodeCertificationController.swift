@@ -41,7 +41,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
     @IBOutlet var numPad: NumberPad!
     
     private var fromSegue = From.SPLASH
-    
+        
     //MARK: - Init
     override func viewInit() {
         charPad.delegate = self

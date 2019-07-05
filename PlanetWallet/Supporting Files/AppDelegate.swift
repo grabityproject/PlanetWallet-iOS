@@ -43,6 +43,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setNavigationBar()
         return true
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if (topController is PinCodeCertificationController) == false && (topController is PinCodeRegistrationController) == false {
+                let signInController = UIStoryboard(name: "2_PinCode", bundle: nil).instantiateViewController(withIdentifier: "PinCodeCertificationController") as! PinCodeCertificationController
+                
+                topController.present(signInController, animated: true, completion: nil)
+            }
+        }
+    }
 
     private func createDatabase() {
         _ = PWDBManager.shared

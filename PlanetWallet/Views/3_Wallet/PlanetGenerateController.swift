@@ -148,6 +148,11 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     @IBAction func didTouchedSelect(_ sender: UIButton) {
         
+        if nameTextView.text.isEmpty {
+            Toast(text: "Input planet name").show()
+            return
+        }
+        
         if nameTextView.text.contains(" ") {
             self.planet?.name = nameTextView.text.trimmingCharacters(in: .whitespaces)
         }
