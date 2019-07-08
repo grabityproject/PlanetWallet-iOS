@@ -22,6 +22,8 @@ let APP_DELEGATE:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 var PINCODE = APP_DELEGATE.pinCode
 
+let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).languageCode)!
+
 struct Keys {
     struct UserInfo {
         static let planet = "planet"
