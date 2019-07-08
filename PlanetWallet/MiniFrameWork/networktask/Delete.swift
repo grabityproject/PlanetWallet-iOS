@@ -19,7 +19,7 @@ class Delete {
     func action(_ url:String, requestCode:Int, resultCode:Int, data:Dictionary<String,Any>? ) {
         
         guard let requestUrl = URL(string: url) else { return }
-        Alamofire.request(requestUrl, method: .delete, parameters: data, encoding: URLEncoding.default, headers: nil).response { (dataResponse) in
+        Alamofire.request(requestUrl, method: .delete, parameters: data, encoding: URLEncoding.default, headers: ["locale":LOCALE_CODE]).response { (dataResponse) in
             
             if let response = dataResponse.response{
                 if let resultData = dataResponse.data{
