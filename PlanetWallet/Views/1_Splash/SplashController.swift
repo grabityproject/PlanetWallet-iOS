@@ -31,15 +31,14 @@ class SplashController: PlanetWalletViewController{
         animationView.contentMode = .scaleAspectFit
         view.addSubview(animationView)
         
-        NSLayoutConstraint.activate([animationView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                                     animationView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                                     animationView.rightAnchor.constraint(equalTo: view.rightAnchor)])
+        NSLayoutConstraint.activate([animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                                     animationView.heightAnchor.constraint(equalTo: animationView.widthAnchor),
+                                     animationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 38),
+                                     animationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -38)])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         animationView.stop()
     }
     
@@ -49,14 +48,14 @@ class SplashController: PlanetWalletViewController{
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (isSuccess) in
             if isSuccess {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.checkEntryPoint()
+                    self.moveEntryPoint()
                 }
             }
         }
     }
     
     //MARK: - Private 
-    private func checkEntryPoint() {
+    private func moveEntryPoint() {
         guard let _: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {
             isPinRegistered = false
             sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION, userInfo: nil)
