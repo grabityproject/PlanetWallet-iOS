@@ -55,7 +55,7 @@ class SettingController: PlanetWalletViewController {
         {
             self.selectedPlanet = planet
             self.planetView.data = address
-            self.helloLb.text = "You'r on\n\(name)"
+            self.helloLb.text = "You're on\n\(name)"//String(format: NSLocalizedString("You\'\re on \n %s", comment: ""),name)
         }
         
     }

@@ -130,10 +130,10 @@
                                             <rect key="frame" x="0.0" y="225" width="375" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cxp-rY-NMa">
-                                                    <rect key="frame" x="10" y="0.0" width="355" height="70"/>
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel-IIIadfhioahdoifhioahsdiohfohasdhoashdfhoiasdhiof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
                                                             <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="24"/>
                                                             <color key="textColor" red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -144,10 +144,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNi-iT-56P">
-                                                            <rect key="frame" x="108.5" y="35" width="138" height="35"/>
+                                                            <rect key="frame" x="108.5" y="30" width="138" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x124A…bEF9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2s-Rl-Lg9" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="35"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
                                                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
                                                                     <color key="textColor" name="detailTextDark"/>
                                                                     <nil key="highlightedColor"/>
@@ -158,7 +158,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageAddressCopyDarkgray" translatesAutoresizingMaskIntoConstraints="NO" id="j6z-UR-qmR" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
-                                                                    <rect key="frame" x="108" y="0.0" width="30" height="35"/>
+                                                                    <rect key="frame" x="108" y="0.0" width="30" height="30"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageAddressCopyGray"/>
                                                                     </userDefinedRuntimeAttributes>
@@ -172,7 +172,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38K-y5-an8">
-                                                    <rect key="frame" x="118.5" y="35" width="138" height="35"/>
+                                                    <rect key="frame" x="118.5" y="30" width="138" height="30"/>
                                                     <connections>
                                                         <action selector="didTouchedCopyAddr:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="ZUt-G2-ClO"/>
                                                     </connections>

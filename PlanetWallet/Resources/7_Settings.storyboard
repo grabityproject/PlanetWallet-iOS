@@ -275,8 +275,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81Z-TW-SCy" userLabel="Announcement Container">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="75.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnD-1A-owh" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="27.5" width="104.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnD-1A-owh" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="27.5" width="111.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

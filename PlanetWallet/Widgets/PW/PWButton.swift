@@ -17,6 +17,14 @@ import UIKit
     private var defaultBackgroundHighlightColor: UIColor?
     private var defaultTextDisableColor: UIColor?
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        setTitle(title(for: UIControl.State.normal)?.localized, for: UIControl.State.normal)
+        setTitle(title(for: UIControl.State.disabled)?.localized, for: UIControl.State.disabled)
+        setTitle(title(for: UIControl.State.highlighted)?.localized, for: UIControl.State.highlighted)
+        setTitle(title(for: UIControl.State.focused)?.localized, for: UIControl.State.focused)
+    }
+    
     @IBInspectable var themeBackgroundColor: UIColor?{
         didSet{
             self.defaultBackgroundColor = self.backgroundColor
@@ -121,6 +129,7 @@ import UIKit
     }
 
     func setTheme(_ theme: Theme) {
+        
         if( theme == Theme.LIGHT ){
             if( defaultBackgroundColor == nil ){
                 defaultBackgroundColor = self.backgroundColor;

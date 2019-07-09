@@ -235,10 +235,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tb-ye-L9I" userLabel="ContractContainer">
-                                <rect key="frame" x="0.0" y="84" width="414" height="86.5"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="82.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contract Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-4f-qfd" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="21" y="0.0" width="119" height="20.5"/>
+                                        <rect key="frame" x="21" y="0.0" width="110" height="16.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -249,7 +249,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQF-NL-4xN" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="21" y="31.5" width="372" height="55"/>
+                                        <rect key="frame" x="21" y="27.5" width="372" height="55"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvq-Ao-bXo" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="0.0" width="342" height="55"/>
@@ -306,7 +306,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgH-mW-odf" userLabel="ErrContainer">
-                                <rect key="frame" x="0.0" y="182.5" width="414" height="17"/>
+                                <rect key="frame" x="0.0" y="178.5" width="414" height="17"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is not a valid Contract address." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okl-lt-EIu">
                                         <rect key="frame" x="21" y="0.0" width="225" height="16.5"/>
@@ -332,13 +332,13 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZW7-6t-fPD">
-                                <rect key="frame" x="0.0" y="190.5" width="414" height="193"/>
+                                <rect key="frame" x="0.0" y="186.5" width="414" height="193"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f71-ap-zMz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="86.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-eG-aP1" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="21" y="0.0" width="95.5" height="20.5"/>
+                                                <rect key="frame" x="21" y="0.0" width="88.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -406,7 +406,7 @@
                                         <rect key="frame" x="0.0" y="106.5" width="414" height="86.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decimals of Precision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjN-kE-PKI" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="21" y="0.0" width="147.5" height="20.5"/>
+                                                <rect key="frame" x="21" y="0.0" width="135.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -417,10 +417,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9TG-rr-tn2" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="21" y="31.5" width="373" height="55"/>
+                                                <rect key="frame" x="21" y="27.5" width="373" height="59"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oyy-sb-yV7" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="0.0" width="343" height="55"/>
+                                                        <rect key="frame" x="15" y="0.0" width="343" height="59"/>
                                                         <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>

@@ -138,6 +138,7 @@
 		04C82CAA22890E0400235883 /* PrivateKeyExportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CA922890E0400235883 /* PrivateKeyExportController.swift */; };
 		04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CB322890F6600235883 /* PlanetManagementController.swift */; };
 		04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82CB722891FCC00235883 /* DetailPlanetController.swift */; };
+		04CB760C22D43D8D00C20811 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04CB760E22D43D8D00C20811 /* Localizable.strings */; };
 		04CC0843228CFB6A00A8272B /* TokenPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0842228CFB6A00A8272B /* TokenPageController.swift */; };
 		04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC0844228D390800A8272B /* WalletImportPageController.swift */; };
 		04D359EE22A74FD700BA2182 /* ERC20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D359ED22A74FD700BA2182 /* ERC20.swift */; };
@@ -328,6 +329,8 @@
 		04C82CA922890E0400235883 /* PrivateKeyExportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyExportController.swift; sourceTree = "<group>"; };
 		04C82CB322890F6600235883 /* PlanetManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetManagementController.swift; sourceTree = "<group>"; };
 		04C82CB722891FCC00235883 /* DetailPlanetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlanetController.swift; sourceTree = "<group>"; };
+		04CB760F22D43D9200C20811 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		04CB761022D43D9400C20811 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		04CC0842228CFB6A00A8272B /* TokenPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPageController.swift; sourceTree = "<group>"; };
 		04CC0844228D390800A8272B /* WalletImportPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPageController.swift; sourceTree = "<group>"; };
 		04D359ED22A74FD700BA2182 /* ERC20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20.swift; sourceTree = "<group>"; };
@@ -550,6 +553,7 @@
 				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
+				04CB760E22D43D8D00C20811 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1039,7 +1043,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				ko,
 				"zh-Hans",
@@ -1094,6 +1097,7 @@
 				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
 				04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */,
+				04CB760C22D43D8D00C20811 /* Localizable.strings in Resources */,
 				04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */,
 				0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */,
 			);
@@ -1304,6 +1308,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		04CB760E22D43D8D00C20811 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04CB760F22D43D9200C20811 /* ko */,
+				04CB761022D43D9400C20811 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		044BC55322793D4000FD7E5E /* Debug */ = {

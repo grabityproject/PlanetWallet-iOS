@@ -60,8 +60,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGa-Ls-85F" userLabel="Pincode Container">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change pincode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5T-58-KcE" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="18" width="109.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change PIN Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5T-58-KcE" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="18" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

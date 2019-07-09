@@ -16,6 +16,13 @@ import UIKit
     private var clearDarkImg: UIImage?
     private var clearLightImg: UIImage?
     
+    override func drawPlaceholder(in rect: CGRect) {
+        super.drawPlaceholder(in: rect)
+        if let placeHolder = placeholder {
+            placeholder = placeHolder.localized
+        }
+    }
+    
     @IBInspectable var themeBackgroundColor: UIColor?{
         didSet{
             self.defaultBackgroundColor = self.backgroundColor
@@ -74,7 +81,9 @@ import UIKit
     }
     
     func setTheme(_ theme: Theme) {
+        
         if( theme == Theme.LIGHT ){
+            
             if( defaultBackgroundColor == nil ){
                 defaultBackgroundColor = self.backgroundColor;
             }
