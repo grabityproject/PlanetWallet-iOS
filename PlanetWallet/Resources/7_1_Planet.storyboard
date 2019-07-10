@@ -689,7 +689,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0l-d6-bh5" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="138.5" width="335" height="55"/>
+                                <rect key="frame" x="20" y="134.5" width="335" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sSa-AS-DWf" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="305" height="55"/>
@@ -732,7 +732,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Planet name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-lg-Woz" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108" width="128" height="20.5"/>
+                                <rect key="frame" x="20" y="108" width="115" height="16.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -743,7 +743,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet name will be shown to others." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yz9-1o-sVW">
-                                <rect key="frame" x="20" y="203.5" width="290.5" height="20.5"/>
+                                <rect key="frame" x="20" y="199.5" width="335" height="16.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="errorText"/>
                                 <nil key="highlightedColor"/>
@@ -794,6 +794,7 @@
                             <constraint firstItem="DeQ-Ly-hcz" firstAttribute="bottom" secondItem="pbX-h7-Y6U" secondAttribute="bottom" constant="20" id="Y5s-BU-Cvu"/>
                             <constraint firstItem="a1Z-lg-Woz" firstAttribute="leading" secondItem="DeQ-Ly-hcz" secondAttribute="leading" constant="20" id="Y6c-ER-GN0"/>
                             <constraint firstItem="Yz9-1o-sVW" firstAttribute="leading" secondItem="a1Z-lg-Woz" secondAttribute="leading" id="rex-53-Hbj"/>
+                            <constraint firstItem="DeQ-Ly-hcz" firstAttribute="trailing" secondItem="Yz9-1o-sVW" secondAttribute="trailing" constant="20" id="v3Z-sb-Nsf"/>
                             <constraint firstItem="g0l-d6-bh5" firstAttribute="top" secondItem="a1Z-lg-Woz" secondAttribute="bottom" constant="10" id="zd7-pL-0x2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DeQ-Ly-hcz"/>
@@ -805,6 +806,7 @@
                     </view>
                     <connections>
                         <outlet property="errLb" destination="Yz9-1o-sVW" id="YF0-dD-bnL"/>
+                        <outlet property="errorMsgLb" destination="Yz9-1o-sVW" id="ztn-zT-o2j"/>
                         <outlet property="nameTextField" destination="sSa-AS-DWf" id="K8f-d9-hSe"/>
                         <outlet property="nameTextfieldContainer" destination="g0l-d6-bh5" id="gJe-yC-gxG"/>
                         <outlet property="naviBar" destination="Yew-bD-DEd" id="Rrz-qc-51v"/>

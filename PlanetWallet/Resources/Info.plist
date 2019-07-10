@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>QR Code를 인식하기 위해 카메라 권한이 필요합니다.</string>
+	<string>To use QR Scan, please agree to the camera authority.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Bold.tff</string>

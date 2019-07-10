@@ -225,15 +225,17 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary else { return }
+        if let item = ReturnVO(JSON: dict)!.result as? Dictionary<String, Any> {
+          print(item["safeLow"])
+        }
         
         if let resultVO = ReturnVO(JSON: dict),
-            let item = resultVO.result as? Dictionary<String, Any>
+            let item = resultVO.result as? Dictionary<String, Any>,
+            let safeLow = item["safeLow"] as? Double,
+            let average = item["standard"] as? Double,
+            let fast = item["fast"] as? Double,
+            let fastest = item["fastest"] as? Double
         {
-            guard let safeLow = Double(item["safeLow"] as! String) else { return }
-            guard let average = Double(item["standard"] as! String) else { return }
-            guard let fast = Double(item["fast"] as! String) else { return }
-            guard let fastest = Double(item["fastest"] as! String) else { return }
-                
             self.gas = GasInfo(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
                            average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
                            fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),

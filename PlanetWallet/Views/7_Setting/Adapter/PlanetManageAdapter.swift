@@ -29,7 +29,7 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
             planetCell.addressLb.text = Utils.shared.trimAddress(address)
             planetCell.planetView.data = address
         }
-        
+    
         if let isHide = data.hide {
             if isHide == "Y" {
                 planetCell.containerView.alpha = 0.5

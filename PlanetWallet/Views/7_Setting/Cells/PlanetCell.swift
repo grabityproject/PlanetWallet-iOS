@@ -16,13 +16,12 @@ class PlanetCell: PWTableCell {
     @IBOutlet var planetNameLb: PWLabel!
     @IBOutlet var addressLb: PWLabel!
     
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-    }
-    
     override func commonInit() {
         super.commonInit()
         
         Bundle.main.loadNibNamed("PlanetCell", owner: self, options: nil)
+        self.backgroundColor = .clear
+        
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         

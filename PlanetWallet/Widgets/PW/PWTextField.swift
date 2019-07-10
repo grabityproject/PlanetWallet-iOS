@@ -16,6 +16,8 @@ import UIKit
     private var clearDarkImg: UIImage?
     private var clearLightImg: UIImage?
     
+    public var shouldClearBtn = true
+    
     override func drawPlaceholder(in rect: CGRect) {
         super.drawPlaceholder(in: rect)
         if let placeHolder = placeholder {
@@ -100,7 +102,9 @@ import UIKit
             self.backgroundColor = self.themeBackgroundColor
             self.textColor = self.themeTextColor;
             self.layer.borderColor = themeBorderColor?.cgColor;
-            self.setClearBtn(img: clearLightImg!)
+            if shouldClearBtn {
+                self.setClearBtn(img: clearLightImg!)
+            }
             
         }else{
             if( self.defaultBackgroundColor != nil ){
@@ -117,8 +121,9 @@ import UIKit
             if( clearDarkImg == nil ) {
                 clearDarkImg = UIImage(named: "imageInputClearBlack")
             }
-            
-            self.setClearBtn(img: clearDarkImg!)
+            if shouldClearBtn {
+                self.setClearBtn(img: clearDarkImg!)
+            }
         }
     }
 }

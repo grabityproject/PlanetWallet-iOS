@@ -13,6 +13,8 @@ class CustomTokenController: PlanetWalletViewController {
     
     @IBOutlet var contractTextFieldContainer: PWView!
     @IBOutlet var contractTextfield: UITextField!
+    
+    @IBOutlet var symbolTextFieldContainer: PWView!
     @IBOutlet var symbolTextfield: UITextField!
     @IBOutlet var decimalsTextfield: UITextField!
     
@@ -101,11 +103,17 @@ extension CustomTokenController: UITextFieldDelegate {
         if textField.tag == 0 {
             contractTextFieldContainer.layer.borderColor = currentTheme.borderPoint.cgColor
         }
+        else if textField.tag == 1 {
+            symbolTextFieldContainer.layer.borderColor = currentTheme.borderPoint.cgColor
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 0 {
             contractTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
+        }
+        else if textField.tag == 1 {
+            symbolTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
         }
     }
 }

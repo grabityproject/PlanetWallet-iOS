@@ -34,23 +34,24 @@ class TokenListController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: UILabel!
     
-    var tokenList: [ERC20] = [ERC20]()
+    var tokenList: [ERC20] = [ERC20]() {
+        didSet {
+        }
+    }
+    
     var search:String=""
-    var isSearching = false
-    
-    
-//        {
-//        didSet {
-//            if isSearching {
-//                notFoundLb.isHidden = !(tokenAdapter?.dataSource.isEmpty)!
-//                tableView.isHidden = tokenList.isEmpty
-//            }
-//            else {
-//                notFoundLb.isHidden = true
-//                tableView.isHidden = false
-//            }
-//        }
-//    }
+    var isSearching = false {
+        didSet {
+            if isSearching {
+                notFoundLb.isHidden = !(tokenAdapter?.dataSource.isEmpty)!
+                tableView.isHidden = tokenList.isEmpty
+            }
+            else {
+                notFoundLb.isHidden = true
+                tableView.isHidden = false
+            }
+        }
+    }
     
     //MARK: - Init
     override func viewInit() {

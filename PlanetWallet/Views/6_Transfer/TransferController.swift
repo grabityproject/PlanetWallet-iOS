@@ -70,7 +70,10 @@ class TransferController: PlanetWalletViewController {
     @IBAction func didTouchedPasteClipboard(_ sender: UIButton) {
         if let copiedStr = Utils.shared.getClipboard() {
             textField.text = copiedStr
-
+            
+            if let planet = self.planet, let coinType = planet.coinType{
+                Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":copiedStr] )
+            }
         }
     }
     
@@ -132,7 +135,12 @@ class TransferController: PlanetWalletViewController {
                     }else{
                         // DataSource update
                         items.forEach { (item) in
-                            results.append(Planet(JSON: item)!)
+                            //except self item
+                            if let itemName = item["name"] as? String, let selfName = self.planet?.name {
+                                if itemName != selfName {
+                                    results.append(Planet(JSON: item)!)
+                                }
+                            }
                         }
                     }
                     

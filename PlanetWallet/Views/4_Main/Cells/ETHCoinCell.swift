@@ -45,9 +45,9 @@ class ETHCoinCell: PWTableCell {
             
             if eth.balance == "" { amountLb.text = "0"}
             else { amountLb.text = eth.balance  }
-            currencyLb.text = "000000"
+            currencyLb.text = "0 USD"
             
-            coinLb.text = eth.name
+            coinLb.text = eth.symbol
         }
     }
     

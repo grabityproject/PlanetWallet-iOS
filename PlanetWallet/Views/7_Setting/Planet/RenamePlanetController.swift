@@ -15,6 +15,7 @@ class RenamePlanetController: PlanetWalletViewController {
     @IBOutlet var nameTextField: PWTextField!
     @IBOutlet var errLb: UILabel!
     @IBOutlet var saveBtn: PWButton!
+    @IBOutlet var errorMsgLb: UILabel!
     
     private var isValid = false {
         didSet {
@@ -67,17 +68,23 @@ class RenamePlanetController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary{
-            let response = ReturnVO(JSON: dict)
-            if( response!.success! ){
+        if let dict = dictionary, let response = ReturnVO(JSON: dict)
+        {
+            if( response.success! ){
                 if let planet = planet {
                     planet.name = nameTextField.text
                     PlanetStore.shared.update(planet)
                     self.dismiss(animated: true, completion: nil)
                 }
             }
+            else {
+                if let errDic = response.result as? [String: Any],
+                    let errorMsg = errDic["errorMsg"] as? String
+                {
+                    errorMsgLb.text = errorMsg
+                }
+            }
         }
-        
         
     }
 }

@@ -11,7 +11,9 @@ import UIKit
 class RippleAnimationView: UIView {
     
     public var animationDuration = 0.4
-    public var bgColor = ThemeManager.settingTheme().backgroundColor
+    public var bgColor: UIColor {
+        return ThemeManager.settingTheme().backgroundColor
+    }
     public var startPosition: CGPoint!
     
     override init(frame: CGRect) {
@@ -59,8 +61,9 @@ class RippleAnimationView: UIView {
     }
     
     public func dismiss(completion: @escaping (Bool) -> Void) {
+        self.backgroundColor = self.bgColor
+        
         UIView.animate(withDuration: animationDuration, animations: {
-            self.backgroundColor = self.bgColor
             self.alpha = 0
             self.layer.cornerRadius = 0
             self.bounds = CGRect(origin: self.startPosition,
@@ -71,6 +74,8 @@ class RippleAnimationView: UIView {
     }
     
     public func dismiss() {
+        self.backgroundColor = self.bgColor
+        
         UIView.animate(withDuration: animationDuration) {
             self.backgroundColor = self.bgColor
             self.alpha = 0
