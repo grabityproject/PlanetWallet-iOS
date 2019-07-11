@@ -112,6 +112,7 @@ class EthereumManager{
     func addPlanet( pinCode:[String] )->Planet{
         
         let planets = PlanetStore.shared.list(CoinType.ETH.name, false)
+    
         var index = -1
         planets.forEach { (planet) in
             if let pathIndex = planet.pathIndex{
@@ -132,19 +133,23 @@ class EthereumManager{
                                                               definedCurrency: DefinedCurrency.ETH,
                                                               hdPathString: "0/\(index)")
             
-            
-            let planet:Planet = Planet()
-            planet.keyId = childKeyId
-            planet.address = account?.address
-            planet.coinType = CoinType.ETH.coinType
-            if let precision = CoinType.ETH.precision{
-                planet.decimals = "\(precision)"
+            if PlanetStore.shared.get(childKeyId) == nil {
+                let planet:Planet = Planet()
+                planet.keyId = childKeyId
+                planet.address = account?.address
+                planet.coinType = CoinType.ETH.coinType
+                if let precision = CoinType.ETH.precision{
+                    planet.decimals = "\(precision)"
+                }
+                planet.hide = "N"
+                planet.symbol = CoinType.ETH.name
+                planet.pathIndex = index
+                
+                return planet
             }
-            planet.hide = "N"
-            planet.symbol = CoinType.ETH.name
-            planet.pathIndex = index
-            
-            return planet
+            else {
+                return addPlanet(index: index + 1, pinCode: pinCode)
+            }
         }
         catch {
             print("add ETH Planet error : \(error)")
@@ -161,19 +166,23 @@ class EthereumManager{
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
             let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType: CoinType.ETH.name, definedCurrency: DefinedCurrency.ETH, hdPathString: "0/\(index)")
             
-            
-            let planet:Planet = Planet()
-            planet.keyId = childKeyId
-            planet.address = account?.address
-            planet.coinType = CoinType.ETH.coinType
-            if let precision = CoinType.ETH.precision{
-                planet.decimals = "\(precision)"
+            if PlanetStore.shared.get(childKeyId) == nil {
+                let planet:Planet = Planet()
+                planet.keyId = childKeyId
+                planet.address = account?.address
+                planet.coinType = CoinType.ETH.coinType
+                if let precision = CoinType.ETH.precision{
+                    planet.decimals = "\(precision)"
+                }
+                planet.hide = "N"
+                planet.symbol = CoinType.ETH.name
+                planet.pathIndex = index
+                
+                return planet
             }
-            planet.hide = "N"
-            planet.symbol = CoinType.ETH.name
-            planet.pathIndex = index
-            
-            return planet
+            else {
+                return addPlanet(index: index + 1, pinCode: pinCode)
+            }
         }
         catch {
             print("add ETH Planet error : \(error)")

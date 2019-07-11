@@ -11,6 +11,8 @@ import UIKit
 class PWBlurView: UIView, Themable {
     
     private var blur:IntensityBlurVIew!
+    private var blurView: UIVisualEffectView!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +26,7 @@ class PWBlurView: UIView, Themable {
     
     override var frame: CGRect{
         didSet{
-            self.blur?.frame = self.bounds
+            self.blurView?.frame = self.bounds
         }
     }
     
@@ -33,26 +35,29 @@ class PWBlurView: UIView, Themable {
     }
     
     func viewInit(){
-        if( blur == nil ){
+        if( blurView == nil ){
+            blurView = UIVisualEffectView()
+            
             if ThemeManager.currentTheme() == .DARK {
-                self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .dark), intensity: 0.5)
+                self.blurView.effect = UIBlurEffect(style: .dark)
             }
             else {
-                self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+                self.blurView.effect = UIBlurEffect(style: .light)
             }
-            addSubview(self.blur)
+            addSubview(self.blurView)
         }
-        self.blur.frame = self.bounds
+        self.blurView.frame = self.bounds
     }
 
     func setTheme(_ theme: Theme) {
         
         if theme == .DARK {
-            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .dark), intensity: 0.5)
+            blurView.effect = UIBlurEffect(style: .dark)
         }
         else {
-            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+            blurView.effect = UIBlurEffect(style: .light)
         }
+        
     }
 
 }

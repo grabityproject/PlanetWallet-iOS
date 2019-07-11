@@ -10,10 +10,11 @@ import UIKit
 
 extension PinCodeCertificationController {
     private enum From: String {
-        case SPLASH, REGISTRATION, RESET, TRANSFER, MNEMONIC_EXPORT, PRIVATEKEY_EXPORT, MAIN
+        case BACKGROUND, SPLASH, REGISTRATION, RESET, TRANSFER, MNEMONIC_EXPORT, PRIVATEKEY_EXPORT, MAIN
         
         func segueID() -> String {
             switch self {
+            case .BACKGROUND:           return Keys.Segue.BACKGROUND_TO_FOREGROUND_PINCODE_CERTIFICATION
             case .SPLASH:               return Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION
             case .REGISTRATION:         return Keys.Segue.PINCODE_REGISTRATION_TO_CERTIFICATION
             case .RESET:                return Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
@@ -51,7 +52,10 @@ class PinCodeCertificationController: PlanetWalletViewController {
         numPad.delegate = self
         
         if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
-            if fromSegueID == From.SPLASH.segueID() {
+            if fromSegueID == From.BACKGROUND.segueID() {
+                fromSegue = .BACKGROUND
+            }
+            else if fromSegueID == From.SPLASH.segueID() {
                 fromSegue = .SPLASH
                 hideCloseBtn()
             }
@@ -90,6 +94,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
     
     private func handleSuccessSignIn() {
         switch fromSegue {
+        case .BACKGROUND:
+            self.dismiss(animated: true, completion: nil)
         case .SPLASH:
             if( PlanetStore.shared.list().count == 0 ){
                 let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE

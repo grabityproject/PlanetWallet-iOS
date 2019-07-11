@@ -82,10 +82,10 @@ class TransferController: PlanetWalletViewController {
         guard let planet = planet else { return }
         
         if let erc20 = erc20, let erc20Name = erc20.name {
-            naviBar.title = "Transfer \(erc20Name)"
+            naviBar.title = String(format: "Transfer %@".localized, erc20Name)
         }
         else if let coinSymbol = planet.symbol {
-            naviBar.title = "Transfer \(coinSymbol)"
+            naviBar.title = String(format: "Transfer %@".localized, coinSymbol)
         }
         
         if let adapter = adapter {

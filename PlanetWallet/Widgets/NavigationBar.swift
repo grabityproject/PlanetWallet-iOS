@@ -36,7 +36,7 @@ public protocol NavigationBarDelegate {
             return labelTitle.text
         }
         set{
-            labelTitle.text = newValue
+            labelTitle.text = newValue.localized
         }
     }
     

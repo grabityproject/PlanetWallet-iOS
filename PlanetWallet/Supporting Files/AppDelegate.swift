@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if (topController is PinCodeCertificationController) == false && (topController is PinCodeRegistrationController) == false {
                 let signInController = UIStoryboard(name: "2_PinCode", bundle: nil).instantiateViewController(withIdentifier: "PinCodeCertificationController") as! PinCodeCertificationController
+                signInController.userInfo = [Keys.UserInfo.fromSegue: Keys.Segue.BACKGROUND_TO_FOREGROUND_PINCODE_CERTIFICATION]
                 
                 topController.present(signInController, animated: true, completion: nil)
             }

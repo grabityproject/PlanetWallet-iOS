@@ -101,9 +101,7 @@ class PlanetGenerateController: PlanetWalletViewController {
                 print(error)
             }
         }else{
-            
             self.planet = EthereumManager.shared.addPlanet(pinCode: PINCODE)
-            
         }
         planetView.data = planet!.address!
         planetBgView.data =  planet!.address!

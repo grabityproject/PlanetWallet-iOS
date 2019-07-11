@@ -129,8 +129,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQe-8d-ie6">
                                             <rect key="frame" x="0.0" y="228" width="375" height="52"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="cxp-rY-NMa">
-                                                    <rect key="frame" x="10" y="0.0" width="355" height="49"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="cxp-rY-NMa">
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="51"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel-IIIadfhioahdoifhioahsdiohfohasdhoashdfhoiasdhiof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="20"/>
@@ -144,7 +144,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNi-iT-56P">
-                                                            <rect key="frame" x="113.5" y="29" width="128" height="20"/>
+                                                            <rect key="frame" x="113.5" y="31" width="128" height="20"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x124A…bEF9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2s-Rl-Lg9" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="108" height="20"/>
@@ -176,7 +176,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38K-y5-an8">
-                                                    <rect key="frame" x="123.5" y="29" width="128" height="20"/>
+                                                    <rect key="frame" x="123.5" y="31" width="128" height="20"/>
                                                     <connections>
                                                         <action selector="didTouchedCopyAddr:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="ZUt-G2-ClO"/>
                                                     </connections>
@@ -427,7 +427,7 @@
                         <outlet property="bgPlanetView" destination="IKe-el-f6a" id="4ib-6l-LDa"/>
                         <outlet property="bottomMenu" destination="ImE-pt-fi9" id="rSe-HH-1hx"/>
                         <outlet property="bottomMenuBalanceLb" destination="Pa4-sM-5ti" id="Lwf-6n-XNu"/>
-                        <outlet property="bottomMenuBlurView" destination="b7M-Fb-zMW" id="sLQ-NE-805"/>
+                        <outlet property="bottomMenuBlurView" destination="b7M-Fb-zMW" id="drG-3p-iLI"/>
                         <outlet property="bottomMenuCoinTypeLb" destination="g0d-MI-xsW" id="tsj-UJ-ur2"/>
                         <outlet property="bottomMenuNameLb" destination="gnN-eW-fcF" id="q5g-cC-Cw4"/>
                         <outlet property="bottomMenuPlanetView" destination="jpA-rX-jiv" id="of4-iD-fMD"/>

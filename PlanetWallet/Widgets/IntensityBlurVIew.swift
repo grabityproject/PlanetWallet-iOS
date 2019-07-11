@@ -9,15 +9,20 @@
 import UIKit
 
 class IntensityBlurVIew: UIVisualEffectView {
-    private var animator: UIViewPropertyAnimator!
+    public var animator: UIViewPropertyAnimator!
     
     init(effect: UIVisualEffect, intensity: CGFloat) {
         super.init(effect: nil)
-        animator = UIViewPropertyAnimator(duration: 1, curve: .linear) { [unowned self] in self.effect = effect }
+        animator = UIViewPropertyAnimator(duration: 1, curve: .linear) { [weak self] in
+            if let strongSelf = self {
+                strongSelf.effect = effect
+            }
+        }
         animator.fractionComplete = intensity
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
 }

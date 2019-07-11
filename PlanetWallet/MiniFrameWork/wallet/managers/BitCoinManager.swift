@@ -145,19 +145,23 @@ class BitCoinManager{
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
             let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
             
-            
-            let planet:Planet = Planet()
-            planet.keyId = childKeyId
-            planet.address = account?.address
-            planet.coinType = CoinType.BTC.coinType
-            if let precision = CoinType.BTC.precision{
-                planet.decimals = "\(precision)"
+            if PlanetStore.shared.get(childKeyId) == nil {
+                let planet:Planet = Planet()
+                planet.keyId = childKeyId
+                planet.address = account?.address
+                planet.coinType = CoinType.BTC.coinType
+                if let precision = CoinType.BTC.precision{
+                    planet.decimals = "\(precision)"
+                }
+                planet.hide = "N"
+                planet.symbol = CoinType.BTC.name
+                planet.pathIndex = index
+                
+                return planet
             }
-            planet.hide = "N"
-            planet.symbol = CoinType.BTC.name
-            planet.pathIndex = index
-            
-            return planet
+            else {
+                return addPlanet(index: index + 1, pinCode: pinCode)
+            }
         }
         catch {
             print("Add BTC planet error : \(error)")
@@ -175,19 +179,25 @@ class BitCoinManager{
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
             let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
             
-            
-            let planet:Planet = Planet()
-            planet.keyId = childKeyId
-            planet.address = account?.address
-            planet.coinType = CoinType.BTC.coinType
-            if let precision = CoinType.BTC.precision{
-                planet.decimals = "\(precision)"
+            if PlanetStore.shared.get(childKeyId) == nil {
+                let planet:Planet = Planet()
+                planet.keyId = childKeyId
+                planet.address = account?.address
+                planet.coinType = CoinType.BTC.coinType
+                if let precision = CoinType.BTC.precision{
+                    planet.decimals = "\(precision)"
+                }
+                planet.hide = "N"
+                planet.symbol = CoinType.BTC.name
+                planet.pathIndex = index
+                
+                return planet
             }
-            planet.hide = "N"
-            planet.symbol = CoinType.BTC.name
-            planet.pathIndex = index
+            else {
+                return addPlanet(index: index + 1, pinCode: pinCode)
+            }
             
-            return planet
+            
         }
         catch {
             print("Add BTC planet error : \(error)")

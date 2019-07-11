@@ -51,6 +51,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
                 fromSegue = .SPLASH
             }
             else if fromSegueID == From.CERTIFICATION.segueID() {
+                titleLb.text = "Change PIN Code".localized
                 fromSegue = .CERTIFICATION
             }
         }
@@ -71,7 +72,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     private func handleCompleteRegistration(_ pw: String) {
         
         guard isConfirmedPW else {
-            titleLb.text = "Confirm code"
+            titleLb.text = "Please enter your password again.".localized
             passwordStr = ""
             pwBeforeConfirmed = pw
             isConfirmedPW = true
@@ -105,9 +106,9 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             }
         }
         else {
-            titleLb.text = "Code incorrect"
+            titleLb.text = "Code incorrect".localized
             titleLb.textColor = currentTheme.errorText
-            detailLb.text = "Please check your code"
+            detailLb.text = "Please check your code".localized
             detailLb.textColor = currentTheme.errorText
 
             self.pinView.setSelectedColor(0)

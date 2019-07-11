@@ -45,6 +45,7 @@ struct Keys {
     }
     
     struct Segue {
+        static let BACKGROUND_TO_FOREGROUND_PINCODE_CERTIFICATION = "background_to_foreground_pincodecertification"
         
         //Splash
         static let SPLASH_TO_PINCODE_REGISTRATION = "splash_to_pincoderegistration"
