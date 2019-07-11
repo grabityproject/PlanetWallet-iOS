@@ -14,11 +14,6 @@ import UIKit
     private var defaultBorderColor: UIColor?
     private var defaultTextColor: UIColor?
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        self.text = "qwdqwdqwd"
-    }
-    
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect)
         if let text = text {

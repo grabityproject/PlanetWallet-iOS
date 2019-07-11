@@ -34,13 +34,25 @@ class PWBlurView: UIView, Themable {
     
     func viewInit(){
         if( blur == nil ){
-            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+            if ThemeManager.currentTheme() == .DARK {
+                self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .dark), intensity: 0.5)
+            }
+            else {
+                self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+            }
             addSubview(self.blur)
         }
         self.blur.frame = self.bounds
     }
 
     func setTheme(_ theme: Theme) {
+        
+        if theme == .DARK {
+            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .dark), intensity: 0.5)
+        }
+        else {
+            self.blur = IntensityBlurVIew(effect: UIBlurEffect(style: .light), intensity: 0.5)
+        }
     }
 
 }

@@ -58,12 +58,14 @@ class SplashController: PlanetWalletViewController{
     private func moveEntryPoint() {
         guard let _: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {
             isPinRegistered = false
-            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION, userInfo: nil)
+            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION,
+                       userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.SPLASH_TO_PINCODE_REGISTRATION])
             return
         }
         
         if isPinRegistered {
-            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION, userInfo: nil)
+            sendAction(segue: Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION,
+                       userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.SPLASH_TO_PINCODE_CERTIFICATION])
         }
     }
     

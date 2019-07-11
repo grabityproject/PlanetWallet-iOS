@@ -240,6 +240,7 @@ class BottomMenuLauncher: NSObject {
             
             UIView.animate(withDuration: 0.2) {
                 if( -self.launcherView.frame.height*4.0/5.0 < ( -self.launcherView.frame.height + self.backgroundPanGesture.translation(in: self.dimView).y ) && self.isOpen ){
+                    
                     self.launcherView.frame = CGRect(x: 0, y: self.topPosition.y, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
                     self.launcherView.alpha = 0
                     self.triggerView.alpha = 1
@@ -348,20 +349,24 @@ class BottomMenuLauncher: NSObject {
         if isOpen == false { return }
         
         UIView.animate(withDuration: 0.2) {
-            self.launcherView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
-            self.launcherView.alpha = 0.0
-            self.triggerView.alpha = 1.0
-            self.isOpen = false
-            self.triggerAreaView.isUserInteractionEnabled = true
-            self.dimView.isHidden = true
-            if let label = self.labelError {
-                let safeAreaBottom = self.view.safeAreaInsets.bottom
-                label.frame = CGRect(x: 0,
-                                     y: UIScreen.main.bounds.height - (safeAreaBottom + 80) - label.frame.height,
-                                     width: label.frame.width,
-                                     height: label.frame.height)
-                label.alpha = 1.0
+            
+            self.launcherView.frame = CGRect(x: 0, y: self.topPosition.y, width: self.launcherView.frame.width, height: self.launcherView.frame.height);
+            self.launcherView.alpha = 0
+            self.triggerView.alpha = 1
+            self.isOpen = false;
+            self.triggerAreaView.isUserInteractionEnabled  = true;
+            
+            self.triggerView.frame = CGRect(x: self.triggerView.frame.origin.x, y: self.topPosition.y, width: self.triggerView.frame.width, height: self.triggerView.frame.height)
+            self.dimView.isHidden = true;
+            
+            if let label =  self.labelError{
+                label.frame =  CGRect(x: 0,
+                                      y: self.topPosition.y - label.frame.height,
+                                      width: label.frame.width,
+                                      height: label.frame.height);
+                label.alpha = 1
             }
+
         }
     }
 }

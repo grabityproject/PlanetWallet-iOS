@@ -157,11 +157,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-fe-2CY" customClass="PinView" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="100.66666666666669" y="244.33333333333331" width="174" height="12"/>
+                                        <rect key="frame" x="112.66666666666669" y="262.66666666666669" width="150" height="12"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="jKi-ey-Vck"/>
-                                            <constraint firstAttribute="width" constant="174" id="v3g-jG-tSp"/>
+                                            <constraint firstAttribute="width" constant="150" id="v3g-jG-tSp"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -171,23 +171,45 @@
                                     <constraint firstItem="wP7-nu-37l" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Po-3M-jk6"/>
                                     <constraint firstItem="wP7-nu-37l" firstAttribute="centerY" secondItem="d6v-ix-hvp" secondAttribute="centerY" id="8Qh-Dn-uqT"/>
                                     <constraint firstItem="oTs-fe-2CY" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Qs-6p-WIj"/>
-                                    <constraint firstItem="oTs-fe-2CY" firstAttribute="top" secondItem="wP7-nu-37l" secondAttribute="bottom" constant="51.5" id="Tz1-tB-cq0"/>
+                                    <constraint firstItem="oTs-fe-2CY" firstAttribute="top" secondItem="wP7-nu-37l" secondAttribute="bottom" constant="70" id="Tz1-tB-cq0"/>
                                     <constraint firstItem="QeC-qN-REx" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="WPx-XG-FHP"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageToolbarCloseGray" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-ZU-mMQ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="10" y="64" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2Ml-c8-Rqw"/>
+                                    <constraint firstAttribute="height" constant="40" id="FQM-I3-j2G"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageToolbarCloseBlue"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kog-0K-uYL">
+                                <rect key="frame" x="10" y="64" width="40" height="40"/>
+                                <connections>
+                                    <action selector="didTouchedClose:" destination="8Iy-fZ-BRG" eventType="touchUpInside" id="Sb2-Zv-Xna"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Kog-0K-uYL" firstAttribute="leading" secondItem="p2C-ZU-mMQ" secondAttribute="leading" id="0C0-vg-1Yg"/>
                             <constraint firstItem="Txo-JP-Ch6" firstAttribute="height" secondItem="KS5-Yq-oka" secondAttribute="height" multiplier="0.5" constant="-60" id="8Sa-63-1Q6"/>
                             <constraint firstItem="d6v-ix-hvp" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" id="8wa-NB-cfd"/>
                             <constraint firstItem="d6v-ix-hvp" firstAttribute="top" secondItem="dhH-kU-7wc" secondAttribute="top" id="AhD-MW-8sC"/>
+                            <constraint firstItem="Kog-0K-uYL" firstAttribute="trailing" secondItem="p2C-ZU-mMQ" secondAttribute="trailing" id="Cr0-sM-GU4"/>
                             <constraint firstItem="dE3-Uq-h3Y" firstAttribute="height" secondItem="KS5-Yq-oka" secondAttribute="height" multiplier="0.5" constant="-60" id="Hqe-5X-7LX"/>
+                            <constraint firstItem="Kog-0K-uYL" firstAttribute="top" secondItem="p2C-ZU-mMQ" secondAttribute="top" id="J69-oi-CtY"/>
+                            <constraint firstItem="p2C-ZU-mMQ" firstAttribute="top" secondItem="dhH-kU-7wc" secondAttribute="top" constant="20" id="Nsp-hY-Tr9"/>
+                            <constraint firstItem="Kog-0K-uYL" firstAttribute="bottom" secondItem="p2C-ZU-mMQ" secondAttribute="bottom" id="PEw-65-2h7"/>
                             <constraint firstItem="Txo-JP-Ch6" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" constant="15" id="Trv-sl-zTX"/>
                             <constraint firstItem="dhH-kU-7wc" firstAttribute="trailing" secondItem="Txo-JP-Ch6" secondAttribute="trailing" constant="15" id="ViI-Pb-rZX"/>
                             <constraint firstItem="dhH-kU-7wc" firstAttribute="trailing" secondItem="dE3-Uq-h3Y" secondAttribute="trailing" constant="15" id="XQC-q3-mzA"/>
                             <constraint firstAttribute="bottom" secondItem="Txo-JP-Ch6" secondAttribute="bottom" constant="60" id="dbX-4y-tyr"/>
                             <constraint firstItem="d6v-ix-hvp" firstAttribute="trailing" secondItem="dhH-kU-7wc" secondAttribute="trailing" id="iI0-3j-3Td"/>
                             <constraint firstItem="dE3-Uq-h3Y" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" constant="15" id="vLQ-LV-bFu"/>
+                            <constraint firstItem="p2C-ZU-mMQ" firstAttribute="leading" secondItem="dhH-kU-7wc" secondAttribute="leading" constant="10" id="vh6-2M-GbU"/>
                             <constraint firstAttribute="bottom" secondItem="dE3-Uq-h3Y" secondAttribute="bottom" constant="60" id="wkX-9T-1NM"/>
                             <constraint firstItem="Txo-JP-Ch6" firstAttribute="top" secondItem="d6v-ix-hvp" secondAttribute="bottom" id="ztH-bh-Y3b"/>
                         </constraints>
@@ -200,6 +222,8 @@
                     </view>
                     <connections>
                         <outlet property="charPad" destination="Txo-JP-Ch6" id="Qmx-Xx-zza"/>
+                        <outlet property="closeBtn" destination="Kog-0K-uYL" id="hFG-nM-OQC"/>
+                        <outlet property="closeImgView" destination="p2C-ZU-mMQ" id="hKt-gJ-iLB"/>
                         <outlet property="detailLb" destination="wP7-nu-37l" id="Zjn-9J-mp7"/>
                         <outlet property="numPad" destination="dE3-Uq-h3Y" id="q7p-oS-y1g"/>
                         <outlet property="pinView" destination="oTs-fe-2CY" id="i9J-fb-fKE"/>
@@ -214,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UT-ZS-r2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="134"/>
+            <point key="canvasLocation" x="589.60000000000002" y="133.74384236453201"/>
         </scene>
         <!--PlanetGenerateController-->
         <scene sceneID="Yhf-dt-1Pc">
@@ -258,6 +282,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="imageToolbarCloseBlue" width="60" height="60"/>
+        <image name="imageToolbarCloseGray" width="60" height="60"/>
         <namedColor name="detailTextLight">
             <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

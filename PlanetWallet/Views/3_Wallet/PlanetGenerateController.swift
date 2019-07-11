@@ -15,6 +15,8 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBOutlet var darkGradientView: GradientView!
     @IBOutlet var lightGradientView: GradientView!
     @IBOutlet var nameTextView: BlinkingTextView!
+    @IBOutlet var closeImgView: PWImageView!
+    @IBOutlet var closeBtn: UIButton!
     
     var planet:Planet?
     
@@ -68,25 +70,27 @@ class PlanetGenerateController: PlanetWalletViewController {
             
         }
         else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
+            hideCloseBtn()
             generateETH()
         }
     }
     
-    func generateETH(){
+    //MARK: - Private
+    private func generateETH(){
         EthereumManager.shared.generateMaster(pinCode: PINCODE)
         self.planet = EthereumManager.shared.addPlanet(index: 0, pinCode: PINCODE)
         planetView.data = planet!.address!
         planetBgView.data =  planet!.address!
     }
     
-    func generateBTC(){
+    private func generateBTC(){
         BitCoinManager.shared.generateMaster(pinCode: PINCODE)
         self.planet = BitCoinManager.shared.addPlanet(index: 0, pinCode: PINCODE)
         planetView.data = planet!.address!
         planetBgView.data =  planet!.address!
     }
     
-    func addETH(){
+    private func addETH(){
         if let planet = planet, let keyId = planet.keyId {
             do{
                 _ = try KeyPairStore.shared.deleteKeyPair(keyId: keyId)
@@ -105,7 +109,7 @@ class PlanetGenerateController: PlanetWalletViewController {
         planetBgView.data =  planet!.address!
     }
     
-    func addBTC(){
+    private func addBTC(){
         if let planet = planet, let keyId = planet.keyId {
             do{
                 _ = try KeyPairStore.shared.deleteKeyPair(keyId: keyId)
@@ -122,6 +126,11 @@ class PlanetGenerateController: PlanetWalletViewController {
         }
         planetView.data = planet!.address!
         planetBgView.data =  planet!.address!
+    }
+    
+    private func hideCloseBtn() {
+        closeImgView.isHidden = true
+        closeBtn.isHidden = true
     }
     
     //MARK: - IBAction

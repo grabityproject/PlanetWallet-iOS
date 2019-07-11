@@ -40,22 +40,24 @@ class PinCodeCertificationController: PlanetWalletViewController {
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
     
+    @IBOutlet var closeImgView: PWImageView!
+    @IBOutlet var closeBtn: UIButton!
+    
     private var fromSegue = From.SPLASH
         
     //MARK: - Init
-    override func viewInit() {
+    override func setData() {
         charPad.delegate = self
         numPad.delegate = self
         
-    }
-    
-    override func setData() {
         if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
             if fromSegueID == From.SPLASH.segueID() {
                 fromSegue = .SPLASH
+                hideCloseBtn()
             }
             else if fromSegueID == From.REGISTRATION.segueID() {
                 fromSegue = .REGISTRATION
+                hideCloseBtn()
             }
             else if fromSegueID == From.RESET.segueID() {
                 fromSegue = .RESET
@@ -75,7 +77,17 @@ class PinCodeCertificationController: PlanetWalletViewController {
         }
     }
     
-    //MARK: - Private 
+    //MARK: - IBAction
+    @IBAction func didTouchedClose(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Private
+    private func hideCloseBtn() {
+        closeBtn.isHidden = true
+        closeImgView.isHidden = true
+    }
+    
     private func handleSuccessSignIn() {
         switch fromSegue {
         case .SPLASH:

@@ -427,6 +427,7 @@
                         <outlet property="bgPlanetView" destination="IKe-el-f6a" id="4ib-6l-LDa"/>
                         <outlet property="bottomMenu" destination="ImE-pt-fi9" id="rSe-HH-1hx"/>
                         <outlet property="bottomMenuBalanceLb" destination="Pa4-sM-5ti" id="Lwf-6n-XNu"/>
+                        <outlet property="bottomMenuBlurView" destination="b7M-Fb-zMW" id="sLQ-NE-805"/>
                         <outlet property="bottomMenuCoinTypeLb" destination="g0d-MI-xsW" id="tsj-UJ-ur2"/>
                         <outlet property="bottomMenuNameLb" destination="gnN-eW-fcF" id="q5g-cC-Cw4"/>
                         <outlet property="bottomMenuPlanetView" destination="jpA-rX-jiv" id="of4-iD-fMD"/>

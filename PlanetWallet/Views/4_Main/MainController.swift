@@ -51,6 +51,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var bottomMenuCoinTypeLb: PWLabel!
     @IBOutlet var bottomMenuPlanetView: PlanetView!
     @IBOutlet var bottomMenuNameLb: PWLabel!
+    @IBOutlet var bottomMenuBlurView: PWBlurView!
     
     let rippleAnimationView = RippleAnimationView()
     var animationView : AnimationView!
@@ -103,9 +104,11 @@ class MainController: PlanetWalletViewController {
         if( ThemeManager.currentTheme() == .DARK ){
             darkDimGradientView.isHidden = false
             lightDimGradientView.isHidden = true
+            bottomMenuBlurView.setTheme(.DARK)
         }else{
             darkDimGradientView.isHidden = true
             lightDimGradientView.isHidden = false
+            bottomMenuBlurView.setTheme(.LIGHT)
         }
 
         tableView.reloadData()
@@ -220,7 +223,10 @@ class MainController: PlanetWalletViewController {
                                               left: 0, bottom: 130, right: 0)
         
         //Header, Footer
-        planetView.frame = CGRect(x: ( SCREEN_WIDTH - (SCREEN_WIDTH*170.0/375.0) ) / 2.0, y: planetView.frame.origin.y, width: (SCREEN_WIDTH*170.0/375.0), height: (SCREEN_WIDTH*170.0/375.0))
+        planetView.frame = CGRect(x: ( SCREEN_WIDTH - (SCREEN_WIDTH*170.0/375.0) ) / 2.0,
+                                  y: planetView.frame.origin.y,
+                                  width: (SCREEN_WIDTH*170.0/375.0),
+                                  height: (SCREEN_WIDTH*170.0/375.0))
         headerView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH * 330.0/375.0)
         footerView.delegate = self
     }
@@ -235,7 +241,10 @@ class MainController: PlanetWalletViewController {
     }
     
     private func loadCustomRefreshContents() {
-        loadingViewWrapper.frame = CGRect(x: loadingViewWrapper.frame.origin.x, y: naviBar.frame.height + Utils.shared.statusBarHeight(), width: loadingViewWrapper.frame.width, height: loadingViewWrapper.frame.height)
+        loadingViewWrapper.frame = CGRect(x: loadingViewWrapper.frame.origin.x,
+                                          y: naviBar.frame.height + Utils.shared.statusBarHeight(),
+                                          width: loadingViewWrapper.frame.width,
+                                          height: loadingViewWrapper.frame.height)
         animationView = AnimationView()
         animationView.frame = CGRect(x: 0, y: 0, width: loadingViewWrapper.frame.width, height: loadingViewWrapper.frame.height)
         loadingViewWrapper.addSubview(animationView)
