@@ -52,7 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 topController = presentedViewController
             }
             
-            if (topController is PinCodeCertificationController) == false && (topController is PinCodeRegistrationController) == false {
+            if (topController is PinCodeCertificationController) == false &&
+                (topController is PinCodeRegistrationController) == false &&
+                (topController is SplashController) == false
+            {
                 let signInController = UIStoryboard(name: "2_PinCode", bundle: nil).instantiateViewController(withIdentifier: "PinCodeCertificationController") as! PinCodeCertificationController
                 signInController.userInfo = [Keys.UserInfo.fromSegue: Keys.Segue.BACKGROUND_TO_FOREGROUND_PINCODE_CERTIFICATION]
                 

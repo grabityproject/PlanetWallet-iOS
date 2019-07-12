@@ -34,9 +34,14 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     @IBOutlet var pinView: PinView!
     @IBOutlet var charPad: CharPad!
     @IBOutlet var numPad: NumberPad!
+    @IBOutlet var resetBtn: UIButton!
     
     private var fromSegue = From.SPLASH
-    private var isConfirmedPW = false
+    private var isConfirmedPW = false {
+        didSet {
+            resetBtn.isHidden = !isConfirmedPW
+        }
+    }
     private var pwBeforeConfirmed = ""
     
     //MARK: - Init
@@ -56,6 +61,17 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             }
         }
     }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedReset(_ sender: UIButton) {
+        titleLb.text = "Change PIN Code".localized
+        detailLb.text = "Enter the 4 digit + alphabet".localized
+        passwordStr = ""
+        pwBeforeConfirmed = ""
+        isConfirmedPW = false
+        setNumberPad(position: 0)
+    }
+    
     
     //MARK: - Private
     private func showNumberPad(_ isNumberPad: Bool) {

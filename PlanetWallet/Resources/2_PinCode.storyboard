@@ -60,9 +60,18 @@
                                             <constraint firstAttribute="height" constant="12" id="hOj-58-LnQ"/>
                                         </constraints>
                                     </view>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZ9-s1-d3s">
+                                        <rect key="frame" x="168" y="15" width="39" height="30"/>
+                                        <state key="normal" title="초기화"/>
+                                        <connections>
+                                            <action selector="didTouchedReset:" destination="TTs-8X-dJK" eventType="touchUpInside" id="Bph-Ol-PIY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="gZ9-s1-d3s" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="5dj-Eh-TZ6"/>
+                                    <constraint firstItem="gZ9-s1-d3s" firstAttribute="top" secondItem="u2F-2i-UtN" secondAttribute="top" constant="15" id="DDY-Ru-vyo"/>
                                     <constraint firstItem="9jw-S7-Cx7" firstAttribute="top" secondItem="vUa-oG-T4d" secondAttribute="bottom" constant="51.5" id="MRv-X7-Zir"/>
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="centerY" secondItem="u2F-2i-UtN" secondAttribute="centerY" id="R4c-ae-FwO"/>
                                     <constraint firstItem="dpQ-zW-vGd" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="TRP-Fp-kSG"/>
@@ -107,6 +116,7 @@
                         <outlet property="detailLb" destination="vUa-oG-T4d" id="TXi-KB-oRp"/>
                         <outlet property="numPad" destination="Iyy-aY-PXK" id="QNG-Yl-OSd"/>
                         <outlet property="pinView" destination="9jw-S7-Cx7" id="Vva-Ha-Iyi"/>
+                        <outlet property="resetBtn" destination="gZ9-s1-d3s" id="ClT-xs-Cua"/>
                         <outlet property="titleLb" destination="dpQ-zW-vGd" id="kvM-LA-PDF"/>
                         <segue destination="8Iy-fZ-BRG" kind="show" identifier="pincoderegistration_to_pincodecertification" animates="NO" id="Clq-6k-gta"/>
                     </connections>

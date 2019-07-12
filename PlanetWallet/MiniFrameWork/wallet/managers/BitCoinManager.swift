@@ -197,7 +197,6 @@ class BitCoinManager{
                 return addPlanet(index: index + 1, pinCode: pinCode)
             }
             
-            
         }
         catch {
             print("Add BTC planet error : \(error)")
@@ -231,5 +230,14 @@ class BitCoinManager{
         }
     }
     
+    public func validAddress(_ address: String) -> Bool {
+        guard let service = service else { return false }
+        do {
+            return try service.validateAddress(address: address)
+        }
+        catch {
+            return false
+        }
+    }
     
 }

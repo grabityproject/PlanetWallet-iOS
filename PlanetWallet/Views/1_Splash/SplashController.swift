@@ -29,6 +29,7 @@ class SplashController: PlanetWalletViewController{
 
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
+        animationView.backgroundBehavior = .pauseAndRestore
         view.addSubview(animationView)
         
         NSLayoutConstraint.activate([animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),

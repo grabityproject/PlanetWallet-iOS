@@ -53,6 +53,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
         
         if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
             if fromSegueID == From.BACKGROUND.segueID() {
+                hideCloseBtn()
                 fromSegue = .BACKGROUND
             }
             else if fromSegueID == From.SPLASH.segueID() {

@@ -28,7 +28,7 @@ class TransferController: PlanetWalletViewController {
     @IBOutlet var textField: PWTextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: PWLabel!
-    @IBOutlet var paseClipboardBtn: UIButton!
+    @IBOutlet var pasteClipboardBtn: UIButton!
     
     var search:String = ""
     
@@ -38,6 +38,7 @@ class TransferController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
+        naviBar.title = "Search".localized
     }
     
     override func setData() {
@@ -81,31 +82,28 @@ class TransferController: PlanetWalletViewController {
     private func updateUI() {
         guard let planet = planet else { return }
         
-        if let erc20 = erc20, let erc20Name = erc20.name {
-            naviBar.title = String(format: "Transfer %@".localized, erc20Name)
-        }
-        else if let coinSymbol = planet.symbol {
-            naviBar.title = String(format: "Transfer %@".localized, coinSymbol)
-        }
-        
         if let adapter = adapter {
             if( adapter.dataSource.count == 0 && search.count == 0 ){
                 
                 self.tableView.isHidden = true
                 self.notFoundLb.isHidden = true
-                self.paseClipboardBtn.isHidden = Utils.shared.getClipboard() == nil
                 
+                if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
+                    if EthereumManager.shared.validateAddress(pastedStr) && address != pastedStr {
+                        self.pasteClipboardBtn.isHidden = false
+                    }
+                }
             }else if( adapter.dataSource.count == 0 && search.count != 0 ){
                 
                 self.tableView.isHidden = true
                 self.notFoundLb.isHidden = false
-                self.paseClipboardBtn.isHidden = true
+                self.pasteClipboardBtn.isHidden = true
                 
             }else{
                 
                 self.tableView.isHidden = false
                 self.notFoundLb.isHidden = true
-                self.paseClipboardBtn.isHidden = true
+                self.pasteClipboardBtn.isHidden = true
                 
             }
         }

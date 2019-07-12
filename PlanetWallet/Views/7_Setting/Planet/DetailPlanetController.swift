@@ -80,14 +80,8 @@ class DetailPlanetController: PlanetWalletViewController {
         {
             hidePlanetSwitch.isOn = hideStr == "Y"
             
-            if type == CoinType.BTC.coinType {
-                universeLb.text = "BTC Universe"
-                coinAddressLb.text = "BTC Address"
-            }
-            else if type == CoinType.ETH.coinType {
-                universeLb.text = "ETH Universe"
-                coinAddressLb.text = "ETH Address"
-            }
+            universeLb.text = String(format: "%@ Universe".localized, CoinType.of(type).name)
+            coinAddressLb.text = String(format: "%@ Address".localized, CoinType.of(type).name)
             
             planetNameLb.text = name
             naviBar.title = name

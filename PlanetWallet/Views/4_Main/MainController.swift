@@ -176,8 +176,6 @@ class MainController: PlanetWalletViewController {
         
         if let keyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet){
             if let planet = PlanetStore.shared.get(keyId){
-                planet.balance = "100"
-                PlanetStore.shared.update(planet)
                 self.planet = planet
             }else{
                 self.planet = planetList.first

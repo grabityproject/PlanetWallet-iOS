@@ -95,7 +95,7 @@ class PrivateKeyImportController: PlanetWalletViewController {
     
     
     //MARK: - Private
-    private func isValid(mnemonic: String) -> Bool {
+    private func isValid(_ privateKey: String) -> Bool {
         //TODO: - Logic
         return false
     }

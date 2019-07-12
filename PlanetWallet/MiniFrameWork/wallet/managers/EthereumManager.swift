@@ -217,4 +217,32 @@ class EthereumManager{
         }
     }
 
+    /*
+    public boolean isValidAddress( String address ) {
+    if ( address == null || address.length( ) < 2 ) return false;
+    if ( address.charAt( 0 ) == '0' && address.charAt( 1 ) == 'x' ) {
+    address = address.substring( 2 );
+    }
+    try {
+    new BigInteger( address, 16 );
+    } catch ( NumberFormatException e ) {
+    return false;
+    }
+    
+    return address.length( ) == 160 >> 2;
+    }
+    */
+    func validateAddress(_ address: String) -> Bool {
+        var newAddress = address
+        if address.prefix(2) == "0x" {
+            newAddress = address.replacingOccurrences(of: "0x", with: "")
+        }
+        
+        if BigInt(newAddress, radix: 16) != nil {
+            return newAddress.count == 40
+        }
+        else {
+            return false
+        }
+    }
 }

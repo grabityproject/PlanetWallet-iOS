@@ -146,6 +146,8 @@ class TransferConfirmController: PlanetWalletViewController {
                 self.coinType = CoinType.ERC20
                 self.availableAmount = balance
                 
+                naviBar.title = String(format: "Transfer %@".localized, erc20.name ?? "")
+                    
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
@@ -163,6 +165,8 @@ class TransferConfirmController: PlanetWalletViewController {
                     self.coinType = CoinType.ETH
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
                 }
+                
+                naviBar.title = String(format: "Transfer %@".localized, CoinType.of(coinType).name)
                 
                 transferAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
@@ -225,9 +229,6 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary else { return }
-        if let item = ReturnVO(JSON: dict)!.result as? Dictionary<String, Any> {
-          print(item["safeLow"])
-        }
         
         if let resultVO = ReturnVO(JSON: dict),
             let item = resultVO.result as? Dictionary<String, Any>,

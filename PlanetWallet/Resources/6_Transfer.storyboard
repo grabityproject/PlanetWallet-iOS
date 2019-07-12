@@ -155,7 +155,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-A7-9hQ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-A7-9hQ">
                                 <rect key="frame" x="114.5" y="173" width="146" height="32.5"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -212,7 +212,7 @@
                     <connections>
                         <outlet property="naviBar" destination="m5x-e9-y4r" id="oWT-VO-LLw"/>
                         <outlet property="notFoundLb" destination="Afe-Xn-Bs6" id="Mmn-4G-EWg"/>
-                        <outlet property="paseClipboardBtn" destination="fSJ-A7-9hQ" id="7Sp-on-DTY"/>
+                        <outlet property="pasteClipboardBtn" destination="fSJ-A7-9hQ" id="7Sp-on-DTY"/>
                         <outlet property="tableView" destination="8Zz-RP-9MS" id="dcT-ip-stT"/>
                         <outlet property="textField" destination="bMr-sA-PKs" id="Fu7-8J-00N"/>
                         <segue destination="OiC-Wc-8YC" kind="presentation" identifier="transfer_to_qrcapture" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="iTc-p1-tfR"/>
@@ -574,7 +574,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="songasdfasfsaf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lx8-ee-NZH" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                        <rect key="frame" x="119.5" y="0.0" width="134" height="26.5"/>
+                                                        <rect key="frame" x="119.5" y="3" width="134" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -585,7 +585,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x53B6…5b78" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD2-9c-AR3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                        <rect key="frame" x="119.5" y="29.5" width="94.5" height="20.5"/>
+                                                        <rect key="frame" x="119.5" y="32.5" width="94.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                         <color key="textColor" name="detailTextDark"/>
                                                         <nil key="highlightedColor"/>
@@ -600,7 +600,7 @@
                                                 <constraints>
                                                     <constraint firstItem="KSD-1j-E9f" firstAttribute="centerY" secondItem="37S-0w-9X9" secondAttribute="centerY" id="3jr-va-byZ"/>
                                                     <constraint firstItem="JD2-9c-AR3" firstAttribute="leading" secondItem="lx8-ee-NZH" secondAttribute="leading" id="4NP-iQ-fUS"/>
-                                                    <constraint firstItem="lx8-ee-NZH" firstAttribute="top" secondItem="37S-0w-9X9" secondAttribute="top" id="4jf-e7-Rjn"/>
+                                                    <constraint firstItem="lx8-ee-NZH" firstAttribute="top" secondItem="37S-0w-9X9" secondAttribute="top" constant="3" id="4jf-e7-Rjn"/>
                                                     <constraint firstItem="lx8-ee-NZH" firstAttribute="leading" secondItem="KSD-1j-E9f" secondAttribute="trailing" constant="20" id="9bo-ug-JyV"/>
                                                     <constraint firstItem="lx8-ee-NZH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="37S-0w-9X9" secondAttribute="leading" constant="50" id="F3u-Cq-F35"/>
                                                     <constraint firstItem="lx8-ee-NZH" firstAttribute="centerX" secondItem="37S-0w-9X9" secondAttribute="centerX" constant="20" id="MYK-Jx-146"/>
@@ -965,7 +965,6 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="titleWithPlanetView" value="Junhoo_o"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Confirmation"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6W-VG-PMV" userLabel="Main Display View">
@@ -1153,8 +1152,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wh1-hU-c25">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="48.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I56-17-kQn" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="14" width="35.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I56-17-kQn" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="14" width="33" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" name="detailTextDark"/>
                                                 <nil key="highlightedColor"/>
@@ -1281,7 +1280,7 @@
                                     <action selector="didTouchedSubmit:" destination="BHi-uj-C1t" eventType="touchUpInside" id="Brg-FI-87t"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nqe-zD-6Ik">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nqe-zD-6Ik" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="315" y="438.5" width="39" height="32.5"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -1319,17 +1318,27 @@
                                             <action selector="didChanged:" destination="ekD-Ro-HFD" eventType="valueChanged" id="Mar-ZA-agL"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-fW-0DS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-fW-0DS" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="35" width="33.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" name="errorText"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" red="1" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvB-3C-43m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvB-3C-43m" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="304" y="35" width="29" height="20.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" name="errorText"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" red="1" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-zC-E5u" userLabel="Advanced Options Container">
                                         <rect key="frame" x="133" y="75.5" width="200" height="20"/>

@@ -22,7 +22,6 @@ class TransferAmountController: PlanetWalletViewController {
             else if let fromPlanet = fromPlanet, let symbol = fromPlanet.symbol {
                 self.availableAmountLb.text = "\(availableBalance) \(symbol)"
             }
-            
         }
     }
     
@@ -61,7 +60,7 @@ class TransferAmountController: PlanetWalletViewController {
                     submitBtn.setEnabled(false, theme: currentTheme)
                 }
                 else {
-                    fiatDisplayLb.text = "You don’t have enough amount to send"
+                    fiatDisplayLb.text = "You don’t have enough amount to send".localized
                     fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
                     submitBtn.setEnabled(false, theme: currentTheme)
                 }
