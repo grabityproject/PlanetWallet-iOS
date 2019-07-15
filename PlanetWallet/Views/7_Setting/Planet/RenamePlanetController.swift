@@ -9,7 +9,7 @@
 import UIKit
 
 class RenamePlanetController: PlanetWalletViewController {
-
+    
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var nameTextfieldContainer: PWView!
     @IBOutlet var nameTextField: PWTextField!
@@ -92,7 +92,6 @@ class RenamePlanetController: PlanetWalletViewController {
 extension RenamePlanetController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        
         return true
     }
     
@@ -124,7 +123,7 @@ extension RenamePlanetController: UITextFieldDelegate {
         if newLength >= 1 { isValid = true }
         else { isValid = false }
         
-        return newLength <= 30
+        return newLength <= PlanetNameController.MAX_COUNT_OF_NAME
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {

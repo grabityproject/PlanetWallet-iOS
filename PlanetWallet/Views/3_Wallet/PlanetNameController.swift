@@ -9,6 +9,8 @@
 import UIKit
 
 class PlanetNameController: PlanetWalletViewController {
+    static let MAX_COUNT_OF_NAME: Int = 20
+    
     @IBOutlet var planetBgView: PlanetView!
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var darkGradientView: GradientView!

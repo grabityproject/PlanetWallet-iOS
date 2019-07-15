@@ -129,7 +129,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQe-8d-ie6">
                                             <rect key="frame" x="0.0" y="228" width="375" height="52"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rigel_IIIadfhioahdoifhioahsdiohfohasdhoashdfhoiasdhiof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hjkhjkgkj" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="0.0" width="355" height="35"/>
                                                     <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="24"/>
                                                     <color key="textColor" red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

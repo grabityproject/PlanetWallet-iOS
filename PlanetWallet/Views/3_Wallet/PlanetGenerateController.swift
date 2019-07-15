@@ -9,7 +9,7 @@
 import UIKit
 
 class PlanetGenerateController: PlanetWalletViewController {
-
+    
     @IBOutlet var planetBgView: PlanetView!
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var darkGradientView: GradientView!

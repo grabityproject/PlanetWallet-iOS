@@ -16,7 +16,9 @@ protocol BlinkingTextViewDelegate {
 class BlinkingTextView: UITextView, UITextViewDelegate {
     
     @IBInspectable var maximumLine = 2
-    @IBInspectable var maximumCharacters = 30
+    @IBInspectable var maximumCharacters: Int {
+        return PlanetNameController.MAX_COUNT_OF_NAME
+    }
     
     var delegateBlinking: BlinkingTextViewDelegate?
     

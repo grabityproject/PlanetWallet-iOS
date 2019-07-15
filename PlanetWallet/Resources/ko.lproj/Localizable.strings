@@ -8,7 +8,7 @@
 
 "PlanetWallet" = "PlanetWallet";
 "Continue" = "다음";
-"Please allow camera privileges in Settings > Permissions tab." = "휴대폰 설정에서 카메라 권한을 허용해 주세요.";
+"Please allow camera privileges in Settings > Permissions tab." = "휴대폰 설정에서 카메라 권한을 허용해 주세요."; /*   Android와 다른 string필요    */
 "To use QR Scan, please agree to the camera authority." = "QR 코드를 스캔하기 위하여 카메라 권한을 허용해주세요.";
 "Verification Code" = "비밀번호를 입력하세요.";
 "Registration PIN Code" = "비밀번호를 등록하세요.";

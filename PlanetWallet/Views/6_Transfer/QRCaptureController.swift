@@ -32,7 +32,7 @@ class QRCaptureController: PlanetWalletViewController {
         }
         guard let session = session else { return }
         
-        if session.isRunning == false {
+        if session.isRunning == false && isPermissionedCamera() {
             configurateCapture()
         }
     }
@@ -41,11 +41,26 @@ class QRCaptureController: PlanetWalletViewController {
         return .lightContent
     }
     
+    private func isPermissionedCamera() -> Bool {
+        let cameraMediaType = AVMediaType.video
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
+
+        switch cameraAuthorizationStatus {
+        case .denied, .restricted:
+            //ask permission
+            Toast(text: "Please allow camera privileges in Settings > Permissions tab.".localized).show()
+            
+            return false
+        case .authorized, .notDetermined:
+            return true
+        }
+    }
+    
     private func configurateCapture() {
         if session == nil {
             session = AVCaptureSession()
         }
-        
+
         configurateSession()
         configurePreviewLayer()
         configureDetectedQRCodeFrameView()
