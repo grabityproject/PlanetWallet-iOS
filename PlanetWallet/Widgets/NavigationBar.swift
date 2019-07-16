@@ -31,12 +31,12 @@ public protocol NavigationBarDelegate {
     var labelTitle: UILabel = UILabel()
     var bottomBar : UIView = UIView()
     
-    @IBInspectable var title : String!{
-        get{
+    var title : String! {
+        get {
             return labelTitle.text
         }
-        set{
-            labelTitle.text = newValue.localized
+        set {
+            labelTitle.text = newValue
         }
     }
     

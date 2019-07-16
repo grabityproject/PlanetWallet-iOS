@@ -55,7 +55,7 @@ class SettingController: PlanetWalletViewController {
         {
             self.selectedPlanet = planet
             self.planetView.data = address
-            self.helloLb.text = String(format: "You\'re on \n %@".localized, name)
+            self.helloLb.text = String(format: "setting_planet_main_title".localized, name)
         }
         
     }
@@ -121,7 +121,7 @@ class SettingController: PlanetWalletViewController {
             let name = planet.name
         {
             self.planetView.data = address
-            self.helloLb.text = String(format: "You\'re on \n %@".localized, name)
+            self.helloLb.text = String(format: "setting_planet_main_title".localized, name)
         }
     }
 }

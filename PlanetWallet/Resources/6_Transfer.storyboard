@@ -312,7 +312,7 @@
                                     <constraint firstAttribute="height" constant="55" id="O2g-rz-xRA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Continue">
                                     <color key="titleColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -328,6 +328,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="continue_title"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTouchedSubmit:" destination="BHi-uj-C1t" eventType="touchUpInside" id="lcM-Sv-bxm"/>
