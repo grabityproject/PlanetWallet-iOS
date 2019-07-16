@@ -116,8 +116,8 @@
 		04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0B22B7625700A25A93 /* ContactCell.xib */; };
 		04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */; };
 		04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */; };
-		04C0E7AA22DD6096000DFD6E /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7A822DD608D000DFD6E /* pcwf.framework */; };
-		04C0E7AB22DD6096000DFD6E /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7A822DD608D000DFD6E /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04C0E7AE22DD6D42000DFD6E /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7AC22DD6D39000DFD6E /* pcwf.framework */; };
+		04C0E7AF22DD6D42000DFD6E /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7AC22DD6D39000DFD6E /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C7322840A7F00235883 /* PlanetCell.xib */; };
 		04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C7522840A8F00235883 /* PlanetCell.swift */; };
 		04C82C7E228429C000235883 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C77228429BF00235883 /* PWTextField.swift */; };
@@ -190,7 +190,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04C0E7AB22DD6096000DFD6E /* pcwf.framework in Embed Frameworks */,
+				04C0E7AF22DD6D42000DFD6E /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +310,7 @@
 		04BA0B0B22B7625700A25A93 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactAddrCell.xib; sourceTree = "<group>"; };
 		04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAddrCell.swift; sourceTree = "<group>"; };
-		04C0E7A822DD608D000DFD6E /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
+		04C0E7AC22DD6D39000DFD6E /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		04C82C7322840A7F00235883 /* PlanetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetCell.xib; sourceTree = "<group>"; };
 		04C82C7522840A8F00235883 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 		04C82C77228429BF00235883 /* PWTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWTextField.swift; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 			files = (
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
-				04C0E7AA22DD6096000DFD6E /* pcwf.framework in Frameworks */,
+				04C0E7AE22DD6D42000DFD6E /* pcwf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +487,7 @@
 		044BC53A22793D3F00FD7E5E = {
 			isa = PBXGroup;
 			children = (
-				04C0E7A822DD608D000DFD6E /* pcwf.framework */,
+				04C0E7AC22DD6D39000DFD6E /* pcwf.framework */,
 				044BC54522793D3F00FD7E5E /* PlanetWallet */,
 				044BC54422793D3F00FD7E5E /* Products */,
 				A0315CB8F9480C007E773A4C /* Pods */,

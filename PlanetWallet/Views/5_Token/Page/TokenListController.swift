@@ -34,10 +34,7 @@ class TokenListController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: UILabel!
     
-    var tokenList: [ERC20] = [ERC20]() {
-        didSet {
-        }
-    }
+    var tokenList: [ERC20] = [ERC20]()
     
     var search:String=""
     var isSearching = false {

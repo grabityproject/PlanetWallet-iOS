@@ -40,9 +40,6 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
         else {
             tokenCell.checkedImgView.isHidden = true
         }
-//        tokenCell.checkedImgView.isHidden = dataSource[position].hide != "Y"
-        
-        
     }
 
     func didSelected(indexPath: IndexPath) {

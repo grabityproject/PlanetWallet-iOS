@@ -230,6 +230,8 @@ class TransferConfirmController: PlanetWalletViewController {
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary else { return }
         
+        print(dict)
+        
         if let resultVO = ReturnVO(JSON: dict),
             let item = resultVO.result as? Dictionary<String, Any>,
             let safeLow = item["safeLow"] as? Double,
