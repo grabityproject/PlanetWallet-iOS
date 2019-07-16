@@ -60,7 +60,7 @@ class TransferAmountController: PlanetWalletViewController {
                     submitBtn.setEnabled(false, theme: currentTheme)
                 }
                 else {
-                    fiatDisplayLb.text = "You don’t have enough amount to send".localized
+                    fiatDisplayLb.text = "transfer_not_search_title".localized
                     fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
                     submitBtn.setEnabled(false, theme: currentTheme)
                 }

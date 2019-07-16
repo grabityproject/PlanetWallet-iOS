@@ -80,8 +80,8 @@ class DetailPlanetController: PlanetWalletViewController {
         {
             hidePlanetSwitch.isOn = hideStr == "Y"
             
-            universeLb.text = String(format: "%@ Universe".localized, CoinType.of(type).name)
-            coinAddressLb.text = String(format: "%@ Address".localized, CoinType.of(type).name)
+            universeLb.text = String(format: "detail_planet_universe".localized, CoinType.of(type).name)
+            coinAddressLb.text = String(format: "detail_planet_address".localized, CoinType.of(type).name)
             
             planetNameLb.text = name
             naviBar.title = name

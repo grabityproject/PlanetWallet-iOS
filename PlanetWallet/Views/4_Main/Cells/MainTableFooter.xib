@@ -56,6 +56,7 @@
                                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                             <color key="value" name="detailTextLight"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_footer_manage_token"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageMainAddTokensGray" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-wR-LNa" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
@@ -117,6 +118,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                             <color key="value" name="detailTextLight"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_footer_no_btc_history"/>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>

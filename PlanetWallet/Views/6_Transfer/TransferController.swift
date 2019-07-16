@@ -38,7 +38,13 @@ class TransferController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
-        naviBar.title = "Search".localized
+        naviBar.title = "transfer_toolbar_title".localized
+        
+        if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
+            textField.attributedPlaceholder = NSAttributedString(string: "transfer_search_title".localized,
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
+                                                                              NSAttributedString.Key.font: placeHolderFont])
+        }
     }
     
     override func setData() {
@@ -56,6 +62,16 @@ class TransferController: PlanetWalletViewController {
             }
             
             updateUI()
+        }
+    }
+    
+    override func onUpdateTheme(theme: Theme) {
+        super.onUpdateTheme(theme: theme)
+        
+        if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
+            textField.attributedPlaceholder = NSAttributedString(string: "transfer_search_title".localized,
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
+                                                                              NSAttributedString.Key.font: placeHolderFont])
         }
     }
     

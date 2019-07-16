@@ -331,6 +331,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="wallet_add_btn_add_title"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didTouchedCreatePlanet:" destination="Hv1-Te-vQD" eventType="touchUpInside" id="aDF-Al-UkX"/>
@@ -365,6 +366,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
                                                 <integer key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="wallet_add_btn_import_title"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didTouchedImportPlanet:" destination="Hv1-Te-vQD" eventType="touchUpInside" id="Lpg-kj-kxd"/>
@@ -471,6 +473,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeBarColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="wallet_import_toolbar_title"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Fy-zv-xuD" userLabel="MenuBar">
@@ -496,6 +499,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="wallet_import_tabbar_mnemonic_title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedMenu:" destination="m0F-ap-uIf" eventType="touchUpInside" id="OV0-Nd-hBb"/>
@@ -529,6 +533,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="wallet_import_tabbar_privatekey_title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedMenu:" destination="m0F-ap-uIf" eventType="touchUpInside" id="o45-uA-pME"/>
@@ -776,8 +781,8 @@
                                     <action selector="didTouchedContinue:" destination="Exs-z2-X3t" eventType="touchUpInside" id="fVb-mj-Moe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba6-c5-9TD" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="107" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter password (Option)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba6-c5-9TD" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="166" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -785,6 +790,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="mnemonic_import_enter_password_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-41-gS9">
@@ -964,8 +970,8 @@
                                     <action selector="didTouchedContinue:" destination="rHS-WI-Cjb" eventType="touchUpInside" id="NdM-lu-APE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAd-jJ-Ecc" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="107" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter private key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAd-jJ-Ecc" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="116" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -973,6 +979,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privatekey_import_enter_privateKey_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ta9-Yq-KRu">
@@ -1053,6 +1060,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="mnemonic_import_enter_password_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-yq-wWL" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
@@ -1135,6 +1143,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="mnemonic_import_enter_mnemonic_phrase_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-Mm-OpU" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
@@ -1182,6 +1191,9 @@
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="mnemonic_import_correct_mnemonic_phrase_title"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageWarning" translatesAutoresizingMaskIntoConstraints="NO" id="NPo-hd-3Ox">
                                         <rect key="frame" x="315" y="2.6666666666666288" width="20" height="20"/>
@@ -1418,6 +1430,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="planet_name_btn_title"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTouchedSelect:" destination="zCZ-oN-aWM" eventType="touchUpInside" id="coa-9D-Ns0"/>
@@ -1516,6 +1529,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c1d-Ko-JM9"/>
+        <segue reference="VQr-oG-wrX"/>
     </inferredMetricsTieBreakers>
 </document>

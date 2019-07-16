@@ -156,7 +156,7 @@ class PlanetGenerateController: PlanetWalletViewController {
     @IBAction func didTouchedSelect(_ sender: UIButton) {
         
         if nameTextView.text.isEmpty {
-            Toast(text: "Input planet name").show()
+            Toast(text: "planet_generate_name_not_blank_title".localized).show()
             return
         }
         

@@ -56,7 +56,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
                 fromSegue = .SPLASH
             }
             else if fromSegueID == From.CERTIFICATION.segueID() {
-                titleLb.text = "Change PIN Code".localized
+                titleLb.text = "pincode_registration_change_pin_code_title".localized
                 fromSegue = .CERTIFICATION
             }
         }
@@ -64,8 +64,8 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedReset(_ sender: UIButton) {
-        titleLb.text = "Change PIN Code".localized
-        detailLb.text = "Enter the 4 digit + alphabet".localized
+        titleLb.text = "pincode_registration_change_pin_code_title".localized
+        detailLb.text = "pincode_registration_sub_title".localized
         passwordStr = ""
         pwBeforeConfirmed = ""
         isConfirmedPW = false
@@ -88,7 +88,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     private func handleCompleteRegistration(_ pw: String) {
         
         guard isConfirmedPW else {
-            titleLb.text = "Please enter your password again.".localized
+            titleLb.text = "pincode_registration_one_more_registration_title".localized
             passwordStr = ""
             pwBeforeConfirmed = pw
             isConfirmedPW = true
@@ -122,9 +122,9 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             }
         }
         else {
-            titleLb.text = "Code incorrect".localized
+            titleLb.text = "pincode_registration_code_incorrect_title".localized
             titleLb.textColor = currentTheme.errorText
-            detailLb.text = "Please check your code".localized
+            detailLb.text = "pincode_registration_sub_title_error".localized
             detailLb.textColor = currentTheme.errorText
 
             self.pinView.setSelectedColor(0)

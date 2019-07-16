@@ -14,13 +14,6 @@ import UIKit
     private var defaultBorderColor: UIColor?
     private var defaultTextColor: UIColor?
     
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect)
-        if let text = text {
-            self.text = text.localized
-        }
-    }
-    
     @IBInspectable var themeBackgroundColor: UIColor?{
         didSet{
             self.defaultBackgroundColor = self.backgroundColor

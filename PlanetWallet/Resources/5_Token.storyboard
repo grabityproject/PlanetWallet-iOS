@@ -59,6 +59,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeBarColor">
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="token_add_toolbar_title"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-V3-UG8" userLabel="MenuBar">
@@ -74,9 +75,12 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="207" height="58"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="14"/>
-                                                        <state key="normal" title="Add Token">
+                                                        <state key="normal" title="Token List">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="token_add_tabbar_add_token_title"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="nYj-Jg-Ebp"/>
                                                         </connections>
@@ -105,6 +109,9 @@
                                                         <state key="normal" title="Custom Token">
                                                             <color key="titleColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="token_add_tabbar_custom_token_title"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedMenubar:" destination="gYD-Ub-tKI" eventType="touchUpInside" id="hrN-me-AXC"/>
                                                         </connections>
@@ -229,6 +236,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="highlightedCategory">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="custom_token_btn_title"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTouchedAddToken:" destination="8k5-pv-lkV" eventType="touchUpInside" id="wLj-ap-OIB"/>
@@ -246,6 +254,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                 <color key="value" name="detailTextLight"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="custom_token_contract_address_title"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQF-NL-4xN" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
@@ -346,6 +355,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                         <color key="value" name="detailTextLight"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="custom_token_token_symbol_title"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOu-bo-Ysx" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
@@ -412,6 +422,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                         <color key="value" name="detailTextLight"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="custom_token_decimals_title"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9TG-rr-tn2" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
@@ -581,6 +592,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="token_list_not_search_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4pS-rX-dU5">

@@ -71,7 +71,7 @@ class AdvancedGasView: UIView {
         didSet {
             self.gasPriceBtn.setTitle(inputText, for: .normal)
             if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-                self.gasFeesLb.text = "Fees:".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
             }
         }
     }
@@ -80,7 +80,7 @@ class AdvancedGasView: UIView {
         didSet {
             self.gasLimitBtn.setTitle(inputText, for: .normal)
             if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-                self.gasFeesLb.text = "Fees:".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
             }
         }
     }
@@ -119,7 +119,7 @@ class AdvancedGasView: UIView {
         backgroundView.addGestureRecognizer(backgroundPanGesture)
         
         if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-            self.gasFeesLb.text = "Fees:".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+            self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
         }
         
         setTheme(ThemeManager.currentTheme())
@@ -172,7 +172,7 @@ class AdvancedGasView: UIView {
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
         if gasPrice == "" || gasLimit == "" {
-            Toast(text: "Gas Price OR Gas Limit Not Spaces.".localized).show()
+            Toast(text: "fee_popup_not_spaces_title".localized).show()
         }
         
         if let gas = Int(gasPrice),
@@ -183,10 +183,10 @@ class AdvancedGasView: UIView {
                 self.hide()
             }
             else if gas < 1 {
-                Toast(text: "Gas Price is at least 1".localized).show()
+                Toast(text: "fee_popup_gas_price_least_title".localized).show()
             }
             else if limit < 21000 {
-                Toast(text: "Gas Limit is at least 21,000".localized).show()
+                Toast(text: "fee_popup_gas_limit_least_title".localized).show()
             }
         }
     }

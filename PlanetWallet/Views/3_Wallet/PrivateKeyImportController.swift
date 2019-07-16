@@ -64,7 +64,7 @@ class PrivateKeyImportController: PlanetWalletViewController {
                 
                 if let keyId = importedPlanet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "The private key already exists.").show()
+                        Toast.init(text: "privatekey_import_exists_title".localized).show()
                     }else{
                         let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
@@ -72,14 +72,14 @@ class PrivateKeyImportController: PlanetWalletViewController {
                     }
                 }
                 else {
-                    Toast.init(text: "It is not a valid format.").show()
+                    Toast.init(text: "privatekey_import_not_match_title".localized).show()
                 }
             }else if coinType == CoinType.ETH.coinType{
                 let importedPlanet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
                 
                 if let keyId = importedPlanet.keyId{
                     if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "The private key already exists.").show()
+                        Toast.init(text: "privatekey_import_exists_title".localized).show()
                     }else{
                         let info = [Keys.UserInfo.planet:importedPlanet]
                         sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
@@ -87,7 +87,7 @@ class PrivateKeyImportController: PlanetWalletViewController {
                     }
                 }
                 else {
-                    Toast.init(text: "It is not a valid format.").show()
+                    Toast.init(text: "privatekey_import_not_match_title".localized).show()
                 }
             }
         }

@@ -146,7 +146,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 self.coinType = CoinType.ERC20
                 self.availableAmount = balance
                 
-                naviBar.title = String(format: "Transfer %@".localized, erc20.name ?? "")
+                naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, erc20.name ?? "")
                     
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
@@ -166,7 +166,7 @@ class TransferConfirmController: PlanetWalletViewController {
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
                 }
                 
-                naviBar.title = String(format: "Transfer %@".localized, CoinType.of(coinType).name)
+                naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, CoinType.of(coinType).name)
                 
                 transferAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(fromPlanet.symbol ?? "")"

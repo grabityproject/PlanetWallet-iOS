@@ -59,7 +59,7 @@ class TokenListController: PlanetWalletViewController {
         
         //set textfield
         if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
-            textField.attributedPlaceholder = NSAttributedString(string: "Search",
+            textField.attributedPlaceholder = NSAttributedString(string: "token_list_search_title".localized,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
                                                                               NSAttributedString.Key.font: placeHolderFont])
         }
@@ -84,7 +84,7 @@ class TokenListController: PlanetWalletViewController {
     
     override func onUpdateTheme(theme: Theme) {
         super.onUpdateTheme(theme: theme)
-        textField.attributedPlaceholder = NSAttributedString(string: "Search",
+        textField.attributedPlaceholder = NSAttributedString(string: "token_list_search_title".localized,
                                                              attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText])
     }
     

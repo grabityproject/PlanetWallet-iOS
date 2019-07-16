@@ -258,7 +258,7 @@
                                     <constraint firstAttribute="height" constant="35" id="pCR-oZ-gq8"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK">
+                            <button opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="545" width="375" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -283,6 +283,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_notice_title"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTouchedError:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="xvw-Ct-KRp"/>
                                 </connections>

@@ -53,6 +53,9 @@
                                     <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_advanced_option_title"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM2-42-mZ7">
                                     <rect key="frame" x="0.0" y="76.5" width="375" height="1"/>
@@ -97,6 +100,9 @@
                                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                             <color key="textColor" name="detailTextLight"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_gas_price_title"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gy0-ms-tBm">
                                             <rect key="frame" x="0.0" y="30.5" width="162.5" height="49.5"/>
@@ -150,6 +156,9 @@
                                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                             <color key="textColor" name="detailTextLight"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_gas_limit_title"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf9-f5-87J">
                                             <rect key="frame" x="0.0" y="30.5" width="162.5" height="49.5"/>
@@ -223,6 +232,7 @@
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_btn_cancel_title"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedCancel:" destination="-1" eventType="touchUpInside" id="E1T-sA-1b7"/>
@@ -239,6 +249,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_btn_save_title"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedSave:" destination="-1" eventType="touchUpInside" id="jYb-mh-xYz"/>

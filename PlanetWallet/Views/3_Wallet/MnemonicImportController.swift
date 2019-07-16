@@ -69,7 +69,7 @@ class MnemonicImportController: PlanetWalletViewController {
                 if let keyId = importedPlanet.keyId{
                     
                     if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "The Mnemonic already exists.").show()
+                        Toast.init(text: "mnemonic_import_exists_title".localized).show()
                         
                     }else{
                         let info = [Keys.UserInfo.planet:importedPlanet]
@@ -78,7 +78,7 @@ class MnemonicImportController: PlanetWalletViewController {
                     }
                 }
                 else {
-                    Toast.init(text: "It is not a valid format.").show()
+                    Toast.init(text: "mnemonic_import_not_match_title".localized).show()
                 }
             }else if coinType == CoinType.ETH.coinType{
                 
@@ -87,7 +87,7 @@ class MnemonicImportController: PlanetWalletViewController {
                 if let keyId = importedPlanet.keyId{
                     
                     if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "The Mnemonic already exists.").show()
+                        Toast.init(text: "mnemonic_import_exists_title".localized).show()
                         
                     }else{
                         let info = [Keys.UserInfo.planet:importedPlanet]
@@ -96,7 +96,7 @@ class MnemonicImportController: PlanetWalletViewController {
                     }
                 }
                 else {
-                    Toast.init(text: "It is not a valid format.").show()
+                    Toast.init(text: "mnemonic_import_not_match_title".localized).show()
                 }
                 
             }

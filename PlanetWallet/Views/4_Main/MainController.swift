@@ -322,7 +322,7 @@ class MainController: PlanetWalletViewController {
     }
     
     private func showCopyToast() {
-        Toast(text: "Copied to Clipboard").show()
+        Toast(text: "main_copy_to_clipboard".localized).show()
     }
     
     

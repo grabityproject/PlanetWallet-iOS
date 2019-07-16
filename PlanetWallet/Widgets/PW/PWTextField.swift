@@ -18,13 +18,6 @@ import UIKit
     
     public var shouldClearBtn = true
     
-    override func drawPlaceholder(in rect: CGRect) {
-        super.drawPlaceholder(in: rect)
-        if let placeHolder = placeholder {
-            placeholder = placeHolder.localized
-        }
-    }
-    
     @IBInspectable var themeBackgroundColor: UIColor?{
         didSet{
             self.defaultBackgroundColor = self.backgroundColor

@@ -32,8 +32,6 @@ import UIKit
         }
     }
     
-    
-    
     func setTheme(_ theme: Theme) {
         if( theme == Theme.LIGHT ){
             if( defaultBackgroundColor == nil ){
@@ -45,7 +43,6 @@ import UIKit
             if( defaultBorderColor == nil ){
                 defaultBorderColor = borderColor;
             }
-
             
             self.backgroundColor = self.themeBackgroundColor
             self.textColor = self.themeTextColor;

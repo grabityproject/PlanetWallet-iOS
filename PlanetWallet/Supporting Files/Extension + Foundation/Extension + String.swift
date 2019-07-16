@@ -82,10 +82,6 @@ extension String {
         
         return data
     }
-    
-    var localized: String {
-        return NSLocalizedString(self, comment: "")
-    }
 }
 
 

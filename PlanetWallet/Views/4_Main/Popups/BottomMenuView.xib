@@ -143,6 +143,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_btn_bottom_copy_title"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didTouchedCopy:" destination="-1" eventType="touchUpInside" id="zy2-47-tQ9"/>
@@ -177,6 +178,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_btn_bottom_transfer_title"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didTouchedSend:" destination="-1" eventType="touchUpInside" id="ZES-U8-83D"/>

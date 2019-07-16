@@ -166,9 +166,9 @@ extension PinCodeCertificationController: CharPadDelegate {
             }
         }
         
-        titleLb.text = "Code incorrect"
+        titleLb.text = "pincode_certification_code_incorrect_title".localized
         titleLb.textColor = currentTheme.errorText
-        detailLb.text = "Please check your code"
+        detailLb.text = "pincode_certification_sub_title_error".localized
         detailLb.textColor = currentTheme.errorText
         
         self.passwordStr = ""
