@@ -32,7 +32,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var addressLb: PWLabel!
     @IBOutlet var planetNameLb: PWLabel!
     
-    @IBOutlet weak var labelError: UIButton!
+    @IBOutlet weak var labelError: PWButton!
     
     @IBOutlet var naviBar: NavigationBar!
     var refreshControl: UIRefreshControl!

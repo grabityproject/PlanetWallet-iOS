@@ -12,10 +12,10 @@ extension BoardController {
     enum Section {
         case Announcements, FAQ
         
-        func description() -> String {
+        func localized() -> String {
             switch self {
-            case .Announcements: return "Announcements"
-            case .FAQ:           return "FAQ"
+            case .Announcements: return "setting_announcements_title".localized
+            case .FAQ:           return "setting_faq_title".localized
             }
         }
         
@@ -37,7 +37,7 @@ class BoardController: PlanetWalletViewController {
     
     var section: Section = .Announcements {
         didSet {
-            naviBar.title = section.description()
+            naviBar.title = section.localized()
             tableView.reloadData()
         }
     }
@@ -49,6 +49,9 @@ class BoardController: PlanetWalletViewController {
         if let userInfo = userInfo,
             let value = userInfo["section"] as? Section {
             self.section = value
+        }
+        else {
+            self.section = .Announcements
         }
         
         naviBar.delegate = self
