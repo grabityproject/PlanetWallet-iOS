@@ -8,12 +8,14 @@
 
 import UIKit
 import pcwf
+import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, NetworkDelegate {
 
-    var pinCode = [String]()
+    var messagingDelegates = [MessagingDelegate]()
     
+    var pinCode = [String]()
     /**
      * PIN 기반 암호화 담당.
      */
@@ -33,7 +35,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+         Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+       
+        
+        // Print full message.
+        print(userInfo)
+    }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+         Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+    
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -41,7 +75,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initSecureModules()
         
         setNavigationBar()
+        
+        FirebaseApp.configure()
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print(error)
+            } else if let result = result {
+                print("token: \(result.token)")
+                Post(self).action(Route.URL("device","ios"), requestCode: 0, resultCode: 0, data: ["device_token":result.token]);
+            }
+        }
+        
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
         return true
+    }
+    
+    func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        print(result);
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        messagingDelegates.forEach { (delegate) in
+            delegate.messaging?(messaging, didReceiveRegistrationToken: fcmToken)
+        }
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        messagingDelegates.forEach { (delegate) in
+            delegate.messaging?(messaging, didReceive: remoteMessage)
+        }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {

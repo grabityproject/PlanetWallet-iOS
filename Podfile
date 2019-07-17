@@ -12,5 +12,7 @@ target 'PlanetWallet' do
   pod 'BigInt'
   pod 'secp256k1.swift'
   pod 'CryptoSwift'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
 end

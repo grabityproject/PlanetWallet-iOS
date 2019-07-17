@@ -109,8 +109,6 @@
 		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
 		04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */; };
 		04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A551CE22A7C459007A17A3 /* refreshLoading.json */; };
-		04B8740C22CEF35D00454301 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B8740A22CEF35700454301 /* pcwf.framework */; };
-		04B8740D22CEF35D00454301 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04B8740A22CEF35700454301 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8740F22CF1C6B00454301 /* splash_03_bk.json */; };
 		04B8741222CF1C6B00454301 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8741022CF1C6B00454301 /* splash_03_wh.json */; };
 		04BA0B0A22B7623100A25A93 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0922B7623100A25A93 /* ContactCell.swift */; };
@@ -179,17 +177,20 @@
 		04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA53229E801400DEEDD9 /* Delete.swift */; };
 		04FBCA57229E908100DEEDD9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA56229E908100DEEDD9 /* Route.swift */; };
 		15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */; };
+		15AA699922DD68A700F01BF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AA699822DD68A700F01BF9 /* GoogleService-Info.plist */; };
+		15AA699A22DD699C00F01BF9 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B8740A22CEF35700454301 /* pcwf.framework */; };
+		15AA699B22DD699C00F01BF9 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04B8740A22CEF35700454301 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		04B8740E22CEF35D00454301 /* Embed Frameworks */ = {
+		15AA699C22DD699C00F01BF9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04B8740D22CEF35D00454301 /* pcwf.framework in Embed Frameworks */,
+				15AA699B22DD699C00F01BF9 /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +379,7 @@
 		04FBCA53229E801400DEEDD9 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		04FBCA56229E908100DEEDD9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityBlurVIew.swift; sourceTree = "<group>"; };
+		15AA699822DD68A700F01BF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D7FED223D66DB8595508E7 /* Pods-PlanetWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.debug.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -390,7 +392,7 @@
 			files = (
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
-				04B8740C22CEF35D00454301 /* pcwf.framework in Frameworks */,
+				15AA699A22DD699C00F01BF9 /* pcwf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +563,7 @@
 		044BC55B22793D9900FD7E5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15AA699822DD68A700F01BF9 /* GoogleService-Info.plist */,
 				042FF41022B34CDC00666DF9 /* Extension + Foundation */,
 				042FF40F22B34CC100666DF9 /* Extension + UIKit */,
 				04738B4F2282749C00758E56 /* ColorTheme.swift */,
@@ -1006,7 +1009,7 @@
 				044BC54022793D3F00FD7E5E /* Frameworks */,
 				044BC54122793D3F00FD7E5E /* Resources */,
 				0D3580AAF9EB8BABA649517D /* [CP] Embed Pods Frameworks */,
-				04B8740E22CEF35D00454301 /* Embed Frameworks */,
+				15AA699C22DD699C00F01BF9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1043,6 +1046,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 				ko,
 				"zh-Hans",
@@ -1088,6 +1092,7 @@
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
 				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
+				15AA699922DD68A700F01BF9 /* GoogleService-Info.plist in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
@@ -1119,10 +1124,13 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1133,10 +1141,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
