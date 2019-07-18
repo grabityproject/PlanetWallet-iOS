@@ -64,7 +64,13 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedReset(_ sender: UIButton) {
-        titleLb.text = "pincode_registration_change_pin_code_title".localized
+        if fromSegue == .SPLASH {
+            titleLb.text = "pincode_registration_registration_code_title".localized
+        }
+        else if fromSegue == .CERTIFICATION {
+            titleLb.text = "pincode_registration_change_pin_code_title".localized
+        }
+        
         detailLb.text = "pincode_registration_sub_title".localized
         passwordStr = ""
         pwBeforeConfirmed = ""

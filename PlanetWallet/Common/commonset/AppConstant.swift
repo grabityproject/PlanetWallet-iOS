@@ -82,6 +82,7 @@ struct Keys {
         static let MAIN_NAVI_UNWIND = "unwind_to_mainnavi"
         static let MAIN_UNWIND = "unwind_to_main"
         static let MAIN_TO_PINCODECERTIFICATION = "main_to_pincodecertification"
+        static let MAIN_TO_WALLET_ADD = "main_to_walletadd"
         
         //Setting
         static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"

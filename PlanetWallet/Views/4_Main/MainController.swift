@@ -448,6 +448,13 @@ extension MainController: TopMenuLauncherDelegate {
     func didSelected(planet: Planet) {
         self.planet = planet
     }
+    
+    func didSelectedFooter() {
+        topMenuLauncher?.handleDismiss {
+            let segueID = Keys.Segue.MAIN_TO_WALLET_ADD
+            self.sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
+        }
+    }
 }
 
 //MARK: - BottomMenuDelegate

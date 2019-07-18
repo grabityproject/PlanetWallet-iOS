@@ -18,7 +18,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopMenuCell" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
+                <outlet property="addImgView" destination="IZp-cs-i1o" id="zA0-PN-d0J"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="rzp-Ev-9G1"/>
+                <outlet property="footerSelectionBtn" destination="Hzo-vT-pyX" id="eZN-el-S4Q"/>
                 <outlet property="nameLb" destination="whX-tA-YSO" id="6Nr-DQ-Frd"/>
                 <outlet property="planetView" destination="QyJ-s5-Rxf" id="e0j-iL-tfg"/>
                 <outlet property="universeLb" destination="NtF-NI-r0m" id="RXH-qS-6XY"/>
@@ -72,17 +74,37 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePlanetlistAddBlack" translatesAutoresizingMaskIntoConstraints="NO" id="IZp-cs-i1o" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="20" y="16.5" width="22" height="22"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imagePlanetlistAddWhite"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzo-vT-pyX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <connections>
+                        <action selector="didTouchedFooter:" destination="-1" eventType="touchUpInside" id="RUu-bk-xda"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" name="borderDark"/>
             <constraints>
+                <constraint firstItem="IZp-cs-i1o" firstAttribute="trailing" secondItem="QyJ-s5-Rxf" secondAttribute="trailing" id="46g-5E-24s"/>
                 <constraint firstItem="NtF-NI-r0m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="whX-tA-YSO" secondAttribute="trailing" constant="5" id="Aja-Yb-24Z"/>
                 <constraint firstItem="QyJ-s5-Rxf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="FzT-d0-QDM"/>
                 <constraint firstItem="PDY-Tr-Ebl" firstAttribute="leading" secondItem="NtF-NI-r0m" secondAttribute="trailing" constant="8" id="Ry5-kM-kJg"/>
                 <constraint firstItem="whX-tA-YSO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SZR-uZ-FAZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hzo-vT-pyX" secondAttribute="trailing" id="cQa-kb-x2h"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PDY-Tr-Ebl" secondAttribute="trailing" constant="18" id="dLq-4c-jqB"/>
+                <constraint firstItem="IZp-cs-i1o" firstAttribute="bottom" secondItem="QyJ-s5-Rxf" secondAttribute="bottom" id="duJ-VL-Dcu"/>
                 <constraint firstItem="QyJ-s5-Rxf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="h2J-56-c5e"/>
+                <constraint firstItem="IZp-cs-i1o" firstAttribute="leading" secondItem="QyJ-s5-Rxf" secondAttribute="leading" id="i6R-MM-DvC"/>
                 <constraint firstItem="PDY-Tr-Ebl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iyI-Ug-jBY"/>
+                <constraint firstItem="Hzo-vT-pyX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kik-HM-3pz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Hzo-vT-pyX" secondAttribute="bottom" id="r9V-US-k5n"/>
                 <constraint firstItem="whX-tA-YSO" firstAttribute="leading" secondItem="QyJ-s5-Rxf" secondAttribute="trailing" constant="10" id="r9d-02-i7g"/>
+                <constraint firstItem="Hzo-vT-pyX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="whC-Ii-q1e"/>
+                <constraint firstItem="IZp-cs-i1o" firstAttribute="top" secondItem="QyJ-s5-Rxf" secondAttribute="top" id="xcB-Mo-xeV"/>
                 <constraint firstItem="NtF-NI-r0m" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zRl-Wj-9AB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -98,6 +120,8 @@
     <resources>
         <image name="imageArrowRightBlue" width="30" height="30"/>
         <image name="imageArrowRightGray" width="30" height="30"/>
+        <image name="imagePlanetlistAddBlack" width="45" height="45"/>
+        <image name="imagePlanetlistAddWhite" width="45" height="45"/>
         <namedColor name="borderDark">
             <color red="0.11764705882352941" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

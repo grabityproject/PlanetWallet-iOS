@@ -23,12 +23,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WoC-zK-da8">
-                    <rect key="frame" x="0.0" y="91" width="375" height="169"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="216"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m4k-H7-KKM">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="50" height="50"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
@@ -55,7 +55,7 @@
                 <constraint firstAttribute="bottom" secondItem="WoC-zK-da8" secondAttribute="bottom" constant="50" id="6Aw-dB-rVW"/>
                 <constraint firstAttribute="bottom" secondItem="Lyc-Gc-26D" secondAttribute="bottom" constant="18" id="GI7-5t-TNN"/>
                 <constraint firstItem="WoC-zK-da8" firstAttribute="leading" secondItem="Gdr-qL-8oU" secondAttribute="leading" id="XLa-il-rWY"/>
-                <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="Gdr-qL-8oU" secondAttribute="top" constant="47" id="Ysq-rF-fMO"/>
+                <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="Gdr-qL-8oU" secondAttribute="top" id="Ysq-rF-fMO"/>
                 <constraint firstItem="Gdr-qL-8oU" firstAttribute="trailing" secondItem="WoC-zK-da8" secondAttribute="trailing" id="zno-8L-eVr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

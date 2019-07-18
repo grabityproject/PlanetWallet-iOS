@@ -415,6 +415,7 @@
                         <segue destination="oky-eY-4iW" kind="show" identifier="main_to_setting" animates="NO" id="JN4-AP-6ud"/>
                         <segue destination="2Da-Zc-beW" kind="show" identifier="main_to_tokenadd" id="vhI-Yx-pEa"/>
                         <segue destination="WEJ-Fv-EyR" kind="presentation" identifier="main_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qQA-Rv-vrL"/>
+                        <segue destination="NqK-ec-PZT" kind="presentation" identifier="main_to_walletadd" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="a7f-sX-JoK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tem-yv-J6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -452,6 +453,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmj-g6-vw9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="824" y="273"/>
+        </scene>
+        <!--WalletAddController-->
+        <scene sceneID="Ohn-8j-N7w">
+            <objects>
+                <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="WalletAddController" id="NqK-ec-PZT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g69-Rb-NDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="355"/>
         </scene>
     </scenes>
     <resources>

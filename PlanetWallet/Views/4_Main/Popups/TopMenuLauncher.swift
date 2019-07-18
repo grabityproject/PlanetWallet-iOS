@@ -10,6 +10,7 @@ import UIKit
 
 protocol TopMenuLauncherDelegate {
     func didSelected(planet: Planet)
+    func didSelectedFooter()
 }
 
 class TopMenuLauncher: NSObject {
@@ -25,12 +26,11 @@ class TopMenuLauncher: NSObject {
     
     private let dimView = UIView()
     
-    private let cellHeight: CGFloat = 55
+    private let cellHeight: CGFloat = 60
     private let height: CGFloat = 310
     
     public var planetList: [Planet]? {
         didSet {
-            
             menuView.collectionView.reloadData()
         }
     }
@@ -71,6 +71,20 @@ class TopMenuLauncher: NSObject {
                                          height: self.menuView.frame.height)
         }) { (_) in //refresh selection cell
             self.menuView.collectionView.reloadData()
+        }
+    }
+    
+    @objc public func handleDismiss(completion: @escaping ()-> Void) {
+        dimView.isHidden = true
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menuView.frame = CGRect(x: 0,
+                                         y: -self.menuView.frame.height - 15,
+                                         width: self.menuView.frame.width,
+                                         height: self.menuView.frame.height)
+        }) { (_) in //refresh selection cell
+            self.menuView.collectionView.reloadData()
+            completion()
         }
     }
     
@@ -216,6 +230,16 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: menuView.footerID,
+                                                                         for: indexPath) as! TopMenuCell
+        footerView.isFooterCell = true
+        footerView.delegate = self
+        findAllViews(view: footerView, theme: ThemeManager.currentTheme())
+        return footerView
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuView.cellId, for: indexPath) as! TopMenuCell
@@ -260,4 +284,10 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
     }
 }
 
+
+extension TopMenuLauncher: TopMenuFooterDelegate {
+    func didTouchedTopMenuFooter() {
+        delegate?.didSelectedFooter()
+    }
+}
 

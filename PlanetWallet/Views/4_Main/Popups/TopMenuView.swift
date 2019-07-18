@@ -11,6 +11,7 @@ import UIKit
 class TopMenuView: PWView {
 
     let cellId = "topMenuCell"
+    let footerID = "topMenuFooter"
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var collectionView: UICollectionView!
@@ -35,5 +36,8 @@ class TopMenuView: PWView {
         self.addSubview(containerView)
         
         collectionView.register(TopMenuCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(TopMenuCell.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: footerID)
     }
 }
