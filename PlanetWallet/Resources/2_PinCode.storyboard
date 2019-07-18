@@ -30,8 +30,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2F-2i-UtN">
                                 <rect key="frame" x="0.0" y="44" width="375" height="362"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration PIN Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpQ-zW-vGd" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="36.333333333333343" y="119.66666666666667" width="302.33333333333326" height="40.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration PIN Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="dpQ-zW-vGd" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="119.66666666666667" width="345" height="40.666666666666671"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -87,11 +87,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gZ9-s1-d3s" firstAttribute="top" secondItem="u2F-2i-UtN" secondAttribute="top" constant="31" id="AqE-Xv-66x"/>
+                                    <constraint firstAttribute="trailing" secondItem="dpQ-zW-vGd" secondAttribute="trailing" constant="15" id="FlE-dK-X1m"/>
                                     <constraint firstItem="9jw-S7-Cx7" firstAttribute="top" secondItem="vUa-oG-T4d" secondAttribute="bottom" constant="51.5" id="MRv-X7-Zir"/>
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="centerY" secondItem="u2F-2i-UtN" secondAttribute="centerY" id="R4c-ae-FwO"/>
                                     <constraint firstItem="dpQ-zW-vGd" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="TRP-Fp-kSG"/>
                                     <constraint firstAttribute="trailing" secondItem="gZ9-s1-d3s" secondAttribute="trailing" constant="31" id="VAs-IM-bun"/>
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="dw1-pA-u0t"/>
+                                    <constraint firstItem="dpQ-zW-vGd" firstAttribute="leading" secondItem="u2F-2i-UtN" secondAttribute="leading" constant="15" id="kad-ip-VLD"/>
                                     <constraint firstItem="9jw-S7-Cx7" firstAttribute="centerX" secondItem="u2F-2i-UtN" secondAttribute="centerX" id="our-xQ-XAs"/>
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="top" secondItem="dpQ-zW-vGd" secondAttribute="bottom" constant="9" id="tM4-Qd-9Lg"/>
                                 </constraints>
@@ -160,8 +162,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6v-ix-hvp">
                                 <rect key="frame" x="0.0" y="44" width="375" height="362"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-qN-REx" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="69.000000000000014" y="119.66666666666667" width="237.33333333333337" height="40.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-qN-REx" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="119.66666666666667" width="345" height="40.666666666666671"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -201,6 +203,8 @@
                                     <constraint firstItem="oTs-fe-2CY" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="8Qs-6p-WIj"/>
                                     <constraint firstItem="oTs-fe-2CY" firstAttribute="top" secondItem="wP7-nu-37l" secondAttribute="bottom" constant="70" id="Tz1-tB-cq0"/>
                                     <constraint firstItem="QeC-qN-REx" firstAttribute="centerX" secondItem="d6v-ix-hvp" secondAttribute="centerX" id="WPx-XG-FHP"/>
+                                    <constraint firstItem="QeC-qN-REx" firstAttribute="leading" secondItem="d6v-ix-hvp" secondAttribute="leading" constant="15" id="eIY-Lg-fo3"/>
+                                    <constraint firstAttribute="trailing" secondItem="QeC-qN-REx" secondAttribute="trailing" constant="15" id="tNR-kW-Txi"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageToolbarCloseGray" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-ZU-mMQ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">

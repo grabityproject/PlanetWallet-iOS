@@ -20,7 +20,6 @@ class MainController: PlanetWalletViewController {
     }
     
     @IBOutlet var bgPlanetContainer: UIView!
-    @IBOutlet var bgPlanetContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet var bgPlanetView: PlanetView!
     @IBOutlet var darkDimGradientView: GradientView!
     @IBOutlet var lightDimGradientView: GradientView!
@@ -83,10 +82,10 @@ class MainController: PlanetWalletViewController {
         
         
         
-        bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
-                                         y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
-                                         width: SCREEN_WIDTH * 410.0 / 375.0,
-                                         height: SCREEN_WIDTH * 410.0 / 375.0)
+//        bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
+//                                         y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
+//                                         width: SCREEN_WIDTH * 410.0 / 375.0,
+//                                         height: SCREEN_WIDTH * 410.0 / 375.0)
     }
     
     
@@ -380,8 +379,6 @@ extension MainController: UIScrollViewDelegate {
 
         if( offsetY > 0){
             bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-            bgPlanetContainer.frame.origin = CGPoint(x: bgPlanetContainer.frame.origin.x,
-                                                     y: bgPlanetContainerTopConstraint.constant - offsetY)
             
             hideRefreshContents()
         } else {

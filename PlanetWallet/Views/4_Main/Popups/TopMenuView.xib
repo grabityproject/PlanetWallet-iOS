@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WoC-zK-da8">
-                    <rect key="frame" x="0.0" y="44" width="375" height="216"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="196"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m4k-H7-KKM">
                         <size key="itemSize" width="50" height="50"/>
@@ -55,7 +55,7 @@
                 <constraint firstAttribute="bottom" secondItem="WoC-zK-da8" secondAttribute="bottom" constant="50" id="6Aw-dB-rVW"/>
                 <constraint firstAttribute="bottom" secondItem="Lyc-Gc-26D" secondAttribute="bottom" constant="18" id="GI7-5t-TNN"/>
                 <constraint firstItem="WoC-zK-da8" firstAttribute="leading" secondItem="Gdr-qL-8oU" secondAttribute="leading" id="XLa-il-rWY"/>
-                <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="Gdr-qL-8oU" secondAttribute="top" id="Ysq-rF-fMO"/>
+                <constraint firstItem="WoC-zK-da8" firstAttribute="top" secondItem="Gdr-qL-8oU" secondAttribute="top" constant="20" id="Ysq-rF-fMO"/>
                 <constraint firstItem="Gdr-qL-8oU" firstAttribute="trailing" secondItem="WoC-zK-da8" secondAttribute="trailing" id="zno-8L-eVr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
