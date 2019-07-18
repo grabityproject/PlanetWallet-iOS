@@ -12,9 +12,11 @@ import ObjectMapper
 import Firebase
 
 
-class SplashController: PlanetWalletViewController, MessagingDelegate {
+class SplashController: PlanetWalletViewController, MessagingDelegate, SyncDelegate {
     
     private var isPinRegistered = true
+    private var isSync = false;
+    
     let animationView = AnimationView()
     
     var planet : Planet?
@@ -22,6 +24,8 @@ class SplashController: PlanetWalletViewController, MessagingDelegate {
     //MARK: - Init
     override func setData() {
         super.setData()
+        SyncManager.shared.syncPlanet( self );
+        
         APP_DELEGATE.messagingDelegates.append(self)
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
@@ -46,6 +50,13 @@ class SplashController: PlanetWalletViewController, MessagingDelegate {
                 }
             }
         }
+    }
+    
+    func sync(_ syncType: syncType, didSyncComplete complete: Bool, isUpdate: Bool) {
+        if isUpdate{
+            print("isUpdate!!")
+        }
+        isSync = true
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -99,7 +110,7 @@ class SplashController: PlanetWalletViewController, MessagingDelegate {
     //MARK: - Private 
     private func moveEntryPoint() {
         
-        if DEVICE_KEY == "" {
+        if DEVICE_KEY == "" && isSync{
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.moveEntryPoint()
