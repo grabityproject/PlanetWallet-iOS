@@ -27,7 +27,7 @@ class TopMenuLauncher: NSObject {
     private let dimView = UIView()
     
     private let cellHeight: CGFloat = 60
-    private let height: CGFloat = 310
+    private let height: CGFloat = 246
     
     public var planetList: [Planet]? {
         didSet {
@@ -249,7 +249,7 @@ extension TopMenuLauncher: UICollectionViewDelegate, UICollectionViewDataSource,
             cell.nameLb.text = list[indexPath.row].name
             
             if let list = planetList, let symbol = list[indexPath.row].symbol, let address = list[indexPath.row].address {
-                cell.universeLb.text = "\(symbol) Universe"
+                cell.universeLb.text = "\(symbol)"
                 cell.planetView.data = address
             }
             
