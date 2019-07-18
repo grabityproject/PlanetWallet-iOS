@@ -14,6 +14,7 @@
 		04116B322293DAAD00CFD921 /* mainTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B312293DAAD00CFD921 /* mainTableDataSource.swift */; };
 		04116B342293DB9500CFD921 /* BTCTransactionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */; };
 		04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */; };
+		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
 		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
 		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
@@ -22,6 +23,8 @@
 		042FF41622B3774300666DF9 /* QROverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41522B3774300666DF9 /* QROverlay.swift */; };
 		042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */; };
 		042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */; };
+		043D2F9A22DF096A006F1A26 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D2F9822DF0963006F1A26 /* pcwf.framework */; };
+		043D2F9B22DF096A006F1A26 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 043D2F9822DF0963006F1A26 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
 		0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09B22A512D5001E412C /* BottomMenuView.swift */; };
@@ -116,8 +119,6 @@
 		04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0B22B7625700A25A93 /* ContactCell.xib */; };
 		04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */; };
 		04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */; };
-		04C0E7AE22DD6D42000DFD6E /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7AC22DD6D39000DFD6E /* pcwf.framework */; };
-		04C0E7AF22DD6D42000DFD6E /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C0E7AC22DD6D39000DFD6E /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C82C7322840A7F00235883 /* PlanetCell.xib */; };
 		04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C7522840A8F00235883 /* PlanetCell.swift */; };
 		04C82C7E228429C000235883 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C77228429BF00235883 /* PWTextField.swift */; };
@@ -190,7 +191,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04C0E7AF22DD6D42000DFD6E /* pcwf.framework in Embed Frameworks */,
+				043D2F9B22DF096A006F1A26 /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +206,7 @@
 		04116B312293DAAD00CFD921 /* mainTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTableDataSource.swift; sourceTree = "<group>"; };
 		04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionDataSource.swift; sourceTree = "<group>"; };
 		04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetNameController.swift; sourceTree = "<group>"; };
+		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
 		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
 		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		042FF41522B3774300666DF9 /* QROverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlay.swift; sourceTree = "<group>"; };
 		042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomMenuTokenView.xib; sourceTree = "<group>"; };
 		042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuTokenView.swift; sourceTree = "<group>"; };
+		043D2F9822DF0963006F1A26 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		0444D09B22A512D5001E412C /* BottomMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
@@ -310,7 +313,6 @@
 		04BA0B0B22B7625700A25A93 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactAddrCell.xib; sourceTree = "<group>"; };
 		04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAddrCell.swift; sourceTree = "<group>"; };
-		04C0E7AC22DD6D39000DFD6E /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		04C82C7322840A7F00235883 /* PlanetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetCell.xib; sourceTree = "<group>"; };
 		04C82C7522840A8F00235883 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 		04C82C77228429BF00235883 /* PWTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWTextField.swift; sourceTree = "<group>"; };
@@ -393,7 +395,7 @@
 			files = (
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
-				04C0E7AE22DD6D42000DFD6E /* pcwf.framework in Frameworks */,
+				043D2F9A22DF096A006F1A26 /* pcwf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +489,7 @@
 		044BC53A22793D3F00FD7E5E = {
 			isa = PBXGroup;
 			children = (
-				04C0E7AC22DD6D39000DFD6E /* pcwf.framework */,
+				043D2F9822DF0963006F1A26 /* pcwf.framework */,
 				044BC54522793D3F00FD7E5E /* PlanetWallet */,
 				044BC54422793D3F00FD7E5E /* Products */,
 				A0315CB8F9480C007E773A4C /* Pods */,
@@ -569,6 +571,7 @@
 				04738B4F2282749C00758E56 /* ColorTheme.swift */,
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
 				0464BFBA22DC47B700D8087D /* Localization.swift */,
+				0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
 				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
+				0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
@@ -1124,10 +1128,13 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1138,10 +1145,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

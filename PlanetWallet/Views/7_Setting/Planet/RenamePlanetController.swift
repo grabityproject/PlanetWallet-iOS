@@ -55,14 +55,17 @@ class RenamePlanetController: PlanetWalletViewController {
             request.signature = Signer.sign(newName, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
             request.planet = newName
             request.address = planet.address
-            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON())
+            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON(), extraHeaders: ["device-key":DEVICE_KEY])
         }
     }
     
     //MARK: - Private
     private func updatePlanetUI() {
-        if let planet = planet, let name = planet.name {
-            nameTextField.placeholder = name
+        if let planet = planet, let name = planet.name, let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14)
+        {
+            nameTextField.attributedPlaceholder = NSAttributedString(string: name,
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: settingTheme.detailText,
+                                                                                  NSAttributedString.Key.font: placeHolderFont])
         }
     }
     

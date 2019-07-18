@@ -29,6 +29,7 @@ class TransferController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: PWLabel!
     @IBOutlet var pasteClipboardBtn: UIButton!
+    @IBOutlet var magnifyingImgView: PWImageView!
     
     var search:String = ""
     
@@ -222,6 +223,13 @@ extension TransferController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        magnifyingImgView.image = currentTheme.magnifyingPointImg
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        magnifyingImgView.image = currentTheme.magnifyingImg
+    }
 }
 
 extension TransferController: QRCaptureDelegate {

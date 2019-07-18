@@ -173,11 +173,9 @@ class PlanetGenerateController: PlanetWalletViewController {
             request.signature = Signer.sign(planet.name!, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
             request.planet = planet.name
             request.address = planet.address
-            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON())
             
+            Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON(), extraHeaders: ["device-key":DEVICE_KEY])
         }
-        
-        
     }
     
     @IBAction func didTouchedClose(_ sender: UIButton) {

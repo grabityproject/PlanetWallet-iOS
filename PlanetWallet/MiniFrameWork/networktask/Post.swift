@@ -15,15 +15,21 @@ class Post {
         self.delegate = delegate
     }
     
-    func action(_ url:String, requestCode:Int, resultCode:Int, data:Dictionary<String,Any>? ) {
+    func action(_ url:String, requestCode:Int, resultCode:Int, data:Dictionary<String,Any>?, extraHeaders:Dictionary<String,String> = [String:String]() ) {
         
         guard let requestUrl = URL(string: url) else { return }
         
-        let headers: HTTPHeaders = [
+        var headers: HTTPHeaders = [
             /* "Authorization": "your_access_token",  in case you need authorization header */
             "Content-type": "multipart/form-data",
             "locale":LOCALE_CODE
         ]
+        
+        if extraHeaders.count > 0{
+            extraHeaders.keys.forEach { (key) in
+                headers[key] = extraHeaders[key]
+            }
+        }
         
         Alamofire.upload(
             multipartFormData: {

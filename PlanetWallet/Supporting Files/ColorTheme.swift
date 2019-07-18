@@ -156,7 +156,14 @@ enum Theme: Int {
         }
     }
     
-    var magneticImg: UIImage? {
+    var magnifyingPointImg: UIImage? {
+        switch self {
+        case .DARK:     return UIImage(named: "imageSearchWhite")
+        case .LIGHT:    return UIImage(named: "imageSearchBlack")
+        }
+    }
+    
+    var magnifyingImg: UIImage? {
         switch self {
         case .DARK:     return UIImage(named: "imageSearchDarkgray")
         case .LIGHT:    return UIImage(named: "imageSearchGray")

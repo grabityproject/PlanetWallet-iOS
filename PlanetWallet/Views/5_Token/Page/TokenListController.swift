@@ -33,6 +33,7 @@ class TokenListController: PlanetWalletViewController {
     @IBOutlet var textField: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: UILabel!
+    @IBOutlet var magnifyingImgView: PWImageView!
     
     var tokenList: [ERC20] = [ERC20]()
     
@@ -167,8 +168,13 @@ extension TokenListController: UITextFieldDelegate {
         return true
     }
  
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        magnifyingImgView.image = currentTheme.magnifyingPointImg
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.isSearching = false
+        magnifyingImgView.image = currentTheme.magnifyingImg
     }
  
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

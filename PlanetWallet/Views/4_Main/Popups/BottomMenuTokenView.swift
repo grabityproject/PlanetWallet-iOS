@@ -121,7 +121,7 @@ class BottomMenuTokenView: UIView {
         
         if( theme == .LIGHT ){
             drawerView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0).cgColor
-            drawerView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
+            drawerView.layer.shadowOffset = CGSize(width: -2.0, height: 2.0)
             drawerView.layer.shadowRadius = 8
             drawerView.layer.shadowOpacity = 0.2
             drawerView.layer.masksToBounds = false

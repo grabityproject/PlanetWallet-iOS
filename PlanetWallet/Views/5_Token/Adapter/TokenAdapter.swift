@@ -44,7 +44,6 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
 
     func didSelected(indexPath: IndexPath) {
         dataSource[indexPath.row].hide = dataSource[indexPath.row].hide == "Y" ? "N" : "Y"
-        tableView?.reloadRows(at: [indexPath], with: .none)
         tableView(self.tableView!, didSelectRowAt: indexPath)
     }
 }

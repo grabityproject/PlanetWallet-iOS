@@ -117,7 +117,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tw9-My-Aoq" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="103" y="40" width="169" height="169"/>
+                                            <rect key="frame" x="105" y="40" width="165" height="165"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="tw9-My-Aoq" secondAttribute="height" multiplier="1:1" id="scK-9V-BFl"/>
@@ -127,7 +127,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQe-8d-ie6">
-                                            <rect key="frame" x="0.0" y="228" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="230" width="375" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hjkhjkgkj" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-wS-Ubw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="0.0" width="355" height="35"/>
@@ -190,29 +190,19 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="tw9-My-Aoq" firstAttribute="centerX" secondItem="gy3-pp-zw7" secondAttribute="centerX" id="MCy-Rx-AcY"/>
-                                        <constraint firstItem="jQe-8d-ie6" firstAttribute="top" secondItem="tw9-My-Aoq" secondAttribute="bottom" constant="19" id="P9o-GK-733"/>
+                                        <constraint firstItem="jQe-8d-ie6" firstAttribute="top" secondItem="tw9-My-Aoq" secondAttribute="bottom" constant="25" id="P9o-GK-733"/>
                                         <constraint firstItem="jQe-8d-ie6" firstAttribute="leading" secondItem="gy3-pp-zw7" secondAttribute="leading" id="SYx-GG-cj7"/>
                                         <constraint firstAttribute="trailing" secondItem="jQe-8d-ie6" secondAttribute="trailing" id="dGJ-ye-Cbv"/>
                                         <constraint firstItem="tw9-My-Aoq" firstAttribute="top" secondItem="gy3-pp-zw7" secondAttribute="top" constant="40" id="hvl-G9-Nyj"/>
-                                        <constraint firstItem="tw9-My-Aoq" firstAttribute="width" secondItem="gy3-pp-zw7" secondAttribute="width" multiplier="0.45" id="kn5-75-4Ds"/>
+                                        <constraint firstItem="tw9-My-Aoq" firstAttribute="width" secondItem="gy3-pp-zw7" secondAttribute="width" multiplier="0.44" id="kn5-75-4Ds"/>
                                         <constraint firstAttribute="bottom" secondItem="jQe-8d-ie6" secondAttribute="bottom" id="toZ-Uv-MTx"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="tqV-Mi-NOI" customClass="MainTableFooter" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="352" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="280" width="375" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="guR-Y4-RQB">
-                                        <rect key="frame" x="0.0" y="308" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="guR-Y4-RQB" id="TlO-67-3RG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="delegate" destination="pBn-Jn-OOA" id="iiy-pL-dGx"/>
                                 </connections>

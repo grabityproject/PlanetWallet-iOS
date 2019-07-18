@@ -38,7 +38,7 @@ class TokenCell: PWTableCell {
         if let tableView = self.superview as? UITableView,
            let indexPath = tableView.indexPath(for: self)
         {
-//            checkedImgView.isHidden = !checkedImgView.isHidden
+            checkedImgView.isHidden = !checkedImgView.isHidden
             delegate?.didSelected(indexPath: indexPath )
         }
     }

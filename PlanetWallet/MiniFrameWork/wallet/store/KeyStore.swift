@@ -27,6 +27,32 @@ class KeyStore {
 
     }
     
+    func setValue( key:String, data:Data) {
+        if let crypter = defaultCrypter{
+            let encData = crypter.singleEncrypt(data: data)
+            UserDefaults.standard.set(encData.base64EncodedString(), forKey: key)
+        }
+    }
+    
+    func getValue( key:String ) -> Data? {
+        if let crypter = defaultCrypter{
+            if let encBase64 = UserDefaults.standard.value(forKey: key){
+                if let encBase64Str = encBase64 as? String {
+                    let encBase64Data = Data(base64Encoded: encBase64Str)
+                    let encData = crypter.singleDecrypt(encrypted: encBase64Data! )
+                    return encData
+                }
+                else {
+                    print("not string")
+                    return nil
+                }
+                
+            }
+        }
+        return nil
+    }
+    
+    
     func setValue( key:String, data:Data , pin: [String]) {
         if let crypter = defaultCrypter{
             do{

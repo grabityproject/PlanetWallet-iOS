@@ -26,14 +26,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="174"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFq-od-fG0" userLabel="ManageTokenContainer">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="174"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evM-zZ-LgV" userLabel="SeparatorView" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <rect key="frame" x="20" y="0.0" width="374" height="1"/>
                             <color key="backgroundColor" red="0.1215686275" green="0.1176470588" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="fGJ-h3-sKl"/>
@@ -47,8 +47,8 @@
                         <view tag="999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iED-jL-xFu" userLabel="ManageTokenBtnContainer" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="112" y="0.0" width="190" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ8-Bd-a0l" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="47" y="13.5" width="110" height="23.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="토큰 관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ8-Bd-a0l" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="75" y="15.5" width="60" height="19"/>
                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -79,7 +79,6 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="cZ8-Bd-a0l" firstAttribute="leading" secondItem="k2y-wR-LNa" secondAttribute="trailing" constant="10" id="0iM-wy-1YM"/>
                                 <constraint firstItem="ghi-72-xQv" firstAttribute="top" secondItem="iED-jL-xFu" secondAttribute="top" id="D8f-8A-es3"/>
                                 <constraint firstItem="cZ8-Bd-a0l" firstAttribute="centerY" secondItem="iED-jL-xFu" secondAttribute="centerY" id="HGH-yK-JQf"/>
                                 <constraint firstItem="k2y-wR-LNa" firstAttribute="centerY" secondItem="iED-jL-xFu" secondAttribute="centerY" id="KIo-91-qwM"/>
@@ -89,6 +88,7 @@
                                 <constraint firstAttribute="width" constant="190" id="fV0-1R-daF"/>
                                 <constraint firstItem="ghi-72-xQv" firstAttribute="leading" secondItem="iED-jL-xFu" secondAttribute="leading" id="jU6-DB-PQG"/>
                                 <constraint firstAttribute="trailing" secondItem="ghi-72-xQv" secondAttribute="trailing" id="rx6-yD-8JO"/>
+                                <constraint firstItem="cZ8-Bd-a0l" firstAttribute="centerX" secondItem="iED-jL-xFu" secondAttribute="centerX" constant="10" id="wk3-rC-Kdk"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -103,14 +103,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="iED-jL-xFu" firstAttribute="centerX" secondItem="bFq-od-fG0" secondAttribute="centerX" id="EZv-Mh-RpP"/>
-                        <constraint firstItem="evM-zZ-LgV" firstAttribute="leading" secondItem="bFq-od-fG0" secondAttribute="leading" id="LgS-4L-Ckh"/>
-                        <constraint firstAttribute="trailing" secondItem="evM-zZ-LgV" secondAttribute="trailing" id="ZID-5M-JXi"/>
+                        <constraint firstItem="evM-zZ-LgV" firstAttribute="leading" secondItem="bFq-od-fG0" secondAttribute="leading" constant="20" id="LgS-4L-Ckh"/>
+                        <constraint firstAttribute="trailing" secondItem="evM-zZ-LgV" secondAttribute="trailing" constant="20" id="ZID-5M-JXi"/>
                         <constraint firstItem="evM-zZ-LgV" firstAttribute="top" secondItem="bFq-od-fG0" secondAttribute="top" id="eKG-mA-I7J"/>
                         <constraint firstItem="iED-jL-xFu" firstAttribute="top" secondItem="evM-zZ-LgV" secondAttribute="bottom" constant="-1" id="rLQ-4L-u6K"/>
                     </constraints>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t made any transaction yet :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbB-KM-7aH" userLabel="EmptyMsgLb" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="132.5" y="75" width="149.5" height="41"/>
+                    <rect key="frame" x="138" y="141" width="138.5" height="33"/>
                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

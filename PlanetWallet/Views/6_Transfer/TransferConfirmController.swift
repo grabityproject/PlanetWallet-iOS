@@ -17,6 +17,10 @@ extension TransferConfirmController {
             case FASTEST = 12
         }
         
+        //Network를 통해 Transaction fee를 가져오지 못했을 경우 default value
+        static let DEFAULT_GAS_PRICE = 20
+        static let DEFAULT_GAS_LIMIT = 100000
+        
         public var safeLow: Int = 0
         public var average: Int = 0
         public var fast: Int = 0
@@ -68,7 +72,11 @@ class TransferConfirmController: PlanetWalletViewController {
                 
                 gasFeeLb.text = "\(gasFee.toString()) ETH"
                 
-                guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else { return }
+                guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else {
+                    confirmBtn.setEnabled(false, theme: currentTheme)
+                    return
+                }
+                
                 if self.availableAmount >= transferAmount && ethBalance >= self.gasFee {
                     confirmBtn.setEnabled(true, theme: currentTheme)
                 }
@@ -153,8 +161,7 @@ class TransferConfirmController: PlanetWalletViewController {
             }
             else {
                 guard let coinType = fromPlanet.coinType,
-                    let balanceStr = planet?.balance,
-                    let balance = Double(balanceStr) else { return }
+                    let balance = Double(planet?.balance ?? "0") else { return }
                 self.availableAmount = balance
                 
                 if coinType == CoinType.BTC.coinType {
@@ -226,9 +233,24 @@ class TransferConfirmController: PlanetWalletViewController {
         self.advancedGasPopup.reset()
     }
     
+    //MARK: - Private
+    //수수료를 네트워크에서 못 가져 왔을 경우
+    private func setDefaultAdvancedGasFee() {
+        let transactionFee = Int(Double(GasInfo.DEFAULT_GAS_PRICE) * Double(GasInfo.DEFAULT_GAS_LIMIT))
+        if let ethTxFee: Double = Utils.shared.gweiToETH(transactionFee) {
+            self.gasFee = ethTxFee
+            self.isAdvancedGasOptions = true
+            self.resetBtn.isHidden = true
+        }
+        
+    }
+    
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary else { return }
+        guard let dict = dictionary else {
+            setDefaultAdvancedGasFee()
+            return
+        }
         
         print(dict)
         
@@ -245,6 +267,23 @@ class TransferConfirmController: PlanetWalletViewController {
                            fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
             self.gasStep = .AVERAGE
         }
+        else if let resultVO = ReturnVO(JSON: dict),
+            let item = resultVO.result as? Dictionary<String, Any>,
+            let safeLow = item["safeLow"] as? Int,
+            let average = item["standard"] as? Int,
+            let fast = item["fast"] as? Int,
+            let fastest = item["fastest"] as? Int
+        {
+            self.gas = GasInfo(safeLow: Int(Double(safeLow) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                               average: Int(Double(average) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                               fast: Int(Double(fast) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                               fastest: Int(Double(fastest) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
+            self.gasStep = .AVERAGE
+        }
+        else {
+            setDefaultAdvancedGasFee()
+        }
+        
     }
 }
 

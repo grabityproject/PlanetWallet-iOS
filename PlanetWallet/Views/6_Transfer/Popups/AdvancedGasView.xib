@@ -233,6 +233,15 @@
                                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_btn_cancel_title"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBorderColor">
+                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedCancel:" destination="-1" eventType="touchUpInside" id="E1T-sA-1b7"/>
@@ -250,12 +259,21 @@
                                             <real key="value" value="7"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fee_popup_btn_save_title"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="didTouchedSave:" destination="-1" eventType="touchUpInside" id="jYb-mh-xYz"/>
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="fKx-gJ-RhH"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -573,7 +591,6 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="teD-AP-N08" secondAttribute="trailing" id="v2A-CR-qRf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1v8-YE-CPz" secondAttribute="trailing" id="vQi-I7-Uj7"/>
                 <constraint firstItem="b5d-g8-qKK" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.12" id="vmb-yC-Lbg"/>
-                <constraint firstItem="9pQ-Hi-l6t" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.082" id="vsJ-I7-HPy"/>
                 <constraint firstItem="QWp-gu-y47" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wB1-Vn-7bU"/>
                 <constraint firstItem="1v8-YE-CPz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xBG-c5-ke6"/>
             </constraints>

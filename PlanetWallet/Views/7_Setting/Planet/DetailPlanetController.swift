@@ -22,6 +22,11 @@ class DetailPlanetController: PlanetWalletViewController {
     
     @IBOutlet var planetView: PlanetView!
     
+    @IBOutlet var hideContainer: UIView!
+    @IBOutlet var hideBottomContainer: PWView!
+    @IBOutlet var backupContainerTopConstraint: NSLayoutConstraint!
+    
+    
     var planet:Planet? {
         didSet {
             updatePlanetUI()
@@ -45,11 +50,17 @@ class DetailPlanetController: PlanetWalletViewController {
         super.setData()
         if let userInfo = userInfo,
             let planet = userInfo[Keys.UserInfo.planet] as? Planet,
-            let pathIdx = planet.pathIndex
+            let planetKeyID = planet.keyId,
+            let pathIdx = planet.pathIndex,
+            let selectedKeyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet)
         {
             self.planet = planet
             if pathIdx == -1 {
                 mnemonicContainer.isHidden = true
+            }
+            
+            if selectedKeyId == planetKeyID {
+                hidePlanetContainer()
             }
         }
     }
@@ -75,6 +86,12 @@ class DetailPlanetController: PlanetWalletViewController {
     }
     
     //MARK: - Private
+    private func hidePlanetContainer() {
+        hideContainer.isHidden = true
+        hideBottomContainer.isHidden = true
+        backupContainerTopConstraint.isActive = false
+    }
+    
     private func updatePlanetUI() {
         if let planet = planet, let name = planet.name, let address = planet.address, let type = planet.coinType, let hideStr = planet.hide
         {

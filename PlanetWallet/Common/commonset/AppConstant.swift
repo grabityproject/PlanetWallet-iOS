@@ -21,6 +21,7 @@ let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 let APP_DELEGATE:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 var PINCODE = APP_DELEGATE.pinCode
+var DEVICE_KEY = APP_DELEGATE.device_key
 
 let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).languageCode)!
 
@@ -42,6 +43,8 @@ struct Keys {
         static let THEME = "theme"
         static let PINCODE = "pincode"
         static let BIOMETRICS = "biometrics"
+        static let FCM_TOKEN = "device_token"
+        static let DEVICE_KEY = "device_key"
     }
     
     struct Segue {

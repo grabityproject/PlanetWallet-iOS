@@ -27,6 +27,9 @@ class BottomMenuView: UIView {
     @IBOutlet var addressLb: UILabel!
     @IBOutlet var planetNameLb: UILabel!
     
+    @IBOutlet var copyTopConstraint: NSLayoutConstraint!
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -57,11 +60,10 @@ class BottomMenuView: UIView {
         self.addSubview(containerView)
         
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: containerView.frame.height)
-        
+
         var qrCode = QRCode("ansrbthd")
         qrCode?.errorCorrection = .High
         self.qrCodeImgView.image = qrCode?.image
-        
     }
     
     @IBAction func didTouchedCopy(_ sender: UIButton) {

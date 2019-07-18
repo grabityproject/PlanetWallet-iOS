@@ -622,6 +622,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item 1" id="kZ9-2B-G0Y"/>
                     <connections>
+                        <outlet property="magnifyingImgView" destination="ZZu-yv-Qdh" id="6CP-lH-A2W"/>
                         <outlet property="notFoundLb" destination="HDL-J9-urC" id="Hpj-SQ-mbn"/>
                         <outlet property="tableView" destination="4pS-rX-dU5" id="et6-J6-UPJ"/>
                         <outlet property="textField" destination="xEo-i7-ycl" id="NWj-Iy-fRj"/>
