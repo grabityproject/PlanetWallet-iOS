@@ -46,6 +46,8 @@
 "main_back_pressed_finish_title" = "뒤로가기를 한번 더 누르시면 앱이 종료됩니다.";
 "main_footer_manage_token" = "토큰 관리";
 "main_footer_no_btc_history" = "트랜잭션이 존재하지 않습니다. :)";
+"main_footer_planets_add_new_planet_title" = "Add New Planet";
+
 "token_add_toolbar_title" = "토큰 관리";
 "token_add_tabbar_add_token_title" = "토큰 리스트";
 "token_add_tabbar_custom_token_title" = "커스텀 토큰";

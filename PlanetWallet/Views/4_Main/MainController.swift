@@ -237,12 +237,8 @@ class MainController: PlanetWalletViewController {
     }
     
     private func loadCustomRefreshContents() {
-        loadingViewWrapper.frame = CGRect(x: loadingViewWrapper.frame.origin.x,
-                                          y: naviBar.frame.height + Utils.shared.statusBarHeight(),
-                                          width: loadingViewWrapper.frame.width,
-                                          height: loadingViewWrapper.frame.height)
         animationView = AnimationView()
-        animationView.frame = CGRect(x: 0, y: 0, width: loadingViewWrapper.frame.width, height: loadingViewWrapper.frame.height)
+        animationView.frame = loadingViewWrapper.bounds
         loadingViewWrapper.addSubview(animationView)
         animationView.animation = Animation.named("refreshLoading")
         animationView.contentMode = .scaleAspectFit

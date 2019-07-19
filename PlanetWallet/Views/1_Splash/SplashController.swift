@@ -11,15 +11,14 @@ import Lottie
 import ObjectMapper
 import Firebase
 
-
-class SplashController: PlanetWalletViewController, MessagingDelegate, SyncDelegate {
+class SplashController: PlanetWalletViewController {
     
     private var isPinRegistered = true
-    private var isSync = false;
+    private var isSync = false
     
-    let animationView = AnimationView()
+    private let animationView = AnimationView()
     
-    var planet : Planet?
+    private var planet : Planet?
     
     //MARK: - Init
     override func setData() {
@@ -50,28 +49,6 @@ class SplashController: PlanetWalletViewController, MessagingDelegate, SyncDeleg
                 }
             }
         }
-    }
-    
-    func sync(_ syncType: syncType, didSyncComplete complete: Bool, isUpdate: Bool) {
-        if isUpdate{
-            print("isUpdate!!")
-        }
-        isSync = true
-    }
-    
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        if let device_key = remoteMessage.appData["device_key"] as? String ,
-            let deviceKeyData = device_key.data(using: .utf8)
-        {
-            KeyStore.shared.setValue(key: Keys.Userdefaults.DEVICE_KEY, data: deviceKeyData)
-        }
-        
-        if let deviceKeyData = KeyStore.shared.getValue(key: Keys.Userdefaults.DEVICE_KEY),
-            let deviceKey = String(data: deviceKeyData, encoding: .utf8)
-        {
-            DEVICE_KEY = deviceKey
-        }
-        
     }
     
     override func viewInit() {
@@ -110,7 +87,7 @@ class SplashController: PlanetWalletViewController, MessagingDelegate, SyncDeleg
     //MARK: - Private 
     private func moveEntryPoint() {
         
-        if DEVICE_KEY == "" && isSync{
+        if DEVICE_KEY == "" && isSync {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.moveEntryPoint()
@@ -132,10 +109,29 @@ class SplashController: PlanetWalletViewController, MessagingDelegate, SyncDeleg
             
         }
     }
-    
-    //MARK: - Network
-    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-     
+}
+
+extension SplashController: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        if let device_key = remoteMessage.appData["device_key"] as? String ,
+            let deviceKeyData = device_key.data(using: .utf8)
+        {
+            KeyStore.shared.setValue(key: Keys.Userdefaults.DEVICE_KEY, data: deviceKeyData)
+        }
+        
+        if let deviceKeyData = KeyStore.shared.getValue(key: Keys.Userdefaults.DEVICE_KEY),
+            let deviceKey = String(data: deviceKeyData, encoding: .utf8)
+        {
+            DEVICE_KEY = deviceKey
+        }
     }
 }
 
+extension SplashController: SyncDelegate {
+    func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
+        if isUpdate{
+            print("isUpdate!!")
+        }
+        isSync = true
+    }
+}

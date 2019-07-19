@@ -293,6 +293,7 @@
 		04738B4F2282749C00758E56 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
 		047A2CA022AF7D130053D153 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		0480E35722E17605008E57E3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
@@ -1006,6 +1007,7 @@
 		F538829195BCEB2F0014B4EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0480E35722E17605008E57E3 /* WebKit.framework */,
 				045049452294E7040046E343 /* LocalAuthentication.framework */,
 				635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */,
 			);

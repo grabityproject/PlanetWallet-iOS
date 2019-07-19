@@ -620,7 +620,7 @@
         <scene sceneID="LWL-Xm-XUQ">
             <objects>
                 <viewController id="11a-35-25Q" customClass="DetailBoardController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="P6m-ew-c2o">
+                    <view key="view" contentMode="scaleToFill" id="P6m-ew-c2o" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -658,32 +658,42 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7B-2n-5cT" userLabel="Title Container">
                                 <rect key="frame" x="0.0" y="109" width="375" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Event] Planet Wallet open event!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOj-Et-bX0">
-                                        <rect key="frame" x="20" y="25" width="205.5" height="16.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Event] Planet Wallet open event!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOj-Et-bX0" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="25" width="228.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019. 02. 01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6c-kU-i62">
-                                        <rect key="frame" x="20" y="44.5" width="78" height="16.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019. 02. 01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6c-kU-i62" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="48.5" width="79" height="20.5"/>
                                         <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                         <color key="textColor" name="detailTextLight"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                <color key="value" name="detailTextDark"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rit-93-Euv" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="79" width="335" height="1"/>
-                                        <color key="backgroundColor" name="borderLight"/>
+                                        <color key="backgroundColor" name="borderDark"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="HZ4-4H-XlE"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
-                                                <color key="value" name="borderDark"/>
+                                                <color key="value" name="borderLight"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Rit-93-Euv" firstAttribute="leading" secondItem="g7B-2n-5cT" secondAttribute="leading" constant="20" id="1Pk-0t-9hF"/>
                                     <constraint firstItem="t6c-kU-i62" firstAttribute="leading" secondItem="uOj-Et-bX0" secondAttribute="leading" id="B9S-Ne-7hN"/>
@@ -695,6 +705,10 @@
                                     <constraint firstAttribute="trailing" secondItem="Rit-93-Euv" secondAttribute="trailing" constant="20" id="xTQ-yf-E4m"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQG-OZ-uyf">
+                                <rect key="frame" x="0.0" y="189" width="375" height="478"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -702,15 +716,25 @@
                             <constraint firstItem="DeO-jT-PVk" firstAttribute="trailing" secondItem="g7B-2n-5cT" secondAttribute="trailing" id="PeR-Z1-xcU"/>
                             <constraint firstItem="g7B-2n-5cT" firstAttribute="top" secondItem="DeO-jT-PVk" secondAttribute="top" constant="89" id="erV-LT-2uw"/>
                             <constraint firstItem="41E-7F-KBg" firstAttribute="top" secondItem="P6m-ew-c2o" secondAttribute="top" id="hub-Pa-Wr2"/>
+                            <constraint firstItem="DeO-jT-PVk" firstAttribute="bottom" secondItem="YQG-OZ-uyf" secondAttribute="bottom" id="jkN-Mr-cnx"/>
+                            <constraint firstItem="DeO-jT-PVk" firstAttribute="trailing" secondItem="YQG-OZ-uyf" secondAttribute="trailing" id="lqs-kV-laZ"/>
                             <constraint firstItem="g7B-2n-5cT" firstAttribute="leading" secondItem="DeO-jT-PVk" secondAttribute="leading" id="oyp-eE-ZhL"/>
+                            <constraint firstItem="YQG-OZ-uyf" firstAttribute="leading" secondItem="DeO-jT-PVk" secondAttribute="leading" id="v3o-cQ-6nb"/>
                             <constraint firstItem="41E-7F-KBg" firstAttribute="trailing" secondItem="DeO-jT-PVk" secondAttribute="trailing" id="wZc-6X-a5z"/>
+                            <constraint firstItem="YQG-OZ-uyf" firstAttribute="top" secondItem="g7B-2n-5cT" secondAttribute="bottom" id="y6e-Ad-Oo9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DeO-jT-PVk"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="boardDateLb" destination="t6c-kU-i62" id="WA6-Pn-JK3"/>
                         <outlet property="boardSubjectLb" destination="uOj-Et-bX0" id="VvE-W4-vaO"/>
                         <outlet property="naviBar" destination="41E-7F-KBg" id="NSn-54-qYt"/>
+                        <outlet property="webViewContainer" destination="YQG-OZ-uyf" id="q2R-Q1-Ve1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ko9-ht-KI9" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -51,14 +51,14 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     }
     
     override func setData() {
-        if let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String {
-            if fromSegueID == From.SPLASH.segueID() {
-                fromSegue = .SPLASH
-            }
-            else if fromSegueID == From.CERTIFICATION.segueID() {
-                titleLb.text = "pincode_registration_change_pin_code_title".localized
-                fromSegue = .CERTIFICATION
-            }
+        guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
+        
+        if fromSegueID == From.SPLASH.segueID() {
+            fromSegue = .SPLASH
+        }
+        else if fromSegueID == From.CERTIFICATION.segueID() {
+            fromSegue = .CERTIFICATION
+            titleLb.text = "pincode_registration_change_pin_code_title".localized
         }
     }
     

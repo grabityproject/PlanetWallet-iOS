@@ -90,6 +90,7 @@ class TransferController: PlanetWalletViewController {
             textField.text = copiedStr
             
             if let planet = self.planet, let coinType = planet.coinType{
+                search = copiedStr
                 Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":copiedStr] )
             }
         }
@@ -106,7 +107,8 @@ class TransferController: PlanetWalletViewController {
                 self.notFoundLb.isHidden = true
                 
                 if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
-                    if EthereumManager.shared.validateAddress(pastedStr) && address != pastedStr {
+                    
+                    if isValidAddr(pastedStr) && address != pastedStr {
                         self.pasteClipboardBtn.isHidden = false
                     }
                 }
@@ -126,6 +128,25 @@ class TransferController: PlanetWalletViewController {
         }
     }
     
+    private func isValidAddr(_ address: String) -> Bool {
+        guard let planet = self.planet else { return false }
+        
+        if let erc20 = erc20 {
+            if ( erc20.getCoinType() == CoinType.ERC20.coinType ) && EthereumManager.shared.validateAddress(address) {
+                return true
+            }
+        }
+        
+        if ( planet.coinType == CoinType.BTC.coinType && BitCoinManager.shared.validAddress(address) ) ||
+            ( planet.coinType == CoinType.ETH.coinType && EthereumManager.shared.validateAddress(address) )
+        {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
@@ -137,16 +158,13 @@ class TransferController: PlanetWalletViewController {
                     let items = returnVo.result as! Array<Dictionary<String, Any>>
                     
                     if( items.count == 0 ){
-                        
-                        if( search.count >= 40 ){
-                            // serach text perfect address address cell 1ea
-                            //TODO: - check validate Address
+                        //Valid address
+                        if isValidAddr(search) {
                             let addressPlanet = Planet()
                             addressPlanet.address = self.search
                             addressPlanet.coinType = self.planet?.coinType
                             results.append(addressPlanet)
                         }
-                        
                     }else{
                         // DataSource update
                         items.forEach { (item) in
@@ -235,10 +253,13 @@ extension TransferController: UITextFieldDelegate {
 extension TransferController: QRCaptureDelegate {
     func didCapturedQRCode(_ address: String) {
         textField.text = address
-        let addressPlanet = Planet()
-        addressPlanet.address = address
-        addressPlanet.coinType = self.planet?.coinType
-        adapter?.dataSetNotify([addressPlanet])
-        updateUI()
+        
+        if isValidAddr(address) {
+            let addressPlanet = Planet()
+            addressPlanet.address = address
+            addressPlanet.coinType = self.planet?.coinType
+            adapter?.dataSetNotify([addressPlanet])
+            updateUI()
+        }
     }
 }

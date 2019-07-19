@@ -55,7 +55,7 @@
 "main_back_pressed_finish_title" = "To exit the app, press the Back button again.";
 "main_footer_manage_token" = "Manage Tokens";
 "main_footer_no_btc_history" = "You haven’t made any \n transaction yet :)";
-
+"main_footer_planets_add_new_planet_title" = "Add New Planet";
 
 "token_add_toolbar_title" = "Manage Tokens";
 "token_add_tabbar_add_token_title" = "Token List";

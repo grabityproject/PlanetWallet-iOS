@@ -29,7 +29,7 @@ class TopMenuCell: UICollectionViewCell {
             self.footerSelectionBtn.isHidden = false
             self.planetView.isHidden = true
             self.universeLb.text = ""
-            self.nameLb.text = "Add New Planet"
+            self.nameLb.text = "main_footer_planets_add_new_planet_title".localized
         }
     }
     

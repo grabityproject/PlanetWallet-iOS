@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum syncType{
-    case Planet
+enum SyncType{
+    case PLANET
     case ERC20
 }
 
 protocol SyncDelegate {
-    func sync(_ syncType:syncType ,didSyncComplete complete:Bool, isUpdate:Bool )
+    func sync(_ syncType:SyncType ,didSyncComplete complete:Bool, isUpdate:Bool )
 }
 
 class SyncManager: NetworkDelegate{
@@ -31,8 +31,8 @@ class SyncManager: NetworkDelegate{
         
         planetList = PlanetStore.shared.list()
         var addresses:[String:String] = [String:String]()
-        var ethCount = 0;
-        var bitCount = 0;
+        var ethCount = 0
+        var bitCount = 0
         planetList.forEach { (planet) in
             if let address = planet.address, let symbol = planet.symbol{
                 if( symbol == CoinType.ETH.name ){
@@ -49,27 +49,27 @@ class SyncManager: NetworkDelegate{
     
     func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         if( requestCode == 0 ){
-            if let dict = dictionary{
-                if let success:Bool = dict["success"] as? Bool, let data:Dictionary<String, Dictionary<String, String>> = dict["result"] as? Dictionary<String, Dictionary<String, String>>{
-                    if success{
-                        var isUpdated = false;
-                        planetList.forEach { (planet) in
-                            if let address = planet.address{
-                                if let syncItem  = data[address]{
-                                    if planet.name != syncItem["name"]{
-                                        planet.name = syncItem["name"]
-                                        PlanetStore.shared.update(planet);
-                                        isUpdated = true
-                                    }
-                                }
-                            }
-                        }
-                        if let delegate = delegate{
-                            delegate.sync(.Planet, didSyncComplete: true, isUpdate: isUpdated)
-                        }
+            guard let dict = dictionary,
+                let success = dict["success"] as? Bool,
+                let data = dict["result"] as? Dictionary<String, Dictionary<String, String>> else { return }
+            
+            guard success else { return }
+            
+            var isUpdated = false
+            planetList.forEach { (planet) in
+                if let address = planet.address, let syncItem = data[address] {
+                    if planet.name != syncItem["name"] {
+                        planet.name = syncItem["name"]
+                        PlanetStore.shared.update(planet);
+                        isUpdated = true
                     }
                 }
             }
+            
+            delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: isUpdated)
         }
     }
+    
+    
+    
 }
