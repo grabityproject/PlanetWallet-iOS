@@ -191,8 +191,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Gvgi1WpEZ73CNmQviecrnyiWrnqRhjJm1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWq-yd-qWQ">
-                    <rect key="frame" x="48.5" y="316.5" width="278" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Gvgi1WpEZ73CNmQviecrnyiWrnqRhjJm1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="eWq-yd-qWQ">
+                    <rect key="frame" x="5" y="316.5" width="365" height="20.5"/>
                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                     <color key="textColor" name="textFieldBgDark"/>
                     <nil key="highlightedColor"/>
@@ -214,7 +214,9 @@
                 <constraint firstItem="GEP-Ga-2w6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eHb-fj-YdE"/>
                 <constraint firstItem="GEP-Ga-2w6" firstAttribute="top" secondItem="4f0-iG-Q2C" secondAttribute="bottom" constant="40" id="ery-rB-k3A"/>
                 <constraint firstAttribute="trailing" secondItem="aH8-wJ-w2O" secondAttribute="trailing" constant="20" id="k22-if-6Hp"/>
+                <constraint firstItem="eWq-yd-qWQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="kJa-WN-3cn"/>
                 <constraint firstItem="Uqq-e7-WuN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kea-e4-zwL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eWq-yd-qWQ" secondAttribute="trailing" constant="5" id="qGV-os-euY"/>
                 <constraint firstItem="rFL-SS-FXo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="uzy-4J-jxD"/>
                 <constraint firstItem="4f0-iG-Q2C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wos-wk-zTH"/>
             </constraints>

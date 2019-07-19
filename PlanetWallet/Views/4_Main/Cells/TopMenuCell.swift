@@ -28,7 +28,7 @@ class TopMenuCell: UICollectionViewCell {
             self.addImgView.isHidden = false
             self.footerSelectionBtn.isHidden = false
             self.planetView.isHidden = true
-            self.universeLb.isHidden = true
+            self.universeLb.text = ""
             self.nameLb.text = "Add New Planet"
         }
     }

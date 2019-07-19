@@ -80,8 +80,6 @@ class MainController: PlanetWalletViewController {
             self.fetchData { (_) in }
         }
         
-        
-        
 //        bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
 //                                         y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
 //                                         width: SCREEN_WIDTH * 410.0 / 375.0,
@@ -175,6 +173,7 @@ class MainController: PlanetWalletViewController {
         
         if let keyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet){
             if let planet = PlanetStore.shared.get(keyId){
+                planet.balance = "100"
                 self.planet = planet
             }else{
                 self.planet = planetList.first

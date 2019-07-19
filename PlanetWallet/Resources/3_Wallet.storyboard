@@ -82,8 +82,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QTE-bK-KeN" secondAttribute="height" multiplier="1:1" id="0l0-v3-ySx"/>
-                                            <constraint firstAttribute="width" constant="170" id="DJm-oa-N2B"/>
-                                            <constraint firstAttribute="height" constant="170" id="WwU-ko-GxQ"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="data" value="문규송"/>
@@ -273,6 +271,7 @@
                             <constraint firstItem="Xgd-YE-dVD" firstAttribute="leading" secondItem="exk-Qs-4Hl" secondAttribute="leading" id="8Ov-ZY-P6O"/>
                             <constraint firstItem="Xgd-YE-dVD" firstAttribute="trailing" secondItem="exk-Qs-4Hl" secondAttribute="trailing" id="8oO-vk-v7I"/>
                             <constraint firstItem="exk-Qs-4Hl" firstAttribute="trailing" secondItem="rs9-pm-sdD" secondAttribute="trailing" id="HRN-Dw-6WO"/>
+                            <constraint firstItem="QTE-bK-KeN" firstAttribute="width" secondItem="1Nz-ic-7Pd" secondAttribute="width" multiplier="170/375" id="KYv-Gf-FL6"/>
                             <constraint firstItem="rs9-pm-sdD" firstAttribute="leading" secondItem="exk-Qs-4Hl" secondAttribute="leading" id="k19-bP-pAU"/>
                             <constraint firstItem="Xgd-YE-dVD" firstAttribute="height" secondItem="1Nz-ic-7Pd" secondAttribute="height" multiplier="0.3" id="sFg-4c-vfl"/>
                             <constraint firstItem="Xgd-YE-dVD" firstAttribute="top" secondItem="rs9-pm-sdD" secondAttribute="bottom" id="zcR-kP-Yhu"/>
@@ -1056,7 +1055,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter password (Option)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ui-r9-8q6" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="60" width="151.5" height="16.5"/>
+                                <rect key="frame" x="20" y="60" width="166" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1068,7 +1067,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-yq-wWL" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="87.5" width="335" height="55"/>
+                                <rect key="frame" x="20" y="91.5" width="335" height="55"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageInputInvisibleDarkgray" translatesAutoresizingMaskIntoConstraints="NO" id="hMX-vU-Zlu" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="289" y="8" width="40" height="40"/>
@@ -1139,7 +1138,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Mnemonic Phrase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRS-6C-0jo" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="162.5" width="150.5" height="16.5"/>
+                                <rect key="frame" x="20" y="166.5" width="163.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.36078431370000003" green="0.34901960780000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1151,7 +1150,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-Mm-OpU" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="190" width="335" height="100"/>
+                                <rect key="frame" x="20" y="198" width="335" height="100"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wPy-kB-fhI" customClass="PWTextView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="17" width="305" height="66"/>
@@ -1188,7 +1187,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKc-Wy-916">
-                                <rect key="frame" x="20" y="295" width="335" height="25"/>
+                                <rect key="frame" x="20" y="303" width="335" height="25"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the correct Mnemonic Phrase." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="X6I-4F-kG7">
                                         <rect key="frame" x="0.0" y="5" width="310" height="15"/>
@@ -1533,6 +1532,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VrT-Ia-2CA"/>
+        <segue reference="c1d-Ko-JM9"/>
     </inferredMetricsTieBreakers>
 </document>

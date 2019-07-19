@@ -180,6 +180,7 @@
 		04FBCA57229E908100DEEDD9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA56229E908100DEEDD9 /* Route.swift */; };
 		04FBFBA022E064B9000F8E3C /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FBFB9E22E064B1000F8E3C /* pcwf.framework */; };
 		04FBFBA122E064B9000F8E3C /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04FBFB9E22E064B1000F8E3C /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04FBFBA422E07DE0000F8E3C /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBFBA322E07DE0000F8E3C /* SyncManager.swift */; };
 		15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
@@ -382,6 +383,7 @@
 		04FBCA53229E801400DEEDD9 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		04FBCA56229E908100DEEDD9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		04FBFB9E22E064B1000F8E3C /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
+		04FBFBA322E07DE0000F8E3C /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncManager.swift; path = managers/SyncManager.swift; sourceTree = "<group>"; };
 		15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityBlurVIew.swift; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -533,6 +535,7 @@
 		044BC55922793D8800FD7E5E /* MiniFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				04FBFBA222E07DBD000F8E3C /* managers */,
 				0455D8DB22C4CD88005F6494 /* wallet */,
 				04D3A0CD22B0D24E00E54E96 /* FMDB */,
 				04FBCA49229E678000DEEDD9 /* networktask */,
@@ -983,6 +986,14 @@
 			path = networktask;
 			sourceTree = "<group>";
 		};
+		04FBFBA222E07DBD000F8E3C /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				04FBFBA322E07DE0000F8E3C /* SyncManager.swift */,
+			);
+			name = managers;
+			sourceTree = "<group>";
+		};
 		A0315CB8F9480C007E773A4C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1225,6 +1236,7 @@
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				04D3A0CC22B0996500E54E96 /* BlinkingTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
+				04FBFBA422E07DE0000F8E3C /* SyncManager.swift in Sources */,
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
 				04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */,

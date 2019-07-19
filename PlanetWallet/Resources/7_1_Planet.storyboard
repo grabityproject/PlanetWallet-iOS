@@ -28,7 +28,7 @@
                 <viewControllerPlaceholder storyboardName="3_Wallet" referencedIdentifier="WalletAddController" id="Hka-AR-G8g" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6V-db-sip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="761" y="-1126"/>
+            <point key="canvasLocation" x="1388" y="-1134"/>
         </scene>
         <!--Planet Management Controller-->
         <scene sceneID="gcU-i3-Q7f">
@@ -129,7 +129,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH Universe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLg-Li-o7N" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="21" y="128" width="91" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
-                                <color key="textColor" name="detailTextLight"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
@@ -214,11 +214,11 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="0xf291b69799516156fAA7F9ed4c39536335Ab797A" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="JuE-4O-TaH" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                 <rect key="frame" x="135" y="16" width="212" height="41"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
-                                                <color key="textColor" name="detailTextLight"/>
+                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                        <color key="value" name="detailTextDark"/>
+                                                        <color key="value" red="0.36078431372549019" green="0.34901960784313724" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
@@ -491,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxP-gT-jqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="-673"/>
+            <point key="canvasLocation" x="1511" y="-656"/>
         </scene>
         <!--PinCodeCertificationController-->
         <scene sceneID="RY6-AK-OKq">
@@ -700,7 +700,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0l-d6-bh5" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="138.5" width="335" height="55"/>
+                                <rect key="frame" x="20" y="159.5" width="335" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sSa-AS-DWf" customClass="PWTextField" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="305" height="55"/>
@@ -743,7 +743,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Planet name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-lg-Woz" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108" width="128" height="20.5"/>
+                                <rect key="frame" x="20" y="129" width="128" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -754,8 +754,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="rename_planet_enter_planet_name_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet name will be shown to others." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yz9-1o-sVW">
-                                <rect key="frame" x="20" y="203.5" width="335" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Planet name will be shown to others." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Yz9-1o-sVW">
+                                <rect key="frame" x="20" y="224.5" width="335" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="errorText"/>
                                 <nil key="highlightedColor"/>
@@ -802,8 +802,8 @@
                             <constraint firstItem="pbX-h7-Y6U" firstAttribute="leading" secondItem="DeQ-Ly-hcz" secondAttribute="leading" constant="20" id="C0N-WM-ybN"/>
                             <constraint firstItem="DeQ-Ly-hcz" firstAttribute="trailing" secondItem="Yew-bD-DEd" secondAttribute="trailing" id="FCT-v7-5kN"/>
                             <constraint firstItem="DeQ-Ly-hcz" firstAttribute="trailing" secondItem="g0l-d6-bh5" secondAttribute="trailing" constant="20" id="Kh0-xU-mc6"/>
-                            <constraint firstItem="a1Z-lg-Woz" firstAttribute="top" secondItem="DeQ-Ly-hcz" secondAttribute="top" constant="88" id="Ruv-Ub-ddb"/>
                             <constraint firstItem="g0l-d6-bh5" firstAttribute="leading" secondItem="a1Z-lg-Woz" secondAttribute="leading" id="T4L-qn-POd"/>
+                            <constraint firstItem="a1Z-lg-Woz" firstAttribute="top" secondItem="Yew-bD-DEd" secondAttribute="bottom" constant="41" id="Vbu-Lf-3MP"/>
                             <constraint firstItem="DeQ-Ly-hcz" firstAttribute="bottom" secondItem="pbX-h7-Y6U" secondAttribute="bottom" constant="20" id="Y5s-BU-Cvu"/>
                             <constraint firstItem="a1Z-lg-Woz" firstAttribute="leading" secondItem="DeQ-Ly-hcz" secondAttribute="leading" constant="20" id="Y6c-ER-GN0"/>
                             <constraint firstItem="Yz9-1o-sVW" firstAttribute="leading" secondItem="a1Z-lg-Woz" secondAttribute="leading" id="rex-53-Hbj"/>
