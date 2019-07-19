@@ -299,5 +299,7 @@ extension Utils {
         case MMMddHHmm = "MMM dd, HH:mm"
         ///2019. 06. 13 13:05:10
         case yyyyMMddHHmmss = "yyyy. MM. dd HH:mm:ss"
+        ///2019. 02. 01
+        case yyyyMMdd = "yyyy. MM. dd"
     }
 }

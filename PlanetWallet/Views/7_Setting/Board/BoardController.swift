@@ -19,6 +19,13 @@ extension BoardController {
             }
         }
         
+        func param() -> String {
+            switch self {
+            case .Announcements: return "notice"
+            case .FAQ:           return "faq"
+            }
+        }
+        
         func cellHeight() -> CGFloat {
             switch self {
             case .Announcements:    return 80.0
@@ -33,7 +40,7 @@ class BoardController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var tableView: UITableView!
     let cellID = "noticecell"
-    let datasource = ["announce1","event1", "announce2","announce3"]
+    var datasource = [Board]()
     
     var section: Section = .Announcements {
         didSet {
@@ -57,6 +64,30 @@ class BoardController: PlanetWalletViewController {
         naviBar.delegate = self
         tableView.register(NoticeCell.self, forCellReuseIdentifier: cellID)
     }
+    
+    override func setData() {
+        //category/list
+        Get(self).action(Route.URL("board", self.section.param(), "list"), requestCode: 0, resultCode: 0, data: nil)
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary else { return }
+        
+        if let returnVO = ReturnVO(JSON: dict), let isSuccess = returnVO.success {
+            if isSuccess {
+                let items = returnVO.result as! Array<Dictionary<String, Any>>
+                items.forEach { (item) in
+                    //except self item
+                    if let board = Board(JSON: item) {
+                        datasource.append(board)
+                    }
+                }
+                
+                tableView.reloadData()
+            }
+        }
+    }
 }
 
 extension BoardController: NavigationBarDelegate {
@@ -74,10 +105,20 @@ extension BoardController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! NoticeCell
-        cell.titleLb.text = datasource[indexPath.row]
+        
+        let board = datasource[indexPath.row]
+        cell.titleLb.text = board.subject
+        
+        if let date = board.created_at {
+            cell.dateLb.text = Utils.shared.changeDateFormat(date: date,
+                                                             beforFormat: .BASIC,
+                                                             afterFormat: .yyyyMMdd)
+        }
+        
         if section == .FAQ {
             cell.dateLb.isHidden = true
         }
+        
         return cell
     }
     
@@ -87,6 +128,16 @@ extension BoardController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select row at \(indexPath.row)")
+        
+        let selectedBoard = datasource[indexPath.row]
+        
+        sendAction(segue: Keys.Segue.BOARD_TO_DETAIL_BOARD, userInfo: ["board": selectedBoard,
+                                                                       "section": self.section])
+        
     }
     
 }

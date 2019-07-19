@@ -77,7 +77,7 @@
                                             </attributedString>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="transfer_confirm_reset_title"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="pincode_registration_reset_title"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didTouchedReset:" destination="TTs-8X-dJK" eventType="touchUpInside" id="Bph-Ol-PIY"/>

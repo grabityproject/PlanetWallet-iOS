@@ -10,10 +10,10 @@ import Foundation
 import ObjectMapper
 
 class Board: Mappable {
-    var id: String?
+    var id: Int?
     var subject: String?
     var created_at: String?
-    var type: String?
+    var lang: String?
     
     required init?(map: Map) {
     }
@@ -22,6 +22,6 @@ class Board: Mappable {
         id <- map["id"]
         subject <- map["subject"]
         created_at <- map ["created_at"]
-        type <- map ["type"]
+        lang <- map ["lang"]
     }
 }

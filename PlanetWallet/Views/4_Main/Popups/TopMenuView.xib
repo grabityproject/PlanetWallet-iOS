@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,15 +32,15 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-Gc-26D" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="169" y="287" width="37" height="5"/>
-                    <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="169" y="288" width="37" height="4"/>
+                    <color key="backgroundColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="0FL-3Y-yRO"/>
-                        <constraint firstAttribute="height" constant="5" id="rhZ-Cx-KXw"/>
+                        <constraint firstAttribute="height" constant="4" id="rhZ-Cx-KXw"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
-                            <color key="value" name="borderPointDark"/>
+                            <color key="value" red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="3"/>
@@ -68,9 +67,4 @@
             <point key="canvasLocation" x="100.72463768115942" y="37.5"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="borderPointDark">
-            <color red="0.73725490196078436" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

@@ -65,13 +65,7 @@
                         <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageArrowRightGray"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StW-Vk-jdN">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                    <connections>
-                        <action selector="didTouched:" destination="-1" eventType="touchUpInside" id="nWj-zh-Fp3"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTa-ac-CUU" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTa-ac-CUU" userLabel="seperator view" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="79" width="335" height="1"/>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -86,17 +80,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="StW-Vk-jdN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0h8-GF-k7M"/>
                 <constraint firstItem="rE8-92-bVv" firstAttribute="leading" secondItem="Eac-cd-lhq" secondAttribute="trailing" constant="10" id="14y-Ag-dHK"/>
                 <constraint firstItem="Eac-cd-lhq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8em-8P-03j"/>
                 <constraint firstAttribute="bottom" secondItem="UTa-ac-CUU" secondAttribute="bottom" id="CP1-z1-uor"/>
                 <constraint firstItem="Eac-cd-lhq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GOo-zo-FWz"/>
-                <constraint firstAttribute="trailing" secondItem="StW-Vk-jdN" secondAttribute="trailing" id="Gdy-CI-XRD"/>
                 <constraint firstAttribute="trailing" secondItem="rE8-92-bVv" secondAttribute="trailing" constant="13" id="JyG-73-ehf"/>
-                <constraint firstAttribute="bottom" secondItem="StW-Vk-jdN" secondAttribute="bottom" id="RZ7-3Z-rM1"/>
                 <constraint firstItem="UTa-ac-CUU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TT0-Nb-mJ7"/>
                 <constraint firstAttribute="trailing" secondItem="UTa-ac-CUU" secondAttribute="trailing" constant="20" id="a3v-WM-DZc"/>
-                <constraint firstItem="StW-Vk-jdN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="b4w-LZ-kx1"/>
                 <constraint firstItem="rE8-92-bVv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mLW-1x-9sJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

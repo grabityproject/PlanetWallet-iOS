@@ -91,6 +91,9 @@ struct Keys {
         static let SETTING_TO_ANNOUNCEMENTS = "setting_to_announcements"
         static let SETTING_TO_FAQ = "setting_to_faq"
         
+        //Board
+        static let BOARD_TO_DETAIL_BOARD = "board_to_detailboard"
+        
         //Setting_PlanetManagement
         static let PLANET_MANAGEMENT_TO_DETAIL_PLANET = "planetmanagement_to_detailplanet"
         static let PLANET_MANAGEMENT_TO_WALLET_ADD = "planetmanagement_to_walletadd"

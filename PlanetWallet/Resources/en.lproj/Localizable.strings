@@ -25,7 +25,7 @@
 "pincode_certification_change_pin_code_title" = "Change PIN Code";
 "pincode_certification_sub_title" = "Enter the 4 digit + alphabet";
 "pincode_certification_sub_title_error" = "Please check your code";
-
+"pincode_registration_reset_title" = "Reset";
 
 "planet_generate_name_not_blank_title" = "The name can not be blank.";
 "planet_name_name_not_blank_title" = "The name can not be blank.";

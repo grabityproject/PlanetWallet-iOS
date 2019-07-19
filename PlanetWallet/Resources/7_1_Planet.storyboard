@@ -127,7 +127,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH Universe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLg-Li-o7N" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="21" y="128" width="91" height="20.5"/>
+                                <rect key="frame" x="21" y="126" width="91" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -138,7 +138,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RGO-8v-fTr">
-                                <rect key="frame" x="0.0" y="148.5" width="375" height="116"/>
+                                <rect key="frame" x="0.0" y="146.5" width="375" height="116"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoA-1K-AD8">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
@@ -235,7 +235,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hxn-C6-0rd" userLabel="SeparatorContainer" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="264.5" width="375" height="41"/>
+                                <rect key="frame" x="0.0" y="262.5" width="375" height="41"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s05-gE-fZf" userLabel="SeparatorView" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="335" height="1"/>
@@ -268,7 +268,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlA-6R-TvJ" userLabel="HIde Container">
-                                <rect key="frame" x="0.0" y="309" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="307" width="375" height="49"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Planet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64i-8d-shM" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="14.5" width="79" height="20.5"/>
@@ -301,7 +301,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBb-vv-Qdb" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="375.5" width="335" height="1"/>
+                                <rect key="frame" x="20" y="373.5" width="335" height="1"/>
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="jeP-E0-iaH"/>
@@ -313,7 +313,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gir-lq-r81">
-                                <rect key="frame" x="0.0" y="396.5" width="375" height="98"/>
+                                <rect key="frame" x="0.0" y="394.5" width="375" height="98"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WID-Y8-C4k">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -361,6 +361,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Ud8-Fx-pn4" secondAttribute="trailing" id="iLw-J4-LRr"/>
                                             <constraint firstItem="Ud8-Fx-pn4" firstAttribute="top" secondItem="WID-Y8-C4k" secondAttribute="top" id="ozc-UY-oyn"/>
                                             <constraint firstAttribute="bottom" secondItem="Ud8-Fx-pn4" secondAttribute="bottom" id="wAC-Il-pdh"/>
+                                            <constraint firstAttribute="height" constant="49" id="z3i-tx-Skx"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sS-ZQ-RxO">
@@ -457,7 +458,7 @@
                             <constraint firstItem="yHM-hr-3u8" firstAttribute="trailing" secondItem="gir-lq-r81" secondAttribute="trailing" id="jJP-vj-xzK"/>
                             <constraint firstItem="QlA-6R-TvJ" firstAttribute="top" secondItem="Hxn-C6-0rd" secondAttribute="bottom" constant="3.5" id="pbO-uE-2Y0"/>
                             <constraint firstItem="RGO-8v-fTr" firstAttribute="top" secondItem="oLg-Li-o7N" secondAttribute="bottom" id="qJl-ic-8Qu"/>
-                            <constraint firstItem="oLg-Li-o7N" firstAttribute="top" secondItem="t5t-WL-grU" secondAttribute="bottom" constant="40" id="t5d-YN-a2h"/>
+                            <constraint firstItem="oLg-Li-o7N" firstAttribute="top" secondItem="yHM-hr-3u8" secondAttribute="top" constant="106" id="t5d-YN-a2h"/>
                             <constraint firstItem="t5t-WL-grU" firstAttribute="leading" secondItem="CWZ-NL-MZ4" secondAttribute="leading" id="tBr-1U-bxY"/>
                             <constraint firstItem="NBb-vv-Qdb" firstAttribute="leading" secondItem="CWZ-NL-MZ4" secondAttribute="leading" constant="20" id="tQD-3j-hz8"/>
                             <constraint firstItem="oLg-Li-o7N" firstAttribute="leading" secondItem="yHM-hr-3u8" secondAttribute="leading" constant="21" id="u7F-VP-7RB"/>
@@ -585,7 +586,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                        <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.36078431372549019" green="0.34901960784313724" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="mnemonic_export_backup_mnemonic_phrase_title"/>
                                 </userDefinedRuntimeAttributes>
@@ -638,8 +639,8 @@
                             <constraint firstItem="AbU-dj-diQ" firstAttribute="trailing" secondItem="NQa-bj-Vuh" secondAttribute="trailing" constant="20" id="TKi-oC-cZV"/>
                             <constraint firstItem="NQa-bj-Vuh" firstAttribute="top" secondItem="BoV-aE-7eI" secondAttribute="bottom" constant="11" id="UCy-ha-mnH"/>
                             <constraint firstItem="tny-zI-HHX" firstAttribute="top" secondItem="x3F-sy-kab" secondAttribute="top" id="YFa-NC-mia"/>
-                            <constraint firstItem="BoV-aE-7eI" firstAttribute="top" secondItem="tny-zI-HHX" secondAttribute="bottom" constant="40" id="Zjb-PJ-OcD"/>
                             <constraint firstItem="tny-zI-HHX" firstAttribute="leading" secondItem="AbU-dj-diQ" secondAttribute="leading" id="hm2-N5-I1t"/>
+                            <constraint firstItem="BoV-aE-7eI" firstAttribute="top" secondItem="AbU-dj-diQ" secondAttribute="top" constant="108" id="lTH-By-Y6b"/>
                             <constraint firstItem="NQa-bj-Vuh" firstAttribute="leading" secondItem="AbU-dj-diQ" secondAttribute="leading" constant="20" id="p9O-W2-Rlc"/>
                             <constraint firstItem="tny-zI-HHX" firstAttribute="trailing" secondItem="AbU-dj-diQ" secondAttribute="trailing" id="sDJ-Gc-LeB"/>
                             <constraint firstAttribute="trailing" secondItem="hEo-cd-kKi" secondAttribute="trailing" constant="20" id="ymS-zA-vqs"/>
@@ -906,7 +907,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                        <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.36078431372549019" green="0.34901960784313724" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privatekey_export_backup_privatekey_title"/>
                                 </userDefinedRuntimeAttributes>
@@ -959,8 +960,8 @@
                             <constraint firstItem="avI-Pa-2qR" firstAttribute="top" secondItem="pXo-Sx-qO5" secondAttribute="top" id="Fhd-ha-Nt5"/>
                             <constraint firstItem="vUo-gq-iph" firstAttribute="top" secondItem="mAJ-Gy-DFK" secondAttribute="bottom" constant="8" id="HY1-Wj-ZpU"/>
                             <constraint firstItem="avI-Pa-2qR" firstAttribute="trailing" secondItem="1BP-v5-alK" secondAttribute="trailing" id="Q2J-az-z65"/>
-                            <constraint firstItem="3Pr-0N-jCM" firstAttribute="top" secondItem="avI-Pa-2qR" secondAttribute="bottom" constant="40" id="T1c-kF-VO8"/>
                             <constraint firstItem="mAJ-Gy-DFK" firstAttribute="leading" secondItem="1BP-v5-alK" secondAttribute="leading" constant="20" id="YK2-j6-40H"/>
+                            <constraint firstItem="3Pr-0N-jCM" firstAttribute="top" secondItem="1BP-v5-alK" secondAttribute="top" constant="108" id="fv8-YN-bOn"/>
                             <constraint firstItem="vUo-gq-iph" firstAttribute="leading" secondItem="1BP-v5-alK" secondAttribute="leading" constant="20" id="heK-rN-TuM"/>
                             <constraint firstItem="1BP-v5-alK" firstAttribute="trailing" secondItem="mAJ-Gy-DFK" secondAttribute="trailing" constant="20" id="lgC-dm-cjo"/>
                             <constraint firstItem="3Pr-0N-jCM" firstAttribute="leading" secondItem="1BP-v5-alK" secondAttribute="leading" constant="20" id="sxp-0C-Chu"/>

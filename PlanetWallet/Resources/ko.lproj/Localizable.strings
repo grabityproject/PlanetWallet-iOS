@@ -22,6 +22,7 @@
 "pincode_certification_change_pin_code_title" = "새 비밀번호를 입력하세요.";
 "pincode_certification_sub_title" = "숫자 4개와 알파벳 조합입니다.";
 "pincode_certification_sub_title_error" = "확인 후 다시 입력해주세요.";
+"pincode_registration_reset_title" = "Reset";
 "planet_generate_name_not_blank_title" = "The name can not be blank.";
 "planet_name_name_not_blank_title" = "이름은 공백일 수 없습니다.";
 "planet_name_btn_title" = "플래닛 추가하기";
