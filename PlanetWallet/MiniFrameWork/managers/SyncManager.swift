@@ -46,7 +46,7 @@ class SyncManager: NetworkDelegate{
         }
         Post(self).action(Route.URL("planet", "sync"), requestCode: 0, resultCode: 0, data: addresses)
     }
- 
+    
     func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         if( requestCode == 0 ){
             if let dict = dictionary{
