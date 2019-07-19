@@ -31,11 +31,17 @@ class SyncManager: NetworkDelegate{
         
         planetList = PlanetStore.shared.list()
         var addresses:[String:String] = [String:String]()
-        var count = 0;
+        var ethCount = 0;
+        var bitCount = 0;
         planetList.forEach { (planet) in
-            if let address = planet.address{
-                addresses["addresses[\(count)]"] = address
-                count = count + 1
+            if let address = planet.address, let symbol = planet.symbol{
+                if( symbol == CoinType.ETH.name ){
+                    addresses["\(symbol)[\(ethCount)]"] = address
+                    ethCount = ethCount + 1
+                }else if( symbol == CoinType.BTC.name ){
+                    addresses["\(symbol)[\(bitCount)]"] = address
+                    bitCount = bitCount + 1
+                }
             }
         }
         Post(self).action(Route.URL("planet", "sync"), requestCode: 0, resultCode: 0, data: addresses)
