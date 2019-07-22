@@ -20,7 +20,9 @@ class MainTableFooter: UIView {
     @IBOutlet var manageTokenContainer: UIView!
     @IBOutlet var manageTokenBtnContainer: UIView!
     
+    @IBOutlet var tokenManagenmentLb: PWLabel!
     @IBOutlet var btcTransactionEmptyMsgLb: PWLabel!
+    @IBOutlet var tokenManagementContainerWidthConstraint: NSLayoutConstraint!
     
     public var isEthUniverse = true {
         didSet {
@@ -55,6 +57,13 @@ class MainTableFooter: UIView {
         
         manageTokenBtnContainer.layer.cornerRadius = 8
         manageTokenBtnContainer.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        let maximumLabelSize: CGSize = CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+        let expectedLabelSize: CGSize = tokenManagenmentLb.sizeThatFits(maximumLabelSize)
+        
+        let newWidth = expectedLabelSize.width + (17 + 20 + 10 + 25)
+        tokenManagenmentLb.frame.size = expectedLabelSize
+        tokenManagementContainerWidthConstraint.constant = newWidth
     }
 
     private func updateUI() {

@@ -260,7 +260,6 @@ class TransferConfirmController: PlanetWalletViewController {
             return
         }
         
-        
         if let safeLow = Double(safeLowStr),
             let average = Double(averageStr),
             let fast = Double(fastStr),

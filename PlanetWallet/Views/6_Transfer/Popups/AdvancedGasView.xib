@@ -96,7 +96,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="162.5" height="80"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Price (Gwei)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC2-7P-chh" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="112" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="112" height="15"/>
                                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                             <color key="textColor" name="detailTextLight"/>
                                             <nil key="highlightedColor"/>
@@ -105,10 +105,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gy0-ms-tBm">
-                                            <rect key="frame" x="0.0" y="30.5" width="162.5" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="25" width="162.5" height="55"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxg-kj-YqP">
-                                                    <rect key="frame" x="15" y="0.0" width="132.5" height="49.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="132.5" height="55"/>
                                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                     <state key="normal" title="20">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,6 +120,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="55" id="3te-dw-q5O"/>
                                                 <constraint firstItem="Yxg-kj-YqP" firstAttribute="top" secondItem="gy0-ms-tBm" secondAttribute="top" id="7LL-hv-H3d"/>
                                                 <constraint firstItem="Yxg-kj-YqP" firstAttribute="leading" secondItem="gy0-ms-tBm" secondAttribute="leading" constant="15" id="Fv9-E1-9H1"/>
                                                 <constraint firstAttribute="bottom" secondItem="Yxg-kj-YqP" secondAttribute="bottom" id="Xgw-oa-dt0"/>
@@ -152,7 +153,7 @@
                                     <rect key="frame" x="172.5" y="0.0" width="162.5" height="80"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTJ-VR-QEV" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="65.5" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="65.5" height="15"/>
                                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                             <color key="textColor" name="detailTextLight"/>
                                             <nil key="highlightedColor"/>
@@ -161,10 +162,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf9-f5-87J">
-                                            <rect key="frame" x="0.0" y="30.5" width="162.5" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="25" width="162.5" height="55"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjl-Xs-8qx">
-                                                    <rect key="frame" x="15" y="0.0" width="132.5" height="49.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="132.5" height="55"/>
                                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                     <state key="normal" title="21000">
                                                         <color key="titleColor" name="detailTextLight"/>
@@ -178,6 +179,7 @@
                                             <constraints>
                                                 <constraint firstItem="bjl-Xs-8qx" firstAttribute="leading" secondItem="Cf9-f5-87J" secondAttribute="leading" constant="15" id="1EQ-Hu-ctI"/>
                                                 <constraint firstItem="bjl-Xs-8qx" firstAttribute="top" secondItem="Cf9-f5-87J" secondAttribute="top" id="Wiw-YI-0su"/>
+                                                <constraint firstAttribute="height" constant="55" id="aIx-wU-ZOe"/>
                                                 <constraint firstAttribute="bottom" secondItem="bjl-Xs-8qx" secondAttribute="bottom" id="nMm-Ax-izU"/>
                                                 <constraint firstAttribute="trailing" secondItem="bjl-Xs-8qx" secondAttribute="trailing" constant="15" id="o5Z-73-2VT"/>
                                             </constraints>

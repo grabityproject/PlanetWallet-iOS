@@ -6,143 +6,114 @@
   Copyright © 2019 grabity. All rights reserved.
 */
 
-"app_name" = "PlanetWallet";
-"continue_title" = "Continue";
-"camera_permission_never_not_allowed_title" = "Please allow camera privileges in Settings > Permissions tab.";
-"camera_permission_not_allowed_title" = "To use QR Scan, please agree to the camera authority.";
-
-
-"pincode_registration_verification_code_title" = "Verification Code";
-"pincode_registration_registration_code_title" = "Registration PIN Code";
-"pincode_registration_code_incorrect_title" = "Code incorrect";
-"pincode_registration_change_pin_code_title" = "Change PIN Code";
-"pincode_registration_sub_title" = "Enter the 4 digit + alphabet";
-"pincode_registration_sub_title_error" = "Please check your code";
-
-
-"pincode_certification_verification_code_title" = "Verification Code";
-"pincode_certification_code_incorrect_title" = "Code incorrect";
-"pincode_certification_change_pin_code_title" = "Change PIN Code";
-"pincode_certification_sub_title" = "Enter the 4 digit + alphabet";
-"pincode_certification_sub_title_error" = "Please check your code";
-"pincode_registration_reset_title" = "Reset";
-
-"planet_generate_name_not_blank_title" = "The name can not be blank.";
-"planet_name_name_not_blank_title" = "The name can not be blank.";
-"planet_name_btn_title" = "Add Planet";
-"wallet_add_btn_add_title" = "Create Planet";
-"wallet_add_btn_import_title" = "Import Another Planet";
-
-"wallet_import_toolbar_title" = "Import Planet";
-"wallet_import_tabbar_mnemonic_title" = "Mnemonic";
+"app_name" = "PlanetWalelt";
+"continue_title" = "Next";
+"camera_permission_never_not_allowed_title" = "Please allow us to access camera in Settings";
+"camera_permission_not_allowed_title" = "Please allow us to access camera QR Scan";
+"pincode_registration_verification_code_title" = "Enter your passcode";
+"pincode_registration_registration_code_title" = "Register your passcode";
+"pincode_registration_code_incorrect_title" = "Passcode is incorrect";
+"pincode_registration_change_pin_code_title" = "Register new passcode";
+"pincode_registration_sub_title" = "Please enter the 4 digit + alphabet";
+"pincode_registration_sub_title_error" = "Please check your code and try again";
+"pincode_certification_verification_code_title" = "Enter your PIN code";
+"pincode_certification_code_incorrect_title" = "PIN Code is incorrect";
+"pincode_certification_change_pin_code_title" = "Register new PIN Code";
+"pincode_certification_sub_title" = "Please Enter the 4 digit + alphabet";
+"pincode_certification_sub_title_error" = "Please check your code and try again";
+"planet_generate_name_not_blank_title" = "You should input the name";
+"planet_name_name_not_blank_title" = "You should input the name";
+"planet_name_btn_title" = "Add another Planet";
+"wallet_add_btn_add_title" = "Create a Planet";
+"wallet_add_btn_import_title" = "Bring another Planet";
+"wallet_import_toolbar_title" = "Bring another Planet";
+"wallet_import_tabbar_mnemonic_title" = "Mnemonic Phrase";
 "wallet_import_tabbar_privatekey_title" = "Private Key";
-
 "mnemonic_import_enter_password_title" = "Enter password (Option)";
 "mnemonic_import_enter_mnemonic_phrase_title" = "Enter Mnemonic Phrase";
 "mnemonic_import_correct_mnemonic_phrase_title" = "Please enter the correct Mnemonic Phrase.";
-"mnemonic_import_exists_title" = "It is a mnemonic that already exists.";
-"mnemonic_import_not_match_title" = "It does not fit the mnemonic type.";
-
-"privatekey_import_enter_privateKey_title" = "Enter privateKey";
-"privatekey_import_exists_title" = "It is a privateKey that already exists.";
-"privatekey_import_not_match_title" = "The privateKey type does not match.";
-
-
-"main_notice_title" = "Your Planet Keep safe here";
-"main_btn_bottom_copy_title" = "Copy";
+"mnemonic_import_exists_title" = "This Mnemonic Phrase is already existed.";
+"mnemonic_import_not_match_title" = "Mnemonic phrase is incorrect.";
+"privatekey_import_enter_privateKey_title" = "Enter Private Key";
+"privatekey_import_exists_title" = "This Private key is already existed.";
+"privatekey_import_not_match_title" = "The format of Private key is not valid.";
+"main_notice_title" = "Your Mnemonic Phrase is not back-up";
+"main_btn_bottom_copy_title" = "Copy the address";
 "main_btn_bottom_transfer_title" = "Transfer";
-"main_copy_to_clipboard" = "Copy To Clipboard";
-"main_back_pressed_finish_title" = "To exit the app, press the Back button again.";
+"main_copy_to_clipboard" = "Copy";
+"main_back_pressed_finish_title" = "To exit the app, please press back button one more time.";
 "main_footer_manage_token" = "Manage Tokens";
-"main_footer_no_btc_history" = "You haven’t made any \n transaction yet :)";
-"main_footer_planets_add_new_planet_title" = "Add New Planet";
-
+"main_footer_no_btc_history" = "The transaction is not existed.";
 "token_add_toolbar_title" = "Manage Tokens";
 "token_add_tabbar_add_token_title" = "Token List";
 "token_add_tabbar_custom_token_title" = "Custom Token";
-
 "token_list_search_title" = "Search";
-"token_list_not_search_title" = "Haven’t found\n what you’re looking for?";
-
-"custom_token_contract_address_title" = "Contract Address";
-"custom_token_token_symbol_title" = "Token Symbol";
-"custom_token_decimals_title" = "Decimals of Precision";
-"custom_token_btn_title" = "Add Token";
-"custom_token_not_contract_title" = "This is not a valid Contract address.";
-
-
+"token_list_not_search_title" = "There is no result of your search. Please check your search words.";
+"custom_token_contract_address_title" = "Contract address";
+"custom_token_token_symbol_title" = "Token symbol";
+"custom_token_decimals_title" = "Digit";
+"custom_token_btn_title" = "Confirm";
+"custom_token_not_contract_title" = "The contract address does not match";
 "scan_qr_toolbar_title" = "Scan QR code";
 "transfer_toolbar_title" = "Search";
 "transfer_search_title" = "Search";
-"transfer_not_search_title" = "You can transfer to\n the Planet name and Wallet address.";
-"transfer_clip_board_title" = "Paste from Clipboard";
-
+"transfer_not_search_title" = "There is no result of your search. Please check your planet name and address.";
+"transfer_clip_board_title" = "Paste";
 "transfer_confirm_reset_title" = "Reset";
-"transfer_amount_not_balance_title" = "You don’t have enough amount to send";
+"transfer_amount_not_balance_title" = "Your account is not sufficient";
 "transfer_confirm_toolbar_title" = "Transfer %@";
-"transfer_confirm_from_title" = "from";
+"transfer_confirm_from_title" = "From";
 "transfer_confirm_amount_title" = "Amount";
 "transfer_confirm_fee_title" = "Fee";
 "transfer_confirm_slow_title" = "Slow";
 "transfer_confirm_fast_title" = "Fast";
-"transfer_confirm_advanced_options_title" = "Advanced Options";
+"transfer_confirm_advanced_options_title" = "Input yourself";
 "transfer_confirm_btn_title" = "Confirm";
-
-"tx_receipt_from_title" = "from";
+"tx_receipt_from_title" = "From";
 "tx_receipt_amount" = "Amount";
 "tx_receipt_fee_title" = "Fee";
 "tx_receipt_date_title" = "Date";
 "tx_receipt_tx_hash_title" = "TxHash";
-"tx_receipt_btn_title" = "OK";
-
-
-"detail_planet_hide_planet_title" = "Hide Planet";
-"detail_planet_backup_mnemonic_phrase_title" = "Backup Mnemonic Phrase";
-"detail_planet_backup_privatekey_title" = "Backup Private Key";
+"tx_receipt_btn_title" = "Confirm";
+"detail_planet_hide_planet_title" = "Hide your Planet";
+"detail_planet_backup_mnemonic_phrase_title" = "Back up Mnemonic Phrase";
+"detail_planet_backup_privatekey_title" = "Back up Private Key";
 "detail_planet_address" = "%@ Address";
 "detail_planet_universe" = "%@ Universe";
-
 "mnemonic_export_toolbar_title" = "Mnemonic Phrase";
-"mnemonic_export_backup_mnemonic_phrase_title" = "Backup Mnemonic Phrase";
-"mnemonic_export_message_title" = "Save the Mnemonic Phrase safely.";
-
+"mnemonic_export_backup_mnemonic_phrase_title" = "Back up Mnemonic Phrase";
+"mnemonic_export_message_title" = "Please save your Mnemonic Phrase privately. \nWe recommend you not to share it with anyone.";
 "planet_management_toolbar_title" = "Universe";
-
-"privatekey_export_toolbar_title" = "PrivateKey";
+"privatekey_export_toolbar_title" = "Private Key";
 "privatekey_export_backup_privatekey_title" = "Backup PrivateKey";
-"privatekey_export_message_title" = "Save the PrivateKey safely.";
-
-"rename_planet_toolbar_title" = "Planet Rename";
-"rename_planet_enter_planet_name_title" = "Enter Planet name";
+"privatekey_export_message_title" = "Please save your Private Key privately. \nWe recommend you not to share it with anyone.";
+"rename_planet_toolbar_title" = "Rename your Planet";
+"rename_planet_enter_planet_name_title" = "Enter your Planet\'s name";
 "rename_planet_btn_title" = "Save";
-
 "detail_setting_toolbar_title" = "Security";
 "detail_setting_change_pincode_title" = "Change PIN Code";
-"detail_setting_touch_or_face_title" = "Fingerprint";
-
-"setting_planet_main_title" = "You\'re on \n %@";
+"detail_setting_touch_or_face_title" = "Fingerprint Recognition";
+"setting_planet_main_title" = "You are now on \n%@";
 "setting_planet_title" = "Planet";
 "setting_universe_title" = "Universe";
 "setting_security_title" = "Security";
-"setting_announcements_title" = "Announcements";
+"setting_announcements_title" = "Notifications";
 "setting_faq_title" = "FAQ";
 "setting_language_title" = "Language";
 "setting_currency_title" = "Currency";
 "setting_theme_setting_title" = "Theme Setting";
 "setting_version_title" = "Version";
-
-
-"erc_popup_btn_copy_title" = "COPY";
+"erc_popup_btn_copy_title" = "Copy Address";
 "erc_popup_btn_transfer_title" = "Transfer";
-
-"fee_popup_advanced_option_title" = "Advanced Option";
+"fee_popup_advanced_option_title" = "Input fee yourself";
 "fee_popup_gas_price_title" = "Gas Price (Gwei)";
 "fee_popup_gas_limit_title" = "Gas Limit";
-"fee_popup_fees_title" = "Fees:";
+"fee_popup_fees_title" = "Fee:";
 "fee_popup_btn_cancel_title" = "Cancel";
 "fee_popup_btn_save_title" = "Save";
-"fee_popup_not_spaces_title" = "Gas Price OR Gas Limit Not Spaces.";
-"fee_popup_gas_limit_least_title" = "Gas Limit is at least 21,000";
-"fee_popup_gas_price_least_title" = "Gas Price is at least 1";
-
-"pincode_registration_one_more_registration_title" = "Please enter your password again.";
+"fee_popup_not_spaces_title" = "Gas Price and Gas Limit are mandatory to input.";
+"fee_popup_gas_limit_least_title" = "Minimum amount of Gas is 21,000";
+"fee_popup_gas_price_least_title" = "Minimum price of Gas is 1 Gwei";
+"pincode_registration_one_more_registration_title" = "Please enter you password again";
+"pincode_registration_reset_title" = "Reset";
+"main_footer_planets_add_new_planet_title" = "Add New Planet";

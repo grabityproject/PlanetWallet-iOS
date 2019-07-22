@@ -164,6 +164,10 @@ class MainController: PlanetWalletViewController {
         }
     }
     
+    @objc func refresh() {
+        SyncManager.shared.syncPlanet(self)
+    }
+    
     @IBAction func unwindToMainController(segue:UIStoryboardSegue) { }
     
     //MARK: - Private
@@ -207,6 +211,7 @@ class MainController: PlanetWalletViewController {
         refreshControl = UIRefreshControl()
         refreshControl.backgroundColor = .clear
         refreshControl.tintColor = UIColor.clear
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl!)
         self.loadCustomRefreshContents()
         
@@ -318,8 +323,17 @@ class MainController: PlanetWalletViewController {
     private func showCopyToast() {
         Toast(text: "main_copy_to_clipboard".localized).show()
     }
-    
-    
+}
+
+//MARK: - SyncDelegate
+extension MainController: SyncDelegate {
+    func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
+        if isUpdate {
+            print("Sync is updated")
+        }
+        
+        self.hideRefreshContents()
+    }
 }
 
 //MARK: - NavigationBarDelegate
@@ -345,14 +359,7 @@ extension MainController: UIScrollViewDelegate {
         guard let refreshControl = refreshControl else { return }
         
         if ( refreshControl.isRefreshing && self.isAnimation ) {
-            
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
-            
-            if refreshControl.isRefreshing {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.hideRefreshContents()
-                }
-            }
         }
     }
     
@@ -404,10 +411,8 @@ extension MainController: UIScrollViewDelegate {
             }else{
                 animationView.currentProgress = pullRatio - floor(pullRatio)
             }
-            
         }
     }
-
 }
 
 //MARK: - UITableViewDelegate

@@ -52,7 +52,6 @@ class SyncManager: NetworkDelegate{
             guard let dict = dictionary,
                 let success = dict["success"] as? Bool,
                 let data = dict["result"] as? Dictionary<String, Dictionary<String, String>> else { return }
-            
             guard success else { return }
             
             var isUpdated = false
@@ -65,7 +64,6 @@ class SyncManager: NetworkDelegate{
                     }
                 }
             }
-            
             delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: isUpdated)
         }
     }
