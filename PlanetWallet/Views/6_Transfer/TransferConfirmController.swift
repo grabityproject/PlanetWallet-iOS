@@ -247,43 +247,31 @@ class TransferConfirmController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary else {
+        guard let dict = dictionary,
+            let resultVO = ReturnVO(JSON: dict),
+            let item = resultVO.result as? Dictionary<String, String>,
+            let safeLowStr = item["safeLow"],
+            let averageStr = item["standard"],
+            let fastStr = item["fast"],
+            let fastestStr = item["fastest"]
+            else
+        {
             setDefaultAdvancedGasFee()
             return
         }
         
-        print(dict)
         
-        if let resultVO = ReturnVO(JSON: dict),
-            let item = resultVO.result as? Dictionary<String, Any>,
-            let safeLow = item["safeLow"] as? Double,
-            let average = item["standard"] as? Double,
-            let fast = item["fast"] as? Double,
-            let fastest = item["fastest"] as? Double
+        if let safeLow = Double(safeLowStr),
+            let average = Double(averageStr),
+            let fast = Double(fastStr),
+            let fastest = Double(fastestStr)
         {
             self.gas = GasInfo(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                           average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                           fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                           fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
+                               average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                               fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
+                               fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
             self.gasStep = .AVERAGE
         }
-        else if let resultVO = ReturnVO(JSON: dict),
-            let item = resultVO.result as? Dictionary<String, Any>,
-            let safeLow = item["safeLow"] as? Int,
-            let average = item["standard"] as? Int,
-            let fast = item["fast"] as? Int,
-            let fastest = item["fastest"] as? Int
-        {
-            self.gas = GasInfo(safeLow: Int(Double(safeLow) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               average: Int(Double(average) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               fast: Int(Double(fast) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               fastest: Int(Double(fastest) * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
-            self.gasStep = .AVERAGE
-        }
-        else {
-            setDefaultAdvancedGasFee()
-        }
-        
     }
 }
 
