@@ -130,16 +130,26 @@
                                                     <constraint firstAttribute="height" constant="30" id="cHA-a3-IFu"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMh-hm-aGs">
+                                                <rect key="frame" x="344" y="13" width="50" height="30"/>
+                                                <connections>
+                                                    <action selector="didTouchedSwitch:" destination="Zer-f1-QSD" eventType="touchUpInside" id="z0M-FQ-RbH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="gMh-hm-aGs" firstAttribute="leading" secondItem="2cp-r2-7Lq" secondAttribute="leading" id="3Fs-kl-8SQ"/>
                                             <constraint firstAttribute="trailing" secondItem="2cp-r2-7Lq" secondAttribute="trailing" constant="20" id="771-Jv-WR3"/>
                                             <constraint firstItem="oH9-pu-E6g" firstAttribute="leading" secondItem="CoZ-qB-yjW" secondAttribute="leading" id="Abk-9V-WuK"/>
+                                            <constraint firstItem="gMh-hm-aGs" firstAttribute="trailing" secondItem="2cp-r2-7Lq" secondAttribute="trailing" id="L0i-bo-plr"/>
                                             <constraint firstItem="d9m-X4-YGk" firstAttribute="centerY" secondItem="CoZ-qB-yjW" secondAttribute="centerY" id="PjW-3J-LUA"/>
                                             <constraint firstItem="2cp-r2-7Lq" firstAttribute="centerY" secondItem="CoZ-qB-yjW" secondAttribute="centerY" id="RKT-Zp-K3T"/>
+                                            <constraint firstItem="gMh-hm-aGs" firstAttribute="bottom" secondItem="2cp-r2-7Lq" secondAttribute="bottom" id="ZIH-7o-kGf"/>
                                             <constraint firstItem="d9m-X4-YGk" firstAttribute="leading" secondItem="CoZ-qB-yjW" secondAttribute="leading" constant="20" id="bPW-Y4-ahS"/>
                                             <constraint firstItem="oH9-pu-E6g" firstAttribute="top" secondItem="CoZ-qB-yjW" secondAttribute="top" id="dP7-EN-gRg"/>
                                             <constraint firstAttribute="trailing" secondItem="oH9-pu-E6g" secondAttribute="trailing" id="hKc-0P-VVm"/>
+                                            <constraint firstItem="gMh-hm-aGs" firstAttribute="top" secondItem="2cp-r2-7Lq" secondAttribute="top" id="tSO-Qs-RZ5"/>
                                             <constraint firstAttribute="bottom" secondItem="oH9-pu-E6g" secondAttribute="bottom" id="wlG-6T-8ae"/>
                                         </constraints>
                                     </view>

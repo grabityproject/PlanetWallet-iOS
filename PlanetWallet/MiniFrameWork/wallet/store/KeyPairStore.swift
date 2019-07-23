@@ -227,7 +227,7 @@ class KeyPairStore: HDKeyPairStore {
         return phrase
     }
     
-    func getPhrase( keyId:String , pinCode:[String] )->String{
+    func getPhrase( keyId:String , pinCode:[String] )->String {
         var phrase:String = ""
         
         if let keyPair = keyPairMap[keyId]{

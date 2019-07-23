@@ -25,11 +25,23 @@ class SecurityController: PlanetWalletViewController {
         super.setData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        biometricSwitch.isOn = UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS)
+    }
+    
     //MARK: - IBAction
     @IBAction func didTouchedChangePincode(_ sender: UIButton) {
         let segueID = Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION
         sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
     }
+    
+    @IBAction func didTouchedSwitch(_ sender: UIButton) {
+        sendAction(segue: Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION,
+                   userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.BIOMETRIC_TO_PINCODE_CERTIFICATION])
+    }
+    
 }
 
 extension SecurityController: NavigationBarDelegate {
@@ -42,6 +54,6 @@ extension SecurityController: NavigationBarDelegate {
 
 extension SecurityController: PWSwitchDelegate {
     func didSwitch(_ sender: Any?, isOn: Bool) {
-        Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: isOn)
+//        Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: isOn)
     }
 }

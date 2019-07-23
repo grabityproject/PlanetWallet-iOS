@@ -105,6 +105,7 @@ struct Keys {
         
         //Detail setting
         static let SECURITY_TO_PINCODE_CERTIFICATION = "security_to_pincodecetrification"
+        static let BIOMETRIC_TO_PINCODE_CERTIFICATION = "biometric_to_pincodecetrification"
         
         //Transfer
         static let TRANSFER_TO_QRCAPTURE = "transfer_to_qrcapture"

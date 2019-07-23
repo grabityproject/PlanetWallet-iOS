@@ -70,8 +70,10 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         else if fromSegue == .CERTIFICATION {
             titleLb.text = "pincode_registration_change_pin_code_title".localized
         }
-        
+        titleLb.textColor = currentTheme.mainText
         detailLb.text = "pincode_registration_sub_title".localized
+        detailLb.textColor = currentTheme.detailText
+        
         passwordStr = ""
         pwBeforeConfirmed = ""
         isConfirmedPW = false

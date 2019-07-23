@@ -22,8 +22,7 @@
 "pincode_certification_change_pin_code_title" = "새 비밀번호를 입력하세요.";
 "pincode_certification_sub_title" = "숫자 4개와 알파벳 조합입니다.";
 "pincode_certification_sub_title_error" = "확인 후 다시 입력해주세요.";
-"pincode_registration_reset_title" = "Reset";
-"planet_generate_name_not_blank_title" = "The name can not be blank.";
+"planet_generate_name_not_blank_title" = "이름은 공백일 수 없습니다.";
 "planet_name_name_not_blank_title" = "이름은 공백일 수 없습니다.";
 "planet_name_btn_title" = "플래닛 추가하기";
 "wallet_add_btn_add_title" = "플래닛 추가하기";
@@ -46,8 +45,6 @@
 "main_back_pressed_finish_title" = "뒤로가기를 한번 더 누르시면 앱이 종료됩니다.";
 "main_footer_manage_token" = "토큰 관리";
 "main_footer_no_btc_history" = "트랜잭션이 존재하지 않습니다. :)";
-"main_footer_planets_add_new_planet_title" = "Add New Planet";
-
 "token_add_toolbar_title" = "토큰 관리";
 "token_add_tabbar_add_token_title" = "토큰 리스트";
 "token_add_tabbar_custom_token_title" = "커스텀 토큰";
@@ -97,7 +94,7 @@
 "detail_setting_toolbar_title" = "Security";
 "detail_setting_change_pincode_title" = "비밀번호 변경";
 "detail_setting_touch_or_face_title" = "지문 인식";
-"setting_planet_main_title" = "당신은 지금\n%@ 에\n있습니다.";
+"setting_planet_main_title" = "지금 여기는, \n%@";
 "setting_planet_title" = "Planet";
 "setting_universe_title" = "Universe";
 "setting_security_title" = "Security";
@@ -119,3 +116,5 @@
 "fee_popup_gas_limit_least_title" = "최소 가스 한도는 21,000 입니다.";
 "fee_popup_gas_price_least_title" = "가스비는 최소 1 Gwei 이상 입니다.";
 "pincode_registration_one_more_registration_title" = "한번 더 입력해주세요.";
+"pincode_registration_reset_title" = "리셋";
+"main_footer_planets_add_new_planet_title" = "플래닛 추가하기";
