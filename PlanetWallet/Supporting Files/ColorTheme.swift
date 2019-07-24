@@ -8,39 +8,6 @@
 
 import UIKit
 
-/*
- dark : (17,17,23)
- darkTwo : (30,30,40)
- 
- slateGrey : (92,89,100)
- lightGrey : (170, 170, 170)
- dimGrey : (207,207,207)
- sliver : (237,237,237)
- lightBlueGrey : (188,189,213)
- 
- pinkRed : (255,0,80)
- 
-extension UIColor {
-    struct Dark {
-        static let OIL = UIColor(red: 17, green: 17, blue: 23)
-        static let MIDNIGHT = UIColor(red: 30, green: 30, blue: 40)
-    }
-    
-    struct Gray {
-        static let SLATE = UIColor(red: 92, green: 89, blue: 100)
-        static let LIGHT_SLATE = UIColor(red: 170, green: 170, blue: 170)
-        static let DIM = UIColor(red: 207, green: 207, blue: 207)
-        static let SILVER = UIColor(red: 237, green: 237, blue: 237)
-        static let LIGHT_BLUE = UIColor(red: 189, green: 189, blue: 213)
-        static let WHITE = UIColor(red: 252, green: 252, blue: 252)
-    }
-    
-    struct Red {
-        static let PINK = UIColor(red: 255, green: 0, blue: 80)
-    }
-}
-*/
- 
 enum Theme: Int {
     case DARK = 0, LIGHT
     
@@ -60,64 +27,64 @@ enum Theme: Int {
     
     var detailText: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "detailTextDark")!//return UIColor.Gray.SLATE
-        case .LIGHT:    return UIColor(named: "detailTextLight")!//return UIColor.Gray.LIGHT_SLATE
+        case .DARK:     return UIColor(named: "detailTextDark")!
+        case .LIGHT:    return UIColor(named: "detailTextLight")!
         }
     }
     
     var errorText: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "errorText")!//return UIColor.Red.PINK
-        case .LIGHT:    return UIColor(named: "errorText")!//return UIColor.Red.PINK
+        case .DARK:     return UIColor(named: "errorText")!
+        case .LIGHT:    return UIColor(named: "errorText")!
         }
     }
     
     var textFieldBackground: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "textFieldBgDark")!//return UIColor.Dark.OIL
-        case .LIGHT:    return UIColor(named: "textFieldBgLight")!//return UIColor.white
+        case .DARK:     return UIColor(named: "textFieldBgDark")!
+        case .LIGHT:    return UIColor(named: "textFieldBgLight")!
         }
     }
     
     var border: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "borderDark")!//return UIColor.Dark.MIDNIGHT
-        case .LIGHT:    return UIColor(named: "borderLight")!//return UIColor.Gray.SILVER
+        case .DARK:     return UIColor(named: "borderDark")!
+        case .LIGHT:    return UIColor(named: "borderLight")!
         }
     }
     
     var borderPoint: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "borderPointDark")!//return UIColor.Gray.LIGHT_BLUE
-        case .LIGHT:    return UIColor(named: "borderPointLight")!//return UIColor.black
+        case .DARK:     return UIColor(named: "borderPointDark")!
+        case .LIGHT:    return UIColor(named: "borderPointLight")!
         }
     }
     
     var disableViewBg: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "disableBgDark")!//return UIColor.Dark.MIDNIGHT
-        case .LIGHT:    return UIColor(named: "disableBgLight")!//return UIColor.Gray.SILVER
+        case .DARK:     return UIColor(named: "disableBgDark")!
+        case .LIGHT:    return UIColor(named: "disableBgLight")!
         }
     }
     
     var disableText: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "disableTextDark")!//return UIColor.Gray.SLATE
-        case .LIGHT:    return UIColor(named: "disableTextLight")!//return UIColor.Gray.DIM
+        case .DARK:     return UIColor(named: "disableTextDark")!
+        case .LIGHT:    return UIColor(named: "disableTextLight")!
         }
     }
     
     var pinCode: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "pinCodeDark")!//return UIColor.Gray.SLATE
-        case .LIGHT:    return UIColor(named: "pinCodeLight")!//return UIColor.Gray.LIGHT_BLUE
+        case .DARK:     return UIColor(named: "pinCodeDark")!
+        case .LIGHT:    return UIColor(named: "pinCodeLight")!
         }
     }
     
     var searchBar: UIColor {
         switch self {
-        case .DARK:     return UIColor(named: "searchBarDark")!//return UIColor.Dark.OIL
-        case .LIGHT:    return UIColor(named: "searchBarLight")!//return UIColor.Gray.WHITE
+        case .DARK:     return UIColor(named: "searchBarDark")!
+        case .LIGHT:    return UIColor(named: "searchBarLight")!
         }
     }
     

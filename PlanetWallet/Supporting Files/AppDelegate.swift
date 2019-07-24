@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         createDatabase()
         initSecureModules()
+        initStores()
         
         setNavigationBar()
         
@@ -127,7 +128,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     private func initSecureModules(){
         KeyPairStore.shared.defaultCrypter = defaultCryper
         KeyStore.shared.defaultCrypter = defaultCryper
-        
+    }
+    
+    private func initStores() {
         _ = PlanetStore.shared
         _ = ERC20Store.shared
     }
