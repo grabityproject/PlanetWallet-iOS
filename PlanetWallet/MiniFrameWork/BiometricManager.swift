@@ -8,6 +8,8 @@
 
 import Foundation
 import LocalAuthentication
+import Security
+import CryptoSwift
 
 enum BiometricType {
     case none
@@ -16,18 +18,31 @@ enum BiometricType {
 }
 
 protocol BiometricManagerDelegate {
-    func didAuthenticated(success: Bool, key: String?, error: Error?)
+    func didAuthenticated(success: Bool, key: [String]?, error: Error?)
 }
 
 class BiometricManager {
+    
+    public static let shared:BiometricManager = BiometricManager()
+    
+    private let iv: Array<UInt8> = "PlanetWalletBIOM".bytes
+    private let _kSecClass = String(kSecClass)
+    private let _kSecAttrAccount = String(kSecAttrAccount)
+    private let _kSecValueData = String(kSecValueData)
+    private let _kSecClassGenericPassword = String(kSecClassGenericPassword)
+    private let _kSecAttrService = String(kSecAttrService)
+    private let _kSecMatchLimit = String(kSecMatchLimit)
+    private let _kSecReturnData = String(kSecReturnData)
+    private let _kSecMatchLimitOne = String(kSecMatchLimitOne)
+    private let _kSecAttrAccessible = String(kSecAttrAccessible)
+    
+    private let secAttrService = "walletSecService"
+    private let alias = "bio_key"
+        
     let context = LAContext()
     var loginReason = "Logging in with Biometric ID"
     
     var delegate: BiometricManagerDelegate!
-    
-    init(_ delegate: BiometricManagerDelegate) {
-        self.delegate = delegate
-    }
     
     func biometricType() -> BiometricType {
         let _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
@@ -47,9 +62,13 @@ class BiometricManager {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
+    
+    
     func authenticateUser() {
         guard canEvaluatePolicy() else {
-            delegate.didAuthenticated(success: false, key: nil, error: LAError.biometryNotAvailable as? Error)
+            if let delegate = self.delegate{
+                delegate.didAuthenticated(success: false, key: nil, error: LAError.biometryNotAvailable as? Error)
+            }
             return
         }
         
@@ -57,30 +76,107 @@ class BiometricManager {
             if success {
                 DispatchQueue.main.async {
                     // User authenticated successfully, take appropriate action
-                    let key = ""
-                    self.delegate.didAuthenticated(success: true, key: key, error: nil)
+                    if self.delegate != nil{
+                        self.delegate.didAuthenticated(success: true, key: self.getKey(), error: nil)
+                    }
                 }
             } else {
-                //                let message: String
-                //
-                //                switch evaluateError {
-                //                case LAError.authenticationFailed?:
-                //                    message = "There was a problem verifying your identity."
-                //                case LAError.userCancel?:
-                //                    message = "You pressed cancel."
-                //                case LAError.userFallback?:
-                //                    message = "You pressed password."
-                //                case LAError.biometryNotAvailable?:
-                //                    message = "Face ID/Touch ID is not available."
-                //                case LAError.biometryNotEnrolled?:
-                //                    message = "Face ID/Touch ID is not set up."
-                //                case LAError.biometryLockout?:
-                //                    message = "Face ID/Touch ID is locked."
-                //                default:
-                //                    message = "Face ID/Touch ID may not be configured"
-                //                }
-                self.delegate.didAuthenticated(success: false, key: nil, error: evaluateError)
+                if self.delegate != nil{
+                    self.delegate.didAuthenticated(success: false, key: nil, error: evaluateError)
+                }
             }
+        }
+    }
+    
+    //                LAError.authenticationFailed = "There was a problem verifying your identity."
+    //                LAError.userCancel = "You pressed cancel."
+    //                LAError.userFallback = "You pressed password."
+    //                LAError.biometryNotAvailable = "Face ID/Touch ID is not available."
+    //                LAError.biometryNotEnrolled = "Face ID/Touch ID is not set up."
+    //                LAError.biometryLockout = "Face ID/Touch ID is locked."
+    //                another = message = "Face ID/Touch ID may not be configured"
+    public func generateSecretKey(){
+        put( alias: alias, value: Data(AES.randomIV(32)))
+    }
+    
+    public func secretKey() -> Data {
+        if let secretKey = get(alias: alias){
+            return secretKey
+        }else{
+            self.generateSecretKey()
+            return self.secretKey()
+        }
+    }
+    
+    public func saveKey( PINCODE:[String] ){
+        let pincode:[UInt8] = Array(PINCODE.joined().utf8)
+        do {
+            let encrypted = try AES(key: secretKey().bytes, blockMode: CBC(iv: iv), padding: .pkcs5).encrypt(pincode)
+            put(alias: "bio_enc", value: Data(encrypted))
+        } catch {
+            print(error)
+        }
+    }
+    
+    public func removeKey(){
+        self.remove(alias: "bio_enc")
+    }
+    
+    public func getKey()->[String]{
+        do {
+            let encrypted = get(alias: "bio_enc")
+            let decrypted = try AES(key: secretKey().bytes, blockMode: CBC(iv: iv), padding: .pkcs5).decrypt(encrypted!.bytes)
+            var rst = [String]()
+            decrypted.forEach { (int) in
+                rst.append(String(Character(UnicodeScalar(int))))
+            }
+            return rst
+        } catch {
+            print(error)
+        }
+        return [String]()
+    }
+    
+    private func remove(alias:String) {
+        let query: CFDictionary = [
+            _kSecClass: _kSecClassGenericPassword,
+            _kSecAttrService: secAttrService,
+            _kSecAttrAccount: alias,
+            ] as CFDictionary
+        
+        SecItemDelete(query)
+    }
+    
+    private func put(alias:String, value: Data) {
+        let query: CFDictionary = [
+            _kSecClass: _kSecClassGenericPassword,
+            _kSecAttrService: secAttrService,
+            _kSecAttrAccount: alias,
+            _kSecValueData: value,
+            ] as CFDictionary
+        
+        SecItemDelete(query)
+        SecItemAdd(query, nil)
+    }
+    
+    private func get( alias:String ) -> Data? {
+        let query: CFDictionary = [
+            _kSecClass: _kSecClassGenericPassword,
+            _kSecMatchLimit: kSecMatchLimitOne,
+            _kSecAttrAccount: alias,
+            _kSecReturnData: kCFBooleanTrue as Any
+            ] as CFDictionary
+        
+        var buffer: AnyObject?
+        let status = SecItemCopyMatching(query, &buffer)
+        
+        if status == errSecSuccess {
+            if let data = buffer as? Data {
+                return data
+            } else {
+                return nil            }
+        } else {
+            return nil
         }
     }
 }
