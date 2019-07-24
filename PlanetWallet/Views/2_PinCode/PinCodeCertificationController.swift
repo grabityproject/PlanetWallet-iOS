@@ -97,8 +97,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
             isBeingDismiss == false
         {
             //BIOMETRIC CERTIFICATION
-            let bioAuth = BiometricManager(self)
-            bioAuth.authenticateUser()
+            BiometricManager.shared.delegate = self;
+            BiometricManager.shared.authenticateUser()
         }
     }
     
@@ -145,13 +145,17 @@ class PinCodeCertificationController: PlanetWalletViewController {
             
             if UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS) {
                 Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: false)
+                // 끄기
+                BiometricManager.shared.removeKey()
             }
             else {
                 Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: true)
+                // 켜기
+                BiometricManager.shared.generateSecretKey()
+                BiometricManager.shared.saveKey(PINCODE: PINCODE)
             }
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     private func showNumberPad(_ isNumberPad: Bool) {
@@ -168,8 +172,9 @@ class PinCodeCertificationController: PlanetWalletViewController {
 }
 
 extension PinCodeCertificationController: BiometricManagerDelegate {
-    func didAuthenticated(success: Bool, key: String?, error: Error?) {
+    func didAuthenticated(success: Bool, key: [String]?, error: Error?) {
         if success {
+            PINCODE = key!
             handleSuccessSignIn()
         }
         else {
