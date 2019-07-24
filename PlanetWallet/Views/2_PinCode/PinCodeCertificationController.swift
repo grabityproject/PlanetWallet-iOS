@@ -47,6 +47,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
     
     private var fromSegue = From.SPLASH
     
+    //dismiss 과정에서 viewwillappear가 발동하여 문제됨..
     var isBeingDismiss = false
     
     //MARK: - Init
@@ -68,7 +69,6 @@ class PinCodeCertificationController: PlanetWalletViewController {
                 hideCloseBtn()
             }
             else if fromSegueID == From.RESET.segueID() {
-                self.isBeingDismiss = true
                 fromSegue = .RESET
             }
             else if fromSegueID == From.TRANSFER.segueID() {
@@ -93,7 +93,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
         super.viewWillAppear(animated)
         
         if UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS) &&
-            fromSegue != .BIOMETRIC &&
+            (fromSegue != .BIOMETRIC || fromSegue != .RESET) &&
             isBeingDismiss == false
         {
             //BIOMETRIC CERTIFICATION
@@ -124,16 +124,18 @@ class PinCodeCertificationController: PlanetWalletViewController {
             }else{
                 sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MAIN, userInfo: nil)
             }
-            
         case .REGISTRATION:
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE
             sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
         case .RESET:
+            self.isBeingDismiss = true
             let segueID = Keys.Segue.PINCODE_CERTIFICATION_TO_REGISTRATION
             sendAction(segue: segueID, userInfo: [Keys.UserInfo.fromSegue: segueID])
         case .MNEMONIC_EXPORT:
+            self.isBeingDismiss = true
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: userInfo)
         case .PRIVATEKEY_EXPORT:
+            self.isBeingDismiss = true
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: userInfo)
         case .TRANSFER:
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_TX_RECEIPT, userInfo: self.userInfo)
@@ -154,6 +156,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
                 BiometricManager.shared.generateSecretKey()
                 BiometricManager.shared.saveKey(PINCODE: PINCODE)
             }
+            
+            self.isBeingDismiss = true
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -178,6 +182,7 @@ extension PinCodeCertificationController: BiometricManagerDelegate {
             handleSuccessSignIn()
         }
         else {
+            guard let error = error else { return }
             print("failed to auth : \(error)")
         }
     }
@@ -229,8 +234,6 @@ extension PinCodeCertificationController: CharPadDelegate {
             passwordStr = String(passwordStr.dropLast())
         }
     }
-    
-    
 }
 
 

@@ -23,9 +23,9 @@ extension PinCodeRegistrationController {
 
 class PinCodeRegistrationController: PlanetWalletViewController {
     
-    private var passwordStr = "" {
+    private var pinCode = "" {
         didSet {
-            pinView.setSelectedColor(passwordStr.count)
+            pinView.setSelectedColor(pinCode.count)
         }
     }
     
@@ -37,12 +37,12 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     @IBOutlet var resetBtn: UIButton!
     
     private var fromSegue = From.SPLASH
-    private var isConfirmedPW = false {
+    private var isOneMoreConfirmed = false {
         didSet {
-            resetBtn.isHidden = !isConfirmedPW
+            resetBtn.isHidden = !isOneMoreConfirmed
         }
     }
-    private var pwBeforeConfirmed = ""
+    private var firstPINCode = ""
     
     //MARK: - Init
     override func viewInit() {
@@ -74,9 +74,9 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         detailLb.text = "pincode_registration_sub_title".localized
         detailLb.textColor = currentTheme.detailText
         
-        passwordStr = ""
-        pwBeforeConfirmed = ""
-        isConfirmedPW = false
+        pinCode = ""
+        firstPINCode = ""
+        isOneMoreConfirmed = false
         setNumberPad(position: 0)
     }
     
@@ -95,16 +95,16 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     
     private func handleCompleteRegistration(_ pw: String) {
         
-        guard isConfirmedPW else {
+        guard isOneMoreConfirmed else {
             titleLb.text = "pincode_registration_one_more_registration_title".localized
-            passwordStr = ""
-            pwBeforeConfirmed = pw
-            isConfirmedPW = true
+            pinCode = ""
+            firstPINCode = pw
+            isOneMoreConfirmed = true
             setNumberPad(position: 0)
             return
         }
         
-        if pw == pwBeforeConfirmed {
+        if pw == firstPINCode {
             let passwordArr = pw.map { String($0) }
             
             switch fromSegue {
@@ -137,7 +137,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
 
             self.pinView.setSelectedColor(0)
             self.charPad.resetPassword()
-            self.passwordStr = ""
+            self.pinCode = ""
             
             showNumberPad(true)
         }
@@ -146,28 +146,28 @@ class PinCodeRegistrationController: PlanetWalletViewController {
 
 extension PinCodeRegistrationController: NumberPadDelegate {
     func didTouchedDelete() {
-        passwordStr = String(passwordStr.dropLast())
+        pinCode = String(pinCode.dropLast())
     }
     
     func didTouchedNumberPad(_ num: String) {
-        if passwordStr.count == 3 {
+        if pinCode.count == 3 {
             showNumberPad(false)
         }
         
-        passwordStr += num
+        pinCode += num
     }
 }
 
 extension PinCodeRegistrationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
-        passwordStr += char
-        handleCompleteRegistration(passwordStr)
+        pinCode += char
+        handleCompleteRegistration(pinCode)
     }
     
     func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
         if isBack {
             setNumberPad(position: 3)
-            passwordStr = String(passwordStr.dropLast())
+            pinCode = String(pinCode.dropLast())
         }
     }
     

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import pcwf.ObjcWrapper
+import pcwf.Swift
+import pcwf.pallet_core_wrapper
+
 
 class MnemonicImportController: PlanetWalletViewController {
 
@@ -22,17 +26,11 @@ class MnemonicImportController: PlanetWalletViewController {
     
     var planet:Planet = Planet()
     
-    private var isValidMnemonic = false {
-        didSet {
-            updateValidUI()
-        }
-    }
-    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateValidUI()
+        validateMnemonic(mnemonicTextView.text.components(separatedBy: " "))
     }
     
     override func viewInit() {
@@ -98,30 +96,24 @@ class MnemonicImportController: PlanetWalletViewController {
                 else {
                     Toast.init(text: "mnemonic_import_not_match_title".localized).show()
                 }
-                
             }
-        
         }
         
     }
     
     
     //MARK: - Private
-    private func isValid(mnemonic: String) -> Bool {
-        //TODO: - Logic
-        return false
+    private func validateMnemonic(_ mnemonic: [String]) {
+        let mnemonicService = ObjcMnemonicService()
+        do {
+            try mnemonicService.validateMnemonic(mnemonic: mnemonic)
+            continueBtn.setEnabled(true, theme: currentTheme)
+        }
+        catch {
+            continueBtn.setEnabled(false, theme: currentTheme)
+        }
     }
     
-    private func updateValidUI() {
-        if isValidMnemonic {
-            continueBtn.setEnabled(true, theme: currentTheme)
-            errMsgContainerView.isHidden = true
-        }
-        else {
-            continueBtn.setEnabled(false, theme: currentTheme)
-            errMsgContainerView.isHidden = false
-        }
-    }
 }
 
 
@@ -162,17 +154,9 @@ extension MnemonicImportController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
+            let mnemonicArr = textView.text.components(separatedBy: " ")
+            validateMnemonic(mnemonicArr)
             return false
-        }
-        
-        //TODO: - Logic
-        let newLength = textView.text.utf16.count + text.utf16.count - range.length
-        
-        if newLength >= 1 {
-            isValidMnemonic = true
-        }
-        else {
-            isValidMnemonic = false
         }
         
         return true

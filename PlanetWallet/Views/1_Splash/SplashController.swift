@@ -88,11 +88,9 @@ class SplashController: PlanetWalletViewController {
     private func moveEntryPoint() {
         
         if DEVICE_KEY == "" && isSync {
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.moveEntryPoint()
             }
-            
         }else{
             
             guard let _: String = Utils.shared.getDefaults(for: Keys.Userdefaults.PINCODE) else {

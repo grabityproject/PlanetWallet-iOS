@@ -14,7 +14,6 @@ class WalletAddController: PlanetWalletViewController {
     @IBOutlet var createPlanetBtn: PWButton!
     @IBOutlet var importPlanetBtn: PWButton!
     
-    
     //MARK: - Init
     override func viewInit() {
         if let _ = userInfo?[Keys.UserInfo.fromSegue] {

@@ -37,16 +37,13 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     override func viewInit() {
         super.viewInit()
-        nameTextView.delegateBlinking = self
-        
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
     }
     
     override func setData() {
         super.setData()
-        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
         
         guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
-        
         if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
         
             if let userInfo = userInfo, let coinType = userInfo[Keys.UserInfo.universe] as? String{
@@ -79,15 +76,21 @@ class PlanetGenerateController: PlanetWalletViewController {
     private func generateETH(){
         EthereumManager.shared.generateMaster(pinCode: PINCODE)
         self.planet = EthereumManager.shared.addPlanet(index: 0, pinCode: PINCODE)
-        planetView.data = planet!.address!
-        planetBgView.data =  planet!.address!
+        
+        if let planet = planet, let address = planet.address {
+            planetView.data = address
+            planetBgView.data = address
+        }
     }
     
     private func generateBTC(){
         BitCoinManager.shared.generateMaster(pinCode: PINCODE)
         self.planet = BitCoinManager.shared.addPlanet(index: 0, pinCode: PINCODE)
-        planetView.data = planet!.address!
-        planetBgView.data =  planet!.address!
+        
+        if let planet = planet, let address = planet.address {
+            planetView.data = address
+            planetBgView.data = address
+        }
     }
     
     private func addETH(){
@@ -103,8 +106,11 @@ class PlanetGenerateController: PlanetWalletViewController {
         }else{
             self.planet = EthereumManager.shared.addPlanet(pinCode: PINCODE)
         }
-        planetView.data = planet!.address!
-        planetBgView.data =  planet!.address!
+        
+        if let planet = planet, let address = planet.address {
+            planetView.data = address
+            planetBgView.data = address
+        }
     }
     
     private func addBTC(){
@@ -122,8 +128,11 @@ class PlanetGenerateController: PlanetWalletViewController {
             self.planet = BitCoinManager.shared.addPlanet(pinCode: PINCODE)
             
         }
-        planetView.data = planet!.address!
-        planetBgView.data =  planet!.address!
+        
+        if let planet = planet, let address = planet.address {
+            planetView.data = address
+            planetBgView.data = address
+        }
     }
     
     private func hideCloseBtn() {
@@ -223,17 +232,5 @@ class PlanetGenerateController: PlanetWalletViewController {
                 }
             }
         }
-        
-    }
-}
-
-extension PlanetGenerateController: BlinkingTextViewDelegate {
-    
-    func didEndEditing(_ textView: BlinkingTextView) {
-        
-    }
-    
-    func didBeginEditing(_ textView: BlinkingTextView) {
-        
     }
 }

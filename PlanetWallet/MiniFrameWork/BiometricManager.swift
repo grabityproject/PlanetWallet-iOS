@@ -38,34 +38,16 @@ class BiometricManager {
     
     private let secAttrService = "walletSecService"
     private let alias = "bio_key"
-        
-    let context = LAContext()
+    
     var loginReason = "Logging in with Biometric ID"
     
     var delegate: BiometricManagerDelegate!
     
-    func biometricType() -> BiometricType {
-        let _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-        switch context.biometryType {
-        case .none:
-            return .none
-        case .touchID:
-            return .touchID
-        case .faceID:
-            return .faceID
-        @unknown default:
-            return .none
-        }
-    }
-    
-    func canEvaluatePolicy() -> Bool {
-        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-    }
-    
-    
     
     func authenticateUser() {
-        guard canEvaluatePolicy() else {
+        let context = LAContext()
+        
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
             if let delegate = self.delegate{
                 delegate.didAuthenticated(success: false, key: nil, error: LAError.biometryNotAvailable as? Error)
             }
