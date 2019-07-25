@@ -107,6 +107,7 @@ class PrivateKeyImportController: PlanetWalletViewController {
     }
 }
 
+//MARK: - UITextFieldDelegate
 extension PrivateKeyImportController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -133,7 +134,7 @@ extension PrivateKeyImportController: UITextFieldDelegate {
         guard let textFieldText = textField.text else { return false }
         //Regex 0...9 && a...f && A...F
         do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z0-9].*", options: [])
+            let regex = try NSRegularExpression(pattern: ".*[^A-Fa-f0-9].*", options: [])
             if regex.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) != nil {
                 isValidPrivateKey = false
                 return false

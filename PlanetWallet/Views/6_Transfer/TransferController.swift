@@ -9,14 +9,6 @@
 import UIKit
 import AVFoundation
 
-extension TransferController {
-    enum State {
-        case DEFAULT
-        case NOT_FOUND
-        case RESULTS
-    }
-}
-
 class TransferController: PlanetWalletViewController {
 
     var planet:Planet?
@@ -98,33 +90,31 @@ class TransferController: PlanetWalletViewController {
     
     //MARK: - Private
     private func updateUI() {
-        guard let planet = planet else { return }
+        guard let planet = planet, let adapter = adapter else { return }
         
-        if let adapter = adapter {
-            if( adapter.dataSource.count == 0 && search.count == 0 ){
+        if( adapter.dataSource.count == 0 && search.count == 0 ){
+            
+            self.tableView.isHidden = true
+            self.notFoundLb.isHidden = true
+            
+            if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
                 
-                self.tableView.isHidden = true
-                self.notFoundLb.isHidden = true
-                
-                if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
-                    
-                    if isValidAddr(pastedStr) && address != pastedStr {
-                        self.pasteClipboardBtn.isHidden = false
-                    }
+                if isValidAddr(pastedStr) && address != pastedStr {
+                    self.pasteClipboardBtn.isHidden = false
                 }
-            }else if( adapter.dataSource.count == 0 && search.count != 0 ){
-                
-                self.tableView.isHidden = true
-                self.notFoundLb.isHidden = false
-                self.pasteClipboardBtn.isHidden = true
-                
-            }else{
-                
-                self.tableView.isHidden = false
-                self.notFoundLb.isHidden = true
-                self.pasteClipboardBtn.isHidden = true
-                
             }
+        }else if( adapter.dataSource.count == 0 && search.count != 0 ){
+            
+            self.tableView.isHidden = true
+            self.notFoundLb.isHidden = false
+            self.pasteClipboardBtn.isHidden = true
+            
+        }else{
+            
+            self.tableView.isHidden = false
+            self.notFoundLb.isHidden = true
+            self.pasteClipboardBtn.isHidden = true
+            
         }
     }
     
@@ -150,37 +140,34 @@ class TransferController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-     
-        if let dict = dictionary{
-            if let returnVo = ReturnVO(JSON: dict){
-                if( returnVo.success! ){
-                    var results = Array<Planet>()
-                    let items = returnVo.result as! Array<Dictionary<String, Any>>
-                    
-                    if( items.count == 0 ){
-                        //Valid address
-                        if isValidAddr(search) {
-                            let addressPlanet = Planet()
-                            addressPlanet.address = self.search
-                            addressPlanet.coinType = self.planet?.coinType
-                            results.append(addressPlanet)
-                        }
-                    }else{
-                        // DataSource update
-                        items.forEach { (item) in
-                            //except self item
-                            if let itemName = item["name"] as? String, let selfName = self.planet?.name {
-                                if itemName != selfName {
-                                    results.append(Planet(JSON: item)!)
-                                }
-                            }
+        guard let dict = dictionary, let returnVo = ReturnVO(JSON: dict), let success = returnVo.success else { return }
+        
+        if( success ){
+            var results = Array<Planet>()
+            let items = returnVo.result as! Array<Dictionary<String, Any>>
+            
+            if( items.count == 0 ){
+                //Valid address
+                if isValidAddr(search) {
+                    let addressPlanet = Planet()
+                    addressPlanet.address = self.search
+                    addressPlanet.coinType = self.planet?.coinType
+                    results.append(addressPlanet)
+                }
+            }else{
+                // DataSource update
+                items.forEach { (item) in
+                    //except self item
+                    if let itemName = item["name"] as? String, let selfName = self.planet?.name {
+                        if itemName != selfName {
+                            results.append(Planet(JSON: item)!)
                         }
                     }
-                    
-                    adapter?.dataSetNotify(results)
-                    updateUI()
                 }
             }
+            
+            adapter?.dataSetNotify(results)
+            updateUI()
         }
         
     }

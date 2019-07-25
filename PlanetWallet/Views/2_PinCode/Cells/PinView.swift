@@ -45,8 +45,6 @@ class PinView: UIView {
         pinViewList.forEach( { $0.backgroundColor = ThemeManager.currentTheme().pinCode })
     }
     
-    
-    
     public func setSelectedColor(_ position: Int) {
         for i in 0..<pinViewList.count {
             if i < position {

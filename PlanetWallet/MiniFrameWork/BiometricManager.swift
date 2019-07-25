@@ -49,6 +49,7 @@ class BiometricManager {
         
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
             if let delegate = self.delegate{
+                print("설정에서 지문 또는 페이스 아이디 권한을 활성화하세요.")
                 delegate.didAuthenticated(success: false, key: nil, error: LAError.biometryNotAvailable as? Error)
             }
             return

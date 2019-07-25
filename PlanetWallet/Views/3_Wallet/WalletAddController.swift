@@ -25,6 +25,7 @@ class WalletAddController: PlanetWalletViewController {
         }
     }
     
+    //MARK: - IBAction
     @IBAction func didTouchedCreatePlanet(_ sender: UIButton) {
         let popup = PopupUniverse()
         

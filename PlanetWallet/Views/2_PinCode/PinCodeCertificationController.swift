@@ -47,7 +47,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
     
     private var fromSegue = From.SPLASH
     
-    //dismiss 과정에서 viewwillappear가 발동하여 문제됨..
+    //dismiss 과정에서 viewwillappear가 발동하여 문제됨
     var isBeingDismiss = false
     
     //MARK: - Init
@@ -174,6 +174,7 @@ class PinCodeCertificationController: PlanetWalletViewController {
     }
 }
 
+//MARK: - BiometricManagerDelegate
 extension PinCodeCertificationController: BiometricManagerDelegate {
     func didAuthenticated(success: Bool, key: [String]?, error: Error?) {
         if success {
@@ -189,6 +190,7 @@ extension PinCodeCertificationController: BiometricManagerDelegate {
     }
 }
 
+//MARK: - NumberPadDelegate
 extension PinCodeCertificationController: NumberPadDelegate {
     func didTouchedDelete() {
         passwordStr = String(passwordStr.dropLast())
@@ -203,6 +205,7 @@ extension PinCodeCertificationController: NumberPadDelegate {
     }
 }
 
+//MARK: - CharPadDelegate
 extension PinCodeCertificationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
         self.passwordStr = passwordStr + char
@@ -229,7 +232,7 @@ extension PinCodeCertificationController: CharPadDelegate {
         
     }
     
-    func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
+    func didTouchedDelete(_ isBack: Bool) {
         if isBack {
             showNumberPad(true)
             passwordStr = String(passwordStr.dropLast())

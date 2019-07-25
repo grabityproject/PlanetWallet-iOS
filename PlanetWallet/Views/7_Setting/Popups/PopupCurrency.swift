@@ -8,11 +8,19 @@
 
 import UIKit
 
+extension PopupCurrency {
+    enum Currency: String {
+        case KRW = "KRW"
+        case USD = "USD"
+        case CNY = "CNY"
+    }
+}
+
 class PopupCurrency: AbsSlideUpView {
     
     @IBOutlet var containerView: PWView!
     
-    public var handler: ((String) -> Void)?
+    public var handler: ((Currency) -> Void)?
     
     override func setXib() {
         super.setXib()
@@ -43,7 +51,7 @@ class PopupCurrency: AbsSlideUpView {
     @IBAction func didTouchedCurrency(_ sender: UIButton) {
         
         if let title = sender.titleLabel?.text {
-            handler?(title)
+            handler?(Currency(rawValue: title) ?? Currency.KRW)
         }
     }
     

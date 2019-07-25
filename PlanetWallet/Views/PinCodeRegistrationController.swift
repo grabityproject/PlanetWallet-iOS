@@ -36,6 +36,10 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     @IBOutlet var numPad: NumberPad!
     @IBOutlet var resetBtn: UIButton!
     
+    @IBOutlet var closeImgView: PWImageView!
+    @IBOutlet var closeBtn: UIButton!
+    
+    
     private var fromSegue = From.SPLASH
     private var isOneMoreConfirmed = false {
         didSet {
@@ -58,6 +62,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         }
         else if fromSegueID == From.CERTIFICATION.segueID() {
             fromSegue = .CERTIFICATION
+            showCloseBtn()
             titleLb.text = "pincode_registration_change_pin_code_title".localized
         }
     }
@@ -80,6 +85,12 @@ class PinCodeRegistrationController: PlanetWalletViewController {
         setNumberPad(position: 0)
     }
     
+    @IBAction func didTouchedClose(_ sender: UIButton) {
+        if fromSegue == .CERTIFICATION {
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     
     //MARK: - Private
     private func showNumberPad(_ isNumberPad: Bool) {
@@ -91,6 +102,11 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             charPad.isHidden = false
             numPad.isHidden = true
         }
+    }
+    
+    private func showCloseBtn() {
+        closeImgView.isHidden = false
+        closeBtn.isHidden = false
     }
     
     private func handleCompleteRegistration(_ pw: String) {
@@ -144,6 +160,7 @@ class PinCodeRegistrationController: PlanetWalletViewController {
     }
 }
 
+//MARK: - NumberPadDelegate
 extension PinCodeRegistrationController: NumberPadDelegate {
     func didTouchedDelete() {
         pinCode = String(pinCode.dropLast())
@@ -158,13 +175,14 @@ extension PinCodeRegistrationController: NumberPadDelegate {
     }
 }
 
+//MARK: - CharPadDelegate
 extension PinCodeRegistrationController: CharPadDelegate {
     func didTouchedCharPad(_ char: String) {
         pinCode += char
         handleCompleteRegistration(pinCode)
     }
     
-    func didTouchedDeleteKeyOnCharPad(_ isBack: Bool) {
+    func didTouchedDelete(_ isBack: Bool) {
         if isBack {
             setNumberPad(position: 3)
             pinCode = String(pinCode.dropLast())

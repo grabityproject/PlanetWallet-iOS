@@ -44,6 +44,7 @@ class WalletImportPageController: UIPageViewController {
         }
     }
     
+    //MARK: - init
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,9 +59,9 @@ class WalletImportPageController: UIPageViewController {
                                completion: nil)
         }
     }
-//waste october switch off arrest click sock tape student reflect cloud security
 }
 
+//MARK: - UIPageViewControllerDelegate
 extension WalletImportPageController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (!completed)
@@ -72,6 +73,7 @@ extension WalletImportPageController: UIPageViewControllerDelegate {
     }
 }
 
+//MARK: - UIPageViewControllerDataSource
 extension WalletImportPageController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
@@ -111,6 +113,7 @@ extension WalletImportPageController: UIPageViewControllerDataSource {
     }
 }
 
+//MARK: - UIScrollViewDelegate
 extension WalletImportPageController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 

@@ -18,16 +18,10 @@ class SecurityController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
-        biometricSwitch.delegate = self
-    }
-    
-    override func setData() {
-        super.setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         biometricSwitch.isOn = UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS)
     }
     
@@ -41,7 +35,6 @@ class SecurityController: PlanetWalletViewController {
         sendAction(segue: Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION,
                    userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.BIOMETRIC_TO_PINCODE_CERTIFICATION])
     }
-    
 }
 
 extension SecurityController: NavigationBarDelegate {
@@ -49,11 +42,5 @@ extension SecurityController: NavigationBarDelegate {
         if sender == .LEFT {
             self.navigationController?.popViewController(animated: true)
         }
-    }
-}
-
-extension SecurityController: PWSwitchDelegate {
-    func didSwitch(_ sender: Any?, isOn: Bool) {
-//        Utils.shared.setDefaults(for: Keys.Userdefaults.BIOMETRICS, value: isOn)
     }
 }

@@ -69,20 +69,23 @@ class PlanetNameController: PlanetWalletViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary, let planet = self.planet, let response = ReturnVO(JSON: dict), let isSuccess = response.success {
-            if isSuccess {
-                PlanetStore.shared.save(planet)
-                sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
-            }
-            else {
-                if let errDic = response.result as? [String: Any],
-                    let errorMsg = errDic["errorMsg"] as? String
-                {
-                    Toast(text: errorMsg).show()
-                }
+        guard let dict = dictionary,
+            let planet = self.planet,
+            let response = ReturnVO(JSON: dict),
+            let isSuccess = response.success else { return }
+        
+        if isSuccess {
+            PlanetStore.shared.save(planet)
+            sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
+        }
+        else {
+            if let errDic = response.result as? [String: Any],
+                let errorMsg = errDic["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
             }
         }
-        
     }
 }

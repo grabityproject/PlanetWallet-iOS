@@ -131,13 +131,9 @@ extension BoardController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select row at \(indexPath.row)")
-        
         let selectedBoard = datasource[indexPath.row]
-        
         sendAction(segue: Keys.Segue.BOARD_TO_DETAIL_BOARD, userInfo: ["board": selectedBoard,
                                                                        "section": self.section])
-        
     }
     
 }

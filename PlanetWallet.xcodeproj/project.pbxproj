@@ -15,8 +15,6 @@
 		04116B342293DB9500CFD921 /* BTCTransactionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */; };
 		0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416AE8F22E70E0E00009DCD /* BiometricManager.swift */; };
 		04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */; };
-		042532D922E8348400B7B81C /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042532D522E833F900B7B81C /* pcwf.framework */; };
-		042532DA22E8348400B7B81C /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 042532D522E833F900B7B81C /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
 		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
@@ -59,7 +57,6 @@
 		044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5972279707800FD7E5E /* Extension + Array.swift */; };
 		044BC59A227970A000FD7E5E /* Extension + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC599227970A000FD7E5E /* Extension + Data.swift */; };
 		044BC59C2279A18B00FD7E5E /* TransferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59B2279A18B00FD7E5E /* TransferController.swift */; };
-		044BC59E2279A2E800FD7E5E /* PList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC59D2279A2E800FD7E5E /* PList.swift */; };
 		044BC5A4227AA0FC00FD7E5E /* PlanetWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */; };
 		044BC5BC227AE2C700FD7E5E /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5B8227AE2C600FD7E5E /* PinView.swift */; };
 		044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044BC5B9227AE2C600FD7E5E /* PinView.xib */; };
@@ -101,6 +98,8 @@
 		047A2CA122AF7D130053D153 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2CA022AF7D130053D153 /* Crypto.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */; };
+		04A4AF6922E95BC300F08598 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4AF6722E95BBB00F08598 /* pcwf.framework */; };
+		04A4AF6A22E95BC300F08598 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4AF6722E95BBB00F08598 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
 		04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */; };
 		04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BB22A794E9007A17A3 /* 5_Token.storyboard */; };
@@ -192,7 +191,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				042532DA22E8348400B7B81C /* pcwf.framework in Embed Frameworks */,
+				04A4AF6A22E95BC300F08598 /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,7 +207,6 @@
 		04116B332293DB9500CFD921 /* BTCTransactionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionDataSource.swift; sourceTree = "<group>"; };
 		0416AE8F22E70E0E00009DCD /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
 		04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetNameController.swift; sourceTree = "<group>"; };
-		042532D522E833F900B7B81C /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
 		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 		044BC5972279707800FD7E5E /* Extension + Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Array.swift"; sourceTree = "<group>"; };
 		044BC599227970A000FD7E5E /* Extension + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Data.swift"; sourceTree = "<group>"; };
 		044BC59B2279A18B00FD7E5E /* TransferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferController.swift; sourceTree = "<group>"; };
-		044BC59D2279A2E800FD7E5E /* PList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PList.swift; sourceTree = "<group>"; };
 		044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetWalletViewController.swift; sourceTree = "<group>"; };
 		044BC5B8227AE2C600FD7E5E /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		044BC5B9227AE2C600FD7E5E /* PinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
@@ -297,6 +294,7 @@
 		0480E35722E17605008E57E3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
+		04A4AF6722E95BBB00F08598 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
 		04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
 		04A551BB22A794E9007A17A3 /* 5_Token.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
@@ -398,7 +396,7 @@
 			files = (
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
-				042532D922E8348400B7B81C /* pcwf.framework in Frameworks */,
+				04A4AF6922E95BC300F08598 /* pcwf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +490,7 @@
 		044BC53A22793D3F00FD7E5E = {
 			isa = PBXGroup;
 			children = (
-				042532D522E833F900B7B81C /* pcwf.framework */,
+				04A4AF6722E95BBB00F08598 /* pcwf.framework */,
 				044BC54522793D3F00FD7E5E /* PlanetWallet */,
 				044BC54422793D3F00FD7E5E /* Products */,
 				A0315CB8F9480C007E773A4C /* Pods */,
@@ -584,7 +582,6 @@
 			isa = PBXGroup;
 			children = (
 				044BC58F22794ED200FD7E5E /* Utils.swift */,
-				044BC59D2279A2E800FD7E5E /* PList.swift */,
 				04FBCA56229E908100DEEDD9 /* Route.swift */,
 				047A2CA022AF7D130053D153 /* Crypto.swift */,
 				045AA9C122C0AC45005EA387 /* Signer.swift */,
@@ -683,6 +680,7 @@
 		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				04A4AF6B22E9B0E000F08598 /* Adapter */,
 				04E0B53F22B9E13000E1C3E0 /* Popups */,
 				04BA0B0822B7621100A25A93 /* Cells */,
 				044BC59B2279A18B00FD7E5E /* TransferController.swift */,
@@ -690,7 +688,6 @@
 				04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */,
 				04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */,
 				040863A722B8F2A700B88EE1 /* TxReceiptController.swift */,
-				048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */,
 			);
 			path = 6_Transfer;
 			sourceTree = "<group>";
@@ -703,7 +700,7 @@
 				04C82C7222840A6B00235883 /* Cells */,
 				0456908B228BAE8200C6FF65 /* MainSetting */,
 				04C82C9222890CF800235883 /* Board */,
-				04C82C9122890CE000235883 /* DetailSetting */,
+				04C82C9122890CE000235883 /* Security */,
 				04C82C9022890CD900235883 /* Planet */,
 			);
 			path = 7_Setting;
@@ -856,6 +853,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		04A4AF6B22E9B0E000F08598 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		04BA0B0822B7621100A25A93 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,12 +896,12 @@
 			path = Planet;
 			sourceTree = "<group>";
 		};
-		04C82C9122890CE000235883 /* DetailSetting */ = {
+		04C82C9122890CE000235883 /* Security */ = {
 			isa = PBXGroup;
 			children = (
 				04C82C9B22890D9500235883 /* SecurityController.swift */,
 			);
-			path = DetailSetting;
+			path = Security;
 			sourceTree = "<group>";
 		};
 		04C82C9222890CF800235883 /* Board */ = {
@@ -1262,7 +1267,6 @@
 				04C82C9422890D4700235883 /* BoardController.swift in Sources */,
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
 				04116B322293DAAD00CFD921 /* mainTableDataSource.swift in Sources */,
-				044BC59E2279A2E800FD7E5E /* PList.swift in Sources */,
 				0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */,
 				04D9D34B22B1E46D00B66E79 /* BTCTransaction.swift in Sources */,
 				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,

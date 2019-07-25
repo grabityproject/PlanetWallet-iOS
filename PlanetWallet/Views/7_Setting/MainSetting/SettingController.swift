@@ -86,7 +86,15 @@ class SettingController: PlanetWalletViewController {
         popup.show(controller: self)
         popup.handler = { [weak self](currency) in
             guard let strongSelf = self else { return }
-            strongSelf.currencyLb.text = currency
+            var currencyStr = ""
+            switch currency {
+            case .KRW:      currencyStr = "KRW"
+            case .USD:      currencyStr = "USD"
+            case .CNY:      currencyStr = "CNY"
+            }
+            
+            UserDefaults.standard.set(currencyStr, forKey: Keys.Userdefaults.CURRENCY)
+            strongSelf.currencyLb.text = currencyStr
             popup.dismiss()
         }
     }

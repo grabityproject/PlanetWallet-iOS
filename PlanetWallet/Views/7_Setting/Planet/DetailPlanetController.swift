@@ -26,7 +26,6 @@ class DetailPlanetController: PlanetWalletViewController {
     @IBOutlet var hideBottomContainer: PWView!
     @IBOutlet var backupContainerTopConstraint: NSLayoutConstraint!
     
-    
     var planet:Planet? {
         didSet {
             updatePlanetUI()
@@ -52,7 +51,7 @@ class DetailPlanetController: PlanetWalletViewController {
             let planet = userInfo[Keys.UserInfo.planet] as? Planet,
             let planetKeyID = planet.keyId,
             let pathIdx = planet.pathIndex,
-            let selectedKeyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet)
+            let selectedKeyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET)
         {
             self.planet = planet
             if pathIdx == -1 {

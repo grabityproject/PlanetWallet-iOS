@@ -88,6 +88,7 @@ class WalletImportController: PlanetWalletViewController {
     }
 }
 
+//MARK: - WalletImportPageDelegate
 extension WalletImportController: WalletImportPageDelegate {
     func didScroll(offset: CGFloat) {
         self.indicatorLeftAnchorConstraint.constant = offset
@@ -98,7 +99,7 @@ extension WalletImportController: WalletImportPageDelegate {
     }
 }
 
-
+//MARK: - NavigationBarDelegate
 extension WalletImportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         

@@ -23,7 +23,4 @@ class NoticeCell: PWTableCell {
         
         addSubview(containerView)
     }
-
-    @IBAction func didTouched(_ sender: UIButton) {
-    }
 }

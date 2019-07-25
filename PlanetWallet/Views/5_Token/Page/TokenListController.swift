@@ -8,21 +8,6 @@
 
 import UIKit
 
-extension TokenListController {
-    class Token {
-        let name: String
-        let icon: UIImage
-        
-        var isRegistered: Bool = false
-        
-        init(name: String, icon: UIImage, isRegistered: Bool = false) {
-            self.name = name
-            self.icon = icon
-            self.isRegistered = isRegistered
-        }
-    }
-}
-
 class TokenListController: PlanetWalletViewController {
     
     private var planet:Planet?
@@ -196,60 +181,3 @@ extension TokenListController: UITextFieldDelegate {
         return true
     }
 }
-
-/*
-extension TokenListController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! TokenCell
-        
-        if isSearching == false {
-            cell.tokenInfo = tokenList[indexPath.row]
-            if tokenList[indexPath.row].isRegistered {
-                cell.checkedImgView.isHidden = false
-            }
-            else {
-                cell.checkedImgView.isHidden = true
-            }
-            
-        }
-        else {
-            cell.tokenInfo = tokenListFiltered[indexPath.row]
-            if tokenListFiltered[indexPath.row].isRegistered {
-                cell.checkedImgView.isHidden = false
-            }
-            else {
-                cell.checkedImgView.isHidden = true
-            }
-        }
-        
-        cell.delegate = self
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching == false {
-            return tokenList.count
-        }
-        else {
-            return tokenListFiltered.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-}
-
-extension TokenListController: TokenCellDelegate {
-    func didSelected(indexPath: IndexPath, isRegistered: Bool) {
-        tokenList[indexPath.row].isRegistered = isRegistered
-        tableView.reloadData()
-    }
-    
-}
-*/

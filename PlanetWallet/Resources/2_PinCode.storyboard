@@ -98,6 +98,23 @@
                                     <constraint firstItem="vUa-oG-T4d" firstAttribute="top" secondItem="dpQ-zW-vGd" secondAttribute="bottom" constant="9" id="tM4-Qd-9Lg"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNk-h4-xXG">
+                                <rect key="frame" x="10" y="64" width="40" height="40"/>
+                                <connections>
+                                    <action selector="didTouchedClose:" destination="8Iy-fZ-BRG" eventType="touchUpInside" id="Sti-ed-F4Q"/>
+                                    <action selector="didTouchedClose:" destination="TTs-8X-dJK" eventType="touchUpInside" id="uVN-Ac-b6s"/>
+                                </connections>
+                            </button>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageToolbarCloseGray" translatesAutoresizingMaskIntoConstraints="NO" id="sKi-W9-TPe" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="10" y="64" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Dbn-VF-IKj"/>
+                                    <constraint firstAttribute="width" constant="40" id="yro-WT-bG8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageToolbarCloseBlue"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcr-62-DMD" userLabel="CharPad" customClass="CharPad" customModule="PlanetWallet" customModuleProvider="target">
                                 <rect key="frame" x="15" y="406" width="345" height="346"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,14 +129,20 @@
                             <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="Pcr-62-DMD" secondAttribute="trailing" constant="15" id="2NH-3p-U9e"/>
                             <constraint firstItem="u2F-2i-UtN" firstAttribute="top" secondItem="zMS-BO-URX" secondAttribute="top" id="3R9-Bv-ugE"/>
                             <constraint firstItem="u2F-2i-UtN" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" id="3ai-hm-wvY"/>
+                            <constraint firstItem="jNk-h4-xXG" firstAttribute="bottom" secondItem="sKi-W9-TPe" secondAttribute="bottom" id="9U1-r9-m0D"/>
                             <constraint firstAttribute="bottom" secondItem="Iyy-aY-PXK" secondAttribute="bottom" constant="60" id="CIK-We-dhz"/>
+                            <constraint firstItem="jNk-h4-xXG" firstAttribute="top" secondItem="sKi-W9-TPe" secondAttribute="top" id="Fk8-xD-bcY"/>
+                            <constraint firstItem="sKi-W9-TPe" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" constant="10" id="GKs-uB-Owo"/>
                             <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="u2F-2i-UtN" secondAttribute="trailing" id="LlD-pK-Va7"/>
+                            <constraint firstItem="jNk-h4-xXG" firstAttribute="trailing" secondItem="sKi-W9-TPe" secondAttribute="trailing" id="SfD-xb-yYA"/>
                             <constraint firstItem="zMS-BO-URX" firstAttribute="trailing" secondItem="Iyy-aY-PXK" secondAttribute="trailing" constant="15" id="SuK-Le-I8q"/>
                             <constraint firstItem="Iyy-aY-PXK" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" constant="15" id="UVd-y5-bga"/>
                             <constraint firstItem="Iyy-aY-PXK" firstAttribute="height" secondItem="Z48-bd-Ssy" secondAttribute="height" multiplier="0.5" constant="-60" id="Ugy-SO-SQL"/>
                             <constraint firstItem="Pcr-62-DMD" firstAttribute="height" secondItem="Z48-bd-Ssy" secondAttribute="height" multiplier="0.5" constant="-60" id="csJ-IK-Oqw"/>
                             <constraint firstItem="Pcr-62-DMD" firstAttribute="top" secondItem="u2F-2i-UtN" secondAttribute="bottom" id="iQv-uY-Yeb"/>
                             <constraint firstItem="Pcr-62-DMD" firstAttribute="leading" secondItem="zMS-BO-URX" secondAttribute="leading" constant="15" id="m0e-ny-oZk"/>
+                            <constraint firstItem="jNk-h4-xXG" firstAttribute="leading" secondItem="sKi-W9-TPe" secondAttribute="leading" id="n9k-GZ-xqg"/>
+                            <constraint firstItem="sKi-W9-TPe" firstAttribute="top" secondItem="zMS-BO-URX" secondAttribute="top" constant="20" id="rT8-Oz-CvF"/>
                             <constraint firstAttribute="bottom" secondItem="Pcr-62-DMD" secondAttribute="bottom" constant="60" id="x7E-xJ-7x1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zMS-BO-URX"/>
@@ -131,6 +154,8 @@
                     </view>
                     <connections>
                         <outlet property="charPad" destination="Pcr-62-DMD" id="mEI-kE-h02"/>
+                        <outlet property="closeBtn" destination="jNk-h4-xXG" id="LoD-6Q-OQS"/>
+                        <outlet property="closeImgView" destination="sKi-W9-TPe" id="TUW-eg-PMY"/>
                         <outlet property="detailLb" destination="vUa-oG-T4d" id="TXi-KB-oRp"/>
                         <outlet property="numPad" destination="Iyy-aY-PXK" id="QNG-Yl-OSd"/>
                         <outlet property="pinView" destination="9jw-S7-Cx7" id="Vva-Ha-Iyi"/>

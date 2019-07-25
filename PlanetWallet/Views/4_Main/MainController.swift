@@ -79,11 +79,6 @@ class MainController: PlanetWalletViewController {
             
             self.fetchData { (_) in }
         }
-        
-//        bgPlanetContainer.frame = CGRect(x: ( SCREEN_WIDTH - SCREEN_WIDTH * 410.0 / 375.0 ) / 2.0,
-//                                         y: planetView.frame.height * 1.0 / 4.0 - SCREEN_WIDTH * 170.0 / 375.0 ,
-//                                         width: SCREEN_WIDTH * 410.0 / 375.0,
-//                                         height: SCREEN_WIDTH * 410.0 / 375.0)
     }
     
     
@@ -93,7 +88,7 @@ class MainController: PlanetWalletViewController {
         
         self.fetchData { (_) in }
         
-        self.updateBackupError()
+        self.initBackupAlertView()
         
         
         rippleAnimationView.dismiss()
@@ -148,10 +143,10 @@ class MainController: PlanetWalletViewController {
         if let planet = planet, let type = planet.coinType
         {
             if CoinType.BTC.coinType == type {
-                Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonicBTC, value: true)
+                Utils.shared.setDefaults(for: Keys.Userdefaults.BACKUP_MNEMONIC_BTC, value: true)
             }
             else if CoinType.ETH.coinType == type {
-                Utils.shared.setDefaults(for: Keys.UserInfo.shouldBackUpMnemonicETH, value: true)
+                Utils.shared.setDefaults(for: Keys.Userdefaults.BACKUP_MNEMONIC_ETH, value: true)
             }
             
             let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
@@ -171,7 +166,7 @@ class MainController: PlanetWalletViewController {
         let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
         
-        if let keyId:String = Utils.shared.getDefaults(for: Keys.UserInfo.selectedPlanet){
+        if let keyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET){
             if let planet = PlanetStore.shared.get(keyId){
                 planet.balance = "100"
                 self.planet = planet
@@ -183,16 +178,16 @@ class MainController: PlanetWalletViewController {
         }
     }
     
-    private func updateBackupError() {
+    private func initBackupAlertView() {
         if let planet = planet, let type = planet.coinType, let pathIdx = planet.pathIndex
         {
             if pathIdx >= 0 {//Generate Planet
                 labelError.isHidden = false
                 
-                if CoinType.BTC.coinType == type && UserDefaults.standard.bool(forKey: Keys.UserInfo.shouldBackUpMnemonicBTC) {
+                if CoinType.BTC.coinType == type && UserDefaults.standard.bool(forKey: Keys.Userdefaults.BACKUP_MNEMONIC_BTC) {
                     labelError.isHidden = true
                 }
-                else if CoinType.ETH.coinType == type && UserDefaults.standard.bool(forKey: Keys.UserInfo.shouldBackUpMnemonicETH) {
+                else if CoinType.ETH.coinType == type && UserDefaults.standard.bool(forKey: Keys.Userdefaults.BACKUP_MNEMONIC_ETH) {
                     labelError.isHidden = true
                 }
             }
@@ -247,13 +242,13 @@ class MainController: PlanetWalletViewController {
     
     private func updatePlanet() {
         
-        self.updateBackupError()
+        self.initBackupAlertView()
         
         if let selectPlanet = planet,
             let type = planet?.coinType,
             let planetKeyId = planet?.keyId
         {
-            Utils.shared.setDefaults(for: Keys.UserInfo.selectedPlanet, value: planetKeyId)
+            Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: planetKeyId)
             
             if type == CoinType.ETH.coinType { //ETH
                 
@@ -324,10 +319,6 @@ class MainController: PlanetWalletViewController {
 //MARK: - SyncDelegate
 extension MainController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
-        if isUpdate {
-            print("Sync is updated")
-        }
-        
         self.animationView.stop()
         self.refreshControl.endRefreshing()
     }
@@ -336,16 +327,13 @@ extension MainController: SyncDelegate {
 //MARK: - NavigationBarDelegate
 extension MainController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
-        switch sender {
-        case .LEFT:
+        if sender == .LEFT {
             rippleAnimationView.show { (isSuccess) in
                 if isSuccess {
                     guard let planet = self.planet else { return }
                     self.sendAction(segue: Keys.Segue.MAIN_TO_SETTING, userInfo: [Keys.UserInfo.planet: planet])
                 }
             }
-        case .RIGHT:
-            print("touched navibar right item")
         }
     }
 }

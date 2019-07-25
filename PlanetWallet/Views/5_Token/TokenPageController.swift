@@ -26,8 +26,7 @@ class TokenPageController: UIPageViewController {
         page1.userInfo = self.userInfo
         page2.userInfo = self.userInfo
         
-        return [page1,
-                page2]
+        return [page1,page2]
     }()
     
     lazy var scrollView: UIScrollView? = {
@@ -63,8 +62,7 @@ class TokenPageController: UIPageViewController {
 
 extension TokenPageController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if (!completed)
-        {
+        if (!completed) {
             return
         }
         

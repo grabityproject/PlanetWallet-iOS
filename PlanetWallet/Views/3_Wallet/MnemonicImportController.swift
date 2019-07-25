@@ -42,13 +42,13 @@ class MnemonicImportController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
-        if let userInfo = userInfo, let universeType = userInfo[Keys.UserInfo.universe] as? String {
-            if universeType == CoinType.BTC.name {
-                planet.coinType = CoinType.BTC.coinType
-            }
-            else if universeType == CoinType.ETH.name {
-                planet.coinType = CoinType.ETH.coinType
-            }
+        guard let userInfo = userInfo, let universeType = userInfo[Keys.UserInfo.universe] as? String else { return }
+        
+        if universeType == CoinType.BTC.name {
+            planet.coinType = CoinType.BTC.coinType
+        }
+        else if universeType == CoinType.ETH.name {
+            planet.coinType = CoinType.ETH.coinType
         }
     }
     
@@ -58,47 +58,44 @@ class MnemonicImportController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedContinue(_ sender: UIButton) {
-        if let coinType = planet.coinType{
-        
-            if coinType == CoinType.BTC.coinType{
+        guard let coinType = planet.coinType else { return }
+        if coinType == CoinType.BTC.coinType{
+            
+            let importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+            
+            if let keyId = importedPlanet.keyId{
                 
-                let importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
-                
-                if let keyId = importedPlanet.keyId{
+                if PlanetStore.shared.get(keyId) != nil{
+                    Toast.init(text: "mnemonic_import_exists_title".localized).show()
                     
-                    if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "mnemonic_import_exists_title".localized).show()
-                        
-                    }else{
-                        let info = [Keys.UserInfo.planet:importedPlanet]
-                        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
-                        return
-                    }
-                }
-                else {
-                    Toast.init(text: "mnemonic_import_not_match_title".localized).show()
-                }
-            }else if coinType == CoinType.ETH.coinType{
-                
-                let importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
-                
-                if let keyId = importedPlanet.keyId{
-                    
-                    if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "mnemonic_import_exists_title".localized).show()
-                        
-                    }else{
-                        let info = [Keys.UserInfo.planet:importedPlanet]
-                        sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
-                        return
-                    }
-                }
-                else {
-                    Toast.init(text: "mnemonic_import_not_match_title".localized).show()
+                }else{
+                    let info = [Keys.UserInfo.planet:importedPlanet]
+                    sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+                    return
                 }
             }
+            else {
+                Toast.init(text: "mnemonic_import_not_match_title".localized).show()
+            }
+        }else if coinType == CoinType.ETH.coinType{
+            
+            let importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+            
+            if let keyId = importedPlanet.keyId{
+                
+                if PlanetStore.shared.get(keyId) != nil{
+                    Toast.init(text: "mnemonic_import_exists_title".localized).show()
+                    
+                }else{
+                    let info = [Keys.UserInfo.planet:importedPlanet]
+                    sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
+                    return
+                }
+            }
+            else {
+                Toast.init(text: "mnemonic_import_not_match_title".localized).show()
+            }
         }
-        
     }
     
     
@@ -116,7 +113,7 @@ class MnemonicImportController: PlanetWalletViewController {
     
 }
 
-
+//MARK: - UITextFieldDelegate
 extension MnemonicImportController: UITextFieldDelegate {
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -141,6 +138,7 @@ extension MnemonicImportController: UITextFieldDelegate {
     }
 }
 
+//MARK: - UITextViewDelegate
 extension MnemonicImportController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {

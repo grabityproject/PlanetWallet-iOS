@@ -34,9 +34,6 @@ struct Keys {
         static let transferAmount = "transferAmount"
         static let gasFee = "gasFee"
         static let universe = "universe"
-        static let selectedPlanet = "selectedPlanet"
-        static let shouldBackUpMnemonicETH = "shouldBackUpMnemonicETH"
-        static let shouldBackUpMnemonicBTC = "shouldBackUpMnemonicBTC"
     }
     
     struct Userdefaults {
@@ -45,6 +42,10 @@ struct Keys {
         static let BIOMETRICS = "biometrics"
         static let FCM_TOKEN = "device_token"
         static let DEVICE_KEY = "device_key"
+        static let CURRENCY = "currency"
+        static let SELECTED_PLANET = "selectedPlanet"
+        static let BACKUP_MNEMONIC_ETH = "shouldBackUpMnemonicETH"
+        static let BACKUP_MNEMONIC_BTC = "shouldBackUpMnemonicBTC"
     }
     
     struct Segue {

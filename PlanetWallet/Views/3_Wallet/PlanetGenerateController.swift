@@ -210,27 +210,30 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary{
-            let response = ReturnVO(JSON: dict)
-            if( response!.success! ){
-                PlanetStore.shared.save(planet!)
-                
-                guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
-                
-                if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
-                    performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
-                }
-                else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
-                    performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
-                }
+        guard let planet = planet,
+            let dict = dictionary,
+            let response = ReturnVO(JSON: dict),
+            let success = response.success,
+            let result = response.result else { return }
+        
+        if( success ){
+            PlanetStore.shared.save(planet)
+            guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
+            
+            if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
+                performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
             }
-            else {
-                if let errDic = response?.result as? [String: Any],
-                    let errorMsg = errDic["errorMsg"] as? String
-                {
-                    Toast(text: errorMsg).show()
-                }
+            else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {
+                performSegue(withIdentifier: Keys.Segue.PLANET_GENERATE_TO_MAIN, sender: nil)
+            }
+        }
+        else {
+            if let errDic = result as? [String: Any],
+                let errorMsg = errDic["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
             }
         }
     }
+    
 }
