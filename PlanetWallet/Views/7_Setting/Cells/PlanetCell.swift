@@ -28,4 +28,8 @@ class PlanetCell: PWTableCell {
         addSubview(containerView)
     }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        //No highlighted
+    }
+    
 }
