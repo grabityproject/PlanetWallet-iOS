@@ -25,15 +25,10 @@ class PrivateKeyImportController: PlanetWalletViewController {
     var planet:Planet = Planet()
     
     //MARK: - Init
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateValidUI()
-    }
-    
     override func viewInit() {
         super.viewInit()
         textField.delegate = self
+        continueBtn.setEnabled(true, theme: currentTheme)
     }
     
     override func setData() {

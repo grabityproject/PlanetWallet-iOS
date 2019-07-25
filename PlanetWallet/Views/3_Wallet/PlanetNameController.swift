@@ -37,10 +37,6 @@ class PlanetNameController: PlanetWalletViewController {
         }
     }
     
-    override func viewInit() {
-        super.viewInit()
-    }
-    
     override func setData() {
         super.setData()
         

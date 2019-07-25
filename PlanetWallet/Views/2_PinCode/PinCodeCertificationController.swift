@@ -93,11 +93,11 @@ class PinCodeCertificationController: PlanetWalletViewController {
         super.viewWillAppear(animated)
         
         if UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS) &&
-            (fromSegue != .BIOMETRIC || fromSegue != .RESET) &&
+            (fromSegue != .BIOMETRIC && fromSegue != .RESET) &&
             isBeingDismiss == false
         {
             //BIOMETRIC CERTIFICATION
-            BiometricManager.shared.delegate = self;
+            BiometricManager.shared.delegate = self
             BiometricManager.shared.authenticateUser()
         }
     }
@@ -172,14 +172,15 @@ class PinCodeCertificationController: PlanetWalletViewController {
             numPad.isHidden = true
         }
     }
-    
 }
 
 extension PinCodeCertificationController: BiometricManagerDelegate {
     func didAuthenticated(success: Bool, key: [String]?, error: Error?) {
         if success {
             PINCODE = key!
-            handleSuccessSignIn()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                self.handleSuccessSignIn()
+            }
         }
         else {
             guard let error = error else { return }

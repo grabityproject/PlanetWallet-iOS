@@ -128,10 +128,6 @@ class MainController: PlanetWalletViewController {
         naviBar.backgroundView.alpha = 0
     }
     
-    override func setData() {
-        super.setData()
-    }
-    
     override func onUpdateTheme(theme: Theme) {
         super.onUpdateTheme(theme: theme)
         
@@ -332,7 +328,8 @@ extension MainController: SyncDelegate {
             print("Sync is updated")
         }
         
-        self.hideRefreshContents()
+        self.animationView.stop()
+        self.refreshControl.endRefreshing()
     }
 }
 
@@ -357,7 +354,6 @@ extension MainController: NavigationBarDelegate {
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
-        
         if ( refreshControl.isRefreshing && self.isAnimation ) {
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
         }
@@ -385,8 +381,14 @@ extension MainController: UIScrollViewDelegate {
             hideRefreshContents()
         } else {
             if didRefreshed == false {
-                let scale = 1.0 - offsetY/(self.view.frame.width/2.0)*0.5
-                bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+                if refreshControl.isRefreshing {
+                    let scale = 1.0 - (offsetY - 60)/(self.view.frame.width/2.0)*0.5
+                    bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+                }
+                else {
+                    let scale = 1.0 - (offsetY)/(self.view.frame.width/2.0)*0.5
+                    bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+                }
             }
             else {
                 bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)

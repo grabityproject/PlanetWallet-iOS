@@ -45,7 +45,6 @@
 		044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */; };
 		044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57A2279441F00FD7E5E /* WalletImportController.swift */; };
 		044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57C2279443800FD7E5E /* MnemonicImportController.swift */; };
-		044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC57E2279444B00FD7E5E /* JSONImportController.swift */; };
 		044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */; };
 		044BC5832279446E00FD7E5E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5822279446E00FD7E5E /* MainController.swift */; };
 		044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BC5842279447A00FD7E5E /* TokenAddController.swift */; };
@@ -240,7 +239,6 @@
 		044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetGenerateController.swift; sourceTree = "<group>"; };
 		044BC57A2279441F00FD7E5E /* WalletImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportController.swift; sourceTree = "<group>"; };
 		044BC57C2279443800FD7E5E /* MnemonicImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicImportController.swift; sourceTree = "<group>"; };
-		044BC57E2279444B00FD7E5E /* JSONImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImportController.swift; sourceTree = "<group>"; };
 		044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyImportController.swift; sourceTree = "<group>"; };
 		044BC5822279446E00FD7E5E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		044BC5842279447A00FD7E5E /* TokenAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddController.swift; sourceTree = "<group>"; };
@@ -663,7 +661,6 @@
 				044BC5782279440D00FD7E5E /* PlanetGenerateController.swift */,
 				044BC57A2279441F00FD7E5E /* WalletImportController.swift */,
 				044BC57C2279443800FD7E5E /* MnemonicImportController.swift */,
-				044BC57E2279444B00FD7E5E /* JSONImportController.swift */,
 				044BC5802279445D00FD7E5E /* PrivateKeyImportController.swift */,
 				04CC0844228D390800A8272B /* WalletImportPageController.swift */,
 				04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */,
@@ -1329,7 +1326,6 @@
 				042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				0464BFBB22DC47B700D8087D /* Localization.swift in Sources */,
-				044BC57F2279444B00FD7E5E /* JSONImportController.swift in Sources */,
 				04C82C9C22890D9500235883 /* SecurityController.swift in Sources */,
 				04FBCA4D229E67A200DEEDD9 /* Get.swift in Sources */,
 				044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */,
