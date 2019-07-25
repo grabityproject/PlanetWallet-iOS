@@ -58,6 +58,9 @@ class SettingController: PlanetWalletViewController {
             self.helloLb.text = String(format: "setting_planet_main_title".localized, name)
         }
         
+        if let currency = UserDefaults.standard.string(forKey: Keys.Userdefaults.CURRENCY) {
+            currencyLb.text = currency
+        }
     }
     
     //MARK: - IBAction
@@ -101,14 +104,11 @@ class SettingController: PlanetWalletViewController {
     
     
     @IBAction func didTouchedMyPlanet(_ sender: UIButton) {
-        
         sendAction(segue: Keys.Segue.SETTING_TO_DETAIL_PLANET, userInfo: userInfo)
     }
     
     @IBAction func didTouchedManagePlanets(_ sender: UIButton) {
-        
         sendAction(segue: Keys.Segue.SETTING_TO_PLANET_MANAGEMENT, userInfo: userInfo)
-        
     }
     
     //MARK: - Private
