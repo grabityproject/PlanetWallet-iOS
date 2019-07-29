@@ -77,7 +77,7 @@ class MainController: PlanetWalletViewController {
             bottomMenuTokenView?.delegate = self
             self.view.addSubview(bottomMenuTokenView!)
             
-            self.fetchData { (_) in }
+//            self.fetchData { (_) in }
         }
     }
     
@@ -168,13 +168,38 @@ class MainController: PlanetWalletViewController {
         
         if let keyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET){
             if let planet = PlanetStore.shared.get(keyId){
-                planet.balance = "100"
                 self.planet = planet
             }else{
                 self.planet = planetList.first
             }
         }else {
             self.planet = planetList.first
+        }
+        
+        getBalance()
+    }
+    
+    private func getBalance() {
+        if let coinTypeInt = self.planet?.coinType {
+            let cointype = CoinType.of(coinTypeInt).name
+            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil)
+            
+            var idx = 0
+            if coinTypeInt == CoinType.ETH.coinType {
+                
+                self.dataSource.coinList?.forEach({ (item) in
+                    if item.getCoinType() == CoinType.ETH.coinType {
+                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil)
+                    }
+                    else { //ERC20
+                        print("erc20 \(idx)")
+                        let erc20 = item as? ERC20
+                        Get(self).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil)
+                    }
+                    
+                    idx += 1
+                })
+            }
         }
     }
     
@@ -314,7 +339,39 @@ class MainController: PlanetWalletViewController {
     private func showCopyToast() {
         Toast(text: "main_copy_to_clipboard".localized).show()
     }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let selectedPlanet = planet else { return }
+        
+        if success {
+            if let dict = dictionary, let success = dict["result"], let resultObj = dict["result"] as? [String:Any] {
+                if requestCode == 0 {
+                    
+                    let planet = Planet(JSON: resultObj)
+                    selectedPlanet.balance = planet?.balance
+                    bottomMenuBalanceLb.text = planet?.balance
+                }
+                else if requestCode == 1 {
+                    print("request code 1")
+                    if let items = dataSource.coinList, let planet = Planet(JSON: resultObj) {
+                        print(planet.balance)
+                        if let eth = items[resultCode] as? ETH {
+                            print(planet.balance! + "ETH")
+                            eth.balance = planet.balance!
+                        }
+                        else if let erc20 = items[resultCode] as? ERC20 {
+                            print(planet.balance! + "ERC20")
+                            erc20.balance = planet.balance
+                        }
+                        
+                    }
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
 }
+
 
 //MARK: - SyncDelegate
 extension MainController: SyncDelegate {
