@@ -16,10 +16,21 @@ class Get {
         self.delegate = delegate
     }
     
-    func action(_ url:String, requestCode:Int, resultCode:Int, data:Dictionary<String,Any>? ) {
+    func action(_ url:String, requestCode:Int, resultCode:Int, data:Dictionary<String,Any>?, extraHeaders:Dictionary<String,String> = [String:String]() ) {
         
         guard let requestUrl = URL(string: url) else { return }
-        Alamofire.request(requestUrl, method: .get, parameters: data, encoding: URLEncoding.default, headers: ["locale":LOCALE_CODE]).response { (dataResponse) in
+        
+        var headers: HTTPHeaders = [
+            "locale":LOCALE_CODE
+        ]
+        
+        if extraHeaders.count > 0{
+            extraHeaders.keys.forEach { (key) in
+                headers[key] = extraHeaders[key]
+            }
+        }
+        
+        Alamofire.request(requestUrl, method: .get, parameters: data, encoding: URLEncoding.default, headers: headers).response { (dataResponse) in
             
             if let response = dataResponse.response{
                 if let resultData = dataResponse.data{

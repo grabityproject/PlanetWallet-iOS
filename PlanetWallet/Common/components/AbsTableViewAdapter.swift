@@ -91,4 +91,84 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
             delegate.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
         }
     }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidZoom?(scrollView)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidScroll?(scrollView)
+        }
+    }
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidScrollToTop?(scrollView)
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewWillBeginDragging?(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidEndDecelerating?(scrollView)
+        }
+    }
+
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewWillBeginDecelerating?(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidEndScrollingAnimation?(scrollView)
+        }
+    }
+    
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        delegates.forEach { (delegate) in
+             _ = delegate.scrollViewShouldScrollToTop?(scrollView)
+        }
+        return false
+    }
+    
+    func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidChangeAdjustedContentInset?(scrollView)
+        }
+    }
+    
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewWillBeginZooming?(scrollView, with: view)
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
+        }
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegates.forEach { (delegate) in
+            delegate.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        }
+    }
 }

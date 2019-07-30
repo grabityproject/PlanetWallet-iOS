@@ -13,11 +13,7 @@ class MainController: PlanetWalletViewController {
 
     var statusHeight: CGFloat { return Utils.shared.statusBarHeight() }
     
-    var planet: Planet? {
-        didSet {
-            updatePlanet()
-        }
-    }
+    var planet: Planet?
     
     @IBOutlet var bgPlanetContainer: UIView!
     @IBOutlet var bgPlanetView: PlanetView!
@@ -30,6 +26,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var footerView: MainTableFooter!
     @IBOutlet var addressLb: PWLabel!
     @IBOutlet var planetNameLb: PWLabel!
+    private var mainAdapter: MainAdapter?
     
     @IBOutlet weak var labelError: PWButton!
     
@@ -38,7 +35,7 @@ class MainController: PlanetWalletViewController {
     @IBOutlet weak var loadingViewWrapper: UIView!
     var didRefreshed = false
     
-    let dataSource = mainTableDataSource()
+//    let dataSource = mainTableDataSource()
     
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
@@ -57,6 +54,7 @@ class MainController: PlanetWalletViewController {
     var isAnimation : Bool {
         return animationView.isAnimationPlaying
     }
+
     
     override func viewDidLayoutSubviews() {
         
@@ -103,7 +101,10 @@ class MainController: PlanetWalletViewController {
             bottomMenuBlurView.setTheme(.LIGHT)
         }
 
-        tableView.reloadData()
+        if let items = planet?.items {
+            mainAdapter?.dataSetNotify(items)
+        }
+//        tableView.reloadData()
     }
     
     
@@ -121,6 +122,12 @@ class MainController: PlanetWalletViewController {
         createRippleView()
         
         naviBar.backgroundView.alpha = 0
+    }
+    
+    override func setData() {
+        super.setData()
+        mainAdapter = MainAdapter(tableView, [MainItem]())
+        mainAdapter?.delegates.append(self)
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -156,6 +163,8 @@ class MainController: PlanetWalletViewController {
     }
     
     @objc func refresh() {
+        print("refresh start")
+        getBalance()
         SyncManager.shared.syncPlanet(self)
     }
     
@@ -166,6 +175,7 @@ class MainController: PlanetWalletViewController {
         let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
         
+        // set selected planet
         if let keyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET){
             if let planet = PlanetStore.shared.get(keyId){
                 self.planet = planet
@@ -176,25 +186,33 @@ class MainController: PlanetWalletViewController {
             self.planet = planetList.first
         }
         
+        updatePlanet()
+        
         getBalance()
     }
     
+    
+    var countDown = 0;
+    
     private func getBalance() {
+        guard let selectPlanet = planet else { return }
+        
         if let coinTypeInt = self.planet?.coinType {
             let cointype = CoinType.of(coinTypeInt).name
-            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil)
+            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
             
             var idx = 0
             if coinTypeInt == CoinType.ETH.coinType {
                 
-                self.dataSource.coinList?.forEach({ (item) in
+                countDown = selectPlanet.items!.count;
+                selectPlanet.items?.forEach({ (item) in
                     if item.getCoinType() == CoinType.ETH.coinType {
-                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil)
+                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     else { //ERC20
                         print("erc20 \(idx)")
                         let erc20 = item as? ERC20
-                        Get(self).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil)
+                        Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     
                     idx += 1
@@ -225,16 +243,17 @@ class MainController: PlanetWalletViewController {
     private func configureTableView() {
         //Refresh control
         refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = .clear
+        refreshControl.backgroundColor = .red
         refreshControl.tintColor = UIColor.clear
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+//        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl!)
         self.loadCustomRefreshContents()
         
         //TableView
-        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: dataSource.ethCellID)
-        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: dataSource.btcCellID)
-        tableView.dataSource = dataSource
+//        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: dataSource.ethCellID)
+//        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: dataSource.btcCellID)
+//        tableView.dataSource = dataSource
         
         tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
                                               left: 0, bottom: 130, right: 0)
@@ -267,6 +286,37 @@ class MainController: PlanetWalletViewController {
     
     private func updatePlanet() {
         
+        if let selectPlanet = planet {
+            
+            if let type = selectPlanet.coinType{
+                let coinType = CoinType.of(type).coinType
+                
+                if( coinType == CoinType.BTC.coinType ){
+                    
+                    // Get tx/list/BTC/{planetOrAddress}
+                    selectPlanet.items = [BTC()]
+                    
+                }else if( coinType == CoinType.ETH.coinType ){
+                    if let keyId = selectPlanet.keyId, let ethAddr = selectPlanet.address{
+                        selectPlanet.items = ERC20Store.shared.list(keyId, false)
+                        selectPlanet.items?.insert(ETH(keyId,
+                                                       balance: selectPlanet.balance ?? "0",
+                                                       address: ethAddr),
+                                                   at: 0)
+                        
+                    }
+                }
+            }
+            
+            if mainAdapter == nil {
+                mainAdapter = MainAdapter(tableView, [MainItem]())
+            }
+            
+            if let adapter = mainAdapter, let items = selectPlanet.items{
+                adapter.dataSetNotify(items)
+            }
+        }
+        
         self.initBackupAlertView()
         
         if let selectPlanet = planet,
@@ -276,26 +326,16 @@ class MainController: PlanetWalletViewController {
             Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: planetKeyId)
             
             if type == CoinType.ETH.coinType { //ETH
-                
-                dataSource.coinList = ERC20Store.shared.list(planetKeyId, false)
-                if let ethAddr = selectPlanet.address {
-                    dataSource.coinList?.insert(ETH(planetKeyId,
-                                                    balance: selectPlanet.balance ?? "0",
-                                                    address: ethAddr),
-                                                at: 0)
-                }
                 footerView.isEthUniverse = true
                 footerView.isHidden = false
                 
                 tableView.allowsSelection = true
             }
             else if type == CoinType.BTC.coinType { //BTC
-                dataSource.coinList = [BTC()]
-                
                 tableView.allowsSelection = false
                 
                 footerView.isEthUniverse = false
-                footerView.isHidden = !dataSource.coinList!.isEmpty
+                footerView.isHidden = !selectPlanet.items!.isEmpty
             }
             //binding naviBar
             naviBar.title = CoinType.of( selectPlanet.coinType! ).name
@@ -325,11 +365,15 @@ class MainController: PlanetWalletViewController {
             }
         }
         
-        tableView.reloadData()
+        if let items = planet?.items {
+            mainAdapter?.dataSetNotify(items)
+        }
+//        tableView.reloadData()
     }
     
     private func hideRefreshContents() {
         if refreshControl.isRefreshing {
+            print("hide refresh")
             self.animationView.stop()
             self.refreshControl.endRefreshing()
             self.didRefreshed = true
@@ -344,7 +388,7 @@ class MainController: PlanetWalletViewController {
         guard let selectedPlanet = planet else { return }
         
         if success {
-            if let dict = dictionary, let success = dict["result"], let resultObj = dict["result"] as? [String:Any] {
+            if let dict = dictionary, let resultObj = dict["result"] as? [String:Any] {
                 if requestCode == 0 {
                     
                     let planet = Planet(JSON: resultObj)
@@ -352,20 +396,26 @@ class MainController: PlanetWalletViewController {
                     bottomMenuBalanceLb.text = planet?.balance
                 }
                 else if requestCode == 1 {
-                    print("request code 1")
-                    if let items = dataSource.coinList, let planet = Planet(JSON: resultObj) {
-                        print(planet.balance)
-                        if let eth = items[resultCode] as? ETH {
-                            print(planet.balance! + "ETH")
-                            eth.balance = planet.balance!
+                       countDown -= 1
+                    
+                    if let items = selectedPlanet.items, let planet = Planet(JSON: resultObj) {
+                        if let eth = items[resultCode] as? ETH, let balance = planet.balance {
+                            eth.balance = balance
                         }
                         else if let erc20 = items[resultCode] as? ERC20 {
-                            print(planet.balance! + "ERC20")
                             erc20.balance = planet.balance
                         }
                         
+                        if( countDown == 0 ) {
+                            print("end count down")
+                            hideRefreshContents()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.mainAdapter?.dataSetNotify(items)
+                            }
+                        }
+                        
                     }
-                    tableView.reloadData()
                 }
             }
         }
@@ -376,8 +426,9 @@ class MainController: PlanetWalletViewController {
 //MARK: - SyncDelegate
 extension MainController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
-        self.animationView.stop()
-        self.refreshControl.endRefreshing()
+//        hideRefreshContents()
+//        self.animationView.stop()
+//        self.refreshControl.endRefreshing()
     }
 }
 
@@ -399,9 +450,15 @@ extension MainController: NavigationBarDelegate {
 extension MainController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
+        
         if ( refreshControl.isRefreshing && self.isAnimation ) {
+            refresh()
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
         }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -475,7 +532,7 @@ extension MainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedPlanet = planet else { return }
         
-        if let mainItemList = dataSource.coinList {
+        if let mainItemList = selectedPlanet.items {
             if let erc20 = mainItemList[indexPath.row] as? ERC20 {
                 bottomMenuTokenView?.show(erc: erc20, planet: selectedPlanet)
             }
@@ -491,6 +548,8 @@ extension MainController: UITableViewDelegate {
 extension MainController: TopMenuLauncherDelegate {
     func didSelected(planet: Planet) {
         self.planet = planet
+        updatePlanet()
+        getBalance()
     }
     
     func didSelectedFooter() {
