@@ -33,7 +33,6 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var loadingViewWrapper: UIView!
-    var didRefreshed = false
     
 //    let dataSource = mainTableDataSource()
     
@@ -55,12 +54,15 @@ class MainController: PlanetWalletViewController {
         return animationView.isAnimationPlaying
     }
 
+    private var isScrollingOnSyncing = false
+    private var isSyncing = false
     
     override func viewDidLayoutSubviews() {
         
         if topMenuLauncher == nil {
             self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
             topMenuLauncher?.delegate = self
+            topMenuLauncher?.planetList = PlanetStore.shared.list("", false)
         }
         
         if bottomMenuLauncher == nil {
@@ -74,8 +76,6 @@ class MainController: PlanetWalletViewController {
             bottomMenuTokenView?.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
             bottomMenuTokenView?.delegate = self
             self.view.addSubview(bottomMenuTokenView!)
-            
-//            self.fetchData { (_) in }
         }
     }
     
@@ -162,8 +162,8 @@ class MainController: PlanetWalletViewController {
         }
     }
     
-    @objc func refresh() {
-        print("refresh start")
+    @objc func refreshed() {
+        isSyncing = true
         getBalance()
         SyncManager.shared.syncPlanet(self)
     }
@@ -174,7 +174,6 @@ class MainController: PlanetWalletViewController {
     private func fetchData(completion: @escaping (Bool) -> Void) {
         let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
-        
         // set selected planet
         if let keyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET){
             if let planet = PlanetStore.shared.get(keyId){
@@ -187,7 +186,6 @@ class MainController: PlanetWalletViewController {
         }
         
         updatePlanet()
-        
         getBalance()
     }
     
@@ -199,24 +197,27 @@ class MainController: PlanetWalletViewController {
         
         if let coinTypeInt = self.planet?.coinType {
             let cointype = CoinType.of(coinTypeInt).name
-            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
             
             var idx = 0
             if coinTypeInt == CoinType.ETH.coinType {
-                
                 countDown = selectPlanet.items!.count;
                 selectPlanet.items?.forEach({ (item) in
                     if item.getCoinType() == CoinType.ETH.coinType {
+                        print("get ETH balance")
                         Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     else { //ERC20
-                        print("erc20 \(idx)")
+                        print("get ERC20 balance")
                         let erc20 = item as? ERC20
                         Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     
                     idx += 1
                 })
+            }
+            else if coinTypeInt == CoinType.BTC.coinType {
+                Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                print("get \(cointype) balance")
             }
         }
     }
@@ -243,10 +244,10 @@ class MainController: PlanetWalletViewController {
     private func configureTableView() {
         //Refresh control
         refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = .red
+        refreshControl.backgroundColor = .clear
         refreshControl.tintColor = UIColor.clear
         
-//        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshed), for: .valueChanged)
         tableView.addSubview(refreshControl!)
         self.loadCustomRefreshContents()
         
@@ -368,15 +369,12 @@ class MainController: PlanetWalletViewController {
         if let items = planet?.items {
             mainAdapter?.dataSetNotify(items)
         }
-//        tableView.reloadData()
     }
     
     private func hideRefreshContents() {
-        if refreshControl.isRefreshing {
-            print("hide refresh")
+        if refreshControl.isRefreshing && tableView.isDragging == false {
             self.animationView.stop()
             self.refreshControl.endRefreshing()
-            self.didRefreshed = true
         }
     }
     
@@ -385,18 +383,33 @@ class MainController: PlanetWalletViewController {
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
         guard let selectedPlanet = planet else { return }
         
         if success {
             if let dict = dictionary, let resultObj = dict["result"] as? [String:Any] {
+                
                 if requestCode == 0 {
                     
                     let planet = Planet(JSON: resultObj)
                     selectedPlanet.balance = planet?.balance
                     bottomMenuBalanceLb.text = planet?.balance
+                    
+                    //TODO: - BTC
+                    if let type = self.planet?.coinType {
+                        if type == CoinType.BTC.coinType {
+                            isSyncing = false
+                            if tableView.isDragging {
+                                isScrollingOnSyncing = true
+                            }
+                            else {
+                                hideRefreshContents()
+                            }
+                        }
+                    }
                 }
                 else if requestCode == 1 {
-                       countDown -= 1
+                    countDown -= 1
                     
                     if let items = selectedPlanet.items, let planet = Planet(JSON: resultObj) {
                         if let eth = items[resultCode] as? ETH, let balance = planet.balance {
@@ -407,11 +420,15 @@ class MainController: PlanetWalletViewController {
                         }
                         
                         if( countDown == 0 ) {
-                            print("end count down")
-                            hideRefreshContents()
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                self.mainAdapter?.dataSetNotify(items)
+                            isSyncing = false
+                            if tableView.isDragging {
+                                isScrollingOnSyncing = true
+                            }
+                            else {
+                                hideRefreshContents()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    self.mainAdapter?.dataSetNotify(items)
+                                }
                             }
                         }
                         
@@ -419,6 +436,8 @@ class MainController: PlanetWalletViewController {
                 }
             }
         }
+        
+        
     }
 }
 
@@ -426,9 +445,7 @@ class MainController: PlanetWalletViewController {
 //MARK: - SyncDelegate
 extension MainController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
-//        hideRefreshContents()
-//        self.animationView.stop()
-//        self.refreshControl.endRefreshing()
+
     }
 }
 
@@ -448,21 +465,19 @@ extension MainController: NavigationBarDelegate {
 
 //MARK: - UIScrollViewDelegate
 extension MainController: UIScrollViewDelegate {
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let refreshControl = refreshControl else { return }
         
         if ( refreshControl.isRefreshing && self.isAnimation ) {
-            refresh()
             self.animationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { (_) in }
         }
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        didRefreshed = false
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing && isSyncing == false {
+            refreshed()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -476,24 +491,30 @@ extension MainController: UIScrollViewDelegate {
         }else{
             naviBar.backgroundView.alpha = 0
         }
-
-        if( offsetY > 0){
-            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-            
+        
+        //handling multiple Pull to refresh
+        if scrollView.isDecelerating && offsetY == 0 && isScrollingOnSyncing {
+            isScrollingOnSyncing = false
             hideRefreshContents()
-        } else {
-            if didRefreshed == false {
-                if refreshControl.isRefreshing {
-                    let scale = 1.0 - (offsetY - 60)/(self.view.frame.width/2.0)*0.5
-                    bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
-                }
-                else {
-                    let scale = 1.0 - (offsetY)/(self.view.frame.width/2.0)*0.5
-                    bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if let items = self.planet?.items {
+                    self.mainAdapter?.dataSetNotify(items)
                 }
             }
+        }
+        
+        if( offsetY > 0){
+            bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+
+            hideRefreshContents()
+        } else {
+            if refreshControl.isRefreshing {
+                let scale = 1.0 - (offsetY - 60)/(self.view.frame.width/2.0)*0.5
+                bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+            }
             else {
-                bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+                let scale = 1.0 - (offsetY)/(self.view.frame.width/2.0)*0.5
+                bgPlanetContainer.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             }
             
             let pullDistance = max(0.0, -self.refreshControl!.frame.origin.y)
