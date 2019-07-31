@@ -190,7 +190,7 @@ class MainController: PlanetWalletViewController {
     }
     
     
-    var countDown = 0;
+    var countDown = 0
     
     private func getBalance() {
         guard let selectPlanet = planet else { return }
@@ -250,11 +250,6 @@ class MainController: PlanetWalletViewController {
         refreshControl.addTarget(self, action: #selector(refreshed), for: .valueChanged)
         tableView.addSubview(refreshControl!)
         self.loadCustomRefreshContents()
-        
-        //TableView
-//        tableView.register(ETHCoinCell.self, forCellReuseIdentifier: dataSource.ethCellID)
-//        tableView.register(BTCTransactionCell.self, forCellReuseIdentifier: dataSource.btcCellID)
-//        tableView.dataSource = dataSource
         
         tableView.contentInset = UIEdgeInsets(top: naviBar.frame.height - Utils.shared.statusBarHeight(),
                                               left: 0, bottom: 130, right: 0)
@@ -414,6 +409,8 @@ class MainController: PlanetWalletViewController {
                     if let items = selectedPlanet.items, let planet = Planet(JSON: resultObj) {
                         if let eth = items[resultCode] as? ETH, let balance = planet.balance {
                             eth.balance = balance
+                            selectedPlanet.balance = balance
+                            bottomMenuBalanceLb.text = balance
                         }
                         else if let erc20 = items[resultCode] as? ERC20 {
                             erc20.balance = planet.balance

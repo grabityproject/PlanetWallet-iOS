@@ -13,6 +13,8 @@
 		04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */; };
 		04116B322293DAAD00CFD921 /* MainAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B312293DAAD00CFD921 /* MainAdapter.swift */; };
 		0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416AE8F22E70E0E00009DCD /* BiometricManager.swift */; };
+		041F9C8922F149590037BED7 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F9C8722F149530037BED7 /* pcwf.framework */; };
+		041F9C8A22F149590037BED7 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 041F9C8722F149530037BED7 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */; };
 		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
@@ -92,13 +94,11 @@
 		0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FE22966E23008307D8 /* TopMenuCell.swift */; };
 		0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472831222B878F7002EF9E5 /* QRCaptureController.swift */; };
 		04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4D22818BD100758E56 /* Extension + UIButton.swift */; };
-		04738B502282749C00758E56 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ColorTheme.swift */; };
+		04738B502282749C00758E56 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ThemeManager.swift */; };
 		04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E3E228AA91900049F89 /* PWSwitch.swift */; };
 		047A2CA122AF7D130053D153 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2CA022AF7D130053D153 /* Crypto.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */; };
-		04A4AF6922E95BC300F08598 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4AF6722E95BBB00F08598 /* pcwf.framework */; };
-		04A4AF6A22E95BC300F08598 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4AF6722E95BBB00F08598 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
 		04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */; };
 		04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BB22A794E9007A17A3 /* 5_Token.storyboard */; };
@@ -190,7 +190,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04A4AF6A22E95BC300F08598 /* pcwf.framework in Embed Frameworks */,
+				041F9C8A22F149590037BED7 /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +204,7 @@
 		04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionCell.swift; sourceTree = "<group>"; };
 		04116B312293DAAD00CFD921 /* MainAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdapter.swift; sourceTree = "<group>"; };
 		0416AE8F22E70E0E00009DCD /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
+		041F9C8722F149530037BED7 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetNameController.swift; sourceTree = "<group>"; };
 		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
@@ -286,13 +287,12 @@
 		0468C5FE22966E23008307D8 /* TopMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
 		0472831222B878F7002EF9E5 /* QRCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCaptureController.swift; sourceTree = "<group>"; };
 		04738B4D22818BD100758E56 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
-		04738B4F2282749C00758E56 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		04738B4F2282749C00758E56 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
 		047A2CA022AF7D130053D153 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		0480E35722E17605008E57E3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
-		04A4AF6722E95BBB00F08598 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
 		04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
 		04A551BB22A794E9007A17A3 /* 5_Token.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
@@ -394,7 +394,7 @@
 			files = (
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
-				04A4AF6922E95BC300F08598 /* pcwf.framework in Frameworks */,
+				041F9C8922F149590037BED7 /* pcwf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,12 +435,12 @@
 			path = PW;
 			sourceTree = "<group>";
 		};
-		04180DE022AE00B800AB3246 /* DataSources */ = {
+		04180DE022AE00B800AB3246 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
 				04116B312293DAAD00CFD921 /* MainAdapter.swift */,
 			);
-			path = DataSources;
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 		0429A6F7229248DD00E88ACF /* Cells */ = {
@@ -487,7 +487,7 @@
 		044BC53A22793D3F00FD7E5E = {
 			isa = PBXGroup;
 			children = (
-				04A4AF6722E95BBB00F08598 /* pcwf.framework */,
+				041F9C8722F149530037BED7 /* pcwf.framework */,
 				044BC54522793D3F00FD7E5E /* PlanetWallet */,
 				044BC54422793D3F00FD7E5E /* Products */,
 				A0315CB8F9480C007E773A4C /* Pods */,
@@ -567,7 +567,6 @@
 			children = (
 				042FF41022B34CDC00666DF9 /* Extension + Foundation */,
 				042FF40F22B34CC100666DF9 /* Extension + UIKit */,
-				04738B4F2282749C00758E56 /* ColorTheme.swift */,
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
 				0464BFBA22DC47B700D8087D /* Localization.swift */,
 				0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */,
@@ -638,7 +637,7 @@
 			isa = PBXGroup;
 			children = (
 				04D9D34922B1E44000B66E79 /* ViewModel */,
-				04180DE022AE00B800AB3246 /* DataSources */,
+				04180DE022AE00B800AB3246 /* Adapter */,
 				0468C5F522966D45008307D8 /* Popups */,
 				0429A6F7229248DD00E88ACF /* Cells */,
 				044BC5822279446E00FD7E5E /* MainController.swift */,
@@ -991,6 +990,7 @@
 		04FBFBA222E07DBD000F8E3C /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				04738B4F2282749C00758E56 /* ThemeManager.swift */,
 				04FBFBA322E07DE0000F8E3C /* SyncManager.swift */,
 				0416AE8F22E70E0E00009DCD /* BiometricManager.swift */,
 			);
@@ -1278,7 +1278,7 @@
 				044BC57D2279443800FD7E5E /* MnemonicImportController.swift in Sources */,
 				04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */,
 				04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */,
-				04738B502282749C00758E56 /* ColorTheme.swift in Sources */,
+				04738B502282749C00758E56 /* ThemeManager.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
