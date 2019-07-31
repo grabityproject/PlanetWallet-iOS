@@ -71,6 +71,7 @@ class MainController: PlanetWalletViewController {
                                                     clickTrigger: btnBottomLauncher,
                                                     delegate: self)
             bottomMenuLauncher?.labelError = labelError
+            bottomMenuLauncher?.planet = planet
             
             bottomMenuTokenView = BottomMenuTokenView()
             bottomMenuTokenView?.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)

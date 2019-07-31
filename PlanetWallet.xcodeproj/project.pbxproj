@@ -15,6 +15,7 @@
 		0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416AE8F22E70E0E00009DCD /* BiometricManager.swift */; };
 		041F9C8922F149590037BED7 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F9C8722F149530037BED7 /* pcwf.framework */; };
 		041F9C8A22F149590037BED7 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 041F9C8722F149530037BED7 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		041F9C8D22F1622A0037BED7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F9C8F22F1622A0037BED7 /* InfoPlist.strings */; };
 		04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */; };
 		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
 		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
@@ -205,6 +206,9 @@
 		04116B312293DAAD00CFD921 /* MainAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdapter.swift; sourceTree = "<group>"; };
 		0416AE8F22E70E0E00009DCD /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
 		041F9C8722F149530037BED7 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
+		041F9C8E22F1622A0037BED7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		041F9C9022F162300037BED7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		041F9C9122F162310037BED7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		04200F6422A66DDE00FE2A31 /* PlanetNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetNameController.swift; sourceTree = "<group>"; };
 		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
 				04CB760E22D43D8D00C20811 /* Localizable.strings */,
+				041F9C8F22F1622A0037BED7 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1094,6 +1099,7 @@
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
 				042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */,
+				041F9C8D22F1622A0037BED7 /* InfoPlist.strings in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
@@ -1340,6 +1346,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		041F9C8F22F1622A0037BED7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				041F9C8E22F1622A0037BED7 /* en */,
+				041F9C9022F162300037BED7 /* ko */,
+				041F9C9122F162310037BED7 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		04CB760E22D43D8D00C20811 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

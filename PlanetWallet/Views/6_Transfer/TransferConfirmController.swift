@@ -276,8 +276,8 @@ class TransferConfirmController: PlanetWalletViewController {
 
 extension TransferConfirmController: AdvancedGasViewDelegate {
     func didTouchedSave(_ gasPrice: Int) {
-        if let ethStr: String = Utils.shared.gweiToETH(gasPrice) {
-            self.gasFeeLb.text = "\(ethStr) ETH"
+        if let gasETH: Double = Utils.shared.gweiToETH(gasPrice) {
+            self.gasFee = gasETH
             self.isAdvancedGasOptions = true
         }
     }

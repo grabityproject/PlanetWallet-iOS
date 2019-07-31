@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  PlanetWallet
+
+  Created by grabity on 31/07/2019.
+  Copyright © 2019 grabity. All rights reserved.
+*/
+CFBundleDisplayName = "PlanetWallet";
+NSCameraUsageDescription = "QR 코드를 스캔하기 위하여 카메라 권한을 허용해주세요.";
+NSFaceIDUsageDescription = "로그인을 하기 위하여 권한을 허용해주세요.";
