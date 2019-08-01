@@ -42,10 +42,18 @@ class TransferAmountController: PlanetWalletViewController {
     
     var inputAmount = "" {
         didSet {
-            if let inputNum = Double(inputAmount) {
-                displayLb.text = inputAmount
+            displayLb.text = inputAmount
+            
+            if inputAmount == "0." {
+                fiatDisplayLb.text = "0"
+                fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
+                submitBtn.setEnabled(false, theme: currentTheme)
                 
-                if 0 <= inputNum && inputNum <= self.availableBalance {
+                return
+            }
+            
+            if let inputNum = Double(inputAmount) {
+                if 0 < inputNum && inputNum <= self.availableBalance {
                     //TODO: - Fiat Currency
                     let currency = inputNum * 1230
                     fiatDisplayLb.text = "\(currency)"
