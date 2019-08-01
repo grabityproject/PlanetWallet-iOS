@@ -17,7 +17,6 @@ class SplashController: PlanetWalletViewController {
     private var isSync = false
     
     private let animationView = AnimationView()
-    
     private var planet : Planet?
     
     //MARK: - Init
@@ -26,34 +25,12 @@ class SplashController: PlanetWalletViewController {
         SyncManager.shared.syncPlanet( self )
         
         APP_DELEGATE.messagingDelegates.append(self)
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print(error)
-            } else if let result = result {
-                if let fcmToken: String = Utils.shared.getDefaults(for: Keys.Userdefaults.FCM_TOKEN ){
-                    if fcmToken != result.token {
-                        Utils.shared.setDefaults(for: Keys.Userdefaults.FCM_TOKEN, value: result.token)
-                        Post(self).action(Route.URL("device","ios"), requestCode: 0, resultCode: 0, data: ["device_token":result.token]);
-                        return
-                    }
-                }else{
-                    Utils.shared.setDefaults(for: Keys.Userdefaults.FCM_TOKEN, value: result.token)
-                    Post(self).action(Route.URL("device","ios"), requestCode: 0, resultCode: 0, data: ["device_token":result.token]);
-                    return
-                }
-                
-                if let deviceKeyData = KeyStore.shared.getValue(key: Keys.Userdefaults.DEVICE_KEY),
-                    let deviceKey = String(data: deviceKeyData, encoding: .utf8)
-                {
-                    DEVICE_KEY = deviceKey
-                }
-            }
-        }
+        getDeviceKey()
     }
     
     override func viewInit() {
         super.viewInit()
-
+        
         switch currentTheme {
         case .DARK:         self.animationView.animation = Animation.named("splash_03_bk")
         case .LIGHT:        self.animationView.animation = Animation.named("splash_03_wh")
@@ -84,7 +61,33 @@ class SplashController: PlanetWalletViewController {
         }
     }
     
-    //MARK: - Private 
+    //MARK: - Private
+    private func getDeviceKey() {
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print(error)
+            } else if let result = result {
+                if let fcmToken: String = Utils.shared.getDefaults(for: Keys.Userdefaults.FCM_TOKEN ){
+                    if fcmToken != result.token {
+                        Utils.shared.setDefaults(for: Keys.Userdefaults.FCM_TOKEN, value: result.token)
+                        Post(self).action(Route.URL("device","ios"), requestCode: 0, resultCode: 0, data: ["device_token":result.token]);
+                        return
+                    }
+                }else{
+                    Utils.shared.setDefaults(for: Keys.Userdefaults.FCM_TOKEN, value: result.token)
+                    Post(self).action(Route.URL("device","ios"), requestCode: 0, resultCode: 0, data: ["device_token":result.token]);
+                    return
+                }
+                
+                if let deviceKeyData = KeyStore.shared.getValue(key: Keys.Userdefaults.DEVICE_KEY),
+                    let deviceKey = String(data: deviceKeyData, encoding: .utf8)
+                {
+                    DEVICE_KEY = deviceKey
+                }
+            }
+        }
+    }
+    
     private func moveEntryPoint() {
         
         if DEVICE_KEY == "" && isSync {

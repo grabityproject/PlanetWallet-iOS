@@ -48,6 +48,7 @@ class TransferAmountController: PlanetWalletViewController {
                 fiatDisplayLb.text = "0"
                 fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
                 submitBtn.setEnabled(false, theme: currentTheme)
+                
                 return
             }
             
@@ -79,7 +80,6 @@ class TransferAmountController: PlanetWalletViewController {
                 fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
                 submitBtn.setEnabled(false, theme: currentTheme)
             }
-            
         }
     }
     
