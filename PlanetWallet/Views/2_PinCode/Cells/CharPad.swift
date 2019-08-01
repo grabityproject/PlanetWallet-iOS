@@ -12,7 +12,7 @@ protocol CharPadDelegate: class {
     //Character Pad에서 버튼을 눌렀을 때
     func didTouchedCharPad(_ char: String)
     //Character Pad에서 delete버튼을 눌렀을 때 (isBack: 숫자패드로 돌아가는지)
-    func didTouchedDelete(_ isBack: Bool)
+    func didTouchedDelete()
 }
 
 class CharPad: UIView {
@@ -23,7 +23,6 @@ class CharPad: UIView {
     @IBOutlet var charBtnList: [PWButton]!
     
     private var charDataList = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","Y","X","Z"]
-    private var pw_char = ""
     
     
     override init(frame: CGRect) {
@@ -56,26 +55,13 @@ class CharPad: UIView {
         }
     }
     
-    public func resetPassword() {
-        pw_char = ""
-    }
-    
-    @IBAction func didTouchedCharPad(_ sender: UIButton) {
-        if pw_char.count > 1 { return }
-        else {
-            if let selectedChar = sender.titleLabel?.text {
-                delegate?.didTouchedCharPad(selectedChar)
-            }
+    @IBAction func didTouchedChar(_ sender: UIButton) {
+        if let selectedChar = sender.titleLabel?.text {
+            delegate?.didTouchedCharPad(selectedChar)
         }
     }
     
-    @IBAction func didTouchedDeleteBtnOnCharPad(_ sender: UIButton) {
-        if pw_char.count == 0 {
-            delegate?.didTouchedDelete(true)
-        }
-        else {
-            delegate?.didTouchedDelete(false)
-        }
-        
+    @IBAction func didTouchedDeleteBtn(_ sender: UIButton) {
+        delegate?.didTouchedDelete()
     }
 }

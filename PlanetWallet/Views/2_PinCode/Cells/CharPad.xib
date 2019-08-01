@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -73,7 +69,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="5Wo-IG-yNL"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="5Wo-IG-yNL"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSG-ob-lOb" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -91,7 +87,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="LXp-wX-RQY"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="LXp-wX-RQY"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXh-WF-WsP" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -109,7 +105,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="E7k-L0-PaP"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="E7k-L0-PaP"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsL-eo-Fha" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -127,7 +123,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="hma-OU-h5Q"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="hma-OU-h5Q"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-9n-p0Z" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -145,7 +141,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="4Zp-rA-TYm"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="4Zp-rA-TYm"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZP-uV-M4K" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -163,7 +159,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="Gj8-zh-gnw"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="Gj8-zh-gnw"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-Hw-KRD" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -181,7 +177,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="5Tu-Es-0z5"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="5Tu-Es-0z5"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -204,7 +200,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="rmh-cj-Xd6"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="rmh-cj-Xd6"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6j-rT-s42" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -222,7 +218,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="HDA-l2-00u"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="HDA-l2-00u"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scB-l6-Zoe" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -240,7 +236,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="nEQ-BI-7VP"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="nEQ-BI-7VP"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSR-BL-9gi" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -258,7 +254,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="bTE-wz-pFe"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="bTE-wz-pFe"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDR-gc-T3V" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -276,7 +272,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="L8X-PH-Rdv"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="L8X-PH-Rdv"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D5-kU-Xcm" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -294,7 +290,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="bna-58-baC"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="bna-58-baC"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtA-pH-8v1" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -312,7 +308,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="nxd-De-HrF"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="nxd-De-HrF"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -335,7 +331,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="3Ka-dS-x1a"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="3Ka-dS-x1a"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-jx-qYy" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -353,7 +349,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="TW0-Wx-dnz"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="TW0-Wx-dnz"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFd-lR-SZB" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -371,7 +367,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="oPb-XD-A3D"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="oPb-XD-A3D"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2C4-41-Va0" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -389,7 +385,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="wDj-DP-1Gm"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="wDj-DP-1Gm"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GR4-0W-N3F" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -407,7 +403,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="04h-CG-zQh"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="04h-CG-zQh"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXb-aH-Gkx" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -425,7 +421,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="rL6-rr-4P1"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="rL6-rr-4P1"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhe-D2-1t2" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -443,7 +439,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="y7d-TO-yPe"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="y7d-TO-yPe"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -473,7 +469,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="kA7-aZ-Ulr"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="kA7-aZ-Ulr"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-dE-ULi" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -491,7 +487,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="ifB-qP-KFT"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="ifB-qP-KFT"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6i-cS-mTe" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -509,7 +505,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="oI0-6n-fCL"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="oI0-6n-fCL"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-y5-sB6" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -527,7 +523,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="7wX-Go-I9K"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="7wX-Go-I9K"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-VN-v7V" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
@@ -545,7 +541,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="didTouchedCharPad:" destination="-1" eventType="touchUpInside" id="xrs-Lf-32U"/>
+                                        <action selector="didTouchedChar:" destination="-1" eventType="touchUpInside" id="xrs-Lf-32U"/>
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-Eo-8TS">
@@ -569,7 +565,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="didTouchedDeleteBtnOnCharPad:" destination="-1" eventType="touchUpInside" id="gpj-le-IB8"/>
+                                                <action selector="didTouchedDeleteBtn:" destination="-1" eventType="touchUpInside" id="gpj-le-IB8"/>
                                             </connections>
                                         </button>
                                     </subviews>

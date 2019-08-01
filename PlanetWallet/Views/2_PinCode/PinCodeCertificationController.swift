@@ -50,8 +50,11 @@ class PinCodeCertificationController: PlanetWalletViewController {
     //dismiss 과정에서 viewwillappear가 발동하여 문제됨
     var isBeingDismiss = false
     
+    var keyPadViewModel = KeyPadViewModel()
+    
     //MARK: - Init
     override func setData() {
+        
         charPad.delegate = self
         numPad.delegate = self
         
@@ -228,18 +231,16 @@ extension PinCodeCertificationController: CharPadDelegate {
         detailLb.textColor = currentTheme.errorText
         
         self.passwordStr = ""
-        self.charPad.resetPassword()
         
         showNumberPad(true)
         
     }
     
-    func didTouchedDelete(_ isBack: Bool) {
-        if isBack {
-            showNumberPad(true)
-            passwordStr = String(passwordStr.dropLast())
-        }
+    func didTouchedDelete() {
+        showNumberPad(true)
+        passwordStr = String(passwordStr.dropLast())
     }
 }
+
 
 

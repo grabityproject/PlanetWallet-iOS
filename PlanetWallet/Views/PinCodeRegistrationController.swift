@@ -152,7 +152,6 @@ class PinCodeRegistrationController: PlanetWalletViewController {
             detailLb.textColor = currentTheme.errorText
 
             self.pinView.setSelectedColor(0)
-            self.charPad.resetPassword()
             self.pinCode = ""
             
             showNumberPad(true)
@@ -182,11 +181,9 @@ extension PinCodeRegistrationController: CharPadDelegate {
         handleCompleteRegistration(pinCode)
     }
     
-    func didTouchedDelete(_ isBack: Bool) {
-        if isBack {
-            setNumberPad(position: 3)
-            pinCode = String(pinCode.dropLast())
-        }
+    func didTouchedDelete() {
+        setNumberPad(position: 3)
+        pinCode = String(pinCode.dropLast())
     }
     
     private func setNumberPad(position: Int = 0) {
