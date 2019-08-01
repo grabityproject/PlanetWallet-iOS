@@ -59,6 +59,20 @@ extension String {
     func index(at offset: Int) -> String.Index {
         return index(startIndex, offsetBy: offset)
     }
+    
+    func replace(target: String, withString: String) -> String {
+        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
+    }
+    
+    func leftPadding(toLength: Int, withPad character: Character) -> String {
+        let stringLength = count
+        if stringLength < toLength {
+            return String(repeatElement(character, count: toLength - stringLength)) + self
+        } else {
+            return String(suffix(toLength))
+        }
+    }
+
 }
 
 extension String {
