@@ -128,6 +128,11 @@ class TransferAmountController: PlanetWalletViewController {
         }
     }
     
+    deinit {
+        print("deinit TranfserConfirmController")
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

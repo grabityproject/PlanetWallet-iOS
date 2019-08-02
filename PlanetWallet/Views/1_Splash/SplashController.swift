@@ -10,6 +10,7 @@ import UIKit
 import Lottie
 import ObjectMapper
 import Firebase
+import BigInt
 
 class SplashController: PlanetWalletViewController {
     
@@ -23,6 +24,10 @@ class SplashController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         SyncManager.shared.syncPlanet( self )
+        
+        if let i:String = Utils.shared.ethToWEI(33.999) {
+            print("string \(i)")
+        }
         
         APP_DELEGATE.messagingDelegates.append(self)
         getDeviceKey()

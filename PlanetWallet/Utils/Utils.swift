@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import BigInt
+import EthereumKit
 
 struct Utils {
     
@@ -115,6 +116,7 @@ struct Utils {
     }
     
     //MARK: - Unit
+    //ETH <-> GWEI
     func gweiToETH(_ gwei: Int) -> Double {
         return Double(gwei) / pow(10, 9)
     }
@@ -143,6 +145,33 @@ struct Utils {
         
         return eth * pow(10, 9)
     }
+    
+    //ETH <-> WEI
+    func ethToWEI(_ eth: Double) -> BigInt? {
+        let wei = eth * pow(10, 18)
+        
+        return BigInt(exactly: wei)
+    }
+    
+    func ethToWEI(_ eth: Double) -> String? {
+        
+        if let wei: BigInt = ethToWEI(eth) {
+            return String(wei)
+        }
+        else {
+            return nil
+        }
+    }
+    
+//    func weiToETH(_ wei: Int) -> Double? {
+//        let eth = Double(wei) / pow(10, 18)
+//        
+//        let formatter = NumberFormatter()
+//        formatter.numberStyle = .decimal
+//        formatter.maximumFractionDigits = 18
+//        
+//        return formatter.number(from: "\(eth)") as? Double
+//    }
     
     //MARK: - Date
     func changeDateFormat(date: String, beforFormat: DateFormat, afterFormat: DateFormat) -> String? {

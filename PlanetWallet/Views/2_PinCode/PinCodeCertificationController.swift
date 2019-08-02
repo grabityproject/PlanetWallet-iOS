@@ -27,7 +27,14 @@ extension PinCodeCertificationController {
         }
     }
 }
+
+protocol PinCodeCertificationDelegate {
+    func didTransferCertificated(_ isSuccess: Bool)
+}
+
 class PinCodeCertificationController: PlanetWalletViewController {
+    
+    var delegate: PinCodeCertificationDelegate?
     
     private var passwordStr = "" {
         didSet {
@@ -141,8 +148,9 @@ class PinCodeCertificationController: PlanetWalletViewController {
             self.isBeingDismiss = true
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: userInfo)
         case .TRANSFER:
-            self.isBeingDismiss = true
-            sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_TX_RECEIPT, userInfo: self.userInfo)
+            dismiss(animated: true) {
+                self.delegate?.didTransferCertificated(true)
+            }
         case .MAIN:
             self.isBeingDismiss = true
             var info = userInfo
@@ -236,7 +244,7 @@ extension PinCodeCertificationController: CharPadDelegate {
         
     }
     
-    func didTouchedDelete() {
+    func didTouchedDeleteBtn() {
         showNumberPad(true)
         passwordStr = String(passwordStr.dropLast())
     }

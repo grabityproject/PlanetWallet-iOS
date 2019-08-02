@@ -63,7 +63,6 @@ struct Keys {
         static let PINCODE_CERTIFICATION_TO_REGISTRATION = "pincodecertification_to_pincoderegistration"
         static let PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT = "pincodecertification_to_mnemonicexport"
         static let PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT = "pincodecertification_to_privatekeyexport"
-        static let PINCODE_CERTIFICATION_TO_TX_RECEIPT = "pincodecertification_to_txreceipt"
         
         //WALLET ADD
         static let WALLET_IMPORT_TO_MNEMONIC_IMPORT = "walletimport_to_mnemonicImport"
@@ -113,5 +112,6 @@ struct Keys {
         static let TRANSFER_TO_TRANSFER_AMOUNT = "transfer_to_transferamount"
         static let TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM = "transferamount_to_transferconfirm"
         static let TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION = "transferconfirm_to_pincodecertification"
+        static let TRANSFER_CONFIRM_TO_TX_RECEIPT = "transferconfirm_to_txreceipt"
     }
 }

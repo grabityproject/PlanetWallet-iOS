@@ -62,6 +62,8 @@ class TransferConfirmController: PlanetWalletViewController {
     
     @IBOutlet var confirmBtn: PWButton!
     
+    public var isSuccessToCertification = false
+    
     var coinType = CoinType.ETH
     var gas: GasInfo?
     var gasFee: Double = 0.0 {
@@ -122,6 +124,7 @@ class TransferConfirmController: PlanetWalletViewController {
     var advancedGasPopup = AdvancedGasView()
     
     var planet: Planet?
+    var toPlanet: Planet?
     var erc20: ERC20?
     var transferAmount = 0.0
     var availableAmount = 0.0
@@ -146,6 +149,7 @@ class TransferConfirmController: PlanetWalletViewController {
         {
             self.planet = fromPlanet
             self.transferAmount = amount
+            self.toPlanet = toPlanet
             
             if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
                 let balance = Double(erc20.balance ?? "0")
@@ -201,18 +205,22 @@ class TransferConfirmController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
-        
         Get(self).action(Route.URL("gas"))
     }
     
+    var certificationVC: PinCodeCertificationController?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION {
+            certificationVC = segue.destination as? PinCodeCertificationController
+            certificationVC?.delegate = self
+        }
+    }
     
     //MARK: - IBAction
     @IBAction func didTouchedConfirm(_ sender: UIButton) {
-        let segueID = Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION
-        userInfo?[Keys.UserInfo.fromSegue] = segueID
-        userInfo?[Keys.UserInfo.gasFee] = gasFeeLb.text
-        
-        sendAction(segue: segueID, userInfo: self.userInfo)
+        sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION,
+                   userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION])
     }
     
     @IBAction func didChanged(_ sender: PWSlider) {
@@ -242,6 +250,75 @@ class TransferConfirmController: PlanetWalletViewController {
             self.isAdvancedGasOptions = true
             self.resetBtn.isHidden = true
         }
+        
+    }
+    
+    private func sendTransaction() {
+        guard let selectedPlanet = self.planet,
+            let fromAddress = selectedPlanet.address,
+            let toAddress = toPlanet?.address else { return }
+        
+        var item: MainItem?
+        var coinType = ""
+        var amount = ""
+        var gasPrice = ""
+        var gasLimit = ""
+        
+        if let erc20 = erc20 {
+            item = erc20
+            if let erc20Symbol = erc20.symbol {
+                coinType = erc20Symbol
+            }
+        }
+        else {
+            if let coinSymbol = selectedPlanet.symbol {
+                coinType = coinSymbol
+            }
+            if self.coinType.coinType == CoinType.ETH.coinType {
+                item = selectedPlanet.items?.first as! ETH
+            }
+            else if self.coinType.coinType == CoinType.BTC.coinType {
+                item = selectedPlanet.items?.first as! BTC
+            }
+        }
+        
+        guard let transferItem = item else { return }
+        
+        print("coin Type : \(coinType)")
+        guard let amountWEI:String = Utils.shared.ethToWEI(transferAmount),
+            let gasPriceWEI: String = Utils.shared.ethToWEI(gasFee) else { return }
+        
+        print("amount of transfer : \(amountWEI)")
+        amount = amountWEI
+        print("gas price : \(gasPriceWEI)")
+        gasPrice = gasPriceWEI
+        
+        if isAdvancedGasOptions {
+            gasLimit = advancedGasPopup.gasLimit
+        }
+        else {
+            gasLimit = "\(GasInfo.DEFAULT_GAS_LIMIT)"
+        }
+        
+        print("gas limit : \(gasLimit)")
+        
+        let tx = Transaction( transferItem )
+            .deviceKey(DEVICE_KEY)
+            .from(fromAddress)
+            .to(toAddress)
+            .value(amount)
+            .gasPrice(gasPrice)
+            .gasLimit(gasLimit)
+        
+        tx.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
+            (success, rawTx) in
+            print(rawTx)
+            Post(self).action(Route.URL("transfer", "ETH"),
+                              requestCode: 100,
+                              resultCode: 100,
+                              data: ["serializeTx":rawTx],
+                              extraHeaders: ["device-key":DEVICE_KEY] );
+        });
         
     }
     
@@ -287,6 +364,14 @@ extension TransferConfirmController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
             navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
+extension TransferConfirmController: PinCodeCertificationDelegate {
+    func didTransferCertificated(_ isSuccess: Bool) {
+        if isSuccess {
+            self.sendTransaction()
         }
     }
 }

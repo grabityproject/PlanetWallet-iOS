@@ -290,7 +290,6 @@
                         <segue destination="TTs-8X-dJK" kind="show" identifier="pincodecertification_to_pincoderegistration" id="f9N-gD-wbp"/>
                         <segue destination="aAK-og-Lal" kind="presentation" identifier="pincodecertification_to_mnemonicexport" modalPresentationStyle="fullScreen" id="oQS-nA-k7l"/>
                         <segue destination="8oz-5I-Pja" kind="presentation" identifier="pincodecertification_to_privatekeyexport" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="j75-8V-mct"/>
-                        <segue destination="PcL-wW-2bT" kind="presentation" identifier="pincodecertification_to_txreceipt" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="GVR-7J-VYr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UT-ZS-r2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,14 +327,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7c-fx-uQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1371" y="248"/>
-        </scene>
-        <!--TxReceiptController-->
-        <scene sceneID="oAP-kn-VaF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="6_Transfer" referencedIdentifier="TxReceiptController" id="PcL-wW-2bT" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xf7-6T-2J8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1350" y="369"/>
         </scene>
     </scenes>
     <resources>

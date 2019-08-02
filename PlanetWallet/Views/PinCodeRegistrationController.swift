@@ -181,7 +181,7 @@ extension PinCodeRegistrationController: CharPadDelegate {
         handleCompleteRegistration(pinCode)
     }
     
-    func didTouchedDelete() {
+    func didTouchedDeleteBtn() {
         setNumberPad(position: 3)
         pinCode = String(pinCode.dropLast())
     }

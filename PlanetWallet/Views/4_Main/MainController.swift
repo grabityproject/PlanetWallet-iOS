@@ -204,11 +204,9 @@ class MainController: PlanetWalletViewController {
                 countDown = selectPlanet.items!.count;
                 selectPlanet.items?.forEach({ (item) in
                     if item.getCoinType() == CoinType.ETH.coinType {
-                        print("get ETH balance")
                         Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     else { //ERC20
-                        print("get ERC20 balance")
                         let erc20 = item as? ERC20
                         Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
@@ -218,7 +216,6 @@ class MainController: PlanetWalletViewController {
             }
             else if coinTypeInt == CoinType.BTC.coinType {
                 Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
-                print("get \(cointype) balance")
             }
         }
     }
@@ -380,6 +377,10 @@ class MainController: PlanetWalletViewController {
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         
+        if requestCode == 1 {
+            countDown -= 1
+        }
+        
         guard let selectedPlanet = planet else { return }
         
         if success {
@@ -405,7 +406,6 @@ class MainController: PlanetWalletViewController {
                     }
                 }
                 else if requestCode == 1 {
-                    countDown -= 1
                     
                     if let items = selectedPlanet.items, let planet = Planet(JSON: resultObj) {
                         if let eth = items[resultCode] as? ETH, let balance = planet.balance {
@@ -583,6 +583,7 @@ extension MainController: TopMenuLauncherDelegate {
 extension MainController: BottomMenuDelegate {
     func didTouchedSend() {
         bottomMenuLauncher?.hide()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             guard let selectedPlanet = self.planet else { return }
             self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
@@ -600,6 +601,26 @@ extension MainController: BottomMenuDelegate {
 extension MainController: BottomMenuTokenDelegate {
     func didTouchedTokenSend() {
         guard let selectedERC20 = bottomMenuTokenView?.erc20 else { return }
+        
+//        guard let selectedPlanet = self.planet else { return }
+//
+//        let tx = Transaction( selectedERC20 )
+//            .deviceKey(DEVICE_KEY)
+//            .from(selectedPlanet.address!)
+//            .to("0x0e37Ec5eFFEAB3836D761765656509A7Cf8077F0")
+//            .value("1000000000000000000")
+//            .gasPrice("9000000000")
+//            .gasLimit("100000")
+//
+//        tx.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
+//            (success, rawTx) in
+//            print(rawTx)
+//            //            Post(self).action(Route.URL("transfer", selectedERC20.symbol),
+//            //                              requestCode: 100,
+//            //                              resultCode: 100,
+//            //                              data: ["serializeTx":rawTx],
+//            //                              extraHeaders: ["device-key":DEVICE_KEY] );
+//        });
         
         bottomMenuTokenView?.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

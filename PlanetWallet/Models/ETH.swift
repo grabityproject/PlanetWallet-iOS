@@ -25,6 +25,11 @@ class ETH: MainItem {
         self.address = address
     }
     
+    init() {
+        self.keyId = ""
+        self.address = ""
+    }
+    
     func getCoinType() -> Int {
         return CoinType.ETH.coinType
     }

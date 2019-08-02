@@ -12,7 +12,7 @@ protocol CharPadDelegate: class {
     //Character Pad에서 버튼을 눌렀을 때
     func didTouchedCharPad(_ char: String)
     //Character Pad에서 delete버튼을 눌렀을 때 (isBack: 숫자패드로 돌아가는지)
-    func didTouchedDelete()
+    func didTouchedDeleteBtn()
 }
 
 class CharPad: UIView {
@@ -62,6 +62,6 @@ class CharPad: UIView {
     }
     
     @IBAction func didTouchedDeleteBtn(_ sender: UIButton) {
-        delegate?.didTouchedDelete()
+        delegate?.didTouchedDeleteBtn()
     }
 }
