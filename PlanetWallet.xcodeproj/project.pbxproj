@@ -163,6 +163,8 @@
 		04ED3318227C356C0092075E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3317227C356C0092075E /* GradientView.swift */; };
 		04ED33212281506C0092075E /* TokenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ED33202281506C0092075E /* TokenCell.xib */; };
 		04ED3323228150800092075E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3322228150800092075E /* TokenCell.swift */; };
+		04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289B22F7D6DD00E88A54 /* GasInfo.swift */; };
+		04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* TransactionFee.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
 		04F61DD722CB229B00D6759A /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F61DD622CB229B00D6759A /* Base58.swift */; };
 		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
@@ -378,6 +380,8 @@
 		04ED3317227C356C0092075E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		04ED33202281506C0092075E /* TokenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenCell.xib; sourceTree = "<group>"; };
 		04ED3322228150800092075E /* TokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
+		04EE289B22F7D6DD00E88A54 /* GasInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasInfo.swift; sourceTree = "<group>"; };
+		04EE289D22F7D6E500E88A54 /* TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFee.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		04F61DD622CB229B00D6759A /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
@@ -701,6 +705,7 @@
 		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				04EE289A22F7D6CD00E88A54 /* Models */,
 				04A4AF6B22E9B0E000F08598 /* Adapter */,
 				04E0B53F22B9E13000E1C3E0 /* Popups */,
 				04BA0B0822B7621100A25A93 /* Cells */,
@@ -991,6 +996,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		04EE289A22F7D6CD00E88A54 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04EE289B22F7D6DD00E88A54 /* GasInfo.swift */,
+				04EE289D22F7D6E500E88A54 /* TransactionFee.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		04FBCA44229E5B7A00DEEDD9 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1265,7 @@
 				04D3A0DC22B0D26200E54E96 /* FMDatabasePool.m in Sources */,
 				04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */,
 				04D3A0E222B0D3AE00E54E96 /* DBManager.swift in Sources */,
+				04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */,
 				044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */,
 				040CCD5F22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift in Sources */,
 				04D359EE22A74FD700BA2182 /* ERC20.swift in Sources */,
@@ -1314,6 +1329,7 @@
 				04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */,
 				04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */,
 				04738B502282749C00758E56 /* ThemeManager.swift in Sources */,
+				04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,

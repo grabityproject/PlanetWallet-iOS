@@ -34,8 +34,9 @@ class TxReceiptController: PlanetWalletViewController {
         if let userInfo = userInfo,
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
+            let txHash = userInfo[Keys.UserInfo.txHash] as? String,
             let amount = userInfo[Keys.UserInfo.transferAmount] as? Double,
-            let gasFee = userInfo[Keys.UserInfo.gasFee] as? String
+            let gasFee = userInfo[Keys.UserInfo.gasFee] as? Double
         {
             if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20 {
                 mainAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
@@ -71,9 +72,9 @@ class TxReceiptController: PlanetWalletViewController {
             }
             
             fromPlanetNameLb.text = fromPlanet.name ?? ""
-            gasFeeLb.text = gasFee
+            gasFeeLb.text = "\(gasFee)"//gasFee
             dateLb.text = Utils.shared.getStringFromDate(Date(), format: .yyyyMMddHHmmss)
-            txHashValueLb.attributedText = NSAttributedString(string: "0x1507f1c7fba98b4ab985a4de07fd476920009a94401641b68249deec0f077cf7",
+            txHashValueLb.attributedText = NSAttributedString(string: txHash,
                                                               attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
                                                                            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         }

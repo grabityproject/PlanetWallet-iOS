@@ -148,9 +148,8 @@ class PinCodeCertificationController: PlanetWalletViewController {
             self.isBeingDismiss = true
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_PRIVATEKEY_EXPORT, userInfo: userInfo)
         case .TRANSFER:
-            dismiss(animated: true) {
-                self.delegate?.didTransferCertificated(true)
-            }
+            self.delegate?.didTransferCertificated(true)
+            dismiss(animated: true, completion: nil)
         case .MAIN:
             self.isBeingDismiss = true
             var info = userInfo

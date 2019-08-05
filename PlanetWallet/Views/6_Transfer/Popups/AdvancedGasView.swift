@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Int)
+    func didTouchedSave(_ gasPrice: Int, gasLimit: Int)
 }
 
 class AdvancedGasView: UIView {
@@ -46,7 +46,7 @@ class AdvancedGasView: UIView {
                 if let gasLimitStr = gasLimitBtn.titleLabel?.text {
                     self.inputText = gasLimitStr
                 }
-                
+
                 self.gasLimitContainer.layer.borderColor = UIColor.black.cgColor
                 self.gasPriceContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
                 self.gasPriceBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
@@ -55,9 +55,9 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var inputText = "\(AdvancedGasView.DEFAULT_GAS_PRICE)" {
+    var inputText = "\(GasInfo.DEFAULT_GAS_PRICE)" {
         didSet {
-            print(inputText)
+
             if hasGasPriceFocus {
                 gasPrice = inputText
             }
@@ -67,7 +67,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var gasPrice: String = "\(AdvancedGasView.DEFAULT_GAS_PRICE)" {
+    var gasPrice: String = "\(GasInfo.DEFAULT_GAS_PRICE)" {
         didSet {
             self.gasPriceBtn.setTitle(inputText, for: .normal)
             if let gas = Int(gasPrice), let limit = Int(gasLimit) {
@@ -76,7 +76,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var gasLimit: String = "\(AdvancedGasView.DEFAULT_GAS_LIMIT)" {
+    var gasLimit: String = "\(21000)" {
         didSet {
             self.gasLimitBtn.setTitle(inputText, for: .normal)
             if let gas = Int(gasPrice), let limit = Int(gasLimit) {
@@ -85,8 +85,27 @@ class AdvancedGasView: UIView {
         }
     }
     
-    static let DEFAULT_GAS_PRICE = 20
-    static let DEFAULT_GAS_LIMIT = 21000
+    public var gasInfo: GasInfo? {
+        didSet {
+            if let gas = self.gasInfo {
+                gasLimit = "\(gas.advancedGasLimit)"
+                self.gasLimitBtn.setTitle(gasLimit, for: .normal)
+            }
+        }
+    }
+    
+//    public var isERC20 = false {
+//        didSet {
+//            gasLimit = "\(DEFAULT_GAS_LIMIT)"
+//            self.gasLimitBtn.setTitle("\(self.DEFAULT_GAS_LIMIT)", for: .normal)
+//        }
+//    }
+    
+//    static let DEFAULT_GAS_PRICE = 20
+//    var DEFAULT_GAS_LIMIT: Int {
+//        if isERC20 { return 100000 }
+//        else { return 21000 }
+//    }
     
     var drawerPanGesture: UIPanGestureRecognizer!
     var backgroundPanGesture: UIPanGestureRecognizer!
@@ -146,10 +165,12 @@ class AdvancedGasView: UIView {
     }
     
     public func reset() {
-        self.gasPriceBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_PRICE)", for: .normal)
-        self.gasLimitBtn.setTitle("\(AdvancedGasView.DEFAULT_GAS_LIMIT)", for: .normal)
-        self.hasGasPriceFocus = true
-        self.inputText = "\(AdvancedGasView.DEFAULT_GAS_PRICE)"
+        if let gasInfo = gasInfo {
+            self.gasPriceBtn.setTitle("\(GasInfo.DEFAULT_GAS_PRICE)", for: .normal)
+            self.gasLimitBtn.setTitle("\(gasInfo.advancedGasLimit)", for: .normal)
+            self.hasGasPriceFocus = true
+            self.inputText = "\(GasInfo.DEFAULT_GAS_PRICE)"
+        }
     }
     
     //MARK: - Private
@@ -175,11 +196,12 @@ class AdvancedGasView: UIView {
             Toast(text: "fee_popup_not_spaces_title".localized).show()
         }
         
-        if let gas = Int(gasPrice),
+        if let gasInfo = gasInfo,
+            let gas = Int(gasPrice),
             let limit = Int(gasLimit)
         {
-            if gas > 0 && limit >= AdvancedGasView.DEFAULT_GAS_LIMIT {
-                delegate?.didTouchedSave(calculateGasPrice(gas: gas, limit: limit))
+            if gas > 0 && limit >= gasInfo.advancedGasLimit {
+                delegate?.didTouchedSave(gas, gasLimit: limit)
                 self.hide()
             }
             else if gas < 1 {

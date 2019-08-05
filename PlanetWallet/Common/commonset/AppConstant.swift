@@ -33,6 +33,7 @@ struct Keys {
         static let toPlanet = "toPlanet"
         static let transferAmount = "transferAmount"
         static let gasFee = "gasFee"
+        static let txHash = "txHash"
         static let universe = "universe"
     }
     

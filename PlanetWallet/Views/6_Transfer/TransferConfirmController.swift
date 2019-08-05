@@ -8,42 +8,12 @@
 
 import UIKit
 
-extension TransferConfirmController {
-    struct GasInfo {
-        enum Step: Int {
-            case SAFE_LOW = 0
-            case AVERAGE = 4
-            case FAST = 8
-            case FASTEST = 12
-        }
-        
-        //Network를 통해 Transaction fee를 가져오지 못했을 경우 default value
-        static let DEFAULT_GAS_PRICE = 20
-        static let DEFAULT_GAS_LIMIT = 100000
-        
-        public var safeLow: Int = 0
-        public var average: Int = 0
-        public var fast: Int = 0
-        public var fastest: Int = 0
-
-        public func getGas(step: GasInfo.Step) -> Int {
-            switch step {
-            case .SAFE_LOW:     return self.safeLow
-            case .AVERAGE:      return self.average
-            case .FAST:         return self.fast
-            case .FASTEST:      return self.fastest
-            }
-        }
-    }
-}
-
-
 class TransferConfirmController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var fromLb: PWLabel!
-    @IBOutlet var gasFeeLb: PWLabel!
+    @IBOutlet var transactionFeeLb: PWLabel!
     @IBOutlet var transferAmountLb: PWLabel!
     @IBOutlet var transferAmountMainLb: PWLabel!
     
@@ -66,20 +36,20 @@ class TransferConfirmController: PlanetWalletViewController {
     
     var coinType = CoinType.ETH
     var gas: GasInfo?
-    var gasFee: Double = 0.0 {
+    var transactionFee: Double = 0.0 {
         didSet {
             guard let planet = self.planet else { return }
             
-            if let _ = self.erc20 {
+            if isToken {
                 
-                gasFeeLb.text = "\(gasFee.toString()) ETH"
+                transactionFeeLb.text = "\(transactionFee.toString()) ETH"
                 
                 guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else {
                     confirmBtn.setEnabled(false, theme: currentTheme)
                     return
                 }
                 
-                if self.availableAmount >= transferAmount && ethBalance >= self.gasFee {
+                if self.availableAmount >= transferAmount && ethBalance >= self.transactionFee {
                     confirmBtn.setEnabled(true, theme: currentTheme)
                 }
                 else {
@@ -88,9 +58,9 @@ class TransferConfirmController: PlanetWalletViewController {
             }
             else {
                 if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
-                    gasFeeLb.text = "\(gasFee.toString()) \(coinType.defaultUnit ?? "")"
+                    transactionFeeLb.text = "\(transactionFee.toString()) \(coinType.defaultUnit ?? "")"
                     
-                    let totalAmount = self.transferAmount + self.gasFee
+                    let totalAmount = self.transferAmount + self.transactionFee
                     if self.availableAmount >= totalAmount {
                         confirmBtn.setEnabled(true, theme: currentTheme)
                     }
@@ -106,16 +76,16 @@ class TransferConfirmController: PlanetWalletViewController {
         didSet {
             slider.value = Float(gasStep.rawValue)
 
-            if let gasGWEI = self.gas?.getGas(step: self.gasStep),
-                let gasETH: Double = Utils.shared.gweiToETH(gasGWEI)
-            {
-                gasFee = gasETH
+            if let transactionFee = self.gas?.getTransactionFee(step: self.gasStep),
+                let gasETH: Double = transactionFee.getFeeETH() {
+                self.transactionFee = gasETH
             }
         }
     }
     
     var isAdvancedGasOptions = false {
         didSet {
+            if self.isAdvancedGasOptions { gasStep = .ADVANCED }
             gasContainer.isHidden = isAdvancedGasOptions
             resetBtn.isHidden = !isAdvancedGasOptions
         }
@@ -128,6 +98,15 @@ class TransferConfirmController: PlanetWalletViewController {
     var erc20: ERC20?
     var transferAmount = 0.0
     var availableAmount = 0.0
+    
+    private var isToken: Bool {
+        if let _ = erc20 {
+            return true
+        }
+        else {
+            return false
+        }
+    }
     
     //MARK: - Init
     override func viewInit() {
@@ -159,7 +138,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 self.availableAmount = balance
                 
                 naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, erc20.name ?? "")
-                    
+                
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
@@ -244,9 +223,9 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Private
     //수수료를 네트워크에서 못 가져 왔을 경우
     private func setDefaultAdvancedGasFee() {
-        let transactionFee = Int(Double(GasInfo.DEFAULT_GAS_PRICE) * Double(GasInfo.DEFAULT_GAS_LIMIT))
+        let transactionFee = Int(Double(GasInfo.DEFAULT_GAS_PRICE) * Double(GasInfo.DEFAULT_GAS_LIMIT_ERC20))
         if let ethTxFee: Double = Utils.shared.gweiToETH(transactionFee) {
-            self.gasFee = ethTxFee
+            self.transactionFee = ethTxFee
             self.isAdvancedGasOptions = true
             self.resetBtn.isHidden = true
         }
@@ -256,7 +235,8 @@ class TransferConfirmController: PlanetWalletViewController {
     private func sendTransaction() {
         guard let selectedPlanet = self.planet,
             let fromAddress = selectedPlanet.address,
-            let toAddress = toPlanet?.address else { return }
+            let toAddress = toPlanet?.address,
+            let gasInfo = gas else { return }
         
         var item: MainItem?
         var coinType = ""
@@ -284,22 +264,24 @@ class TransferConfirmController: PlanetWalletViewController {
         
         guard let transferItem = item else { return }
         
-        print("coin Type : \(coinType)")
-        guard let amountWEI:String = Utils.shared.ethToWEI(transferAmount),
-            let gasPriceWEI: String = Utils.shared.ethToWEI(gasFee) else { return }
         
-        print("amount of transfer : \(amountWEI)")
+        guard let amountWEI:String = Utils.shared.ethToWEI(transferAmount),
+            let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
+        
         amount = amountWEI
-        print("gas price : \(gasPriceWEI)")
-        gasPrice = gasPriceWEI
+        gasPrice = "\(transactionFee.getGasPriceWEI())"
         
         if isAdvancedGasOptions {
-            gasLimit = advancedGasPopup.gasLimit
+            gasLimit = "\(gasInfo.advancedGasLimit)"
         }
         else {
-            gasLimit = "\(GasInfo.DEFAULT_GAS_LIMIT)"
+            gasLimit = "\(gasInfo.getTransactionFee(step: self.gasStep).gasLimit)"
         }
         
+        print("-----------Tx------------")
+        print("coin Type : \(coinType)")
+        print("amount of transfer : \(amountWEI)")
+        print("gas price : \(transactionFee.getGasPriceWEI())")
         print("gas limit : \(gasLimit)")
         
         let tx = Transaction( transferItem )
@@ -312,12 +294,17 @@ class TransferConfirmController: PlanetWalletViewController {
         
         tx.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
             (success, rawTx) in
-            print(rawTx)
-            Post(self).action(Route.URL("transfer", "ETH"),
-                              requestCode: 100,
-                              resultCode: 100,
-                              data: ["serializeTx":rawTx],
-                              extraHeaders: ["device-key":DEVICE_KEY] );
+            if success {
+                print("rawTx : \(rawTx)")
+                Post(self).action(Route.URL("transfer", "ETH"),
+                                  requestCode: 100,
+                                  resultCode: 100,
+                                  data: ["serializeTx":rawTx],
+                                  extraHeaders: ["device-key":DEVICE_KEY] )
+            }
+            else {
+                print("failed to transfer Tx")
+            }
         });
         
     }
@@ -326,36 +313,68 @@ class TransferConfirmController: PlanetWalletViewController {
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary,
             let resultVO = ReturnVO(JSON: dict),
-            let item = resultVO.result as? Dictionary<String, String>,
-            let safeLowStr = item["safeLow"],
-            let averageStr = item["standard"],
-            let fastStr = item["fast"],
-            let fastestStr = item["fastest"]
-            else
+            let item = resultVO.result as? Dictionary<String, String> else
         {
-            setDefaultAdvancedGasFee()
+            if requestCode == 0 && resultCode == 0 {
+                setDefaultAdvancedGasFee()
+            }
+            print(dictionary ?? "failed to response network")
             return
         }
         
-        if let safeLow = Double(safeLowStr),
-            let average = Double(averageStr),
-            let fast = Double(fastStr),
-            let fastest = Double(fastestStr)
-        {
-            self.gas = GasInfo(safeLow: Int(safeLow * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               average: Int(average * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               fast: Int(fast * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)),
-                               fastest: Int(fastest * Double(AdvancedGasView.DEFAULT_GAS_LIMIT)))
-            self.gasStep = .AVERAGE
+        if requestCode == 0 && resultCode == 0 {    //Gas response
+            
+            if let safeLowStr = item["safeLow"],
+                let averageStr = item["standard"],
+                let fastStr = item["fast"],
+                let fastestStr = item["fastest"],
+                let safeLow = Double(safeLowStr),
+                let average = Double(averageStr),
+                let fast = Double(fastStr),
+                let fastest = Double(fastestStr)
+            {
+                var gasLimit = 100000
+                if isToken == false {
+                    gasLimit = 21000
+                }
+                self.gas = GasInfo(isToken: self.isToken,
+                                   safeLow: safeLow,
+                                   average: average,
+                                   fast: fast,
+                                   fastest: fastest,
+                                   advancedGasPrice: Double(GasInfo.DEFAULT_GAS_PRICE),
+                                   advancedGasLimit: gasLimit)
+                self.gasStep = .AVERAGE
+                self.advancedGasPopup.gasInfo = self.gas
+            }
+            else {
+                setDefaultAdvancedGasFee()
+                return
+            }
+        }
+        else if requestCode == 100 && resultCode == 100 {   //Tx response
+            
+            guard let txHash = item[Keys.UserInfo.txHash], let planet = planet, let toPlanet = toPlanet else { return }
+            print("Tx hash : \(txHash)")
+            print("-------------------------\n")
+            sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT, userInfo: [Keys.UserInfo.txHash : txHash,
+                                                                                    Keys.UserInfo.planet : planet,
+                                                                                    Keys.UserInfo.erc20 : erc20 as Any,
+                                                                                    Keys.UserInfo.transferAmount : self.transferAmount,
+                                                                                    Keys.UserInfo.gasFee : gas?.getTransactionFee(step: self.gasStep).getFeeETH() as Any,
+                                                                                    Keys.UserInfo.toPlanet : toPlanet])
         }
     }
 }
 
 extension TransferConfirmController: AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Int) {
-        if let gasETH: Double = Utils.shared.gweiToETH(gasPrice) {
-            self.gasFee = gasETH
-            self.isAdvancedGasOptions = true
+    func didTouchedSave(_ gasPrice: Int, gasLimit: Int) {
+        self.gas?.advancedGasPrice = Double(gasPrice)
+        self.gas?.advancedGasLimit = gasLimit
+        self.isAdvancedGasOptions = true
+        if let transactionFee = gas?.getTransactionFee(step: .ADVANCED),
+            let feeETH: Double = transactionFee.getFeeETH() {
+            self.transactionFee = feeETH
         }
     }
 }
