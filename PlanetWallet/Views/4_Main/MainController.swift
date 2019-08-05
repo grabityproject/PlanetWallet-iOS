@@ -164,7 +164,7 @@ class MainController: PlanetWalletViewController {
     }
     
     @objc func refreshed() {
-        isSyncing = true
+        
         getBalance()
         SyncManager.shared.syncPlanet(self)
     }
@@ -194,21 +194,27 @@ class MainController: PlanetWalletViewController {
     var countDown = 0
     
     private func getBalance() {
-        guard let selectPlanet = planet else { return }
+        
+        if isSyncing { return } //balance를 받는 중이면 중복 request를 보내지 않는다.
+        
+        guard let selectPlanet = planet, let selectedIdx = selectPlanet._id else { return }
         
         if let coinTypeInt = self.planet?.coinType {
             let cointype = CoinType.of(coinTypeInt).name
             
             var idx = 0
+            isSyncing = true
+            
             if coinTypeInt == CoinType.ETH.coinType {
+                
                 countDown = selectPlanet.items!.count;
                 selectPlanet.items?.forEach({ (item) in
                     if item.getCoinType() == CoinType.ETH.coinType {
-                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     else { //ERC20
                         let erc20 = item as? ERC20
-                        Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: 1, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                        Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                     }
                     
                     idx += 1
@@ -290,7 +296,8 @@ class MainController: PlanetWalletViewController {
                     // Get tx/list/BTC/{planetOrAddress}
                     selectPlanet.items = [BTC()]
                     
-                }else if( coinType == CoinType.ETH.coinType ){
+                }
+                else if( coinType == CoinType.ETH.coinType ) {
                     if let keyId = selectPlanet.keyId, let ethAddr = selectPlanet.address{
                         selectPlanet.items = ERC20Store.shared.list(keyId, false)
                         selectPlanet.items?.insert(ETH(keyId,
@@ -306,7 +313,7 @@ class MainController: PlanetWalletViewController {
                 mainAdapter = MainAdapter(tableView, [MainItem]())
             }
             
-            if let adapter = mainAdapter, let items = selectPlanet.items{
+            if let adapter = mainAdapter, let items = selectPlanet.items {
                 adapter.dataSetNotify(items)
             }
         }
@@ -377,66 +384,66 @@ class MainController: PlanetWalletViewController {
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         
-        if requestCode == 1 {
+        guard let selectedPlanet = planet, let selectedIdx = selectedPlanet._id else { return }
+        
+        if requestCode >= 1 && selectedIdx == requestCode {
             countDown -= 1
         }
         
-        guard let selectedPlanet = planet else { return }
+        guard let dict = dictionary, let resultObj = dict["result"] as? [String:Any] else { return }
+        guard success else { return }
         
-        if success {
-            if let dict = dictionary, let resultObj = dict["result"] as? [String:Any] {
-                
-                if requestCode == 0 {
-                    
-                    let planet = Planet(JSON: resultObj)
-                    selectedPlanet.balance = planet?.balance
-                    bottomMenuBalanceLb.text = planet?.balance
-                    
-                    //TODO: - BTC
-                    if let type = self.planet?.coinType {
-                        if type == CoinType.BTC.coinType {
-                            isSyncing = false
-                            if tableView.isDragging {
-                                isScrollingOnSyncing = true
-                            }
-                            else {
-                                hideRefreshContents()
-                            }
-                        }
+        if requestCode == 0 {   //BTC
+            
+            let planet = Planet(JSON: resultObj)
+            selectedPlanet.balance = planet?.balance
+            bottomMenuBalanceLb.text = planet?.balance
+            
+            //TODO: - BTC
+            if let type = self.planet?.coinType {
+                if type == CoinType.BTC.coinType {
+                    isSyncing = false
+                    if tableView.isDragging {
+                        isScrollingOnSyncing = true
                     }
-                }
-                else if requestCode == 1 {
-                    
-                    if let items = selectedPlanet.items, let planet = Planet(JSON: resultObj) {
-                        if let eth = items[resultCode] as? ETH, let balance = planet.balance {
-                            eth.balance = balance
-                            selectedPlanet.balance = balance
-                            bottomMenuBalanceLb.text = balance
-                        }
-                        else if let erc20 = items[resultCode] as? ERC20 {
-                            erc20.balance = planet.balance
-                        }
-                        
-                        if( countDown == 0 ) {
-                            isSyncing = false
-                            if tableView.isDragging {
-                                isScrollingOnSyncing = true
-                            }
-                            else {
-                                hideRefreshContents()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    self.mainAdapter?.dataSetNotify(items)
-                                }
-                            }
-                        }
-                        
+                    else {
+                        hideRefreshContents()
                     }
                 }
             }
         }
-        
-        
+        else if requestCode >= 1 {  //ETH || ERC20
+            
+            guard let items = selectedPlanet.items,
+                let planet = Planet(JSON: resultObj) else { return }
+            
+            if selectedIdx != requestCode { return }
+            
+            if let eth = items[resultCode] as? ETH, let balance = planet.balance {
+                eth.balance = balance
+                selectedPlanet.balance = balance
+                bottomMenuBalanceLb.text = balance
+            }
+            else if let erc20 = items[resultCode] as? ERC20 {
+                erc20.balance = planet.balance
+            }
+            
+            if( countDown == 0 ) {
+                isSyncing = false
+                if tableView.isDragging {
+                    isScrollingOnSyncing = true
+                }
+                else {
+                    hideRefreshContents()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.mainAdapter?.dataSetNotify(items)
+                    }
+                }
+            }
+        }
     }
+    
+    
 }
 
 
@@ -601,26 +608,6 @@ extension MainController: BottomMenuDelegate {
 extension MainController: BottomMenuTokenDelegate {
     func didTouchedTokenSend() {
         guard let selectedERC20 = bottomMenuTokenView?.erc20 else { return }
-        
-//        guard let selectedPlanet = self.planet else { return }
-//
-//        let tx = Transaction( selectedERC20 )
-//            .deviceKey(DEVICE_KEY)
-//            .from(selectedPlanet.address!)
-//            .to("0x0e37Ec5eFFEAB3836D761765656509A7Cf8077F0")
-//            .value("1000000000000000000")
-//            .gasPrice("9000000000")
-//            .gasLimit("100000")
-//
-//        tx.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
-//            (success, rawTx) in
-//            print(rawTx)
-//            //            Post(self).action(Route.URL("transfer", selectedERC20.symbol),
-//            //                              requestCode: 100,
-//            //                              resultCode: 100,
-//            //                              data: ["serializeTx":rawTx],
-//            //                              extraHeaders: ["device-key":DEVICE_KEY] );
-//        });
         
         bottomMenuTokenView?.hide()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
