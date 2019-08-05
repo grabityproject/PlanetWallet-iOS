@@ -168,15 +168,13 @@ class DBManager: NSObject {
             }else if let v = value as? Int {
                 values += "'" + String(v) + "',"
             }
-            
         }
         
         columns = String(columns.dropLast())
         values = String(values.dropLast())
         
         if(columns.count > 0 && values.count > 0 ){
-            print("INSERT INTO \(tableName) (\(columns)) VALUES (\(values))")
-            
+
             if openDatabase() {
                 let result = database.executeStatements("INSERT INTO \(tableName) (\(columns)) VALUES (\(values))")
                 database.close()
@@ -209,8 +207,7 @@ class DBManager: NSObject {
         }
         
         values = String(values.dropLast())
-        print( values )
-        
+
         if( values.count > 0 ){
             if openDatabase() {
                 let result = database.executeStatements("UPDATE \(tableName) SET \(values) WHERE \(condition)")
@@ -238,7 +235,6 @@ class DBManager: NSObject {
         
         if( condition.count > 0 ){
             if openDatabase() {
-                print("DELETE FROM \(tableName) WHERE \(condition)")
                 let result = database.executeStatements("DELETE FROM \(tableName) WHERE \(condition)")
                 database.close()
                 return result

@@ -705,6 +705,7 @@
 		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				04EE289F22F83D9A00E88A54 /* ViewModel */,
 				04EE289A22F7D6CD00E88A54 /* Models */,
 				04A4AF6B22E9B0E000F08598 /* Adapter */,
 				04E0B53F22B9E13000E1C3E0 /* Popups */,
@@ -1003,6 +1004,13 @@
 				04EE289D22F7D6E500E88A54 /* TransactionFee.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		04EE289F22F83D9A00E88A54 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04FBCA44229E5B7A00DEEDD9 /* Popups */ = {

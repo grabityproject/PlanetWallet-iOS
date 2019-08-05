@@ -34,8 +34,6 @@ class MainController: PlanetWalletViewController {
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var loadingViewWrapper: UIView!
     
-//    let dataSource = mainTableDataSource()
-    
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
     var bottomMenuTokenView: BottomMenuTokenView?
@@ -89,7 +87,6 @@ class MainController: PlanetWalletViewController {
         
         self.initBackupAlertView()
         
-        
         rippleAnimationView.dismiss()
         
         if( ThemeManager.currentTheme() == .DARK ){
@@ -105,7 +102,6 @@ class MainController: PlanetWalletViewController {
         if let items = planet?.items {
             mainAdapter?.dataSetNotify(items)
         }
-//        tableView.reloadData()
     }
     
     
@@ -403,6 +399,7 @@ class MainController: PlanetWalletViewController {
             if let type = self.planet?.coinType {
                 if type == CoinType.BTC.coinType {
                     isSyncing = false
+                    PlanetStore.shared.update(selectedPlanet)
                     if tableView.isDragging {
                         isScrollingOnSyncing = true
                     }
@@ -413,7 +410,6 @@ class MainController: PlanetWalletViewController {
             }
         }
         else if requestCode >= 1 {  //ETH || ERC20
-            
             guard let items = selectedPlanet.items,
                 let planet = Planet(JSON: resultObj) else { return }
             
@@ -426,10 +422,13 @@ class MainController: PlanetWalletViewController {
             }
             else if let erc20 = items[resultCode] as? ERC20 {
                 erc20.balance = planet.balance
+                ERC20Store.shared.update(erc20)
             }
             
             if( countDown == 0 ) {
                 isSyncing = false
+                PlanetStore.shared.update(selectedPlanet)
+                
                 if tableView.isDragging {
                     isScrollingOnSyncing = true
                 }
