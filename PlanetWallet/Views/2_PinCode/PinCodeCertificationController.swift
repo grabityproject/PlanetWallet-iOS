@@ -154,6 +154,16 @@ class PinCodeCertificationController: PlanetWalletViewController {
             self.isBeingDismiss = true
             var info = userInfo
             info?[Keys.UserInfo.fromSegue] = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
+            
+            if let planet = info?[Keys.UserInfo.planet] as? Planet, let type = planet.coinType {
+                if CoinType.BTC.coinType == type {
+                    Utils.shared.setDefaults(for: Keys.Userdefaults.BACKUP_MNEMONIC_BTC, value: true)
+                }
+                else if CoinType.ETH.coinType == type {
+                    Utils.shared.setDefaults(for: Keys.Userdefaults.BACKUP_MNEMONIC_ETH, value: true)
+                }
+            }
+            
             sendAction(segue: Keys.Segue.PINCODE_CERTIFICATION_TO_MNEMONIC_EXPORT, userInfo: info)
         case .BIOMETRIC:
             

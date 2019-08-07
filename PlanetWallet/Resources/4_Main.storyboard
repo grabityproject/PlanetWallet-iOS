@@ -418,11 +418,29 @@
                         <segue destination="2Da-Zc-beW" kind="show" identifier="main_to_tokenadd" id="vhI-Yx-pEa"/>
                         <segue destination="WEJ-Fv-EyR" kind="presentation" identifier="main_to_pincodecertification" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qQA-Rv-vrL"/>
                         <segue destination="NqK-ec-PZT" kind="presentation" identifier="main_to_walletadd" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="a7f-sX-JoK"/>
+                        <segue destination="eqo-6q-7bZ" kind="show" identifier="main_to_txlist" id="Kqc-rz-AGm"/>
+                        <segue destination="JCF-P7-aT2" kind="show" identifier="main_to_detailtx" id="CRE-ks-Luv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tem-yv-J6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-20" y="122.78860569715144"/>
+        </scene>
+        <!--DetailTxController-->
+        <scene sceneID="ijh-Dr-wJb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="8_Tx" referencedIdentifier="DetailTxController" id="JCF-P7-aT2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5r7-6w-5TH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="796" y="-88"/>
+        </scene>
+        <!--TxListController-->
+        <scene sceneID="CCv-qj-AfI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="8_Tx" referencedIdentifier="TxListController" id="eqo-6q-7bZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgi-we-vUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="-30"/>
         </scene>
         <!--TokenAddController-->
         <scene sceneID="n7r-vo-c5t">

@@ -32,6 +32,4 @@ class PWTableCell: UITableViewCell {
     func commonInit() {
         self.selectionStyle = .none
     }
-    
-    
 }

@@ -166,6 +166,9 @@
 		04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289B22F7D6DD00E88A54 /* GasInfo.swift */; };
 		04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* TransactionFee.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
+		04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */; };
+		04F42BF922FA83320026AF1D /* TxListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BF822FA83320026AF1D /* TxListController.swift */; };
+		04F42BFB22FA83420026AF1D /* DetailTxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BFA22FA83420026AF1D /* DetailTxController.swift */; };
 		04F61DD722CB229B00D6759A /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F61DD622CB229B00D6759A /* Base58.swift */; };
 		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
 		04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6E022C1BE830079E08A /* TokenAdapter.swift */; };
@@ -383,6 +386,9 @@
 		04EE289B22F7D6DD00E88A54 /* GasInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasInfo.swift; sourceTree = "<group>"; };
 		04EE289D22F7D6E500E88A54 /* TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFee.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 8_Tx.storyboard; sourceTree = "<group>"; };
+		04F42BF822FA83320026AF1D /* TxListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxListController.swift; sourceTree = "<group>"; };
+		04F42BFA22FA83420026AF1D /* DetailTxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTxController.swift; sourceTree = "<group>"; };
 		04F61DD622CB229B00D6759A /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
 		04F7D6E022C1BE830079E08A /* TokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAdapter.swift; sourceTree = "<group>"; };
@@ -580,6 +586,7 @@
 				04A551BF22A794EC007A17A3 /* 7_1_Planet.storyboard */,
 				04A551BD22A794EB007A17A3 /* 7_2_Account.storyboard */,
 				04A551C122A794EE007A17A3 /* 7_3_Security.storyboard */,
+				04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */,
 				04675F2B229BD3D100DC3CFD /* Animations */,
 				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
@@ -624,6 +631,7 @@
 				044BC56322793E3A00FD7E5E /* 5_Token */,
 				044BC56422793E4C00FD7E5E /* 6_Transfer */,
 				044BC56F2279437000FD7E5E /* 7_Setting */,
+				04F42BF522FA82F70026AF1D /* 8_Tx */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1013,6 +1021,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		04F42BF522FA82F70026AF1D /* 8_Tx */ = {
+			isa = PBXGroup;
+			children = (
+				04F42BF822FA83320026AF1D /* TxListController.swift */,
+				04F42BFA22FA83420026AF1D /* DetailTxController.swift */,
+			);
+			path = 8_Tx;
+			sourceTree = "<group>";
+		};
 		04FBCA44229E5B7A00DEEDD9 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,6 +1172,7 @@
 				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
+				04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */,
 				04B8741222CF1C6B00454301 /* splash_03_wh.json in Resources */,
 				04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */,
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
@@ -1264,6 +1282,7 @@
 				0455D8EC22C4CD88005F6494 /* KeyPairStore.swift in Sources */,
 				04C82C7F228429C000235883 /* PWButton.swift in Sources */,
 				04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */,
+				04F42BFB22FA83420026AF1D /* DetailTxController.swift in Sources */,
 				045AA9B622C07FB7005EA387 /* KeyPair.swift in Sources */,
 				04FBCA57229E908100DEEDD9 /* Route.swift in Sources */,
 				044BC573227943CD00FD7E5E /* PinCodeRegistrationController.swift in Sources */,
@@ -1364,6 +1383,7 @@
 				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
 				04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */,
 				044BC5BC227AE2C700FD7E5E /* PinView.swift in Sources */,
+				04F42BF922FA83320026AF1D /* TxListController.swift in Sources */,
 				044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */,
 				044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */,
 				044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */,
@@ -1549,8 +1569,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52645LAF7U;
+				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1561,8 +1582,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.grabity.PlanetWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1576,8 +1598,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52645LAF7U;
+				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1588,8 +1611,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.grabity.PlanetWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

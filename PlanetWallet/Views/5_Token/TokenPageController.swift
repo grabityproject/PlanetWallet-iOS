@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+/*
+ CutomTokenPage를 사용하지 않으므로
+ 사용은 하나 기능이 없는 Controller
+ */
+
 protocol TokenPageDelegate {
     func didMoveToPage(index: Int)
     func didScroll(offset: CGFloat)
@@ -19,14 +25,14 @@ class TokenPageController: UIPageViewController {
     var pageDelegate: TokenPageDelegate?
     
     lazy var orderedViewControllers: [UIViewController] = {
-        
+        //hide Custom token : disable PageController
         let page1: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "TokenListController") as! PlanetWalletViewController
-        let page2: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "CustomTokenController") as! PlanetWalletViewController
+//        let page2: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "CustomTokenController") as! PlanetWalletViewController
         
         page1.userInfo = self.userInfo
-        page2.userInfo = self.userInfo
+//        page2.userInfo = self.userInfo
         
-        return [page1,page2]
+        return [page1]//[page1,page2]
     }()
     
     lazy var scrollView: UIScrollView? = {
@@ -50,6 +56,8 @@ class TokenPageController: UIPageViewController {
         delegate = self
         dataSource = self
         scrollView?.delegate = self
+        //hide Custom token : disable PageController
+        scrollView?.isScrollEnabled = false
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -57,6 +65,7 @@ class TokenPageController: UIPageViewController {
                                animated: true,
                                completion: nil)
         }
+        
     }
 }
 

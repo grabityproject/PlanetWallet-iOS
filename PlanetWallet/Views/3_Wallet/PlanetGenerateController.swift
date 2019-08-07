@@ -29,7 +29,8 @@ class PlanetGenerateController: PlanetWalletViewController {
         if( ThemeManager.currentTheme() == .DARK ){
             darkGradientView.isHidden = false
             lightGradientView.isHidden = true
-        }else{
+        }
+        else {
             darkGradientView.isHidden = true
             lightGradientView.isHidden = false
         }
@@ -86,7 +87,6 @@ class PlanetGenerateController: PlanetWalletViewController {
     private func generateBTC(){
         BitCoinManager.shared.generateMaster(pinCode: PINCODE)
         self.planet = BitCoinManager.shared.addPlanet(index: 0, pinCode: PINCODE)
-        
         if let planet = planet, let address = planet.address {
             planetView.data = address
             planetBgView.data = address
@@ -123,10 +123,8 @@ class PlanetGenerateController: PlanetWalletViewController {
             }catch{
                 print(error)
             }
-        }else{
-            
+        }else {
             self.planet = BitCoinManager.shared.addPlanet(pinCode: PINCODE)
-            
         }
         
         if let planet = planet, let address = planet.address {
@@ -214,6 +212,7 @@ class PlanetGenerateController: PlanetWalletViewController {
             let dict = dictionary,
             let response = ReturnVO(JSON: dict),
             let success = response.success,
+            let keyID = planet.keyId,
             let result = response.result else { return }
         
         if( success ){
@@ -221,6 +220,13 @@ class PlanetGenerateController: PlanetWalletViewController {
             guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
             
             if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
+                
+                if let isRootMain = userInfo?["rootMain"] as? Bool {
+                    if isRootMain {
+                        Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyID)
+                    }
+                }
+                
                 performSegue(withIdentifier: Keys.Segue.MAIN_NAVI_UNWIND, sender: nil)
             }
             else if fromSegueID == Keys.Segue.PINCODE_CERTIFICATION_TO_PLANET_GENERATE {

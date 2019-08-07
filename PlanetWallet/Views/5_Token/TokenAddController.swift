@@ -8,6 +8,11 @@
 
 import UIKit
 
+/*
+ CutomTokenPage를 사용하지 않으므로
+ 사용은 하나 기능이 없는 Controller
+ */
+
 class TokenAddController: PlanetWalletViewController {
 
     enum Menu: Int {

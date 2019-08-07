@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let BITCOIN_TESTNET = true
+
 let DEFAULT_PLIST_NAME = "Preference"
 
 //MARK: - Screen
@@ -35,6 +37,8 @@ struct Keys {
         static let gasFee = "gasFee"
         static let txHash = "txHash"
         static let universe = "universe"
+        static let mainItem = "mainItem"
+        static let transaction = "transaction"
     }
     
     struct Userdefaults {
@@ -84,6 +88,9 @@ struct Keys {
         static let MAIN_UNWIND = "unwind_to_main"
         static let MAIN_TO_PINCODECERTIFICATION = "main_to_pincodecertification"
         static let MAIN_TO_WALLET_ADD = "main_to_walletadd"
+        static let MAIN_TO_TX_LIST = "main_to_txlist"
+        static let MAIN_To_DETAIL_TX = "main_to_detailtx"
+        
         
         //Setting
         static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"
@@ -114,5 +121,8 @@ struct Keys {
         static let TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM = "transferamount_to_transferconfirm"
         static let TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION = "transferconfirm_to_pincodecertification"
         static let TRANSFER_CONFIRM_TO_TX_RECEIPT = "transferconfirm_to_txreceipt"
+        
+        //Tx
+        static let TX_LIST_TO_DETAIL_TX = "txlist_to_detailtx"
     }
 }

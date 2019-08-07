@@ -24,8 +24,16 @@ class BitCoinManager{
     let hdKeyPairService: HDKeyPairService = ObjcHDKeyPairService()
     var service:BtcWalletAccountService?
     
+//    var hdPath = "44H/0H/0H"
+//    var coinType: StructCoinType = CoinType.BTC
+    var definedCurrency: DefinedCurrency = DefinedCurrency.BTC
+    
     init() {
         self.service = BtcWalletAccountService(keyPairService: hdKeyPairService, keyPairStore: KeyPairStore.shared, btcApiClient: nil)
+        
+        if BITCOIN_TESTNET {
+            definedCurrency = DefinedCurrency.BTCT
+        }
     }
     
     func importMnemonic( mnemonicPhrase:String, passPhrase:String = "", pinCode:[String]) -> Planet {
@@ -44,7 +52,7 @@ class BitCoinManager{
             _ = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, phrase:mnemonicPhrase , pin: pinCode)
             
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-            let account = try service?.createHDWalletAccount(keyId: btcCoinAccountkey.id!, currencyType: CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/0")
+            let account = try service?.createHDWalletAccount(keyId: btcCoinAccountkey.id!, currencyType: CoinType.BTC.name, definedCurrency: self.definedCurrency, hdPathString: "0/0")
             
             let planet:Planet = Planet()
             planet.keyId = childKeyId
@@ -57,9 +65,7 @@ class BitCoinManager{
             planet.symbol = CoinType.BTC.name
             planet.pathIndex = -2
             
-            
             _ = try KeyPairStore.shared.deleteKeyPair(keyId: btcCoinAccountkey.id!)
-            
             return planet
             
         }catch{
@@ -100,7 +106,7 @@ class BitCoinManager{
                 
                 let account = try service?.createBasicAccount(keyId: keyPair.id!,
                                                                currencyType: CoinType.BTC.name,
-                                                               definedCurrency: DefinedCurrency.BTC)
+                                                               definedCurrency: self.definedCurrency)
                 
                 let planet:Planet = Planet()
                 planet.keyId = keyPair.id
@@ -114,7 +120,6 @@ class BitCoinManager{
                 planet.pathIndex = -1
                 
                 return planet
-                
             }
             
         } catch  {
@@ -143,7 +148,12 @@ class BitCoinManager{
             let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
             
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-            let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
+            guard let masterKeyID = masterKeyPair?.publicKey.hexString else { return Planet() }
+            
+            let account = try service?.createHDWalletAccount(keyId: masterKeyID,
+                                                             currencyType:  CoinType.BTC.name,
+                                                             definedCurrency: self.definedCurrency,
+                                                             hdPathString: "0/\(index)")
             
             if PlanetStore.shared.get(childKeyId) == nil {
                 let planet:Planet = Planet()
@@ -177,7 +187,12 @@ class BitCoinManager{
             let childKeyPair = try hdKeyPairService.deriveHDKeyPair(parentKeyPair: masterKeyPair!, hdPath: [0, index])
             
             let childKeyId = try KeyPairStore.shared.saveKeyPair(keyPair: childKeyPair, pin: pinCode)
-            let account = try service?.createHDWalletAccount(keyId: (masterKeyPair?.publicKey.hexString)!, currencyType:  CoinType.BTC.name, definedCurrency: DefinedCurrency.BTC, hdPathString: "0/\(index)")
+            guard let masterKeyID = masterKeyPair?.publicKey.hexString else { return Planet() }
+            
+            let account = try service?.createHDWalletAccount(keyId: masterKeyID,
+                                                             currencyType: CoinType.BTC.name,
+                                                             definedCurrency: self.definedCurrency,
+                                                             hdPathString: "0/\(index)")
             
             if PlanetStore.shared.get(childKeyId) == nil {
                 let planet:Planet = Planet()
@@ -223,6 +238,7 @@ class BitCoinManager{
                     _ = PWDBManager.shared.delete(KeyPair(), "keyId='\(keyId)'")
                 }
             }
+            
             _ = try KeyPairStore.shared.saveMasterKeyPair(coreCoinType: CoinType.BTC.coinType, phrase: mnemonicPhrase, keyPair: btcCoinAccountkey, pin: pinCode)
         }
         catch {

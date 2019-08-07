@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>To use QR Scan, please agree to the camera authority.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>login</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Bold.tff</string>
@@ -69,7 +71,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NSFaceIDUsageDescription</key>
-	<string>login</string>
 </dict>
 </plist>
