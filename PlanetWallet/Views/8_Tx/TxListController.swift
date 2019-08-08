@@ -21,13 +21,16 @@ import UIKit
  */
 
 struct TransactionSample {
-    let fromAddress: String
-    let toAddress: String
+    let fromPlanet: Planet
+    let toPlanet: Planet
     let amount: String
     let isIncomming: Bool
+    let txID: String
+    let fee: String
+    let date: String
     
     func description() -> String {
-        return "from : \(fromAddress) , to : \(toAddress), amount: \(amount)"
+        return "from : \(fromPlanet.address!) , to : \(toPlanet.address!), amount: \(amount)"
     }
 }
 
@@ -41,11 +44,7 @@ class TxListController: PlanetWalletViewController {
     @IBOutlet var tableView: UITableView!
     
     let cellID = "TxCellID"
-    let dataSource: [TransactionSample] = [TransactionSample(fromAddress: "0x00", toAddress: "0x01", amount: "0.87", isIncomming: true),
-                                           TransactionSample(fromAddress: "0x00", toAddress: "0x02", amount: "4.322211", isIncomming: true),
-                                           TransactionSample(fromAddress: "0x40", toAddress: "0x232", amount: "0.11", isIncomming: false),
-                                           TransactionSample(fromAddress: "0x02", toAddress: "0x442", amount: "1", isIncomming: false),
-                                           TransactionSample(fromAddress: "0x00", toAddress: "0x01", amount: "32.1", isIncomming: true)]
+    var dataSource: [TransactionSample] = [TransactionSample]()
     
     override func viewInit() {
         super.viewInit()
@@ -81,6 +80,25 @@ class TxListController: PlanetWalletViewController {
                 addressLb.text = "Address : \(address)"
             }
             
+            let samplePlanet1 = Planet()
+            samplePlanet1.address = "0x12931289127498124"
+            samplePlanet1.coinType = planet.coinType
+            samplePlanet1.name = "sample"
+            
+            let samplePlanet2 = Planet()
+            samplePlanet2.address = "0x12931289127498124"
+            samplePlanet2.coinType = planet.coinType
+            
+            let samplePlanet3 = Planet()
+            samplePlanet3.address = "0x12931289127498124"
+            samplePlanet3.coinType = planet.coinType
+            
+            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet1, amount: "0.214", isIncomming: false, txID: "testTxID", fee: "0.123", date: "08.08 12:00"))
+            dataSource.append(TransactionSample(fromPlanet: samplePlanet1, toPlanet: samplePlanet2, amount: "414", isIncomming: false, txID: "testTxID1", fee: "0.03", date: "01.02 01:00"))
+            dataSource.append(TransactionSample(fromPlanet: samplePlanet2, toPlanet: samplePlanet3, amount: "0.001", isIncomming: false, txID: "testTxID2", fee: "0.01", date: "08.01 00:00"))
+            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet2, amount: "13", isIncomming: false, txID: "testTxID3", fee: "0.002", date: "08.01 00:00"))
+            dataSource.append(TransactionSample(fromPlanet: samplePlanet3, toPlanet: samplePlanet3, amount: "9.91", isIncomming: false, txID: "testTxID4", fee: "0.34", date: "08.01 00:00"))
+            tableView.reloadData()
         }
     }
 }

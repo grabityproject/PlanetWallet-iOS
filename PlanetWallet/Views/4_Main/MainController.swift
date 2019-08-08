@@ -144,7 +144,7 @@ class MainController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedError(_ sender: UIButton) {
-        if let planet = planet, let type = planet.coinType
+        if let planet = planet//, let type = planet.coinType
         {
             let segue = Keys.Segue.MAIN_TO_PINCODECERTIFICATION
             sendAction(segue: segue, userInfo: [Keys.UserInfo.fromSegue: segue,
@@ -152,6 +152,7 @@ class MainController: PlanetWalletViewController {
         }
         
     }
+    
     
     @objc func refreshed() {
         
@@ -161,10 +162,13 @@ class MainController: PlanetWalletViewController {
     
     @IBAction func unwindToMainController(segue:UIStoryboardSegue) { }
     
+    var bottomMenuViewModel: BottomMenuViewModel!
+    
     //MARK: - Private
     private func fetchData(completion: @escaping (Bool) -> Void) {
         let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
+        
         // set selected planet
         if let keyId:String = Utils.shared.getDefaults(for: Keys.Userdefaults.SELECTED_PLANET){
             if let planet = PlanetStore.shared.get(keyId){
@@ -306,6 +310,8 @@ class MainController: PlanetWalletViewController {
             if let adapter = mainAdapter, let items = selectPlanet.items {
                 adapter.dataSetNotify(items)
             }
+            
+            bottomMenuViewModel = BottomMenuViewModel(planet: selectPlanet)
         }
         
         self.initBackupAlertView()
@@ -552,9 +558,13 @@ extension MainController: UITableViewDelegate {
             
             if coinType == CoinType.BTC.coinType {
                 //TODO : - Tx
-                let sample = TransactionSample(fromAddress: "0x00", toAddress: "0x01", amount: "0.87", isIncomming: true)
+                let samplePlanet = Planet()
+                samplePlanet.address = "mbn1123412mnnasbikf"
+                samplePlanet.coinType = selectedPlanet.coinType
+                samplePlanet.name = "sampleBTC"
+                let tx = TransactionSample(fromPlanet: samplePlanet, toPlanet: selectedPlanet, amount: "1.412", isIncomming: true, txID: "BTCtestTxID", fee: "0.000412", date: "04.12 04:21")
                 sendAction(segue: Keys.Segue.MAIN_To_DETAIL_TX, userInfo: [Keys.UserInfo.planet : selectedPlanet,
-                                                                           Keys.UserInfo.transaction : sample])
+                                                                           Keys.UserInfo.transaction : tx])
             }
             else { //ETH || ERC20
                 guard let mainItemList = selectedPlanet.items else { return }
@@ -563,6 +573,7 @@ extension MainController: UITableViewDelegate {
                                                                          Keys.UserInfo.planet : selectedPlanet])
             }
         }
+        
         /*
         if let mainItemList = selectedPlanet.items {
             if let erc20 = mainItemList[indexPath.row] as? ERC20 {
@@ -595,6 +606,11 @@ extension MainController: TopMenuLauncherDelegate {
 
 //MARK: - BottomMenuDelegate
 extension MainController: BottomMenuDelegate {
+    func didTouchedSwitchItem() {
+        self.bottomMenuViewModel.didSwitched()
+        print(bottomMenuViewModel.symbolText)
+    }
+    
     func didTouchedSend() {
         bottomMenuLauncher?.hide()
         

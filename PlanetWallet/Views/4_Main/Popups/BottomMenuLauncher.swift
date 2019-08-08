@@ -31,6 +31,7 @@ class BottomMenuLauncher: NSObject {
     private let dimView = UIView()
     
     var triggerPanGesture : UIPanGestureRecognizer!
+    var triggerTapGesture: UITapGestureRecognizer!
     var backgroundPanGesture : UIPanGestureRecognizer!
     var tapGesture : UITapGestureRecognizer!
     
@@ -41,7 +42,6 @@ class BottomMenuLauncher: NSObject {
     //MARK: - Init
     init( controller:UIViewController, trigger:UIView, clickTrigger:UIView, delegate: BottomMenuDelegate? ) {
         super.init()
-        
         self.view = controller.view
         self.triggerView = trigger
         self.clicktriggerView = clickTrigger
@@ -69,6 +69,8 @@ class BottomMenuLauncher: NSObject {
         
         triggerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(triggerPanAction));
         triggerAreaView.addGestureRecognizer(triggerPanGesture)
+        triggerTapGesture = UITapGestureRecognizer(target: self, action: #selector(triggerTapAction))
+        triggerAreaView.addGestureRecognizer(triggerTapGesture)
 
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(backgroundPanAction));
         dimView.addGestureRecognizer(backgroundPanGesture)
@@ -80,13 +82,16 @@ class BottomMenuLauncher: NSObject {
     }
     
     @objc func onClick(_ sender:Any){
+        launcherView.delegate?.didTouchedSwitchItem()
+    }
+    
+    @objc func triggerTapAction(_ sender: Any) {
         if( !isOpen ){
             self.show()
         }
     }
     
     @objc func triggerPanAction(_ sender: Any) {
-
         if(  triggerPanGesture.state == UIGestureRecognizer.State.changed  ){
 
             if( !isOpen ){
@@ -94,7 +99,7 @@ class BottomMenuLauncher: NSObject {
 
                 if(  UIScreen.main.bounds.height - launcherView.frame.height  < movePoint && movePoint < topPosition.y ){
                     
-                    self.launcherView.alpha = -( ( triggerPanGesture.translation(in: launcherView).y ) / 80)*1.2
+                    self.launcherView.alpha = -( ( triggerPanGesture.translation(in: launcherView).y ) / 80) * 1.2
                     self.triggerView.alpha = ( 1.0 + ( ( triggerPanGesture.translation(in: launcherView).y ) / 80) )
                     self.labelError?.alpha = ( 1.0 + ( ( triggerPanGesture.translation(in: launcherView).y ) / 80) )
                     

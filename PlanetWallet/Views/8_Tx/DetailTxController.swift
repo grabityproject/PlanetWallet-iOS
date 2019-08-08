@@ -22,7 +22,15 @@ import UIKit
 class DetailTxController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     
-    @IBOutlet var descriptionLb: UILabel!
+    @IBOutlet var fromPlanetView: PlanetView!
+    @IBOutlet var fromLb: UILabel!
+    
+    @IBOutlet var toPlanetView: PlanetView!
+    @IBOutlet var toLb: UILabel!
+    @IBOutlet var amountLb: UILabel!
+    @IBOutlet var feeLb: UILabel!
+    @IBOutlet var dateLb: UILabel!
+    @IBOutlet var txIdLb: UILabel!
     
     override func viewInit() {
         super.viewInit()
@@ -34,9 +42,46 @@ class DetailTxController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         
-        if let userInfo = userInfo, let transaction = userInfo[Keys.UserInfo.transaction] as? TransactionSample {
-            descriptionLb.text = transaction.description()
+        if let userInfo = userInfo,
+            let transaction = userInfo[Keys.UserInfo.transaction] as? TransactionSample,
+            let fromAddr = transaction.fromPlanet.address,
+            let toAddr = transaction.toPlanet.address
+        {
+            if let fromPlanetName = transaction.fromPlanet.name {
+                //Planet Name
+                fromPlanetView.isHidden = false
+                fromPlanetView.data = fromAddr
+                fromLb.text = "From: \(fromPlanetName)"
+            }
+            else {
+                //Address
+                fromPlanetView.isHidden = true
+                fromLb.text = "From: \(fromAddr)"
+            }
+            
+            if let toPlanetName = transaction.toPlanet.name {
+                //Planet Name
+                toPlanetView.isHidden = false
+                toPlanetView.data = toAddr
+                toLb.text = "To : \(toPlanetName)"
+            }
+            else {
+                //Address
+                toPlanetView.isHidden = true
+                toLb.text = "To : \(toAddr)"
+            }
+            
+            amountLb.text = "Amount : \(transaction.amount)"
+            feeLb.text = "Fee : \(transaction.fee)"
+            dateLb.text = "Date : \(transaction.date)"
+            txIdLb.text = "TxID : \(transaction.txID)"
         }
+    }
+    
+    @IBAction func didTouchedScan(_ sender: UIButton) {
+        //tx/{txid}
+        guard let url = URL(string: "https://etherscan.io/tx/0xf684692d9531ff9d5deb906ae5564c156279c10314b0964f6f4e9fdd21f06027"), UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

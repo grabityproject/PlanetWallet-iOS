@@ -166,6 +166,7 @@
 		04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289B22F7D6DD00E88A54 /* GasInfo.swift */; };
 		04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* TransactionFee.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
+		04F30B4D22FC11E9003D5AE9 /* BottomMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */; };
 		04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */; };
 		04F42BF922FA83320026AF1D /* TxListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BF822FA83320026AF1D /* TxListController.swift */; };
 		04F42BFB22FA83420026AF1D /* DetailTxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BFA22FA83420026AF1D /* DetailTxController.swift */; };
@@ -386,6 +387,7 @@
 		04EE289B22F7D6DD00E88A54 /* GasInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasInfo.swift; sourceTree = "<group>"; };
 		04EE289D22F7D6E500E88A54 /* TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFee.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewModel.swift; sourceTree = "<group>"; };
 		04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 8_Tx.storyboard; sourceTree = "<group>"; };
 		04F42BF822FA83320026AF1D /* TxListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxListController.swift; sourceTree = "<group>"; };
 		04F42BFA22FA83420026AF1D /* DetailTxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTxController.swift; sourceTree = "<group>"; };
@@ -974,6 +976,7 @@
 			isa = PBXGroup;
 			children = (
 				04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */,
+				04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1317,6 +1320,7 @@
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				04D3A0CC22B0996500E54E96 /* BlinkingTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
+				04F30B4D22FC11E9003D5AE9 /* BottomMenuViewModel.swift in Sources */,
 				04FBFBA422E07DE0000F8E3C /* SyncManager.swift in Sources */,
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,

@@ -12,6 +12,7 @@ import QRCode
 protocol BottomMenuDelegate {
     func didTouchedCopy(_ addr: String)
     func didTouchedSend()
+    func didTouchedSwitchItem()
 }
 
 /*
