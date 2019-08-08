@@ -52,8 +52,9 @@ class BottomMenuViewModel {
         if items.isEmpty { return }
         
         guard let item = switchItem() else {
-            currentIdx = 0
-            didSwitched()
+            self.symbolText = ""
+            self.balance = ""
+            self.coinImgPath = ""
             return
         }
         
@@ -94,29 +95,15 @@ class BottomMenuViewModel {
     }
     
     private func switchItem() -> MainItem? {
-        currentIdx += 1
         
-        if currentIdx >= items.count {
+        guard let filteredItems = filteredItems else { return nil }
+        
+        currentIdx += 1
+        if currentIdx >= filteredItems.count {
             currentIdx = 0
         }
         
-        for i in currentIdx..<items.count {
-            
-            if let eth = items[i] as? ETH, let balance = Double(eth.balance) {
-                if balance > 0 {
-                    currentIdx = i
-                    return eth
-                }
-            }
-            else if let erc20 = items[i] as? ERC20, let balanceStr = erc20.balance, let balance = Double(balanceStr) {
-                if balance > 0 {
-                    currentIdx = i
-                    return erc20
-                }
-            }
-        }
-        
-        return nil
+        return filteredItems[currentIdx]
     }
 
 }
