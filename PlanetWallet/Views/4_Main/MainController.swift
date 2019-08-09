@@ -36,7 +36,6 @@ class MainController: PlanetWalletViewController {
     
     var topMenuLauncher: TopMenuLauncher?
     var bottomMenuLauncher: BottomMenuLauncher?
-    var bottomMenuTokenView: BottomMenuTokenView?
     
     @IBOutlet var bottomMenu: UIView!
     @IBOutlet var btnBottomLauncher: PWImageView!
@@ -70,11 +69,6 @@ class MainController: PlanetWalletViewController {
                                                     delegate: self)
             bottomMenuLauncher?.labelError = labelError
             bottomMenuLauncher?.planet = planet
-            
-            bottomMenuTokenView = BottomMenuTokenView()
-            bottomMenuTokenView?.frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-            bottomMenuTokenView?.delegate = self
-            self.view.addSubview(bottomMenuTokenView!)
         }
     }
     
@@ -191,32 +185,30 @@ class MainController: PlanetWalletViewController {
         
         if isSyncing { return } //balance를 받는 중이면 중복 request를 보내지 않는다.
         
-        guard let selectPlanet = planet, let selectedIdx = selectPlanet._id else { return }
+        guard let selectPlanet = planet, let selectedIdx = selectPlanet._id, let coinTypeInt = self.planet?.coinType else { return }
         
-        if let coinTypeInt = self.planet?.coinType {
-            let cointype = CoinType.of(coinTypeInt).name
+        let cointype = CoinType.of(coinTypeInt).name
+        
+        var idx = 0
+        isSyncing = true
+        
+        if coinTypeInt == CoinType.ETH.coinType {
             
-            var idx = 0
-            isSyncing = true
-            
-            if coinTypeInt == CoinType.ETH.coinType {
+            countDown = selectPlanet.items!.count;
+            selectPlanet.items?.forEach({ (item) in
+                if item.getCoinType() == CoinType.ETH.coinType {
+                    Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                }
+                else { //ERC20
+                    let erc20 = item as? ERC20
+                    Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                }
                 
-                countDown = selectPlanet.items!.count;
-                selectPlanet.items?.forEach({ (item) in
-                    if item.getCoinType() == CoinType.ETH.coinType {
-                        Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
-                    }
-                    else { //ERC20
-                        let erc20 = item as? ERC20
-                        Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
-                    }
-                    
-                    idx += 1
-                })
-            }
-            else if coinTypeInt == CoinType.BTC.coinType {
-                Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
-            }
+                idx += 1
+            })
+        }
+        else if coinTypeInt == CoinType.BTC.coinType {
+            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
         }
     }
     
@@ -307,11 +299,11 @@ class MainController: PlanetWalletViewController {
                 mainAdapter = MainAdapter(tableView, [MainItem]())
             }
             
+            bottomMenuViewModel = BottomMenuViewModel(planet: selectPlanet)
+            
             if let adapter = mainAdapter, let items = selectPlanet.items {
                 adapter.dataSetNotify(items)
             }
-            
-            bottomMenuViewModel = BottomMenuViewModel(planet: selectPlanet)
         }
         
         self.initBackupAlertView()
@@ -398,6 +390,8 @@ class MainController: PlanetWalletViewController {
                 if type == CoinType.BTC.coinType {
                     isSyncing = false
                     PlanetStore.shared.update(selectedPlanet)
+                    bottomMenuViewModel = BottomMenuViewModel(planet: selectedPlanet)
+                    
                     if tableView.isDragging {
                         isScrollingOnSyncing = true
                     }
@@ -420,12 +414,17 @@ class MainController: PlanetWalletViewController {
             }
             else if let erc20 = items[resultCode] as? ERC20 {
                 erc20.balance = planet.balance
+                //TODO : - Remove Test COde
+                if erc20.symbol == "USDT" {
+                    erc20.balance = "2"
+                }
                 ERC20Store.shared.update(erc20)
             }
             
             if( countDown == 0 ) {
                 isSyncing = false
                 PlanetStore.shared.update(selectedPlanet)
+                bottomMenuViewModel = BottomMenuViewModel(planet: selectedPlanet)
                 
                 if tableView.isDragging {
                     isScrollingOnSyncing = true
@@ -608,7 +607,8 @@ extension MainController: TopMenuLauncherDelegate {
 extension MainController: BottomMenuDelegate {
     func didTouchedSwitchItem() {
         self.bottomMenuViewModel.didSwitched()
-        print(bottomMenuViewModel.symbolText)
+        bottomMenuBalanceLb.text = bottomMenuViewModel.balance
+        bottomMenuCoinTypeLb.text = bottomMenuViewModel.symbolText
     }
     
     func didTouchedSend() {
@@ -616,8 +616,24 @@ extension MainController: BottomMenuDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             guard let selectedPlanet = self.planet else { return }
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
-                            userInfo: [Keys.UserInfo.planet: selectedPlanet])
+            
+            if let tokenType = self.bottomMenuViewModel.tokenType {
+                switch tokenType {
+                case .ETH:
+                    self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                                    userInfo: [Keys.UserInfo.planet: selectedPlanet])
+                case .ERC20(let erc20):
+                    self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                                    userInfo: [Keys.UserInfo.planet: selectedPlanet,
+                                               Keys.UserInfo.erc20 : erc20])
+                }
+            }
+            else {//BTC
+                self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                                userInfo: [Keys.UserInfo.planet: selectedPlanet])
+            }
+            
+            
         }
     }
     
@@ -627,25 +643,6 @@ extension MainController: BottomMenuDelegate {
     }
 }
 
-//MARK: - BottomMenuTokenDelegate
-extension MainController: BottomMenuTokenDelegate {
-    func didTouchedTokenSend() {
-        guard let selectedERC20 = bottomMenuTokenView?.erc20 else { return }
-        
-        bottomMenuTokenView?.hide()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            guard let selectedPlanet = self.planet else { return }
-            self.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
-                            userInfo: [Keys.UserInfo.planet: selectedPlanet,
-                                       Keys.UserInfo.erc20 : selectedERC20])
-        }
-    }
-    
-    func didTouchedTokenCopy(_ addr: String) {
-        Utils.shared.copyToClipboard(addr)
-        showCopyToast()
-    }
-}
 
 //MARK: - MainTableFooterDelegate
 extension MainController: MainTableFooterDelegate {

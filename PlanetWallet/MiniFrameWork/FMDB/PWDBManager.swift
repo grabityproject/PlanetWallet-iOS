@@ -18,7 +18,7 @@ class PWDBManager : DBManager {
     }
     
     override func getDatabseName() -> String? {
-        return "planetWallet4.sqlite"
+        return "planetWallet.sqlite"
     }
 
     override func createTables(_ database: FMDatabase) -> Bool {
@@ -55,9 +55,18 @@ class PWDBManager : DBManager {
                 "master TEXT" +
             ")";
             
+            let searchTable = "CREATE TABLE Search( " +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "keyId TEXT," +
+                "name TEXT," +
+                "address TEXT," +
+                "symbol TEXT" +
+            ")";
+            
             try database.executeUpdate(createPlanetTable, values: nil)
             try database.executeUpdate(createERC20Table, values: nil)
             try database.executeUpdate(keyPairTable, values: nil)
+            try database.executeUpdate(searchTable, values: nil)
             
             return true
         }

@@ -34,6 +34,11 @@ struct TransactionSample {
     }
 }
 
+enum TokenType {
+    case ETH
+    case ERC20(_ erc20: ERC20)
+}
+
 class TxListController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var balanceLb: PWLabel!
@@ -45,6 +50,9 @@ class TxListController: PlanetWalletViewController {
     
     let cellID = "TxCellID"
     var dataSource: [TransactionSample] = [TransactionSample]()
+    
+    private var planet: Planet?
+    private var tokenType: TokenType = .ETH
     
     override func viewInit() {
         super.viewInit()
@@ -59,19 +67,24 @@ class TxListController: PlanetWalletViewController {
         if let userInfo = userInfo,
             let planet = userInfo[Keys.UserInfo.planet] as? Planet
         {
-            //ERC20 or Coin
+            self.planet = planet
+            
+            
             if let erc20 = userInfo[Keys.UserInfo.mainItem] as? ERC20
-            {
+            {//ERC20
                 guard let symbol = erc20.symbol,
                     let balance = erc20.balance,
                     let iconImgPath = erc20.img_path else { return }
                 
+                self.tokenType = .ERC20(erc20)
                 symbolLb.text = "Symbol : \(symbol)"
                 balanceLb.text = "Balance : \(balance)"
                 iconImgView.downloaded(from: Route.URL( iconImgPath ))
             }
-            else {
+            else {//ETH
                 guard let symbol = planet.symbol, let balance = planet.balance else { return }
+                
+                self.tokenType = .ETH
                 symbolLb.text = "Symbol : \(symbol)"
                 balanceLb.text = "Balance : \(balance)"
             }
@@ -101,6 +114,27 @@ class TxListController: PlanetWalletViewController {
             tableView.reloadData()
         }
     }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedQR(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func didTouchedTransfer(_ sender: UIButton) {
+        guard let selectedPlanet = self.planet else { return }
+        
+        switch tokenType {
+        case .ETH:
+            self.sendAction(segue: Keys.Segue.TX_LIST_TO_TRANSFER,
+                            userInfo: [Keys.UserInfo.planet: selectedPlanet])
+        case .ERC20(let selectedERC20):
+            self.sendAction(segue: Keys.Segue.TX_LIST_TO_TRANSFER,
+                            userInfo: [Keys.UserInfo.planet: selectedPlanet,
+                                       Keys.UserInfo.erc20 : selectedERC20])
+        }
+    }
+    
+    
 }
 
 extension TxListController: UITableViewDelegate, UITableViewDataSource {

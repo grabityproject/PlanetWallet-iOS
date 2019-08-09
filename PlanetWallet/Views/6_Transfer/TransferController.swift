@@ -42,20 +42,44 @@ class TransferController: PlanetWalletViewController {
     
     override func setData() {
         
-        if let userInfo = self.userInfo,
-            let planet = userInfo[Keys.UserInfo.planet] as? Planet
-        {
-            self.planet = planet
-            
-            adapter = PlanetSearchAdapter(tableView, []);
-            adapter?.delegates.append(self)
-            
-            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20 {
-                self.erc20 = erc20
-            }
-            
-            updateUI()
+        var selectedSymbol = ""
+        
+        guard let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let keyId = planet.keyId,
+            let coinType = planet.coinType else { return }
+        
+        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol {
+            self.erc20 = erc20
+            selectedSymbol = symbol
         }
+        else {
+            if coinType == CoinType.BTC.coinType {
+                selectedSymbol = "BTC"
+            }
+            else if coinType == CoinType.ETH.coinType {
+                selectedSymbol = "ETH"
+            }
+        }
+        
+        let recentlySearchList = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol)
+        recentlySearchList.forEach { (search) in
+            if let recentlyName = search.name {
+                print(recentlyName)
+            }
+            else {
+                print(search.address)
+            }
+        }
+        
+        self.planet = planet
+        
+        adapter = PlanetSearchAdapter(tableView, []);
+        adapter?.delegates.append(self)
+        
+        
+        
+        updateUI()
     }
     
     override func onUpdateTheme(theme: Theme) {

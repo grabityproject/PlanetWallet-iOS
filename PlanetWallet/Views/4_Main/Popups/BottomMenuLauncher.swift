@@ -19,6 +19,7 @@ class BottomMenuLauncher: NSObject {
         }
     }
     
+    
     private var view: UIView!
     private var triggerView : UIView!
     private var clicktriggerView : UIView!
@@ -52,12 +53,11 @@ class BottomMenuLauncher: NSObject {
         
         triggerAreaView.frame = trigger.frame
         
-        let clickTriggerWidth = clickTrigger.frame.width
+        let clickTriggerWidth = clickTrigger.frame.width + 15
         clicktriggerAreaView.frame = CGRect(x: triggerView.frame.width - clickTriggerWidth - 16,
                                             y: 20,
                                             width: clickTriggerWidth,
                                             height: clickTriggerWidth)
-        
         
         dimView.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height - launcherView.frame.height + 40)
         dimView.backgroundColor = .clear

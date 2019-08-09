@@ -52,10 +52,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wWT-Sc-gXG">
-                                <rect key="frame" x="10" y="106" width="355" height="91.5"/>
+                                <rect key="frame" x="10" y="106" width="355" height="210"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance : 0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tod-Se-puL" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="128.5" y="0.0" width="98.5" height="20.5"/>
+                                        <rect key="frame" x="128.5" y="0.0" width="98.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address : 0x0000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-Oe-bd1" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="47.5" y="35.5" width="260" height="20.5"/>
+                                        <rect key="frame" x="47.5" y="45" width="260" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -77,10 +77,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jU0-SM-UIV">
-                                        <rect key="frame" x="108.5" y="71" width="138.5" height="20.5"/>
+                                        <rect key="frame" x="108.5" y="90" width="138.5" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol : ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyH-bP-4Sb" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="5" width="103.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconETH" translatesAutoresizingMaskIntoConstraints="NO" id="f5D-MF-Vkb" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="118.5" y="0.5" width="20" height="20"/>
+                                                <rect key="frame" x="118.5" y="5" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="Dzl-tQ-Q3g"/>
                                                     <constraint firstAttribute="height" constant="20" id="fNY-7b-PuM"/>
@@ -99,10 +99,24 @@
                                             </imageView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkB-VF-sFD">
+                                        <rect key="frame" x="162.5" y="135" width="30" height="30"/>
+                                        <state key="normal" title="QR"/>
+                                        <connections>
+                                            <action selector="didTouchedQR:" destination="q86-7P-w4P" eventType="touchUpInside" id="DOX-4V-W6T"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-aV-6XP">
+                                        <rect key="frame" x="149" y="180" width="57" height="30"/>
+                                        <state key="normal" title="Transfer"/>
+                                        <connections>
+                                            <action selector="didTouchedTransfer:" destination="q86-7P-w4P" eventType="touchUpInside" id="SYs-DB-N01"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-g5-Dng">
-                                <rect key="frame" x="0.0" y="227.5" width="375" height="439.5"/>
+                                <rect key="frame" x="0.0" y="346" width="375" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="q86-7P-w4P" id="HVG-Zl-gyg"/>
@@ -139,11 +153,20 @@
                         <outlet property="symbolLb" destination="gyH-bP-4Sb" id="Znz-2b-eYJ"/>
                         <outlet property="tableView" destination="iHH-g5-Dng" id="YoW-5z-dmf"/>
                         <segue destination="TRv-bR-uP6" kind="show" identifier="txlist_to_detailtx" id="18E-Pc-kPa"/>
+                        <segue destination="583-mj-lW2" kind="show" identifier="txlist_to_transfer" id="u2m-9P-KqB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3R-fD-UEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-319" y="109"/>
+        </scene>
+        <!--TransferController-->
+        <scene sceneID="hHE-kg-svR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="6_Transfer" referencedIdentifier="TransferController" id="583-mj-lW2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VG2-me-Yal" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="453" y="180"/>
         </scene>
         <!--Detail Tx Controller-->
         <scene sceneID="gfN-e9-47I">
@@ -323,7 +346,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXO-Ad-okP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="108"/>
+            <point key="canvasLocation" x="623" y="-270"/>
         </scene>
     </scenes>
     <resources>

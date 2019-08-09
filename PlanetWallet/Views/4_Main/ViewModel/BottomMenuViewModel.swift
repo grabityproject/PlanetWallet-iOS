@@ -17,11 +17,14 @@ class BottomMenuViewModel {
     var balance = ""
     var coinImgPath = ""
     
+    var tokenType: TokenType?
+    
     init(planet: Planet) {
         
         guard let coinType = planet.coinType, let balance = planet.balance else { return }
         
         if coinType == CoinType.BTC.coinType {
+            self.tokenType = nil
             self.symbolText = "BTC"
             self.balance = balance
             
@@ -36,6 +39,7 @@ class BottomMenuViewModel {
                 filterItems()
             }
             
+            self.tokenType = .ETH
             self.symbolText = "ETH"
             self.balance = balance
             
@@ -44,8 +48,6 @@ class BottomMenuViewModel {
                 self.coinImgPath = resourcePath + "/" + imgName
             }
         }
-        
-        
     }
     
     func didSwitched() {
@@ -59,6 +61,7 @@ class BottomMenuViewModel {
         }
         
         if let eth = item as? ETH {
+            self.tokenType = .ETH
             self.symbolText = eth.symbol
             self.balance = eth.balance
             
@@ -68,6 +71,7 @@ class BottomMenuViewModel {
             }
         }
         else if let erc20 = item as? ERC20, let symbol = erc20.symbol, let balance = erc20.balance, let imgPath = erc20.img_path {
+            self.tokenType = .ERC20(erc20)
             self.symbolText = symbol
             self.balance = balance
             self.coinImgPath = imgPath
@@ -78,10 +82,8 @@ class BottomMenuViewModel {
     
     private func filterItems() {
         filteredItems = items.filter({ (item) -> Bool in
-            if let eth = item as? ETH, let balance = Double(eth.balance) {
-                if balance > 0 {
-                    return true
-                }
+            if let _ = item as? ETH {
+                return true
             }
             else if let erc20 = item as? ERC20, let balanceStr = erc20.balance, let balance = Double(balanceStr) {
                 if balance > 0 {
@@ -90,8 +92,6 @@ class BottomMenuViewModel {
             }
             return false
         })
-        
-        
     }
     
     private func switchItem() -> MainItem? {

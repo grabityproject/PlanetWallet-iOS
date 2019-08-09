@@ -61,6 +61,7 @@ class TransferAmountController: PlanetWalletViewController {
                     submitBtn.setEnabled(true, theme: currentTheme)
                 }
                 else if inputNum == 0 {
+                    if inputAmount.contains("0.") { return }
                     inputAmount = "0"
                     displayLb.text = "0"
                     fiatDisplayLb.text = "0"
