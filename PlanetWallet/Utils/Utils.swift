@@ -153,6 +153,11 @@ struct Utils {
         return BigInt(exactly: wei)
     }
     
+    func ethToWEI(_ eth: Decimal) -> String {
+        let wei = eth * pow(10, 18)
+        return wei.toString()
+    }
+    
     func ethToWEI(_ eth: Double) -> String? {
         
         if let wei: BigInt = ethToWEI(eth) {

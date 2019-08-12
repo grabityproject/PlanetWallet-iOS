@@ -35,7 +35,7 @@ class TxReceiptController: PlanetWalletViewController {
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
             let txHash = userInfo[Keys.UserInfo.txHash] as? String,
-            let amount = userInfo[Keys.UserInfo.transferAmount] as? Double,
+            let amount = userInfo[Keys.UserInfo.transferAmount] as? String,
             let gasFee = userInfo[Keys.UserInfo.gasFee] as? Double else { return }
         
         var transactionSymbol = ""

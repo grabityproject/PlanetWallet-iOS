@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension Decimal {
+    var doubleValue:Double {
+        return NSDecimalNumber(decimal:self).doubleValue
+    }
+}
+
 class TransferConfirmController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
@@ -60,7 +66,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
                     transactionFeeLb.text = "\(transactionFee.toString()) \(coinType.defaultUnit ?? "")"
                     
-                    let totalAmount = self.transferAmount + self.transactionFee
+                    let totalAmount = self.transferAmount + Decimal(floatLiteral: self.transactionFee)
                     if self.availableAmount >= totalAmount {
                         confirmBtn.setEnabled(true, theme: currentTheme)
                     }
@@ -96,8 +102,8 @@ class TransferConfirmController: PlanetWalletViewController {
     var planet: Planet?
     var toPlanet: Planet?
     var erc20: ERC20?
-    var transferAmount = 0.0
-    var availableAmount = 0.0
+    var transferAmount: Decimal = 0.0
+    var availableAmount: Decimal = 0.0
     
     private var isToken: Bool {
         if let _ = erc20 {
@@ -124,14 +130,15 @@ class TransferConfirmController: PlanetWalletViewController {
         if let userInfo = userInfo,
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
-            let amount = userInfo[Keys.UserInfo.transferAmount] as? Double
+            let amountStr = userInfo[Keys.UserInfo.transferAmount] as? String,
+            let amount = Decimal(string: amountStr)
         {
             self.planet = fromPlanet
             self.transferAmount = amount
             self.toPlanet = toPlanet
             
             if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
-                let balance = Double(erc20.balance ?? "0")
+                let balance = Decimal(string: erc20.balance ?? "0")
             {
                 self.erc20 = erc20
                 self.coinType = CoinType.ERC20
@@ -144,7 +151,7 @@ class TransferConfirmController: PlanetWalletViewController {
             }
             else {
                 guard let coinType = fromPlanet.coinType,
-                    let balance = Double(planet?.balance ?? "0") else { return }
+                    let balance = Decimal(string: planet?.balance ?? "0") else { return }
                 self.availableAmount = balance
                 
                 if coinType == CoinType.BTC.coinType {
@@ -265,8 +272,8 @@ class TransferConfirmController: PlanetWalletViewController {
         guard let transferItem = item else { return }
         
         
-        guard let amountWEI:String = Utils.shared.ethToWEI(transferAmount),
-            let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
+        guard let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
+        let amountWEI:String = Utils.shared.ethToWEI(transferAmount)
         
         amount = amountWEI
         gasPrice = "\(transactionFee.getGasPriceWEI())"
@@ -360,7 +367,7 @@ class TransferConfirmController: PlanetWalletViewController {
             sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT, userInfo: [Keys.UserInfo.txHash : txHash,
                                                                                     Keys.UserInfo.planet : planet,
                                                                                     Keys.UserInfo.erc20 : erc20 as Any,
-                                                                                    Keys.UserInfo.transferAmount : self.transferAmount,
+                                                                                    Keys.UserInfo.transferAmount : self.transferAmount.toString(),
                                                                                     Keys.UserInfo.gasFee : gas?.getTransactionFee(step: self.gasStep).getFeeETH() as Any,
                                                                                     Keys.UserInfo.toPlanet : toPlanet])
         }
@@ -390,6 +397,7 @@ extension TransferConfirmController: NavigationBarDelegate {
 extension TransferConfirmController: PinCodeCertificationDelegate {
     func didTransferCertificated(_ isSuccess: Bool) {
         if isSuccess {
+            self.view.isUserInteractionEnabled = false
             self.sendTransaction()
         }
     }

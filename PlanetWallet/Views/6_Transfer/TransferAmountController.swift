@@ -148,11 +148,12 @@ class TransferAmountController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedSubmit(_ sender: UIButton) {
         
+        guard let toPlanet = toPlanet, let fromPlanet = fromPlanet else { return }
         sendAction(segue: Keys.Segue.TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM,
-                   userInfo: [Keys.UserInfo.toPlanet: toPlanet as Any,
-                              Keys.UserInfo.planet: fromPlanet as Any,
+                   userInfo: [Keys.UserInfo.toPlanet: toPlanet,
+                              Keys.UserInfo.planet: fromPlanet,
                               Keys.UserInfo.erc20: erc20 as Any,
-                              Keys.UserInfo.transferAmount: Double(inputAmount) as Any])
+                              Keys.UserInfo.transferAmount: inputAmount])
     }
     
 }

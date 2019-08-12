@@ -64,12 +64,16 @@ class TransferController: PlanetWalletViewController {
         
         let recentlySearchList = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol)
         recentlySearchList.forEach { (search) in
-            if let recentlyName = search.name {
-                print(recentlyName)
+            
+            guard let recentlyName = search.name, let recentlyAddress = search.address else { return }
+                
+            if recentlyName == "" {
+                print("Address : \(recentlyAddress)")
             }
             else {
-                print(search.address)
+                print("Name : \(recentlyName)")
             }
+            
         }
         
         self.planet = planet

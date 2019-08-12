@@ -76,6 +76,16 @@ extension String {
 }
 
 extension String {
+    func toDouble() -> Double? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 9
+        
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+}
+
+extension String {
     /// Create `Data` from hexadecimal string representation
     ///
     /// This creates a `Data` object from hex string. Note, if the string has any spaces or non-hex characters (e.g. starts with '<' and with a '>'), those are ignored and only hex characters are processed.

@@ -10,6 +10,8 @@ import Foundation
 import ObjectMapper
 
 class Search: Mappable {
+    
+    var _id: Int?
     var keyId: String!
     var name: String?
     var address: String!
@@ -26,9 +28,10 @@ class Search: Mappable {
     }
     
     func mapping(map: Map) {
-        keyId <- map["keyId"]
-        name <- map["name"]
-        address <- map["address"]
-        symbol <- map ["symbol"]
+        _id         <- map["_id"]
+        keyId       <- map["keyId"]
+        name        <- map["name"]
+        address     <- map["address"]
+        symbol      <- map ["symbol"]
     }
 }

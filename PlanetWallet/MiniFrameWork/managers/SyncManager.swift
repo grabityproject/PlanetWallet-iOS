@@ -48,26 +48,33 @@ class SyncManager: NetworkDelegate{
     }
     
     func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        var isUpdated = false
         if( requestCode == 0 ){
             guard let dict = dictionary,
                 let success = dict["success"] as? Bool,
-                let data = dict["result"] as? Dictionary<String, Dictionary<String, String>> else { return }
-            guard success else { return }
+                let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> else {
+                    delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
+                    return
+            }
             
-            var isUpdated = false
+            guard success else {
+                delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
+                return
+            }
+            
+            
             planetList.forEach { (planet) in
-                if let address = planet.address, let syncItem = data[address] {
-                    if planet.name != syncItem["name"] {
-                        planet.name = syncItem["name"]
+                if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
+                    if planet.name != syncItemName {
+                        planet.name = syncItemName
                         PlanetStore.shared.update(planet);
                         isUpdated = true
                     }
                 }
             }
+            
             delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: isUpdated)
         }
     }
-    
-    
     
 }

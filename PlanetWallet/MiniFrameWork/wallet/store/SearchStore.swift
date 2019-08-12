@@ -20,6 +20,7 @@ class SearchStore {
     
     func insert(_ toInsertItem: Search) {
         
+        
         //1. 중복 검사
         //2. size 검사 (최대 20개) -> 넘을 경우 가장 오래된 record삭제
         var isValid = true
@@ -40,8 +41,11 @@ class SearchStore {
         }
         
         if list.count >= 20 && isValid {
-            if let objToDelete = list.first {
-                _ = PWDBManager.shared.delete(objToDelete, SearchStore.TABLE_NAME)
+            
+            for i in 0..<(list.count-20)+1 {
+                if let idToDelete = list[i]._id {
+                    _ = PWDBManager.shared.delete(list[i], "_id='\(idToDelete)'")
+                }
             }
         }
         
