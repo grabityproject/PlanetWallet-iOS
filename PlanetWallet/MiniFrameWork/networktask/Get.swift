@@ -35,6 +35,7 @@ class Get {
             if let response = dataResponse.response{
                 if let resultData = dataResponse.data{
                     do {
+                        
                         if let resultJSON = try JSONSerialization.jsonObject(with: resultData, options: []) as? Dictionary<String, Any> {
                             
                             self.delegate?.onReceive(true,
@@ -46,6 +47,7 @@ class Get {
                         }
                     }
                     catch {
+                        print("Failed to parsing json object")
                         self.delegate?.onReceive(true,
                                                  requestCode: requestCode,
                                                  resultCode: resultCode,

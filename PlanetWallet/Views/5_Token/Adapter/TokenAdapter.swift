@@ -32,7 +32,7 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
         let tokenCell = cell as! TokenCell
         tokenCell.delegate = self
         
-        tokenCell.nameLb.text = data.name
+        tokenCell.nameLb.text = data.symbol
         tokenCell.iconImgView.downloaded(from: Route.URL( data.img_path! ))
         if dataSource[position].hide == "N" {
             tokenCell.checkedImgView.isHidden = false

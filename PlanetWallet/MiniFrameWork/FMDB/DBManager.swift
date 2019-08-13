@@ -102,21 +102,26 @@ class DBManager: NSObject {
         return false
     }
     
-    func select<T: Mappable>(_ type:T.Type, _ table:String = "",_ condition:String = "") throws -> Array<T>{
+    func select<T: Mappable>(_ type:T.Type, _ table:String = "",_ condition:String = "", _ orderBy: String = "") throws -> Array<T>{
         var resultArray : Array<T> = Array<T>()
         var tableName = table;
         if tableName == "" {
             tableName = String(describing: type)
         }
         
-        var conditionString = condition;
+        var conditionString = condition
+        var orderByString = orderBy
         
         if conditionString != "" {
             conditionString = "WHERE " + conditionString
         }
         
+        if orderByString != "" {
+            orderByString = "ORDER BY " + orderByString
+        }
+        
         if openDatabase() {
-            let query = "select * from \(tableName) \(conditionString)"
+            let query = "select * from \(tableName) \(conditionString) \(orderByString)"
             
             do {
                 let results = try database.executeQuery(query, values: nil)

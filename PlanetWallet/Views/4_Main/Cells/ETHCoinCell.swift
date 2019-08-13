@@ -34,7 +34,7 @@ class ETHCoinCell: PWTableCell {
                 currencyLb.text = "0 USD"
             }
             
-            coinLb.text = erc20.name
+            coinLb.text = erc20.symbol
         }
     }
     

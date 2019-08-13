@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainAdapter: AbsTableViewAdapter<MainItem> {
+class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     
     public let ethCellID = "ethereumCoinCell"
     public let btcCellID = "btcTransactionHistoryCell"

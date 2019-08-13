@@ -26,7 +26,10 @@ class MainController: PlanetWalletViewController {
     @IBOutlet var footerView: MainTableFooter!
     @IBOutlet var addressLb: PWLabel!
     @IBOutlet var planetNameLb: PWLabel!
-    private var mainAdapter: MainAdapter?
+    
+    
+    private var mainETHAdapter: MainETHAdapter?
+    private var btcTxAdapter: TxAdapter?
     
     @IBOutlet weak var labelError: PWButton!
     
@@ -94,7 +97,7 @@ class MainController: PlanetWalletViewController {
         }
 
         if let items = planet?.items {
-            mainAdapter?.dataSetNotify(items)
+            mainETHAdapter?.dataSetNotify(items)
         }
     }
     
@@ -117,8 +120,10 @@ class MainController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
-        mainAdapter = MainAdapter(tableView, [MainItem]())
-        mainAdapter?.delegates.append(self)
+        mainETHAdapter = MainETHAdapter(tableView, [MainItem]())
+        mainETHAdapter?.delegates.append(self)
+//        btcTxAdapter = TxAdapter(tableView, [Tx]())
+//        btcTxAdapter?.delegates.append(self)
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -151,6 +156,7 @@ class MainController: PlanetWalletViewController {
     @objc func refreshed() {
         
         getBalance()
+        getBTCTransaction()
         SyncManager.shared.syncPlanet(self)
     }
     
@@ -176,16 +182,20 @@ class MainController: PlanetWalletViewController {
         
         updatePlanet()
         getBalance()
+        getBTCTransaction()
     }
     
     
     var countDown = 0
     
+    private func reloadApapter() {
+        
+    }
+    
     private func getBalance() {
         
         if isSyncing { return } //balance를 받는 중이면 중복 request를 보내지 않는다.
-        
-        guard let selectPlanet = planet, let selectedIdx = selectPlanet._id, let coinTypeInt = self.planet?.coinType else { return }
+        guard let selectPlanet = planet, let planetName = selectPlanet.name, let selectedIdx = selectPlanet._id, let coinTypeInt = self.planet?.coinType else { return }
         
         let cointype = CoinType.of(coinTypeInt).name
         
@@ -197,18 +207,31 @@ class MainController: PlanetWalletViewController {
             countDown = selectPlanet.items!.count;
             selectPlanet.items?.forEach({ (item) in
                 if item.getCoinType() == CoinType.ETH.coinType {
-                    Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                    Get(self).action(Route.URL("balance", cointype, planetName), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                 }
                 else { //ERC20
                     let erc20 = item as? ERC20
-                    Get( self ).action(Route.URL("balance", erc20!.symbol!, planet!.name!), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+                    Get( self ).action(Route.URL("balance", erc20!.symbol!, planetName), requestCode: selectedIdx, resultCode: idx, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
                 }
                 
                 idx += 1
             })
         }
         else if coinTypeInt == CoinType.BTC.coinType {
-            Get(self).action(Route.URL("balance", cointype, planet!.name!), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+            Get(self).action(Route.URL("balance", cointype, planetName), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+        }
+    }
+    
+    private func getBTCTransaction() {
+        guard let selectPlanet = planet, let planetName = selectPlanet.name, let selectedIdx = selectPlanet._id, let coinTypeInt = self.planet?.coinType else { return }
+        
+        if coinTypeInt == CoinType.BTC.coinType {
+            print("Request BTC transaction list")
+            //https://test.planetwallet.io/tx/list/BTC/Song_
+            Get(self).action(Route.URL("tx", "list", "BTC", planetName), requestCode: -1, resultCode: -1, data: nil, extraHeaders: ["device-key": DEVICE_KEY])
+        }
+        else {
+            return
         }
     }
     
@@ -295,13 +318,13 @@ class MainController: PlanetWalletViewController {
                 }
             }
             
-            if mainAdapter == nil {
-                mainAdapter = MainAdapter(tableView, [MainItem]())
+            if mainETHAdapter == nil {
+                mainETHAdapter = MainETHAdapter(tableView, [MainItem]())
             }
             
             bottomMenuViewModel = BottomMenuViewModel(planet: selectPlanet)
             
-            if let adapter = mainAdapter, let items = selectPlanet.items {
+            if let adapter = mainETHAdapter, let items = selectPlanet.items {
                 adapter.dataSetNotify(items)
             }
         }
@@ -353,7 +376,7 @@ class MainController: PlanetWalletViewController {
         }
         
         if let items = planet?.items {
-            mainAdapter?.dataSetNotify(items)
+            mainETHAdapter?.dataSetNotify(items)
         }
     }
     
@@ -368,20 +391,13 @@ class MainController: PlanetWalletViewController {
         Toast(text: "main_copy_to_clipboard".localized).show()
     }
     
-    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        
+    //MARK: - Network
+    private func handleBalanceResponse(requestCode: Int, resultCode: Int, json: [String: Any]) {
         guard let selectedPlanet = planet, let selectedIdx = selectedPlanet._id else { return }
-        
-        if requestCode >= 1 && selectedIdx == requestCode {
-            countDown -= 1
-        }
-        
-        guard let dict = dictionary, let resultObj = dict["result"] as? [String:Any] else { return }
-        guard success else { return }
         
         if requestCode == 0 {   //BTC
             
-            let planet = Planet(JSON: resultObj)
+            let planet = Planet(JSON: json)
             selectedPlanet.balance = planet?.balance
             bottomMenuBalanceLb.text = planet?.balance
             
@@ -403,7 +419,7 @@ class MainController: PlanetWalletViewController {
         }
         else if requestCode >= 1 {  //ETH || ERC20
             guard let items = selectedPlanet.items,
-                let planet = Planet(JSON: resultObj) else { return }
+                let planet = Planet(JSON: json) else { return }
             
             if selectedIdx != requestCode { return }
             
@@ -414,10 +430,6 @@ class MainController: PlanetWalletViewController {
             }
             else if let erc20 = items[resultCode] as? ERC20 {
                 erc20.balance = planet.balance
-                //TODO : - Remove Test COde
-                if erc20.symbol == "USDT" {
-                    erc20.balance = "2"
-                }
                 ERC20Store.shared.update(erc20)
             }
             
@@ -432,10 +444,48 @@ class MainController: PlanetWalletViewController {
                 else {
                     hideRefreshContents()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.mainAdapter?.dataSetNotify(items)
+                        self.mainETHAdapter?.dataSetNotify(items)
                     }
                 }
             }
+        }
+    }
+    
+    private func handleBTCTransactionList(jsonList: Array<Dictionary<String, Any>>) {
+        var txList = [Tx]()
+        
+        for i in 0..<jsonList.count {
+            print("-------\(i) Transaction-------")
+            if let transaction = Tx(JSON: jsonList[i]) {
+                print("TxHash: \(transaction.tx_id!)")
+                print("from: \(transaction.from!)")
+                print("to: \(transaction.to!)")
+                txList.append(transaction)
+            }
+        }
+    }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let selectedPlanet = planet, let selectedIdx = selectedPlanet._id else { return }
+        
+        if requestCode >= 1 && selectedIdx == requestCode {
+            countDown -= 1
+        }
+        
+        guard let dict = dictionary else { return }
+        guard success else {
+            print("Failed to response - requestCode : \(requestCode), resultCode : \(resultCode)")
+            return
+        }
+        
+        if requestCode >= 0 {
+            guard let resultObj = dict["result"] as? [String:Any] else { return }
+            handleBalanceResponse(requestCode: requestCode, resultCode: resultCode, json: resultObj)
+        }
+        else {
+            
+            guard let resultObj = dict["result"] as? Array<Dictionary<String, Any>> else { return }
+            handleBTCTransactionList(jsonList: resultObj)
         }
     }
     
@@ -499,7 +549,7 @@ extension MainController: UIScrollViewDelegate {
             hideRefreshContents()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if let items = self.planet?.items {
-                    self.mainAdapter?.dataSetNotify(items)
+                    self.mainETHAdapter?.dataSetNotify(items)
                 }
             }
         }
@@ -593,6 +643,7 @@ extension MainController: TopMenuLauncherDelegate {
         self.planet = planet
         updatePlanet()
         getBalance()
+        getBTCTransaction()
     }
     
     func didSelectedFooter() {

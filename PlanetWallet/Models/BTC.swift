@@ -12,4 +12,6 @@ class BTC: MainItem {
     func getCoinType() -> Int {
         return CoinType.BTC.coinType
     }
+    
+    
 }

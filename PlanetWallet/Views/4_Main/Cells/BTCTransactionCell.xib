@@ -61,17 +61,17 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-ju-D7u">
-                    <rect key="frame" x="256" y="14" width="99" height="42.5"/>
+                    <rect key="frame" x="255.5" y="14" width="99.5" height="42.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageBtcDiscrease" translatesAutoresizingMaskIntoConstraints="NO" id="g9F-D7-tum">
-                            <rect key="frame" x="79" y="0.0" width="20" height="20"/>
+                            <rect key="frame" x="79.5" y="0.0" width="20" height="20"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zog-1s-gzA">
-                            <rect key="frame" x="0.0" y="22" width="99" height="20.5"/>
+                            <rect key="frame" x="0.0" y="22" width="99.5" height="20.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2313223" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAH-Qc-E6F" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="67" height="20.5"/>
-                                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="14"/>
                                     <color key="textColor" name="textColorDark"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -81,7 +81,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlI-MA-u65" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="72" y="0.0" width="27" height="20.5"/>
+                                    <rect key="frame" x="72.5" y="0.0" width="27" height="20.5"/>
                                     <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                     <color key="textColor" name="detailTextDark"/>
                                     <nil key="highlightedColor"/>

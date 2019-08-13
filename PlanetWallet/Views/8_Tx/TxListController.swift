@@ -50,6 +50,7 @@ class TxListController: PlanetWalletViewController {
     
     let cellID = "TxCellID"
     var dataSource: [TransactionSample] = [TransactionSample]()
+    var txList = [Tx]()
     
     private var planet: Planet?
     private var tokenType: TokenType = .ETH
@@ -93,26 +94,51 @@ class TxListController: PlanetWalletViewController {
                 addressLb.text = "Address : \(address)"
             }
             
-            let samplePlanet1 = Planet()
-            samplePlanet1.address = "0x12931289127498124"
-            samplePlanet1.coinType = planet.coinType
-            samplePlanet1.name = "sample"
-            
-            let samplePlanet2 = Planet()
-            samplePlanet2.address = "0x12931289127498124"
-            samplePlanet2.coinType = planet.coinType
-            
-            let samplePlanet3 = Planet()
-            samplePlanet3.address = "0x12931289127498124"
-            samplePlanet3.coinType = planet.coinType
-            
-            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet1, amount: "0.214", isIncomming: false, txID: "testTxID", fee: "0.123", date: "08.08 12:00"))
-            dataSource.append(TransactionSample(fromPlanet: samplePlanet1, toPlanet: samplePlanet2, amount: "414", isIncomming: false, txID: "testTxID1", fee: "0.03", date: "01.02 01:00"))
-            dataSource.append(TransactionSample(fromPlanet: samplePlanet2, toPlanet: samplePlanet3, amount: "0.001", isIncomming: false, txID: "testTxID2", fee: "0.01", date: "08.01 00:00"))
-            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet2, amount: "13", isIncomming: false, txID: "testTxID3", fee: "0.002", date: "08.01 00:00"))
-            dataSource.append(TransactionSample(fromPlanet: samplePlanet3, toPlanet: samplePlanet3, amount: "9.91", isIncomming: false, txID: "testTxID4", fee: "0.34", date: "08.01 00:00"))
+//            let samplePlanet1 = Planet()
+//            samplePlanet1.address = "0x12931289127498124"
+//            samplePlanet1.coinType = planet.coinType
+//            samplePlanet1.name = "sample"
+//
+//            let samplePlanet2 = Planet()
+//            samplePlanet2.address = "0x12931289127498124"
+//            samplePlanet2.coinType = planet.coinType
+//
+//            let samplePlanet3 = Planet()
+//            samplePlanet3.address = "0x12931289127498124"
+//            samplePlanet3.coinType = planet.coinType
+//
+//            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet1, amount: "0.214", isIncomming: false, txID: "testTxID", fee: "0.123", date: "08.08 12:00"))
+//            dataSource.append(TransactionSample(fromPlanet: samplePlanet1, toPlanet: samplePlanet2, amount: "414", isIncomming: false, txID: "testTxID1", fee: "0.03", date: "01.02 01:00"))
+//            dataSource.append(TransactionSample(fromPlanet: samplePlanet2, toPlanet: samplePlanet3, amount: "0.001", isIncomming: false, txID: "testTxID2", fee: "0.01", date: "08.01 00:00"))
+//            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet2, amount: "13", isIncomming: false, txID: "testTxID3", fee: "0.002", date: "08.01 00:00"))
+//            dataSource.append(TransactionSample(fromPlanet: samplePlanet3, toPlanet: samplePlanet3, amount: "9.91", isIncomming: false, txID: "testTxID4", fee: "0.34", date: "08.01 00:00"))
             tableView.reloadData()
         }
+        
+        getTxList()
+    }
+    
+    //MARK: - Private
+    private func getTxList() {
+        
+        guard let symbol = planet?.symbol, let name = planet?.name else { return }
+        
+        var selectedTokenSymbol = symbol
+        
+        switch tokenType {
+        case .ETH:
+            break
+        case .ERC20(let erc20):
+            guard let erc20Symbol = erc20.symbol else { return }
+            selectedTokenSymbol = erc20Symbol
+        }
+        
+        
+        Get(self).action(Route.URL("tx", "list", selectedTokenSymbol, name),
+                         requestCode: 0,
+                         resultCode: 0,
+                         data: nil,
+                         extraHeaders: ["device-key": DEVICE_KEY])
     }
     
     //MARK: - IBAction
@@ -134,25 +160,50 @@ class TxListController: PlanetWalletViewController {
         }
     }
     
-    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
+        guard let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            let isSuccess = returnVo.success,
+            let txItems = returnVo.result as? Array<Dictionary<String, Any>> else { return }
+        
+        self.txList.removeAll()
+        
+        if isSuccess {
+            for i in 0..<txItems.count {
+                print("-------\(i) Transaction-------")
+                if let transaction = Tx(JSON: txItems[i]) {
+                    print("TxHash: \(transaction.tx_id!)")
+                    print("from: \(transaction.from!)")
+                    print("to: \(transaction.to!)")
+                    txList.append(transaction)
+                }
+            }
+        }
+        else {
+            print("Failed to response txList")
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 extension TxListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return txList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-        let tx = dataSource[indexPath.row]
-        cell?.textLabel?.text = tx.description()
+        let tx = txList[indexPath.row]
+        cell?.textLabel?.text = tx.tx_id
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select \(indexPath.row)")
-        let tx = dataSource[indexPath.row]
+        let tx = txList[indexPath.row]
         
         sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX, userInfo: [Keys.UserInfo.transaction: tx])
     }

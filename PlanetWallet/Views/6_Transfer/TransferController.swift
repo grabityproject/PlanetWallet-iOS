@@ -62,7 +62,7 @@ class TransferController: PlanetWalletViewController {
             }
         }
         
-        let recentlySearchList = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol)
+        let recentlySearchList = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
         recentlySearchList.forEach { (search) in
             
             guard let recentlyName = search.name, let recentlyAddress = search.address else { return }

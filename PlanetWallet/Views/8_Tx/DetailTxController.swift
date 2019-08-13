@@ -43,10 +43,17 @@ class DetailTxController: PlanetWalletViewController {
         super.setData()
         
         if let userInfo = userInfo,
-            let transaction = userInfo[Keys.UserInfo.transaction] as? TransactionSample,
-            let fromAddr = transaction.fromPlanet.address,
-            let toAddr = transaction.toPlanet.address
+            let transaction = userInfo[Keys.UserInfo.transaction] as? Tx,
+            let fromAddr = transaction.from,
+            let toAddr = transaction.to
         {
+            fromLb.text = "From: \(fromAddr)"
+            toLb.text = "To : \(toAddr)"
+            amountLb.text = "Amount : \(transaction.amount ?? "")"
+            feeLb.text = "Fee : \(transaction.gasPrice ?? "")"
+            dateLb.text = "Date : \(transaction.created_at ?? "")"
+            txIdLb.text = "TxID : \(transaction.tx_id ?? "")"
+            /*
             if let fromPlanetName = transaction.fromPlanet.name {
                 //Planet Name
                 fromPlanetView.isHidden = false
@@ -75,6 +82,7 @@ class DetailTxController: PlanetWalletViewController {
             feeLb.text = "Fee : \(transaction.fee)"
             dateLb.text = "Date : \(transaction.date)"
             txIdLb.text = "TxID : \(transaction.txID)"
+             */
         }
     }
     

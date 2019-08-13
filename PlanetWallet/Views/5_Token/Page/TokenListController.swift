@@ -175,7 +175,12 @@ extension TokenListController: UITextFieldDelegate {
             search = textField.text! + string
         }
  
-        tokenAdapter?.dataSetNotify(tokenList.filter({return $0.name!.uppercased().contains(search.uppercased()) }))
+        tokenAdapter?.dataSetNotify(tokenList.filter({
+            guard let name = $0.name?.uppercased(), let symbol = $0.symbol?.uppercased() else { return false }
+            
+            return name.contains(search.uppercased()) || symbol.contains(search.uppercased())
+        }))
+        
         isSearching = true
         
         return true
