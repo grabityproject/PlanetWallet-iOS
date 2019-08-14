@@ -31,7 +31,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tck-OU-9bC">
                             <rect key="frame" x="0.0" y="0.0" width="353" height="41"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconBTC" translatesAutoresizingMaskIntoConstraints="NO" id="lwL-gn-CQm">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageTransferConfirmationBtc02" translatesAutoresizingMaskIntoConstraints="NO" id="lwL-gn-CQm">
                                     <rect key="frame" x="20" y="10.5" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="a7S-uN-nzL"/>
@@ -72,7 +72,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ts6-qk-kJi">
                             <rect key="frame" x="0.0" y="46" width="353" height="41"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconETH" translatesAutoresizingMaskIntoConstraints="NO" id="9Ui-KE-7wT">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="9Ui-KE-7wT">
                                     <rect key="frame" x="20" y="10.5" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="Xch-Sj-rzd"/>
@@ -134,7 +134,7 @@
         </view>
     </objects>
     <resources>
-        <image name="tokenIconBTC" width="30" height="30"/>
-        <image name="tokenIconETH" width="30" height="30"/>
+        <image name="eth" width="60" height="60"/>
+        <image name="imageTransferConfirmationBtc02" width="52.5" height="52.5"/>
     </resources>
 </document>

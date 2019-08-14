@@ -168,15 +168,15 @@ struct Utils {
         }
     }
     
-//    func weiToETH(_ wei: Int) -> Double? {
-//        let eth = Double(wei) / pow(10, 18)
-//        
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = .decimal
-//        formatter.maximumFractionDigits = 18
-//        
-//        return formatter.number(from: "\(eth)") as? Double
-//    }
+    func weiToETH(_ wei: Int, maximumFraction: Int = 8) -> String? {
+        let eth = Double(wei) / pow(10, 18)
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = maximumFraction
+        
+        return formatter.string(from: NSNumber(value: eth))
+    }
     
     //MARK: - Date
     func changeDateFormat(date: String, beforFormat: DateFormat, afterFormat: DateFormat) -> String? {

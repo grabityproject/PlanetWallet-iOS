@@ -42,24 +42,22 @@ enum TokenType {
 class TxListController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var balanceLb: PWLabel!
-    @IBOutlet var addressLb: PWLabel!
-    @IBOutlet var symbolLb: PWLabel!
     @IBOutlet var iconImgView: PWImageView!
     
     @IBOutlet var tableView: UITableView!
     
     let cellID = "TxCellID"
-    var dataSource: [TransactionSample] = [TransactionSample]()
     var txList = [Tx]()
     
     private var planet: Planet?
     private var tokenType: TokenType = .ETH
     
+    var txAdapter: TxAdapter?
+    
     override func viewInit() {
         super.viewInit()
         
         naviBar.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     }
     
     override func setData() {
@@ -78,41 +76,24 @@ class TxListController: PlanetWalletViewController {
                     let iconImgPath = erc20.img_path else { return }
                 
                 self.tokenType = .ERC20(erc20)
-                symbolLb.text = "Symbol : \(symbol)"
-                balanceLb.text = "Balance : \(balance)"
+                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
+                    balanceLb.text = "Balance : \(shortEtherStr) \(symbol)"
+                }
+                
                 iconImgView.downloaded(from: Route.URL( iconImgPath ))
             }
             else {//ETH
                 guard let symbol = planet.symbol, let balance = planet.balance else { return }
                 
                 self.tokenType = .ETH
-                symbolLb.text = "Symbol : \(symbol)"
-                balanceLb.text = "Balance : \(balance)"
+                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
+                    balanceLb.text = "Balance : \(shortEtherStr) \(symbol)"
+                }
             }
             
-            if let address = planet.address {
-                addressLb.text = "Address : \(address)"
-            }
-            
-//            let samplePlanet1 = Planet()
-//            samplePlanet1.address = "0x12931289127498124"
-//            samplePlanet1.coinType = planet.coinType
-//            samplePlanet1.name = "sample"
-//
-//            let samplePlanet2 = Planet()
-//            samplePlanet2.address = "0x12931289127498124"
-//            samplePlanet2.coinType = planet.coinType
-//
-//            let samplePlanet3 = Planet()
-//            samplePlanet3.address = "0x12931289127498124"
-//            samplePlanet3.coinType = planet.coinType
-//
-//            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet1, amount: "0.214", isIncomming: false, txID: "testTxID", fee: "0.123", date: "08.08 12:00"))
-//            dataSource.append(TransactionSample(fromPlanet: samplePlanet1, toPlanet: samplePlanet2, amount: "414", isIncomming: false, txID: "testTxID1", fee: "0.03", date: "01.02 01:00"))
-//            dataSource.append(TransactionSample(fromPlanet: samplePlanet2, toPlanet: samplePlanet3, amount: "0.001", isIncomming: false, txID: "testTxID2", fee: "0.01", date: "08.01 00:00"))
-//            dataSource.append(TransactionSample(fromPlanet: planet, toPlanet: samplePlanet2, amount: "13", isIncomming: false, txID: "testTxID3", fee: "0.002", date: "08.01 00:00"))
-//            dataSource.append(TransactionSample(fromPlanet: samplePlanet3, toPlanet: samplePlanet3, amount: "9.91", isIncomming: false, txID: "testTxID4", fee: "0.34", date: "08.01 00:00"))
-            tableView.reloadData()
+            txAdapter = TxAdapter(tableView, txList)
+            txAdapter?.selectedPlanet = self.planet
+            txAdapter?.delegates.append(self)
         }
         
         getTxList()
@@ -142,7 +123,7 @@ class TxListController: PlanetWalletViewController {
     }
     
     //MARK: - IBAction
-    @IBAction func didTouchedQR(_ sender: UIButton) {
+    @IBAction func didTouchedReceive(_ sender: UIButton) {
         
     }
     
@@ -185,27 +166,18 @@ class TxListController: PlanetWalletViewController {
             print("Failed to response txList")
         }
         
-        tableView.reloadData()
+        txAdapter?.dataSetNotify(txList)
     }
 }
 
-extension TxListController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return txList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-        let tx = txList[indexPath.row]
-        cell?.textLabel?.text = tx.tx_id
-        
-        return cell!
-    }
-    
+extension TxListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tx = txList[indexPath.row]
-        
-        sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX, userInfo: [Keys.UserInfo.transaction: tx])
+        sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
+                   userInfo: [Keys.UserInfo.transaction: txList[indexPath.row]])
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: currentTheme)
     }
 }
 

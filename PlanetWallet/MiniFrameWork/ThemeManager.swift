@@ -157,6 +157,13 @@ enum Theme: Int {
         case .LIGHT:    return UIImage(named: "imageTransferBtcBlue")
         }
     }
+    
+    var pendingImg: UIImage? {
+        switch self {
+        case .DARK:     return UIImage(named: "imageTxListPendingGray")
+        case .LIGHT:    return UIImage(named: "imageTxListPendingBlue")
+        }
+    }
 }
 
 

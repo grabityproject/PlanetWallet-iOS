@@ -10,6 +10,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Regular.otf">
+            <string>WorkSans-Regular</string>
+        </array>
+        <array key="WorkSans-SemiBold.otf">
+            <string>WorkSans-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Tx List Controller-->
         <scene sceneID="TOh-gt-iLS">
@@ -51,73 +59,119 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Tx List"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wWT-Sc-gXG">
-                                <rect key="frame" x="10" y="106" width="355" height="210"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance : 0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tod-Se-puL" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="128.5" y="0.0" width="98.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address : 0x0000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-Oe-bd1" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                        <rect key="frame" x="47.5" y="45" width="260" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jU0-SM-UIV">
-                                        <rect key="frame" x="108.5" y="90" width="138.5" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol : ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyH-bP-4Sb" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="5" width="103.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconETH" translatesAutoresizingMaskIntoConstraints="NO" id="f5D-MF-Vkb" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="118.5" y="5" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="Dzl-tQ-Q3g"/>
-                                                    <constraint firstAttribute="height" constant="20" id="fNY-7b-PuM"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkB-VF-sFD">
-                                        <rect key="frame" x="162.5" y="135" width="30" height="30"/>
-                                        <state key="normal" title="QR"/>
-                                        <connections>
-                                            <action selector="didTouchedQR:" destination="q86-7P-w4P" eventType="touchUpInside" id="DOX-4V-W6T"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-aV-6XP">
-                                        <rect key="frame" x="149" y="180" width="57" height="30"/>
-                                        <state key="normal" title="Transfer"/>
-                                        <connections>
-                                            <action selector="didTouchedTransfer:" destination="q86-7P-w4P" eventType="touchUpInside" id="SYs-DB-N01"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-g5-Dng">
-                                <rect key="frame" x="0.0" y="346" width="375" height="321"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-g5-Dng">
+                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="KRZ-Id-bZA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="253"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rL1-mY-Twq" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="75" width="345" height="41"/>
+                                            <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="28"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LyR-pX-O4Z">
+                                            <rect key="frame" x="20" y="168" width="335" height="55"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYY-Tm-7Wn" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="162.5" height="55"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="ppr-KK-gJ6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
+                                                    <state key="normal" title="Receive">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBorderColor">
+                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTouchedReceive:" destination="q86-7P-w4P" eventType="touchUpInside" id="LSd-YS-k7r"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8N0-N1-0WA" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
+                                                    <rect key="frame" x="172.5" y="0.0" width="162.5" height="55"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
+                                                    <state key="normal" title="Transfer">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTouchedTransfer:" destination="q86-7P-w4P" eventType="touchUpInside" id="BSo-N6-IQF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jU-PR-w5d" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                            <rect key="frame" x="164" y="119" width="47" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
+                                            <color key="textColor" name="detailTextDark"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                    <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="aBi-76-FIZ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                                            <rect key="frame" x="170" y="25" width="35" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="mRI-uk-ewC"/>
+                                                <constraint firstAttribute="width" constant="35" id="rV1-ci-LyG"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="eth"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="rL1-mY-Twq" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="8z4-5U-Jid"/>
+                                        <constraint firstItem="LyR-pX-O4Z" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="GjT-4q-9gQ"/>
+                                        <constraint firstItem="rL1-mY-Twq" firstAttribute="top" secondItem="KRZ-Id-bZA" secondAttribute="top" constant="75" id="Jdv-9e-jlT"/>
+                                        <constraint firstItem="8jU-PR-w5d" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="NXd-di-QdI"/>
+                                        <constraint firstAttribute="trailing" secondItem="LyR-pX-O4Z" secondAttribute="trailing" constant="20" id="Qhd-hG-8eR"/>
+                                        <constraint firstItem="8jU-PR-w5d" firstAttribute="top" secondItem="rL1-mY-Twq" secondAttribute="bottom" constant="3" id="cIy-Df-sCA"/>
+                                        <constraint firstItem="aBi-76-FIZ" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="epN-61-IvC"/>
+                                        <constraint firstItem="rL1-mY-Twq" firstAttribute="leading" secondItem="KRZ-Id-bZA" secondAttribute="leading" constant="15" id="hkH-05-ApE"/>
+                                        <constraint firstAttribute="bottom" secondItem="LyR-pX-O4Z" secondAttribute="bottom" constant="30" id="jW8-lp-OvQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="rL1-mY-Twq" secondAttribute="trailing" constant="15" id="mFC-lU-SLZ"/>
+                                        <constraint firstItem="rL1-mY-Twq" firstAttribute="top" secondItem="aBi-76-FIZ" secondAttribute="bottom" constant="15" id="mvp-xY-RMC"/>
+                                        <constraint firstItem="LyR-pX-O4Z" firstAttribute="leading" secondItem="KRZ-Id-bZA" secondAttribute="leading" constant="20" id="nfC-si-9so"/>
+                                    </constraints>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="q86-7P-w4P" id="HVG-Zl-gyg"/>
                                     <outlet property="delegate" destination="q86-7P-w4P" id="IO3-Ag-CET"/>
@@ -128,29 +182,23 @@
                         <constraints>
                             <constraint firstItem="mKq-b5-uaT" firstAttribute="trailing" secondItem="iHH-g5-Dng" secondAttribute="trailing" id="3bG-pD-Iyr"/>
                             <constraint firstItem="Qme-eB-Fim" firstAttribute="leading" secondItem="mKq-b5-uaT" secondAttribute="leading" id="3ks-y2-SFV"/>
-                            <constraint firstItem="iHH-g5-Dng" firstAttribute="top" secondItem="wWT-Sc-gXG" secondAttribute="bottom" constant="30" id="Mdf-cZ-Cki"/>
+                            <constraint firstItem="iHH-g5-Dng" firstAttribute="top" secondItem="mKq-b5-uaT" secondAttribute="top" constant="66" id="ILG-0d-IDh"/>
                             <constraint firstItem="Qme-eB-Fim" firstAttribute="top" secondItem="AAQ-Ij-x9G" secondAttribute="top" id="Mww-Ox-OOI"/>
                             <constraint firstItem="Qme-eB-Fim" firstAttribute="trailing" secondItem="mKq-b5-uaT" secondAttribute="trailing" id="ND6-Qy-jIS"/>
                             <constraint firstItem="mKq-b5-uaT" firstAttribute="bottom" secondItem="iHH-g5-Dng" secondAttribute="bottom" id="QDO-ip-AbX"/>
-                            <constraint firstItem="wWT-Sc-gXG" firstAttribute="top" secondItem="mKq-b5-uaT" secondAttribute="top" constant="86" id="cfM-yV-d6b"/>
                             <constraint firstItem="iHH-g5-Dng" firstAttribute="leading" secondItem="mKq-b5-uaT" secondAttribute="leading" id="eUm-aX-jFD"/>
-                            <constraint firstItem="wWT-Sc-gXG" firstAttribute="centerX" secondItem="AAQ-Ij-x9G" secondAttribute="centerX" id="ick-5I-VqS"/>
-                            <constraint firstItem="mKq-b5-uaT" firstAttribute="trailing" secondItem="wWT-Sc-gXG" secondAttribute="trailing" constant="10" id="p93-dS-pBd"/>
-                            <constraint firstItem="wWT-Sc-gXG" firstAttribute="leading" secondItem="mKq-b5-uaT" secondAttribute="leading" constant="10" id="qxl-O2-AM2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mKq-b5-uaT"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="themeBorderColor">
+                            <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="addressLb" destination="d4Z-Oe-bd1" id="UWy-0Y-D5n"/>
-                        <outlet property="balanceLb" destination="Tod-Se-puL" id="07E-Bf-Ju9"/>
-                        <outlet property="iconImgView" destination="f5D-MF-Vkb" id="BDy-3d-lfP"/>
+                        <outlet property="balanceLb" destination="rL1-mY-Twq" id="ieJ-yg-6qv"/>
+                        <outlet property="iconImgView" destination="aBi-76-FIZ" id="K5F-LY-kaM"/>
                         <outlet property="naviBar" destination="Qme-eB-Fim" id="jyA-29-nH7"/>
-                        <outlet property="symbolLb" destination="gyH-bP-4Sb" id="Znz-2b-eYJ"/>
                         <outlet property="tableView" destination="iHH-g5-Dng" id="YoW-5z-dmf"/>
                         <segue destination="TRv-bR-uP6" kind="show" identifier="txlist_to_detailtx" id="18E-Pc-kPa"/>
                         <segue destination="583-mj-lW2" kind="show" identifier="txlist_to_transfer" id="u2m-9P-KqB"/>
@@ -158,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3R-fD-UEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="109"/>
+            <point key="canvasLocation" x="-319.19999999999999" y="108.39580209895054"/>
         </scene>
         <!--TransferController-->
         <scene sceneID="hHE-kg-svR">
@@ -236,7 +284,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-MM-UMd">
-                                        <rect key="frame" x="45.5" y="50" width="254.5" height="25"/>
+                                        <rect key="frame" x="45.5" y="50" width="254" height="25"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bV-25-K1U" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -247,8 +295,8 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="to : asadfasfasdsadfasasdfa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-Xi-ChA" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="40" y="0.0" width="214.5" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="40" y="0.0" width="214" height="25"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -350,9 +398,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eth" width="60" height="60"/>
         <image name="imageToolbarBackBlue" width="60" height="60"/>
         <image name="imageToolbarBackGray" width="60" height="60"/>
-        <image name="tokenIconETH" width="30" height="30"/>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="pinCodeLight">
             <color red="0.74117647058823533" green="0.74117647058823533" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

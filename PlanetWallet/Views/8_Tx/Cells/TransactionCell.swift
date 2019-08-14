@@ -11,14 +11,19 @@ import UIKit
 class TransactionCell: PWTableCell {
     @IBOutlet var containerView: UIView!
     
+    @IBOutlet var directionImgView: UIImageView!
+    @IBOutlet var statusLb: PWLabel!
+    @IBOutlet var amountLb: PWLabel!
+    @IBOutlet var symbolLb: PWLabel!
+    @IBOutlet var monetaryLb: PWLabel!
+    
+    
     override func commonInit() {
         super.commonInit()
         
         Bundle.main.loadNibNamed("TransactionCell", owner: self, options: nil)
-        
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         addSubview(containerView)
     }
     

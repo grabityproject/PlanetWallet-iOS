@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		040295EF230170550024629E /* Tx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040295EE230170550024629E /* Tx.swift */; };
 		040295F22302AFDA0024629E /* TxAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040295F12302AFDA0024629E /* TxAdapter.swift */; };
-		040295F52302B6D70024629E /* TrasactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040295F42302B6D70024629E /* TrasactionCell.xib */; };
 		040295F72302B6EB0024629E /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040295F62302B6EB0024629E /* TransactionCell.swift */; };
 		040863A822B8F2A700B88EE1 /* TxReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040863A722B8F2A700B88EE1 /* TxReceiptController.swift */; };
 		040CCD5F22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CCD5E22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift */; };
@@ -106,6 +105,8 @@
 		047A2CA122AF7D130053D153 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2CA022AF7D130053D153 /* Crypto.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */; };
+		04A193CD2303B34600835061 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A193CC2303B34600835061 /* TransactionCell.xib */; };
+		04A193CF2303D76000835061 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A193CE2303D76000835061 /* Converter.swift */; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
 		04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */; };
 		04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551BB22A794E9007A17A3 /* 5_Token.storyboard */; };
@@ -222,7 +223,6 @@
 /* Begin PBXFileReference section */
 		040295EE230170550024629E /* Tx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tx.swift; sourceTree = "<group>"; };
 		040295F12302AFDA0024629E /* TxAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxAdapter.swift; sourceTree = "<group>"; };
-		040295F42302B6D70024629E /* TrasactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrasactionCell.xib; sourceTree = "<group>"; };
 		040295F62302B6EB0024629E /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		040863A722B8F2A700B88EE1 /* TxReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxReceiptController.swift; sourceTree = "<group>"; };
 		040CCD5E22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetManageAdapter.swift; sourceTree = "<group>"; };
@@ -325,6 +325,8 @@
 		0480E35722E17605008E57E3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
+		04A193CC2303B34600835061 /* TransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
+		04A193CE2303D76000835061 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
 		04A551BA22A794E9007A17A3 /* 2_PinCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 2_PinCode.storyboard; sourceTree = "<group>"; };
 		04A551BB22A794E9007A17A3 /* 5_Token.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 5_Token.storyboard; sourceTree = "<group>"; };
@@ -456,8 +458,8 @@
 		040295F32302B0350024629E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				040295F42302B6D70024629E /* TrasactionCell.xib */,
 				040295F62302B6EB0024629E /* TransactionCell.swift */,
+				04A193CC2303B34600835061 /* TransactionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -648,6 +650,7 @@
 				047A2CA022AF7D130053D153 /* Crypto.swift */,
 				045AA9C122C0AC45005EA387 /* Signer.swift */,
 				04F61DD622CB229B00D6759A /* Base58.swift */,
+				04A193CE2303D76000835061 /* Converter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				04C82C8C2288FAE400235883 /* WorkSans-Medium.otf in Resources */,
 				04E0B54122B9E14F00E1C3E0 /* AdvancedGasView.xib in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
+				04A193CD2303B34600835061 /* TransactionCell.xib in Resources */,
 				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
 				04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
@@ -1228,7 +1232,6 @@
 				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
 				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
-				040295F52302B6D70024629E /* TrasactionCell.xib in Resources */,
 				04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */,
 				0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */,
 				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
@@ -1460,6 +1463,7 @@
 				04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */,
 				04C82C83228429C000235883 /* PWLabel.swift in Sources */,
 				042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */,
+				04A193CF2303D76000835061 /* Converter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

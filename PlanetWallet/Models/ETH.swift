@@ -17,7 +17,7 @@ class ETH: MainItem {
     var balance: String = "0"
     let address: String
     
-    let iconImg = UIImage(named: "tokenIconETH")
+    let iconImg = UIImage(named: "eth")
     
     init(_ keyId: String, balance: String, address: String) {
         self.keyId = keyId

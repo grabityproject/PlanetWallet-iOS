@@ -44,7 +44,7 @@ class BottomMenuViewModel {
             self.balance = balance
             
             if let resourcePath = Bundle.main.resourcePath {
-                let imgName = "tokenIconETH.png"
+                let imgName = "eth.png"
                 self.coinImgPath = resourcePath + "/" + imgName
             }
         }
@@ -66,7 +66,7 @@ class BottomMenuViewModel {
             self.balance = eth.balance
             
             if let resourcePath = Bundle.main.resourcePath {
-                let imgName = "tokenIconETH.png"
+                let imgName = "eth.png"
                 self.coinImgPath = resourcePath + "/" + imgName
             }
         }

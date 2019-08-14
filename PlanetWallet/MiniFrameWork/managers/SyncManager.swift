@@ -47,33 +47,38 @@ class SyncManager: NetworkDelegate{
         Post(self).action(Route.URL("sync", "planets"), requestCode: 0, resultCode: 0, data: addresses)
     }
     
+    
     func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         var isUpdated = false
         if( requestCode == 0 ){
             guard let dict = dictionary,
-                let success = dict["success"] as? Bool,
-                let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> else {
+                let success = dict["success"] as? Bool else {
                     delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
                     return
             }
             
-            guard success else {
-                delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
-                return
-            }
-            
-            
-            planetList.forEach { (planet) in
-                if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
-                    if planet.name != syncItemName {
-                        planet.name = syncItemName
-                        PlanetStore.shared.update(planet);
-                        isUpdated = true
+            if success {
+                //SyncManager에서 success는 true면서 result가 비었을 경우에는 complete를 true으로 변경한다.
+                guard let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> else {
+                    delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: false)
+                    return
+                }
+                
+                planetList.forEach { (planet) in
+                    if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
+                        if planet.name != syncItemName {
+                            planet.name = syncItemName
+                            PlanetStore.shared.update(planet);
+                            isUpdated = true
+                        }
                     }
                 }
+                
+                delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: isUpdated)
             }
-            
-            delegate?.sync(.PLANET, didSyncComplete: true, isUpdate: isUpdated)
+            else {
+                delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
+            }
         }
     }
     

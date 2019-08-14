@@ -33,7 +33,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tokenIconETH" translatesAutoresizingMaskIntoConstraints="NO" id="K5T-1h-MPD">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="K5T-1h-MPD">
                     <rect key="frame" x="20" y="25" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="bGC-d6-lOg"/>
@@ -107,9 +107,9 @@
         </view>
     </objects>
     <resources>
+        <image name="eth" width="60" height="60"/>
         <image name="imageArrowRightBlue" width="30" height="30"/>
         <image name="imageArrowRightGray" width="30" height="30"/>
-        <image name="tokenIconETH" width="30" height="30"/>
         <namedColor name="detailTextDark">
             <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
