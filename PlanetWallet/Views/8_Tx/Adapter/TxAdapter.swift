@@ -8,22 +8,16 @@
 
 import UIKit
 
-enum TxStatus {
-    case PENDING(direction: TxDirection)
-    case CONFIRMED(direction: TxDirection)
-}
 
-enum TxDirection {
-    case RECEIVED
-    case SENT
-}
 
 class TxAdapter: AbsTableViewAdapter<Tx> {
     
     let cellID:String = "txcell"
     
     var selectedPlanet: Planet?
-    
+//    var txStatus: TxStatus = .PENDING(direction: .RECEIVED)
+    var txStatus: TxStatus?
+
     override init(_ tableView:UITableView,_ dataSoruce:Array<Tx> ) {
         super.init(tableView, dataSoruce)
         registerCell(cellClass: TransactionCell.self, cellId: cellID)
@@ -43,13 +37,23 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         cell.backgroundColor = .clear
         
         guard let selectedPlanet = selectedPlanet,
+            let txCell = cell as? TransactionCell,
+            let symbol = data.symbol else { return }
+
+        txCell.symbolLb.text = symbol
+        
+        self.txStatus = TxStatus(currentPlanet: selectedPlanet, tx: data)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+        
+        guard let selectedPlanet = selectedPlanet,
             let coinType = selectedPlanet.coinType,
             let txCell = cell as? TransactionCell,
-            let amount = data.amount,
-            let symbol = data.symbol else { return }
+            let amount = dataSource[indexPath.row].amount else { return }//txList[indexPath.row]
         
         var formattedAmount = ""
-        var txStatus: TxStatus = .PENDING(direction: .RECEIVED)
         
         if coinType == CoinType.BTC.coinType {
             if let shortBitStr = CoinNumberFormatter.short.toBitString(satoshi: amount) {
@@ -62,40 +66,20 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
             }
         }
         
-        txCell.symbolLb.text = symbol
-        
-        if let selectedPlanetAddr = selectedPlanet.address, let toAddress = data.to, let fromAddress = data.from, let status = data.status {
-            if selectedPlanetAddr == toAddress {
-                if status == "pending" {
-                    txStatus = .PENDING(direction: .RECEIVED)
-                }
-                else {
-                    txStatus = .CONFIRMED(direction: .RECEIVED)
-                }
-            }
-            else if selectedPlanetAddr == fromAddress {
-                if status == "pending" {
-                    txStatus = .PENDING(direction: .SENT)
-                }
-                else {
-                    txStatus = .CONFIRMED(direction: .SENT)
-                }
-            }
-        }
-        
-        switch txStatus {
-        case .PENDING(let direction):
+        guard let results = txStatus?.status, let direction = txStatus?.direction else { return }
+    
+        if results == TxResults.PENDING {
             txCell.statusLb.text = "Pending"
-            txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg//UIImage(named: "imageTxListPendingGray")
+            txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
             if direction == .RECEIVED {
                 txCell.amountLb.textColor = .green
                 txCell.amountLb.text = formattedAmount
             }
             else {
-//                txCell.amountLb.textColor = .black
                 txCell.amountLb.text = "-" + formattedAmount
             }
-        case .CONFIRMED(let direction):
+        }
+        else if results == TxResults.CONFIRMED {
             txCell.amountLb.text = formattedAmount
             txCell.statusLb.text = "Receive"
             if direction == .RECEIVED {
@@ -106,12 +90,11 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
             }
             else {
                 txCell.directionImgView.image = UIImage(named: "imgeaBtcIncrease")
-//                txCell.amountLb.textColor = .black
                 txCell.statusLb.text = "Sent"
                 txCell.amountLb.text = "-" + formattedAmount
             }
         }
-        
+
     }
 
 }

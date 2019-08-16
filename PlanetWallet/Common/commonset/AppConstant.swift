@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let BITCOIN_TESTNET = true
+let TESTNET = true
 
 let DEFAULT_PLIST_NAME = "Preference"
 

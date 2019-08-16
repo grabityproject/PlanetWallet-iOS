@@ -23,7 +23,7 @@ public final class CoinNumberFormatter {
     //MARK: - Bitcoin
     func toBitcoin(satoshi: BigInt) -> Decimal? {
         guard let decimalSatoshi = Decimal(string: satoshi.description) else { return nil }
-        return decimalSatoshi / pow(Decimal(10), 8)
+        return decimalSatoshi / pow(Decimal(10), CoinType.BTC.precision!)
     }
     
     func toBitString(satoshi: String) -> String? {
@@ -43,7 +43,7 @@ public final class CoinNumberFormatter {
     /// Convert Wei(BInt) unit to Ether(Decimal) unit
     func toEther(wei: BigInt) -> Decimal? {
         guard let decimalWei = Decimal(string: wei.description) else { return nil }
-        return decimalWei / pow(Decimal(10), 18)
+        return decimalWei / pow(Decimal(10), CoinType.ETH.precision!)
     }
     
     func toEthString(wei: BigInt) -> String? {
@@ -73,7 +73,7 @@ public final class CoinNumberFormatter {
     
     /// Convert Ether(Decimal) unit to Wei(BInt) unit
     func toWei(ether: Decimal) -> BigInt? {
-        guard let wei = BigInt((ether * pow(Decimal(10), 18)).description) else {
+        guard let wei = BigInt((ether * pow(Decimal(10), CoinType.ETH.precision!)).description) else {
             return nil
         }
         return wei

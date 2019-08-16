@@ -92,6 +92,12 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        delegates.forEach { (delegate) in
+            delegate.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
+        }
+    }
+    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         delegates.forEach { (delegate) in
             delegate.scrollViewDidZoom?(scrollView)

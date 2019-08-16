@@ -146,15 +146,15 @@ enum Theme: Int {
     
     var transferETHImg: UIImage? {
         switch self {
-        case .DARK:     return UIImage(named: "imageTransferEthGray")
-        case .LIGHT:    return UIImage(named: "imageTransferEthBlue")
+        case .DARK:     return UIImage(named: "eth")
+        case .LIGHT:    return UIImage(named: "eth")
         }
     }
     
     var transferBTCImg: UIImage? {
         switch self {
-        case .DARK:     return UIImage(named: "imageTransferBtcGray")
-        case .LIGHT:    return UIImage(named: "imageTransferBtcBlue")
+        case .DARK:     return UIImage(named: "imageTransferConfirmationBtc02")
+        case .LIGHT:    return UIImage(named: "imageTransferConfirmationBtc02")
         }
     }
     

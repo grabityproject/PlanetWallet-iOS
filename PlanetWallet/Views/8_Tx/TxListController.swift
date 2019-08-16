@@ -63,40 +63,45 @@ class TxListController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         
-        if let userInfo = userInfo,
-            let planet = userInfo[Keys.UserInfo.planet] as? Planet
-        {
-            self.planet = planet
+        guard let userInfo = userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet else { return }
+        
+        self.planet = planet
+        
+        if let erc20 = userInfo[Keys.UserInfo.mainItem] as? ERC20
+        {//ERC20
+            guard let symbol = erc20.symbol else { return }
             
-            
-            if let erc20 = userInfo[Keys.UserInfo.mainItem] as? ERC20
-            {//ERC20
-                guard let symbol = erc20.symbol,
-                    let balance = erc20.balance,
-                    let iconImgPath = erc20.img_path else { return }
-                
-                self.tokenType = .ERC20(erc20)
-                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
-                    balanceLb.text = "Balance : \(shortEtherStr) \(symbol)"
-                }
-                
-                iconImgView.downloaded(from: Route.URL( iconImgPath ))
-            }
-            else {//ETH
-                guard let symbol = planet.symbol, let balance = planet.balance else { return }
-                
-                self.tokenType = .ETH
-                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
-                    balanceLb.text = "Balance : \(shortEtherStr) \(symbol)"
-                }
+            self.tokenType = .ERC20(erc20)
+            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: erc20.balance ?? "0") {
+                balanceLb.text = "\(shortEtherStr) \(symbol)"
             }
             
-            txAdapter = TxAdapter(tableView, txList)
-            txAdapter?.selectedPlanet = self.planet
-            txAdapter?.delegates.append(self)
+            naviBar.title = erc20.name
+            iconImgView.downloaded(from: Route.URL( erc20.img_path ?? "" ))
+        }
+        else {//ETH
+            guard let symbol = planet.symbol, let balance = planet.balance else { return }
+            
+            self.tokenType = .ETH
+            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
+                balanceLb.text = "\(shortEtherStr) \(symbol)"
+            }
+            
+            naviBar.title = "Ethereum"
         }
         
+        txAdapter = TxAdapter(tableView, txList)
+        txAdapter?.selectedPlanet = self.planet
+        txAdapter?.delegates.append(self)
+        
         getTxList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        txAdapter?.dataSetNotify(txList)
     }
     
     //MARK: - Private
@@ -172,11 +177,15 @@ class TxListController: PlanetWalletViewController {
 
 extension TxListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let planet = planet else { return }
+        
         sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
-                   userInfo: [Keys.UserInfo.transaction: txList[indexPath.row]])
+                   userInfo: [Keys.UserInfo.planet: planet,
+                              Keys.UserInfo.transaction: txList[indexPath.row]])
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("controller \(indexPath)")
         findAllViews(view: cell, theme: currentTheme)
     }
 }

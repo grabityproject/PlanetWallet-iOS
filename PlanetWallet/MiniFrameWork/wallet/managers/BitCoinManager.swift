@@ -31,7 +31,7 @@ class BitCoinManager{
     init() {
         self.service = BtcWalletAccountService(keyPairService: hdKeyPairService, keyPairStore: KeyPairStore.shared, btcApiClient: nil)
         
-        if BITCOIN_TESTNET {
+        if TESTNET {
             definedCurrency = DefinedCurrency.BTCT
         }
     }

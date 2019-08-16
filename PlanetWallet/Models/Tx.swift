@@ -8,34 +8,10 @@
 
 import Foundation
 import ObjectMapper
-/*
-{
-    "tx_id": "72d94861f51d2fa618e38974ec314c947e976df3d3524b8b51ac21d7576ceb01",
-    "contract": null,
-    "to": "n1XYu73xiYzzPeeXNRighWHVRHsNrCXPAF",
-    "from": "mqFWxipJXgovvC6jXqzACoiGNPA8EmJK7J",
-    "nonce": null,
-    "amount": "900000",
-    "gasPrice": null,
-    "gasLimit": null,
-    "fee": 243,
-    "coin": "BTC",
-    "symbol": "BTC",
-    "rawTransaction": "",
-    "utxos": {
-        "inputs": {
-            "mqFWxipJXgovvC6jXqzACoiGNPA8EmJK7J": "3617161"
-        },
-        "outputs": {
-            "n1XYu73xiYzzPeeXNRighWHVRHsNrCXPAF": "900000",
-            "mqFWxipJXgovvC6jXqzACoiGNPA8EmJK7J": "2716918"
-        }
-    },
-    "created_at": 1564390476,
-    "updated_at": ""
-}
- */
+
 class Tx: Mappable {
+    
+    var type: String?
     var tx_id: String?
     var contract: String?
     var to: String?//address
@@ -100,6 +76,7 @@ class Tx: Mappable {
     }
     
     func mapping(map: Map) {
+        type           <- map["type"] //received, sent
         tx_id          <- map["tx_id"]
         contract       <- map["contract"]
         
@@ -125,4 +102,16 @@ class Tx: Mappable {
         created_at     <- map["created_at"]
         updated_at     <- map["updated_at"]
     }
+    
+    func formattedDate() -> String? {
+        if let _createdAt = self.created_at, let createdAt = Int64(_createdAt) {
+            
+            return Utils.shared.changeDateFormat(date: Date(millis: createdAt),
+                                                 afterFormat: .yyyyMMddHHmmss)
+        }
+        else {
+            return nil
+        }
+    }
 }
+

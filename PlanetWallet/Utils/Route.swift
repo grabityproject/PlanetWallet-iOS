@@ -18,4 +18,11 @@ class Route{
         return Route.baseURL + result
     }
     
+    static func URL(_ segments : String..., baseURL: String = Route.baseURL) -> String {
+        var result : String = ""
+        for segment in segments{
+            result += ( "/" + segment )
+        }
+        return baseURL + result
+    }
 }
