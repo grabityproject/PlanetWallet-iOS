@@ -70,12 +70,8 @@ class TxListController: PlanetWalletViewController {
         
         if let erc20 = userInfo[Keys.UserInfo.mainItem] as? ERC20
         {//ERC20
-            guard let symbol = erc20.symbol else { return }
             
             self.tokenType = .ERC20(erc20)
-            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: erc20.balance ?? "0") {
-                balanceLb.text = "\(shortEtherStr) \(symbol)"
-            }
             
             naviBar.title = erc20.name
             iconImgView.downloaded(from: Route.URL( erc20.img_path ?? "" ))
@@ -94,17 +90,40 @@ class TxListController: PlanetWalletViewController {
         txAdapter = TxAdapter(tableView, txList)
         txAdapter?.selectedPlanet = self.planet
         txAdapter?.delegates.append(self)
-        
-        getTxList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        txAdapter?.dataSetNotify(txList)
+        switch tokenType {
+        case .ETH:
+            break
+        case .ERC20(let token):
+            iconImgView.downloaded(from: Route.URL( token.img_path ?? "" ))
+        }
+        
+        getTxList()
+        getBalance()
     }
     
     //MARK: - Private
+    private func getBalance() {
+        guard let planet = planet, let planetName = planet.name else { return }
+        var symbol = ""
+        switch tokenType {
+        case .ETH:
+            symbol = "ETH"
+        case .ERC20(let token):
+            guard let tokenSymbol = token.symbol else { return }
+            symbol = tokenSymbol
+        }
+        
+        Get(self).action(Route.URL("balance", symbol, planetName),
+                         requestCode: 1,
+                         resultCode: 1,
+                         data: nil,
+                         extraHeaders: ["device-key": DEVICE_KEY])
+    }
     private func getTxList() {
         
         guard let symbol = planet?.symbol, let name = planet?.name else { return }
@@ -129,7 +148,17 @@ class TxListController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedReceive(_ sender: UIButton) {
-        
+        if let selectedPlanet = planet {
+            switch tokenType {
+            case .ETH:
+                self.sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_ADDRESS,
+                                userInfo: [Keys.UserInfo.planet: selectedPlanet])
+            case .ERC20(let selectedERC20):
+                self.sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_ADDRESS,
+                                userInfo: [Keys.UserInfo.planet: selectedPlanet,
+                                           Keys.UserInfo.erc20 : selectedERC20])
+            }
+        }
     }
     
     @IBAction func didTouchedTransfer(_ sender: UIButton) {
@@ -151,27 +180,51 @@ class TxListController: PlanetWalletViewController {
         
         guard let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
-            let isSuccess = returnVo.success,
-            let txItems = returnVo.result as? Array<Dictionary<String, Any>> else { return }
+            let isSuccess = returnVo.success else { return }
         
-        self.txList.removeAll()
-        
-        if isSuccess {
-            for i in 0..<txItems.count {
-                print("-------\(i) Transaction-------")
-                if let transaction = Tx(JSON: txItems[i]) {
-                    print("TxHash: \(transaction.tx_id!)")
-                    print("from: \(transaction.from!)")
-                    print("to: \(transaction.to!)")
-                    txList.append(transaction)
+        if requestCode == 1 {
+            //Handle balance response
+            guard let json = dict["result"] as? [String:Any],
+                let planet = Planet(JSON: json),
+                let balance = planet.balance else { return }
+            
+            switch tokenType {
+            case .ETH:
+                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance),
+                    let symbol = self.planet?.symbol
+                {
+                    balanceLb.text = "\(shortEtherStr) \(symbol)"
+                }
+            case .ERC20(let token):
+                if let shortTokenStr = CoinNumberFormatter.short.toEthString(wei: balance),
+                    let symbol = token.symbol
+                {
+                    balanceLb.text = "\(shortTokenStr) \(symbol)"
                 }
             }
         }
         else {
-            print("Failed to response txList")
+            //Handle transacion list response
+            guard let txItems = returnVo.result as? Array<Dictionary<String, Any>> else { return }
+            self.txList.removeAll()
+            
+            if isSuccess {
+                for i in 0..<txItems.count {
+                    print("-------\(i) Transaction-------")
+                    if let transaction = Tx(JSON: txItems[i]) {
+                        print("TxHash: \(transaction.tx_id!)")
+                        print("from: \(transaction.from!)")
+                        print("to: \(transaction.to!)")
+                        txList.append(transaction)
+                    }
+                }
+            }
+            else {
+                print("Failed to response txList")
+            }
+            
+            txAdapter?.dataSetNotify(txList)
         }
-        
-        txAdapter?.dataSetNotify(txList)
     }
 }
 
@@ -185,7 +238,6 @@ extension TxListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("controller \(indexPath)")
         findAllViews(view: cell, theme: currentTheme)
     }
 }
