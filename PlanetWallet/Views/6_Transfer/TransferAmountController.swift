@@ -175,14 +175,23 @@ class TransferAmountController: PlanetWalletViewController {
         
         switch coinType {
         case .BTC:
-//            CoinNumberFormatter.full.toMaxUnit(balance: balance, item: BTC())
-            if let formattedBalance = CoinNumberFormatter.full.toBitcoin(satoshi: balance) {
-                self.availableBalance = formattedBalance
+            if let shortBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.BTC),
+                let btcDecimal = Decimal(string: shortBTCStr)
+            {
+                self.availableBalance = btcDecimal
             }
+//            if let formattedBalance = CoinNumberFormatter.full.toBitcoin(satoshi: balance) {
+//                self.availableBalance = formattedBalance
+//            }
         case .ETH:
-            if let formattedBalance = CoinNumberFormatter.full.toEther(wei: balance) {
-                self.availableBalance = formattedBalance
+            if let shortEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.ETH),
+                let etherDecimal = Decimal(string: shortEtherStr)
+            {
+                self.availableBalance = etherDecimal
             }
+//            if let formattedBalance = CoinNumberFormatter.full.toEther(wei: balance) {
+//                self.availableBalance = formattedBalance
+//            }
         }
         
     }

@@ -56,14 +56,20 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         var formattedAmount = ""
         
         if coinType == CoinType.BTC.coinType {
-            if let shortBitStr = CoinNumberFormatter.short.toBitString(satoshi: amount) {
+            if let shortBitStr = CoinNumberFormatter.short.toMaxUnit(balance: amount, coinType: CoinType.BTC) {
                 formattedAmount = shortBitStr
             }
+//            if let shortBitStr = CoinNumberFormatter.short.toBitString(satoshi: amount) {
+//                formattedAmount = shortBitStr
+//            }
         }
         else if coinType == CoinType.ETH.coinType {
-            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: amount) {
+            if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: amount, coinType: CoinType.ETH) {
                 formattedAmount = shortEtherStr
             }
+//            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: amount) {
+//                formattedAmount = shortEtherStr
+//            }
         }
         
         guard let results = txStatus?.status, let direction = txStatus?.direction else { return }

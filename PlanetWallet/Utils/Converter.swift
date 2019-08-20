@@ -18,8 +18,23 @@ public final class CoinNumberFormatter {
         self.maximumFractionDigit = maximumDigit
     }
     
-    var maximumFractionDigit = Int.max - 1
+    private var maximumFractionDigit = Int.max - 1
     
+    //MARK: - Interface
+    // Only used for Coin
+    func toMaxUnit(balance: String, coinType: StructCoinType) -> String? {
+        
+        if coinType.coinType == CoinType.BTC.coinType {
+            return toMaxUnit(balance: balance, item: BTC())
+        }
+        else if coinType.coinType == CoinType.ETH.coinType {
+            return toMaxUnit(balance: balance, item: ETH())
+        }
+        
+        return nil
+    }
+    
+    // include token
     func toMaxUnit(balance: String, item: MainItem) -> String? {
         
         let coinType = item.getCoinType()
@@ -31,12 +46,36 @@ public final class CoinNumberFormatter {
             return toEthString(wei: balance)
         }
         else if coinType == CoinType.ERC20.coinType {
-            if let erc20 = item as? ERC20, let decimalsStr = erc20.decimals, let decimals = Int(decimalsStr) {
+            if let token = item as? ERC20, let decimalStr = token.decimals, let decimals = Int(decimalStr) {
                 return toEthString(wei: balance, precesion: decimals)
             }
         }
         
         return nil
+    }
+    
+    func convertUnit(balance: String, from: Int, to: Int) -> String? {
+        let exponent = from - to
+        if let balanceDecimal = Decimal(string: balance) {
+            
+            if exponent > 0 {
+                return (balanceDecimal * pow(10, exponent)).toString()
+            }
+            else {
+                return (balanceDecimal / pow(10, -exponent)).toString()
+            }
+            
+        }
+        
+        return nil
+    }
+    
+    func convertUnit(balance: String, from: EthereumUnit, to: EthereumUnit) -> String? {
+        return self.convertUnit(balance: balance, from: from.value, to: to.value)
+    }
+    
+    func convertUnit(balance: String, from: BitcoinUnit, to: BitcoinUnit) -> String? {
+        return self.convertUnit(balance: balance, from: from.value, to: to.value)
     }
     
     //MARK: - Bitcoin
@@ -67,9 +106,10 @@ public final class CoinNumberFormatter {
     //MARK: - Ethereum
     /// Convert Wei(BInt) unit to Ether(Decimal) unit
     private func toEther(wei: String, precesion: Int = 18) -> Decimal? {
-        guard let ethStr = self.toEthString(wei: wei, precesion: precesion) else { return nil }
         
-        return Decimal(string: ethStr)
+        guard let decimalWEI = Decimal(string: wei) else { return nil }
+        
+        return decimalWEI / pow(Decimal(10), precesion)
     }
     
     private func toEthString(wei: String, precesion: Int = 18) -> String? {

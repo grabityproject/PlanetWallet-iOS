@@ -56,5 +56,4 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
         
         setCellHeight(height: 85)
     }
-    
 }

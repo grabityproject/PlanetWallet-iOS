@@ -8,11 +8,7 @@
 
 import UIKit
 
-extension Decimal {
-    var doubleValue:Double {
-        return NSDecimalNumber(decimal:self).doubleValue
-    }
-}
+
 
 class TransferConfirmController: PlanetWalletViewController {
 
@@ -42,7 +38,7 @@ class TransferConfirmController: PlanetWalletViewController {
     
     var coinType = CoinType.ETH
     var gas: GasInfo?
-    var transactionFee: Double = 0.0 {
+    var transactionFee: Decimal = 0.0 {
         didSet {
             guard let planet = self.planet else { return }
             
@@ -50,7 +46,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 
                 transactionFeeLb.text = "\(transactionFee.toString()) ETH"
                 
-                guard let ethBalanceStr = planet.balance, let ethBalance = Double(ethBalanceStr) else {
+                guard let ethBalanceStr = planet.balance, let ethBalance = Decimal(string: ethBalanceStr) else {
                     confirmBtn.setEnabled(false, theme: currentTheme)
                     return
                 }
@@ -66,7 +62,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
                     transactionFeeLb.text = "\(transactionFee.toString()) \(coinType.defaultUnit ?? "")"
                     
-                    let totalAmount = self.transferAmount + Decimal(floatLiteral: self.transactionFee)
+                    let totalAmount = self.transferAmount + transactionFee
                     if self.availableAmount >= totalAmount {
                         confirmBtn.setEnabled(true, theme: currentTheme)
                     }
@@ -83,7 +79,7 @@ class TransferConfirmController: PlanetWalletViewController {
             slider.value = Float(gasStep.rawValue)
 
             if let transactionFee = self.gas?.getTransactionFee(step: self.gasStep),
-                let gasETH: Double = transactionFee.getFeeETH() {
+                let gasETH = transactionFee.getFeeETH() {
                 self.transactionFee = gasETH
             }
         }
@@ -230,13 +226,14 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Private
     //수수료를 네트워크에서 못 가져 왔을 경우
     private func setDefaultAdvancedGasFee() {
-        let transactionFee = Int(Double(GasInfo.DEFAULT_GAS_PRICE) * Double(GasInfo.DEFAULT_GAS_LIMIT_ERC20))
-        if let ethTxFee: Double = Utils.shared.gweiToETH(transactionFee) {
-            self.transactionFee = ethTxFee
+        let transactionFee = (GasInfo.DEFAULT_GAS_PRICE * GasInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
+        if let feeEtherStr = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .GWEI, to: .ETHER),
+            let feeEther = Decimal(string: feeEtherStr)
+        {
+            self.transactionFee = feeEther
             self.isAdvancedGasOptions = true
             self.resetBtn.isHidden = true
         }
-        
     }
     
     private func sendTransaction() {
@@ -273,10 +270,13 @@ class TransferConfirmController: PlanetWalletViewController {
         
         
         guard let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
-        let amountWEI:String = Utils.shared.ethToWEI(transferAmount)
+        if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
+            amount = amountWEI
+        }
         
-        amount = amountWEI
-        gasPrice = "\(transactionFee.getGasPriceWEI())"
+        if let gasWEI = transactionFee.getGasPriceWEI() {
+            gasPrice = gasWEI
+        }
         
         if isAdvancedGasOptions {
             gasLimit = "\(gasInfo.advancedGasLimit)"
@@ -287,7 +287,7 @@ class TransferConfirmController: PlanetWalletViewController {
         
         print("-----------Tx------------")
         print("coin Type : \(coinType)")
-        print("amount of transfer : \(amountWEI)")
+        print("amount of transfer : \(amount)")
         print("gas price : \(transactionFee.getGasPriceWEI())")
         print("gas limit : \(gasLimit)")
         
@@ -335,12 +335,12 @@ class TransferConfirmController: PlanetWalletViewController {
                 let averageStr = item["standard"],
                 let fastStr = item["fast"],
                 let fastestStr = item["fastest"],
-                let safeLow = Double(safeLowStr),
-                let average = Double(averageStr),
-                let fast = Double(fastStr),
-                let fastest = Double(fastestStr)
+                let safeLow = Decimal(string: safeLowStr),
+                let average = Decimal(string: averageStr),
+                let fast = Decimal(string: fastStr),
+                let fastest = Decimal(string: fastestStr)
             {
-                var gasLimit = 100000
+                var gasLimit: Decimal = 100000
                 if isToken == false {
                     gasLimit = 21000
                 }
@@ -349,7 +349,7 @@ class TransferConfirmController: PlanetWalletViewController {
                                    average: average,
                                    fast: fast,
                                    fastest: fastest,
-                                   advancedGasPrice: Double(GasInfo.DEFAULT_GAS_PRICE),
+                                   advancedGasPrice: GasInfo.DEFAULT_GAS_PRICE,
                                    advancedGasLimit: gasLimit)
                 self.gasStep = .AVERAGE
                 self.advancedGasPopup.gasInfo = self.gas
@@ -376,11 +376,12 @@ class TransferConfirmController: PlanetWalletViewController {
 
 extension TransferConfirmController: AdvancedGasViewDelegate {
     func didTouchedSave(_ gasPrice: Int, gasLimit: Int) {
-        self.gas?.advancedGasPrice = Double(gasPrice)
-        self.gas?.advancedGasLimit = gasLimit
+        
+        self.gas?.advancedGasPrice = Decimal(integerLiteral: gasPrice)
+        self.gas?.advancedGasLimit = Decimal(integerLiteral: gasLimit)
         self.isAdvancedGasOptions = true
         if let transactionFee = gas?.getTransactionFee(step: .ADVANCED),
-            let feeETH: Double = transactionFee.getFeeETH() {
+            let feeETH = transactionFee.getFeeETH() {
             self.transactionFee = feeETH
         }
     }

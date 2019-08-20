@@ -18,19 +18,19 @@ struct GasInfo {
     }
     
     //Network를 통해 Transaction fee를 가져오지 못했을 경우 default value
-    static  let DEFAULT_GAS_PRICE = 20
-    static let DEFAULT_GAS_LIMIT = 21000
-    static let DEFAULT_GAS_LIMIT_ERC20 = 100000
+    static let DEFAULT_GAS_PRICE: Decimal = 20
+    static let DEFAULT_GAS_LIMIT: Decimal = 21000
+    static let DEFAULT_GAS_LIMIT_ERC20: Decimal = 100000
     
     public var isToken = false
     
-    public var safeLow: Double = 0
-    public var average: Double = 0
-    public var fast: Double = 0
-    public var fastest: Double = 0
+    public var safeLow: Decimal = 0
+    public var average: Decimal = 0
+    public var fast: Decimal = 0
+    public var fastest: Decimal = 0
     
-    public var advancedGasPrice: Double = 0
-    public var advancedGasLimit = 100000
+    public var advancedGasPrice: Decimal = 0
+    public var advancedGasLimit: Decimal = 100000
     
     public func getTransactionFee(step: GasInfo.Step) -> TransactionFee {
         switch step {
@@ -42,7 +42,7 @@ struct GasInfo {
         }
     }
     
-    private func getGasLimit() -> Int {
+    private func getGasLimit() -> Decimal {
         if isToken {
             return GasInfo.DEFAULT_GAS_LIMIT_ERC20
         }

@@ -14,7 +14,8 @@ class TransferController: PlanetWalletViewController {
     var planet:Planet?
     var erc20: ERC20?
     
-    var adapter : PlanetSearchAdapter?
+    var planetSearchAdapter: PlanetSearchAdapter?
+    var recentSearchAdapter: RecentSearchAdapter?
     
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var textField: PWTextField!
@@ -62,26 +63,12 @@ class TransferController: PlanetWalletViewController {
             }
         }
         
-        let recentlySearchList = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
-        recentlySearchList.forEach { (search) in
-            
-            guard let recentlyName = search.name, let recentlyAddress = search.address else { return }
-                
-            if recentlyName == "" {
-                print("Address : \(recentlyAddress)")
-            }
-            else {
-                print("Name : \(recentlyName)")
-            }
-            
-        }
-        
         self.planet = planet
         
-        adapter = PlanetSearchAdapter(tableView, []);
-        adapter?.delegates.append(self)
+        planetSearchAdapter = PlanetSearchAdapter(tableView, []);
+        planetSearchAdapter?.delegates.append(self)
         
-        
+        recentSearchAdapter = RecentSearchAdapter(tableView, SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true))
         
         updateUI()
     }
@@ -118,30 +105,31 @@ class TransferController: PlanetWalletViewController {
     
     //MARK: - Private
     private func updateUI() {
-        guard let planet = planet, let adapter = adapter else { return }
+        guard let planet = planet, let adapter = planetSearchAdapter else { return }
+        
         
         if( adapter.dataSource.count == 0 && search.count == 0 ){
             
-            self.tableView.isHidden = true
-            self.notFoundLb.isHidden = true
-            
-            if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
-                
-                if isValidAddr(pastedStr) && address != pastedStr {
-                    self.pasteClipboardBtn.isHidden = false
-                }
-            }
+//            self.tableView.isHidden = true
+//            self.notFoundLb.isHidden = true
+//
+//            if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
+//
+//                if isValidAddr(pastedStr) && address != pastedStr {
+//                    self.pasteClipboardBtn.isHidden = false
+//                }
+//            }
         }else if( adapter.dataSource.count == 0 && search.count != 0 ){
             
             self.tableView.isHidden = true
             self.notFoundLb.isHidden = false
-            self.pasteClipboardBtn.isHidden = true
+//            self.pasteClipboardBtn.isHidden = true
             
         }else{
-            
+            planetSearchAdapter = PlanetSearchAdapter(tableView, [])
             self.tableView.isHidden = false
             self.notFoundLb.isHidden = true
-            self.pasteClipboardBtn.isHidden = true
+//            self.pasteClipboardBtn.isHidden = true
             
         }
     }
@@ -194,8 +182,8 @@ class TransferController: PlanetWalletViewController {
                 }
             }
             
-            adapter?.dataSetNotify(results)
             updateUI()
+            planetSearchAdapter?.dataSetNotify(results)
         }
         
     }
@@ -209,7 +197,7 @@ extension TransferController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
-                   userInfo: [Keys.UserInfo.toPlanet: adapter?.dataSource[indexPath.row] as Any,
+                   userInfo: [Keys.UserInfo.toPlanet: planetSearchAdapter?.dataSource[indexPath.row] as Any,
                               Keys.UserInfo.planet: self.planet as Any,
                               Keys.UserInfo.erc20: self.erc20 as Any])
     }
@@ -235,7 +223,7 @@ extension TransferController: UITextFieldDelegate {
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.search = ""
-        adapter?.dataSetNotify([])
+        planetSearchAdapter?.dataSetNotify([])
         updateUI()
         textField.resignFirstResponder()
         return true
@@ -273,7 +261,7 @@ extension TransferController: QRCaptureDelegate {
             let addressPlanet = Planet()
             addressPlanet.address = address
             addressPlanet.coinType = self.planet?.coinType
-            adapter?.dataSetNotify([addressPlanet])
+            planetSearchAdapter?.dataSetNotify([addressPlanet])
             updateUI()
         }
     }

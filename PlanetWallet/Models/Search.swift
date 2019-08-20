@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 
+/*
 class Search: Mappable {
     
     var _id: Int?
@@ -36,3 +37,4 @@ class Search: Mappable {
         symbol      <- map ["symbol"]
     }
 }
+*/
