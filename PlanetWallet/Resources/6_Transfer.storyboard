@@ -131,6 +131,41 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-AC-BAr" userLabel="Paste Btn Container" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
+                                        <rect key="frame" x="323" y="8" width="71" height="49"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageTransferAddressPaste" translatesAutoresizingMaskIntoConstraints="NO" id="wtD-xa-iFe" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
+                                                <rect key="frame" x="-85" y="-21" width="240" height="128"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageTransferAddressPaste"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQL-sT-q5o">
+                                                <rect key="frame" x="12" y="9" width="46" height="30"/>
+                                                <connections>
+                                                    <action selector="didTouchedPaste:" destination="ETN-79-SLg" eventType="touchUpInside" id="yTg-UQ-C6O"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="wtD-xa-iFe" firstAttribute="leading" secondItem="B3E-AC-BAr" secondAttribute="leading" id="6lp-Jl-Hr5"/>
+                                            <constraint firstItem="wtD-xa-iFe" firstAttribute="top" secondItem="B3E-AC-BAr" secondAttribute="top" id="6xM-bT-o2b"/>
+                                            <constraint firstAttribute="height" constant="40" id="7eq-Ww-eoT"/>
+                                            <constraint firstAttribute="trailing" secondItem="CQL-sT-q5o" secondAttribute="trailing" id="9QV-Ke-Q9g"/>
+                                            <constraint firstAttribute="trailing" secondItem="wtD-xa-iFe" secondAttribute="trailing" id="Dzw-5w-jhd"/>
+                                            <constraint firstAttribute="width" constant="40" id="FIi-bx-bAK"/>
+                                            <constraint firstAttribute="bottom" secondItem="CQL-sT-q5o" secondAttribute="bottom" id="VSb-Ar-CGa"/>
+                                            <constraint firstItem="CQL-sT-q5o" firstAttribute="leading" secondItem="B3E-AC-BAr" secondAttribute="leading" id="bCi-Hk-2ry"/>
+                                            <constraint firstAttribute="bottom" secondItem="wtD-xa-iFe" secondAttribute="bottom" id="e9j-Iv-kGE"/>
+                                            <constraint firstItem="CQL-sT-q5o" firstAttribute="top" secondItem="B3E-AC-BAr" secondAttribute="top" id="pM2-oY-9IL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="themeBackgroundColor">
+                                                <color key="value" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -147,6 +182,8 @@
                                     <constraint firstAttribute="bottom" secondItem="mwh-UU-Vs4" secondAttribute="bottom" id="a53-tJ-dGY"/>
                                     <constraint firstItem="bMr-sA-PKs" firstAttribute="leading" secondItem="mwh-UU-Vs4" secondAttribute="trailing" id="gGP-tQ-Vaf"/>
                                     <constraint firstAttribute="bottom" secondItem="8Nw-4K-U6s" secondAttribute="bottom" id="nHG-X9-ar5"/>
+                                    <constraint firstAttribute="trailing" secondItem="B3E-AC-BAr" secondAttribute="trailing" constant="16" id="oeb-WT-jxj"/>
+                                    <constraint firstItem="B3E-AC-BAr" firstAttribute="centerY" secondItem="hgM-Hf-bnc" secondAttribute="centerY" id="olN-1i-Zdf"/>
                                     <constraint firstAttribute="bottom" secondItem="bMr-sA-PKs" secondAttribute="bottom" id="sCH-Cn-Zx3"/>
                                     <constraint firstItem="bMr-sA-PKs" firstAttribute="leading" secondItem="hgM-Hf-bnc" secondAttribute="leading" constant="50" id="xPg-7n-BSd"/>
                                 </constraints>
@@ -156,35 +193,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-A7-9hQ" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="139" y="197" width="136" height="28.5"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Paste from Clipboard">
-                                            <attributes>
-                                                <color key="NSBackgroundColor" red="0.98431372549019602" green="0.0" blue="0.24705882352941178" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                <color key="NSColor" red="1" green="0.0" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" metaFont="system" size="14"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="transfer_clip_board_title"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didTouchedPasteClipboard:" destination="ETN-79-SLg" eventType="touchUpInside" id="DNQ-Ww-5cB"/>
-                                </connections>
-                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can transfer to  the Planet name and Wallet address." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afe-Xn-Bs6" userLabel="Not found label" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="92.5" y="283" width="229" height="33"/>
+                                <rect key="frame" x="80.5" y="283" width="253.5" height="41"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextDark"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="transfer_not_search_title"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqh-v9-ic3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                <rect key="frame" x="186" y="437" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                <color key="textColor" name="detailTextDark"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                        <color key="value" name="detailTextLight"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Zz-RP-9MS">
@@ -195,10 +221,11 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="m5x-e9-y4r" firstAttribute="trailing" secondItem="35X-Uj-96g" secondAttribute="trailing" id="1v9-BN-laP"/>
-                            <constraint firstItem="fSJ-A7-9hQ" firstAttribute="top" secondItem="hgM-Hf-bnc" secondAttribute="bottom" constant="30" id="3gD-mZ-pEX"/>
+                            <constraint firstItem="tqh-v9-ic3" firstAttribute="top" secondItem="hgM-Hf-bnc" secondAttribute="bottom" constant="20" id="LVf-zt-Nyn"/>
                             <constraint firstItem="Afe-Xn-Bs6" firstAttribute="top" secondItem="hgM-Hf-bnc" secondAttribute="bottom" constant="116" id="Lkm-WN-WA0"/>
                             <constraint firstItem="hgM-Hf-bnc" firstAttribute="top" secondItem="35X-Uj-96g" secondAttribute="top" constant="66" id="M2V-DW-t6q"/>
                             <constraint firstItem="8Zz-RP-9MS" firstAttribute="leading" secondItem="35X-Uj-96g" secondAttribute="leading" id="NML-YR-30B"/>
+                            <constraint firstItem="tqh-v9-ic3" firstAttribute="leading" secondItem="35X-Uj-96g" secondAttribute="leading" constant="20" id="Tbn-55-EP2"/>
                             <constraint firstItem="Afe-Xn-Bs6" firstAttribute="centerX" secondItem="Vih-Oq-YH4" secondAttribute="centerX" id="UVH-S4-d9M"/>
                             <constraint firstItem="m5x-e9-y4r" firstAttribute="leading" secondItem="35X-Uj-96g" secondAttribute="leading" id="W9m-dj-U7t"/>
                             <constraint firstItem="8Zz-RP-9MS" firstAttribute="trailing" secondItem="35X-Uj-96g" secondAttribute="trailing" id="XNB-7P-XPB"/>
@@ -206,7 +233,6 @@
                             <constraint firstItem="m5x-e9-y4r" firstAttribute="top" secondItem="Vih-Oq-YH4" secondAttribute="top" id="ddd-7b-qg9"/>
                             <constraint firstItem="hgM-Hf-bnc" firstAttribute="trailing" secondItem="35X-Uj-96g" secondAttribute="trailing" id="ezu-mO-3LR"/>
                             <constraint firstItem="8Zz-RP-9MS" firstAttribute="top" secondItem="hgM-Hf-bnc" secondAttribute="bottom" constant="15" id="hBm-2I-7Hi"/>
-                            <constraint firstItem="fSJ-A7-9hQ" firstAttribute="centerX" secondItem="Vih-Oq-YH4" secondAttribute="centerX" id="k4X-qt-Z64"/>
                             <constraint firstItem="hgM-Hf-bnc" firstAttribute="leading" secondItem="35X-Uj-96g" secondAttribute="leading" id="qr8-XN-1Vm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="35X-Uj-96g"/>
@@ -220,7 +246,9 @@
                         <outlet property="magnifyingImgView" destination="G0j-DD-aTO" id="6WT-0x-ySA"/>
                         <outlet property="naviBar" destination="m5x-e9-y4r" id="oWT-VO-LLw"/>
                         <outlet property="notFoundLb" destination="Afe-Xn-Bs6" id="Mmn-4G-EWg"/>
-                        <outlet property="pasteClipboardBtn" destination="fSJ-A7-9hQ" id="7Sp-on-DTY"/>
+                        <outlet property="pasteBtnContainer" destination="B3E-AC-BAr" id="JuF-Vi-lw4"/>
+                        <outlet property="recentLb" destination="tqh-v9-ic3" id="GPh-lR-fJf"/>
+                        <outlet property="tableTopConstraint" destination="hBm-2I-7Hi" id="U6D-Nm-Cup"/>
                         <outlet property="tableView" destination="8Zz-RP-9MS" id="dcT-ip-stT"/>
                         <outlet property="textField" destination="bMr-sA-PKs" id="Fu7-8J-00N"/>
                         <segue destination="OiC-Wc-8YC" kind="presentation" identifier="transfer_to_qrcapture" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="iTc-p1-tfR"/>
@@ -229,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2q-eR-98Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="-455"/>
+            <point key="canvasLocation" x="304.34782608695656" y="-455.35714285714283"/>
         </scene>
         <!--Transfer Amount Controller-->
         <scene sceneID="8BW-jq-N35">
@@ -1567,7 +1595,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-VV-U9W" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="148.5" y="72.5" width="117.5" height="21"/>
+                                <rect key="frame" x="146" y="70" width="122.5" height="26.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1619,6 +1647,7 @@
         <image name="imageToolbarCloseWhite" width="60" height="60"/>
         <image name="imageToolbarTransferBlue" width="60" height="60"/>
         <image name="imageToolbarTransferGray" width="60" height="60"/>
+        <image name="imageTransferAddressPaste" width="60" height="60"/>
         <image name="imageTransferConfirmationFee" width="30" height="30"/>
         <image name="imageTransferConfirmationFeeWhite" width="30" height="30"/>
         <image name="imageTransferEthBlue" width="30" height="30"/>

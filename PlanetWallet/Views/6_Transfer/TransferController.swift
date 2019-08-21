@@ -9,30 +9,63 @@
 import UIKit
 import AVFoundation
 
-class TransferController: PlanetWalletViewController {
+extension TransferController {
+    enum TableState {
+        case SEARCH
+        case RECENT_SEARCH
+    }
+}
 
-    var planet:Planet?
-    var erc20: ERC20?
-    
-    var planetSearchAdapter: PlanetSearchAdapter?
-    var recentSearchAdapter: RecentSearchAdapter?
+class TransferController: PlanetWalletViewController {
     
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var textField: PWTextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: PWLabel!
-    @IBOutlet var pasteClipboardBtn: UIButton!
     @IBOutlet var magnifyingImgView: PWImageView!
+    @IBOutlet var recentLb: PWLabel!
     
+    @IBOutlet var pasteBtnContainer: UIView!
+    
+    @IBOutlet var tableTopConstraint: NSLayoutConstraint!
+    
+    var planet:Planet?
+    var erc20: ERC20?
+    
+    var planetSearchAdapter: PlanetSearchAdapter?
+    var searchingDatasource = [Planet]()
+    var recentSearchAdapter: RecentSearchAdapter?
+    var recentDatasource = [Planet]()
+    
+    var selectedSymbol = ""
     var search:String = ""
     
     var qrCaptureController: QRCaptureController?
+    
+    var tableState: TableState = TableState.RECENT_SEARCH {
+        didSet {
+            switch self.tableState {
+            case .RECENT_SEARCH:
+                recentLb.isHidden = false
+                tableTopConstraint.constant = 37
+                recentSearchAdapter = RecentSearchAdapter(tableView, recentDatasource)
+                recentSearchAdapter?.delegate = self
+            case .SEARCH:
+                recentLb.isHidden = true
+                tableTopConstraint.constant = 15
+                planetSearchAdapter = PlanetSearchAdapter(tableView, searchingDatasource)
+                planetSearchAdapter?.delegate = self
+                planetSearchAdapter?.dataSetNotify(searchingDatasource)
+            }
+        }
+    }
     
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
         naviBar.title = "transfer_toolbar_title".localized
+        
         
         if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
             textField.attributedPlaceholder = NSAttributedString(string: "transfer_search_title".localized,
@@ -42,8 +75,6 @@ class TransferController: PlanetWalletViewController {
     }
     
     override func setData() {
-        
-        var selectedSymbol = ""
         
         guard let userInfo = self.userInfo,
             let planet = userInfo[Keys.UserInfo.planet] as? Planet,
@@ -65,12 +96,13 @@ class TransferController: PlanetWalletViewController {
         
         self.planet = planet
         
-        planetSearchAdapter = PlanetSearchAdapter(tableView, []);
-        planetSearchAdapter?.delegates.append(self)
+//        planetSearchAdapter = PlanetSearchAdapter(tableView, [])
+        self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
+        self.tableState = .RECENT_SEARCH
         
-        recentSearchAdapter = RecentSearchAdapter(tableView, SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true))
+//        updateUI()
         
-        updateUI()
+        showPasteBtn()
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -91,46 +123,28 @@ class TransferController: PlanetWalletViewController {
         }
     }
     
-    //MARK: - IBAction
-    @IBAction func didTouchedPasteClipboard(_ sender: UIButton) {
-        if let copiedStr = Utils.shared.getClipboard() {
-            textField.text = copiedStr
-            
-            if let planet = self.planet, let coinType = planet.coinType{
-                search = copiedStr
-                Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":copiedStr] )
-            }
-        }
-    }
-    
     //MARK: - Private
     private func updateUI() {
-        guard let planet = planet, let adapter = planetSearchAdapter else { return }
-        
+        guard let adapter = planetSearchAdapter else { return }
         
         if( adapter.dataSource.count == 0 && search.count == 0 ){
+//            recentSearchAdapter = RecentSearchAdapter(tableView, recentDatasource)
+//            recentSearchAdapter?.delegate = self
+            self.tableState = .RECENT_SEARCH
             
-//            self.tableView.isHidden = true
-//            self.notFoundLb.isHidden = true
-//
-//            if let pastedStr = Utils.shared.getClipboard(), let address = planet.address {
-//
-//                if isValidAddr(pastedStr) && address != pastedStr {
-//                    self.pasteClipboardBtn.isHidden = false
-//                }
-//            }
+            self.tableView.isHidden = false
+            self.notFoundLb.isHidden = true
+
         }else if( adapter.dataSource.count == 0 && search.count != 0 ){
             
             self.tableView.isHidden = true
             self.notFoundLb.isHidden = false
-//            self.pasteClipboardBtn.isHidden = true
-            
+            self.pasteBtnContainer.isHidden = true
         }else{
-            planetSearchAdapter = PlanetSearchAdapter(tableView, [])
+            
             self.tableView.isHidden = false
             self.notFoundLb.isHidden = true
-//            self.pasteClipboardBtn.isHidden = true
-            
+            self.pasteBtnContainer.isHidden = true
         }
     }
     
@@ -153,22 +167,43 @@ class TransferController: PlanetWalletViewController {
         }
     }
     
+    private func showPasteBtn() {
+        guard let planet = planet,
+            let pastedStr = Utils.shared.getClipboard(),
+            let address = planet.address else { return }
+        
+        if isValidAddr(pastedStr) && address != pastedStr {
+            self.pasteBtnContainer.isHidden = false
+        }
+    }
+    
+    //MARK: - IBAction
+    @IBAction func didTouchedPaste(_ sender: UIButton) {
+        guard let copiedStr = Utils.shared.getClipboard(),
+            let planet = self.planet,
+            let coinType = planet.coinType else { return }
+        
+        textField.text = copiedStr
+        search = copiedStr
+        Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":copiedStr] )
+    }
+    
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary, let returnVo = ReturnVO(JSON: dict), let success = returnVo.success else { return }
         
         if( success ){
-            var results = Array<Planet>()
+            searchingDatasource.removeAll()
             let items = returnVo.result as! Array<Dictionary<String, Any>>
-            
+
             if( items.count == 0 ){
                 //Valid address
                 if isValidAddr(search) {
                     let addressPlanet = Planet()
                     addressPlanet.address = self.search
                     addressPlanet.coinType = self.planet?.coinType
-                    results.append(addressPlanet)
+                    searchingDatasource.append(addressPlanet)
                 }
             }else{
                 // DataSource update
@@ -176,28 +211,51 @@ class TransferController: PlanetWalletViewController {
                     //except self item
                     if let itemName = item["name"] as? String, let selfName = self.planet?.name {
                         if itemName != selfName {
-                            results.append(Planet(JSON: item)!)
+                            searchingDatasource.append(Planet(JSON: item)!)
                         }
                     }
                 }
             }
             
+//            planetSearchAdapter = PlanetSearchAdapter(tableView, searchingDatasource)
+//            planetSearchAdapter?.delegate = self
+//            planetSearchAdapter?.dataSetNotify(searchingDatasource)
+            self.tableState = .SEARCH
             updateUI()
-            planetSearchAdapter?.dataSetNotify(results)
         }
         
     }
 }
 
-extension TransferController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+extension TransferController: RecentSearchAdapterDelegate {
+    func willDisplayItem(cell: UITableViewCell) {
         findAllViews(view: cell, theme: currentTheme)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func didTouchedDelete(_ planet: Planet) {
+        SearchStore.shared.delete(planet)
+        if let keyId = self.planet?.keyId {
+            recentSearchAdapter?.dataSetNotify(SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true))
+        }
+    }
+    
+    func didTouchedItem(_ planet: Planet) {
         sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
-                   userInfo: [Keys.UserInfo.toPlanet: planetSearchAdapter?.dataSource[indexPath.row] as Any,
+                   userInfo: [Keys.UserInfo.toPlanet: planet,
+                              Keys.UserInfo.planet: self.planet as Any,
+                              Keys.UserInfo.erc20: self.erc20 as Any])
+    }
+}
+
+extension TransferController: PlanetSearchAdapterDelegate {
+    
+    func willDisplayCell(_ cell: UITableViewCell) {
+        findAllViews(view: cell, theme: currentTheme)
+    }
+    
+    func didTouchedPlanet(_ planet: Planet) {
+        sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
+                   userInfo: [Keys.UserInfo.toPlanet: planet,
                               Keys.UserInfo.planet: self.planet as Any,
                               Keys.UserInfo.erc20: self.erc20 as Any])
     }
@@ -225,6 +283,7 @@ extension TransferController: UITextFieldDelegate {
         self.search = ""
         planetSearchAdapter?.dataSetNotify([])
         updateUI()
+        showPasteBtn()
         textField.resignFirstResponder()
         return true
     }
@@ -232,6 +291,9 @@ extension TransferController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty { //backspace
             search = String(search.dropLast())
+            if search.count == 0 {
+                showPasteBtn()
+            }
         }
         else {
             search = textField.text! + string

@@ -26,24 +26,29 @@ class SearchStore {
         }
     }
     
-    func insert(_ toInsertItem: Planet) {
+    func insert(keyId: String, symbol: String, toPlanet: Planet) {
         
-        //1. 중복 검사
+        //1. 중복 검사 -> 기존 record삭제 후 최근으로 추가
         //2. size 검사 (최대 20개) -> 넘을 경우 가장 오래된 record삭제
-        var isValid = true
-        guard let keyID = toInsertItem.keyId, let symbol = toInsertItem.symbol else { return }
+        guard let toName = toPlanet.name, let toAddress = toPlanet.address else { return }
         
-        let list = self.list(keyId: keyID, symbol: symbol, descending: false)
+        var isValid = true
+        
+        let list = self.list(keyId: keyId, symbol: symbol, descending: false)
         
         list.forEach { (recent) in
-            if let name = recent.name, let toInsertName = toInsertItem.name {
+            if let name = recent.name, let toInsertName = toPlanet.name {
                 if name == toInsertName {
                     isValid = false
+                    _ = PWDBManager.shared.delete(recent, SearchStore.TABLE_NAME, "_id='\(recent._id!)'")
+                    _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol), SearchStore.TABLE_NAME)
                 }
             }
             else {
-                if (recent.address == toInsertItem.address) {
+                if (recent.address == toPlanet.address) {
                     isValid = false
+                    _ = PWDBManager.shared.delete(recent, SearchStore.TABLE_NAME, "_id='\(recent._id!)'")
+                    _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol), SearchStore.TABLE_NAME)
                 }
             }
         }
@@ -58,11 +63,13 @@ class SearchStore {
         }
         
         if isValid {
-            _ = PWDBManager.shared.insert(toInsertItem, SearchStore.TABLE_NAME)
+            _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol), SearchStore.TABLE_NAME)
         }
     }
     
     func delete(_ toDeleteItem: Planet) {
-        _ = PWDBManager.shared.delete(toDeleteItem, SearchStore.TABLE_NAME)
+        if let idToDelete = toDeleteItem._id {
+            _ = PWDBManager.shared.delete(toDeleteItem, SearchStore.TABLE_NAME, "_id='\(idToDelete)'")
+        }
     }
 }

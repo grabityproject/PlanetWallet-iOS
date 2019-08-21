@@ -76,6 +76,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vb-a1-1gC">
                     <rect key="frame" x="401" y="39" width="24" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <action selector="didTouchedDelete:" destination="-1" eventType="touchUpInside" id="mOW-nW-6Jn"/>
                     </connections>
@@ -83,20 +84,20 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="7Vb-a1-1gC" firstAttribute="bottom" secondItem="55w-6l-SWx" secondAttribute="bottom" id="12H-qb-2kn"/>
                 <constraint firstItem="15n-44-e6n" firstAttribute="leading" secondItem="bdP-dJ-sqq" secondAttribute="trailing" constant="20" id="4He-wT-F1f"/>
+                <constraint firstItem="7Vb-a1-1gC" firstAttribute="width" secondItem="55w-6l-SWx" secondAttribute="width" constant="10" id="6cC-qr-ujS"/>
                 <constraint firstItem="bdP-dJ-sqq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="21" id="6ou-nR-Zie"/>
                 <constraint firstItem="bdP-dJ-sqq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="A8B-0H-Kph"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7p9-M1-RWK" secondAttribute="trailing" constant="10" id="AI0-Wj-86Q"/>
-                <constraint firstItem="7Vb-a1-1gC" firstAttribute="top" secondItem="55w-6l-SWx" secondAttribute="top" id="BzO-bq-rwH"/>
+                <constraint firstItem="7Vb-a1-1gC" firstAttribute="centerY" secondItem="55w-6l-SWx" secondAttribute="centerY" id="RWA-Va-VLl"/>
                 <constraint firstItem="7p9-M1-RWK" firstAttribute="leading" secondItem="bdP-dJ-sqq" secondAttribute="trailing" constant="20" id="Vgs-ZZ-z1L"/>
                 <constraint firstItem="55w-6l-SWx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="XvX-He-pjq"/>
-                <constraint firstItem="7Vb-a1-1gC" firstAttribute="leading" secondItem="55w-6l-SWx" secondAttribute="leading" id="aOh-gn-4EZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="55w-6l-SWx" secondAttribute="trailing" constant="15" id="dzU-L0-Msf"/>
                 <constraint firstItem="15n-44-e6n" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-3" id="fX3-KF-s25"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="15n-44-e6n" secondAttribute="trailing" constant="10" id="gYn-Pb-OuV"/>
-                <constraint firstItem="7Vb-a1-1gC" firstAttribute="trailing" secondItem="55w-6l-SWx" secondAttribute="trailing" id="gu8-FH-JYV"/>
                 <constraint firstItem="7p9-M1-RWK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="3" id="noK-qS-WHo"/>
+                <constraint firstItem="7Vb-a1-1gC" firstAttribute="height" secondItem="55w-6l-SWx" secondAttribute="height" constant="10" id="o98-xt-mb8"/>
+                <constraint firstItem="7Vb-a1-1gC" firstAttribute="centerX" secondItem="55w-6l-SWx" secondAttribute="centerX" id="rnm-R3-AHI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

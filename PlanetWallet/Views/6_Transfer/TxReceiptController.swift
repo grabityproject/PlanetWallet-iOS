@@ -39,7 +39,6 @@ class TxReceiptController: PlanetWalletViewController {
             let gasFee = userInfo[Keys.UserInfo.gasFee] as? Decimal else { return }
         
         var transactionSymbol = ""
-        var toName = ""
         
         if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol {
             mainAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
@@ -61,8 +60,6 @@ class TxReceiptController: PlanetWalletViewController {
             amountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
         }
         
-        
-        
         if let toPlanetName = toPlanet.name {
             toPlanetContainer.isHidden = false
             toAddressContainer.isHidden = true
@@ -71,7 +68,10 @@ class TxReceiptController: PlanetWalletViewController {
             toPlanetView.data = toPlanet.address ?? ""
             toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
             
-            toName = toPlanetName
+            //Insert Search DB
+            if let fromPlanetKeyId = fromPlanet.keyId {
+                SearchStore.shared.insert(keyId: fromPlanetKeyId, symbol: transactionSymbol, toPlanet: toPlanet)
+            }
         }
         else {
             toPlanetContainer.isHidden = true
@@ -87,9 +87,6 @@ class TxReceiptController: PlanetWalletViewController {
         txHashValueLb.attributedText = NSAttributedString(string: txHash,
                                                           attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
                                                                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-        
-        //Insert Search DB
-        SearchStore.shared.insert(toPlanet)
     }
     
     override func setData() {

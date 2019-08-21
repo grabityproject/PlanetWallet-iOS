@@ -107,29 +107,26 @@ class DetailTxController: PlanetWalletViewController {
         var amount = "-"
         var tokenIconImgPath: String?
         
-        if coin == CoinType.BTC.name {
-            if let shortBTCStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.BTC) {
-                amount = shortBTCStr
-            }
-//            if let bitStr = CoinNumberFormatter.short.toBitString(satoshi: amountStr) {
-//                amount = bitStr
-//            }
-        }
-        else if coin == CoinType.ETH.name { //include token
-            if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.ETH) {
-                amount = shortEtherStr
-            }
-//            if let ethStr = CoinNumberFormatter.short.toEthString(wei: amountStr) {
-//                amount = ethStr
-//            }
-        }
-        
         if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenImg = erc20.img_path {
+            if let shortERC20Str = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, item: erc20) {
+                amount = shortERC20Str
+            }
+            
             mainAmountLb.text = "\(amount) \(symbol)"
             amountLb.text = "\(amount) \(symbol)"
             tokenIconImgPath = tokenImg
         }
         else {
+            if coin == CoinType.BTC.name {
+                if let shortBTCStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.BTC) {
+                    amount = shortBTCStr
+                }
+            }
+            else if coin == CoinType.ETH.name { //include token
+                if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.ETH) {
+                    amount = shortEtherStr
+                }
+            }
             mainAmountLb.text = "\(amount) \(symbol)"
             amountLb.text = "\(amount) \(symbol)"
         }

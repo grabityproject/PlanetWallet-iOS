@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol RecentSearchAdapterDelegate {
+    func didTouchedItem(_ planet: Planet)
+    func willDisplayItem(cell: UITableViewCell)
+    func didTouchedDelete(_ planet: Planet)
+}
+
 class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
+    
+    var delegate: RecentSearchAdapterDelegate?
     
     private let contactCellID = "recentContactCell"
     
@@ -33,9 +41,22 @@ class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
             item.planetView.data = address
             item.addressLb.text = Utils.shared.trimAddress(address)
         }
-        
+        item.delegate = self
         item.isRecentSearch = true
         item.planetName.text = data.name
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        delegate?.willDisplayItem(cell: cell)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didTouchedItem(dataSource[indexPath.row])
+    }
 }
 
+extension RecentSearchAdapter: ContactCellDelegate {
+    func didTouchedDelete(indexPath: IndexPath) {
+        delegate?.didTouchedDelete(dataSource[indexPath.row])
+    }
+}

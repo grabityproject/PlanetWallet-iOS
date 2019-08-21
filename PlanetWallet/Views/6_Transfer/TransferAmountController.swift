@@ -171,27 +171,32 @@ class TransferAmountController: PlanetWalletViewController {
     
     //MARK: - Network
     private func handleBalanceResponse(json: [String: Any]) {
-        guard let planet = Planet(JSON: json), let balance = planet.balance, let coinType = self.fromPlanet?.type else { return }
+
+        guard let planet = Planet(JSON: json), let balance = planet.balance else { return }
+        guard let coinTypeInt = self.fromPlanet?.coinType else { return }
         
-        switch coinType {
-        case .BTC:
-            if let shortBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.BTC),
-                let btcDecimal = Decimal(string: shortBTCStr)
+        if let token = erc20 {
+            if let shortTokenStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, item: token),
+                let tokenDecimal = Decimal(string: shortTokenStr)
             {
-                self.availableBalance = btcDecimal
+                self.availableBalance = tokenDecimal
             }
-//            if let formattedBalance = CoinNumberFormatter.full.toBitcoin(satoshi: balance) {
-//                self.availableBalance = formattedBalance
-//            }
-        case .ETH:
-            if let shortEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.ETH),
-                let etherDecimal = Decimal(string: shortEtherStr)
-            {
-                self.availableBalance = etherDecimal
+        }
+        else {
+            if coinTypeInt == CoinType.BTC.coinType {
+                if let shortBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.BTC),
+                    let btcDecimal = Decimal(string: shortBTCStr)
+                {
+                    self.availableBalance = btcDecimal
+                }
             }
-//            if let formattedBalance = CoinNumberFormatter.full.toEther(wei: balance) {
-//                self.availableBalance = formattedBalance
-//            }
+            else if coinTypeInt == CoinType.ETH.coinType {
+                if let shortEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.ETH),
+                    let etherDecimal = Decimal(string: shortEtherStr)
+                {
+                    self.availableBalance = etherDecimal
+                }
+            }
         }
         
     }

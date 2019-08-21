@@ -84,9 +84,6 @@ class TxListController: PlanetWalletViewController {
             if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: balance, coinType: CoinType.ETH) {
                 balanceLb.text = "\(shortEtherStr) \(symbol)"
             }
-//            if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance) {
-//                balanceLb.text = "\(shortEtherStr) \(symbol)"
-//            }
             
             naviBar.title = "Ethereum"
         }
@@ -199,22 +196,12 @@ class TxListController: PlanetWalletViewController {
                 {
                     balanceLb.text = "\(shortEtherStr) \(symbol)"
                 }
-//                if let shortEtherStr = CoinNumberFormatter.short.toEthString(wei: balance),
-//                    let symbol = self.planet?.symbol
-//                {
-//                    balanceLb.text = "\(shortEtherStr) \(symbol)"
-//                }
             case .ERC20(let token):
                 if let shortTokenStr = CoinNumberFormatter.short.toMaxUnit(balance: balance, item: token),
                     let symbol = token.symbol
                 {
                     balanceLb.text = "\(shortTokenStr) \(symbol)"
                 }
-//                if let shortTokenStr = CoinNumberFormatter.short.toEthString(wei: balance),
-//                    let symbol = token.symbol
-//                {
-//                    balanceLb.text = "\(shortTokenStr) \(symbol)"
-//                }
             }
         }
         else {

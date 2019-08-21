@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol PlanetSearchAdapterDelegate {
+    func didTouchedPlanet(_ planet: Planet)
+    func willDisplayCell(_ cell: UITableViewCell)
+}
+
 class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
 
+    var delegate: PlanetSearchAdapterDelegate?
+    
     private let contactCellID = "contactCell"
     private let contactAddressCellID = "contractAddressCell"
     
@@ -52,8 +59,18 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
                 item.addressLb.text = Utils.shared.trimAddress(address)
             }
             item.planetName.text = data.name
+            item.isRecentSearch = false
         }
         
+        
         setCellHeight(height: 85)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didTouchedPlanet(dataSource[indexPath.row])
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        delegate?.willDisplayCell(cell)
     }
 }

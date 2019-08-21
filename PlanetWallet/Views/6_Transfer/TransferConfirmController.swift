@@ -253,6 +253,15 @@ class TransferConfirmController: PlanetWalletViewController {
             if let erc20Symbol = erc20.symbol {
                 coinType = erc20Symbol
             }
+            if let tokenDecimalsStr = erc20.decimals,
+                let tokenDecimals = Int(tokenDecimalsStr),
+                let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: tokenDecimals, to: 0) {
+                amount = amountWEI
+            }
+            
+            if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
+                amount = amountWEI
+            }
         }
         else {
             if let coinSymbol = selectedPlanet.symbol {
@@ -260,19 +269,18 @@ class TransferConfirmController: PlanetWalletViewController {
             }
             if self.coinType.coinType == CoinType.ETH.coinType {
                 item = selectedPlanet.items?.first as! ETH
+                
+                if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
+                    amount = amountWEI
+                }
             }
             else if self.coinType.coinType == CoinType.BTC.coinType {
                 item = selectedPlanet.items?.first as! BTC
             }
         }
         
-        guard let transferItem = item else { return }
-        
-        
-        guard let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
-        if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
-            amount = amountWEI
-        }
+        guard let transferItem = item,
+            let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
         
         if let gasWEI = transactionFee.getGasPriceWEI() {
             gasPrice = gasWEI
@@ -288,7 +296,7 @@ class TransferConfirmController: PlanetWalletViewController {
         print("-----------Tx------------")
         print("coin Type : \(coinType)")
         print("amount of transfer : \(amount)")
-        print("gas price : \(transactionFee.getGasPriceWEI())")
+        print("gas price : \(transactionFee.getGasPriceWEI()!)")
         print("gas limit : \(gasLimit)")
         
         let tx = Transaction( transferItem )
