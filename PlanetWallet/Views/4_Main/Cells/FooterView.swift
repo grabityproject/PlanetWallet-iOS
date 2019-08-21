@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol MainTableFooterDelegate {
-    func didTouchedManageToken()
-}
-
-class MainTableFooter: UIView {
-
-    var delegate: MainTableFooterDelegate?
+class FooterView: ViewComponent {
+    
+    var tableView:UITableView?
     
     @IBOutlet var containerView: PWView!
     @IBOutlet var manageTokenContainer: UIView!
@@ -24,21 +20,19 @@ class MainTableFooter: UIView {
     @IBOutlet var btcTransactionEmptyMsgLb: PWLabel!
     @IBOutlet var tokenManagementContainerWidthConstraint: NSLayoutConstraint!
     
-    public var isEthUniverse = true {
-        didSet {
-            updateUI()
+    var planet:Planet?{
+        didSet{
+           updateUI()
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
@@ -46,8 +40,13 @@ class MainTableFooter: UIView {
         manageTokenBtnContainer.layer.borderColor = ThemeManager.currentTheme().border.cgColor
     }
     
+    override func controller(_ controller: PlanetWalletViewController) {
+        super.controller(controller)
+        tableView = findViewById("table_main") as? UITableView
+    }
+    
     private func commonInit() {
-        Bundle.main.loadNibNamed("MainTableFooter", owner: self, options: nil)
+        Bundle.main.loadNibNamed("FooterView", owner: self, options: nil)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(containerView)
@@ -65,20 +64,47 @@ class MainTableFooter: UIView {
         tokenManagenmentLb.frame.size = expectedLabelSize
         tokenManagementContainerWidthConstraint.constant = newWidth
     }
-
-    private func updateUI() {
-        if isEthUniverse {
-            manageTokenContainer.isHidden = false
-            btcTransactionEmptyMsgLb.isHidden = true
+    
+    func updateUI() {
+        if let planet = planet, let coinType = planet.coinType{
+            
+            if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
+                
+                manageTokenContainer.isHidden = false
+                btcTransactionEmptyMsgLb.isHidden = true
+                
+            }else if CoinType.of(coinType).coinType == CoinType.BTC.coinType {
+                
+                manageTokenContainer.isHidden = true
+                
+                if let tableView = tableView{
+                    
+                    let sections = tableView.numberOfSections
+                    var count = 0;
+                    for i in 0..<sections{
+                        count = count + tableView.numberOfRows(inSection: i)
+                    }
+                    
+                    btcTransactionEmptyMsgLb.isHidden = count > 0
+                }
+                
+            }else {
+                
+                manageTokenContainer.isHidden = true
+                btcTransactionEmptyMsgLb.isHidden = true
+                
+            }
+            
         }
-        else {
-            manageTokenContainer.isHidden = true
-            btcTransactionEmptyMsgLb.isHidden = false
-        }
+        
     }
     
     @IBAction func didTouchedManageToken(_ sender: UIButton) {
-        delegate?.didTouchedManageToken()
+        if let planet = planet, let controller = controller{
+            controller.sendAction(segue: Keys.Segue.MAIN_TO_TOKEN_ADD,
+                                  userInfo: [Keys.UserInfo.planet:planet])
+        }
+        
     }
     
 }

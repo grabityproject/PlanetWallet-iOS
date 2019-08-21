@@ -9,18 +9,10 @@
 import UIKit
 import QRCode
 
-protocol BottomMenuDelegate {
-    func didTouchedCopy(_ addr: String)
-    func didTouchedSend()
-    func didTouchedSwitchItem()
-}
-
 /*
  Coin(ETH / BTC)과 관련된 팝업뷰
  */
-class BottomMenuView: UIView {
-
-    var delegate: BottomMenuDelegate?
+class BottomMenuView: ViewComponent {
     
     @IBOutlet var qrCodeImgView: UIImageView!
     @IBOutlet var containerView: UIView!
@@ -30,6 +22,9 @@ class BottomMenuView: UIView {
     
     @IBOutlet var copyTopConstraint: NSLayoutConstraint!
     
+    var planet:Planet?
+    
+    var launcher:BottomMenuLauncher?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +37,7 @@ class BottomMenuView: UIView {
     }
     //MARK: - Interface
     public func setPlanet(_ planet: Planet) {
+        self.planet = planet
         if let planetName = planet.name, let address = planet.address {
             self.planetNameLb.text = planetName
             self.planetView.data = address
@@ -70,11 +66,18 @@ class BottomMenuView: UIView {
     @IBAction func didTouchedCopy(_ sender: UIButton) {
         if let addr = addressLb.text {
             UIPasteboard.general.string = addr
-            delegate?.didTouchedCopy(addr)
         }
     }
     
     @IBAction func didTouchedSend(_ sender: UIButton) {
-        delegate?.didTouchedSend()
+        if let launcher = launcher{
+            launcher.hide()
+        }
+        if let planet = planet, let controller = controller{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                controller.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet])
+            }
+        }
+
     }
 }

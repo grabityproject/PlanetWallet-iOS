@@ -51,6 +51,20 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
         bindData(cell: cell, data: dataSource[indexPath.row], position: indexPath.row )
     }
     
+    func findAllViews( view:UIView, theme:Theme ){
+        
+        if( view is Themable ){
+            (view as! Themable).setTheme(theme)
+        }
+        
+        if( view.subviews.count > 0 ){
+            view.subviews.forEach { (v) in
+                
+                findAllViews(view: v, theme: theme)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -70,6 +84,7 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegates.forEach { (delegate) in
+            print(delegate)
             delegate.tableView!(tableView, didSelectRowAt: indexPath)
         }
     }
