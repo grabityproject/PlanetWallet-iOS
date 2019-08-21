@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTableFooter" customModule="PlanetWallet" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterView" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="btcTransactionEmptyMsgLb" destination="ZbB-KM-7aH" id="oZx-qE-KRt"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="OFh-8h-0wN"/>

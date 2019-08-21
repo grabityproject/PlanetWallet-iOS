@@ -9,6 +9,9 @@
 import Foundation
 
 class BTC: MainItem {
+    
+    var balance: String = "0"
+    
     func getCoinType() -> Int {
         return CoinType.BTC.coinType
     }

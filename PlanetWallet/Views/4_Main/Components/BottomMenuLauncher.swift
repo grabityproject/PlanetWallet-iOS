@@ -11,14 +11,23 @@ import UIKit
 class BottomMenuLauncher: NSObject {
     
     var isOpen : Bool = false
+    var controller:PlanetWalletViewController!
     
     var planet: Planet? {
         didSet {
             guard let planet = self.planet else { return }
             launcherView.setPlanet(planet)
+            if let bottomPanelComponent = bottomPanelComponent{
+                bottomPanelComponent.setPlanet(planet)
+            }
         }
     }
     
+    var bottomPanelComponent:BottomPanelComponent?{
+        didSet{
+            bottomPanelComponent?.controller(self.controller)
+        }
+    }
     
     private var view: UIView!
     private var triggerView : UIView!
@@ -41,15 +50,15 @@ class BottomMenuLauncher: NSObject {
     public var labelError : UIView!
 
     //MARK: - Init
-    init( controller:UIViewController, trigger:UIView, clickTrigger:UIView, delegate: BottomMenuDelegate? ) {
+    init( controller:PlanetWalletViewController, trigger:UIView, clickTrigger:UIView ) {
         super.init()
+        self.controller = controller
         self.view = controller.view
         self.triggerView = trigger
         self.clicktriggerView = clickTrigger
         self.topPosition = CGPoint(x: trigger.frame.origin.x, y: trigger.frame.origin.y)
         
         launcherView = BottomMenuView(frame: CGRect(x: trigger.frame.origin.x, y: trigger.frame.origin.y, width: trigger.frame.width, height: 0))
-        launcherView.delegate = delegate
         
         triggerAreaView.frame = trigger.frame
         
@@ -79,10 +88,13 @@ class BottomMenuLauncher: NSObject {
         clicktriggerAreaView.addGestureRecognizer(tapGesture)
 
         setTheme(ThemeManager.currentTheme())
+        
+        launcherView.launcher = self
+        launcherView.controller(controller)
     }
     
     @objc func onClick(_ sender:Any){
-        launcherView.delegate?.didTouchedSwitchItem()
+        bottomPanelComponent?.onClick();
     }
     
     @objc func triggerTapAction(_ sender: Any) {
