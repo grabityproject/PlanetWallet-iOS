@@ -10,7 +10,6 @@ import UIKit
 
 protocol PlanetSearchAdapterDelegate {
     func didTouchedPlanet(_ planet: Planet)
-    func willDisplayCell(_ cell: UITableViewCell)
 }
 
 class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
@@ -38,6 +37,8 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
     }
     
     override func bindData(cell: UITableViewCell, data: Planet, position: Int) {
+        super.bindData(cell: cell, data: data, position: position)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
         if( data.name == nil ){
             let item = cell as! ContactAddrCell
@@ -68,9 +69,5 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didTouchedPlanet(dataSource[indexPath.row])
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        delegate?.willDisplayCell(cell)
     }
 }

@@ -98,8 +98,14 @@ class EthNetworkDelegate:Node{
                 
                 if requestCode == 0 {
                     if let json = dict["result"] as? [String: Any]{
-                        let planet = Planet(JSON: json)
-                        delegate?.onBalance(self.planet!, planet!.balance! )
+                        let planetVO = Planet(JSON: json)
+                        
+                        if let planet = self.planet, let keyId = planet.keyId {
+                            self.planet?.balance = planetVO!.balance!
+                            _ = PWDBManager.shared.update(planet, "keyId='\(keyId)'")
+                        }
+                        
+                        delegate?.onBalance(self.planet!, planetVO!.balance! )
                     }
                 }else {
                     
@@ -118,6 +124,9 @@ class EthNetworkDelegate:Node{
                                         
                                         ( planet.items![resultCode] as! ERC20 ).balance = balance
                                         
+                                        if let token = planet.items![resultCode] as? ERC20, let keyId = token.keyId, let contract = token.contract {
+                                            _ = PWDBManager.shared.update(token, "keyId='\(keyId)' AND contract='\(contract)'")
+                                        }
                                     }
                                     
                                 }

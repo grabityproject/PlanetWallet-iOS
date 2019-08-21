@@ -31,6 +31,8 @@ class Tx: Mappable {
     var created_at: String?
     var updated_at: String?
     
+    var decimals: String?
+    
     /*
     //ETH init
     init(
@@ -101,6 +103,8 @@ class Tx: Mappable {
 //        utxos          <- map["utxos"]
         created_at     <- map["created_at"]
         updated_at     <- map["updated_at"]
+        
+        decimals       <- map["decimals"]
     }
     
     func formattedDate() -> String? {

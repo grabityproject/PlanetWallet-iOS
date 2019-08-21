@@ -12,8 +12,6 @@
 		040295F72302B6EB0024629E /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040295F62302B6EB0024629E /* TransactionCell.swift */; };
 		040863A822B8F2A700B88EE1 /* TxReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040863A722B8F2A700B88EE1 /* TxReceiptController.swift */; };
 		040CCD5F22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CCD5E22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift */; };
-		04116B2D2293992E00CFD921 /* BTCTransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04116B2C2293992E00CFD921 /* BTCTransactionCell.xib */; };
-		04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */; };
 		04116B322293DAAD00CFD921 /* MainETHAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04116B312293DAAD00CFD921 /* MainETHAdapter.swift */; };
 		041387462306B13100A02C87 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041387452306B13100A02C87 /* Extension + Date.swift */; };
 		0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416AE8F22E70E0E00009DCD /* BiometricManager.swift */; };
@@ -26,20 +24,14 @@
 		04278B6022FD59FC0018CC4C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B5F22FD59FC0018CC4C /* Search.swift */; };
 		04278B6222FD61790018CC4C /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B6122FD61790018CC4C /* SearchStore.swift */; };
 		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
-		0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */; };
-		0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429A70022929DDE00E88ACF /* ETHCoinCell.swift */; };
 		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
 		042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41122B34CF300666DF9 /* Extension + UILabel.swift */; };
 		042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41322B36BFE00666DF9 /* PWSlider.swift */; };
 		042FF41622B3774300666DF9 /* QROverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41522B3774300666DF9 /* QROverlay.swift */; };
-		042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */; };
-		042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */; };
 		0440A16E22F28F12003CFA6C /* KeyPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440A16D22F28F12003CFA6C /* KeyPadViewModel.swift */; };
 		0440A17022F2ED62003CFA6C /* Extension + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440A16F22F2ED62003CFA6C /* Extension + Notification.swift */; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
-		0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09B22A512D5001E412C /* BottomMenuView.swift */; };
-		0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444D09C22A512D6001E412C /* BottomMenuView.xib */; };
 		0444D0A022A51400001E412C /* PWBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444D09F22A51400001E412C /* PWBlurView.swift */; };
 		04491C2022B8988C00A5DC14 /* TransferAmountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */; };
 		04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */; };
@@ -98,12 +90,6 @@
 		045AAFFA230A90A900FDBD84 /* DetailAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AAFF9230A90A900FDBD84 /* DetailAddressController.swift */; };
 		0464BFBB22DC47B700D8087D /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464BFBA22DC47B700D8087D /* Localization.swift */; };
 		04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F18229B90C200DC3CFD /* Extension + CALayer.swift */; };
-		04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */; };
-		0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5F622966D52008307D8 /* TopMenuLauncher.swift */; };
-		0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5F822966D7E008307D8 /* TopMenuView.xib */; };
-		0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FA22966D8A008307D8 /* TopMenuView.swift */; };
-		0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0468C5FC22966E15008307D8 /* TopMenuCell.xib */; };
-		0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468C5FE22966E23008307D8 /* TopMenuCell.swift */; };
 		0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472831222B878F7002EF9E5 /* QRCaptureController.swift */; };
 		04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4D22818BD100758E56 /* Extension + UIButton.swift */; };
 		04738B502282749C00758E56 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ThemeManager.swift */; };
@@ -111,6 +97,26 @@
 		047A2CA122AF7D130053D153 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2CA022AF7D130053D153 /* Crypto.swift */; };
 		0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481534522BB29760099F7E5 /* PWTableCell.swift */; };
 		048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */; };
+		049C38D9230CF9C000AA7FA6 /* TopMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38C4230CF9C000AA7FA6 /* TopMenuLauncher.swift */; };
+		049C38DA230CF9C000AA7FA6 /* BottomPanelComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38C5230CF9C000AA7FA6 /* BottomPanelComponent.xib */; };
+		049C38DB230CF9C000AA7FA6 /* BottomMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38C6230CF9C000AA7FA6 /* BottomMenuView.xib */; };
+		049C38DC230CF9C000AA7FA6 /* BottomMenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38C7230CF9C000AA7FA6 /* BottomMenuLauncher.swift */; };
+		049C38DD230CF9C000AA7FA6 /* TopMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38C8230CF9C000AA7FA6 /* TopMenuView.xib */; };
+		049C38DE230CF9C000AA7FA6 /* RefreshAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38C9230CF9C000AA7FA6 /* RefreshAnimationComponent.swift */; };
+		049C38DF230CF9C000AA7FA6 /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38CA230CF9C000AA7FA6 /* BottomMenuView.swift */; };
+		049C38E0230CF9C000AA7FA6 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38CB230CF9C000AA7FA6 /* TopMenuView.swift */; };
+		049C38E1230CF9C000AA7FA6 /* BottomPanelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38CC230CF9C000AA7FA6 /* BottomPanelComponent.swift */; };
+		049C38E2230CF9C000AA7FA6 /* NodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38CE230CF9C000AA7FA6 /* NodeService.swift */; };
+		049C38E3230CF9C000AA7FA6 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38D0230CF9C000AA7FA6 /* RippleAnimationView.swift */; };
+		049C38E4230CF9C000AA7FA6 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38D1230CF9C000AA7FA6 /* FooterView.swift */; };
+		049C38E5230CF9C000AA7FA6 /* ETHCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38D2230CF9C000AA7FA6 /* ETHCoinCell.xib */; };
+		049C38E6230CF9C000AA7FA6 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38D3230CF9C000AA7FA6 /* HeaderView.xib */; };
+		049C38E7230CF9C000AA7FA6 /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38D4230CF9C000AA7FA6 /* TopMenuCell.xib */; };
+		049C38E8230CF9C000AA7FA6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38D5230CF9C000AA7FA6 /* HeaderView.swift */; };
+		049C38E9230CF9C000AA7FA6 /* ETHCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38D6230CF9C000AA7FA6 /* ETHCoinCell.swift */; };
+		049C38EA230CF9C000AA7FA6 /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38D7230CF9C000AA7FA6 /* TopMenuCell.swift */; };
+		049C38EB230CF9C000AA7FA6 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049C38D8230CF9C000AA7FA6 /* FooterView.xib */; };
+		049C38ED230CF9DB00AA7FA6 /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38EC230CF9DA00AA7FA6 /* ViewComponent.swift */; };
 		04A193CD2303B34600835061 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A193CC2303B34600835061 /* TransactionCell.xib */; };
 		04A193CF2303D76000835061 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A193CE2303D76000835061 /* Converter.swift */; };
 		04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551B822A7948A007A17A3 /* 7_Settings.storyboard */; };
@@ -123,7 +129,6 @@
 		04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C022A794ED007A17A3 /* LaunchScreen.storyboard */; };
 		04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C122A794EE007A17A3 /* 7_3_Security.storyboard */; };
 		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
-		04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */; };
 		04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A551CE22A7C459007A17A3 /* refreshLoading.json */; };
 		04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8740F22CF1C6B00454301 /* splash_03_bk.json */; };
 		04B8741222CF1C6B00454301 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8741022CF1C6B00454301 /* splash_03_wh.json */; };
@@ -164,7 +169,6 @@
 		04D3A0E022B0D26200E54E96 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0DA22B0D26200E54E96 /* FMDatabaseQueue.m */; };
 		04D3A0E222B0D3AE00E54E96 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0E122B0D3AE00E54E96 /* DBManager.swift */; };
 		04D3A0E422B0F41D00E54E96 /* PWDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3A0E322B0F41D00E54E96 /* PWDBManager.swift */; };
-		04D9D34822B1E43C00B66E79 /* BTCTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */; };
 		04D9D34B22B1E46D00B66E79 /* BTCTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34A22B1E46D00B66E79 /* BTCTransaction.swift */; };
 		04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */; };
 		04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAC113228967D3005AA183 /* AbsSlideUpView.swift */; };
@@ -179,7 +183,6 @@
 		04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289B22F7D6DD00E88A54 /* GasInfo.swift */; };
 		04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* TransactionFee.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
-		04F30B4D22FC11E9003D5AE9 /* BottomMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */; };
 		04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */; };
 		04F42BF922FA83320026AF1D /* TxListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BF822FA83320026AF1D /* TxListController.swift */; };
 		04F42BFB22FA83420026AF1D /* DetailTxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BFA22FA83420026AF1D /* DetailTxController.swift */; };
@@ -187,8 +190,6 @@
 		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
 		04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6E022C1BE830079E08A /* TokenAdapter.swift */; };
 		04FBB0D8230658290087CDE5 /* TxStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBB0D7230658290087CDE5 /* TxStatus.swift */; };
-		04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */; };
-		04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */; };
 		04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */; };
 		04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */; };
 		04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */; };
@@ -233,8 +234,6 @@
 		040295F62302B6EB0024629E /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		040863A722B8F2A700B88EE1 /* TxReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxReceiptController.swift; sourceTree = "<group>"; };
 		040CCD5E22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetManageAdapter.swift; sourceTree = "<group>"; };
-		04116B2C2293992E00CFD921 /* BTCTransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BTCTransactionCell.xib; sourceTree = "<group>"; };
-		04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionCell.swift; sourceTree = "<group>"; };
 		04116B312293DAAD00CFD921 /* MainETHAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainETHAdapter.swift; sourceTree = "<group>"; };
 		041387452306B13100A02C87 /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		0416AE8F22E70E0E00009DCD /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
@@ -249,20 +248,14 @@
 		04278B5F22FD59FC0018CC4C /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		04278B6122FD61790018CC4C /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
-		0429A70022929DDE00E88ACF /* ETHCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
 		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		042FF41122B34CF300666DF9 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		042FF41322B36BFE00666DF9 /* PWSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWSlider.swift; sourceTree = "<group>"; };
 		042FF41522B3774300666DF9 /* QROverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlay.swift; sourceTree = "<group>"; };
-		042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomMenuTokenView.xib; sourceTree = "<group>"; };
-		042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuTokenView.swift; sourceTree = "<group>"; };
 		0440A16D22F28F12003CFA6C /* KeyPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPadViewModel.swift; sourceTree = "<group>"; };
 		0440A16F22F2ED62003CFA6C /* Extension + Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Notification.swift"; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
-		0444D09B22A512D5001E412C /* BottomMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
-		0444D09C22A512D6001E412C /* BottomMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuView.xib; sourceTree = "<group>"; };
 		0444D09F22A51400001E412C /* PWBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWBlurView.swift; sourceTree = "<group>"; };
 		04491C1F22B8988C00A5DC14 /* TransferAmountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAmountController.swift; sourceTree = "<group>"; };
 		04491C2122B8D02500A5DC14 /* TransferConfirmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmController.swift; sourceTree = "<group>"; };
@@ -324,12 +317,6 @@
 		0464BFBA22DC47B700D8087D /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		0464BFBC22DC4C1C00D8087D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04675F18229B90C200DC3CFD /* Extension + CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + CALayer.swift"; sourceTree = "<group>"; };
-		04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuLauncher.swift; sourceTree = "<group>"; };
-		0468C5F622966D52008307D8 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
-		0468C5F822966D7E008307D8 /* TopMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
-		0468C5FA22966D8A008307D8 /* TopMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
-		0468C5FC22966E15008307D8 /* TopMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuCell.xib; sourceTree = "<group>"; };
-		0468C5FE22966E23008307D8 /* TopMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
 		0472831222B878F7002EF9E5 /* QRCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCaptureController.swift; sourceTree = "<group>"; };
 		04738B4D22818BD100758E56 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		04738B4F2282749C00758E56 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -338,6 +325,26 @@
 		0480E35722E17605008E57E3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0481534522BB29760099F7E5 /* PWTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWTableCell.swift; sourceTree = "<group>"; };
 		048FDA7322C1F9210030D949 /* PlanetSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetSearchAdapter.swift; sourceTree = "<group>"; };
+		049C38C4230CF9C000AA7FA6 /* TopMenuLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuLauncher.swift; sourceTree = "<group>"; };
+		049C38C5230CF9C000AA7FA6 /* BottomPanelComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomPanelComponent.xib; sourceTree = "<group>"; };
+		049C38C6230CF9C000AA7FA6 /* BottomMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuView.xib; sourceTree = "<group>"; };
+		049C38C7230CF9C000AA7FA6 /* BottomMenuLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuLauncher.swift; sourceTree = "<group>"; };
+		049C38C8230CF9C000AA7FA6 /* TopMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopMenuView.xib; sourceTree = "<group>"; };
+		049C38C9230CF9C000AA7FA6 /* RefreshAnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAnimationComponent.swift; sourceTree = "<group>"; };
+		049C38CA230CF9C000AA7FA6 /* BottomMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
+		049C38CB230CF9C000AA7FA6 /* TopMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
+		049C38CC230CF9C000AA7FA6 /* BottomPanelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomPanelComponent.swift; sourceTree = "<group>"; };
+		049C38CE230CF9C000AA7FA6 /* NodeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeService.swift; sourceTree = "<group>"; };
+		049C38D0230CF9C000AA7FA6 /* RippleAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RippleAnimationView.swift; sourceTree = "<group>"; };
+		049C38D1230CF9C000AA7FA6 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		049C38D2230CF9C000AA7FA6 /* ETHCoinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ETHCoinCell.xib; sourceTree = "<group>"; };
+		049C38D3230CF9C000AA7FA6 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		049C38D4230CF9C000AA7FA6 /* TopMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopMenuCell.xib; sourceTree = "<group>"; };
+		049C38D5230CF9C000AA7FA6 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		049C38D6230CF9C000AA7FA6 /* ETHCoinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETHCoinCell.swift; sourceTree = "<group>"; };
+		049C38D7230CF9C000AA7FA6 /* TopMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
+		049C38D8230CF9C000AA7FA6 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		049C38EC230CF9DA00AA7FA6 /* ViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
 		04A193CC2303B34600835061 /* TransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		04A193CE2303D76000835061 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		04A551B822A7948A007A17A3 /* 7_Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_Settings.storyboard; sourceTree = "<group>"; };
@@ -350,7 +357,6 @@
 		04A551C022A794ED007A17A3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04A551C122A794EE007A17A3 /* 7_3_Security.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_3_Security.storyboard; sourceTree = "<group>"; };
 		04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
-		04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationView.swift; sourceTree = "<group>"; };
 		04A551CE22A7C459007A17A3 /* refreshLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshLoading.json; sourceTree = "<group>"; };
 		04B8740F22CF1C6B00454301 /* splash_03_bk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_bk.json; sourceTree = "<group>"; };
 		04B8741022CF1C6B00454301 /* splash_03_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_wh.json; sourceTree = "<group>"; };
@@ -399,7 +405,6 @@
 		04D3A0DA22B0D26200E54E96 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		04D3A0E122B0D3AE00E54E96 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		04D3A0E322B0F41D00E54E96 /* PWDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWDBManager.swift; sourceTree = "<group>"; };
-		04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransactionViewModel.swift; sourceTree = "<group>"; };
 		04D9D34A22B1E46D00B66E79 /* BTCTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransaction.swift; sourceTree = "<group>"; };
 		04D9D34C22B1EF0100B66E79 /* Extension + Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Double.swift"; sourceTree = "<group>"; };
 		04DAC113228967D3005AA183 /* AbsSlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsSlideUpView.swift; sourceTree = "<group>"; };
@@ -414,7 +419,6 @@
 		04EE289B22F7D6DD00E88A54 /* GasInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasInfo.swift; sourceTree = "<group>"; };
 		04EE289D22F7D6E500E88A54 /* TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFee.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewModel.swift; sourceTree = "<group>"; };
 		04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 8_Tx.storyboard; sourceTree = "<group>"; };
 		04F42BF822FA83320026AF1D /* TxListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxListController.swift; sourceTree = "<group>"; };
 		04F42BFA22FA83420026AF1D /* DetailTxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTxController.swift; sourceTree = "<group>"; };
@@ -422,8 +426,6 @@
 		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
 		04F7D6E022C1BE830079E08A /* TokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAdapter.swift; sourceTree = "<group>"; };
 		04FBB0D7230658290087CDE5 /* TxStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxStatus.swift; sourceTree = "<group>"; };
-		04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableFooter.xib; sourceTree = "<group>"; };
-		04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableFooter.swift; sourceTree = "<group>"; };
 		04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupUniverse.xib; sourceTree = "<group>"; };
 		04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUniverse.swift; sourceTree = "<group>"; };
@@ -518,22 +520,6 @@
 				04116B312293DAAD00CFD921 /* MainETHAdapter.swift */,
 			);
 			path = Adapter;
-			sourceTree = "<group>";
-		};
-		0429A6F7229248DD00E88ACF /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				04A551CC22A79E06007A17A3 /* RippleAnimationView.swift */,
-				0429A6FE22929DC900E88ACF /* ETHCoinCell.xib */,
-				0429A70022929DDE00E88ACF /* ETHCoinCell.swift */,
-				04116B2C2293992E00CFD921 /* BTCTransactionCell.xib */,
-				04116B2E2293994E00CFD921 /* BTCTransactionCell.swift */,
-				0468C5FC22966E15008307D8 /* TopMenuCell.xib */,
-				0468C5FE22966E23008307D8 /* TopMenuCell.swift */,
-				04FBCA3E229E26CF00DEEDD9 /* MainTableFooter.xib */,
-				04FBCA40229E26DD00DEEDD9 /* MainTableFooter.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		042FF40F22B34CC100666DF9 /* Extension + UIKit */ = {
@@ -723,10 +709,10 @@
 		044BC56122793E0900FD7E5E /* 4_Main */ = {
 			isa = PBXGroup;
 			children = (
-				04D9D34922B1E44000B66E79 /* ViewModel */,
+				049C38CF230CF9C000AA7FA6 /* Cells */,
+				049C38C3230CF9C000AA7FA6 /* Components */,
+				049C38CD230CF9C000AA7FA6 /* Service */,
 				04180DE022AE00B800AB3246 /* Adapter */,
-				0468C5F522966D45008307D8 /* Popups */,
-				0429A6F7229248DD00E88ACF /* Cells */,
 				044BC5822279446E00FD7E5E /* MainController.swift */,
 				044A43DE22A0C59D00274B04 /* MainNavigationController.swift */,
 			);
@@ -811,6 +797,7 @@
 		044BC5A2227A9FE700FD7E5E /* components */ = {
 			isa = PBXGroup;
 			children = (
+				049C38EC230CF9DA00AA7FA6 /* ViewComponent.swift */,
 				044BC5A3227A9FF600FD7E5E /* PlanetWalletViewController.swift */,
 				04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */,
 			);
@@ -908,21 +895,6 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
-		0468C5F522966D45008307D8 /* Popups */ = {
-			isa = PBXGroup;
-			children = (
-				0444D09B22A512D5001E412C /* BottomMenuView.swift */,
-				0444D09C22A512D6001E412C /* BottomMenuView.xib */,
-				0468C5F622966D52008307D8 /* TopMenuLauncher.swift */,
-				0468C5F822966D7E008307D8 /* TopMenuView.xib */,
-				0468C5FA22966D8A008307D8 /* TopMenuView.swift */,
-				04675F1E229BBD9F00DC3CFD /* BottomMenuLauncher.swift */,
-				042FF41722B3822000666DF9 /* BottomMenuTokenView.xib */,
-				042FF41922B3823000666DF9 /* BottomMenuTokenView.swift */,
-			);
-			path = Popups;
-			sourceTree = "<group>";
-		};
 		0481534022BB1E4D0099F7E5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +915,46 @@
 				0423EFAD230B8E0000CE8174 /* BitcoinUnit.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		049C38C3230CF9C000AA7FA6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				049C38C4230CF9C000AA7FA6 /* TopMenuLauncher.swift */,
+				049C38C5230CF9C000AA7FA6 /* BottomPanelComponent.xib */,
+				049C38C6230CF9C000AA7FA6 /* BottomMenuView.xib */,
+				049C38C7230CF9C000AA7FA6 /* BottomMenuLauncher.swift */,
+				049C38C8230CF9C000AA7FA6 /* TopMenuView.xib */,
+				049C38C9230CF9C000AA7FA6 /* RefreshAnimationComponent.swift */,
+				049C38CA230CF9C000AA7FA6 /* BottomMenuView.swift */,
+				049C38CB230CF9C000AA7FA6 /* TopMenuView.swift */,
+				049C38CC230CF9C000AA7FA6 /* BottomPanelComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		049C38CD230CF9C000AA7FA6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				049C38CE230CF9C000AA7FA6 /* NodeService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		049C38CF230CF9C000AA7FA6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				049C38D0230CF9C000AA7FA6 /* RippleAnimationView.swift */,
+				049C38D1230CF9C000AA7FA6 /* FooterView.swift */,
+				049C38D2230CF9C000AA7FA6 /* ETHCoinCell.xib */,
+				049C38D3230CF9C000AA7FA6 /* HeaderView.xib */,
+				049C38D4230CF9C000AA7FA6 /* TopMenuCell.xib */,
+				049C38D5230CF9C000AA7FA6 /* HeaderView.swift */,
+				049C38D6230CF9C000AA7FA6 /* ETHCoinCell.swift */,
+				049C38D7230CF9C000AA7FA6 /* TopMenuCell.swift */,
+				049C38D8230CF9C000AA7FA6 /* FooterView.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		04A4AF6B22E9B0E000F08598 /* Adapter */ = {
@@ -1025,15 +1037,6 @@
 				04D3A0E322B0F41D00E54E96 /* PWDBManager.swift */,
 			);
 			path = FMDB;
-			sourceTree = "<group>";
-		};
-		04D9D34922B1E44000B66E79 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				04D9D34722B1E43C00B66E79 /* BTCTransactionViewModel.swift */,
-				04F30B4C22FC11E9003D5AE9 /* BottomMenuViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04DAC1152289683D005AA183 /* Popups */ = {
@@ -1220,19 +1223,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				044BC5C1227AF7BC00FD7E5E /* NumberPad.xib in Resources */,
+				049C38E7230CF9C000AA7FA6 /* TopMenuCell.xib in Resources */,
 				0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */,
 				04A551B922A7948B007A17A3 /* 7_Settings.storyboard in Resources */,
-				04116B2D2293992E00CFD921 /* BTCTransactionCell.xib in Resources */,
 				04A551C522A794EF007A17A3 /* 1_Splash.storyboard in Resources */,
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
+				049C38EB230CF9C000AA7FA6 /* FooterView.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
-				042FF41822B3822000666DF9 /* BottomMenuTokenView.xib in Resources */,
 				041F9C8D22F1622A0037BED7 /* InfoPlist.strings in Resources */,
 				04DAC11922896876005AA183 /* PopupCurrency.xib in Resources */,
-				04FBCA3F229E26CF00DEEDD9 /* MainTableFooter.xib in Resources */,
 				04C82C8B2288FAE400235883 /* WorkSans-SemiBold.otf in Resources */,
 				044BC54E22793D4000FD7E5E /* Assets.xcassets in Resources */,
+				049C38E6230CF9C000AA7FA6 /* HeaderView.xib in Resources */,
 				04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */,
 				04B8741222CF1C6B00454301 /* splash_03_wh.json in Resources */,
 				04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */,
@@ -1240,27 +1243,27 @@
 				04E0B54122B9E14F00E1C3E0 /* AdvancedGasView.xib in Resources */,
 				044BC56822793F8800FD7E5E /* 4_Main.storyboard in Resources */,
 				04A193CD2303B34600835061 /* TransactionCell.xib in Resources */,
-				0468C5FD22966E15008307D8 /* TopMenuCell.xib in Resources */,
+				049C38DB230CF9C000AA7FA6 /* BottomMenuView.xib in Resources */,
 				04BA0B0C22B7625700A25A93 /* ContactCell.xib in Resources */,
+				049C38E5230CF9C000AA7FA6 /* ETHCoinCell.xib in Resources */,
 				044BC5BD227AE2C700FD7E5E /* PinView.xib in Resources */,
 				04C82C7422840A7F00235883 /* PlanetCell.xib in Resources */,
+				049C38DA230CF9C000AA7FA6 /* BottomPanelComponent.xib in Resources */,
 				04A551C422A794EF007A17A3 /* 5_Token.storyboard in Resources */,
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
 				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
 				0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
-				0429A6FF22929DC900E88ACF /* ETHCoinCell.xib in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
 				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
 				04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */,
-				0468C5F922966D7E008307D8 /* TopMenuView.xib in Resources */,
 				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
 				04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */,
 				04CB760C22D43D8D00C20811 /* Localizable.strings in Resources */,
 				04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */,
-				0444D09E22A512D6001E412C /* BottomMenuView.xib in Resources */,
+				049C38DD230CF9C000AA7FA6 /* TopMenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,7 +1343,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04116B2F2293994E00CFD921 /* BTCTransactionCell.swift in Sources */,
 				0455D8EC22C4CD88005F6494 /* KeyPairStore.swift in Sources */,
 				04C82C7F228429C000235883 /* PWButton.swift in Sources */,
 				04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */,
@@ -1352,6 +1354,7 @@
 				04BA0B0A22B7623100A25A93 /* ContactCell.swift in Sources */,
 				047A2CA122AF7D130053D153 /* Crypto.swift in Sources */,
 				040295EF230170550024629E /* Tx.swift in Sources */,
+				049C38E3230CF9C000AA7FA6 /* RippleAnimationView.swift in Sources */,
 				04D3A0DC22B0D26200E54E96 /* FMDatabasePool.m in Sources */,
 				04C82CB422890F6600235883 /* PlanetManagementController.swift in Sources */,
 				04D3A0E222B0D3AE00E54E96 /* DBManager.swift in Sources */,
@@ -1359,10 +1362,12 @@
 				044BC5C3227B000700FD7E5E /* NumberPad.swift in Sources */,
 				040CCD5F22C5FB9E00DE8BA1 /* PlanetManageAdapter.swift in Sources */,
 				04D359EE22A74FD700BA2182 /* ERC20.swift in Sources */,
+				049C38E2230CF9C000AA7FA6 /* NodeService.swift in Sources */,
 				04FBCA51229E7FBA00DEEDD9 /* Patch.swift in Sources */,
 				04F61DD722CB229B00D6759A /* Base58.swift in Sources */,
 				04CC0845228D390800A8272B /* WalletImportPageController.swift in Sources */,
 				044BC5852279447A00FD7E5E /* TokenAddController.swift in Sources */,
+				049C38E4230CF9C000AA7FA6 /* FooterView.swift in Sources */,
 				0444A961228C041600232748 /* NoticeCell.swift in Sources */,
 				044BC575227943DF00FD7E5E /* PinCodeCertificationController.swift in Sources */,
 				044BC58C227944B000FD7E5E /* CustomTokenController.swift in Sources */,
@@ -1378,16 +1383,13 @@
 				0455D8EE22C4CD88005F6494 /* PlanetStore.swift in Sources */,
 				04FBB0D8230658290087CDE5 /* TxStatus.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
-				0444D09D22A512D6001E412C /* BottomMenuView.swift in Sources */,
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				04D3A0CC22B0996500E54E96 /* BlinkingTextView.swift in Sources */,
 				044BC54922793D3F00FD7E5E /* SplashController.swift in Sources */,
-				04F30B4D22FC11E9003D5AE9 /* BottomMenuViewModel.swift in Sources */,
 				04FBFBA422E07DE0000F8E3C /* SyncManager.swift in Sources */,
 				04FBCA55229E801400DEEDD9 /* Delete.swift in Sources */,
 				044BC5792279440D00FD7E5E /* PlanetGenerateController.swift in Sources */,
 				04BA0B1022B76AB000A25A93 /* ContactAddrCell.swift in Sources */,
-				04A551CD22A79E07007A17A3 /* RippleAnimationView.swift in Sources */,
 				04C82C84228429C000235883 /* Themable.swift in Sources */,
 				0455D8EF22C4CD88005F6494 /* ERC20Store.swift in Sources */,
 				044BC58E22794C4400FD7E5E /* AppConstant.swift in Sources */,
@@ -1397,7 +1399,6 @@
 				04491C2022B8988C00A5DC14 /* TransferAmountController.swift in Sources */,
 				04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */,
 				0444D0A022A51400001E412C /* PWBlurView.swift in Sources */,
-				0429A70122929DDE00E88ACF /* ETHCoinCell.swift in Sources */,
 				045AA9BC22C0808A005EA387 /* ReturnVO.swift in Sources */,
 				04ED3315227C29B40092075E /* PlanetView.swift in Sources */,
 				045AA9C822C0B7AF005EA387 /* BTC.swift in Sources */,
@@ -1407,7 +1408,6 @@
 				04C82C9422890D4700235883 /* BoardController.swift in Sources */,
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
 				04116B322293DAAD00CFD921 /* MainETHAdapter.swift in Sources */,
-				0468C5FB22966D8A008307D8 /* TopMenuView.swift in Sources */,
 				04D9D34B22B1E46D00B66E79 /* BTCTransaction.swift in Sources */,
 				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,
 				044BC59022794ED200FD7E5E /* Utils.swift in Sources */,
@@ -1424,32 +1424,33 @@
 				04738B502282749C00758E56 /* ThemeManager.swift in Sources */,
 				04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
-				04675F1F229BBD9F00DC3CFD /* BottomMenuLauncher.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
-				04D9D34822B1E43C00B66E79 /* BTCTransactionViewModel.swift in Sources */,
 				0455D8ED22C4CD88005F6494 /* KeyStore.swift in Sources */,
 				040295F72302B6EB0024629E /* TransactionCell.swift in Sources */,
 				15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */,
 				04D3A0DF22B0D26200E54E96 /* FMResultSet.m in Sources */,
 				040295F22302AFDA0024629E /* TxAdapter.swift in Sources */,
+				049C38DF230CF9C000AA7FA6 /* BottomMenuView.swift in Sources */,
 				040863A822B8F2A700B88EE1 /* TxReceiptController.swift in Sources */,
 				04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */,
 				04D3A0DE22B0D26200E54E96 /* FMDatabaseAdditions.m in Sources */,
+				049C38E0230CF9C000AA7FA6 /* TopMenuView.swift in Sources */,
 				045AA9B822C0800E005EA387 /* Board.swift in Sources */,
 				0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */,
 				04278B6222FD61790018CC4C /* SearchStore.swift in Sources */,
 				045AA9C222C0AC45005EA387 /* Signer.swift in Sources */,
-				0468C5FF22966E23008307D8 /* TopMenuCell.swift in Sources */,
 				0455D8E922C4CD88005F6494 /* CoinObjectType.swift in Sources */,
 				0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */,
 				0455D8E822C4CD88005F6494 /* KeyStoreCrypter.swift in Sources */,
+				049C38E9230CF9C000AA7FA6 /* ETHCoinCell.swift in Sources */,
 				04278B6022FD59FC0018CC4C /* Search.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
-				042FF41A22B3823000666DF9 /* BottomMenuTokenView.swift in Sources */,
 				041387462306B13100A02C87 /* Extension + Date.swift in Sources */,
+				049C38E1230CF9C000AA7FA6 /* BottomPanelComponent.swift in Sources */,
 				04C82CA822890DF500235883 /* MnemonicExportController.swift in Sources */,
 				042FF40E22B3342C00666DF9 /* Toast.swift in Sources */,
 				04D3A0DD22B0D26200E54E96 /* FMDatabase.m in Sources */,
+				049C38DE230CF9C000AA7FA6 /* RefreshAnimationComponent.swift in Sources */,
 				04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */,
 				04ED3318227C356C0092075E /* GradientView.swift in Sources */,
 				04C82C7622840A8F00235883 /* PlanetCell.swift in Sources */,
@@ -1458,20 +1459,22 @@
 				044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */,
 				044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */,
 				044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */,
+				049C38E8230CF9C000AA7FA6 /* HeaderView.swift in Sources */,
 				04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */,
 				044BC58A227944A400FD7E5E /* TokenListController.swift in Sources */,
+				049C38D9230CF9C000AA7FA6 /* TopMenuLauncher.swift in Sources */,
+				049C38DC230CF9C000AA7FA6 /* BottomMenuLauncher.swift in Sources */,
 				04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */,
 				0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */,
 				0455D8EA22C4CD88005F6494 /* EthereumManager.swift in Sources */,
 				04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */,
-				0468C5F722966D52008307D8 /* TopMenuLauncher.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
+				049C38ED230CF9DB00AA7FA6 /* ViewComponent.swift in Sources */,
 				04D3A0E022B0D26200E54E96 /* FMDatabaseQueue.m in Sources */,
 				0423EFAE230B8E0000CE8174 /* BitcoinUnit.swift in Sources */,
 				045AA9CA22C0E61B005EA387 /* Extension + UIImage.swift in Sources */,
-				04FBCA41229E26DE00DEEDD9 /* MainTableFooter.swift in Sources */,
 				0423EFB0230B9A8700CE8174 /* Extension + Decimal.swift in Sources */,
 				0440A17022F2ED62003CFA6C /* Extension + Notification.swift in Sources */,
 				042FF41622B3774300666DF9 /* QROverlay.swift in Sources */,
@@ -1481,6 +1484,7 @@
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
 				0440A16E22F28F12003CFA6C /* KeyPadViewModel.swift in Sources */,
 				0464BFBB22DC47B700D8087D /* Localization.swift in Sources */,
+				049C38EA230CF9C000AA7FA6 /* TopMenuCell.swift in Sources */,
 				04C82C9C22890D9500235883 /* SecurityController.swift in Sources */,
 				04FBCA4D229E67A200DEEDD9 /* Get.swift in Sources */,
 				044BC5C7227BCDE300FD7E5E /* CharPad.swift in Sources */,

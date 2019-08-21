@@ -32,27 +32,21 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
     
     override func bindData(cell: UITableViewCell, data: Tx, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
-
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
+        
         setCellHeight(height: 70)
         cell.backgroundColor = .clear
         
         guard let selectedPlanet = selectedPlanet,
             let txCell = cell as? TransactionCell,
+            let coinType = selectedPlanet.coinType,
+            let amount = data.amount,
             let symbol = data.symbol else { return }
 
         txCell.symbolLb.text = symbol
         
         self.txStatus = TxStatus(currentPlanet: selectedPlanet, tx: data)
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-        
-        guard let selectedPlanet = selectedPlanet,
-            let coinType = selectedPlanet.coinType,
-            let txCell = cell as? TransactionCell,
-            let amount = dataSource[indexPath.row].amount else { return }//txList[indexPath.row]
-        
+
         var formattedAmount = ""
         
         //TODO: - ERC20 format
@@ -68,7 +62,7 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         }
         
         guard let results = txStatus?.status, let direction = txStatus?.direction else { return }
-    
+        
         if results == TxResults.PENDING {
             txCell.statusLb.text = "Pending"
             txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
@@ -95,7 +89,5 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
                 txCell.amountLb.text = "-" + formattedAmount
             }
         }
-
     }
-
 }

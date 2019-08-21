@@ -237,10 +237,6 @@ extension TxListController: UITableViewDelegate {
                    userInfo: [Keys.UserInfo.planet: planet,
                               Keys.UserInfo.transaction: txList[indexPath.row]])
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
 }
 
 extension TxListController: NavigationBarDelegate {

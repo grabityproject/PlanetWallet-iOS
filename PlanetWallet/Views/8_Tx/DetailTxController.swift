@@ -42,6 +42,7 @@ class DetailTxController: PlanetWalletViewController {
     var selectedPlanet: Planet?
     var txHashStr: String?
     
+    //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
@@ -81,11 +82,15 @@ class DetailTxController: PlanetWalletViewController {
         
     }
     
+    //MARK: - Private
     private func setFeeData(_ tx: Tx) {
-        if let gasFee = tx.fee {
-            feeLb.text = gasFee
+        if let transactionFee = tx.fee { //BTC
+            
+            if let formattedTxFee = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .SATOSHI, to: .BIT) {
+                feeLb.text = formattedTxFee + " BTC"
+            }
         }
-        else {
+        else { //ETH
             guard let gasLimitStr = tx.gasLimit,
                 let gasPriceStr = tx.gasPrice,
                 let gasLimit = Decimal(string: gasLimitStr),
@@ -94,7 +99,9 @@ class DetailTxController: PlanetWalletViewController {
                     return
             }
             
-            feeLb.text = (gasLimit * gasPrice).description
+            if let formattedTxFee = CoinNumberFormatter.full.convertUnit(balance: (gasLimit * gasPrice).description, from: .WEI, to: .ETHER) {
+                feeLb.text = formattedTxFee + " ETH"
+            }
         }
     }
     
@@ -108,8 +115,8 @@ class DetailTxController: PlanetWalletViewController {
         var tokenIconImgPath: String?
         
         if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenImg = erc20.img_path {
-            if let shortERC20Str = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, item: erc20) {
-                amount = shortERC20Str
+            if let fullERC20Str = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, item: erc20) {
+                amount = fullERC20Str
             }
             
             mainAmountLb.text = "\(amount) \(symbol)"
@@ -118,13 +125,13 @@ class DetailTxController: PlanetWalletViewController {
         }
         else {
             if coin == CoinType.BTC.name {
-                if let shortBTCStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.BTC) {
-                    amount = shortBTCStr
+                if let fullBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, coinType: CoinType.BTC) {
+                    amount = fullBTCStr
                 }
             }
             else if coin == CoinType.ETH.name { //include token
-                if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: amountStr, coinType: CoinType.ETH) {
-                    amount = shortEtherStr
+                if let fullEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, coinType: CoinType.ETH) {
+                    amount = fullEtherStr
                 }
             }
             mainAmountLb.text = "\(amount) \(symbol)"
@@ -202,22 +209,28 @@ class DetailTxController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedScan(_ sender: UIButton) {
-        guard let planet = self.selectedPlanet, let coinType = planet.coinType else { return }
+        guard let planet = self.selectedPlanet, let coinType = planet.coinType, let txHash = self.txHashStr else { return }
+        
+        var explorerPath = ""
+        
         if coinType == CoinType.BTC.coinType {
-            return
-        }
-        
-        var etherScanPath = ""
-        guard let txHash = self.txHashStr else { return }
-        
-        if TESTNET {
-            etherScanPath = Route.URL(txHash, baseURL: "https://ropsten.etherscan.io/tx/")
+            if TESTNET {
+                explorerPath = Route.URL(txHash, baseURL: "https://live.blockcypher.com/btc-testnet/tx")
+            }
+            else {
+                explorerPath = Route.URL(txHash, baseURL: "https://live.blockcypher.com/btc/tx")
+            }
         }
         else {
-            etherScanPath = Route.URL(txHash, baseURL: "https://etherscan.io/tx/")
+            if TESTNET {
+                explorerPath = Route.URL(txHash, baseURL: "https://ropsten.etherscan.io/tx")
+            }
+            else {
+                explorerPath = Route.URL(txHash, baseURL: "https://etherscan.io/tx")
+            }
         }
         
-        guard let url = URL(string: etherScanPath),
+        guard let url = URL(string: explorerPath),
             UIApplication.shared.canOpenURL(url) else { return }
         
         UIApplication.shared.open(url, options: [:], completionHandler: nil)

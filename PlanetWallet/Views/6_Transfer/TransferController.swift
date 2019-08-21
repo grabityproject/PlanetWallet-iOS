@@ -228,10 +228,6 @@ class TransferController: PlanetWalletViewController {
 }
 
 extension TransferController: RecentSearchAdapterDelegate {
-    func willDisplayItem(cell: UITableViewCell) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
-    
     func didTouchedDelete(_ planet: Planet) {
         SearchStore.shared.delete(planet)
         if let keyId = self.planet?.keyId {
@@ -248,11 +244,6 @@ extension TransferController: RecentSearchAdapterDelegate {
 }
 
 extension TransferController: PlanetSearchAdapterDelegate {
-    
-    func willDisplayCell(_ cell: UITableViewCell) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
-    
     func didTouchedPlanet(_ planet: Planet) {
         sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
                    userInfo: [Keys.UserInfo.toPlanet: planet,

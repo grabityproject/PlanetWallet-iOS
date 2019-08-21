@@ -17,13 +17,14 @@ class Search: Mappable {
     var name: String?
     var address: String!
     var symbol: String!
+    var date: String?
     
-    
-    init(keyId: String, name: String?, address: String, symbol: String) {
+    init(keyId: String, name: String?, address: String, symbol: String, date: String?) {
         self.keyId = keyId
         self.name = name
         self.address = address
         self.symbol = symbol
+        self.date = date
     }
     
     required init?(map: Map) {
@@ -34,7 +35,8 @@ class Search: Mappable {
         keyId       <- map["keyId"]
         name        <- map["name"]
         address     <- map["address"]
-        symbol      <- map ["symbol"]
+        symbol      <- map["symbol"]
+        date        <- map["date"]
     }
 }
 

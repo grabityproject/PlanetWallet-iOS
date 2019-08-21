@@ -315,17 +315,26 @@ extension MainController:NodeServiceDelegate{
             planet.balance = balance
             bottomMenuLauncher?.planet = planet
             bottomPanelComponent.setPlanet(planet)
+            
+//            if let keyId = planet.keyId {
+//                _ = PWDBManager.shared.update(planet, "keyId='\(keyId)'")
+//            }
         }
     }
     
     func onTokenBalance(_ planet: Planet, _ tokenList: [MainItem]) {
-        print("onTokenBalance")
-
         mainAdapter = MainETHAdapter(tableView, tokenList)
         mainAdapter?.delegates.append(self)
+        
         footerView.updateUI()
         
         refreshComponent.refreshed()
+
+//        tokenList.forEach { (item) in
+//            if let token = item as? ERC20, let keyId = token.keyId, let contract = token.contract {
+//                _ = PWDBManager.shared.update(token, "keyId='\(keyId)' AND contract='\(contract)'")
+//            }
+//        }
     }
     
     func onTxList(_ planet: Planet, _ txList: [Tx]) {

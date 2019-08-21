@@ -133,10 +133,6 @@ extension TokenListController: UITableViewDelegate{
             }
         }
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
 }
 
 

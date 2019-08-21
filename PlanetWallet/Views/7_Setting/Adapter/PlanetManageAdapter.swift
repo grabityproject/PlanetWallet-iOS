@@ -23,6 +23,9 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
     }
     
     override func bindData(cell: UITableViewCell, data: Planet, position: Int) {
+        super.bindData(cell: cell, data: data, position: position)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
+        
         setCellHeight(height: 100)
         let planetCell = cell as! PlanetCell
         if let address = data.address {

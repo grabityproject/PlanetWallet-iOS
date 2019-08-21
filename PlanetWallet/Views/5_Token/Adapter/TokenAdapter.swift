@@ -26,6 +26,7 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
     
     override func bindData(cell: UITableViewCell, data: ERC20, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
         setCellHeight(height: 70)
         
@@ -49,8 +50,3 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
     }
 }
 
-class ERC20Cell: UITableViewCell{
-    
-    
-    
-}

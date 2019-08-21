@@ -31,7 +31,7 @@ class SplashController: PlanetWalletViewController {
     
     override func viewInit() {
         super.viewInit()
-        
+        print(NSDate().timeIntervalSince1970.toString())
         /*
         let ether = "23.14213231"
         print("ether: \(ether)")

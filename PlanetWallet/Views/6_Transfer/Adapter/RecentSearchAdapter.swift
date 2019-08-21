@@ -10,7 +10,6 @@ import UIKit
 
 protocol RecentSearchAdapterDelegate {
     func didTouchedItem(_ planet: Planet)
-    func willDisplayItem(cell: UITableViewCell)
     func didTouchedDelete(_ planet: Planet)
 }
 
@@ -33,6 +32,8 @@ class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
     }
     
     override func bindData(cell: UITableViewCell, data: Planet, position: Int) {
+        super.bindData(cell: cell, data: data, position: position)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
         setCellHeight(height: 70)
         
@@ -44,10 +45,6 @@ class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
         item.delegate = self
         item.isRecentSearch = true
         item.planetName.text = data.name
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        delegate?.willDisplayItem(cell: cell)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

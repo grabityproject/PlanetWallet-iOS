@@ -27,11 +27,13 @@ class Planet: Mappable {
     var name: String?
     var balance: String?
     
+    
     //network
     var signature: String?
     var planet: String? //register planet name
     
     var items: [MainItem]?
+    var date: String?//Search date
     
 //    var type: Coin? {
 //        guard let coinTypeInt = coinType else { return nil }

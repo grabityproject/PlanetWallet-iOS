@@ -63,10 +63,6 @@ class PlanetManagementController: PlanetWalletViewController {
 }
 
 extension PlanetManagementController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: currentTheme)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let planet = adapter?.dataSource[indexPath.row] {
             sendAction(segue: Keys.Segue.PLANET_MANAGEMENT_TO_DETAIL_PLANET, userInfo: [Keys.UserInfo.planet: planet])
