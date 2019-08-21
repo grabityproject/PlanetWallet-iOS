@@ -18,17 +18,81 @@ public final class CoinNumberFormatter {
         self.maximumFractionDigit = maximumDigit
     }
     
-    var maximumFractionDigit = Int.max - 1
+    private var maximumFractionDigit = Int.max - 1
     
-    //MARK: - Bitcoin
-    func toBitcoin(satoshi: BigInt) -> Decimal? {
-        guard let decimalSatoshi = Decimal(string: satoshi.description) else { return nil }
-        return decimalSatoshi / pow(Decimal(10), CoinType.BTC.precision!)
+    //MARK: - Interface
+    // Only used for Coin
+    func toMaxUnit(balance: String, coinType: StructCoinType) -> String? {
+        
+        if coinType.coinType == CoinType.BTC.coinType {
+            return toMaxUnit(balance: balance, item: BTC())
+        }
+        else if coinType.coinType == CoinType.ETH.coinType {
+            return toMaxUnit(balance: balance, item: ETH())
+        }
+        
+        return nil
     }
     
-    func toBitString(satoshi: String) -> String? {
+    // include token
+    func toMaxUnit(balance: String, item: MainItem) -> String? {
+        
+        let coinType = item.getCoinType()
+        
+        if coinType == CoinType.BTC.coinType {
+            return toBitString(satoshi: balance)
+        }
+        else if coinType == CoinType.ETH.coinType {
+            return toEthString(wei: balance)
+        }
+        else if coinType == CoinType.ERC20.coinType {
+            if let token = item as? ERC20, let decimalStr = token.decimals, let decimals = Int(decimalStr) {
+                return toEthString(wei: balance, precesion: decimals)
+            }
+        }
+        
+        return nil
+    }
+    
+    func convertUnit(balance: String, from: Int, to: Int) -> String? {
+        let exponent = from - to
+        if let balanceDecimal = Decimal(string: balance) {
+            
+            if exponent > 0 {
+                return (balanceDecimal * pow(10, exponent)).toString()
+            }
+            else {
+                return (balanceDecimal / pow(10, -exponent)).toString()
+            }
+            
+        }
+        
+        return nil
+    }
+    
+    func convertUnit(balance: String, from: EthereumUnit, to: EthereumUnit) -> String? {
+        return self.convertUnit(balance: balance, from: from.value, to: to.value)
+    }
+    
+    func convertUnit(balance: String, from: BitcoinUnit, to: BitcoinUnit) -> String? {
+        return self.convertUnit(balance: balance, from: from.value, to: to.value)
+    }
+    
+    //MARK: - Bitcoin
+    private func toBitcoin(satoshi: String) -> Decimal? {
+        guard let decimalSatoshi = Decimal(string: satoshi) else { return nil }
+        var btcStr = (decimalSatoshi / pow(Decimal(10), CoinType.BTC.precision!)).toString()
+        if btcStr.count > (maximumFractionDigit + 1) {
+            let index = btcStr.index(btcStr.startIndex, offsetBy: (maximumFractionDigit + 1))
+            btcStr = String(btcStr[..<index])
+        }
+        
+        return Decimal(string: btcStr)
+    }
+    
+    private func toBitString(satoshi: String) -> String? {
         let satoshiBInt = BigInt(stringLiteral: satoshi)
-        guard let bitcoin = toBitcoin(satoshi: satoshiBInt) else { return nil }
+        guard let bitcoin = toBitcoin(satoshi: satoshiBInt.description) else { return nil }
         var str = bitcoin.description
         
         if str.count > (maximumFractionDigit + 1) {
@@ -41,26 +105,16 @@ public final class CoinNumberFormatter {
     
     //MARK: - Ethereum
     /// Convert Wei(BInt) unit to Ether(Decimal) unit
-    func toEther(wei: BigInt) -> Decimal? {
-        guard let decimalWei = Decimal(string: wei.description) else { return nil }
-        return decimalWei / pow(Decimal(10), CoinType.ETH.precision!)
+    private func toEther(wei: String, precesion: Int = 18) -> Decimal? {
+        
+        guard let decimalWEI = Decimal(string: wei) else { return nil }
+        
+        return decimalWEI / pow(Decimal(10), precesion)
     }
     
-    func toEthString(wei: BigInt) -> String? {
-        guard let eth = toEther(wei: wei) else { return  nil }
-        var str = eth.description
-        
-        if str.count > (maximumFractionDigit + 1) {
-            let index = str.index(str.startIndex, offsetBy: (maximumFractionDigit + 1))
-            str = String(str[..<index])
-        }
-        
-        return str
-    }
-    
-    func toEthString(wei: String) -> String? {
+    private func toEthString(wei: String, precesion: Int = 18) -> String? {
         let weiBInt = BigInt(stringLiteral: wei)
-        guard let eth = toEther(wei: weiBInt) else { return  nil }
+        guard let eth = toEther(wei: weiBInt.description, precesion: precesion) else { return  nil }
         var str = eth.description
         
         if str.count > (maximumFractionDigit + 1) {
@@ -72,7 +126,7 @@ public final class CoinNumberFormatter {
     }
     
     /// Convert Ether(Decimal) unit to Wei(BInt) unit
-    func toWei(ether: Decimal) -> BigInt? {
+    private func toWei(ether: Decimal) -> BigInt? {
         guard let wei = BigInt((ether * pow(Decimal(10), CoinType.ETH.precision!)).description) else {
             return nil
         }
@@ -80,7 +134,7 @@ public final class CoinNumberFormatter {
     }
     
     /// Convert Ether(String) unit to Wei(BInt) unit
-    func toWei(ether: String) -> BigInt? {
+    private func toWei(ether: String) -> BigInt? {
         guard let decimalEther = Decimal(string: ether) else {
             return nil
         }
@@ -88,7 +142,7 @@ public final class CoinNumberFormatter {
     }
     
     // Only used for calcurating gas price and gas limit.
-    func toWei(GWei: Int) -> Int {
+    private func toWei(GWei: Int) -> Int {
         return GWei * 1000000000
     }
 }

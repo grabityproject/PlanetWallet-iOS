@@ -125,5 +125,7 @@ struct Keys {
         //Tx
         static let TX_LIST_TO_DETAIL_TX = "txlist_to_detailtx"
         static let TX_LIST_TO_TRANSFER = "txlist_to_transfer"
+        static let TX_LIST_TO_DETAIL_ADDRESS = "txlist_to_detailaddress"
+        static let DETAIL_TX_TO_TRANSFER = "detailaddress_to_transfer"
     }
 }

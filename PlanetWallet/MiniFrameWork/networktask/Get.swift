@@ -29,7 +29,7 @@ class Get {
                 headers[key] = extraHeaders[key]
             }
         }
-        
+
         Alamofire.request(requestUrl, method: .get, parameters: data, encoding: URLEncoding.default, headers: headers).response { (dataResponse) in
             
             if let response = dataResponse.response{

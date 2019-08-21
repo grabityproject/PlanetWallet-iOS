@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+enum Coin {
+    case BTC
+    case ETH
+}
+
 class Planet: Mappable {
     //db
     var _id: Int?
@@ -27,6 +32,19 @@ class Planet: Mappable {
     var planet: String? //register planet name
     
     var items: [MainItem]?
+    
+    var type: Coin? {
+        guard let coinTypeInt = coinType else { return nil }
+        
+        if coinTypeInt == CoinType.BTC.coinType {
+            return .BTC
+        }
+        else if coinTypeInt == CoinType.ETH.coinType || coinTypeInt == CoinType.ERC20.coinType {
+            return .ETH
+        }
+        
+        return nil
+    }
     
     init() {
         

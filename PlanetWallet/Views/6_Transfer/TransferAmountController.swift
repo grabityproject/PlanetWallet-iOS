@@ -14,7 +14,7 @@ class TransferAmountController: PlanetWalletViewController {
     var toPlanet: Planet?
     var erc20: ERC20?
     
-    var availableBalance: Double = 0.0 {
+    var availableBalance: Decimal = 0.0 {
         didSet {
             if let erc20 = self.erc20, let symbol = erc20.symbol {
                 self.availableAmountLb.text = "\(availableBalance) \(symbol)"
@@ -52,7 +52,7 @@ class TransferAmountController: PlanetWalletViewController {
                 return
             }
             
-            if let inputNum = Double(inputAmount) {
+            if let inputNum = Decimal(string: inputAmount) {
                 if 0 < inputNum && inputNum <= self.availableBalance {
                     //TODO: - Fiat Currency
                     let currency = inputNum * 1230
@@ -99,21 +99,32 @@ class TransferAmountController: PlanetWalletViewController {
         
         if let userInfo = userInfo,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
-            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet
+            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let fromPlanetName = fromPlanet.name,
+            let coinTypeInt = fromPlanet.coinType
         {
             self.fromPlanet = fromPlanet
             self.toPlanet = toPlanet
             
-            //ERC20 or Coin
-            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
-                let balance = Double(erc20.balance ?? "0")
+            //Get balance
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenSymbol = erc20.symbol
             {
                 self.erc20 = erc20
-                availableBalance = balance
+                Get(self).action(Route.URL("balance", tokenSymbol, fromPlanetName),
+                                 requestCode: 0,
+                                 resultCode: 0,
+                                 data: nil,
+                                 extraHeaders: ["device-key": DEVICE_KEY])
             }
             else {
-                availableBalance = Double(fromPlanet.balance ?? "0") ?? 0
+                Get(self).action(Route.URL("balance", CoinType.of(coinTypeInt).name, fromPlanetName),
+                                 requestCode: 0,
+                                 resultCode: 0,
+                                 data: nil,
+                                 extraHeaders: ["device-key": DEVICE_KEY])
             }
+            
+            
             
             //Planet or Address
             if let toPlanetName = toPlanet.name {
@@ -156,6 +167,40 @@ class TransferAmountController: PlanetWalletViewController {
                               Keys.UserInfo.transferAmount: inputAmount])
     }
     
+    
+    
+    //MARK: - Network
+    private func handleBalanceResponse(json: [String: Any]) {
+        guard let planet = Planet(JSON: json), let balance = planet.balance, let coinType = self.fromPlanet?.type else { return }
+        
+        switch coinType {
+        case .BTC:
+            if let shortBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.BTC),
+                let btcDecimal = Decimal(string: shortBTCStr)
+            {
+                self.availableBalance = btcDecimal
+            }
+//            if let formattedBalance = CoinNumberFormatter.full.toBitcoin(satoshi: balance) {
+//                self.availableBalance = formattedBalance
+//            }
+        case .ETH:
+            if let shortEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.ETH),
+                let etherDecimal = Decimal(string: shortEtherStr)
+            {
+                self.availableBalance = etherDecimal
+            }
+//            if let formattedBalance = CoinNumberFormatter.full.toEther(wei: balance) {
+//                self.availableBalance = formattedBalance
+//            }
+        }
+        
+    }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
+        guard let dict = dictionary, let resultObj = dict["result"] as? [String:Any] else { return }
+        self.handleBalanceResponse(json: resultObj)
+    }
 }
 
 extension TransferAmountController: NumberPadDelegate {

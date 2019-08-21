@@ -70,8 +70,9 @@ class AdvancedGasView: UIView {
     var gasPrice: String = "\(GasInfo.DEFAULT_GAS_PRICE)" {
         didSet {
             self.gasPriceBtn.setTitle(inputText, for: .normal)
-            if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+            if let gas = Int(gasPrice), let limit = Int(gasLimit),
+                let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER) {
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther)) ETH"
             }
         }
     }
@@ -79,8 +80,9 @@ class AdvancedGasView: UIView {
     var gasLimit: String = "\(21000)" {
         didSet {
             self.gasLimitBtn.setTitle(inputText, for: .normal)
-            if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+            if let gas = Int(gasPrice), let limit = Int(gasLimit),
+                let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER) {
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther)) ETH"
             }
         }
     }
@@ -137,8 +139,10 @@ class AdvancedGasView: UIView {
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
         backgroundView.addGestureRecognizer(backgroundPanGesture)
         
-        if let gas = Int(gasPrice), let limit = Int(gasLimit) {
-            self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(Utils.shared.gweiToETH(calculateGasPrice(gas: gas, limit: limit))) ETH"
+        if let gas = Int(gasPrice), let limit = Int(gasLimit),
+            let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER)
+        {
+            self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
         }
         
         setTheme(ThemeManager.currentTheme())
@@ -200,7 +204,7 @@ class AdvancedGasView: UIView {
             let gas = Int(gasPrice),
             let limit = Int(gasLimit)
         {
-            if gas > 0 && limit >= gasInfo.advancedGasLimit {
+            if gas > 0 && limit >= (gasInfo.advancedGasLimit).intValue {
                 delegate?.didTouchedSave(gas, gasLimit: limit)
                 self.hide()
             }

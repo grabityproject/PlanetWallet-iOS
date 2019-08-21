@@ -16,7 +16,8 @@ class TokenCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var iconImgView: UIImageView!
-    @IBOutlet var nameLb: PWLabel!
+    @IBOutlet var symbolLb: PWLabel!
+    @IBOutlet var fullNameLb: PWLabel!
     
     @IBOutlet var unCheckedView: PWView!
     @IBOutlet var checkedImgView: PWImageView!

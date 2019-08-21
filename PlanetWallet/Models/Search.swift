@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 
+/*
 class Search: Mappable {
     
     var _id: Int?
@@ -16,6 +17,7 @@ class Search: Mappable {
     var name: String?
     var address: String!
     var symbol: String!
+    
     
     init(keyId: String, name: String?, address: String, symbol: String) {
         self.keyId = keyId
@@ -35,3 +37,4 @@ class Search: Mappable {
         symbol      <- map ["symbol"]
     }
 }
+*/

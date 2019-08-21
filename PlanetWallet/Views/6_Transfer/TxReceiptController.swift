@@ -36,7 +36,7 @@ class TxReceiptController: PlanetWalletViewController {
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
             let txHash = userInfo[Keys.UserInfo.txHash] as? String,
             let amount = userInfo[Keys.UserInfo.transferAmount] as? String,
-            let gasFee = userInfo[Keys.UserInfo.gasFee] as? Double else { return }
+            let gasFee = userInfo[Keys.UserInfo.gasFee] as? Decimal else { return }
         
         var transactionSymbol = ""
         var toName = ""
@@ -82,18 +82,14 @@ class TxReceiptController: PlanetWalletViewController {
         }
         
         fromPlanetNameLb.text = fromPlanet.name ?? ""
-        gasFeeLb.text = "\(gasFee)"//gasFee
+        gasFeeLb.text = gasFee.toString()
         dateLb.text = Utils.shared.getStringFromDate(Date(), format: .yyyyMMddHHmmss)
         txHashValueLb.attributedText = NSAttributedString(string: txHash,
                                                           attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
                                                                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         
         //Insert Search DB
-        if let toAddress = toPlanet.address, let keyId = fromPlanet.keyId {
-            let recent = Search(keyId: keyId, name: toName, address: toAddress, symbol: transactionSymbol)
-            SearchStore.shared.insert(recent)
-        }
-        
+        SearchStore.shared.insert(toPlanet)
     }
     
     override func setData() {

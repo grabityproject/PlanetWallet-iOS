@@ -116,6 +116,7 @@ struct Utils {
     }
     
     //MARK: - Unit
+    /*
     //ETH <-> GWEI
     func gweiToETH(_ gwei: Int) -> Double {
         return Double(gwei) / pow(10, 9)
@@ -177,7 +178,7 @@ struct Utils {
         
         return formatter.string(from: NSNumber(value: eth))
     }
-    
+    */
     //MARK: - Date
     func changeDateFormat(date: String, beforFormat: DateFormat, afterFormat: DateFormat) -> String? {
         let dateFormatterGet = DateFormatter()

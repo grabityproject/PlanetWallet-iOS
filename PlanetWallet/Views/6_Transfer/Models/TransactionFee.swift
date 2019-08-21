@@ -9,24 +9,28 @@
 import Foundation
 
 struct TransactionFee {
-    var gasPrice:Double = 0//GWEI
-    var gasLimit:Int = 0
+    var gasPrice:Decimal = 0//GWEI
+    var gasLimit:Decimal = 0
     
-    public func getGasPriceWEI() -> Int {
-        return Int(gasPrice * pow(10, 9))
+    public func getGasPriceWEI() -> String? {
+        return CoinNumberFormatter.full.convertUnit(balance: gasPrice.toString(), from: .GWEI, to: .WEI)
     }
     
-    public func getFeeGwei() -> Int {
-        return Int(gasPrice * Double(gasLimit))
+    public func getFeeGwei() -> String {
+        return (gasPrice * gasLimit).toString()
     }
     
-    public func getFeeETH() -> Double? {
-        return Utils.shared.gweiToETH(getFeeGwei())
+    public func getFeeETH() -> Decimal? {
+        if let etherStr = CoinNumberFormatter.full.convertUnit(balance: getFeeGwei(), from: .GWEI, to: .ETHER) {
+            return Decimal(string: etherStr)
+        }
+        
+        return nil
     }
     
     public func getFeeWEI() -> String? {
         if let feeETH = getFeeETH() {
-            return Utils.shared.ethToWEI(feeETH)
+            return CoinNumberFormatter.full.convertUnit(balance: feeETH.toString(), from: .ETHER, to: .WEI)
         }
         return nil
     }

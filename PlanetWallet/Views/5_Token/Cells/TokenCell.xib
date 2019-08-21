@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,14 +14,18 @@
         <array key="WorkSans-Medium.otf">
             <string>WorkSans-Medium</string>
         </array>
+        <array key="WorkSans-Regular.otf">
+            <string>WorkSans-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TokenCell" customModule="PlanetWallet" customModuleProvider="target">
             <connections>
                 <outlet property="checkedImgView" destination="JS5-kq-Hsy" id="vnW-Ax-iX5"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="eHZ-Ul-qTc"/>
+                <outlet property="fullNameLb" destination="e0A-YC-JeS" id="0X3-ya-aSh"/>
                 <outlet property="iconImgView" destination="owr-nd-dg6" id="CRa-9j-aFe"/>
-                <outlet property="nameLb" destination="V0M-P5-NyR" id="WBo-QV-vK7"/>
+                <outlet property="symbolLb" destination="V0M-P5-NyR" id="WBo-QV-vK7"/>
                 <outlet property="unCheckedView" destination="XIa-fZ-05F" id="Wyq-Of-A5J"/>
             </connections>
         </placeholder>
@@ -30,14 +35,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="owr-nd-dg6">
-                    <rect key="frame" x="20" y="25" width="20" height="20"/>
+                    <rect key="frame" x="20" y="23" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="20" id="As9-Pj-bol"/>
-                        <constraint firstAttribute="height" constant="20" id="BBR-G5-AFL"/>
+                        <constraint firstAttribute="width" constant="24" id="As9-Pj-bol"/>
+                        <constraint firstAttribute="height" constant="24" id="BBR-G5-AFL"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0M-P5-NyR" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="50" y="23.333333333333336" width="43" height="23.333333333333336"/>
+                    <rect key="frame" x="54" y="17" width="43" height="23.333333333333329"/>
                     <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -81,26 +86,39 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rB8-tq-OT5">
-                    <rect key="frame" x="93" y="0.0" width="368" height="70"/>
+                    <rect key="frame" x="97" y="0.0" width="364" height="70"/>
                     <connections>
                         <action selector="didTouchedSelection:" destination="-1" eventType="touchUpInside" id="U5U-vh-qdF"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0A-YC-JeS" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                    <rect key="frame" x="54" y="40.333333333333336" width="37.666666666666657" height="20.333333333333336"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                    <color key="textColor" name="detailTextDark"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="V0M-P5-NyR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1Dq-WB-Xew"/>
                 <constraint firstItem="JS5-kq-Hsy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="398-iF-38Y"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rB8-tq-OT5" secondAttribute="trailing" id="71A-pZ-IwJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JS5-kq-Hsy" secondAttribute="trailing" constant="22" id="9pD-Cn-MRG"/>
                 <constraint firstItem="owr-nd-dg6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Df2-GG-zML"/>
                 <constraint firstItem="rB8-tq-OT5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="G2c-nC-FR4"/>
+                <constraint firstItem="e0A-YC-JeS" firstAttribute="leading" secondItem="V0M-P5-NyR" secondAttribute="leading" id="Mgy-nl-G6c"/>
+                <constraint firstItem="e0A-YC-JeS" firstAttribute="top" secondItem="V0M-P5-NyR" secondAttribute="bottom" id="PW1-FT-lzR"/>
                 <constraint firstItem="V0M-P5-NyR" firstAttribute="leading" secondItem="owr-nd-dg6" secondAttribute="trailing" constant="10" id="UhM-fz-J1X"/>
                 <constraint firstItem="rB8-tq-OT5" firstAttribute="leading" secondItem="V0M-P5-NyR" secondAttribute="trailing" id="WUT-og-PXa"/>
                 <constraint firstAttribute="bottom" secondItem="rB8-tq-OT5" secondAttribute="bottom" id="dEU-85-aoQ"/>
                 <constraint firstItem="owr-nd-dg6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ejg-4T-cm3"/>
                 <constraint firstItem="XIa-fZ-05F" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="f6k-df-0Eh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XIa-fZ-05F" secondAttribute="trailing" constant="22" id="nZB-6y-iyO"/>
+                <constraint firstItem="V0M-P5-NyR" firstAttribute="top" secondItem="owr-nd-dg6" secondAttribute="top" constant="-6" id="s0q-0j-8jf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -109,5 +127,8 @@
     </objects>
     <resources>
         <image name="imageCheckboxOn" width="39" height="39"/>
+        <namedColor name="detailTextDark">
+            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
