@@ -130,7 +130,8 @@ class BottomPanelComponent: ViewComponent, Themable {
             imageIcon.image = UIImage(named: "imageTransferConfirmationBtc02")
             labelName.text = CoinType.BTC.coinName
             labelUnit.text = CoinType.BTC.name
-            labelBalance.text = item.balance
+            
+            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: item.balance, coinType: CoinType.BTC)
             
             btnNext.isHidden = true
         
@@ -141,7 +142,7 @@ class BottomPanelComponent: ViewComponent, Themable {
             imageIcon.image = UIImage(named: "eth")
             labelName.text = CoinType.ETH.coinName
             labelUnit.text = CoinType.ETH.name
-            labelBalance.text = item.balance
+            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: item.balance, coinType: CoinType.ETH)
             
             btnNext.isHidden = false
             
@@ -154,7 +155,7 @@ class BottomPanelComponent: ViewComponent, Themable {
             imageIcon.downloaded(from: Route.URL(item.img_path!))
             labelName.text = item.name
             labelUnit.text = item.symbol
-            labelBalance.text = item.balance
+            labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: item.balance!, from: 0, to: Int(item.decimals!)!)
             
             btnNext.isHidden = false
             

@@ -56,18 +56,27 @@ public final class CoinNumberFormatter {
     
     func convertUnit(balance: String, from: Int, to: Int) -> String? {
         let exponent = from - to
+        var balanceStr: String?
+        
         if let balanceDecimal = Decimal(string: balance) {
-            
+
             if exponent > 0 {
-                return (balanceDecimal * pow(10, exponent)).toString()
+                balanceStr = (balanceDecimal * pow(10, exponent)).toString()
             }
             else {
-                return (balanceDecimal / pow(10, -exponent)).toString()
+                print((balanceDecimal / pow(10, -exponent)).toString())
+                balanceStr = (balanceDecimal / pow(10, -exponent)).toString()
             }
-            
         }
         
-        return nil
+        if let str = balanceStr {
+            if str.count > (maximumFractionDigit + 1) {
+                let index = str.index(str.startIndex, offsetBy: (maximumFractionDigit + 1))
+                balanceStr = String(str[..<index])
+            }
+        }
+        
+        return balanceStr
     }
     
     func convertUnit(balance: String, from: EthereumUnit, to: EthereumUnit) -> String? {

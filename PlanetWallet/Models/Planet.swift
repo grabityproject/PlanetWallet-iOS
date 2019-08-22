@@ -51,9 +51,6 @@ class Planet: Mappable {
     init() {
         
     }
-//    init(_id: Int?, keyId: String?, pathIdex: Int?, coinType: Int?, symbol: String?, decimals: String?, hide: String?, address: String?, name: String?, balance: String?, signature: String?, planet: String?, items: [MainItem]?) {
-//
-//    }
     
     required init?(map: Map) {
     }
@@ -100,6 +97,7 @@ class Planet: Mappable {
         signature   <- map["signature"]
         planet      <- map["planet"]
         
+        date        <- map["date"]
         
     }
 }

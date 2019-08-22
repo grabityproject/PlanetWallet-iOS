@@ -39,9 +39,10 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         
         guard let selectedPlanet = selectedPlanet,
             let txCell = cell as? TransactionCell,
-            let coinType = selectedPlanet.coinType,
             let amount = data.amount,
-            let symbol = data.symbol else { return }
+            let symbol = data.symbol,
+            let decimalStr = data.decimals,
+            let decimals = Int(decimalStr) else { return }
 
         txCell.symbolLb.text = symbol
         
@@ -49,16 +50,8 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
 
         var formattedAmount = ""
         
-        //TODO: - ERC20 format
-        if coinType == CoinType.BTC.coinType {
-            if let shortBitStr = CoinNumberFormatter.short.toMaxUnit(balance: amount, coinType: CoinType.BTC) {
-                formattedAmount = shortBitStr
-            }
-        }
-        else if coinType == CoinType.ETH.coinType {
-            if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: amount, coinType: CoinType.ETH) {
-                formattedAmount = shortEtherStr
-            }
+        if let maxUnitBalance = CoinNumberFormatter.short.convertUnit(balance: amount, from: 0, to: decimals) {
+            formattedAmount = maxUnitBalance
         }
         
         guard let results = txStatus?.status, let direction = txStatus?.direction else { return }

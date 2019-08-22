@@ -98,6 +98,7 @@ class TransferController: PlanetWalletViewController {
         
 //        planetSearchAdapter = PlanetSearchAdapter(tableView, [])
         self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
+        SyncManager.shared.syncRecentSearch(self, planet: planet, symbol: selectedSymbol)
         self.tableState = .RECENT_SEARCH
         
 //        updateUI()
@@ -316,6 +317,16 @@ extension TransferController: QRCaptureDelegate {
             addressPlanet.coinType = self.planet?.coinType
             planetSearchAdapter?.dataSetNotify([addressPlanet])
             updateUI()
+        }
+    }
+}
+
+extension TransferController: SyncDelegate {
+    func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
+        if isUpdate {
+            guard let keyId = planet?.keyId else { return }
+            self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
+            recentSearchAdapter?.dataSetNotify(recentDatasource)
         }
     }
 }

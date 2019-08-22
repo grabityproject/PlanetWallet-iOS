@@ -133,7 +133,7 @@ class DBManager: NSObject {
                             row.updateValue(v, forKey: k)
                         }
                     }
-
+                    
                     if let obj = T.init(JSON: row) {
                         resultArray.append(obj)
                     }

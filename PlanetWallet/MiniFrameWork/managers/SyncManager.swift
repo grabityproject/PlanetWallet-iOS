@@ -15,6 +15,7 @@ enum SyncType{
 
 protocol SyncDelegate {
     func sync(_ syncType:SyncType ,didSyncComplete complete:Bool, isUpdate:Bool )
+//    optional func sync(_ syncType:SyncType ,didSyncComplete complete:Bool, isUpdate:Bool )
 }
 
 class SyncManager: NetworkDelegate{
@@ -26,25 +27,36 @@ class SyncManager: NetworkDelegate{
     var delegate:SyncDelegate?
     
     public func syncPlanet(_ delegate:SyncDelegate){
-        
+        planetList = PlanetStore.shared.list()
+        self.syncPlanet(delegate, list: planetList)
+    }
+    
+    public func syncRecentSearch(_ delegate:SyncDelegate, planet:Planet, symbol:String){
+        if let keyId =  planet.keyId {
+            planetList = SearchStore.shared.list(keyId: keyId, symbol: symbol)
+            self.syncPlanet(delegate, list: planetList, 1)
+        }
+    }
+    
+    public func syncPlanet(_ delegate:SyncDelegate, list: [Planet], _ isSyncPlanet:Int = 0)
+    {
         self.delegate = delegate
         
-        planetList = PlanetStore.shared.list()
         var addresses:[String:String] = [String:String]()
         var ethCount = 0
         var bitCount = 0
-        planetList.forEach { (planet) in
-            if let address = planet.address, let symbol = planet.symbol{
-                if( symbol == CoinType.ETH.name ){
-                    addresses["\(symbol)[\(ethCount)]"] = address
+        list.forEach { (planet) in
+            if let address = planet.address, let coinType = planet.coinType {
+                if( coinType == CoinType.ETH.coinType ){
+                    addresses["\(CoinType.ETH.name)[\(ethCount)]"] = address
                     ethCount = ethCount + 1
-                }else if( symbol == CoinType.BTC.name ){
-                    addresses["\(symbol)[\(bitCount)]"] = address
+                }else if( coinType == CoinType.BTC.coinType ){
+                    addresses["\(CoinType.BTC.name)[\(bitCount)]"] = address
                     bitCount = bitCount + 1
                 }
             }
         }
-        Post(self).action(Route.URL("sync", "planets"), requestCode: 0, resultCode: 0, data: addresses)
+        Post(self).action(Route.URL("sync", "planets"), requestCode: isSyncPlanet, resultCode: 0, data: addresses)
     }
     
     
@@ -79,6 +91,41 @@ class SyncManager: NetworkDelegate{
             else {
                 delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
             }
+        }else if requestCode == 1 {
+            
+            guard let dict = dictionary, let success = dict["success"] as? Bool else {
+                delegate?.sync(.PLANET, didSyncComplete: false, isUpdate: false)
+                return
+            }
+            
+            var didSyncCompleted = false
+            var isUpdated = false
+            
+            if success {
+                didSyncCompleted = true
+                
+                if let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> {
+                    
+                    planetList.forEach { (planet) in
+                        if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
+                            if planet.name != syncItemName {
+                                planet.name = syncItemName
+                                SearchStore.shared.update(planet)
+                                isUpdated = true
+                            }
+                            else {
+                                isUpdated = false
+                            }
+                        }
+                        
+                        delegate?.sync(.PLANET, didSyncComplete: didSyncCompleted, isUpdate: isUpdated)
+                        return
+                    }
+                    
+                }
+            }
+            
+            delegate?.sync(.PLANET, didSyncComplete: didSyncCompleted, isUpdate: isUpdated)
         }
     }
     

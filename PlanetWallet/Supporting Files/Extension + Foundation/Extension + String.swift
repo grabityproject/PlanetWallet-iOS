@@ -86,6 +86,17 @@ extension String {
 }
 
 extension String {
+    var significantFractionalDecimalDigits: Int? {
+        if let decimal = Decimal(string: self) {
+            return decimal.significantFractionalDecimalDigits
+        }
+        else {
+            return nil
+        }
+    }
+}
+
+extension String {
     /// Create `Data` from hexadecimal string representation
     ///
     /// This creates a `Data` object from hex string. Note, if the string has any spaces or non-hex characters (e.g. starts with '<' and with a '>'), those are ignored and only hex characters are processed.

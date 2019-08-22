@@ -17,3 +17,12 @@ extension Decimal {
         return NSDecimalNumber(decimal: self).intValue
     }
 }
+
+extension Decimal {
+    //소수점 자릿수
+    var significantFractionalDecimalDigits: Int {
+        return max(-exponent, 0)
+    }
+}
+
+

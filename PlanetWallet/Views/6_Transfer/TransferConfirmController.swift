@@ -279,6 +279,10 @@ class TransferConfirmController: PlanetWalletViewController {
             }
         }
         
+        if amount.contains(".") {
+            
+        }
+        
         guard let transferItem = item,
             let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
         

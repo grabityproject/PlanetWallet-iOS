@@ -8,10 +8,15 @@
 
 import Foundation
 
+protocol SearchStoreDelegate {
+    func snyc()
+}
+
 class SearchStore {
     static let TABLE_NAME = "Search"
     static let shared = SearchStore()
     
+    var delegate: SearchStoreDelegate?
     
     func list(keyId: String, symbol: String, descending: Bool = true) -> [Planet]{
         if descending {
@@ -26,11 +31,34 @@ class SearchStore {
         }
     }
     
+    func update(_ recentSearch: Planet) {
+        
+        guard let keyId = recentSearch.keyId,
+            let symbol = recentSearch.symbol,
+            let coinType = recentSearch.coinType,
+            let toAddress = recentSearch.address,
+            let toName = recentSearch.name,
+            let date = recentSearch.date else { return }
+
+        _ = PWDBManager.shared.update(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, coinType: Int(coinType), date: date),
+                                      SearchStore.TABLE_NAME,
+                                      "_id='\(recentSearch._id!)'")
+    }
+    
     func insert(keyId: String, symbol: String, toPlanet: Planet) {
         
         //1. 중복 검사 -> update date column
         //2. size 검사 (최대 20개) -> 넘을 경우 가장 오래된 record삭제
-        guard let toName = toPlanet.name, let toAddress = toPlanet.address else { return }
+        guard let toName = toPlanet.name, let toAddress = toPlanet.address, let toPlanetSymbol = toPlanet.symbol else { return }
+        
+        var coinType = "60"
+        
+        if toPlanetSymbol == CoinType.ETH.coinName {
+            coinType = "\(CoinType.ETH.coinType)"
+        }
+        else if toPlanetSymbol == CoinType.BTC.coinName {
+            coinType = "\(CoinType.BTC.coinType)"
+        }
         
         var isValid = true
         
@@ -42,12 +70,9 @@ class SearchStore {
             if let name = recent.name, let toInsertName = toPlanet.name {
                 if name == toInsertName {
                     isValid = false
-                    _ = PWDBManager.shared.update(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, date: date),
+                    _ = PWDBManager.shared.update(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, coinType: Int(coinType)!, date: date),
                                                   SearchStore.TABLE_NAME,
                                                   "_id='\(recent._id!)'")
-//                    _ = PWDBManager.shared.delete(recent, SearchStore.TABLE_NAME, "_id='\(recent._id!)'")
-//                    _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, date: date),
-//                                                  SearchStore.TABLE_NAME)
                 }
             }
             else {
@@ -55,9 +80,6 @@ class SearchStore {
                     isValid = false
                     recent.date = date
                     _ = PWDBManager.shared.update(recent, SearchStore.TABLE_NAME, "_id='\(recent._id!)'")
-//                    _ = PWDBManager.shared.delete(recent, SearchStore.TABLE_NAME, "_id='\(recent._id!)'")
-//                    _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, date: date),
-//                                                  SearchStore.TABLE_NAME)
                 }
             }
         }
@@ -72,7 +94,7 @@ class SearchStore {
         }
         
         if isValid {
-            _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, date: date), SearchStore.TABLE_NAME)
+            _ = PWDBManager.shared.insert(Search(keyId: keyId, name: toName, address: toAddress, symbol: symbol, coinType: Int(coinType)!, date: date), SearchStore.TABLE_NAME)
         }
     }
     

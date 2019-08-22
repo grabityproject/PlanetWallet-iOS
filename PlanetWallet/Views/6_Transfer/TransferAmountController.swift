@@ -84,6 +84,8 @@ class TransferAmountController: PlanetWalletViewController {
         }
     }
     
+    var coinPrecision: Int?
+    
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
@@ -107,9 +109,11 @@ class TransferAmountController: PlanetWalletViewController {
             self.toPlanet = toPlanet
             
             //Get balance
-            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenSymbol = erc20.symbol
+            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenSymbol = erc20.symbol, let decimals = erc20.decimals
             {
                 self.erc20 = erc20
+                self.coinPrecision = Int(decimals)
+                
                 Get(self).action(Route.URL("balance", tokenSymbol, fromPlanetName),
                                  requestCode: 0,
                                  resultCode: 0,
@@ -117,6 +121,7 @@ class TransferAmountController: PlanetWalletViewController {
                                  extraHeaders: ["device-key": DEVICE_KEY])
             }
             else {
+                self.coinPrecision = CoinType.of(coinTypeInt).precision
                 Get(self).action(Route.URL("balance", CoinType.of(coinTypeInt).name, fromPlanetName),
                                  requestCode: 0,
                                  resultCode: 0,
@@ -214,12 +219,19 @@ extension TransferAmountController: NumberPadDelegate {
     }
     
     func didTouchedNumberPad(_ num: String) {
+        
         if let _ = Int(num) {
             if inputAmount == "0" {
                 inputAmount = num
             }
             else {
-                self.inputAmount += num
+                if let significantFractionalDecimalDigits = inputAmount.significantFractionalDecimalDigits,
+                    let precision = self.coinPrecision
+                {
+                    if significantFractionalDecimalDigits < precision {
+                        self.inputAmount += num
+                    }
+                }
             }
         }
         else {
