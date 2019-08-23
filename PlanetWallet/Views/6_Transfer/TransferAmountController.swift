@@ -225,10 +225,12 @@ extension TransferAmountController: NumberPadDelegate {
                 inputAmount = num
             }
             else {
-                if let significantFractionalDecimalDigits = inputAmount.significantFractionalDecimalDigits,
+                let inputAmountForCounting = inputAmount + num
+                
+                if let significantFractionalDecimalDigits = inputAmountForCounting.significantFractionalDecimalDigits,
                     let precision = self.coinPrecision
                 {
-                    if significantFractionalDecimalDigits < precision {
+                    if significantFractionalDecimalDigits <= precision {
                         self.inputAmount += num
                     }
                 }

@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Tx: Mappable {
-    var keyId: String? 
+
     var type: String?
     var tx_id: String?
     var contract: String?
@@ -78,7 +78,7 @@ class Tx: Mappable {
     }
     
     func mapping(map: Map) {
-        keyId          <- map["keyId"]
+
         type           <- map["type"] //received, sent
         tx_id          <- map["tx_id"]
         contract       <- map["contract"]

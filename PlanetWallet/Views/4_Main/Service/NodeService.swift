@@ -159,33 +159,33 @@ class BtcNetworkDelegate:Node{
                 if requestCode == 0 {
                     
                     if let json = dict["result"] as? [String: Any]{
-                    
-                        let planet = Planet(JSON: json)
-                        delegate?.onBalance(self.planet!, planet!.balance! )
+                        let planetVO = Planet(JSON: json)
                         
+                        if let planet = self.planet, let keyId = planet.keyId, let vo = planetVO, let voBalance = vo.balance {
+                            self.planet?.balance = voBalance//planetVO!.balance!
+                            _ = PWDBManager.shared.update(planet, "keyId='\(keyId)'")
+                        }
+                        
+                        delegate?.onBalance(self.planet!, planet!.balance! )
                     }
                     
                 }
                 else if requestCode == 1 {
-                    
+                    print(dict)
+                    var txList = [Tx]();
                     if let items = dict["result"] as? [[String: Any]]{
-                        
-                        var txList = [Tx]();
-                        
                         items.forEach { (json) in
                             txList.append(Tx(JSON: json)!)
                         }
-                        delegate?.onTxList(self.planet!, txList)
-                        
                     }
-                    
+                    delegate?.onTxList(self.planet!, txList)
                 }
                 
             }
-            
         }
-        
     }
+    
+    
 }
 
 

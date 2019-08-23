@@ -19,10 +19,23 @@ class BottomMenuView: ViewComponent {
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var addressLb: UILabel!
     @IBOutlet var planetNameLb: UILabel!
+    @IBOutlet var coinNameLb: UILabel!
     
     @IBOutlet var copyTopConstraint: NSLayoutConstraint!
     
     var planet:Planet?
+    var token: ERC20? {
+        didSet {
+            if let token = token, let tokenName = token.name {
+                self.coinNameLb.text = tokenName
+            }
+            else {
+                if let coinType = planet?.coinType {
+                    self.coinNameLb.text = CoinType.of(coinType).coinName
+                }
+            }
+        }
+    }
     
     var launcher:BottomMenuLauncher?
     
@@ -38,11 +51,15 @@ class BottomMenuView: ViewComponent {
     //MARK: - Interface
     public func setPlanet(_ planet: Planet) {
         self.planet = planet
-        if let planetName = planet.name, let address = planet.address {
+
+        if let planetName = planet.name, let address = planet.address, let coinType = planet.coinType {
             self.planetNameLb.text = planetName
             self.planetView.data = address
             self.addressLb.text = address
             self.qrCodeImgView.image = QRCode(address)?.image
+            
+            self.coinNameLb.text = CoinType.of(coinType).coinName
+            
         }
     }
     
@@ -65,7 +82,8 @@ class BottomMenuView: ViewComponent {
     
     @IBAction func didTouchedCopy(_ sender: UIButton) {
         if let addr = addressLb.text {
-            UIPasteboard.general.string = addr
+            Utils.shared.copyToClipboard(addr)
+            Toast(text: "main_copy_to_clipboard".localized).show()
         }
     }
     
@@ -75,7 +93,9 @@ class BottomMenuView: ViewComponent {
         }
         if let planet = planet, let controller = controller{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                controller.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet])
+                controller.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
+                                      userInfo: [Keys.UserInfo.planet: planet,
+                                                 Keys.UserInfo.erc20: self.token as Any])
             }
         }
 

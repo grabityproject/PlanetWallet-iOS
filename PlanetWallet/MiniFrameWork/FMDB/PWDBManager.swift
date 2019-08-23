@@ -14,7 +14,7 @@ class PWDBManager : DBManager {
     
         
     override func getDatabaseVersion() -> UInt32 {
-        return 2
+        return 1
     }
     
     override func getDatabseName() -> String? {
@@ -76,7 +76,7 @@ class PWDBManager : DBManager {
     }
     
     override func updateTables(_ database: FMDatabase, _ oldVersion: UInt32, _ newVersion: UInt32) -> Bool {
-        database.open()
+        
         //Add Column Search table
         let updateTableQuery = "ALTER TABLE " + "Search" + " ADD COLUMN " + "date" + " TEXT";
         let updateTableQuery2 = "ALTER TABLE " + "Search" + " ADD COLUMN " + "coinType" + " INTEGER";
@@ -85,12 +85,10 @@ class PWDBManager : DBManager {
             try database.executeUpdate(updateTableQuery, values: nil)
             try database.executeUpdate(updateTableQuery2, values: nil)
             
-            database.close()
             return true
         }
         catch {
             print(error.localizedDescription)
-            database.close()
             return false
         }
     }

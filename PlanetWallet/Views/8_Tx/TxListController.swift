@@ -125,6 +125,7 @@ class TxListController: PlanetWalletViewController {
                          data: nil,
                          extraHeaders: ["device-key": DEVICE_KEY])
     }
+    
     private func getTxList() {
         
         guard let symbol = planet?.symbol, let name = planet?.name else { return }
@@ -139,12 +140,63 @@ class TxListController: PlanetWalletViewController {
             selectedTokenSymbol = erc20Symbol
         }
         
+        txAdapter?.dataSetNotify(getTxFromLocal())
         
         Get(self).action(Route.URL("tx", "list", selectedTokenSymbol, name),
                          requestCode: 0,
                          resultCode: 0,
                          data: nil,
                          extraHeaders: ["device-key": DEVICE_KEY])
+    }
+    
+    private func getTxFromLocal() -> [Tx] {
+        var transactionList = [Tx]()
+        
+        guard let planet = planet, let keyId = planet.keyId else { return transactionList }
+        var symbol = "ETH"
+        
+        switch tokenType {
+        case .ETH:
+            symbol = "ETH"
+        case .ERC20(let token):
+            if let _symbol = token.symbol {
+                symbol = _symbol
+            }
+        }
+        
+        if let jsonArr = UserDefaults.standard.array(forKey: "ETH_\(symbol)_\(keyId)") as? Array<[String: Any]> {
+            jsonArr.forEach { (json) in
+                if let tx = Tx(JSON: json) {
+                    transactionList.append(tx)
+                }
+            }
+        }
+        
+        return transactionList
+    }
+    
+    private func saveTx(_ list: [Tx]) {
+        
+        guard let planet = planet, let keyId = planet.keyId else { return }
+        
+        var dictArr = Array<[String : Any]>()
+        list.forEach { (tx) in
+            print(tx.toJSON())
+            dictArr.append(tx.toJSON())
+        }
+        
+        var symbol = "ETH"
+        
+        switch tokenType {
+        case .ETH:
+            symbol = "ETH"
+        case .ERC20(let token):
+            if let _symbol = token.symbol {
+                symbol = _symbol
+            }
+        }
+        
+        UserDefaults.standard.set(dictArr, forKey: "ETH_\(symbol)_\(keyId)")
     }
     
     //MARK: - IBAction
@@ -210,12 +262,9 @@ class TxListController: PlanetWalletViewController {
             self.txList.removeAll()
             
             if isSuccess {
+                
                 for i in 0..<txItems.count {
-                    print("-------\(i) Transaction-------")
                     if let transaction = Tx(JSON: txItems[i]) {
-                        print("TxHash: \(transaction.tx_id!)")
-                        print("from: \(transaction.from!)")
-                        print("to: \(transaction.to!)")
                         txList.append(transaction)
                     }
                 }
@@ -223,7 +272,7 @@ class TxListController: PlanetWalletViewController {
             else {
                 print("Failed to response txList")
             }
-            
+            saveTx(txList)
             txAdapter?.dataSetNotify(txList)
         }
     }

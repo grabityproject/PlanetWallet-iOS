@@ -179,6 +179,7 @@ class MainController: PlanetWalletViewController{
                 
                 txAdapter = TxAdapter(tableView, [Tx]())
                 txAdapter?.delegates.append(self)
+                txAdapter?.dataSetNotify(getTxFromLocal())
                 
             }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
                 
@@ -204,6 +205,35 @@ class MainController: PlanetWalletViewController{
             NodeService.shared.getBalance(planet)
             NodeService.shared.getMainList(planet)
         }
+    }
+    
+    private func getTxFromLocal() -> [Tx] {
+        var transactionList = [Tx]()
+        
+        guard let planet = planet, let keyId = planet.keyId else { return transactionList }
+        
+        if let jsonArr = UserDefaults.standard.array(forKey: "BTC_BTC_\(keyId)") as? Array<[String: Any]> {
+            jsonArr.forEach { (json) in
+                if let tx = Tx(JSON: json) {
+                    transactionList.append(tx)
+                }
+            }
+        }
+        
+        return transactionList
+    }
+    
+    private func saveTx(_ list: [Tx]) {
+        
+        guard let planet = planet, let keyId = planet.keyId else { return }
+        
+        var dictArr = Array<[String : Any]>()
+        list.forEach { (tx) in
+            print(tx.toJSON())
+            dictArr.append(tx.toJSON())
+        }
+        
+        UserDefaults.standard.set(dictArr, forKey: "BTC_BTC_\(keyId)")
     }
 
 }
@@ -328,14 +358,14 @@ extension MainController:NodeServiceDelegate{
     }
     
     func onTxList(_ planet: Planet, _ txList: [Tx]) {
-        print("onTxList")
-        
         txAdapter = TxAdapter(tableView, txList)
         txAdapter?.selectedPlanet = planet
         txAdapter?.delegates.append(self)
+        
+        saveTx(txList)
+        
         footerView.updateUI()
         
         refreshComponent.refreshed()
     }
-    
 }

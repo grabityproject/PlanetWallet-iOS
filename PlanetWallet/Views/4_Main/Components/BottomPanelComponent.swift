@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol BottomPanelDelegate {
+    func didSwitched(_ mainItem: MainItem)
+}
+
 class BottomPanelComponent: ViewComponent, Themable {
+    
+    var delegate: BottomPanelDelegate?
     
     private let xibName = "BottomPanelComponent"
     
@@ -23,7 +29,12 @@ class BottomPanelComponent: ViewComponent, Themable {
     private var tokenIndex:Int = 0;
     
     private var planet:Planet?;
-    private var mainItem:MainItem?;
+    var mainItem:MainItem? {
+        didSet {
+            guard let mainItem = self.mainItem else { return }
+            delegate?.didSwitched(mainItem)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -189,12 +200,10 @@ class BottomPanelComponent: ViewComponent, Themable {
                 
                 let item = items[i] as! ERC20
                 if let balance = item.balance{
-                    if balance != "" || balance != "0" {
-                        
+                    if balance != "" && balance != "0" {
                         setMainItem(items[i])
                         changed = true
                         break
-                        
                     }
                 }
             }

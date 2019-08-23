@@ -26,6 +26,7 @@ class BottomMenuLauncher: NSObject {
     var bottomPanelComponent:BottomPanelComponent?{
         didSet{
             bottomPanelComponent?.controller(self.controller)
+            bottomPanelComponent?.delegate = self
         }
     }
     
@@ -384,6 +385,20 @@ class BottomMenuLauncher: NSObject {
                 label.alpha = 1
             }
 
+        }
+    }
+}
+
+extension BottomMenuLauncher: BottomPanelDelegate {
+    func didSwitched(_ mainItem: MainItem) {
+        if type(of: mainItem) == BTC.self {
+            launcherView.token = nil
+        }
+        else if type(of: mainItem) == ETH.self {
+            launcherView.token = nil
+        }
+        else if type(of: mainItem) == ERC20.self {
+            launcherView.token = mainItem as? ERC20
         }
     }
 }

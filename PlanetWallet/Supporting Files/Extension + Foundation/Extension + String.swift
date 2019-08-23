@@ -76,19 +76,16 @@ extension String {
 }
 
 extension String {
-    func toDouble() -> Double? {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 9
-        
-        return NumberFormatter().number(from: self)?.doubleValue
-    }
-}
-
-extension String {
+    ///소수점 자릿수 계산
     var significantFractionalDecimalDigits: Int? {
         if let decimal = Decimal(string: self) {
-            return decimal.significantFractionalDecimalDigits
+            
+            if decimal == 0 {
+                return self.count - 2
+            }
+            else {
+                return decimal.significantFractionalDecimalDigits
+            }
         }
         else {
             return nil
@@ -102,7 +99,6 @@ extension String {
     /// This creates a `Data` object from hex string. Note, if the string has any spaces or non-hex characters (e.g. starts with '<' and with a '>'), those are ignored and only hex characters are processed.
     ///
     /// - returns: Data represented by this hexadecimal string.
-    
     var hexadecimal: Data? {
         var data = Data(capacity: self.count / 2)
         
