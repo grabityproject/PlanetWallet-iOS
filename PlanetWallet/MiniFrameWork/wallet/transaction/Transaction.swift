@@ -9,20 +9,23 @@
 import Foundation
 import EthereumKit
 import CryptoEthereumSwift
+import BigInt
 
 class Transaction : NetworkDelegate{
     
-    private var mainItem:MainItem?
+    public var mainItem:MainItem?
 
-    private var deviceKey:String?
+    public var deviceKey:String?
     
-    private var fromAddress:String?
-    private var toAddress:String?
-    private var amount:String?
-    private var gasPrice:String?
-    private var gasLimit:String?
-    private var nonce:String?
-    private var data:String?
+    public var fromAddress:String?
+    public var toAddress:String?
+    public var amount:String?
+    public var gasPrice:String?
+    public var gasLimit:String?
+    public var nonce:String?
+    public var data:String?
+    
+    public var utxos:[UTXO]?
     
     private var privateKey:String?
     
@@ -72,9 +75,17 @@ class Transaction : NetworkDelegate{
         self.handler = handler;
         self.privateKey = privateKey;
         
-        if let fromAddress = self.fromAddress, let deviceKey = self.deviceKey{
-
-            Get(self).action(Route.URL("nonce", "ETH", fromAddress), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+        if let fromAddress = self.fromAddress, let deviceKey = self.deviceKey, let mainItem = mainItem{
+            
+            if mainItem.getCoinType() == CoinType.BTC.coinType {
+                
+                Get(self).action(Route.URL("utxo", "list", CoinType.BTC.name ,fromAddress), requestCode: CoinType.BTC.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+                
+            }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            
+                Get(self).action(Route.URL("nonce", "ETH", fromAddress), requestCode: CoinType.ETH.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+                
+            }
             
         }
         
@@ -82,115 +93,43 @@ class Transaction : NetworkDelegate{
     
     func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         if let dict = dictionary{
-            if let isSuccess = dict["success"] as? Bool, let resultData = dict["result"] as? [String:Any]{
-                if isSuccess, let nonce = resultData["nonce"] as? String{
-                    
-                    if let mainItem = mainItem,
-                        let handler = handler,
-                        let privateKey = privateKey,
-                        let toAddress = toAddress,
-                        let amount = amount,
-                        let gasPrice = gasPrice, let gasLimit = gasLimit{
+                
+            if requestCode == CoinType.BTC.coinType {
+                
+                if let isSuccess = dict["success"] as? Bool, let resultData = dict["result"] as? [[String:Any]]{
+                    if isSuccess{
+                        var utxos = [UTXO]();
+                        resultData.forEach { (item) in
+                            utxos.append(UTXO(JSON: item)!)
+                        }
+                        self.utxos = BtcRawTx.utxoSort(utxos)
                         
-                        if( CoinType.BTC.coinType == mainItem.getCoinType() ){
-                            
-                            handler(false, "0x")
-                            
-                        }else if( CoinType.ETH.coinType == mainItem.getCoinType() ){
-                            
-                            handler(true, generateEthRawTx(wei: amount, to: toAddress, gasPrice: gasPrice, gasLimit: gasLimit, nonce: nonce, privateKey: privateKey));
-                            
-                        }else if( CoinType.ERC20.coinType == mainItem.getCoinType() ){
-
-                            handler(true, generateERC20RawTx(wei: amount, to: toAddress, gasPrice: gasPrice, gasLimit: gasLimit, nonce: nonce, privateKey: privateKey));
-
+                        if let handler = handler, let privateKey = privateKey{
+                            handler(true, BtcRawTx.generateRawTx(tx: self, privateKey: privateKey))
                         }
                         
                     }
                 }
+                
+            }else if requestCode == CoinType.ETH.coinType{
+                if let isSuccess = dict["success"] as? Bool, let resultData = dict["result"] as? [String:Any]{
+                    if isSuccess, let nonce = resultData["nonce"] as? String{
+                        self.nonce = nonce
+                        
+                        if let handler = handler, let privateKey = privateKey, let mainItem = mainItem{
+                            if( CoinType.ETH.coinType == mainItem.getCoinType() ){
+                                handler(true, EthRawTx.generateRawTx(tx: self, privateKey: privateKey))
+                            }else if( CoinType.ERC20.coinType == mainItem.getCoinType() ){
+                                if mainItem is ERC20 {
+                                    handler(true, Erc20RawTx.generateRawTx(tx: self, erc20: mainItem as! ERC20, privateKey: privateKey))
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            
         }
-    }
-    
-    func generateERC20Data( to:String, value:String )->String{
-        let prefix = "0xa9059cbb"
-        let toAddress = to.replace(target: "0x", withString: "").replace(target: "0X", withString: "").leftPadding(toLength: 64, withPad: "0")
-        let amount = BInt(value, radix: 10)!.asString(withBase: 16).leftPadding(toLength: 64, withPad: "0")
-        return "\(prefix)\(toAddress)\(amount)"
-    }
-    
-    func generateERC20RawTx( wei:String, to:String, gasPrice:String, gasLimit:String, nonce:String , privateKey:String )->String{
-        
-        if let erc20 = mainItem as? ERC20, let contract = erc20.contract{
-            
-            let rawTransaction = RawTransaction(
-                wei: "0",
-                to: contract,
-                gasPrice: Int(gasPrice)!,
-                gasLimit: Int(gasLimit)!,
-                nonce: Int(nonce)!,
-                data: Data(hex:generateERC20Data(to: to, value: wei))
-            )
-
-            let signer = EIP155Signer(chainID: 3) // TestNet EIP155
-            let signiture = try! CryptoEthereumSwift.Crypto.sign(
-                try! signer.hash(rawTransaction: rawTransaction),
-                privateKey: Data(hex: privateKey)
-            )
-            
-            
-            let (r, s, v) = signer.calculateRSV(signature: signiture)
-            
-            let data = try! RLP.encode([
-                rawTransaction.nonce,
-                rawTransaction.gasPrice,
-                rawTransaction.gasLimit,
-                rawTransaction.to.data,
-                rawTransaction.value,
-                rawTransaction.data,
-                v, r, s
-                ])
-            
-            
-            return data.toHexString()
-        }else{
-            return "0x"
-        }
-        
-    }
-    
-    func generateEthRawTx( wei:String, to:String, gasPrice:String, gasLimit:String, nonce:String , privateKey:String )->String{
-
-        let rawTransaction = RawTransaction(
-            wei: wei,
-            to: to,
-            gasPrice: Int(gasPrice)!,
-            gasLimit: Int(gasLimit)!,
-            nonce: Int(nonce)!,
-            data: Data()
-        )
-
-        let signer = EIP155Signer(chainID: 3) // TestNet EIP155
-        let signiture = try! CryptoEthereumSwift.Crypto.sign(
-            try! signer.hash(rawTransaction: rawTransaction),
-            privateKey: Data(hex: privateKey)
-        )
-        
-
-        let (r, s, v) = signer.calculateRSV(signature: signiture)
-
-        let data = try! RLP.encode([
-            rawTransaction.nonce,
-            rawTransaction.gasPrice,
-            rawTransaction.gasLimit,
-            rawTransaction.to.data,
-            rawTransaction.value,
-            rawTransaction.data,
-            v, r, s
-            ])
-
-        
-        return data.toHexString()
     }
     
 }
