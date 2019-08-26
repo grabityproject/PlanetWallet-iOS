@@ -8,7 +8,11 @@
 
 import UIKit
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
 @IBDesignable class PWImageView: UIImageView, Themable {
+    
+    var imageURL: URL?
     
     private var defaultImage: UIImage?
     private var defaultBackgroundColor: UIColor?
@@ -55,5 +59,46 @@ import UIKit
                 self.image = defaultImage
             }
         }
+    }
+    
+    //MARK: - Network
+    func loadImageWithPath(_ path: String) {
+        guard let url = URL(string: path) else { return }
+        self.loadImageWithUrl(url)
+    }
+    
+    func loadImageWithUrl(_ url: URL) {
+        imageURL = url
+        
+        image = nil
+        
+        // retrieves image if already available in cache
+        if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
+            print("get image from cache")
+            self.image = imageFromCache
+            return
+        }
+        
+        // image does not available in cache.. so retrieving it from url...
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                if let unwrappedData = data, let imageToCache = UIImage(data: unwrappedData) {
+                    
+                    if self.imageURL == url {
+                        print("get image from network")
+                        self.image = imageToCache
+                    }
+                    
+                    imageCache.setObject(imageToCache, forKey: url as AnyObject)
+                }
+            })
+        }).resume()
     }
 }

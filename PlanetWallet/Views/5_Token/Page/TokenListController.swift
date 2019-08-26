@@ -88,7 +88,7 @@ class TokenListController: PlanetWalletViewController {
                     }
                     
                     let items = returnVo.result as! Array<Dictionary<String, Any>>
-                    print(items)
+                    
                     items.forEach { (item) in
                         let erc20 = ERC20(JSON: item)!
                         erc20.hide = "Y"

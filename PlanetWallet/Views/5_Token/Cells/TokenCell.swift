@@ -15,7 +15,7 @@ protocol TokenCellDelegate: class {
 class TokenCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
-    @IBOutlet var iconImgView: UIImageView!
+    @IBOutlet var iconImgView: PWImageView!
     @IBOutlet var symbolLb: PWLabel!
     @IBOutlet var fullNameLb: PWLabel!
     

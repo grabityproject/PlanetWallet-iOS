@@ -179,6 +179,7 @@ class MainController: PlanetWalletViewController{
                 
                 txAdapter = TxAdapter(tableView, [Tx]())
                 txAdapter?.delegates.append(self)
+                txAdapter?.selectedPlanet = self.planet
                 txAdapter?.dataSetNotify(getTxFromLocal())
                 
             }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
@@ -229,7 +230,6 @@ class MainController: PlanetWalletViewController{
         
         var dictArr = Array<[String : Any]>()
         list.forEach { (tx) in
-            print(tx.toJSON())
             dictArr.append(tx.toJSON())
         }
         

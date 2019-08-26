@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TransactionFee {
+struct EtherTransactionFee {
     var gasPrice:Decimal = 0//GWEI
     var gasLimit:Decimal = 0
     

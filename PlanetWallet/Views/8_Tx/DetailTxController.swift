@@ -140,7 +140,7 @@ class DetailTxController: PlanetWalletViewController {
         
         //Set coin icon image
         if let tokenImgPath = tokenIconImgPath {
-            toAddressCoinImgView.downloaded(from: Route.URL(tokenImgPath))
+            toAddressCoinImgView.loadImageWithPath(Route.URL(tokenImgPath))
         }
         else {
             if symbol == CoinType.BTC.name {
@@ -178,14 +178,14 @@ class DetailTxController: PlanetWalletViewController {
                 toAddressContainer.isHidden = true
                 
                 toPlanetNameLb.text = fromPlanetName
-                toPlanetView.data = tx.to ?? ""
+                toPlanetView.data = tx.from ?? ""
                 toPlanetAddressLb.text = Utils.shared.trimAddress(tx.from ?? "")
             }
             else {
                 toPlanetContainer.isHidden = true
                 toAddressContainer.isHidden = false
                 
-                toAddressLb.text = tx.to
+                toAddressLb.text = tx.from
                 toAddressLb.setColoredAddress()
             }
         }

@@ -32,13 +32,13 @@ struct GasInfo {
     public var advancedGasPrice: Decimal = 0
     public var advancedGasLimit: Decimal = 100000
     
-    public func getTransactionFee(step: GasInfo.Step) -> TransactionFee {
+    public func getTransactionFee(step: GasInfo.Step) -> EtherTransactionFee {
         switch step {
-        case .SAFE_LOW:     return TransactionFee(gasPrice: safeLow, gasLimit: getGasLimit())
-        case .AVERAGE:      return TransactionFee(gasPrice: average, gasLimit: getGasLimit())
-        case .FAST:         return TransactionFee(gasPrice: fast, gasLimit: getGasLimit())
-        case .FASTEST:      return TransactionFee(gasPrice: fastest, gasLimit: getGasLimit())
-        case .ADVANCED:     return TransactionFee(gasPrice: advancedGasPrice, gasLimit: advancedGasLimit)
+        case .SAFE_LOW:     return EtherTransactionFee(gasPrice: safeLow, gasLimit: getGasLimit())
+        case .AVERAGE:      return EtherTransactionFee(gasPrice: average, gasLimit: getGasLimit())
+        case .FAST:         return EtherTransactionFee(gasPrice: fast, gasLimit: getGasLimit())
+        case .FASTEST:      return EtherTransactionFee(gasPrice: fastest, gasLimit: getGasLimit())
+        case .ADVANCED:     return EtherTransactionFee(gasPrice: advancedGasPrice, gasLimit: advancedGasLimit)
         }
     }
     

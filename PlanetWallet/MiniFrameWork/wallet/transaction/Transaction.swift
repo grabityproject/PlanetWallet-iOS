@@ -70,6 +70,22 @@ class Transaction : NetworkDelegate{
         return self
     }
     
+    func getFee()->String {
+        if self.mainItem?.getCoinType() == CoinType.BTC.coinType{
+            
+            return BtcRawTx.EstimateFee(tx: self)
+        
+        }else if mainItem?.getCoinType() == CoinType.ETH.coinType || mainItem?.getCoinType() == CoinType.ERC20.coinType{
+            
+            guard let gasPriceStr = self.gasPrice, let gasLimitStr = self.gasLimit, let gasPrice = Decimal(string: gasPriceStr), let gasLimit = Decimal(string: gasLimitStr) else { return String() }
+            
+            return (gasPrice * gasLimit).toString()
+            
+        }else{
+            return "0"
+        }
+    }
+    
     
     func getRawTransaction( privateKey:String, _ handler:@escaping (Bool,_ rawTx:String )->Void ){
         self.handler = handler;
@@ -78,8 +94,17 @@ class Transaction : NetworkDelegate{
         if let fromAddress = self.fromAddress, let deviceKey = self.deviceKey, let mainItem = mainItem{
             
             if mainItem.getCoinType() == CoinType.BTC.coinType {
-                
-                Get(self).action(Route.URL("utxo", "list", CoinType.BTC.name ,fromAddress), requestCode: CoinType.BTC.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+              
+                if let utxos = self.utxos{
+                    
+                    self.utxos = BtcRawTx.utxoSort(utxos)
+                    handler(true, BtcRawTx.generateRawTx(tx: self, privateKey: privateKey))
+                    
+                }else{
+                    
+                    Get(self).action(Route.URL("utxo", "list", CoinType.BTC.name ,fromAddress), requestCode: CoinType.BTC.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+                    
+                }
                 
             }else if mainItem.getCoinType() == CoinType.ETH.coinType {
             

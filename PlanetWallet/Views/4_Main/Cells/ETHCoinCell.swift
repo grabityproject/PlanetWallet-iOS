@@ -11,7 +11,7 @@ import UIKit
 class ETHCoinCell: PWTableCell {
     
     @IBOutlet var containerView: UIView!
-    @IBOutlet var coinIconImgView: UIImageView!
+    @IBOutlet var coinIconImgView: PWImageView!
     @IBOutlet var coinLb: PWLabel!
     @IBOutlet var balanceLb: PWLabel!
     @IBOutlet var currencyLb: PWLabel!
@@ -21,7 +21,7 @@ class ETHCoinCell: PWTableCell {
             guard let erc20 = self.erc20 else { return }
             
             if let iconPath = erc20.img_path {
-                coinIconImgView.downloaded(from: Route.URL(iconPath))
+                coinIconImgView.loadImageWithPath(Route.URL(iconPath))
             }
             
             if let balance = erc20.balance {

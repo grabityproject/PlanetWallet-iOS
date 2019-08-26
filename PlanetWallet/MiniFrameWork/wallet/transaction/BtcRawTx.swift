@@ -31,13 +31,17 @@ class BtcRawTx{
         let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
 
         let amount = BigInt(value)!
+        
+        print(amount)
+        
         var inputTotal = BigInt()
         let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 )
         inputs.forEach { (input) in
             inputTotal = inputTotal + BigInt(input.value!, radix: 10)!
         }
         let change = inputTotal - estimateFee! - amount
-
+        
+        if change < 0 { return String() }
 
         guard let toAddress = tx.toAddress, let fromAddress = tx.fromAddress else { return String() }
         
@@ -46,7 +50,7 @@ class BtcRawTx{
         let outputTo = UTXO()
         outputTo.script = scriptPubKey(toAddress)
         outputTo.value = value
-
+        
         let outputChange = UTXO()
         outputChange.script = scriptPubKey(fromAddress)
         outputChange.value = String(change)
@@ -73,6 +77,28 @@ class BtcRawTx{
         return signedTx(inputs, outputs)
     }
     
+    
+    public static func EstimateFee( tx:Transaction )->String{
+        
+        var feePerByte:Int = 10;
+        if let gasPrice = tx.gasPrice{
+            feePerByte = Int(gasPrice) ?? feePerByte
+        }
+        
+        guard let utxos = tx.utxos else { return String() }
+        
+        if utxos.count == 0 { return String() }
+        
+        guard let value = tx.amount else { return String() }
+        
+        let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
+        
+        let amount = BigInt(value)!
+        
+        guard let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 ) else { return String() }
+        
+        return String(estimateFee)
+    }
     
     private static func unsignedScriptSig(_ inputs:[UTXO],_ outputs:[UTXO], _ inputIndex:Int )->String{
         var unsignedScript = String()

@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XdX-85-MQJ" customClass="UIImageView">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XdX-85-MQJ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="17" width="45" height="45"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

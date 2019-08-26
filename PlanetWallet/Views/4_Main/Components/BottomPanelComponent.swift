@@ -19,7 +19,7 @@ class BottomPanelComponent: ViewComponent, Themable {
     private let xibName = "BottomPanelComponent"
     
     @IBOutlet var blurView: PWBlurView!
-    @IBOutlet var imageIcon: UIImageView!
+    @IBOutlet var imageIcon: PWImageView!
     @IBOutlet var labelBalance: PWLabel!
     @IBOutlet var labelUnit: PWLabel!
     @IBOutlet var labelName: PWLabel!
@@ -163,7 +163,7 @@ class BottomPanelComponent: ViewComponent, Themable {
             
             let item:ERC20 = mainItem as! ERC20
             
-            imageIcon.downloaded(from: Route.URL(item.img_path!))
+            imageIcon.loadImageWithPath(Route.URL(item.img_path!))
             labelName.text = item.name
             labelUnit.text = item.symbol
             labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: item.balance!, from: 0, to: Int(item.decimals!)!)

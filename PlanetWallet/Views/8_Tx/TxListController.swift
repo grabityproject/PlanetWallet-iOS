@@ -74,7 +74,7 @@ class TxListController: PlanetWalletViewController {
             self.tokenType = .ERC20(erc20)
             
             naviBar.title = erc20.name
-            iconImgView.downloaded(from: Route.URL( erc20.img_path ?? "" ))
+            iconImgView.loadImageWithPath(Route.URL( erc20.img_path ?? "" ))
         }
         else {//ETH
             guard let symbol = planet.symbol, let balance = planet.balance else { return }
@@ -100,7 +100,7 @@ class TxListController: PlanetWalletViewController {
         case .ETH:
             break
         case .ERC20(let token):
-            iconImgView.downloaded(from: Route.URL( token.img_path ?? "" ))
+            iconImgView.loadImageWithPath(Route.URL( token.img_path ?? "" ))
         }
         
         getTxList()

@@ -86,7 +86,6 @@
 		045AA9C222C0AC45005EA387 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9C122C0AC45005EA387 /* Signer.swift */; };
 		045AA9C622C0B78E005EA387 /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9C522C0B78E005EA387 /* ETH.swift */; };
 		045AA9C822C0B7AF005EA387 /* BTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9C722C0B7AF005EA387 /* BTC.swift */; };
-		045AA9CA22C0E61B005EA387 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9C922C0E61B005EA387 /* Extension + UIImage.swift */; };
 		045AAFFA230A90A900FDBD84 /* DetailAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AAFF9230A90A900FDBD84 /* DetailAddressController.swift */; };
 		0464BFBB22DC47B700D8087D /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464BFBA22DC47B700D8087D /* Localization.swift */; };
 		04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F18229B90C200DC3CFD /* Extension + CALayer.swift */; };
@@ -130,6 +129,11 @@
 		04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C122A794EE007A17A3 /* 7_3_Security.storyboard */; };
 		04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */; };
 		04A551CF22A7C459007A17A3 /* refreshLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A551CE22A7C459007A17A3 /* refreshLoading.json */; };
+		04AE12232313919B00200D06 /* BitcoinFeeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE12222313919B00200D06 /* BitcoinFeeInfo.swift */; };
+		04AE122A2313D64200200D06 /* BtcRawTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE12262313D64200200D06 /* BtcRawTx.swift */; };
+		04AE122B2313D64200200D06 /* EthRawTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE12272313D64200200D06 /* EthRawTx.swift */; };
+		04AE122C2313D64200200D06 /* Erc20RawTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE12282313D64200200D06 /* Erc20RawTx.swift */; };
+		04AE122D2313D64200200D06 /* UTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE12292313D64200200D06 /* UTXO.swift */; };
 		04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8740F22CF1C6B00454301 /* splash_03_bk.json */; };
 		04B8741222CF1C6B00454301 /* splash_03_wh.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B8741022CF1C6B00454301 /* splash_03_wh.json */; };
 		04BA0B0A22B7623100A25A93 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA0B0922B7623100A25A93 /* ContactCell.swift */; };
@@ -181,7 +185,7 @@
 		04ED33212281506C0092075E /* TokenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ED33202281506C0092075E /* TokenCell.xib */; };
 		04ED3323228150800092075E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED3322228150800092075E /* TokenCell.swift */; };
 		04EE289C22F7D6DD00E88A54 /* GasInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289B22F7D6DD00E88A54 /* GasInfo.swift */; };
-		04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* TransactionFee.swift */; };
+		04EE289E22F7D6E500E88A54 /* EtherTransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE289D22F7D6E500E88A54 /* EtherTransactionFee.swift */; };
 		04EFA27F228A6DBB0062CA0B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */; };
 		04F42BF722FA830E0026AF1D /* 8_Tx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */; };
 		04F42BF922FA83320026AF1D /* TxListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F42BF822FA83320026AF1D /* TxListController.swift */; };
@@ -312,7 +316,6 @@
 		045AA9C122C0AC45005EA387 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		045AA9C522C0B78E005EA387 /* ETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
 		045AA9C722C0B7AF005EA387 /* BTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTC.swift; sourceTree = "<group>"; };
-		045AA9C922C0E61B005EA387 /* Extension + UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 		045AAFF9230A90A900FDBD84 /* DetailAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddressController.swift; sourceTree = "<group>"; };
 		0464BFBA22DC47B700D8087D /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		0464BFBC22DC4C1C00D8087D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -358,6 +361,11 @@
 		04A551C122A794EE007A17A3 /* 7_3_Security.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 7_3_Security.storyboard; sourceTree = "<group>"; };
 		04A551C222A794EE007A17A3 /* 6_Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 6_Transfer.storyboard; sourceTree = "<group>"; };
 		04A551CE22A7C459007A17A3 /* refreshLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refreshLoading.json; sourceTree = "<group>"; };
+		04AE12222313919B00200D06 /* BitcoinFeeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinFeeInfo.swift; sourceTree = "<group>"; };
+		04AE12262313D64200200D06 /* BtcRawTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtcRawTx.swift; sourceTree = "<group>"; };
+		04AE12272313D64200200D06 /* EthRawTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthRawTx.swift; sourceTree = "<group>"; };
+		04AE12282313D64200200D06 /* Erc20RawTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Erc20RawTx.swift; sourceTree = "<group>"; };
+		04AE12292313D64200200D06 /* UTXO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTXO.swift; sourceTree = "<group>"; };
 		04B8740F22CF1C6B00454301 /* splash_03_bk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_bk.json; sourceTree = "<group>"; };
 		04B8741022CF1C6B00454301 /* splash_03_wh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_03_wh.json; sourceTree = "<group>"; };
 		04BA0B0922B7623100A25A93 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -417,7 +425,7 @@
 		04ED33202281506C0092075E /* TokenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenCell.xib; sourceTree = "<group>"; };
 		04ED3322228150800092075E /* TokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		04EE289B22F7D6DD00E88A54 /* GasInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasInfo.swift; sourceTree = "<group>"; };
-		04EE289D22F7D6E500E88A54 /* TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFee.swift; sourceTree = "<group>"; };
+		04EE289D22F7D6E500E88A54 /* EtherTransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherTransactionFee.swift; sourceTree = "<group>"; };
 		04EFA27E228A6DBB0062CA0B /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		04F42BF622FA830E0026AF1D /* 8_Tx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = 8_Tx.storyboard; sourceTree = "<group>"; };
 		04F42BF822FA83320026AF1D /* TxListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxListController.swift; sourceTree = "<group>"; };
@@ -531,7 +539,6 @@
 				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
 				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
 				042FF41122B34CF300666DF9 /* Extension + UILabel.swift */,
-				045AA9C922C0E61B005EA387 /* Extension + UIImage.swift */,
 			);
 			path = "Extension + UIKit";
 			sourceTree = "<group>";
@@ -749,7 +756,6 @@
 		044BC56422793E4C00FD7E5E /* 6_Transfer */ = {
 			isa = PBXGroup;
 			children = (
-				04EE289F22F83D9A00E88A54 /* ViewModel */,
 				04EE289A22F7D6CD00E88A54 /* Models */,
 				04A4AF6B22E9B0E000F08598 /* Adapter */,
 				04E0B53F22B9E13000E1C3E0 /* Popups */,
@@ -1070,16 +1076,10 @@
 			isa = PBXGroup;
 			children = (
 				04EE289B22F7D6DD00E88A54 /* GasInfo.swift */,
-				04EE289D22F7D6E500E88A54 /* TransactionFee.swift */,
+				04EE289D22F7D6E500E88A54 /* EtherTransactionFee.swift */,
+				04AE12222313919B00200D06 /* BitcoinFeeInfo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		04EE289F22F83D9A00E88A54 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04F42BF522FA82F70026AF1D /* 8_Tx */ = {
@@ -1129,6 +1129,10 @@
 		15A24DE922F2B7CF00CCB2D7 /* transaction */ = {
 			isa = PBXGroup;
 			children = (
+				04AE12262313D64200200D06 /* BtcRawTx.swift */,
+				04AE12282313D64200200D06 /* Erc20RawTx.swift */,
+				04AE12272313D64200200D06 /* EthRawTx.swift */,
+				04AE12292313D64200200D06 /* UTXO.swift */,
 				15A24DF822F2B89500CCB2D7 /* Transaction.swift */,
 			);
 			path = transaction;
@@ -1344,6 +1348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0455D8EC22C4CD88005F6494 /* KeyPairStore.swift in Sources */,
+				04AE122C2313D64200200D06 /* Erc20RawTx.swift in Sources */,
 				04C82C7F228429C000235883 /* PWButton.swift in Sources */,
 				04491C2222B8D02500A5DC14 /* TransferConfirmController.swift in Sources */,
 				04F42BFB22FA83420026AF1D /* DetailTxController.swift in Sources */,
@@ -1377,11 +1382,13 @@
 				04FBCA54229E801400DEEDD9 /* Put.swift in Sources */,
 				04DAC1172289685E005AA183 /* PopupCurrency.swift in Sources */,
 				04ED3323228150800092075E /* TokenCell.swift in Sources */,
+				04AE12232313919B00200D06 /* BitcoinFeeInfo.swift in Sources */,
 				04E0B54322B9E16200E1C3E0 /* AdvancedGasView.swift in Sources */,
 				048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */,
 				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				0455D8EE22C4CD88005F6494 /* PlanetStore.swift in Sources */,
 				04FBB0D8230658290087CDE5 /* TxStatus.swift in Sources */,
+				04AE122D2313D64200200D06 /* UTXO.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,
 				04D3A0CC22B0996500E54E96 /* BlinkingTextView.swift in Sources */,
@@ -1422,7 +1429,7 @@
 				04D9D34D22B1EF0100B66E79 /* Extension + Double.swift in Sources */,
 				04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */,
 				04738B502282749C00758E56 /* ThemeManager.swift in Sources */,
-				04EE289E22F7D6E500E88A54 /* TransactionFee.swift in Sources */,
+				04EE289E22F7D6E500E88A54 /* EtherTransactionFee.swift in Sources */,
 				044BC5832279446E00FD7E5E /* MainController.swift in Sources */,
 				04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */,
 				0455D8ED22C4CD88005F6494 /* KeyStore.swift in Sources */,
@@ -1442,6 +1449,7 @@
 				0455D8E922C4CD88005F6494 /* CoinObjectType.swift in Sources */,
 				0481534622BB29760099F7E5 /* PWTableCell.swift in Sources */,
 				0455D8E822C4CD88005F6494 /* KeyStoreCrypter.swift in Sources */,
+				04AE122B2313D64200200D06 /* EthRawTx.swift in Sources */,
 				049C38E9230CF9C000AA7FA6 /* ETHCoinCell.swift in Sources */,
 				04278B6022FD59FC0018CC4C /* Search.swift in Sources */,
 				044BC57B2279441F00FD7E5E /* WalletImportController.swift in Sources */,
@@ -1458,6 +1466,7 @@
 				04F42BF922FA83320026AF1D /* TxListController.swift in Sources */,
 				044BC59222794EFC00FD7E5E /* Extension + Color.swift in Sources */,
 				044BC5982279707800FD7E5E /* Extension + Array.swift in Sources */,
+				04AE122A2313D64200200D06 /* BtcRawTx.swift in Sources */,
 				044BC5962279705C00FD7E5E /* Extension + String.swift in Sources */,
 				049C38E8230CF9C000AA7FA6 /* HeaderView.swift in Sources */,
 				04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */,
@@ -1474,7 +1483,6 @@
 				049C38ED230CF9DB00AA7FA6 /* ViewComponent.swift in Sources */,
 				04D3A0E022B0D26200E54E96 /* FMDatabaseQueue.m in Sources */,
 				0423EFAE230B8E0000CE8174 /* BitcoinUnit.swift in Sources */,
-				045AA9CA22C0E61B005EA387 /* Extension + UIImage.swift in Sources */,
 				0423EFB0230B9A8700CE8174 /* Extension + Decimal.swift in Sources */,
 				0440A17022F2ED62003CFA6C /* Extension + Notification.swift in Sources */,
 				042FF41622B3774300666DF9 /* QROverlay.swift in Sources */,

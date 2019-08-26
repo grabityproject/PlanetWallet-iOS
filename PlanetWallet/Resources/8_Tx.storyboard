@@ -65,8 +65,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="253"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="rL1-mY-Twq" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="75" width="345" height="33"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rL1-mY-Twq" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="75" width="290" height="33"/>
                                             <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="28"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -77,10 +77,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LyR-pX-O4Z">
-                                            <rect key="frame" x="20" y="168" width="335" height="55"/>
+                                            <rect key="frame" x="20" y="168" width="280" height="55"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYY-Tm-7Wn" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="162.5" height="55"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="55" id="ppr-KK-gJ6"/>
                                                     </constraints>
@@ -110,7 +110,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8N0-N1-0WA" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                                    <rect key="frame" x="172.5" y="0.0" width="162.5" height="55"/>
+                                                    <rect key="frame" x="145" y="0.0" width="135" height="55"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                     <state key="normal" title="Transfer">
@@ -134,7 +134,7 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jU-PR-w5d" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="165.5" y="111" width="44" height="19"/>
+                                            <rect key="frame" x="138" y="111" width="44" height="19"/>
                                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
                                             <color key="textColor" name="detailTextDark"/>
                                             <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="aBi-76-FIZ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="170" y="25" width="35" height="35"/>
+                                            <rect key="frame" x="142.5" y="25" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="mRI-uk-ewC"/>
                                                 <constraint firstAttribute="width" constant="35" id="rV1-ci-LyG"/>
@@ -155,7 +155,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnF-g0-BZM" userLabel="Seperator view" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="251" width="375" height="1"/>
+                                            <rect key="frame" x="0.0" y="251" width="320" height="1"/>
                                             <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Gr6-W1-DpX"/>
@@ -637,8 +637,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rth-Rh-fNe">
                                                         <rect key="frame" x="21" y="100" width="333" height="41"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="194.30400503 GBT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="u0S-hv-lmp" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4" width="333" height="33"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="191231213121678161231231231231231287312312312312312 GBT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0S-hv-lmp" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="-12" width="333" height="65.5"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="28"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -995,6 +995,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rgf-V9-zUN"/>
+        <segue reference="u2m-9P-KqB"/>
     </inferredMetricsTieBreakers>
 </document>

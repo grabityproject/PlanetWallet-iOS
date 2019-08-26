@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class TransferConfirmController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
@@ -36,8 +34,12 @@ class TransferConfirmController: PlanetWalletViewController {
     
     public var isSuccessToCertification = false
     
+    var transaction:Transaction?
+    
     var coinType = CoinType.ETH
-    var gas: GasInfo?
+    var gas: GasInfo?//ETH 기반 수수료
+    var bitcoinFee: BitcoinFeeInfo?
+    
     var transactionFee: Decimal = 0.0 {
         didSet {
             guard let planet = self.planet else { return }
@@ -209,7 +211,9 @@ class TransferConfirmController: PlanetWalletViewController {
         let step: Float = 4.0
         let roundedStepValue = round(sender.value / step) * step
         
-        self.gasStep = GasInfo.Step(rawValue: Int(roundedStepValue)) ?? .AVERAGE
+        
+        self.transaction?.getFee()
+        
     }
     
     @IBAction func didTouchedAdvancedOpt(_ sender: UIButton) {
@@ -275,7 +279,10 @@ class TransferConfirmController: PlanetWalletViewController {
                 }
             }
             else if self.coinType.coinType == CoinType.BTC.coinType {
-                item = selectedPlanet.items?.first as! BTC
+                item = BTC()
+                if let amountSatoshi = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .BIT, to: .SATOSHI) {
+                    amount = amountSatoshi
+                }
             }
         }
         
@@ -303,23 +310,27 @@ class TransferConfirmController: PlanetWalletViewController {
         print("gas price : \(transactionFee.getGasPriceWEI()!)")
         print("gas limit : \(gasLimit)")
         
-        let tx = Transaction( transferItem )
-            .deviceKey(DEVICE_KEY)
-            .from(fromAddress)
-            .to(toAddress)
-            .value(amount)
-            .gasPrice(gasPrice)
-            .gasLimit(gasLimit)
+        if self.transaction == nil {
+            self.transaction = Transaction( transferItem )
+                .deviceKey(DEVICE_KEY)
+                .from(fromAddress)
+                .to(toAddress)
+                .value(amount)
+                .gasPrice(gasPrice)
+                .gasLimit(gasLimit) //btc일때 제거
+        }
         
-        tx.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
+        
+        self.transaction?.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
             (success, rawTx) in
             if success {
                 print("rawTx : \(rawTx)")
-                Post(self).action(Route.URL("transfer", "ETH"),
-                                  requestCode: 100,
-                                  resultCode: 100,
-                                  data: ["serializeTx":rawTx],
-                                  extraHeaders: ["device-key":DEVICE_KEY] )
+                
+                //                Post(self).action(Route.URL("transfer", "ETH"),
+                //                                  requestCode: 100,
+                //                                  resultCode: 100,
+                //                                  data: ["serializeTx":rawTx],
+                //                                  extraHeaders: ["device-key":DEVICE_KEY] )
             }
             else {
                 print("failed to transfer Tx")
@@ -371,6 +382,9 @@ class TransferConfirmController: PlanetWalletViewController {
                 return
             }
         }
+        else if requestCode == -1 && resultCode == -1 { //Bitcoin Fee response
+            
+        }
         else if requestCode == 100 && resultCode == 100 {   //Tx response
             
             guard let txHash = item[Keys.UserInfo.txHash], let planet = planet, let toPlanet = toPlanet else { return }
@@ -383,6 +397,8 @@ class TransferConfirmController: PlanetWalletViewController {
                                                                                     Keys.UserInfo.gasFee : gas?.getTransactionFee(step: self.gasStep).getFeeETH() as Any,
                                                                                     Keys.UserInfo.toPlanet : toPlanet])
         }
+        
+        
     }
 }
 

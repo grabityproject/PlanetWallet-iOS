@@ -64,7 +64,6 @@ public final class CoinNumberFormatter {
                 balanceStr = (balanceDecimal * pow(10, exponent)).toString()
             }
             else {
-                print((balanceDecimal / pow(10, -exponent)).toString())
                 balanceStr = (balanceDecimal / pow(10, -exponent)).toString()
             }
         }
