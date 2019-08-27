@@ -181,7 +181,6 @@ class TxListController: PlanetWalletViewController {
         
         var dictArr = Array<[String : Any]>()
         list.forEach { (tx) in
-            print(tx.toJSON())
             dictArr.append(tx.toJSON())
         }
         
@@ -237,18 +236,21 @@ class TxListController: PlanetWalletViewController {
         
         if requestCode == 1 {
             //Handle balance response
-            guard let json = dict["result"] as? [String:Any],
-                let planet = Planet(JSON: json),
-                let balance = planet.balance else { return }
+            guard let json = dict["result"] as? [String:Any] else { return }
             
             switch tokenType {
             case .ETH:
+                guard let planet = Planet(JSON: json),
+                    let balance = planet.balance else { return }
+                
                 if let shortEtherStr = CoinNumberFormatter.short.toMaxUnit(balance: balance, coinType: CoinType.ETH),
                     let symbol = self.planet?.symbol
                 {
                     balanceLb.text = "\(shortEtherStr) \(symbol)"
                 }
             case .ERC20(let token):
+                guard let tokenVO = ERC20(JSON: json), let balance = tokenVO.balance else { return }
+                
                 if let shortTokenStr = CoinNumberFormatter.short.toMaxUnit(balance: balance, item: token),
                     let symbol = token.symbol
                 {

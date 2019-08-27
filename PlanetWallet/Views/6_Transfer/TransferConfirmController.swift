@@ -13,14 +13,14 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var fromLb: PWLabel!
-    @IBOutlet var transactionFeeLb: PWLabel!
     @IBOutlet var transferAmountLb: PWLabel!
-    @IBOutlet var transferAmountMainLb: PWLabel!
+    @IBOutlet var transactionFeeLb: PWLabel!
     
     @IBOutlet var toPlanetContainer: UIView!
     @IBOutlet var toPlanetNameLb: PWLabel!
     @IBOutlet var toPlanetAddressLb: PWLabel!
     @IBOutlet var toPlanetView: PlanetView!
+    @IBOutlet var transferAmountMainLb: PWLabel!
     
     @IBOutlet var toAddressContainer: UIView!
     @IBOutlet var toAddressCoinImgView: PWImageView!
@@ -29,16 +29,19 @@ class TransferConfirmController: PlanetWalletViewController {
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var gasContainer: UIView!
     @IBOutlet var slider: PWSlider!
+    @IBOutlet var advancedGasContainer: UIView!
     
     @IBOutlet var confirmBtn: PWButton!
     
+    //Transfer PinCode 인증했는지 안했는지
     public var isSuccessToCertification = false
     
     var transaction:Transaction?
     
-    var coinType = CoinType.ETH
-    var gas: GasInfo?//ETH 기반 수수료
-    var bitcoinFee: BitcoinFeeInfo?
+    var coinType = CoinType.ETH.coinType
+    
+    var gasInfo: GasInfo?
+    var bitcoinFeeInfo: BitcoinFeeInfo?
     
     var transactionFee: Decimal = 0.0 {
         didSet {
@@ -61,10 +64,13 @@ class TransferConfirmController: PlanetWalletViewController {
                 }
             }
             else {
-                if coinType.coinType == CoinType.BTC.coinType || coinType.coinType == CoinType.ETH.coinType {
-                    transactionFeeLb.text = "\(transactionFee.toString()) \(coinType.defaultUnit ?? "")"
+                if coinType == CoinType.BTC.coinType || coinType == CoinType.ETH.coinType {
+                    transactionFeeLb.text = "\(transactionFee.toString()) \(planet.symbol ?? "")"
                     
                     let totalAmount = self.transferAmount + transactionFee
+                    
+                    print("Available amount : \(availableAmount)")
+                    print("total amount : \(totalAmount)")
                     if self.availableAmount >= totalAmount {
                         confirmBtn.setEnabled(true, theme: currentTheme)
                     }
@@ -76,12 +82,23 @@ class TransferConfirmController: PlanetWalletViewController {
         }
     }
     
+    var btcFeeStep: BitcoinFeeInfo.Step = .HALF_HOUR {
+        didSet {
+            slider.value = (100 / Float(BitcoinFeeInfo.Step.count - 1)) * Float(btcFeeStep.rawValue)
+            if let feeStr = bitcoinFeeInfo?.getTransactionFee(step: self.btcFeeStep),
+                let feeDecimal = Decimal(string: feeStr)
+            {
+                self.transactionFee = feeDecimal
+            }
+        }
+    }
+    
     var gasStep: GasInfo.Step = .AVERAGE {
         didSet {
-            slider.value = Float(gasStep.rawValue)
-
-            if let transactionFee = self.gas?.getTransactionFee(step: self.gasStep),
-                let gasETH = transactionFee.getFeeETH() {
+            slider.value = (100 / Float(GasInfo.Step.count - 1)) * Float(gasStep.rawValue)
+            
+            if let gasFee = self.gasInfo?.getTransactionFee(step: self.gasStep),
+                let gasETH = gasFee.getFeeETH() {
                 self.transactionFee = gasETH
             }
         }
@@ -124,6 +141,10 @@ class TransferConfirmController: PlanetWalletViewController {
                                         height: SCREEN_HEIGHT)
         advancedGasPopup.delegate = self
         self.view.addSubview(advancedGasPopup)
+    }
+    
+    override func setData() {
+        super.setData()
         
         if let userInfo = userInfo,
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
@@ -136,29 +157,53 @@ class TransferConfirmController: PlanetWalletViewController {
             self.toPlanet = toPlanet
             
             if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
-                let balance = Decimal(string: erc20.balance ?? "0")
+                let balance = Decimal(string: erc20.balance ?? "0"),
+                let decimalStr = erc20.decimals,
+                let decimals = Int(decimalStr)
             {
                 self.erc20 = erc20
-                self.coinType = CoinType.ERC20
-                self.availableAmount = balance
+                self.coinType = CoinType.ERC20.coinType
+                
+                if let availableAmountStr = CoinNumberFormatter.full.convertUnit(balance: balance.toString(), from: 0, to: decimals),
+                    let amountDecimal = Decimal(string: availableAmountStr) {
+                    self.availableAmount = amountDecimal
+                }
                 
                 naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, erc20.name ?? "")
+                
+                Get(self).action(Route.URL("gas"),
+                                 requestCode: 0, resultCode: 0,
+                                 data: nil)
                 
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
             else {
                 guard let coinType = fromPlanet.coinType,
+                    let precision = CoinType.of(coinType).precision,
                     let balance = Decimal(string: planet?.balance ?? "0") else { return }
-                self.availableAmount = balance
                 
                 if coinType == CoinType.BTC.coinType {
-                    self.coinType = CoinType.BTC
+                    self.coinType = CoinType.BTC.coinType
+                    Get(self).action(Route.URL("fee", "BTC"),
+                                     requestCode: -1, resultCode: -1,
+                                     data: nil)
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
+                    advancedGasContainer.isHidden = true
                 }
                 else if coinType == CoinType.ETH.coinType {
-                    self.coinType = CoinType.ETH
+                    self.coinType = CoinType.ETH.coinType
+                    Get(self).action(Route.URL("gas"),
+                                     requestCode: 0, resultCode: 0,
+                                     data: nil)
                     toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
+                    advancedGasContainer.isHidden = false
+                }
+                
+                if let availableAmountStr = CoinNumberFormatter.full.convertUnit(balance: balance.toString(), from: 0, to: precision),
+                    let amountDecimal = Decimal(string: availableAmountStr)
+                {
+                    self.availableAmount = amountDecimal
                 }
                 
                 naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, CoinType.of(coinType).name)
@@ -187,11 +232,6 @@ class TransferConfirmController: PlanetWalletViewController {
         }
     }
     
-    override func setData() {
-        super.setData()
-        Get(self).action(Route.URL("gas"))
-    }
-    
     var certificationVC: PinCodeCertificationController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -208,11 +248,18 @@ class TransferConfirmController: PlanetWalletViewController {
     }
     
     @IBAction func didChanged(_ sender: PWSlider) {
-        let step: Float = 4.0
-        let roundedStepValue = round(sender.value / step) * step
         
-        
-        self.transaction?.getFee()
+        if self.coinType == CoinType.BTC.coinType {
+            let stepUnitValue = Float(100 / (BitcoinFeeInfo.Step.count - 1))
+            guard let step = BitcoinFeeInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
+            btcFeeStep = step
+        }
+        else if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
+            let stepUnitValue = Float(100 / (GasInfo.Step.count - 1))
+            guard let step = GasInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
+            gasStep = step
+        }
+//        self.transaction?.getFee()
         
     }
     
@@ -240,74 +287,84 @@ class TransferConfirmController: PlanetWalletViewController {
         }
     }
     
+//    private func createTransaction() -> Transaction? {
+//
+//        return Transaction()
+//    }
+    
     private func sendTransaction() {
+        
         guard let selectedPlanet = self.planet,
             let fromAddress = selectedPlanet.address,
-            let toAddress = toPlanet?.address,
-            let gasInfo = gas else { return }
+            let toAddress = toPlanet?.address else { return }
         
         var item: MainItem?
-        var coinType = ""
+        var symbol = ""
         var amount = ""
         var gasPrice = ""
         var gasLimit = ""
         
-        if let erc20 = erc20 {
-            item = erc20
-            if let erc20Symbol = erc20.symbol {
-                coinType = erc20Symbol
-            }
-            if let tokenDecimalsStr = erc20.decimals,
-                let tokenDecimals = Int(tokenDecimalsStr),
-                let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: tokenDecimals, to: 0) {
-                amount = amountWEI
+        if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
+            //---- 1.Set Gas
+            if let gasInfo = gasInfo
+            {
+                let transactionFee = gasInfo.getTransactionFee(step: self.gasStep)
+                
+                if let gasWEI = transactionFee.getGasPriceWEI() {
+                    gasPrice = gasWEI
+                }
+                
+                if isAdvancedGasOptions {
+                    gasLimit = "\(gasInfo.advancedGasLimit)"
+                }
+                else {
+                    gasLimit = "\(gasInfo.getTransactionFee(step: self.gasStep).gasLimit)"
+                }
             }
             
-            if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
-                amount = amountWEI
+            //---- 2.Set Item (ETH || ERC20)
+            //---- 3.Set Symbol
+            //---- 4.Set Amount
+            if let erc20 = erc20, let erc20Symbol = erc20.symbol {
+                item = erc20
+                symbol = erc20Symbol
+                
+                if let tokenDecimalsStr = erc20.decimals,
+                    let tokenDecimals = Int(tokenDecimalsStr),
+                    let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: tokenDecimals, to: 0) {
+                    amount = amountWEI
+                }
             }
-        }
-        else {
-            if let coinSymbol = selectedPlanet.symbol {
-                coinType = coinSymbol
-            }
-            if self.coinType.coinType == CoinType.ETH.coinType {
+            else {
                 item = selectedPlanet.items?.first as! ETH
+                symbol = CoinType.ETH.name
                 
                 if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
                     amount = amountWEI
                 }
             }
-            else if self.coinType.coinType == CoinType.BTC.coinType {
-                item = BTC()
-                if let amountSatoshi = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .BIT, to: .SATOSHI) {
-                    amount = amountSatoshi
-                }
+        }
+        else if self.coinType == CoinType.BTC.coinType {
+            //---- 1.Set Fee
+            if let fee = bitcoinFeeInfo?.halfHour {
+                gasPrice = fee.toString()
+            }
+            //---- 2.Set Item
+            item = BTC()
+            //---- 3.Set Symbol
+            symbol = CoinType.BTC.name
+            //---- 4.Set Amount
+            if let amountSatoshi = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .BIT, to: .SATOSHI) {
+                amount = amountSatoshi
             }
         }
         
-        if amount.contains(".") {
-            
-        }
-        
-        guard let transferItem = item,
-            let transactionFee = gas?.getTransactionFee(step: self.gasStep) else { return }
-        
-        if let gasWEI = transactionFee.getGasPriceWEI() {
-            gasPrice = gasWEI
-        }
-        
-        if isAdvancedGasOptions {
-            gasLimit = "\(gasInfo.advancedGasLimit)"
-        }
-        else {
-            gasLimit = "\(gasInfo.getTransactionFee(step: self.gasStep).gasLimit)"
-        }
+        guard let transferItem = item else { return }
         
         print("-----------Tx------------")
-        print("coin Type : \(coinType)")
+        print("coin Type : \(symbol)")
         print("amount of transfer : \(amount)")
-        print("gas price : \(transactionFee.getGasPriceWEI()!)")
+        print("gas price : \(gasPrice)")
         print("gas limit : \(gasLimit)")
         
         if self.transaction == nil {
@@ -325,12 +382,11 @@ class TransferConfirmController: PlanetWalletViewController {
             (success, rawTx) in
             if success {
                 print("rawTx : \(rawTx)")
-                
-                //                Post(self).action(Route.URL("transfer", "ETH"),
-                //                                  requestCode: 100,
-                //                                  resultCode: 100,
-                //                                  data: ["serializeTx":rawTx],
-                //                                  extraHeaders: ["device-key":DEVICE_KEY] )
+                Post(self).action(Route.URL("transfer", symbol),
+                                  requestCode: 100,
+                                  resultCode: 100,
+                                  data: ["serializeTx":rawTx],
+                                  extraHeaders: ["device-key":DEVICE_KEY] )
             }
             else {
                 print("failed to transfer Tx")
@@ -367,7 +423,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 if isToken == false {
                     gasLimit = 21000
                 }
-                self.gas = GasInfo(isToken: self.isToken,
+                self.gasInfo = GasInfo(isToken: self.isToken,
                                    safeLow: safeLow,
                                    average: average,
                                    fast: fast,
@@ -375,7 +431,7 @@ class TransferConfirmController: PlanetWalletViewController {
                                    advancedGasPrice: GasInfo.DEFAULT_GAS_PRICE,
                                    advancedGasLimit: gasLimit)
                 self.gasStep = .AVERAGE
-                self.advancedGasPopup.gasInfo = self.gas
+                self.advancedGasPopup.gasInfo = self.gasInfo
             }
             else {
                 setDefaultAdvancedGasFee()
@@ -384,17 +440,38 @@ class TransferConfirmController: PlanetWalletViewController {
         }
         else if requestCode == -1 && resultCode == -1 { //Bitcoin Fee response
             
+            if let fastestStr = item["fastestFee"],
+                let halfHourStr = item["halfHourFee"],
+                let hourStr = item["hourFee"],
+                let fastest = Decimal(string: fastestStr),
+                let halfHour = Decimal(string: halfHourStr),
+                let hour = Decimal(string: hourStr)
+            {
+                self.bitcoinFeeInfo = BitcoinFeeInfo(fastest: fastest, halfHour: halfHour, hour: hour)
+                self.btcFeeStep = .HALF_HOUR
+            }
         }
         else if requestCode == 100 && resultCode == 100 {   //Tx response
             
             guard let txHash = item[Keys.UserInfo.txHash], let planet = planet, let toPlanet = toPlanet else { return }
             print("Tx hash : \(txHash)")
             print("-------------------------\n")
+            
+            var gasPrice: String?
+            
+            if coinType == CoinType.BTC.coinType {
+                gasPrice = bitcoinFeeInfo?.getTransactionFee(step: self.btcFeeStep)
+            }
+            else {
+                gasPrice = gasInfo?.getTransactionFee(step: self.gasStep).getFeeETH()?.toString()
+            }
+            
+            
             sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT, userInfo: [Keys.UserInfo.txHash : txHash,
                                                                                     Keys.UserInfo.planet : planet,
                                                                                     Keys.UserInfo.erc20 : erc20 as Any,
                                                                                     Keys.UserInfo.transferAmount : self.transferAmount.toString(),
-                                                                                    Keys.UserInfo.gasFee : gas?.getTransactionFee(step: self.gasStep).getFeeETH() as Any,
+                                                                                    Keys.UserInfo.transactionFee : gasPrice as Any,
                                                                                     Keys.UserInfo.toPlanet : toPlanet])
         }
         
@@ -405,10 +482,10 @@ class TransferConfirmController: PlanetWalletViewController {
 extension TransferConfirmController: AdvancedGasViewDelegate {
     func didTouchedSave(_ gasPrice: Int, gasLimit: Int) {
         
-        self.gas?.advancedGasPrice = Decimal(integerLiteral: gasPrice)
-        self.gas?.advancedGasLimit = Decimal(integerLiteral: gasLimit)
+        self.gasInfo?.advancedGasPrice = Decimal(integerLiteral: gasPrice)
+        self.gasInfo?.advancedGasLimit = Decimal(integerLiteral: gasLimit)
         self.isAdvancedGasOptions = true
-        if let transactionFee = gas?.getTransactionFee(step: .ADVANCED),
+        if let transactionFee = gasInfo?.getTransactionFee(step: .ADVANCED),
             let feeETH = transactionFee.getFeeETH() {
             self.transactionFee = feeETH
         }

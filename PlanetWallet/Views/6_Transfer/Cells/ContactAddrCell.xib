@@ -32,10 +32,10 @@
                     <rect key="frame" x="20" y="22.5" width="40" height="40"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-6S-NGB">
-                            <rect key="frame" x="10" y="10" width="20" height="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="BUw-ym-YFU"/>
-                                <constraint firstAttribute="width" constant="20" id="bFr-0n-vAE"/>
+                                <constraint firstAttribute="height" constant="40" id="BUw-ym-YFU"/>
+                                <constraint firstAttribute="width" constant="40" id="bFr-0n-vAE"/>
                             </constraints>
                         </imageView>
                     </subviews>

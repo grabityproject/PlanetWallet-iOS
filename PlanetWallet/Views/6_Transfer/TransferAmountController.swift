@@ -176,11 +176,10 @@ class TransferAmountController: PlanetWalletViewController {
     
     //MARK: - Network
     private func handleBalanceResponse(json: [String: Any]) {
-
-        guard let planet = Planet(JSON: json), let balance = planet.balance else { return }
-        guard let coinTypeInt = self.fromPlanet?.coinType else { return }
         
         if let token = erc20 {
+            guard let tokenVO = ERC20(JSON: json), let balance = tokenVO.balance else { return }
+            
             if let shortTokenStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, item: token),
                 let tokenDecimal = Decimal(string: shortTokenStr)
             {
@@ -188,6 +187,10 @@ class TransferAmountController: PlanetWalletViewController {
             }
         }
         else {
+            guard let planet = Planet(JSON: json),
+                let balance = planet.balance,
+                let coinTypeInt = self.fromPlanet?.coinType else { return }
+            
             if coinTypeInt == CoinType.BTC.coinType {
                 if let shortBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: balance, coinType: CoinType.BTC),
                     let btcDecimal = Decimal(string: shortBTCStr)

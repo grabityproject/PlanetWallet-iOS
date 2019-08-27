@@ -11,10 +11,14 @@ import Foundation
 struct GasInfo {
     enum Step: Int {
         case SAFE_LOW = 0
-        case AVERAGE = 4
-        case FAST = 8
-        case FASTEST = 12
-        case ADVANCED = 20
+        case AVERAGE
+        case FAST
+        case FASTEST
+        case ADVANCED
+        
+        static let count: Int = {
+            return 4
+        }()
     }
     
     //Network를 통해 Transaction fee를 가져오지 못했을 경우 default value

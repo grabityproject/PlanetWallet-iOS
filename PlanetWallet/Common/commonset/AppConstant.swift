@@ -34,7 +34,7 @@ struct Keys {
         static let erc20 = "erc20"
         static let toPlanet = "toPlanet"
         static let transferAmount = "transferAmount"
-        static let gasFee = "gasFee"
+        static let transactionFee = "transactionFee"
         static let txHash = "txHash"
         static let universe = "universe"
         static let mainItem = "mainItem"
@@ -89,7 +89,7 @@ struct Keys {
         static let MAIN_TO_PINCODECERTIFICATION = "main_to_pincodecertification"
         static let MAIN_TO_WALLET_ADD = "main_to_walletadd"
         static let MAIN_TO_TX_LIST = "main_to_txlist"
-        static let MAIN_To_DETAIL_TX = "main_to_detailtx"
+        static let MAIN_TO_DETAIL_TX = "main_to_detailtx"
         
         
         //Setting

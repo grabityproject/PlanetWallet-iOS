@@ -74,7 +74,7 @@ let imageCache = NSCache<AnyObject, AnyObject>()
         
         // retrieves image if already available in cache
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
-            print("get image from cache")
+            
             self.image = imageFromCache
             return
         }
@@ -92,7 +92,7 @@ let imageCache = NSCache<AnyObject, AnyObject>()
                 if let unwrappedData = data, let imageToCache = UIImage(data: unwrappedData) {
                     
                     if self.imageURL == url {
-                        print("get image from network")
+                        
                         self.image = imageToCache
                     }
                     

@@ -28,15 +28,15 @@ class TxReceiptController: PlanetWalletViewController {
     @IBOutlet var txHashValueLb: UILabel!
     
     
-    override func viewInit() {
-        super.viewInit()
+    override func setData() {
+        super.setData()
         
         guard let userInfo = userInfo,
             let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
             let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
             let txHash = userInfo[Keys.UserInfo.txHash] as? String,
             let amount = userInfo[Keys.UserInfo.transferAmount] as? String,
-            let gasFee = userInfo[Keys.UserInfo.gasFee] as? Decimal else { return }
+            let transactionFee = userInfo[Keys.UserInfo.transactionFee] as? String else { return }
         
         var transactionSymbol = ""
         
@@ -82,15 +82,11 @@ class TxReceiptController: PlanetWalletViewController {
         }
         
         fromPlanetNameLb.text = fromPlanet.name ?? ""
-        gasFeeLb.text = gasFee.toString()
+        gasFeeLb.text = transactionFee
         dateLb.text = Utils.shared.getStringFromDate(Date(), format: .yyyyMMddHHmmss)
         txHashValueLb.attributedText = NSAttributedString(string: txHash,
                                                           attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
                                                                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-    }
-    
-    override func setData() {
-        super.setData()
     }
     
     //MARK: - IBAction

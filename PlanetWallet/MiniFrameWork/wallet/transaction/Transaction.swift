@@ -106,7 +106,7 @@ class Transaction : NetworkDelegate{
                     
                 }
                 
-            }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            }else if mainItem.getCoinType() == CoinType.ETH.coinType || mainItem.getCoinType() == CoinType.ERC20.coinType{
             
                 Get(self).action(Route.URL("nonce", "ETH", fromAddress), requestCode: CoinType.ETH.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
                 
