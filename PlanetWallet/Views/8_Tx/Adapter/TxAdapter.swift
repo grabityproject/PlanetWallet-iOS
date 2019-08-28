@@ -13,10 +13,6 @@ import UIKit
 class TxAdapter: AbsTableViewAdapter<Tx> {
     
     let cellID:String = "txcell"
-    
-    var selectedPlanet: Planet?
-//    var txStatus: TxStatus = .PENDING(direction: .RECEIVED)
-    var txStatus: TxStatus?
 
     override init(_ tableView:UITableView,_ dataSoruce:Array<Tx> ) {
         super.init(tableView, dataSoruce)
@@ -37,8 +33,7 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         setCellHeight(height: 70)
         cell.backgroundColor = .clear
         
-        guard let selectedPlanet = selectedPlanet,
-            let txCell = cell as? TransactionCell,
+        guard let txCell = cell as? TransactionCell,
             let amount = data.amount,
             let symbol = data.symbol,
             let decimalStr = data.decimals,
@@ -46,20 +41,18 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
 
         txCell.symbolLb.text = symbol
         
-        self.txStatus = TxStatus(currentPlanet: selectedPlanet, tx: data)
-
         var formattedAmount = ""
         
         if let maxUnitBalance = CoinNumberFormatter.short.convertUnit(balance: amount, from: 0, to: decimals) {
             formattedAmount = maxUnitBalance
         }
         
-        guard let results = txStatus?.status, let direction = txStatus?.direction else { return }
+        guard let txStatus = data.status, let txDirection = data.type else { return }
         
-        if results == TxResults.PENDING {
+        if txStatus == "pending" {
             txCell.statusLb.text = "Pending"
             txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
-            if direction == .RECEIVED {
+            if txDirection == "received" {
                 txCell.amountLb.textColor = .green
                 txCell.amountLb.text = formattedAmount
             }
@@ -67,10 +60,10 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
                 txCell.amountLb.text = "-" + formattedAmount
             }
         }
-        else if results == TxResults.CONFIRMED {
+        else if txStatus == "confirmed" {
             txCell.amountLb.text = formattedAmount
             txCell.statusLb.text = "Receive"
-            if direction == .RECEIVED {
+            if txDirection == "received" {
                 txCell.directionImgView.image = UIImage(named: "imageBtcDiscrease")
                 txCell.amountLb.textColor = .green
                 txCell.statusLb.text = "Received"

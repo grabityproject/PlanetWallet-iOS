@@ -179,7 +179,6 @@ class MainController: PlanetWalletViewController{
                 
                 txAdapter = TxAdapter(tableView, [Tx]())
                 txAdapter?.delegates.append(self)
-                txAdapter?.selectedPlanet = self.planet
                 txAdapter?.dataSetNotify(getTxFromLocal())
                 
             }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
@@ -359,7 +358,6 @@ extension MainController:NodeServiceDelegate{
     
     func onTxList(_ planet: Planet, _ txList: [Tx]) {
         txAdapter = TxAdapter(tableView, txList)
-        txAdapter?.selectedPlanet = planet
         txAdapter?.delegates.append(self)
         
         saveTx(txList)

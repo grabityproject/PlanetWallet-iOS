@@ -165,6 +165,7 @@ class TransferConfirmController: PlanetWalletViewController {
                                  requestCode: 0, resultCode: 0,
                                  data: nil)
                 
+                toAddressCoinImgView.loadImageWithPath(Route.URL(erc20.img_path!))
                 transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
                 transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
             }
@@ -267,8 +268,12 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Private
     //수수료를 네트워크에서 못 가져 왔을 경우
     private func setDefaultAdvancedGasFee() {
-        let transactionFee = (EthereumFeeInfo.DEFAULT_GAS_PRICE * EthereumFeeInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
-        if let feeEtherStr = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .GWEI, to: .ETHER),
+        guard let gasPriceWEI = CoinNumberFormatter.full.convertUnit(balance: EthereumFeeInfo.DEFAULT_GAS_PRICE.toString(), from: .GWEI, to: .WEI),
+            let defaultGasPrice = Decimal(string: gasPriceWEI) else { return }
+        
+        let transactionFee = (defaultGasPrice * EthereumFeeInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
+
+        if let feeEtherStr = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .WEI, to: .ETHER),
             let feeEther = Decimal(string: feeEtherStr)
         {
             self.transactionFee = feeEther
@@ -276,11 +281,6 @@ class TransferConfirmController: PlanetWalletViewController {
             self.resetBtn.isHidden = true
         }
     }
-    
-//    private func createTransaction() -> Transaction? {
-//
-//        return Transaction()
-//    }
     
     private func sendTransaction() {
         

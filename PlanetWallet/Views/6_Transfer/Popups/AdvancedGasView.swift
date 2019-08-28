@@ -70,9 +70,9 @@ class AdvancedGasView: UIView {
     var gasPrice: String = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)" {
         didSet {
             self.gasPriceBtn.setTitle(inputText, for: .normal)
-            if let gas = Int(gasPrice), let limit = Int(gasLimit),
-                let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther)) ETH"
+            if let gas = Decimal(string:gasPrice), let limit = Decimal(string:gasLimit),
+                let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER) {
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
             }
         }
     }
@@ -80,9 +80,9 @@ class AdvancedGasView: UIView {
     var gasLimit: String = "\(21000)" {
         didSet {
             self.gasLimitBtn.setTitle(inputText, for: .normal)
-            if let gas = Int(gasPrice), let limit = Int(gasLimit),
-                let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther)) ETH"
+            if let gas = Decimal(string:gasPrice), let limit = Decimal(string:gasLimit),
+                let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER) {
+                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
             }
         }
     }
@@ -95,19 +95,6 @@ class AdvancedGasView: UIView {
             }
         }
     }
-    
-//    public var isERC20 = false {
-//        didSet {
-//            gasLimit = "\(DEFAULT_GAS_LIMIT)"
-//            self.gasLimitBtn.setTitle("\(self.DEFAULT_GAS_LIMIT)", for: .normal)
-//        }
-//    }
-    
-//    static let DEFAULT_GAS_PRICE = 20
-//    var DEFAULT_GAS_LIMIT: Int {
-//        if isERC20 { return 100000 }
-//        else { return 21000 }
-//    }
     
     var drawerPanGesture: UIPanGestureRecognizer!
     var backgroundPanGesture: UIPanGestureRecognizer!
@@ -139,8 +126,8 @@ class AdvancedGasView: UIView {
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
         backgroundView.addGestureRecognizer(backgroundPanGesture)
         
-        if let gas = Int(gasPrice), let limit = Int(gasLimit),
-            let feeEther = CoinNumberFormatter.full.convertUnit(balance: String(calculateGasPrice(gas: gas, limit: limit)), from: .GWEI, to: .ETHER)
+        if let gas = Decimal(string: gasPrice), let limit = Decimal(string: gasLimit),
+            let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER)
         {
             self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
         }
@@ -190,7 +177,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    private func calculateGasPrice(gas: Int, limit: Int) -> Int {
+    private func calculateGasPrice(gas: Decimal, limit: Decimal) -> Decimal {
         return gas * limit
     }
     

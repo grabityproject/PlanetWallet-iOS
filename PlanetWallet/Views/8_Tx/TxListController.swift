@@ -89,7 +89,6 @@ class TxListController: PlanetWalletViewController {
         }
         
         txAdapter = TxAdapter(tableView, txList)
-        txAdapter?.selectedPlanet = self.planet
         txAdapter?.delegates.append(self)
     }
     

@@ -14,6 +14,12 @@ let imageCache = NSCache<AnyObject, AnyObject>()
     
     var imageURL: URL?
     
+    override var image: UIImage? {
+        didSet {
+            self.defaultImage = image
+        }
+    }
+    
     private var defaultImage: UIImage?
     private var defaultBackgroundColor: UIColor?
     private var defaultBorderColor: UIColor?
@@ -47,7 +53,12 @@ let imageCache = NSCache<AnyObject, AnyObject>()
             
             self.backgroundColor = self.themeBackgroundColor
             self.layer.borderColor = themeBorderColor?.cgColor
-            self.image = self.themeImage
+            if self.themeImage == nil {
+                self.image = self.defaultImage
+            }
+            else {
+                self.image = self.themeImage
+            }
         }else{
             if( self.defaultBackgroundColor != nil ){
                 self.backgroundColor = self.defaultBackgroundColor
@@ -73,14 +84,12 @@ let imageCache = NSCache<AnyObject, AnyObject>()
         
         image = nil
         
-        // retrieves image if already available in cache
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
             
             self.image = imageFromCache
             return
         }
         
-        // image does not available in cache.. so retrieving it from url...
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error != nil {

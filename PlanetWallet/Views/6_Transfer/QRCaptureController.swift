@@ -126,17 +126,7 @@ class QRCaptureController: PlanetWalletViewController {
         }
     }
     
-    private func isValidBitcoinAddress(_ addr: String) -> Bool {
-        let fullAddress = addr.components(separatedBy: ":")
-        if fullAddress.count == 2 && fullAddress[0] == "bitcoin" {
-            let pattern = "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$"
-            let r = fullAddress[1].startIndex..<fullAddress[1].endIndex
-            let r2 = fullAddress[1].range(of: pattern, options: .regularExpression)
-            return r == r2
-        } else {
-            return false
-        }
-    }
+    
     
     //MARK: - IBAction
     @IBAction func didTouchedClose(_ sender: UIButton) {

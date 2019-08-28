@@ -193,7 +193,6 @@
 		04F61DD722CB229B00D6759A /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F61DD622CB229B00D6759A /* Base58.swift */; };
 		04F7D6DF22C1B8EE0079E08A /* AbsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */; };
 		04F7D6E122C1BE830079E08A /* TokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D6E022C1BE830079E08A /* TokenAdapter.swift */; };
-		04FBB0D8230658290087CDE5 /* TxStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBB0D7230658290087CDE5 /* TxStatus.swift */; };
 		04FBCA43229E57D900DEEDD9 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */; };
 		04FBCA46229E5BA600DEEDD9 /* PopupUniverse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */; };
 		04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */; };
@@ -433,7 +432,6 @@
 		04F61DD622CB229B00D6759A /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		04F7D6DE22C1B8EE0079E08A /* AbsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsTableViewAdapter.swift; sourceTree = "<group>"; };
 		04F7D6E022C1BE830079E08A /* TokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAdapter.swift; sourceTree = "<group>"; };
-		04FBB0D7230658290087CDE5 /* TxStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxStatus.swift; sourceTree = "<group>"; };
 		04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		04FBCA45229E5BA600DEEDD9 /* PopupUniverse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupUniverse.xib; sourceTree = "<group>"; };
 		04FBCA47229E5BB200DEEDD9 /* PopupUniverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUniverse.swift; sourceTree = "<group>"; };
@@ -916,7 +914,6 @@
 				045AA9C722C0B7AF005EA387 /* BTC.swift */,
 				04278B5F22FD59FC0018CC4C /* Search.swift */,
 				040295EE230170550024629E /* Tx.swift */,
-				04FBB0D7230658290087CDE5 /* TxStatus.swift */,
 				0423EFAB230B8ABC00CE8174 /* EthereumUnit.swift */,
 				0423EFAD230B8E0000CE8174 /* BitcoinUnit.swift */,
 			);
@@ -1387,7 +1384,6 @@
 				048FDA7422C1F9210030D949 /* PlanetSearchAdapter.swift in Sources */,
 				044A43DF22A0C59D00274B04 /* MainNavigationController.swift in Sources */,
 				0455D8EE22C4CD88005F6494 /* PlanetStore.swift in Sources */,
-				04FBB0D8230658290087CDE5 /* TxStatus.swift in Sources */,
 				04AE122D2313D64200200D06 /* UTXO.swift in Sources */,
 				04C82C9622890D6400235883 /* DetailBoardController.swift in Sources */,
 				04C82C81228429C000235883 /* PWTextView.swift in Sources */,

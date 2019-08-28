@@ -161,26 +161,25 @@ class DetailTxController: PlanetWalletViewController {
     }
     
     private func setTxData(_ tx: Tx) {
-        guard let selectedPlanet = selectedPlanet else { return }
+        guard let txStatus = tx.status, let txDirection = tx.type else { return }
         
-        let txStatus = TxStatus(currentPlanet: selectedPlanet, tx: tx)
-        
-        if txStatus.status == .CONFIRMED {
+        if txStatus == "confirmed" {
             statusLb.text = "Completed"
             
-            if txStatus.direction == .RECEIVED {
+            if txDirection == "received" {
                 naviBar.title = "Received"
             }
             else {
                 naviBar.title = "Sent"
             }
         }
-        else {
+        else if txStatus == "pending" {
             statusLb.text = "Pending"
+            naviBar.title = "Pending"
         }
         
         //Set main display data
-        if txStatus.direction == .RECEIVED { //opponent : from
+        if txDirection == "received" { //opponent : from
             if let fromPlanetName = tx.from_planet {
                 toPlanetContainer.isHidden = false
                 toAddressContainer.isHidden = true
@@ -197,7 +196,7 @@ class DetailTxController: PlanetWalletViewController {
                 toAddressLb.setColoredAddress()
             }
         }
-        else if txStatus.direction == .SENT { //opponent : to
+        else if txDirection == "sent" { //opponent : to
             if let toPlanetName = tx.to_planet {
                 toPlanetContainer.isHidden = false
                 toAddressContainer.isHidden = true

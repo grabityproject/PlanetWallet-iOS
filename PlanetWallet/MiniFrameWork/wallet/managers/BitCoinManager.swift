@@ -249,11 +249,37 @@ class BitCoinManager{
     public func validAddress(_ address: String) -> Bool {
         guard let service = service else { return false }
         do {
-            return try service.validateAddress(address: address)
+            if TESTNET {
+                return isValidTestnetAddress(address)
+            }
+            else {
+                return try service.validateAddress(address: address)
+            }
         }
         catch {
             return false
         }
     }
     
+    private func isValidTestnetAddress(_ addr: String) -> Bool {
+        if let _ = matches(for: "^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}", in: addr).first {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    private func matches(for regex: String, in text: String) -> [String] {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let nsString = text as NSString
+            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
+            return results.map { nsString.substring(with: $0.range)}
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
 }

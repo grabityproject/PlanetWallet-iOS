@@ -40,9 +40,10 @@ class TxReceiptController: PlanetWalletViewController {
         
         var transactionSymbol = ""
         
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol {
+        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol, let imgPath = erc20.img_path {
             mainAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
             amountLb.text = "\(amount) \(erc20.symbol ?? "")"
+            toAddressCoinImgView.loadImageWithPath(Route.URL(imgPath))
             transactionSymbol = symbol
         }
         else {
