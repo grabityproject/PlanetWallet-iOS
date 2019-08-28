@@ -218,7 +218,7 @@ class DBManager: NSObject {
         if( values.count > 0 ){
             if openDatabase() {
                 let result = database.executeStatements("UPDATE \(tableName) SET \(values) WHERE \(condition)")
-                print("UPDATE \(tableName) SET \(values) WHERE \(condition)")
+                
                 database.close()
                 return result
             }

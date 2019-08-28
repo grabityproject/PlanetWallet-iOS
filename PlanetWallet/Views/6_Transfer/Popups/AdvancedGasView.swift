@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Int, gasLimit: Int)
+    func didTouchedSave(_ gasPrice: Decimal, gasLimit: Decimal)
 }
 
 class AdvancedGasView: UIView {
@@ -55,7 +55,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var inputText = "\(GasInfo.DEFAULT_GAS_PRICE)" {
+    var inputText = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)" {
         didSet {
 
             if hasGasPriceFocus {
@@ -67,7 +67,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var gasPrice: String = "\(GasInfo.DEFAULT_GAS_PRICE)" {
+    var gasPrice: String = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)" {
         didSet {
             self.gasPriceBtn.setTitle(inputText, for: .normal)
             if let gas = Int(gasPrice), let limit = Int(gasLimit),
@@ -87,7 +87,7 @@ class AdvancedGasView: UIView {
         }
     }
     
-    public var gasInfo: GasInfo? {
+    public var gasInfo: EthereumFeeInfo? {
         didSet {
             if let gas = self.gasInfo {
                 gasLimit = "\(gas.advancedGasLimit)"
@@ -170,10 +170,10 @@ class AdvancedGasView: UIView {
     
     public func reset() {
         if let gasInfo = gasInfo {
-            self.gasPriceBtn.setTitle("\(GasInfo.DEFAULT_GAS_PRICE)", for: .normal)
+            self.gasPriceBtn.setTitle("\(EthereumFeeInfo.DEFAULT_GAS_PRICE)", for: .normal)
             self.gasLimitBtn.setTitle("\(gasInfo.advancedGasLimit)", for: .normal)
             self.hasGasPriceFocus = true
-            self.inputText = "\(GasInfo.DEFAULT_GAS_PRICE)"
+            self.inputText = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)"
         }
     }
     
@@ -200,18 +200,20 @@ class AdvancedGasView: UIView {
             Toast(text: "fee_popup_not_spaces_title".localized).show()
         }
         
+        
         if let gasInfo = gasInfo,
-            let gas = Int(gasPrice),
-            let limit = Int(gasLimit)
+            let gasPriceStr = CoinNumberFormatter.full.convertUnit(balance: gasPrice, from: .GWEI, to: .WEI),
+            let gasPrice = Decimal(string: gasPriceStr),
+            let gasLimit = Decimal(string: gasLimit)
         {
-            if gas > 0 && limit >= (gasInfo.advancedGasLimit).intValue {
-                delegate?.didTouchedSave(gas, gasLimit: limit)
+            if gasPrice > 0 && gasLimit >= gasInfo.advancedGasLimit {
+                delegate?.didTouchedSave(gasPrice, gasLimit: gasLimit)
                 self.hide()
             }
-            else if gas < 1 {
+            else if gasPrice < 1 {
                 Toast(text: "fee_popup_gas_price_least_title".localized).show()
             }
-            else if limit < 21000 {
+            else if gasLimit < 21000 {
                 Toast(text: "fee_popup_gas_limit_least_title".localized).show()
             }
         }

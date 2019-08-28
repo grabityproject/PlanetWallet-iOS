@@ -309,13 +309,15 @@ extension TransferController: UITextFieldDelegate {
 
 extension TransferController: QRCaptureDelegate {
     func didCapturedQRCode(_ address: String) {
+        search = address
         textField.text = address
         
         if isValidAddr(address) {
-            let addressPlanet = Planet()
-            addressPlanet.address = address
-            addressPlanet.coinType = self.planet?.coinType
-            planetSearchAdapter?.dataSetNotify([addressPlanet])
+            
+            if let coinType = self.planet?.coinType {
+                Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":address] )
+            }
+
             updateUI()
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GasInfo {
+struct EthereumFeeInfo {
     enum Step: Int {
         case SAFE_LOW = 0
         case AVERAGE
@@ -36,7 +36,7 @@ struct GasInfo {
     public var advancedGasPrice: Decimal = 0
     public var advancedGasLimit: Decimal = 100000
     
-    public func getTransactionFee(step: GasInfo.Step) -> EtherTransactionFee {
+    public func getTransactionFee(step: EthereumFeeInfo.Step) -> EtherTransactionFee {
         switch step {
         case .SAFE_LOW:     return EtherTransactionFee(gasPrice: safeLow, gasLimit: getGasLimit())
         case .AVERAGE:      return EtherTransactionFee(gasPrice: average, gasLimit: getGasLimit())
@@ -48,10 +48,10 @@ struct GasInfo {
     
     private func getGasLimit() -> Decimal {
         if isToken {
-            return GasInfo.DEFAULT_GAS_LIMIT_ERC20
+            return EthereumFeeInfo.DEFAULT_GAS_LIMIT_ERC20
         }
         else {
-            return GasInfo.DEFAULT_GAS_LIMIT
+            return EthereumFeeInfo.DEFAULT_GAS_LIMIT
         }
     }
 }

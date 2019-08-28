@@ -9,19 +9,19 @@
 import Foundation
 
 struct EtherTransactionFee {
-    var gasPrice:Decimal = 0//GWEI
+    var gasPrice:Decimal = 0//WEI
     var gasLimit:Decimal = 0
     
-    public func getGasPriceWEI() -> String? {
-        return CoinNumberFormatter.full.convertUnit(balance: gasPrice.toString(), from: .GWEI, to: .WEI)
+    public func getGasPriceWEI() -> String {
+        return gasPrice.toString()
     }
     
-    public func getFeeGwei() -> String {
+    public func getFeeWEI() -> String {
         return (gasPrice * gasLimit).toString()
     }
     
     public func getFeeETH() -> Decimal? {
-        if let etherStr = CoinNumberFormatter.full.convertUnit(balance: getFeeGwei(), from: .GWEI, to: .ETHER) {
+        if let etherStr = CoinNumberFormatter.full.convertUnit(balance: getFeeWEI(), from: .WEI, to: .ETHER) {
             return Decimal(string: etherStr)
         }
         

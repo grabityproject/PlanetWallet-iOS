@@ -171,7 +171,7 @@ class BtcNetworkDelegate:Node{
                     
                 }
                 else if requestCode == 1 {
-                    print(dict)
+                    
                     var txList = [Tx]();
                     if let items = dict["result"] as? [[String: Any]]{
                         items.forEach { (json) in

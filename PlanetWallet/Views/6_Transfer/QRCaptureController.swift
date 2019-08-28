@@ -157,12 +157,20 @@ extension QRCaptureController: AVCaptureMetadataOutputObjectsDelegate {
             
             if metaObj.stringValue != nil {
                 var address: String?
+                
+                
                 if let ethMatched = matches(for: "0x[0-9a-fA-F]{40}$", in: metaObj.stringValue!).first {
                     address = ethMatched
                 }
                 else if let btcMatched = matches(for: "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$", in: metaObj.stringValue!).first {
                     address = btcMatched
                 }
+                else if TESTNET {
+                    if let btcTestMatched = matches(for: "^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}", in: metaObj.stringValue!).first {
+                        address = btcTestMatched
+                    }
+                }
+                
                 
                 if let addressStr = address {
                     delegate?.didCapturedQRCode(addressStr)

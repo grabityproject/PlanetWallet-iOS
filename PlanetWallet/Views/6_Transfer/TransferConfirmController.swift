@@ -40,14 +40,14 @@ class TransferConfirmController: PlanetWalletViewController {
     
     var coinType = CoinType.ETH.coinType
     
-    var gasInfo: GasInfo?
+    var ethereumFeeInfo: EthereumFeeInfo?
     var bitcoinFeeInfo: BitcoinFeeInfo?
     
     var transactionFee: Decimal = 0.0 {
         didSet {
             guard let planet = self.planet else { return }
             
-            if isToken {
+            if self.coinType == CoinType.ERC20.coinType {
                 
                 transactionFeeLb.text = "\(transactionFee.toString()) ETH"
                 
@@ -68,9 +68,7 @@ class TransferConfirmController: PlanetWalletViewController {
                     transactionFeeLb.text = "\(transactionFee.toString()) \(planet.symbol ?? "")"
                     
                     let totalAmount = self.transferAmount + transactionFee
-                    
-                    print("Available amount : \(availableAmount)")
-                    print("total amount : \(totalAmount)")
+
                     if self.availableAmount >= totalAmount {
                         confirmBtn.setEnabled(true, theme: currentTheme)
                     }
@@ -93,12 +91,13 @@ class TransferConfirmController: PlanetWalletViewController {
         }
     }
     
-    var gasStep: GasInfo.Step = .AVERAGE {
+    var ethFeeStep: EthereumFeeInfo.Step = .AVERAGE {
         didSet {
-            slider.value = (100 / Float(GasInfo.Step.count - 1)) * Float(gasStep.rawValue)
+            slider.value = (100 / Float(EthereumFeeInfo.Step.count - 1)) * Float(ethFeeStep.rawValue)
             
-            if let gasFee = self.gasInfo?.getTransactionFee(step: self.gasStep),
+            if let gasFee = self.ethereumFeeInfo?.getTransactionFee(step: self.ethFeeStep),
                 let gasETH = gasFee.getFeeETH() {
+                
                 self.transactionFee = gasETH
             }
         }
@@ -106,7 +105,7 @@ class TransferConfirmController: PlanetWalletViewController {
     
     var isAdvancedGasOptions = false {
         didSet {
-            if self.isAdvancedGasOptions { gasStep = .ADVANCED }
+            if self.isAdvancedGasOptions { ethFeeStep = .ADVANCED }
             gasContainer.isHidden = isAdvancedGasOptions
             resetBtn.isHidden = !isAdvancedGasOptions
         }
@@ -119,15 +118,6 @@ class TransferConfirmController: PlanetWalletViewController {
     var erc20: ERC20?
     var transferAmount: Decimal = 0.0
     var availableAmount: Decimal = 0.0
-    
-    private var isToken: Bool {
-        if let _ = erc20 {
-            return true
-        }
-        else {
-            return false
-        }
-    }
     
     //MARK: - Init
     override func viewInit() {
@@ -255,9 +245,9 @@ class TransferConfirmController: PlanetWalletViewController {
             btcFeeStep = step
         }
         else if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
-            let stepUnitValue = Float(100 / (GasInfo.Step.count - 1))
-            guard let step = GasInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
-            gasStep = step
+            let stepUnitValue = Float(100 / (EthereumFeeInfo.Step.count - 1))
+            guard let step = EthereumFeeInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
+            ethFeeStep = step
         }
 //        self.transaction?.getFee()
         
@@ -269,7 +259,7 @@ class TransferConfirmController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedResetGas(_ sender: UIButton) {
-        self.gasStep = .AVERAGE
+        self.ethFeeStep = .AVERAGE
         self.isAdvancedGasOptions = !isAdvancedGasOptions
         self.advancedGasPopup.reset()
     }
@@ -277,7 +267,7 @@ class TransferConfirmController: PlanetWalletViewController {
     //MARK: - Private
     //수수료를 네트워크에서 못 가져 왔을 경우
     private func setDefaultAdvancedGasFee() {
-        let transactionFee = (GasInfo.DEFAULT_GAS_PRICE * GasInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
+        let transactionFee = (EthereumFeeInfo.DEFAULT_GAS_PRICE * EthereumFeeInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
         if let feeEtherStr = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .GWEI, to: .ETHER),
             let feeEther = Decimal(string: feeEtherStr)
         {
@@ -306,19 +296,17 @@ class TransferConfirmController: PlanetWalletViewController {
         
         if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
             //---- 1.Set Gas
-            if let gasInfo = gasInfo
+            if let gasInfo = ethereumFeeInfo
             {
-                let transactionFee = gasInfo.getTransactionFee(step: self.gasStep)
+                let transactionFee = gasInfo.getTransactionFee(step: self.ethFeeStep)
                 
-                if let gasWEI = transactionFee.getGasPriceWEI() {
-                    gasPrice = gasWEI
-                }
+                gasPrice = transactionFee.getGasPriceWEI()
                 
                 if isAdvancedGasOptions {
                     gasLimit = "\(gasInfo.advancedGasLimit)"
                 }
                 else {
-                    gasLimit = "\(gasInfo.getTransactionFee(step: self.gasStep).gasLimit)"
+                    gasLimit = "\(gasInfo.getTransactionFee(step: self.ethFeeStep).gasLimit)"
                 }
             }
             
@@ -363,6 +351,8 @@ class TransferConfirmController: PlanetWalletViewController {
         
         print("-----------Tx------------")
         print("coin Type : \(symbol)")
+        print("from : \(fromAddress)")
+        print("to : \(toAddress)")
         print("amount of transfer : \(amount)")
         print("gas price : \(gasPrice)")
         print("gas limit : \(gasLimit)")
@@ -420,18 +410,18 @@ class TransferConfirmController: PlanetWalletViewController {
                 let fastest = Decimal(string: fastestStr)
             {
                 var gasLimit: Decimal = 100000
-                if isToken == false {
+                if self.coinType == CoinType.ETH.coinType {
                     gasLimit = 21000
                 }
-                self.gasInfo = GasInfo(isToken: self.isToken,
+                self.ethereumFeeInfo = EthereumFeeInfo(isToken: self.coinType == CoinType.ERC20.coinType,
                                    safeLow: safeLow,
                                    average: average,
                                    fast: fast,
                                    fastest: fastest,
-                                   advancedGasPrice: GasInfo.DEFAULT_GAS_PRICE,
+                                   advancedGasPrice: EthereumFeeInfo.DEFAULT_GAS_PRICE,
                                    advancedGasLimit: gasLimit)
-                self.gasStep = .AVERAGE
-                self.advancedGasPopup.gasInfo = self.gasInfo
+                self.ethFeeStep = .AVERAGE
+                self.advancedGasPopup.gasInfo = self.ethereumFeeInfo
             }
             else {
                 setDefaultAdvancedGasFee()
@@ -463,7 +453,7 @@ class TransferConfirmController: PlanetWalletViewController {
                 gasPrice = bitcoinFeeInfo?.getTransactionFee(step: self.btcFeeStep)
             }
             else {
-                gasPrice = gasInfo?.getTransactionFee(step: self.gasStep).getFeeETH()?.toString()
+                gasPrice = ethereumFeeInfo?.getTransactionFee(step: self.ethFeeStep).getFeeETH()?.toString()
             }
             
             
@@ -479,19 +469,21 @@ class TransferConfirmController: PlanetWalletViewController {
     }
 }
 
+//MARK: - AdvancedGasViewDelegate
 extension TransferConfirmController: AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Int, gasLimit: Int) {
-        
-        self.gasInfo?.advancedGasPrice = Decimal(integerLiteral: gasPrice)
-        self.gasInfo?.advancedGasLimit = Decimal(integerLiteral: gasLimit)
+    func didTouchedSave(_ gasPrice: Decimal, gasLimit: Decimal) {
+
+        self.ethereumFeeInfo?.advancedGasPrice = gasPrice
+        self.ethereumFeeInfo?.advancedGasLimit = gasLimit
         self.isAdvancedGasOptions = true
-        if let transactionFee = gasInfo?.getTransactionFee(step: .ADVANCED),
+        if let transactionFee = ethereumFeeInfo?.getTransactionFee(step: .ADVANCED),
             let feeETH = transactionFee.getFeeETH() {
             self.transactionFee = feeETH
         }
     }
 }
 
+//MARK: - NavigationBarDelegate
 extension TransferConfirmController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
@@ -500,6 +492,7 @@ extension TransferConfirmController: NavigationBarDelegate {
     }
 }
 
+//MARK: - PinCodeCertificationDelegate
 extension TransferConfirmController: PinCodeCertificationDelegate {
     func didTransferCertificated(_ isSuccess: Bool) {
         if isSuccess {

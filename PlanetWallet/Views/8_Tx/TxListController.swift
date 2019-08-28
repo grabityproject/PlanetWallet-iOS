@@ -284,9 +284,18 @@ extension TxListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let planet = planet else { return }
         
-        sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
-                   userInfo: [Keys.UserInfo.planet: planet,
-                              Keys.UserInfo.transaction: txList[indexPath.row]])
+        switch tokenType {
+        case .ETH:
+            sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
+                       userInfo: [Keys.UserInfo.planet: planet,
+                                  Keys.UserInfo.transaction: txList[indexPath.row]])
+        case .ERC20(let token):
+            sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
+                       userInfo: [Keys.UserInfo.planet: planet,
+                                  Keys.UserInfo.erc20: token,
+                                  Keys.UserInfo.transaction: txList[indexPath.row]])
+        }
+        
     }
 }
 

@@ -23,7 +23,7 @@ class DetailTxController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var toAddressContainer: UIView!
-    @IBOutlet var toAddressCoinImgView: PWImageView!
+    @IBOutlet var toAddressCoinImgView: UIImageView!
     @IBOutlet var toAddressLb: UILabel!
     
     @IBOutlet var toPlanetContainer: UIView!
@@ -114,7 +114,9 @@ class DetailTxController: PlanetWalletViewController {
         var amount = "-"
         var tokenIconImgPath: String?
         
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let tokenImg = erc20.img_path {
+        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
+            let tokenImg = erc20.img_path
+        {
             if let fullERC20Str = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, item: erc20) {
                 amount = fullERC20Str
             }
@@ -139,8 +141,14 @@ class DetailTxController: PlanetWalletViewController {
         }
         
         //Set coin icon image
-        if let tokenImgPath = tokenIconImgPath {
-            toAddressCoinImgView.loadImageWithPath(Route.URL(tokenImgPath))
+        if let tokenImgPath = tokenIconImgPath, let url = URL(string: Route.URL(tokenImgPath)) {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                DispatchQueue.main.async(execute: {
+                    guard let unwrappedData = data,
+                        let image = UIImage(data: unwrappedData) else { return }
+                    self.toAddressCoinImgView.image = image
+                })
+            }).resume()
         }
         else {
             if symbol == CoinType.BTC.name {
