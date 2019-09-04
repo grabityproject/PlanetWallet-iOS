@@ -23,7 +23,6 @@
 		0423EFB2230BD27100CE8174 /* RecentSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423EFB1230BD27100CE8174 /* RecentSearchAdapter.swift */; };
 		04278B6022FD59FC0018CC4C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B5F22FD59FC0018CC4C /* Search.swift */; };
 		04278B6222FD61790018CC4C /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B6122FD61790018CC4C /* SearchStore.swift */; };
-		0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */; };
 		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
 		042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41122B34CF300666DF9 /* Extension + UILabel.swift */; };
 		042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41322B36BFE00666DF9 /* PWSlider.swift */; };
@@ -89,8 +88,9 @@
 		045AAFFA230A90A900FDBD84 /* DetailAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AAFF9230A90A900FDBD84 /* DetailAddressController.swift */; };
 		0464BFBB22DC47B700D8087D /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464BFBA22DC47B700D8087D /* Localization.swift */; };
 		04675F19229B90C200DC3CFD /* Extension + CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04675F18229B90C200DC3CFD /* Extension + CALayer.swift */; };
+		04676A17231F88D400DAF0A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04676A16231F88D400DAF0A7 /* GoogleService-Info.plist */; };
+		04676A19231FAD1B00DAF0A7 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04676A18231FAD1B00DAF0A7 /* Extension + UIButton.swift */; };
 		0472831322B878F7002EF9E5 /* QRCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472831222B878F7002EF9E5 /* QRCaptureController.swift */; };
-		04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4D22818BD100758E56 /* Extension + UIButton.swift */; };
 		04738B502282749C00758E56 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738B4F2282749C00758E56 /* ThemeManager.swift */; };
 		04772E3F228AA91900049F89 /* PWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04772E3E228AA91900049F89 /* PWSwitch.swift */; };
 		047A2CA122AF7D130053D153 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2CA022AF7D130053D153 /* Crypto.swift */; };
@@ -250,7 +250,6 @@
 		0423EFB1230BD27100CE8174 /* RecentSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchAdapter.swift; sourceTree = "<group>"; };
 		04278B5F22FD59FC0018CC4C /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		04278B6122FD61790018CC4C /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
-		0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		042FF41122B34CF300666DF9 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		042FF41322B36BFE00666DF9 /* PWSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWSlider.swift; sourceTree = "<group>"; };
@@ -319,8 +318,10 @@
 		0464BFBA22DC47B700D8087D /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		0464BFBC22DC4C1C00D8087D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04675F18229B90C200DC3CFD /* Extension + CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + CALayer.swift"; sourceTree = "<group>"; };
+		04676A15231F6F1500DAF0A7 /* PlanetWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanetWallet.entitlements; sourceTree = "<group>"; };
+		04676A16231F88D400DAF0A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04676A18231FAD1B00DAF0A7 /* Extension + UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		0472831222B878F7002EF9E5 /* QRCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCaptureController.swift; sourceTree = "<group>"; };
-		04738B4D22818BD100758E56 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		04738B4F2282749C00758E56 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		04772E3E228AA91900049F89 /* PWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWSwitch.swift; sourceTree = "<group>"; };
 		047A2CA022AF7D130053D153 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -531,9 +532,9 @@
 		042FF40F22B34CC100666DF9 /* Extension + UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				04676A18231FAD1B00DAF0A7 /* Extension + UIButton.swift */,
 				044BC59122794EFC00FD7E5E /* Extension + Color.swift */,
 				044BC5932279704900FD7E5E /* Extension + UIView.swift */,
-				04738B4D22818BD100758E56 /* Extension + UIButton.swift */,
 				04675F18229B90C200DC3CFD /* Extension + CALayer.swift */,
 				04FBCA42229E57D900DEEDD9 /* Extension + UIViewController.swift */,
 				042FF41122B34CF300666DF9 /* Extension + UILabel.swift */,
@@ -579,6 +580,8 @@
 		044BC54522793D3F00FD7E5E /* PlanetWallet */ = {
 			isa = PBXGroup;
 			children = (
+				04676A16231F88D400DAF0A7 /* GoogleService-Info.plist */,
+				04676A15231F6F1500DAF0A7 /* PlanetWallet.entitlements */,
 				0481534022BB1E4D0099F7E5 /* Models */,
 				044BC55D22793DA600FD7E5E /* Views */,
 				044BC55A22793D9100FD7E5E /* Resources */,
@@ -644,7 +647,6 @@
 				042FF40F22B34CC100666DF9 /* Extension + UIKit */,
 				044BC54622793D3F00FD7E5E /* AppDelegate.swift */,
 				0464BFBA22DC47B700D8087D /* Localization.swift */,
-				0428A4D622DEC081008D18E5 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1194,6 +1196,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -1254,7 +1259,6 @@
 				04C82C892288FAE400235883 /* WorkSans-Bold.otf in Resources */,
 				04A551C322A794EF007A17A3 /* 2_PinCode.storyboard in Resources */,
 				04BA0B0E22B76AA000A25A93 /* ContactAddrCell.xib in Resources */,
-				0428A4D722DEC081008D18E5 /* GoogleService-Info.plist in Resources */,
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
 				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
@@ -1265,6 +1269,7 @@
 				04CB760C22D43D8D00C20811 /* Localizable.strings in Resources */,
 				04B8741122CF1C6B00454301 /* splash_03_bk.json in Resources */,
 				049C38DD230CF9C000AA7FA6 /* TopMenuView.xib in Resources */,
+				04676A17231F88D400DAF0A7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,7 +1477,6 @@
 				04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */,
 				0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */,
 				0455D8EA22C4CD88005F6494 /* EthereumManager.swift in Sources */,
-				04738B4E22818BD100758E56 /* Extension + UIButton.swift in Sources */,
 				044BC5812279445D00FD7E5E /* PrivateKeyImportController.swift in Sources */,
 				04FBCA48229E5BB200DEEDD9 /* PopupUniverse.swift in Sources */,
 				04C82C82228429C000235883 /* PWImageView.swift in Sources */,
@@ -1496,6 +1500,7 @@
 				0455D8EB22C4CD88005F6494 /* BitCoinManager.swift in Sources */,
 				04C82CB822891FCC00235883 /* DetailPlanetController.swift in Sources */,
 				04C82C83228429C000235883 /* PWLabel.swift in Sources */,
+				04676A19231FAD1B00DAF0A7 /* Extension + UIButton.swift in Sources */,
 				045AAFFA230A90A900FDBD84 /* DetailAddressController.swift in Sources */,
 				042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */,
 				04A193CF2303D76000835061 /* Converter.swift in Sources */,
@@ -1653,8 +1658,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PlanetWallet/PlanetWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1668,7 +1674,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = develop;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1682,8 +1688,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PlanetWallet/PlanetWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1697,7 +1704,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = develop;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

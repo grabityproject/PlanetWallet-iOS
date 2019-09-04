@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     /**
      * 민감한 정보 저장을 위해 사용하는 암복호화 클래스.
      */
-    lazy var defaultCryper: DefaultStorageCryper = DefaultStorageCryper(keyAlias: keystoreAlias, pinBasedKeyCryper: pinBasedKeyCrypter, hsmKeyCryper: hsmKeyCrypter)
+    lazy var defaultCrypter: DefaultStorageCryper = DefaultStorageCryper(keyAlias: keystoreAlias, pinBasedKeyCryper: pinBasedKeyCrypter, hsmKeyCryper: hsmKeyCrypter)
     
     var window: UIWindow?
     
@@ -47,6 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         setNavigationBar()
         
         FirebaseApp.configure()
+        
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions,completionHandler: {_, _ in })
+        application.registerForRemoteNotifications()
         
         Messaging.messaging().delegate = self
         Messaging.messaging().shouldEstablishDirectChannel = true
@@ -126,8 +131,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
     
     private func initSecureModules(){
-        KeyPairStore.shared.defaultCrypter = defaultCryper
-        KeyStore.shared.defaultCrypter = defaultCryper
+        KeyPairStore.shared.defaultCrypter = defaultCrypter
+        KeyStore.shared.defaultCrypter = defaultCrypter
     }
     
     private func initStores() {
@@ -153,3 +158,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+}
