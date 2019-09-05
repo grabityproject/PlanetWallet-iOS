@@ -55,16 +55,10 @@ class MainController: PlanetWalletViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.fetchData { (_) in }
-        
         self.initBackupAlertView()
         rippleAnimationView.dismiss()
-    }
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
+        self.getPlanet()
     }
     
     override func viewInit() {
@@ -106,7 +100,7 @@ class MainController: PlanetWalletViewController{
     @IBAction func unwindToMainController(segue:UIStoryboardSegue) { }
     
     //MARK: - Private
-    private func fetchData(completion: @escaping (Bool) -> Void) {
+    private func getPlanet() {
         let planetList = PlanetStore.shared.list("", false)
         topMenuLauncher?.planetList = planetList
         

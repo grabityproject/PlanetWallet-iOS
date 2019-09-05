@@ -398,6 +398,13 @@ class TransferConfirmController: PlanetWalletViewController {
             return
         }
         
+        if let errDic = resultVO.result as? [String: Any],
+            let errorMsg = errDic["errorMsg"] as? String
+        {
+            Toast(text: errorMsg).show()
+            return
+        }
+        
         if requestCode == 0 && resultCode == 0 {    //Gas response
             
             if let safeLowStr = item["safeLow"],

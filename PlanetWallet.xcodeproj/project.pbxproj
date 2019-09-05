@@ -27,7 +27,6 @@
 		042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41122B34CF300666DF9 /* Extension + UILabel.swift */; };
 		042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41322B36BFE00666DF9 /* PWSlider.swift */; };
 		042FF41622B3774300666DF9 /* QROverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41522B3774300666DF9 /* QROverlay.swift */; };
-		0440A16E22F28F12003CFA6C /* KeyPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440A16D22F28F12003CFA6C /* KeyPadViewModel.swift */; };
 		0440A17022F2ED62003CFA6C /* Extension + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440A16F22F2ED62003CFA6C /* Extension + Notification.swift */; };
 		0444A95F228BF0AD00232748 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0444A95E228BF0AD00232748 /* NoticeCell.xib */; };
 		0444A961228C041600232748 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444A960228C041600232748 /* NoticeCell.swift */; };
@@ -254,7 +253,6 @@
 		042FF41122B34CF300666DF9 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		042FF41322B36BFE00666DF9 /* PWSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWSlider.swift; sourceTree = "<group>"; };
 		042FF41522B3774300666DF9 /* QROverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlay.swift; sourceTree = "<group>"; };
-		0440A16D22F28F12003CFA6C /* KeyPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPadViewModel.swift; sourceTree = "<group>"; };
 		0440A16F22F2ED62003CFA6C /* Extension + Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Notification.swift"; sourceTree = "<group>"; };
 		0444A95E228BF0AD00232748 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
 		0444A960228C041600232748 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
@@ -708,7 +706,6 @@
 				044BC5C8227BD2AF00FD7E5E /* Cells */,
 				044BC572227943CD00FD7E5E /* PinCodeRegistrationController.swift */,
 				044BC574227943DF00FD7E5E /* PinCodeCertificationController.swift */,
-				0440A16D22F28F12003CFA6C /* KeyPadViewModel.swift */,
 			);
 			path = 2_PinCode;
 			sourceTree = "<group>";
@@ -1490,7 +1487,6 @@
 				04C82C80228429C000235883 /* PWView.swift in Sources */,
 				042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */,
 				044BC5872279448D00FD7E5E /* SettingController.swift in Sources */,
-				0440A16E22F28F12003CFA6C /* KeyPadViewModel.swift in Sources */,
 				0464BFBB22DC47B700D8087D /* Localization.swift in Sources */,
 				049C38EA230CF9C000AA7FA6 /* TopMenuCell.swift in Sources */,
 				04C82C9C22890D9500235883 /* SecurityController.swift in Sources */,

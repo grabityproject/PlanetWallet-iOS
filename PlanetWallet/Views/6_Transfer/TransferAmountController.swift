@@ -210,7 +210,7 @@ class TransferAmountController: PlanetWalletViewController {
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        
+        //TODO: - handle error message
         guard let dict = dictionary, let resultObj = dict["result"] as? [String:Any] else { return }
         self.handleBalanceResponse(json: resultObj)
     }

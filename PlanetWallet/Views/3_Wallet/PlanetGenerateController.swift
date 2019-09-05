@@ -209,11 +209,10 @@ class PlanetGenerateController: PlanetWalletViewController {
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let planet = planet,
-            let dict = dictionary,
-            let response = ReturnVO(JSON: dict),
-            let success = response.success,
             let keyID = planet.keyId,
-            let result = response.result else { return }
+            let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            let success = returnVo.success else { return }
         
         if( success ){
             PlanetStore.shared.save(planet)
@@ -234,8 +233,8 @@ class PlanetGenerateController: PlanetWalletViewController {
             }
         }
         else {
-            if let errDic = result as? [String: Any],
-                let errorMsg = errDic["errorMsg"] as? String
+            if let errDict = returnVo.result as? [String: Any],
+                let errorMsg = errDict["errorMsg"] as? String
             {
                 Toast(text: errorMsg).show()
             }

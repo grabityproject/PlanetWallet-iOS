@@ -86,6 +86,13 @@ class BoardController: PlanetWalletViewController {
                 
                 tableView.reloadData()
             }
+            else {
+                if let errDic = returnVO.result as? [String: Any],
+                    let errorMsg = errDic["errorMsg"] as? String
+                {
+                    Toast(text: errorMsg).show()
+                }
+            }
         }
     }
 }

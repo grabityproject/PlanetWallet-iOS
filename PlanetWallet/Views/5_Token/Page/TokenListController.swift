@@ -74,34 +74,43 @@ class TokenListController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary, let keyId = planet?.keyId {
-            if let returnVo = ReturnVO(JSON: dict){
-                if( returnVo.success! ){
-                    tokenList.removeAll()
-                    
-                    let dbItems = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(keyId)' AND hide='N'")
-                    var dbMaps = Dictionary<String, ERC20>()
-                    
-                    
-                    dbItems.forEach { (erc20) in
-                        dbMaps[erc20.contract!] = erc20
-                    }
-                    
-                    let items = returnVo.result as! Array<Dictionary<String, Any>>
-                    
-                    items.forEach { (item) in
-                        let erc20 = ERC20(JSON: item)!
-                        erc20.hide = "Y"
-                        if( dbMaps[erc20.contract!] != nil ){
-                            erc20.hide = dbMaps[erc20.contract!]!.hide
-                        }
-                        tokenList.append(erc20)
-                    }
-                    tokenAdapter?.dataSetNotify(tokenList)
+        
+        guard let dict = dictionary,
+            let keyId = planet?.keyId,
+            let returnVo = ReturnVO(JSON: dict),
+            let success = returnVo.success else { return }
+        
+        if( success ){
+            tokenList.removeAll()
+            
+            let dbItems = try! PWDBManager.shared.select(ERC20.self, "ERC20", "keyId = '\(keyId)' AND hide='N'")
+            var dbMaps = Dictionary<String, ERC20>()
+            
+            dbItems.forEach { (erc20) in
+                dbMaps[erc20.contract!] = erc20
+            }
+            
+            let items = returnVo.result as! Array<Dictionary<String, Any>>
+            
+            items.forEach { (item) in
+                let erc20 = ERC20(JSON: item)!
+                erc20.hide = "Y"
+                if( dbMaps[erc20.contract!] != nil ){
+                    erc20.hide = dbMaps[erc20.contract!]!.hide
                 }
+                tokenList.append(erc20)
+            }
+            tokenAdapter?.dataSetNotify(tokenList)
+        }
+        else {
+            if let errDic = returnVo.result as? [String: Any],
+                let errorMsg = errDic["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
             }
         }
     }
+    
 }
 
 extension TokenListController: UITableViewDelegate{

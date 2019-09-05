@@ -32,31 +32,6 @@ class SplashController: PlanetWalletViewController {
     override func viewInit() {
         super.viewInit()
         
-        /*
-        let ether = "23.14213231"
-        print("ether: \(ether)")
-        let gwei = CoinNumberFormatter.full.convertUnit(balance: ether, from: .ETHER, to: .GWEI)
-        print("gwei : \(gwei)")
-        let wei = CoinNumberFormatter.full.convertUnit(balance: ether, from: .ETHER, to: .WEI)
-        print("wei : \(wei)")
-        */
-        /*
-        let gwei = "123131231231231"
-        print("gwei : \(gwei)")
-        
-        let ether = CoinNumberFormatter.full.convertUnit(balance: gwei, from: .GWEI, to: .ETHER)
-        print("ether: \(ether)")
-        let wei = CoinNumberFormatter.full.convertUnit(balance: gwei, from: .GWEI, to: .WEI)
-        print("wei : \(wei)")
-        */
-        
-        /*
-        let btc = "0.131213123123"
-        print("bit: \(btc)")
-        let satoshi = CoinNumberFormatter.full.convertUnit(balance: btc, from: .BIT, to: .SATOSHI)
-        print("satoshi : \(satoshi)")
-        */
-        
         switch currentTheme {
         case .DARK:         self.animationView.animation = Animation.named("splash_03_bk")
         case .LIGHT:        self.animationView.animation = Animation.named("splash_03_wh")

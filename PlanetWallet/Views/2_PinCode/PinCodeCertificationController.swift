@@ -57,8 +57,6 @@ class PinCodeCertificationController: PlanetWalletViewController {
     //dismiss 과정에서 viewwillappear가 발동하여 문제됨
     var isBeingDismiss = false
     
-    var keyPadViewModel = KeyPadViewModel()
-    
     //MARK: - Init
     override func setData() {
         

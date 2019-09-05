@@ -27,7 +27,14 @@ class PlanetStore {
     }
     
     func get(_ keyId:String)->Planet?{
-        return m[keyId]
+        
+        do {
+            return try PWDBManager.shared.select( Planet.self, "Planet", "keyId = '\(keyId)'" ).first
+        }
+        catch {
+            print(error)
+            return nil
+        }
     }
     
     func list(_ symbol:String = "", _ containsHide:Bool = true )->[Planet]{

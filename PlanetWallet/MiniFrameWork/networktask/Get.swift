@@ -30,7 +30,11 @@ class Get {
             }
         }
 
-        Alamofire.request(requestUrl, method: .get, parameters: data, encoding: URLEncoding.default, headers: headers).response { (dataResponse) in
+        Alamofire.request(requestUrl,
+                          method: .get,
+                          parameters: data,
+                          encoding: URLEncoding.default,
+                          headers: headers).response { (dataResponse) in
             
             if let response = dataResponse.response{
                 if let resultData = dataResponse.data{
@@ -65,7 +69,7 @@ class Get {
                 }
                 
             }else{
-
+                
                 self.delegate?.onReceive(false,
                                          requestCode: requestCode,
                                          resultCode: resultCode,

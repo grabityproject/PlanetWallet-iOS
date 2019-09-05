@@ -233,6 +233,13 @@ class TxListController: PlanetWalletViewController {
             let returnVo = ReturnVO(JSON: dict),
             let isSuccess = returnVo.success else { return }
         
+        if let errDic = returnVo.result as? [String: Any],
+            let errorMsg = errDic["errorMsg"] as? String
+        {
+            Toast(text: errorMsg).show()
+            return
+        }
+        
         if requestCode == 1 {
             //Handle balance response
             guard let json = dict["result"] as? [String:Any] else { return }

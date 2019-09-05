@@ -73,15 +73,15 @@ class PlanetNameController: PlanetWalletViewController {
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary,
             let planet = self.planet,
-            let response = ReturnVO(JSON: dict),
-            let isSuccess = response.success else { return }
+            let returnVo = ReturnVO(JSON: dict),
+            let isSuccess = returnVo.success else { return }
         
         if isSuccess {
             PlanetStore.shared.save(planet)
             sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
         }
         else {
-            if let errDic = response.result as? [String: Any],
+            if let errDic = returnVo.result as? [String: Any],
                 let errorMsg = errDic["errorMsg"] as? String
             {
                 Toast(text: errorMsg).show()

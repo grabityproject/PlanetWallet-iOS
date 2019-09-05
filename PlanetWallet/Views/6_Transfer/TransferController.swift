@@ -224,6 +224,12 @@ class TransferController: PlanetWalletViewController {
             self.tableState = .SEARCH
             updateUI()
         }
+        else {
+            if let errDict = returnVo.result as? [String: Any],
+                let errorMsg = errDict["errorMsg"] as? String {
+                Toast(text: errorMsg).show()
+            }
+        }
         
     }
 }
