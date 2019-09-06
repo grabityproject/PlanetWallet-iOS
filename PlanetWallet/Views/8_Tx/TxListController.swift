@@ -18,6 +18,7 @@ class TxListController: PlanetWalletViewController {
     @IBOutlet var iconImgView: PWImageView!
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var footerView: UIView!
     
     var txList = [Tx]()
     var txAdapter: TxAdapter?
@@ -192,6 +193,10 @@ class TxListController: PlanetWalletViewController {
             }
             else {
                 print("Failed to response txList")
+            }
+            
+            if txList.count == 0 {
+                footerView.isHidden = false
             }
             
             saveTx(txList)

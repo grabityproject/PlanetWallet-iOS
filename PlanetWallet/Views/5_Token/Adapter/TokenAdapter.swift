@@ -19,6 +19,7 @@ class TokenAdapter: AbsTableViewAdapter<MainItem>, TokenCellDelegate {
     
     override func createCell(data: MainItem, position: Int) -> UITableViewCell? {
         if let table = tableView{
+            setCellHeight(height: 70)
             return table.dequeueReusableCell(withIdentifier: cellID)
         }
         return nil
@@ -26,8 +27,7 @@ class TokenAdapter: AbsTableViewAdapter<MainItem>, TokenCellDelegate {
     
     override func bindData(cell: UITableViewCell, data: MainItem, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
-        
-        setCellHeight(height: 70)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
         let tokenCell = cell as! TokenCell
         tokenCell.delegate = self
@@ -46,10 +46,6 @@ class TokenAdapter: AbsTableViewAdapter<MainItem>, TokenCellDelegate {
     func didSelected(indexPath: IndexPath) {
         dataSource[indexPath.row].hide = dataSource[indexPath.row].hide == "Y" ? "N" : "Y"
         tableView(self.tableView!, didSelectRowAt: indexPath)
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: ThemeManager.currentTheme())
     }
 }
 

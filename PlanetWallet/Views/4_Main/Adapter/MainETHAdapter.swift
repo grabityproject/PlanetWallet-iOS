@@ -20,12 +20,13 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     //MARK: - TableView Datasource
     override func createCell(data: MainItem, position: Int) -> UITableViewCell? {
         guard let table = tableView else { return nil }
+        setCellHeight(height: 70)
         return table.dequeueReusableCell(withIdentifier: ethCellID)
     }
     
     override func bindData(cell: UITableViewCell, data: MainItem, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
-        setCellHeight(height: 70)
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
         if let cell = cell as? ETHCoinCell {
             
@@ -33,7 +34,7 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
             
             cell.balanceLb.text = CoinNumberFormatter.full.toMaxUnit(balance: data.getBalance(), item: data)
             cell.coinLb.text = data.symbol
-            cell.currencyLb.text = "";
+//            cell.currencyLb.text = "";
             
             if let img_path = data.img_path{
                 if data.getCoinType() == CoinType.ETH.coinType {
@@ -46,7 +47,4 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
         
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: ThemeManager.currentTheme())
-    }
 }

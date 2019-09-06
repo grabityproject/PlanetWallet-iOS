@@ -123,7 +123,7 @@ class TransferConfirmController: PlanetWalletViewController {
         // Coin Image && nonce, utxos
         if mainItem.getCoinType() == CoinType.BTC.coinType {
             
-            toAddressCoinImgView.image = UIImage(named: "imageTransferConfirmationBtc02")
+            toAddressCoinImgView.defaultImage = UIImage(named: "imageTransferConfirmationBtc02")
             
             if let fromAddress =  tx.from{
                 Get(self).action(
@@ -136,7 +136,7 @@ class TransferConfirmController: PlanetWalletViewController {
             
         }else if mainItem.getCoinType() == CoinType.ETH.coinType {
             
-            toAddressCoinImgView.image = UIImage(named: "eth")
+            toAddressCoinImgView.defaultImage = UIImage(named: "eth")
             
             if let fromAddress =  tx.from{
                 Get(self).action(
