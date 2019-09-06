@@ -19,6 +19,7 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
     }
     
     override func createCell(data: Planet, position: Int) -> UITableViewCell? {
+        setCellHeight(height: 100)
         return tableView?.dequeueReusableCell(withIdentifier: cellID)
     }
     
@@ -26,7 +27,6 @@ class PlanetManageAdapter: AbsTableViewAdapter<Planet>{
         super.bindData(cell: cell, data: data, position: position)
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
-        setCellHeight(height: 100)
         let planetCell = cell as! PlanetCell
         if let address = data.address {
             planetCell.addressLb.text = Utils.shared.trimAddress(address)

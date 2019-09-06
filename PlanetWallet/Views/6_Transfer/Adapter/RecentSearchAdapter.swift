@@ -26,6 +26,7 @@ class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
     
     override func createCell(data: Planet, position: Int) -> UITableViewCell? {
         if let table = tableView{
+            setCellHeight(height: 70)
             return table.dequeueReusableCell(withIdentifier: contactCellID)
         }
         return nil
@@ -34,8 +35,6 @@ class RecentSearchAdapter: AbsTableViewAdapter<Planet> {
     override func bindData(cell: UITableViewCell, data: Planet, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
-        
-        setCellHeight(height: 70)
         
         let item = cell as! ContactCell
         if let address = data.address {

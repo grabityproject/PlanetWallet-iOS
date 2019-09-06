@@ -27,6 +27,8 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
     
     override func createCell(data: Planet, position: Int) -> UITableViewCell? {
         if let table = tableView{
+            setCellHeight(height: 85)
+            
             if( data.name == nil ){
                 return table.dequeueReusableCell(withIdentifier: contactAddressCellID)
             }else{
@@ -62,9 +64,6 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
             item.planetName.text = data.name
             item.isRecentSearch = false
         }
-        
-        
-        setCellHeight(height: 85)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

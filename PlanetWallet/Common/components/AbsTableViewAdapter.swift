@@ -48,7 +48,7 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
     }
     
     private func onCreateCell( cell:UITableViewCell, indexPath:IndexPath ){
-        bindData(cell: cell, data: dataSource[indexPath.row], position: indexPath.row )
+        
     }
     
     func findAllViews( view:UIView, theme:Theme ){
@@ -102,6 +102,7 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.bindData(cell: cell, data: dataSource[indexPath.row], position: indexPath.row)
         delegates.forEach { (delegate) in
             delegate.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
         }

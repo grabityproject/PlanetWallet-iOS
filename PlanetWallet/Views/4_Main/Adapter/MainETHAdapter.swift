@@ -20,6 +20,7 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     //MARK: - TableView Datasource
     override func createCell(data: MainItem, position: Int) -> UITableViewCell? {
         guard let table = tableView else { return nil }
+        setCellHeight(height: 70)
         
         if data.getCoinType() == CoinType.ERC20.coinType ||
             data.getCoinType() == CoinType.ETH.coinType
@@ -32,7 +33,6 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     override func bindData(cell: UITableViewCell, data: MainItem, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
-        setCellHeight(height: 70)
         
         if data.getCoinType() == CoinType.ERC20.coinType {
             let erc20Cell = cell as? ETHCoinCell
@@ -43,4 +43,21 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
             ethCell?.eth = data as? ETH
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+//        findAllViews(view: cell, theme: ThemeManager.currentTheme())
+//        print("willDisplay : \(indexPath.row)")
+//
+//        let data = dataSource[indexPath.row]
+//
+//        if data.getCoinType() == CoinType.ERC20.coinType {
+//            let erc20Cell = cell as? ETHCoinCell
+//            erc20Cell?.erc20 = data as? ERC20
+//        }
+//        else if data.getCoinType() == CoinType.ETH.coinType {
+//            let ethCell = cell as? ETHCoinCell
+//            ethCell?.eth = data as? ETH
+//        }
+//    }
 }

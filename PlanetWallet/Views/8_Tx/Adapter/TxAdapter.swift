@@ -21,6 +21,8 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
     
     override func createCell(data: Tx, position: Int) -> UITableViewCell? {
         if let table = tableView{
+            setCellHeight(height: 70)
+            
             return table.dequeueReusableCell(withIdentifier: cellID)
         }
         return nil
@@ -30,7 +32,6 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         super.bindData(cell: cell, data: data, position: position)
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
         
-        setCellHeight(height: 70)
         cell.backgroundColor = .clear
         
         guard let txCell = cell as? TransactionCell,

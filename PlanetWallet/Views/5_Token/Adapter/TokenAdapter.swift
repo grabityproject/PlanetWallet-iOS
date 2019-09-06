@@ -18,6 +18,8 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
     }
     
     override func createCell(data: ERC20, position: Int) -> UITableViewCell? {
+        setCellHeight(height: 70)
+        
         if let table = tableView{
             return table.dequeueReusableCell(withIdentifier: cellID)
         }
@@ -27,8 +29,6 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
     override func bindData(cell: UITableViewCell, data: ERC20, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
         findAllViews(view: cell, theme: ThemeManager.currentTheme())
-        
-        setCellHeight(height: 70)
         
         let tokenCell = cell as! TokenCell
         tokenCell.delegate = self
