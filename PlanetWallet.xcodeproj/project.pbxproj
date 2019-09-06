@@ -21,6 +21,8 @@
 		0423EFAE230B8E0000CE8174 /* BitcoinUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423EFAD230B8E0000CE8174 /* BitcoinUnit.swift */; };
 		0423EFB0230B9A8700CE8174 /* Extension + Decimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423EFAF230B9A8700CE8174 /* Extension + Decimal.swift */; };
 		0423EFB2230BD27100CE8174 /* RecentSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423EFB1230BD27100CE8174 /* RecentSearchAdapter.swift */; };
+		0424E6DA2321FA1100725C71 /* ConfirmOpponentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0424E6D92321FA1100725C71 /* ConfirmOpponentView.xib */; };
+		0424E6DC2321FB5D00725C71 /* ConfirmOpponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424E6DB2321FB5D00725C71 /* ConfirmOpponentView.swift */; };
 		04278B6022FD59FC0018CC4C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B5F22FD59FC0018CC4C /* Search.swift */; };
 		04278B6222FD61790018CC4C /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B6122FD61790018CC4C /* SearchStore.swift */; };
 		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
@@ -247,6 +249,8 @@
 		0423EFAD230B8E0000CE8174 /* BitcoinUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinUnit.swift; sourceTree = "<group>"; };
 		0423EFAF230B9A8700CE8174 /* Extension + Decimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Decimal.swift"; sourceTree = "<group>"; };
 		0423EFB1230BD27100CE8174 /* RecentSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchAdapter.swift; sourceTree = "<group>"; };
+		0424E6D92321FA1100725C71 /* ConfirmOpponentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmOpponentView.xib; sourceTree = "<group>"; };
+		0424E6DB2321FB5D00725C71 /* ConfirmOpponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOpponentView.swift; sourceTree = "<group>"; };
 		04278B5F22FD59FC0018CC4C /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		04278B6122FD61790018CC4C /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -976,6 +980,8 @@
 				04BA0B0B22B7625700A25A93 /* ContactCell.xib */,
 				04BA0B0D22B76AA000A25A93 /* ContactAddrCell.xib */,
 				04BA0B0F22B76AB000A25A93 /* ContactAddrCell.swift */,
+				0424E6D92321FA1100725C71 /* ConfirmOpponentView.xib */,
+				0424E6DB2321FB5D00725C71 /* ConfirmOpponentView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1259,6 +1265,7 @@
 				04A551C722A794EF007A17A3 /* 3_Wallet.storyboard in Resources */,
 				04A551CA22A794EF007A17A3 /* 7_3_Security.storyboard in Resources */,
 				04A551C822A794EF007A17A3 /* 7_1_Planet.storyboard in Resources */,
+				0424E6DA2321FA1100725C71 /* ConfirmOpponentView.xib in Resources */,
 				04A551CB22A794EF007A17A3 /* 6_Transfer.storyboard in Resources */,
 				04A551C622A794EF007A17A3 /* 7_2_Account.storyboard in Resources */,
 				04C82C8A2288FAE400235883 /* WorkSans-Regular.otf in Resources */,
@@ -1470,6 +1477,7 @@
 				04200F6522A66DDE00FE2A31 /* PlanetNameController.swift in Sources */,
 				044BC58A227944A400FD7E5E /* TokenListController.swift in Sources */,
 				049C38D9230CF9C000AA7FA6 /* TopMenuLauncher.swift in Sources */,
+				0424E6DC2321FB5D00725C71 /* ConfirmOpponentView.swift in Sources */,
 				049C38DC230CF9C000AA7FA6 /* BottomMenuLauncher.swift in Sources */,
 				04DAC114228967D3005AA183 /* AbsSlideUpView.swift in Sources */,
 				0416AE9022E70E0E00009DCD /* BiometricManager.swift in Sources */,

@@ -14,9 +14,6 @@
         <array key="WorkSans-Medium.otf">
             <string>WorkSans-Medium</string>
         </array>
-        <array key="WorkSans-Regular.otf">
-            <string>WorkSans-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ETHCoinCell" customModule="PlanetWallet" customModuleProvider="target">
@@ -25,7 +22,6 @@
                 <outlet property="coinIconImgView" destination="K5T-1h-MPD" id="FHw-yN-IUb"/>
                 <outlet property="coinLb" destination="YEW-xQ-oEs" id="b3G-Qw-Cas"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="meB-yW-JRp"/>
-                <outlet property="currencyLb" destination="smp-3K-oxv" id="KXE-fh-H1R"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -52,7 +48,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qe-kX-GhK" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="311.5" y="11.5" width="18.5" height="23.5"/>
+                    <rect key="frame" x="311.5" y="23.5" width="18.5" height="23.5"/>
                     <fontDescription key="fontDescription" name="WorkSans-Medium" family="Work Sans" pointSize="16"/>
                     <color key="textColor" name="textColorDark"/>
                     <nil key="highlightedColor"/>
@@ -72,17 +68,6 @@
                         <userDefinedRuntimeAttribute type="image" keyPath="themeImage" value="imageArrowRightBlue"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-3K-oxv" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                    <rect key="frame" x="293.5" y="37" width="36.5" height="17.5"/>
-                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="12"/>
-                    <color key="textColor" name="detailTextDark"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                            <color key="value" name="detailTextLight"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -90,11 +75,9 @@
                 <constraint firstItem="x2p-N7-O64" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="EOV-Id-Rhw"/>
                 <constraint firstAttribute="trailing" secondItem="x2p-N7-O64" secondAttribute="trailing" constant="15" id="KMm-mD-2mC"/>
                 <constraint firstItem="YEW-xQ-oEs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R4e-s3-Qha"/>
-                <constraint firstItem="smp-3K-oxv" firstAttribute="top" secondItem="2Qe-kX-GhK" secondAttribute="bottom" constant="2" id="kxR-E3-7eb"/>
-                <constraint firstItem="smp-3K-oxv" firstAttribute="trailing" secondItem="2Qe-kX-GhK" secondAttribute="trailing" id="lFw-Az-SK2"/>
+                <constraint firstItem="2Qe-kX-GhK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kp2-ml-4nN"/>
                 <constraint firstItem="K5T-1h-MPD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ok1-eC-9zy"/>
                 <constraint firstItem="K5T-1h-MPD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qRy-Df-eob"/>
-                <constraint firstItem="2Qe-kX-GhK" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rq8-VI-X7T"/>
                 <constraint firstItem="YEW-xQ-oEs" firstAttribute="leading" secondItem="K5T-1h-MPD" secondAttribute="trailing" constant="10" id="sbW-Ew-EU4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -110,12 +93,6 @@
         <image name="eth" width="60" height="60"/>
         <image name="imageArrowRightBlue" width="30" height="30"/>
         <image name="imageArrowRightGray" width="30" height="30"/>
-        <namedColor name="detailTextDark">
-            <color red="0.36078431372549019" green="0.34901960784313724" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="detailTextLight">
-            <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="textColorDark">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

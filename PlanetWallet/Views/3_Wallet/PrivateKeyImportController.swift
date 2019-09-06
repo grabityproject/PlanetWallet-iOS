@@ -132,21 +132,8 @@ extension PrivateKeyImportController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text else { return false }
-        //Regex 0...9 && a...f && A...F
-        do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Fa-f0-9].*", options: [])
-            if regex.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) != nil {
-                isValidPrivateKey = false
-                return false
-            }
-        }
-        catch {
-            print("ERROR")
-        }
         
-        let length = textFieldText.utf16.count + string.utf16.count - range.length
-        
-        if length >= 1 {
+        if textFieldText.utf16.count + string.utf16.count - range.length >= 1 {
             isValidPrivateKey = true
         }
         else {

@@ -220,7 +220,7 @@ class PlanetGenerateController: PlanetWalletViewController {
             
             if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {
                 
-                if let isRootMain = userInfo?["rootMain"] as? Bool {
+                if let isRootMain = userInfo?["isFromMain"] as? Bool {
                     if isRootMain {
                         Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyID)
                     }

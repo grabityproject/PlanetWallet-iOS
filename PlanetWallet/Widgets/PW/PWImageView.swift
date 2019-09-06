@@ -50,6 +50,9 @@ let imageCache = NSCache<AnyObject, AnyObject>()
             if( defaultBorderColor == nil ){
                 defaultBorderColor = borderColor;
             }
+            if( defaultImage == nil ){
+                defaultImage = self.image
+            }
             
             self.backgroundColor = self.themeBackgroundColor
             self.layer.borderColor = themeBorderColor?.cgColor

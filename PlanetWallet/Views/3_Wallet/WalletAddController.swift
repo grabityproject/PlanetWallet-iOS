@@ -35,15 +35,11 @@ class WalletAddController: PlanetWalletViewController {
             popup.dismiss()
             
             if let fromSegue = strongSelf.userInfo?[Keys.UserInfo.fromSegue] as? String {
-                var isRootMain = false
-                
-                if fromSegue == Keys.Segue.MAIN_TO_WALLET_ADD {
-                    isRootMain = true
-                }
+                let isFromMain = fromSegue == Keys.Segue.MAIN_TO_WALLET_ADD ? true : false
                 
                 let userInfo = [Keys.UserInfo.universe : coinType.name,
                                 Keys.UserInfo.fromSegue : Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
-                                "rootMain" : isRootMain] as [String : Any]
+                                "isFromMain" : isFromMain] as [String : Any]
                 strongSelf.sendAction(segue: Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE,
                                       userInfo: userInfo)
             }
@@ -62,7 +58,11 @@ class WalletAddController: PlanetWalletViewController {
             guard let strongSelf = self else { return }
             popup.dismiss()
             
-            let userInfo = [Keys.UserInfo.universe : coinType.name]
+            guard let fromSegue = strongSelf.userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
+            
+            let isFromMain = fromSegue == Keys.Segue.MAIN_TO_WALLET_ADD ? true : false
+            let userInfo = [Keys.UserInfo.universe : coinType.name,
+                            "isFromMain" : isFromMain] as [String : Any]
             
             if let importPlanetController = UIStoryboard(name: "3_Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletImportController") as? WalletImportController {
                 

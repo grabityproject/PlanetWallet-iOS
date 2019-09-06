@@ -42,7 +42,8 @@ class MnemonicImportController: PlanetWalletViewController {
     
     override func setData() {
         super.setData()
-        guard let userInfo = userInfo, let universeType = userInfo[Keys.UserInfo.universe] as? String else { return }
+        guard let userInfo = userInfo,
+            let universeType = userInfo[Keys.UserInfo.universe] as? String else { return }
         
         if universeType == CoinType.BTC.name {
             planet.coinType = CoinType.BTC.coinType
@@ -59,42 +60,30 @@ class MnemonicImportController: PlanetWalletViewController {
     
     @IBAction func didTouchedContinue(_ sender: UIButton) {
         guard let coinType = planet.coinType else { return }
+        
+        var importedPlanet: Planet?
+        
         if coinType == CoinType.BTC.coinType{
-            
-            let importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
-            
-            if let keyId = importedPlanet.keyId{
-                
-                if PlanetStore.shared.get(keyId) != nil{
-                    Toast.init(text: "mnemonic_import_exists_title".localized).show()
-                    
-                }else{
-                    let info = [Keys.UserInfo.planet:importedPlanet]
-                    sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
-                    return
-                }
-            }
-            else {
-                Toast.init(text: "mnemonic_import_not_match_title".localized).show()
-            }
+            importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
         }else if coinType == CoinType.ETH.coinType{
+            importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
+        }
+        
+        if let planet = importedPlanet, let keyId = importedPlanet?.keyId {
             
-            let importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
-            
-            if let keyId = importedPlanet.keyId{
+            if PlanetStore.shared.get(keyId) != nil{
+                Toast.init(text: "mnemonic_import_exists_title".localized).show()
                 
-                if PlanetStore.shared.get(keyId) != nil{
-                    Toast.init(text: "mnemonic_import_exists_title".localized).show()
-                    
-                }else{
-                    let info = [Keys.UserInfo.planet:importedPlanet]
-                    sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: info)
-                    return
+            }else{
+                if let isFromMain = userInfo?["isFromMain"] as? Bool {
+                    sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: [Keys.UserInfo.planet: planet,
+                                                                                            "isFromMain" : isFromMain])
                 }
+                return
             }
-            else {
-                Toast.init(text: "mnemonic_import_not_match_title".localized).show()
-            }
+        }
+        else {
+            Toast.init(text: "mnemonic_import_not_match_title".localized).show()
         }
     }
     

@@ -14,7 +14,6 @@ class ETHCoinCell: PWTableCell {
     @IBOutlet var coinIconImgView: PWImageView!
     @IBOutlet var coinLb: PWLabel!
     @IBOutlet var balanceLb: PWLabel!
-    @IBOutlet var currencyLb: PWLabel!
     
     public var erc20: ERC20? {
         didSet {
@@ -31,11 +30,9 @@ class ETHCoinCell: PWTableCell {
                 else {
                     balanceLb.text = CoinNumberFormatter.short.toMaxUnit(balance: balance, item: erc20)
                 }
-                currencyLb.text = "0 USD" //TODO: - CoinMarketCap API
             }
             else {
                 balanceLb.text = "0"
-                currencyLb.text = "0 USD"
             }
             
             coinLb.text = erc20.symbol
@@ -53,7 +50,6 @@ class ETHCoinCell: PWTableCell {
             else {
                 balanceLb.text = CoinNumberFormatter.short.toMaxUnit(balance: eth.balance, coinType: CoinType.ETH)
             }
-            currencyLb.text = "0 USD"
             
             coinLb.text = eth.symbol
         }

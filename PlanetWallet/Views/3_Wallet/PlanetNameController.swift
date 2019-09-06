@@ -77,6 +77,13 @@ class PlanetNameController: PlanetWalletViewController {
             let isSuccess = returnVo.success else { return }
         
         if isSuccess {
+            
+            if let isFromMain = userInfo?["isFromMain"] as? Bool,
+                let keyId = planet.keyId,
+                isFromMain == true {
+                Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
+            }
+            
             PlanetStore.shared.save(planet)
             sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q86-7P-w4P">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,11 +24,11 @@
             <objects>
                 <viewController storyboardIdentifier="TxListController" id="q86-7P-w4P" customClass="TxListController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AAQ-Ij-x9G" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qme-eB-Fim" customClass="NavigationBar" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="qt2-Uv-vAB"/>
@@ -59,10 +59,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-g5-Dng">
-                                <rect key="frame" x="0.0" y="86" width="320" height="482"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="KRZ-Id-bZA" userLabel="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="253"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="253"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rL1-mY-Twq" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -133,17 +133,6 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jU-PR-w5d" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                            <rect key="frame" x="136.5" y="119" width="47" height="23.5"/>
-                                            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="16"/>
-                                            <color key="textColor" name="detailTextDark"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
-                                                    <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="aBi-76-FIZ" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                                             <rect key="frame" x="142.5" y="25" width="35" height="35"/>
                                             <constraints>
@@ -173,10 +162,8 @@
                                         <constraint firstAttribute="trailing" secondItem="CnF-g0-BZM" secondAttribute="trailing" id="CvO-X8-0vC"/>
                                         <constraint firstItem="LyR-pX-O4Z" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="GjT-4q-9gQ"/>
                                         <constraint firstItem="rL1-mY-Twq" firstAttribute="top" secondItem="KRZ-Id-bZA" secondAttribute="top" constant="75" id="Jdv-9e-jlT"/>
-                                        <constraint firstItem="8jU-PR-w5d" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="NXd-di-QdI"/>
                                         <constraint firstAttribute="trailing" secondItem="LyR-pX-O4Z" secondAttribute="trailing" constant="20" id="Qhd-hG-8eR"/>
                                         <constraint firstAttribute="bottom" secondItem="CnF-g0-BZM" secondAttribute="bottom" constant="1" id="Sdi-ib-EZD"/>
-                                        <constraint firstItem="8jU-PR-w5d" firstAttribute="top" secondItem="rL1-mY-Twq" secondAttribute="bottom" constant="3" id="cIy-Df-sCA"/>
                                         <constraint firstItem="aBi-76-FIZ" firstAttribute="centerX" secondItem="KRZ-Id-bZA" secondAttribute="centerX" id="epN-61-IvC"/>
                                         <constraint firstItem="rL1-mY-Twq" firstAttribute="leading" secondItem="KRZ-Id-bZA" secondAttribute="leading" constant="15" id="hkH-05-ApE"/>
                                         <constraint firstAttribute="bottom" secondItem="LyR-pX-O4Z" secondAttribute="bottom" constant="30" id="jW8-lp-OvQ"/>
@@ -184,6 +171,29 @@
                                         <constraint firstItem="rL1-mY-Twq" firstAttribute="top" secondItem="aBi-76-FIZ" secondAttribute="bottom" constant="15" id="mvp-xY-RMC"/>
                                         <constraint firstItem="LyR-pX-O4Z" firstAttribute="leading" secondItem="KRZ-Id-bZA" secondAttribute="leading" constant="20" id="nfC-si-9so"/>
                                         <constraint firstItem="CnF-g0-BZM" firstAttribute="leading" secondItem="KRZ-Id-bZA" secondAttribute="leading" id="wvE-D2-Hns"/>
+                                    </constraints>
+                                </view>
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="wOp-hK-YVe" userLabel="FooterView">
+                                    <rect key="frame" x="0.0" y="253" width="375" height="121"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t made any transaction yet :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRQ-aw-zP9" userLabel="EmptyMsgLb" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                            <rect key="frame" x="113" y="80" width="149.5" height="41"/>
+                                            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                    <color key="value" red="0.66274509803921566" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="main_footer_no_btc_history"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="XRQ-aw-zP9" firstAttribute="centerX" secondItem="wOp-hK-YVe" secondAttribute="centerX" id="0rm-va-kPn"/>
+                                        <constraint firstAttribute="bottom" secondItem="XRQ-aw-zP9" secondAttribute="bottom" id="2i1-QJ-X4Z"/>
                                     </constraints>
                                 </view>
                                 <connections>
@@ -211,6 +221,7 @@
                     </view>
                     <connections>
                         <outlet property="balanceLb" destination="rL1-mY-Twq" id="ieJ-yg-6qv"/>
+                        <outlet property="footerView" destination="wOp-hK-YVe" id="dej-Fg-07g"/>
                         <outlet property="iconImgView" destination="aBi-76-FIZ" id="K5F-LY-kaM"/>
                         <outlet property="naviBar" destination="Qme-eB-Fim" id="jyA-29-nH7"/>
                         <outlet property="tableView" destination="iHH-g5-Dng" id="YoW-5z-dmf"/>
@@ -236,11 +247,11 @@
             <objects>
                 <viewController id="XrW-8k-2Ek" customClass="DetailAddressController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QeW-pF-lpS" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDU-7V-kot" customClass="NavigationBar" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="Fgx-He-0VO"/>
@@ -271,16 +282,16 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAb-j8-BwR" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="320" height="482"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0y-rP-BqC" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aYV-aB-qrz">
-                                                <rect key="frame" x="21" y="393" width="278" height="55"/>
+                                                <rect key="frame" x="21" y="492" width="333" height="55"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyq-t3-rCI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="134" height="55"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="161.5" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="eLf-hu-mu6"/>
                                                         </constraints>
@@ -311,7 +322,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrM-Wt-DkB">
-                                                        <rect key="frame" x="144" y="0.0" width="134" height="55"/>
+                                                        <rect key="frame" x="171.5" y="0.0" width="161.5" height="55"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                         <state key="normal" title="Transfer">
@@ -339,13 +350,13 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-Nf-eHI">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="393"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="492"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYp-YM-M3S">
-                                                        <rect key="frame" x="0.0" y="50" width="320" height="293"/>
+                                                        <rect key="frame" x="0.0" y="99.5" width="375" height="293"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aoy-D0-PHO" userLabel="QR Container">
-                                                                <rect key="frame" x="70" y="0.0" width="180" height="180"/>
+                                                                <rect key="frame" x="97.5" y="0.0" width="180" height="180"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AsR-5V-3sl">
                                                                         <rect key="frame" x="6" y="6" width="168" height="168"/>
@@ -413,13 +424,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0xf291b69799516156fAA7F9ed4c39536335Ab797A" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="796-JE-WCa">
-                                                                <rect key="frame" x="63" y="254.5" width="195" height="41"/>
+                                                                <rect key="frame" x="63" y="254.5" width="250" height="41"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfE-xF-1Q6">
-                                                                <rect key="frame" x="15" y="220" width="290" height="26.5"/>
+                                                                <rect key="frame" x="15" y="220" width="345" height="26.5"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -965,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXO-Ad-okP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="448"/>
+            <point key="canvasLocation" x="704" y="519"/>
         </scene>
     </scenes>
     <resources>
