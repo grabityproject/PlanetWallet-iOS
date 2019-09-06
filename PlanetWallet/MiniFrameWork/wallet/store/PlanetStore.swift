@@ -59,6 +59,16 @@ class PlanetStore {
         if let keyId = planet.keyId{
             if m[keyId] == nil {
                 _ = PWDBManager.shared.insert(planet)
+                
+                let mainItem = MainItem( );
+                mainItem.keyId = planet.keyId;
+                mainItem.coinType = planet.coinType;
+                mainItem.balance = "0";
+                mainItem.hide = "N" ;
+                mainItem.name = CoinType.of( planet.coinType! ).coinName;
+                mainItem.symbol = CoinType.of( planet.coinType! ).name;
+                _ = PWDBManager.shared.insert( mainItem );
+                
                 m[keyId] = planet
             }
         }

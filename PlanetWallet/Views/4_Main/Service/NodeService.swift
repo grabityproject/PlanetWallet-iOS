@@ -62,20 +62,13 @@ class NodeService: NSObject {
                 for i in 0..<items.count{
                     
                     let item = items[i]
-                 
-                    if item.getCoinType() == CoinType.ETH.coinType {
+
+                    if let symbol = item.symbol {
                         
-                        Get( networkDelegates[coinType] ).action(Route.URL("balance", "ETH" , planet.address!), requestCode: id, resultCode: i, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
+                        Get( networkDelegates[coinType] ).action(Route.URL("balance", symbol , planet.address!), requestCode: id, resultCode: i, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
                         
-                    } else if item.getCoinType() == CoinType.ERC20.coinType {
-                        
-                        if let item = item as? ERC20, let symbol = item.symbol {
-                            
-                            Get( networkDelegates[coinType] ).action(Route.URL("balance", symbol , planet.address!), requestCode: id, resultCode: i, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
-                            
-                        }
                     }
-                    
+
                 }
             }
         }
@@ -98,14 +91,19 @@ class EthNetworkDelegate:Node{
                 
                 if requestCode == 0 {
                     if let json = dict["result"] as? [String: Any]{
-                        let planetVO = Planet(JSON: json)
-                        
-                        if let planet = self.planet, let keyId = planet.keyId {
-                            self.planet?.balance = planetVO!.balance!
-                            _ = PWDBManager.shared.update(planet, "keyId='\(keyId)'")
+                        let balance = MainItem(JSON: json)
+
+                        if let planet = planet, let mainItem = planet.getMainItem() {
+                            mainItem.balance = balance?.balance
+                    
+                            print(mainItem.name)
+                            print(mainItem.symbol)
+                            print(mainItem._id)
+                            
+                            MainItemStore.shared.update( mainItem )
                         }
                         
-                        delegate?.onBalance(self.planet!, planetVO!.balance! )
+                        delegate?.onBalance(self.planet!, balance!.balance! )
                     }
                 }else {
                     
@@ -114,25 +112,18 @@ class EthNetworkDelegate:Node{
                         if requestCode > 0 && id == requestCode {
                             
                             if let json = dict["result"] as? [String: Any]{
-                                if let p = Planet(JSON: json), let balance = p.balance {
-                                    
-                                    if planet.items![resultCode].getCoinType() == CoinType.ETH.coinType {
-                                        
-                                        ( planet.items![resultCode] as! ETH ).balance = balance
-                                        
-                                    }else if planet.items![resultCode].getCoinType() == CoinType.ERC20.coinType {
-                                        
-                                        ( planet.items![resultCode] as! ERC20 ).balance = balance
-                                        
-                                        if let token = planet.items![resultCode] as? ERC20, let keyId = token.keyId, let contract = token.contract {
-                                            _ = PWDBManager.shared.update(token, "keyId='\(keyId)' AND contract='\(contract)'")
-                                        }
-                                    }
+                                
+                                print(json)
+                                
+                                if let i = MainItem(JSON: json), let balance = i.balance {
+
+                                    planet.items![resultCode].balance = balance
+                                    MainItemStore.shared.update( planet.items![resultCode] )
                                     
                                 }
-                                
+
                             }
-                            
+                        
                         }
                         
                         if parallelTaskCount == 0 {
@@ -153,25 +144,24 @@ class BtcNetworkDelegate:Node{
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         
         if success {
-            
             if let dict = dictionary {
-                
                 if requestCode == 0 {
-                    
                     if let json = dict["result"] as? [String: Any]{
-                        let planetVO = Planet(JSON: json)
+                        let balance = MainItem(JSON: json)
                         
-                        if let planet = self.planet, let keyId = planet.keyId, let vo = planetVO, let voBalance = vo.balance {
-                            self.planet?.balance = voBalance//planetVO!.balance!
-                            _ = PWDBManager.shared.update(planet, "keyId='\(keyId)'")
+                        if let planet = planet, let mainItem = planet.getMainItem() {
+                            mainItem.balance = balance?.balance
+                            
+                            print(mainItem.name)
+                            print(mainItem.symbol)
+                            print(mainItem._id)
+                            
+                            MainItemStore.shared.update( mainItem )
                         }
-                        
-                        delegate?.onBalance(self.planet!, planet!.balance! )
+                        delegate?.onBalance(self.planet!, balance!.balance! )
                     }
-                    
                 }
                 else if requestCode == 1 {
-                    
                     var txList = [Tx]();
                     if let items = dict["result"] as? [[String: Any]]{
                         items.forEach { (json) in
@@ -180,12 +170,9 @@ class BtcNetworkDelegate:Node{
                     }
                     delegate?.onTxList(self.planet!, txList)
                 }
-                
             }
         }
     }
-    
-    
 }
 
 

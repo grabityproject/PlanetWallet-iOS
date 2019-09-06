@@ -81,47 +81,33 @@ class BottomPanelComponent: ViewComponent, Themable {
         
         if CoinType.of(coinType).coinType == CoinType.BTC.coinType {
             
-            let item = BTC()
-            item.balance = planet.balance ?? "0"
-            self.setMainItem(item)
+            if let item = planet.getMainItem(){
+                self.setMainItem(item)
+            }
             
         }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
 
             if( self.planet == nil ){
                 
-                let item = ETH()
-                item.balance = planet.balance ?? "0"
-                self.setMainItem(item)
+                self.planet = planet
+                if let item = planet.getMainItem(){
+                    self.setMainItem(item)
+                }
                 
             }else{
                 
                 if( self.planet?.keyId != planet.keyId ){
                     
-                    let item = ETH()
-                    item.balance = planet.balance ?? "0"
-                    self.setMainItem(item)
+                    tokenIndex = 0
                     
                 }else{
                     
-                    if let mainItem = mainItem{
+                    if let items = planet.items {
                         
-                        if( CoinType.of(mainItem.getCoinType()).coinType == CoinType.ETH.coinType ){
-                            
-                            let item = ETH()
-                            item.balance = planet.balance ?? "0"
-                            self.setMainItem(item)
-                            
-                        }else if( CoinType.of(mainItem.getCoinType()).coinType == CoinType.ERC20.coinType ){
-                            
-                            if let items = planet.items{
-
-                                setMainItem(items[tokenIndex])
-                                
-                            }
-                            
-                        }
-                        
+                        // Catch Index Out of bounds
+                        setMainItem(items[tokenIndex])
                     }
+                    
                 }
                 
             }
@@ -134,39 +120,33 @@ class BottomPanelComponent: ViewComponent, Themable {
     func setMainItem(_ mainItem:MainItem ){
         self.mainItem = mainItem
         
-        if( type(of: mainItem) == BTC.self ){
-            
-            let item:BTC = mainItem as! BTC
+        if( mainItem.getCoinType() == CoinType.BTC.coinType ){
             
             imageIcon.image = UIImage(named: "imageTransferConfirmationBtc02")
             labelName.text = CoinType.BTC.coinName
             labelUnit.text = CoinType.BTC.name
             
-            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: item.balance, coinType: CoinType.BTC)
+            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: mainItem.getBalance(), coinType: CoinType.BTC)
             
             btnNext.isHidden = true
         
-        }else if( type(of: mainItem) == ETH.self ){
+        }else if( mainItem.getCoinType() == CoinType.ETH.coinType ){
             
-            let item:ETH = mainItem as! ETH
-
             imageIcon.image = UIImage(named: "eth")
             labelName.text = CoinType.ETH.coinName
             labelUnit.text = CoinType.ETH.name
-            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: item.balance, coinType: CoinType.ETH)
+            labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: mainItem.getBalance(), coinType: CoinType.ETH)
             
             btnNext.isHidden = false
             
             tokenIndex = 0;
             
-        }else if( type(of: mainItem) == ERC20.self ){
+        }else if( mainItem.getCoinType() == CoinType.ERC20.coinType ){
             
-            let item:ERC20 = mainItem as! ERC20
-            
-            imageIcon.loadImageWithPath(Route.URL(item.img_path!))
-            labelName.text = item.name
-            labelUnit.text = item.symbol
-            labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: item.balance!, from: 0, to: Int(item.decimals!)!)
+            imageIcon.loadImageWithPath(Route.URL(mainItem.img_path!))
+            labelName.text = mainItem.name
+            labelUnit.text = mainItem.symbol
+            labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: mainItem.getBalance(), from: 0, to: Int(mainItem.decimals!)!)
             
             btnNext.isHidden = false
             
@@ -181,7 +161,6 @@ class BottomPanelComponent: ViewComponent, Themable {
         var changed = false;
         
         tokenIndex = tokenIndex + 1;
-        
         if ( tokenIndex >= items.count ) {
             tokenIndex = 0;
         }
@@ -198,14 +177,13 @@ class BottomPanelComponent: ViewComponent, Themable {
                 
                 tokenIndex = i
                 
-                let item = items[i] as! ERC20
-                if let balance = item.balance{
-                    if balance != "" && balance != "0" {
-                        setMainItem(items[i])
-                        changed = true
-                        break
-                    }
+                let item = items[i]
+                if item.getBalance( ) != "" && item.getBalance( ) != "0" {
+                    setMainItem(items[i])
+                    changed = true
+                    break
                 }
+
             }
             
         }

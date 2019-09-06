@@ -29,15 +29,15 @@ class TransferController: PlanetWalletViewController {
     
     @IBOutlet var tableTopConstraint: NSLayoutConstraint!
     
-    var planet:Planet?
-    var erc20: ERC20?
+    var planet:Planet = Planet()
+    var mainItem:MainItem = MainItem()
+    var tx:Tx = Tx()
     
     var planetSearchAdapter: PlanetSearchAdapter?
     var searchingDatasource = [Planet]()
     var recentSearchAdapter: RecentSearchAdapter?
     var recentDatasource = [Planet]()
-    
-    var selectedSymbol = ""
+   
     var search:String = ""
     
     var qrCaptureController: QRCaptureController?
@@ -66,7 +66,6 @@ class TransferController: PlanetWalletViewController {
         naviBar.delegate = self
         naviBar.title = "transfer_toolbar_title".localized
         
-        
         if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
             textField.attributedPlaceholder = NSAttributedString(string: "transfer_search_title".localized,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
@@ -76,34 +75,28 @@ class TransferController: PlanetWalletViewController {
     
     override func setData() {
         
-        guard let userInfo = self.userInfo,
+        guard
+            let userInfo = self.userInfo,
             let planet = userInfo[Keys.UserInfo.planet] as? Planet,
-            let keyId = planet.keyId,
-            let coinType = planet.coinType else { return }
-        
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol {
-            self.erc20 = erc20
-            selectedSymbol = symbol
-        }
-        else {
-            if coinType == CoinType.BTC.coinType {
-                selectedSymbol = "BTC"
-            }
-            else if coinType == CoinType.ETH.coinType {
-                selectedSymbol = "ETH"
-            }
-        }
+            let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem else { self.navigationController?.popViewController(animated: false); return }
         
         self.planet = planet
+        self.mainItem = mainItem
         
-//        planetSearchAdapter = PlanetSearchAdapter(tableView, [])
-        self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
-        SyncManager.shared.syncRecentSearch(self, planet: planet, symbol: selectedSymbol)
-        self.tableState = .RECENT_SEARCH
+        tx.from = planet.address
+        tx.from_planet = planet.name
+        tx.symbol = mainItem.symbol
         
-//        updateUI()
         
         showPasteBtn()
+        
+        if let keyId = planet.keyId, let symbol = mainItem.symbol {
+            self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: symbol, descending: true)
+            SyncManager.shared.syncRecentSearch(self, planet: planet, symbol: symbol)
+        }
+        
+        self.tableState = .RECENT_SEARCH
+        
     }
     
     override func onUpdateTheme(theme: Theme) {
@@ -150,13 +143,6 @@ class TransferController: PlanetWalletViewController {
     }
     
     private func isValidAddr(_ address: String) -> Bool {
-        guard let planet = self.planet else { return false }
-        
-        if let erc20 = erc20 {
-            if ( erc20.getCoinType() == CoinType.ERC20.coinType ) && EthereumManager.shared.validateAddress(address) {
-                return true
-            }
-        }
         
         if ( planet.coinType == CoinType.BTC.coinType && BitCoinManager.shared.validAddress(address) ) ||
             ( planet.coinType == CoinType.ETH.coinType && EthereumManager.shared.validateAddress(address) )
@@ -169,7 +155,7 @@ class TransferController: PlanetWalletViewController {
     }
     
     private func showPasteBtn() {
-        guard let planet = planet,
+        guard
             let pastedStr = Utils.shared.getClipboard(),
             let address = planet.address else { return }
         
@@ -180,8 +166,8 @@ class TransferController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedPaste(_ sender: UIButton) {
-        guard let copiedStr = Utils.shared.getClipboard(),
-            let planet = self.planet,
+        guard
+            let copiedStr = Utils.shared.getClipboard(),
             let coinType = planet.coinType else { return }
         
         textField.text = copiedStr
@@ -203,14 +189,14 @@ class TransferController: PlanetWalletViewController {
                 if isValidAddr(search) {
                     let addressPlanet = Planet()
                     addressPlanet.address = self.search
-                    addressPlanet.coinType = self.planet?.coinType
+                    addressPlanet.coinType = self.planet.coinType
                     searchingDatasource.append(addressPlanet)
                 }
             }else{
                 // DataSource update
                 items.forEach { (item) in
                     //except self item
-                    if let itemName = item["name"] as? String, let selfName = self.planet?.name {
+                    if let itemName = item["name"] as? String, let selfName = self.planet.name {
                         if itemName != selfName {
                             searchingDatasource.append(Planet(JSON: item)!)
                         }
@@ -231,25 +217,33 @@ class TransferController: PlanetWalletViewController {
 extension TransferController: RecentSearchAdapterDelegate {
     func didTouchedDelete(_ planet: Planet) {
         SearchStore.shared.delete(planet)
-        if let keyId = self.planet?.keyId {
-            recentSearchAdapter?.dataSetNotify(SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true))
+        if let keyId = self.planet.keyId, let symbol = mainItem.symbol {
+            recentSearchAdapter?.dataSetNotify(SearchStore.shared.list(keyId: keyId, symbol: symbol, descending: true))
         }
     }
     
     func didTouchedItem(_ planet: Planet) {
+        
+        self.tx.to = planet.address
+        self.tx.to_planet = planet.name
+        
         sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
-                   userInfo: [Keys.UserInfo.toPlanet: planet,
-                              Keys.UserInfo.planet: self.planet as Any,
-                              Keys.UserInfo.erc20: self.erc20 as Any])
+                   userInfo: [Keys.UserInfo.planet: self.planet as Any,
+                              Keys.UserInfo.mainItem: self.mainItem as Any,
+                              Keys.UserInfo.tx:self.tx])
     }
 }
 
 extension TransferController: PlanetSearchAdapterDelegate {
     func didTouchedPlanet(_ planet: Planet) {
+        
+        self.tx.to = planet.address
+        self.tx.to_planet = planet.name
+        
         sendAction(segue: Keys.Segue.TRANSFER_TO_TRANSFER_AMOUNT,
-                   userInfo: [Keys.UserInfo.toPlanet: planet,
-                              Keys.UserInfo.planet: self.planet as Any,
-                              Keys.UserInfo.erc20: self.erc20 as Any])
+                   userInfo: [Keys.UserInfo.planet: self.planet as Any,
+                              Keys.UserInfo.mainItem: self.mainItem as Any,
+                              Keys.UserInfo.tx:self.tx])
     }
 }
 
@@ -291,7 +285,7 @@ extension TransferController: UITextFieldDelegate {
             search = textField.text! + string
         }
         
-        if let planet = self.planet, let coinType = planet.coinType{
+        if let coinType = planet.coinType{
             Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":search] )
         }
         
@@ -314,7 +308,7 @@ extension TransferController: QRCaptureDelegate {
         
         if isValidAddr(address) {
             
-            if let coinType = self.planet?.coinType {
+            if let coinType = self.planet.coinType {
                 Get(self).action(Route.URL("planet", "search", CoinType.of(coinType).name ),requestCode: 0, resultCode: 0, data:["q":address] )
             }
 
@@ -326,8 +320,8 @@ extension TransferController: QRCaptureDelegate {
 extension TransferController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
         if isUpdate {
-            guard let keyId = planet?.keyId else { return }
-            self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: selectedSymbol, descending: true)
+            guard let keyId = planet.keyId, let symbol = planet.symbol else { return }
+            self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: symbol, descending: true)
             recentSearchAdapter?.dataSetNotify(recentDatasource)
         }
     }

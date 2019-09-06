@@ -391,14 +391,6 @@ class BottomMenuLauncher: NSObject {
 
 extension BottomMenuLauncher: BottomPanelDelegate {
     func didSwitched(_ mainItem: MainItem) {
-        if type(of: mainItem) == BTC.self {
-            launcherView.token = nil
-        }
-        else if type(of: mainItem) == ETH.self {
-            launcherView.token = nil
-        }
-        else if type(of: mainItem) == ERC20.self {
-            launcherView.token = mainItem as? ERC20
-        }
+        launcherView.mainItem = mainItem
     }
 }

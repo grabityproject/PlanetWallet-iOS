@@ -10,7 +10,7 @@ import UIKit
 
 class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     
-    public let ethCellID = "ethereumCoinCell"
+    public let ethCellID = "ETHCoinCell"
     
     override init(_ tableView: UITableView, _ dataSoruce: Array<MainItem>) {
         super.init(tableView, dataSoruce)
@@ -20,27 +20,33 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
     //MARK: - TableView Datasource
     override func createCell(data: MainItem, position: Int) -> UITableViewCell? {
         guard let table = tableView else { return nil }
-        
-        if data.getCoinType() == CoinType.ERC20.coinType ||
-            data.getCoinType() == CoinType.ETH.coinType
-        {
-            return table.dequeueReusableCell(withIdentifier: ethCellID)
-        }
-        return nil
+        return table.dequeueReusableCell(withIdentifier: ethCellID)
     }
     
     override func bindData(cell: UITableViewCell, data: MainItem, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
-        findAllViews(view: cell, theme: ThemeManager.currentTheme())
         setCellHeight(height: 70)
         
-        if data.getCoinType() == CoinType.ERC20.coinType {
-            let erc20Cell = cell as? ETHCoinCell
-            erc20Cell?.erc20 = data as? ERC20
+        if let cell = cell as? ETHCoinCell {
+            
+            print("cell Come in this place")
+            
+            cell.balanceLb.text = CoinNumberFormatter.full.toMaxUnit(balance: data.getBalance(), item: data)
+            cell.coinLb.text = data.symbol
+            cell.currencyLb.text = "";
+            
+            if let img_path = data.img_path{
+                if data.getCoinType() == CoinType.ETH.coinType {
+                    cell.coinIconImgView.image = UIImage(named:img_path )
+                } else {
+                    cell.coinIconImgView.loadImageWithPath(Route.URL(img_path))
+                }
+            }
         }
-        else if data.getCoinType() == CoinType.ETH.coinType {
-            let ethCell = cell as? ETHCoinCell
-            ethCell?.eth = data as? ETH
-        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
     }
 }

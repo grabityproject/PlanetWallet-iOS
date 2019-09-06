@@ -172,8 +172,12 @@ class MainController: PlanetWalletViewController{
         
         if let planet = planet, let coinType = planet.coinType {
             
-            
             Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: planet.keyId ?? "" )
+            
+            
+            if let keyId = planet.keyId{
+                planet.items = MainItemStore.shared.list(keyId, false)
+            }
             
             if CoinType.of(coinType).coinType == CoinType.BTC.coinType {
                 
@@ -182,13 +186,6 @@ class MainController: PlanetWalletViewController{
                 txAdapter?.dataSetNotify(getTxFromLocal())
                 
             }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
-                
-                if let keyId = planet.keyId, let ethAddr = planet.address{
-                    planet.items = ERC20Store.shared.list(keyId, false)
-                    planet.items?.insert(
-                        ETH(keyId, balance: planet.balance ?? "0", address: ethAddr),
-                        at: 0)
-                }
 
                 mainAdapter = MainETHAdapter(tableView, planet.items ?? [MainItem]() )
                 mainAdapter?.delegates.append(self)
@@ -289,8 +286,8 @@ extension MainController: UITableViewDelegate {
 
                 if let item = mainAdapter?.dataSource[indexPath.row] {
                     sendAction(segue: Keys.Segue.MAIN_TO_TX_LIST,
-                               userInfo: [Keys.UserInfo.mainItem: ( ( item is ERC20 )  ? item : nil ) as Any,
-                                          Keys.UserInfo.planet : selectedPlanet])
+                               userInfo: [Keys.UserInfo.planet : selectedPlanet,
+                                          Keys.UserInfo.mainItem: item as Any])
                 }
               
             }
@@ -340,14 +337,20 @@ extension MainController: TopMenuLauncherDelegate {
 extension MainController:NodeServiceDelegate{
     
     func onBalance(_ planet: Planet, _ balance: String) {
+        
         if let planet = self.planet{
-            planet.balance = balance
+            
+            planet.getMainItem()?.balance = balance
+            
             bottomMenuLauncher?.planet = planet
             bottomPanelComponent.setPlanet(planet)
+            
         }
     }
     
     func onTokenBalance(_ planet: Planet, _ tokenList: [MainItem]) {
+        
+        print(tokenList)
         mainAdapter = MainETHAdapter(tableView, tokenList)
         mainAdapter?.delegates.append(self)
         

@@ -11,8 +11,8 @@ import QRCode
 
 class DetailAddressController: PlanetWalletViewController {
     
-    private var planet: Planet?
-    private var erc20: ERC20?
+    private var planet: Planet = Planet()
+    private var mainItem:MainItem = MainItem()
     
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var cardContainerView: PWView!
@@ -48,55 +48,40 @@ class DetailAddressController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         
-        guard let userInfo = userInfo,
-            let planet = userInfo[Keys.UserInfo.planet] as? Planet else { return }
+        guard
+            let userInfo = userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem else { self.navigationController?.popViewController(animated: false); return }
         
         self.planet = planet
-        setPlanet(planet)
+        self.mainItem = mainItem
+      
+        if let symbol = mainItem.symbol {
+            naviBar.title = "Receive \(symbol)"
+        }
         
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20
-        {//ERC20
-            self.erc20 = erc20
-            guard let symbol = erc20.symbol else { return }
-            
-            naviBar.title = "Received" + " " + symbol
+        if let address = planet.address, let name = planet.name{
+            planetNameLb.text = name
+            planetView.data = address
+            addressLb.text = address
+            qrCodeImgView.image = QRCode(address)?.image
         }
-        else {//Coin
-            guard let symbol = planet.symbol else { return }
-            
-            naviBar.title = "Received" + " "  + symbol
-        }
+        
     }
-    
-    //MARK: - Private
-    private func setPlanet(_ planet: Planet) {
-        if let planetName = planet.name, let address = planet.address {
-            self.planetNameLb.text = planetName
-            self.planetView.data = address
-            self.addressLb.text = address
-            self.qrCodeImgView.image = QRCode(address)?.image
-        }
-    }
-    
     
     //MARK: - IBAction
     @IBAction func didTouchedCopy(_ sender: UIButton) {
-        if let addr = self.planet?.address {
-            Utils.shared.copyToClipboard(addr)
+        if let address = planet.address {
+            Utils.shared.copyToClipboard(address)
             Toast(text: "main_copy_to_clipboard".localized).show()
         }
     }
     
     @IBAction func didTouchedTransfer(_ sender: UIButton) {
-        guard let planet = planet else { return }
+
+        sendAction(segue: Keys.Segue.DETAIL_TX_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet,
+                                                                       Keys.UserInfo.mainItem: mainItem])
         
-        if let token = erc20 {
-            sendAction(segue: Keys.Segue.DETAIL_TX_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet,
-                                                                           Keys.UserInfo.erc20: token])
-        }
-        else {
-            sendAction(segue: Keys.Segue.DETAIL_TX_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet])
-        }
     }
 }
 

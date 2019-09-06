@@ -10,6 +10,10 @@ import UIKit
 
 class TxReceiptController: PlanetWalletViewController {
     
+    var planet: Planet = Planet()
+    var mainItem: MainItem = MainItem()
+    var tx:Tx = Tx()
+    
     @IBOutlet var toAddressContainer: UIView!
     @IBOutlet var toAddressCoinImgView: PWImageView!
     @IBOutlet var toAddressLb: UILabel!
@@ -31,63 +35,82 @@ class TxReceiptController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         
-        guard let userInfo = userInfo,
-            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
-            let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
-            let txHash = userInfo[Keys.UserInfo.txHash] as? String,
-            let amount = userInfo[Keys.UserInfo.transferAmount] as? String,
-            let transactionFee = userInfo[Keys.UserInfo.transactionFee] as? String else { return }
+        guard
+            let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem,
+            let tx = userInfo[Keys.UserInfo.tx] as? Tx else { self.navigationController?.popViewController(animated: false); return }
         
-        var transactionSymbol = ""
         
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20, let symbol = erc20.symbol, let imgPath = erc20.img_path {
-            mainAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
-            amountLb.text = "\(amount) \(erc20.symbol ?? "")"
-            toAddressCoinImgView.loadImageWithPath(Route.URL(imgPath))
-            transactionSymbol = symbol
-        }
-        else {
-            guard let coinType = fromPlanet.coinType else { return }
-            if coinType == CoinType.BTC.coinType {
-                toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
-                transactionSymbol = "BTC"
-            }
-            else if coinType == CoinType.ETH.coinType {
-                toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
-                transactionSymbol = "ETH"
-            }
-            
-            mainAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
-            amountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
-        }
-        
-        if let toPlanetName = toPlanet.name {
+        //Planet or Address
+        if tx.to_planet != nil {
             toPlanetContainer.isHidden = false
             toAddressContainer.isHidden = true
             
-            toPlanetNameLb.text = toPlanetName
-            toPlanetView.data = toPlanet.address ?? ""
-            toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
+            toPlanetNameLb.text = tx.to_planet
+            toPlanetView.data = tx.to ?? ""
+            toPlanetAddressLb.text = Utils.shared.trimAddress(tx.to ?? "")
             
-            //Insert Search DB
-            if let fromPlanetKeyId = fromPlanet.keyId {
-                SearchStore.shared.insert(keyId: fromPlanetKeyId, symbol: transactionSymbol, toPlanet: toPlanet)
-            }
         }
         else {
             toPlanetContainer.isHidden = true
             toAddressContainer.isHidden = false
             
-            toAddressLb.text = toPlanet.address
+            toAddressLb.text = tx.to
             toAddressLb.setColoredAddress()
         }
         
-        fromPlanetNameLb.text = fromPlanet.name ?? ""
-        gasFeeLb.text = transactionFee
+        // Binding Amount
+        if let amount = tx.amount, let symbol = tx.symbol {
+            mainAmountLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
+            amountLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
+        }
+        
+        // Binding Icon
+        if mainItem.getCoinType() == CoinType.BTC.coinType {
+
+            toAddressCoinImgView.image = UIImage(named: "imageTransferConfirmationBtc02")
+
+        }
+        else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            
+            toAddressCoinImgView.image = UIImage(named: "eth")
+            
+        }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            if let img_path = mainItem.img_path{
+                toAddressCoinImgView.loadImageWithPath(Route.URL( img_path ))
+            }
+        }
+        
+        // Fee
+        if let fee = tx.fee, let parentMainItem = planet.getMainItem(), let coinSymbol = parentMainItem.symbol{
+            gasFeeLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: fee, item: parentMainItem)) \(coinSymbol)"
+        }
+        
+        // From Planet Name, Date
+        fromPlanetNameLb.text = planet.name
         dateLb.text = Utils.shared.getStringFromDate(Date(), format: .yyyyMMddHHmmss)
-        txHashValueLb.attributedText = NSAttributedString(string: txHash,
-                                                          attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
-                                                                       NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        
+        // Tx Hash
+        if let txHash = tx.tx_id{
+            txHashValueLb.attributedText = NSAttributedString(string: txHash,
+                                                              attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
+                                                                           NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        }
+        
+        // Insert saveRecentSearch()
+        saveRecentSearch()
+    }
+    
+    func saveRecentSearch() {
+        if let keyId = planet.keyId, let symbol = mainItem.symbol {
+            let toPlanet = Planet()
+            toPlanet.name = tx.to_planet
+            toPlanet.address = tx.to
+            toPlanet.symbol = symbol
+            toPlanet.coinType = mainItem.getCoinType()
+            SearchStore.shared.insert(keyId: keyId, symbol: symbol, toPlanet: toPlanet)
+        }
     }
     
     //MARK: - IBAction

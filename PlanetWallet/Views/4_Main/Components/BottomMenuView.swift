@@ -9,9 +9,6 @@
 import UIKit
 import QRCode
 
-/*
- Coin(ETH / BTC)과 관련된 팝업뷰
- */
 class BottomMenuView: ViewComponent {
     
     @IBOutlet var qrCodeImgView: UIImageView!
@@ -24,16 +21,9 @@ class BottomMenuView: ViewComponent {
     @IBOutlet var copyTopConstraint: NSLayoutConstraint!
     
     var planet:Planet?
-    var token: ERC20? {
-        didSet {
-            if let token = token, let tokenName = token.name {
-                self.coinNameLb.text = tokenName
-            }
-            else {
-                if let coinType = planet?.coinType {
-                    self.coinNameLb.text = CoinType.of(coinType).coinName
-                }
-            }
+    var mainItem:MainItem? {
+        didSet{
+            coinNameLb.text = mainItem?.name
         }
     }
     
@@ -91,11 +81,11 @@ class BottomMenuView: ViewComponent {
         if let launcher = launcher{
             launcher.hide()
         }
-        if let planet = planet, let controller = controller{
+        if let planet = planet, let controller = controller, let mainItem = mainItem{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 controller.sendAction(segue: Keys.Segue.MAIN_TO_TRANSFER,
                                       userInfo: [Keys.UserInfo.planet: planet,
-                                                 Keys.UserInfo.erc20: self.token as Any])
+                                                 Keys.UserInfo.mainItem: mainItem ])
             }
         }
 

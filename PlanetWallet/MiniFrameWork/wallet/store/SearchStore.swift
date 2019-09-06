@@ -53,10 +53,10 @@ class SearchStore {
         
         var coinType = "60"
         
-        if toPlanetSymbol == CoinType.ETH.coinName {
+        if toPlanetSymbol == CoinType.ETH.name {
             coinType = "\(CoinType.ETH.coinType)"
         }
-        else if toPlanetSymbol == CoinType.BTC.coinName {
+        else if toPlanetSymbol == CoinType.BTC.name {
             coinType = "\(CoinType.BTC.coinType)"
         }
         

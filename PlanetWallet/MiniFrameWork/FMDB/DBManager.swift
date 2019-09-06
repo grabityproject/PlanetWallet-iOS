@@ -63,7 +63,6 @@ class DBManager: NSObject {
     private func updateDatabase() throws {
         if( getDatabseName() == nil ) { throw DBError.noNamed }
         if openDatabase(){
-            print("database version : \(database.userVersion)")
             if( database.userVersion < getDatabaseVersion() ){
                 if !updateTables( database , getDatabaseVersion() ,database.userVersion){
                     throw DBError.updateDBError
