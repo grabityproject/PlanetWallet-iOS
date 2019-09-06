@@ -99,8 +99,10 @@ class TxReceiptController: PlanetWalletViewController {
         self.dismiss()
     }
     
-    @IBAction func didTouchedExport(_ sender: UIButton) {
-        
+    @IBAction func didTouchedShare(_ sender: UIButton) {
+        let items = ["Transaction sharing"]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     //MARK: - Private

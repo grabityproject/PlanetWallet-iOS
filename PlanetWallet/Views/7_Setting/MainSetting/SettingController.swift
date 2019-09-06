@@ -66,7 +66,6 @@ class SettingController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedTheme(_ sender: UIButton) {
         
-        updateThemeUI()
         if sender.tag == 0 {
             //DARK Theme
             currentTheme = .DARK

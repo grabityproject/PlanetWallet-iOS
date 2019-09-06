@@ -179,7 +179,7 @@ class TransferConfirmController: PlanetWalletViewController {
                     Get(self).action(Route.URL("fee", "BTC"),
                                      requestCode: -1, resultCode: -1,
                                      data: nil)
-                    toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
+                    toAddressCoinImgView.defaultImage = ThemeManager.currentTheme().transferBTCImg
                     advancedGasContainer.isHidden = true
                 }
                 else if coinType == CoinType.ETH.coinType {
@@ -187,7 +187,7 @@ class TransferConfirmController: PlanetWalletViewController {
                     Get(self).action(Route.URL("gas"),
                                      requestCode: 0, resultCode: 0,
                                      data: nil)
-                    toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
+                    toAddressCoinImgView.defaultImage = ThemeManager.currentTheme().transferETHImg
                     advancedGasContainer.isHidden = false
                 }
                 
@@ -394,7 +394,14 @@ class TransferConfirmController: PlanetWalletViewController {
             if requestCode == 0 && resultCode == 0 {
                 setDefaultAdvancedGasFee()
             }
-            print(dictionary ?? "failed to response network")
+            else if requestCode == 100 && resultCode == 100 {
+                if let error = result as? String {
+                    print(error)
+                }
+                navigationController?.popViewController(animated: true)
+            }
+            
+            Toast(text: "failed to response network").show()
             return
         }
         

@@ -139,7 +139,8 @@ class TxListController: PlanetWalletViewController {
             selectedTokenSymbol = erc20Symbol
         }
         
-        txAdapter?.dataSetNotify(getTxFromLocal())
+        self.txList = getTxFromLocal()
+        txAdapter?.dataSetNotify(self.txList)
         
         Get(self).action(Route.URL("tx", "list", selectedTokenSymbol, name),
                          requestCode: 0,

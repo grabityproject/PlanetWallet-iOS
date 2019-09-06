@@ -14,13 +14,13 @@ let imageCache = NSCache<AnyObject, AnyObject>()
     
     var imageURL: URL?
     
-    override var image: UIImage? {
-        didSet {
-            self.defaultImage = image
-        }
-    }
+//    override var image: UIImage? {
+//        didSet {
+//            self.defaultImage = image
+//        }
+//    }
     
-    private var defaultImage: UIImage?
+    var defaultImage: UIImage?
     private var defaultBackgroundColor: UIColor?
     private var defaultBorderColor: UIColor?
     
@@ -71,6 +71,7 @@ let imageCache = NSCache<AnyObject, AnyObject>()
             }
         }
     }
+    
     
     //MARK: - Network
     func loadImageWithPath(_ path: String) {
