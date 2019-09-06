@@ -30,14 +30,16 @@ let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).language
 struct Keys {
     struct UserInfo {
         static let planet = "planet"
+        static let mainItem = "mainItem"
+        static let tx = "tx"
+        
         static let fromSegue = "fromSegue"
-        static let erc20 = "erc20"
-        static let toPlanet = "toPlanet"
+
         static let transferAmount = "transferAmount"
         static let transactionFee = "transactionFee"
         static let txHash = "txHash"
         static let universe = "universe"
-        static let mainItem = "mainItem"
+
         static let transaction = "transaction"
     }
     

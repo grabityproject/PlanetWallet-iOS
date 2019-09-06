@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     private func initStores() {
         _ = PlanetStore.shared
-        _ = ERC20Store.shared
+        _ = MainItemStore.shared
     }
 
     private func setNavigationBar() {

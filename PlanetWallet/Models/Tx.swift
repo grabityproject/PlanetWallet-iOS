@@ -27,59 +27,25 @@ class Tx: Mappable {
     var symbol: String?
     var rawTransaction: String?
     var status: String?
-//    var utxos: String?
     var created_at: String?
     var updated_at: String?
     
     var decimals: String?
     
-    /*
-    //ETH init
-    init(
-        tx_id: String,
-        contract: String,
-        to: String, to_planet: String?,
-        from: String, from_planet: String?,
-        nonce: String,
-        amount: String,
-        gasPrice: String, gasLimit: String,
-        coin: String, symbol: String,
-        rawTransaction: String,
-        created_at: Int64,
-        updated_at: Int64
-        ) {
-        self.tx_id = tx_id
-        self.contract = contract
+    var url:String?
+    
+    var utxos: [UTXO]?
+    
+    init() {
         
-        self.to = to
-        self.to_planet = to_planet
-        self.from = from
-        self.from_planet = from_planet
-        
-        self.nonce = nonce
-        self.amount = amount
-        
-        self.gasPrice = gasPrice
-        self.gasLimit = gasLimit
-        
-        self.fee = nil
-        
-        self.coin = coin
-        self.symbol = symbol
-        
-        self.rawTransaction = rawTransaction
-        self.utxos = nil
-        self.created_at = created_at
-        self.updated_at = updated_at
     }
-    */
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
 
-        type           <- map["type"] //received, sent
+        type           <- map["type"]
         tx_id          <- map["tx_id"]
         contract       <- map["contract"]
         
@@ -101,11 +67,13 @@ class Tx: Mappable {
         
         rawTransaction <- map["rawTransaction"]
         status         <- map["status"]
-//        utxos          <- map["utxos"]
+
         created_at     <- map["created_at"]
         updated_at     <- map["updated_at"]
         
         decimals       <- map["decimals"]
+        
+        utxos          <- map["utxos"]
     }
     
     func formattedDate() -> String? {

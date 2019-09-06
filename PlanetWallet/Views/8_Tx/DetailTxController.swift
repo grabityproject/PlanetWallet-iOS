@@ -8,18 +8,13 @@
 
 import UIKit
 
-/*
- 트랜잭션 상세 보기 페이지 ( ETH, ERC20, BTC )
- 
- to ( 플래닛 표현 가능/불가능 둘다 )
- from ( 플래닛 표현 가능/불가능 둘다 )
- amount
- fee
- date
- txId
- Button( Explorer로 이동 )
- */
+
 class DetailTxController: PlanetWalletViewController {
+    
+    private var planet:Planet = Planet()
+    private var mainItem:MainItem = MainItem()
+    private var tx:Tx = Tx()
+    
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var toAddressContainer: UIView!
@@ -39,7 +34,6 @@ class DetailTxController: PlanetWalletViewController {
     @IBOutlet var dateLb: PWLabel!
     @IBOutlet var txIdLb: UILabel!
     
-    var selectedPlanet: Planet?
     var txHashStr: String?
     
     //MARK: - Init
@@ -52,28 +46,33 @@ class DetailTxController: PlanetWalletViewController {
     override func setData() {
         super.setData()
         
-        guard let userInfo = userInfo,
-            let transaction = userInfo[Keys.UserInfo.transaction] as? Tx,
-            let planet = userInfo[Keys.UserInfo.planet] as? Planet else { return }
+        guard
+            let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem,
+            let tx = userInfo[Keys.UserInfo.tx] as? Tx else { self.navigationController?.popViewController(animated: false); return }
         
-        self.selectedPlanet = planet
+        
+        self.planet = planet
+        self.mainItem = mainItem
+        self.tx = tx
         
         //Set Tx data
-        setTxData(transaction)
+        setTxData(tx)
         
         //Set amount data
-        setAmountData(transaction)
+        setAmountData(tx)
         
         //Set Fee data
-        setFeeData(transaction)
+        setFeeData(tx)
         
         //Set Date data
-        if let dateStr = transaction.formattedDate() {
+        if let dateStr = tx.formattedDate() {
             dateLb.text = dateStr
         }
         
         //Set TxHash data
-        if let txHash = transaction.tx_id {
+        if let txHash = tx.tx_id {
             self.txHashStr = txHash
             txIdLb.attributedText = NSAttributedString(string: txHash,
                                                        attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
@@ -84,80 +83,74 @@ class DetailTxController: PlanetWalletViewController {
     
     //MARK: - Private
     private func setFeeData(_ tx: Tx) {
-        if let transactionFee = tx.fee { //BTC
+        
+        if let coinSymbol = tx.coin{
+       
+            if mainItem.getCoinType() == CoinType.BTC.coinType {
+                
+                if let fee = tx.fee { //BTC
+                    feeLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: fee, item: mainItem)) \(coinSymbol)"
+                    
+                }
+                
+            }else if mainItem.getCoinType() == CoinType.ETH.coinType { // ETH
+                
+                if
+                    let gasPriceString = tx.gasPrice,
+                    let gasLimitString = tx.gasLimit,
+                    let gasPrice = Decimal(string:gasPriceString),
+                    let gasLimit = Decimal(string:gasLimitString) {
+                    
+                    let fee = ( gasPrice * gasLimit ).toString()
+                    feeLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: fee, item: mainItem)) \(coinSymbol)"
+                }
+                
+            }else if mainItem.getCoinType() == CoinType.ERC20.coinType { // ERC20
+                if
+                    let gasPriceString = tx.gasPrice,
+                    let gasLimitString = tx.gasLimit,
+                    let gasPrice = Decimal(string:gasPriceString),
+                    let gasLimit = Decimal(string:gasLimitString) {
+                    
+                    let fee = ( gasPrice * gasLimit ).toString()
+                    feeLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: fee, item: mainItem)) \(coinSymbol)"
+                }
+                
+            }
             
-            if let formattedTxFee = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .SATOSHI, to: .BIT) {
-                feeLb.text = formattedTxFee + " BTC"
-            }
         }
-        else { //ETH
-            guard let gasLimitStr = tx.gasLimit,
-                let gasPriceStr = tx.gasPrice,
-                let gasLimit = Decimal(string: gasLimitStr),
-                let gasPrice = Decimal(string: gasPriceStr) else {
-                    feeLb.text = "-"
-                    return
-            }
-            
-            if let formattedTxFee = CoinNumberFormatter.full.convertUnit(balance: (gasLimit * gasPrice).description, from: .WEI, to: .ETHER) {
-                feeLb.text = formattedTxFee + " ETH"
-            }
-        }
+       
     }
     
     private func setAmountData(_ tx: Tx) {
-        guard let userInfo = userInfo,
-            let coin = tx.coin,
-            let amountStr = tx.amount,
-            let symbol = tx.symbol else { return }
         
-        var amount = "-"
-        var tokenIconImgPath: String?
-        
-        if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
-            let tokenImg = erc20.img_path
-        {
-            if let fullERC20Str = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, item: erc20) {
-                amount = fullERC20Str
-            }
+        if let value = tx.amount, let symbol = tx.symbol{
+            
+            let amount = CoinNumberFormatter.full.toMaxUnit(balance: value, item: mainItem)
             
             mainAmountLb.text = "\(amount) \(symbol)"
             amountLb.text = "\(amount) \(symbol)"
-            tokenIconImgPath = tokenImg
-        }
-        else {
-            if coin == CoinType.BTC.name {
-                if let fullBTCStr = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, coinType: CoinType.BTC) {
-                    amount = fullBTCStr
-                }
-            }
-            else if coin == CoinType.ETH.name { //include token
-                if let fullEtherStr = CoinNumberFormatter.full.toMaxUnit(balance: amountStr, coinType: CoinType.ETH) {
-                    amount = fullEtherStr
-                }
-            }
-            mainAmountLb.text = "\(amount) \(symbol)"
-            amountLb.text = "\(amount) \(symbol)"
+            
         }
         
-        //Set coin icon image
-        if let tokenImgPath = tokenIconImgPath, let url = URL(string: Route.URL(tokenImgPath)) {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                DispatchQueue.main.async(execute: {
-                    guard let unwrappedData = data,
-                        let image = UIImage(data: unwrappedData) else { return }
-                    self.toAddressCoinImgView.image = image
-                })
-            }).resume()
-        }
-        else {
-            if symbol == CoinType.BTC.name {
-                toAddressCoinImgView.image = ThemeManager.currentTheme().transferBTCImg
+        // imageIcon
+        if mainItem.getCoinType() == CoinType.BTC.coinType {
+            
+            toAddressCoinImgView.image = UIImage(named: "imageTransferConfirmationBtc02")
+            
+        }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            
+            toAddressCoinImgView.image = UIImage(named: "eth")
+            
+        }else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+            
+            if let img_path = mainItem.img_path {
+                print(img_path)
+//                toAddressCoinImgView.loadImageWithPath(Route.URL(img_path)) // PWImageView로 변경할 것
             }
-            else if symbol == CoinType.ETH.name {
-                toAddressCoinImgView.image = ThemeManager.currentTheme().transferETHImg
-            }
+            
         }
+        
     }
     
     private func setTxData(_ tx: Tx) {
@@ -216,31 +209,11 @@ class DetailTxController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedScan(_ sender: UIButton) {
-        guard let planet = self.selectedPlanet, let coinType = planet.coinType, let txHash = self.txHashStr else { return }
-        
-        var explorerPath = ""
-        
-        if coinType == CoinType.BTC.coinType {
-            if TESTNET {
-                explorerPath = Route.URL(txHash, baseURL: "https://live.blockcypher.com/btc-testnet/tx")
-            }
-            else {
-                explorerPath = Route.URL(txHash, baseURL: "https://live.blockcypher.com/btc/tx")
+        if let urlString = tx.url, let url = URL(string: urlString){
+            if UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        else {
-            if TESTNET {
-                explorerPath = Route.URL(txHash, baseURL: "https://ropsten.etherscan.io/tx")
-            }
-            else {
-                explorerPath = Route.URL(txHash, baseURL: "https://etherscan.io/tx")
-            }
-        }
-        
-        guard let url = URL(string: explorerPath),
-            UIApplication.shared.canOpenURL(url) else { return }
-        
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

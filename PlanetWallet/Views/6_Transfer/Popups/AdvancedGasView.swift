@@ -16,6 +16,13 @@ class AdvancedGasView: UIView {
 
     var delegate: AdvancedGasViewDelegate?
     
+    private static let GWEI:String = "1000000000"
+    private static let ETH_DEFAULT_GAS_LIMIT:String = "21000"
+    private static let ETH_DEFAULT_GAS_GWEI:String = "20"
+    private static let ERC20_DEFAULT_GAS_LIMIT:String = "100000"
+    private static let ERC20_DEFAULT_GAS_GWEI:String = "10"
+
+    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var drawerView: UIView!
     
@@ -29,6 +36,11 @@ class AdvancedGasView: UIView {
     @IBOutlet var gasFeesLb: UILabel!
     
     @IBOutlet var keyPad: UIView!
+ 
+    var drawerPanGesture: UIPanGestureRecognizer!
+    var backgroundPanGesture: UIPanGestureRecognizer!
+    
+    private var inputText:String = String()
     
     var hasGasPriceFocus = true {
         didSet {
@@ -46,7 +58,7 @@ class AdvancedGasView: UIView {
                 if let gasLimitStr = gasLimitBtn.titleLabel?.text {
                     self.inputText = gasLimitStr
                 }
-
+                
                 self.gasLimitContainer.layer.borderColor = UIColor.black.cgColor
                 self.gasPriceContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
                 self.gasPriceBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
@@ -55,59 +67,13 @@ class AdvancedGasView: UIView {
         }
     }
     
-    var inputText = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)" {
-        didSet {
-
-            if hasGasPriceFocus {
-                gasPrice = inputText
-            }
-            else {
-                gasLimit = inputText
-            }
-        }
-    }
-    
-    var gasPrice: String = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)" {
-        didSet {
-            self.gasPriceBtn.setTitle(inputText, for: .normal)
-            if let gas = Decimal(string:gasPrice), let limit = Decimal(string:gasLimit),
-                let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
-            }
-        }
-    }
-    
-    var gasLimit: String = "\(21000)" {
-        didSet {
-            self.gasLimitBtn.setTitle(inputText, for: .normal)
-            if let gas = Decimal(string:gasPrice), let limit = Decimal(string:gasLimit),
-                let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER) {
-                self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
-            }
-        }
-    }
-    
-    public var gasInfo: EthereumFeeInfo? {
-        didSet {
-            if let gas = self.gasInfo {
-                gasLimit = "\(gas.advancedGasLimit)"
-                self.gasLimitBtn.setTitle(gasLimit, for: .normal)
-            }
-        }
-    }
-    
-    var drawerPanGesture: UIPanGestureRecognizer!
-    var backgroundPanGesture: UIPanGestureRecognizer!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
@@ -125,13 +91,7 @@ class AdvancedGasView: UIView {
         drawerView.addGestureRecognizer(drawerPanGesture)
         backgroundPanGesture = UIPanGestureRecognizer(target: self, action: #selector(drawerPanAction));
         backgroundView.addGestureRecognizer(backgroundPanGesture)
-        
-        if let gas = Decimal(string: gasPrice), let limit = Decimal(string: gasLimit),
-            let feeEther = CoinNumberFormatter.full.convertUnit(balance: calculateGasPrice(gas: gas, limit: limit).toString(), from: .GWEI, to: .ETHER)
-        {
-            self.gasFeesLb.text = "fee_popup_fees_title".localized + " \(feeEther) ETH"
-        }
-        
+   
         setTheme(ThemeManager.currentTheme())
     }
     
@@ -143,6 +103,7 @@ class AdvancedGasView: UIView {
                                 width: SCREEN_WIDTH,
                                 height: SCREEN_HEIGHT)
         }
+        hasGasPriceFocus = true
     }
     
     public func hide() {
@@ -156,12 +117,6 @@ class AdvancedGasView: UIView {
     }
     
     public func reset() {
-        if let gasInfo = gasInfo {
-            self.gasPriceBtn.setTitle("\(EthereumFeeInfo.DEFAULT_GAS_PRICE)", for: .normal)
-            self.gasLimitBtn.setTitle("\(gasInfo.advancedGasLimit)", for: .normal)
-            self.hasGasPriceFocus = true
-            self.inputText = "\(EthereumFeeInfo.DEFAULT_GAS_PRICE)"
-        }
     }
     
     //MARK: - Private
@@ -183,27 +138,6 @@ class AdvancedGasView: UIView {
     
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
-        if gasPrice == "" || gasLimit == "" {
-            Toast(text: "fee_popup_not_spaces_title".localized).show()
-        }
-        
-        
-        if let gasInfo = gasInfo,
-            let gasPriceStr = CoinNumberFormatter.full.convertUnit(balance: gasPrice, from: .GWEI, to: .WEI),
-            let gasPrice = Decimal(string: gasPriceStr),
-            let gasLimit = Decimal(string: gasLimit)
-        {
-            if gasPrice > 0 && gasLimit >= gasInfo.advancedGasLimit {
-                delegate?.didTouchedSave(gasPrice, gasLimit: gasLimit)
-                self.hide()
-            }
-            else if gasPrice < 1 {
-                Toast(text: "fee_popup_gas_price_least_title".localized).show()
-            }
-            else if gasLimit < 21000 {
-                Toast(text: "fee_popup_gas_limit_least_title".localized).show()
-            }
-        }
     }
     
     @IBAction func didTouchedCancel(_ sender: UIButton) {
@@ -212,21 +146,40 @@ class AdvancedGasView: UIView {
     }
     
     @IBAction func didTouchedGasPrice(_ sender: UIButton) {
-        hasGasPriceFocus = true
+        hasGasPriceFocus = true;
     }
     
     @IBAction func didTouchedGasLimit(_ sender: UIButton) {
-        hasGasPriceFocus = false
+        hasGasPriceFocus = false;
     }
     
     @IBAction func didTouchedKey(_ sender: UIButton) {
-        if sender.tag == 0 {
-            guard let text = sender.titleLabel?.text else { return }
-            inputText += text
-        }
-        else { //delete btn
+        
+        if sender.tag == 99 {
+            
             inputText = String(inputText.dropLast())
+            
+        }else if let num = sender.titleLabel?.text{
+            if let _ = Int(num){
+                
+                inputText += num
+                
+            }
         }
+        
+        if hasGasPriceFocus {
+
+            gasPriceBtn.setTitle(inputText, for: UIControl.State.normal)
+            gasPriceBtn.setTitle(inputText, for: UIControl.State.highlighted)
+            gasPriceBtn.setTitle(inputText, for: UIControl.State.disabled)
+
+        }else {
+            
+            gasLimitBtn.setTitle(inputText, for: UIControl.State.normal)
+            gasLimitBtn.setTitle(inputText, for: UIControl.State.highlighted)
+            gasLimitBtn.setTitle(inputText, for: UIControl.State.disabled)
+        }
+        
     }
     
     

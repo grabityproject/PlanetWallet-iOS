@@ -8,27 +8,26 @@
 
 import UIKit
 
-class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
+class TokenAdapter: AbsTableViewAdapter<MainItem>, TokenCellDelegate {
     
     let cellID:String = "tokencell"
     
-    override init(_ tableView:UITableView,_ dataSoruce:Array<ERC20> ) {
+    override init(_ tableView:UITableView,_ dataSoruce:Array<MainItem> ) {
         super.init(tableView, dataSoruce)
         registerCell(cellClass: TokenCell.self, cellId: cellID)
     }
     
-    override func createCell(data: ERC20, position: Int) -> UITableViewCell? {
-        setCellHeight(height: 70)
-        
+    override func createCell(data: MainItem, position: Int) -> UITableViewCell? {
         if let table = tableView{
             return table.dequeueReusableCell(withIdentifier: cellID)
         }
         return nil
     }
     
-    override func bindData(cell: UITableViewCell, data: ERC20, position: Int) {
+    override func bindData(cell: UITableViewCell, data: MainItem, position: Int) {
         super.bindData(cell: cell, data: data, position: position)
-        findAllViews(view: cell, theme: ThemeManager.currentTheme())
+        
+        setCellHeight(height: 70)
         
         let tokenCell = cell as! TokenCell
         tokenCell.delegate = self
@@ -47,6 +46,10 @@ class TokenAdapter: AbsTableViewAdapter<ERC20>, TokenCellDelegate {
     func didSelected(indexPath: IndexPath) {
         dataSource[indexPath.row].hide = dataSource[indexPath.row].hide == "Y" ? "N" : "Y"
         tableView(self.tableView!, didSelectRowAt: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        findAllViews(view: cell, theme: ThemeManager.currentTheme())
     }
 }
 

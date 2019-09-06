@@ -18,7 +18,7 @@ class PWDBManager : DBManager {
     }
     
     override func getDatabseName() -> String? {
-        return "planetWallet.sqlite"
+        return "DATABASE_VERSION.sqlite"
     }
 
     override func createTables(_ database: FMDatabase) -> Bool {
@@ -36,9 +36,10 @@ class PWDBManager : DBManager {
                 "hide TEXT," +
                 "decimals TEXT" +
             ")"
-            let createERC20Table = "CREATE TABLE ERC20( " +
+            let createMainItemTable = "CREATE TABLE MainItem( " +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "keyId TEXT," +
+                "coinType INTEGER," +
                 "hide TEXT," +
                 "balance TEXT," +
                 "name TEXT," +
@@ -58,13 +59,15 @@ class PWDBManager : DBManager {
             let searchTable = "CREATE TABLE Search( " +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "keyId TEXT," +
+                "coinType Integer," +
                 "name TEXT," +
                 "address TEXT," +
-                "symbol TEXT" +
+                "symbol TEXT," +
+                "date INTEGER DEFAULT 0" +
             ")";
             
             try database.executeUpdate(createPlanetTable, values: nil)
-            try database.executeUpdate(createERC20Table, values: nil)
+            try database.executeUpdate(createMainItemTable, values: nil)
             try database.executeUpdate(keyPairTable, values: nil)
             try database.executeUpdate(searchTable, values: nil)
             
@@ -76,21 +79,7 @@ class PWDBManager : DBManager {
     }
     
     override func updateTables(_ database: FMDatabase, _ oldVersion: UInt32, _ newVersion: UInt32) -> Bool {
-        
-        //Add Column Search table
-        let updateTableQuery = "ALTER TABLE " + "Search" + " ADD COLUMN " + "date" + " TEXT";
-        let updateTableQuery2 = "ALTER TABLE " + "Search" + " ADD COLUMN " + "coinType" + " INTEGER";
-        
-        do {
-            try database.executeUpdate(updateTableQuery, values: nil)
-            try database.executeUpdate(updateTableQuery2, values: nil)
-            
-            return true
-        }
-        catch {
-            print(error.localizedDescription)
-            return false
-        }
+        return true
     }
     
 }

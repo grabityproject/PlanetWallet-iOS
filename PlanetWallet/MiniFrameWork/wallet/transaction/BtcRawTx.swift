@@ -11,8 +11,7 @@ import BigInt
 
 class BtcRawTx{
 
-    public static func generateRawTx( tx:Transaction, privateKey:String )->String{
-
+    public static func generateRawTx( tx:Tx, deviceKey:String, privateKey:String )->String{
         
         let publicKey = publicFromPrivateKey(privateKey)
         if publicKey.isEmpty { return String() }
@@ -22,8 +21,11 @@ class BtcRawTx{
             feePerByte = Int(gasPrice) ?? feePerByte
         }
 
-        guard let utxos = tx.utxos else { return String() }
-
+        var utxoList = tx.utxos
+        if utxoList == nil { utxoList = getUtxos( tx:tx, deviceKey:deviceKey ) }
+        
+        guard let utxos = utxoList else { return String() }
+        
         if utxos.count == 0 { return String() }
 
         guard let value = tx.amount else { return String() }
@@ -31,8 +33,6 @@ class BtcRawTx{
         let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
 
         let amount = BigInt(value)!
-        
-        print(amount)
         
         var inputTotal = BigInt()
         let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 )
@@ -43,7 +43,7 @@ class BtcRawTx{
         
         if change < 0 { return String() }
 
-        guard let toAddress = tx.toAddress, let fromAddress = tx.fromAddress else { return String() }
+        guard let toAddress = tx.to, let fromAddress = tx.from else { return String() }
         
         var outputs = [UTXO]()
 
@@ -78,26 +78,54 @@ class BtcRawTx{
     }
     
     
-    public static func EstimateFee( tx:Transaction )->String{
+    public static func estimateFee( tx:Tx, deviceKey:String )->String{
         
         var feePerByte:Int = 10;
         if let gasPrice = tx.gasPrice{
             feePerByte = Int(gasPrice) ?? feePerByte
         }
         
-        guard let utxos = tx.utxos else { return String() }
+        if feePerByte <= 0 { return String() }
         
-        if utxos.count == 0 { return String() }
+        var utxos = tx.utxos
+        if utxos == nil { utxos = getUtxos( tx:tx, deviceKey:deviceKey ) }
         
-        guard let value = tx.amount else { return String() }
+        if let utxos = utxos {
+            if utxos.count == 0 { return String() }
+            
+            guard let value = tx.amount else { return String() }
+            
+            let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
+            guard let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 ) else { return String() }
+            
+            return String(estimateFee)
+        }
         
-        let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
-        
-        let amount = BigInt(value)!
-        
-        guard let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 ) else { return String() }
-        
-        return String(estimateFee)
+        return String()
+    }
+    
+    private static func getUtxos( tx:Tx, deviceKey:String )->[UTXO]{
+        if let fromAddress = tx.from{
+        let response = Get(nil).response(Route.URL("utxo", "list", CoinType.BTC.name ,fromAddress), requestCode: CoinType.BTC.coinType, resultCode: 0, data: nil, extraHeaders: ["device-key":deviceKey])
+          
+            let success = response["success"] as! Bool
+            let dict = response["dictionary"] as! [String:Any]
+            
+            if success {
+                if let isSuccess = dict["success"] as? Bool, let resultData = dict["result"] as? [[String:Any]]{
+                    if isSuccess{
+                        var utxos = [UTXO]();
+                        resultData.forEach { (item) in
+                            utxos.append(UTXO(JSON: item)!)
+                        }
+                        utxos = utxoSort(utxos)
+                        tx.utxos = utxos
+                        return utxos
+                    }
+                }
+            }
+        }
+        return [UTXO]()
     }
     
     private static func unsignedScriptSig(_ inputs:[UTXO],_ outputs:[UTXO], _ inputIndex:Int )->String{

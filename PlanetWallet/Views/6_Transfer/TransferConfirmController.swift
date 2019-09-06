@@ -10,6 +10,15 @@ import UIKit
 
 class TransferConfirmController: PlanetWalletViewController {
 
+    var planet:Planet = Planet()
+    var mainItem:MainItem = MainItem()
+    var tx:Tx = Tx()
+    
+    var fees:[String] = [String]()
+    var transaction:Transaction?
+    
+    var networkTaskCount:Int = 0;
+    
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var fromLb: PWLabel!
@@ -33,202 +42,138 @@ class TransferConfirmController: PlanetWalletViewController {
     
     @IBOutlet var confirmBtn: PWButton!
     
-    //Transfer PinCode 인증했는지 안했는지
-    public var isSuccessToCertification = false
-    
-    var transaction:Transaction?
-    
-    var coinType = CoinType.ETH.coinType
-    
-    var ethereumFeeInfo: EthereumFeeInfo?
-    var bitcoinFeeInfo: BitcoinFeeInfo?
-    
-    var transactionFee: Decimal = 0.0 {
-        didSet {
-            guard let planet = self.planet else { return }
-            
-            if self.coinType == CoinType.ERC20.coinType {
-                
-                transactionFeeLb.text = "\(transactionFee.toString()) ETH"
-                
-                guard let ethBalanceStr = planet.balance, let ethBalance = Decimal(string: ethBalanceStr) else {
-                    confirmBtn.setEnabled(false, theme: currentTheme)
-                    return
-                }
-                
-                if self.availableAmount >= transferAmount && ethBalance >= self.transactionFee {
-                    confirmBtn.setEnabled(true, theme: currentTheme)
-                }
-                else {
-                    confirmBtn.setEnabled(false, theme: currentTheme)
-                }
-            }
-            else {
-                if coinType == CoinType.BTC.coinType || coinType == CoinType.ETH.coinType {
-                    transactionFeeLb.text = "\(transactionFee.toString()) \(planet.symbol ?? "")"
-                    
-                    let totalAmount = self.transferAmount + transactionFee
-
-                    if self.availableAmount >= totalAmount {
-                        confirmBtn.setEnabled(true, theme: currentTheme)
-                    }
-                    else {
-                        confirmBtn.setEnabled(false, theme: currentTheme)
-                    }
-                }
-            }
-        }
-    }
-    
-    var btcFeeStep: BitcoinFeeInfo.Step = .HALF_HOUR {
-        didSet {
-            slider.value = (100 / Float(BitcoinFeeInfo.Step.count - 1)) * Float(btcFeeStep.rawValue)
-            if let feeStr = bitcoinFeeInfo?.getTransactionFee(step: self.btcFeeStep),
-                let feeDecimal = Decimal(string: feeStr)
-            {
-                self.transactionFee = feeDecimal
-            }
-        }
-    }
-    
-    var ethFeeStep: EthereumFeeInfo.Step = .AVERAGE {
-        didSet {
-            slider.value = (100 / Float(EthereumFeeInfo.Step.count - 1)) * Float(ethFeeStep.rawValue)
-            
-            if let gasFee = self.ethereumFeeInfo?.getTransactionFee(step: self.ethFeeStep),
-                let gasETH = gasFee.getFeeETH() {
-                
-                self.transactionFee = gasETH
-            }
-        }
-    }
-    
-    var isAdvancedGasOptions = false {
-        didSet {
-            if self.isAdvancedGasOptions { ethFeeStep = .ADVANCED }
-            gasContainer.isHidden = isAdvancedGasOptions
-            resetBtn.isHidden = !isAdvancedGasOptions
-        }
-    }
-    
     var advancedGasPopup = AdvancedGasView()
     
-    var planet: Planet?
-    var toPlanet: Planet?
-    var erc20: ERC20?
-    var transferAmount: Decimal = 0.0
-    var availableAmount: Decimal = 0.0
     
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
         naviBar.delegate = self
-        
         advancedGasPopup.frame = CGRect(x: 0,
                                         y: SCREEN_HEIGHT,
                                         width: SCREEN_WIDTH,
                                         height: SCREEN_HEIGHT)
         advancedGasPopup.delegate = self
         self.view.addSubview(advancedGasPopup)
+        
+        resetBtn.isEnabled = false
+        confirmBtn.isEnabled = false
+        slider.isEnabled = false;
+        slider.maximumValue = 0;
+        slider.value = 0;
     }
     
     override func setData() {
         super.setData()
         
-        if let userInfo = userInfo,
-            let fromPlanet = userInfo[Keys.UserInfo.planet] as? Planet,
-            let toPlanet = userInfo[Keys.UserInfo.toPlanet] as? Planet,
-            let amountStr = userInfo[Keys.UserInfo.transferAmount] as? String,
-            let amount = Decimal(string: amountStr)
-        {
-            self.planet = fromPlanet
-            self.transferAmount = amount
-            self.toPlanet = toPlanet
-            
-            if let erc20 = userInfo[Keys.UserInfo.erc20] as? ERC20,
-                let balance = Decimal(string: erc20.balance ?? "0"),
-                let decimalStr = erc20.decimals,
-                let decimals = Int(decimalStr)
-            {
-                self.erc20 = erc20
-                self.coinType = CoinType.ERC20.coinType
-                
-                if let availableAmountStr = CoinNumberFormatter.full.convertUnit(balance: balance.toString(), from: 0, to: decimals),
-                    let amountDecimal = Decimal(string: availableAmountStr) {
-                    self.availableAmount = amountDecimal
-                }
-                
-                naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, erc20.name ?? "")
-                
-                Get(self).action(Route.URL("gas"),
-                                 requestCode: 0, resultCode: 0,
-                                 data: nil)
-                
-                toAddressCoinImgView.loadImageWithPath(Route.URL(erc20.img_path!))
-                transferAmountLb.text = "\(amount) \(erc20.symbol ?? "")"
-                transferAmountMainLb.text = "\(amount) \(erc20.symbol ?? "")"
-            }
-            else {
-                guard let coinType = fromPlanet.coinType,
-                    let precision = CoinType.of(coinType).precision,
-                    let balance = Decimal(string: planet?.balance ?? "0") else { return }
-                
-                if coinType == CoinType.BTC.coinType {
-                    self.coinType = CoinType.BTC.coinType
-                    Get(self).action(Route.URL("fee", "BTC"),
-                                     requestCode: -1, resultCode: -1,
-                                     data: nil)
-                    toAddressCoinImgView.defaultImage = ThemeManager.currentTheme().transferBTCImg
-                    advancedGasContainer.isHidden = true
-                }
-                else if coinType == CoinType.ETH.coinType {
-                    self.coinType = CoinType.ETH.coinType
-                    Get(self).action(Route.URL("gas"),
-                                     requestCode: 0, resultCode: 0,
-                                     data: nil)
-                    toAddressCoinImgView.defaultImage = ThemeManager.currentTheme().transferETHImg
-                    advancedGasContainer.isHidden = false
-                }
-                
-                if let availableAmountStr = CoinNumberFormatter.full.convertUnit(balance: balance.toString(), from: 0, to: precision),
-                    let amountDecimal = Decimal(string: availableAmountStr)
-                {
-                    self.availableAmount = amountDecimal
-                }
-                
-                naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, CoinType.of(coinType).name)
-                
-                transferAmountLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
-                transferAmountMainLb.text = "\(amount) \(fromPlanet.symbol ?? "")"
-            }
-            
-            fromLb.text = fromPlanet.name ?? ""
-            
-            if let toPlanetName = toPlanet.name {
-                toPlanetContainer.isHidden = false
-                toAddressContainer.isHidden = true
-                
-                toPlanetNameLb.text = toPlanetName
-                toPlanetView.data = toPlanet.address ?? ""
-                toPlanetAddressLb.text = Utils.shared.trimAddress(toPlanet.address ?? "")
-            }
-            else {
-                toPlanetContainer.isHidden = true
-                toAddressContainer.isHidden = false
-                
-                toAddressLb.text = toPlanet.address
-                toAddressLb.setColoredAddress()
-            }
+        guard
+            let userInfo = self.userInfo,
+            let planet = userInfo[Keys.UserInfo.planet] as? Planet,
+            let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem,
+            let tx = userInfo[Keys.UserInfo.tx] as? Tx else { self.navigationController?.popViewController(animated: false); return }
+        
+        
+        // Data Binding
+        self.planet = planet
+        self.mainItem = mainItem
+        self.tx = tx
+        
+        // Set Transaction
+        self.transaction = Transaction(mainItem)
+        transaction?.tx = tx;
+        transaction?.deviceKey = DEVICE_KEY
+        
+        // Set Amount Value && NaviBar title
+        if let amount = tx.amount, let symbol = mainItem.symbol {
+            naviBar.title = String(format: "transfer_confirm_toolbar_title".localized, symbol)
+            transferAmountMainLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
+            transferAmountLb.text = transferAmountMainLb.text
         }
+        
+        // planet, address check
+        toPlanetContainer.isHidden = ( tx.to_planet == nil )
+        toAddressContainer.isHidden = !( tx.to_planet == nil )
+        
+        // planet, address data Biding
+        toPlanetNameLb.text = tx.to_planet
+        toPlanetView.data = tx.to ?? String()
+        toPlanetAddressLb.text = Utils.shared.trimAddress(tx.to ?? String())
+        toAddressLb.text = tx.to
+        toAddressLb.setColoredAddress()
+        
+        
+        // Bottom List View Data Binding
+        fromLb.text = tx.from_planet
+        if let parentItem = planet.getMainItem(), let coinSymbol = parentItem.symbol {
+            transactionFeeLb.text = "- \(coinSymbol)"
+        }
+        
+        // Get recommand fee
+        if let coinItem = planet.getMainItem(), let coinSymbol = coinItem.symbol {
+            Get(self).action(
+                Route.URL("fee", coinSymbol ),
+                requestCode: 0,
+                resultCode: 0,
+                data: nil,
+                extraHeaders:  ["device-key":DEVICE_KEY] )
+        }
+        
+        
+        // Coin Image && nonce, utxos
+        if mainItem.getCoinType() == CoinType.BTC.coinType {
+            
+            toAddressCoinImgView.image = UIImage(named: "imageTransferConfirmationBtc02")
+            
+            if let fromAddress =  tx.from{
+                Get(self).action(
+                    Route.URL("utxo", "list", CoinType.BTC.name, fromAddress ),
+                    requestCode: 1,
+                    resultCode: 0,
+                    data: nil,
+                    extraHeaders:["device-key":DEVICE_KEY] )
+            }
+            
+        }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            
+            toAddressCoinImgView.image = UIImage(named: "eth")
+            
+            if let fromAddress =  tx.from{
+                Get(self).action(
+                    Route.URL("nonce", "ETH", fromAddress ),
+                    requestCode: 2,
+                    resultCode: 0,
+                    data: nil,
+                    extraHeaders:["device-key":DEVICE_KEY] )
+            }
+            
+        }else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+            
+            if let img_path = mainItem.img_path{
+                toAddressCoinImgView.loadImageWithPath(Route.URL(img_path))
+            }
+            
+            if let fromAddress =  tx.from{
+                Get(self).action(
+                    Route.URL("nonce", "ETH", fromAddress ),
+                    requestCode: 2,
+                    resultCode: 0,
+                    data: nil,
+                    extraHeaders:["device-key":DEVICE_KEY] )
+            }
+            
+        }
+        
     }
     
-    var certificationVC: PinCodeCertificationController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION {
-            certificationVC = segue.destination as? PinCodeCertificationController
-            certificationVC?.delegate = self
+            print("prepare")
+            if segue.destination is PinCodeCertificationController {
+                print("prepare")
+                (segue.destination as? PinCodeCertificationController)?.delegate = self
+            }
         }
     }
     
@@ -238,20 +183,16 @@ class TransferConfirmController: PlanetWalletViewController {
                    userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION])
     }
     
+    // MARK: Slider
     @IBAction func didChanged(_ sender: PWSlider) {
+        sender.value = roundf(sender.value)
         
-        if self.coinType == CoinType.BTC.coinType {
-            let stepUnitValue = Float(100 / (BitcoinFeeInfo.Step.count - 1))
-            guard let step = BitcoinFeeInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
-            btcFeeStep = step
+        let fee = fees[Int(roundf(sender.value))];
+        if fee != tx.gasPrice {
+            tx.gasPrice = fee
+            print(fee)
+            displayEstimateFee( )
         }
-        else if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
-            let stepUnitValue = Float(100 / (EthereumFeeInfo.Step.count - 1))
-            guard let step = EthereumFeeInfo.Step(rawValue: Int(round(sender.value / stepUnitValue))) else { return }
-            ethFeeStep = step
-        }
-//        self.transaction?.getFee()
-        
     }
     
     @IBAction func didTouchedAdvancedOpt(_ sender: UIButton) {
@@ -260,240 +201,99 @@ class TransferConfirmController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedResetGas(_ sender: UIButton) {
-        self.ethFeeStep = .AVERAGE
-        self.isAdvancedGasOptions = !isAdvancedGasOptions
         self.advancedGasPopup.reset()
-    }
-    
-    //MARK: - Private
-    //수수료를 네트워크에서 못 가져 왔을 경우
-    private func setDefaultAdvancedGasFee() {
-        guard let gasPriceWEI = CoinNumberFormatter.full.convertUnit(balance: EthereumFeeInfo.DEFAULT_GAS_PRICE.toString(), from: .GWEI, to: .WEI),
-            let defaultGasPrice = Decimal(string: gasPriceWEI) else { return }
-        
-        let transactionFee = (defaultGasPrice * EthereumFeeInfo.DEFAULT_GAS_LIMIT_ERC20).toString()
-
-        if let feeEtherStr = CoinNumberFormatter.full.convertUnit(balance: transactionFee, from: .WEI, to: .ETHER),
-            let feeEther = Decimal(string: feeEtherStr)
-        {
-            self.transactionFee = feeEther
-            self.isAdvancedGasOptions = true
-            self.resetBtn.isHidden = true
-        }
-    }
-    
-    private func sendTransaction() {
-        
-        guard let selectedPlanet = self.planet,
-            let fromAddress = selectedPlanet.address,
-            let toAddress = toPlanet?.address else { return }
-        
-        var item: MainItem?
-        var symbol = ""
-        var amount = ""
-        var gasPrice = ""
-        var gasLimit = ""
-        
-        if self.coinType == CoinType.ETH.coinType || self.coinType == CoinType.ERC20.coinType {
-            //---- 1.Set Gas
-            if let gasInfo = ethereumFeeInfo
-            {
-                let transactionFee = gasInfo.getTransactionFee(step: self.ethFeeStep)
-                
-                gasPrice = transactionFee.getGasPriceWEI()
-                
-                if isAdvancedGasOptions {
-                    gasLimit = "\(gasInfo.advancedGasLimit)"
-                }
-                else {
-                    gasLimit = "\(gasInfo.getTransactionFee(step: self.ethFeeStep).gasLimit)"
-                }
-            }
-            
-            //---- 2.Set Item (ETH || ERC20)
-            //---- 3.Set Symbol
-            //---- 4.Set Amount
-            if let erc20 = erc20, let erc20Symbol = erc20.symbol {
-                item = erc20
-                symbol = erc20Symbol
-                
-                if let tokenDecimalsStr = erc20.decimals,
-                    let tokenDecimals = Int(tokenDecimalsStr),
-                    let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: tokenDecimals, to: 0) {
-                    amount = amountWEI
-                }
-            }
-            else {
-                item = selectedPlanet.items?.first as! ETH
-                symbol = CoinType.ETH.name
-                
-                if let amountWEI = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .ETHER, to: .WEI) {
-                    amount = amountWEI
-                }
-            }
-        }
-        else if self.coinType == CoinType.BTC.coinType {
-            //---- 1.Set Fee
-            if let fee = bitcoinFeeInfo?.halfHour {
-                gasPrice = fee.toString()
-            }
-            //---- 2.Set Item
-            item = BTC()
-            //---- 3.Set Symbol
-            symbol = CoinType.BTC.name
-            //---- 4.Set Amount
-            if let amountSatoshi = CoinNumberFormatter.full.convertUnit(balance: transferAmount.toString(), from: .BIT, to: .SATOSHI) {
-                amount = amountSatoshi
-            }
-        }
-        
-        guard let transferItem = item else { return }
-        
-        print("-----------Tx------------")
-        print("coin Type : \(symbol)")
-        print("from : \(fromAddress)")
-        print("to : \(toAddress)")
-        print("amount of transfer : \(amount)")
-        print("gas price : \(gasPrice)")
-        print("gas limit : \(gasLimit)")
-        
-        if self.transaction == nil {
-            self.transaction = Transaction( transferItem )
-                .deviceKey(DEVICE_KEY)
-                .from(fromAddress)
-                .to(toAddress)
-                .value(amount)
-                .gasPrice(gasPrice)
-                .gasLimit(gasLimit) //btc일때 제거
-        }
-        
-        
-        self.transaction?.getRawTransaction(privateKey: selectedPlanet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE), {
-            (success, rawTx) in
-            if success {
-                print("rawTx : \(rawTx)")
-                Post(self).action(Route.URL("transfer", symbol),
-                                  requestCode: 100,
-                                  resultCode: 100,
-                                  data: ["serializeTx":rawTx],
-                                  extraHeaders: ["device-key":DEVICE_KEY] )
-            }
-            else {
-                print("failed to transfer Tx")
-            }
-        });
-        
     }
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary,
-            let resultVO = ReturnVO(JSON: dict),
-            let item = resultVO.result as? Dictionary<String, String> else
-        {
-            if requestCode == 0 && resultCode == 0 {
-                setDefaultAdvancedGasFee()
-            }
-            else if requestCode == 100 && resultCode == 100 {
-                if let error = result as? String {
-                    print(error)
+        if success , let dict = dictionary {
+            
+            if let isSuccess = dict["success"] as? Bool {
+                
+                if isSuccess{
+                    networkTaskCount += 1
+                    
+                    if requestCode == 0 { // Fee
+                        
+                        if let resultData = dict["result"] as? [String:String]{
+                           
+                            self.fees = Array(resultData.values).sorted(by: { (s1, s2) -> Bool in
+                                s1.compare(s2, options: .numeric) == .orderedAscending
+                            })
+                        }
+                        
+                    }else if requestCode == 1 { // utxos
+                        
+                        if let resultData = dict["result"] as? [[String:Any]]{
+                            
+                            var utxos = [UTXO]();
+                            resultData.forEach { (item) in
+                                utxos.append(UTXO(JSON: item)!)
+                            }
+                            self.tx.utxos = utxos
+                            
+                        }
+                        
+                    }else if requestCode == 2 { // nonce
+                        
+                        if let resultData = dict["result"] as? [String:Any]{
+                            self.tx.nonce = resultData["nonce"] as? String
+                        }
+                        
+                    }else if requestCode == 3 { // Tansfer
+                        
+                        if let resultData = dict["result"] as? [String:Any]{
+                            self.tx.tx_id = resultData["txHash"] as? String
+                            
+                            sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT,
+                                       userInfo:[Keys.UserInfo.planet: planet,
+                                                 Keys.UserInfo.mainItem: mainItem,
+                                                 Keys.UserInfo.tx: tx])
+                            
+                        }
+                        
+                    }
                 }
-                navigationController?.popViewController(animated: true)
             }
             
-            Toast(text: "failed to response network").show()
-            return
-        }
-        
-        if let errDic = resultVO.result as? [String: Any],
-            let errorMsg = errDic["errorMsg"] as? String
-        {
-            Toast(text: errorMsg).show()
-            return
-        }
-        
-        if requestCode == 0 && resultCode == 0 {    //Gas response
-            
-            if let safeLowStr = item["safeLow"],
-                let averageStr = item["standard"],
-                let fastStr = item["fast"],
-                let fastestStr = item["fastest"],
-                let safeLow = Decimal(string: safeLowStr),
-                let average = Decimal(string: averageStr),
-                let fast = Decimal(string: fastStr),
-                let fastest = Decimal(string: fastestStr)
-            {
-                var gasLimit: Decimal = 100000
-                if self.coinType == CoinType.ETH.coinType {
-                    gasLimit = 21000
-                }
-                self.ethereumFeeInfo = EthereumFeeInfo(isToken: self.coinType == CoinType.ERC20.coinType,
-                                   safeLow: safeLow,
-                                   average: average,
-                                   fast: fast,
-                                   fastest: fastest,
-                                   advancedGasPrice: EthereumFeeInfo.DEFAULT_GAS_PRICE,
-                                   advancedGasLimit: gasLimit)
-                self.ethFeeStep = .AVERAGE
-                self.advancedGasPopup.gasInfo = self.ethereumFeeInfo
-            }
-            else {
-                setDefaultAdvancedGasFee()
-                return
+            if networkTaskCount == 2 {
+                feeViewSetting()
             }
         }
-        else if requestCode == -1 && resultCode == -1 { //Bitcoin Fee response
-            
-            if let fastestStr = item["fastestFee"],
-                let halfHourStr = item["halfHourFee"],
-                let hourStr = item["hourFee"],
-                let fastest = Decimal(string: fastestStr),
-                let halfHour = Decimal(string: halfHourStr),
-                let hour = Decimal(string: hourStr)
-            {
-                self.bitcoinFeeInfo = BitcoinFeeInfo(fastest: fastest, halfHour: halfHour, hour: hour)
-                self.btcFeeStep = .HALF_HOUR
-            }
-        }
-        else if requestCode == 100 && resultCode == 100 {   //Tx response
-            
-            guard let txHash = item[Keys.UserInfo.txHash], let planet = planet, let toPlanet = toPlanet else { return }
-            print("Tx hash : \(txHash)")
-            print("-------------------------\n")
-            
-            var gasPrice: String?
-            
-            if coinType == CoinType.BTC.coinType {
-                gasPrice = bitcoinFeeInfo?.getTransactionFee(step: self.btcFeeStep)
-            }
-            else {
-                gasPrice = ethereumFeeInfo?.getTransactionFee(step: self.ethFeeStep).getFeeETH()?.toString()
-            }
-            
-            
-            sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT, userInfo: [Keys.UserInfo.txHash : txHash,
-                                                                                    Keys.UserInfo.planet : planet,
-                                                                                    Keys.UserInfo.erc20 : erc20 as Any,
-                                                                                    Keys.UserInfo.transferAmount : self.transferAmount.toString(),
-                                                                                    Keys.UserInfo.transactionFee : gasPrice as Any,
-                                                                                    Keys.UserInfo.toPlanet : toPlanet])
-        }
-        
-        
     }
+    
+    func feeViewSetting(){
+        if fees.count > 0 {
+            slider.isEnabled = true
+            slider.maximumValue = Float(fees.count) - 1.0
+            slider.value = floorf( Float(fees.count) / 2.0 )
+            
+            resetBtn.isEnabled = true
+            confirmBtn.isEnabled = true
+            
+            tx.gasPrice = fees[Int(floorf( Float(fees.count) / 2.0 ))]
+            displayEstimateFee( )
+        }
+    }
+    
+    func displayEstimateFee( ){
+        if let transaction = transaction{
+            let fee = transaction.estimateFee()
+            if let parentItem = planet.getMainItem(), let coinSymbol = parentItem.symbol {
+                transactionFeeLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: fee, item: mainItem)) \(coinSymbol)"
+            }
+        }
+    }
+    
 }
 
 //MARK: - AdvancedGasViewDelegate
 extension TransferConfirmController: AdvancedGasViewDelegate {
     func didTouchedSave(_ gasPrice: Decimal, gasLimit: Decimal) {
-
-        self.ethereumFeeInfo?.advancedGasPrice = gasPrice
-        self.ethereumFeeInfo?.advancedGasLimit = gasLimit
-        self.isAdvancedGasOptions = true
-        if let transactionFee = ethereumFeeInfo?.getTransactionFee(step: .ADVANCED),
-            let feeETH = transactionFee.getFeeETH() {
-            self.transactionFee = feeETH
-        }
+        tx.gasPrice = gasPrice.toString()
+        tx.gasLimit = gasLimit.toString()
+    
+        displayEstimateFee()
     }
 }
 
@@ -511,7 +311,15 @@ extension TransferConfirmController: PinCodeCertificationDelegate {
     func didTransferCertificated(_ isSuccess: Bool) {
         if isSuccess {
             self.view.isUserInteractionEnabled = false
-            self.sendTransaction()
+            if let transaction = transaction{
+                let rawTx = transaction.getRawTransaction(privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
+                if rawTx.isEmpty {
+                    self.view.isUserInteractionEnabled = true
+                }
+                if let symbol = mainItem.symbol{
+                    Post(self).action(Route.URL("transfer", symbol), requestCode: 3, resultCode: 0, data: ["serializeTx":rawTx], extraHeaders: ["device-key":DEVICE_KEY])
+                }
+            }
         }
     }
 }

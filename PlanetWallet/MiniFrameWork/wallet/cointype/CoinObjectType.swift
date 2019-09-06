@@ -41,7 +41,7 @@ struct StructCoinType{
 }
 
 struct CoinType {
-    static let NULL = StructCoinType(coinType: -1, name: "NULL", coinName: "Bitcoin", defaultUnit: "BTC", minimumUnit: "satoshi", precision: 1)
+    static let NULL = StructCoinType(coinType: -1, name: "NULL", coinName: "NULL", defaultUnit: nil, minimumUnit: nil, precision: nil)
     static let BTC = StructCoinType(coinType: 0, name: "BTC", coinName: "Bitcoin", defaultUnit: "BTC", minimumUnit: "satoshi", precision: 8)
     static let ETH = StructCoinType(coinType: 60, name: "ETH", coinName: "Ethereum", defaultUnit: "ETH", minimumUnit: "wei", precision: 18)
     static let ERC20 = StructCoinType(coinType: -60, name: "ERC20", coinName: "ERC20", defaultUnit: nil, minimumUnit: nil, precision: nil)

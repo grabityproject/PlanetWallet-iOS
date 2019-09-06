@@ -19,9 +19,7 @@ class Planet: Mappable {
     var decimals: String?
     var hide: String? //Y,N
     var address: String?
-    var name: String?
-    var balance: String?
-    
+    var name: String?    
     
     //network
     var signature: String?
@@ -64,6 +62,13 @@ class Planet: Mappable {
         return ""
     }
     
+    func getMainItem()->MainItem?{
+        if let items = items, let item = items.first{
+            return item
+        }
+        return nil
+    }
+    
     func mapping(map: Map) {
         _id         <- map["_id"]
         keyId       <- map["keyId"]
@@ -74,7 +79,6 @@ class Planet: Mappable {
         hide        <- map["hide"] //Y,N
         address     <- map["address"]
         name        <- map["name"]
-        balance     <- map["balance"]
         
         signature   <- map["signature"]
         planet      <- map["planet"]
