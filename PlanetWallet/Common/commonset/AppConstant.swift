@@ -35,12 +35,7 @@ struct Keys {
         
         static let fromSegue = "fromSegue"
 
-        static let transferAmount = "transferAmount"
-        static let transactionFee = "transactionFee"
-        static let txHash = "txHash"
         static let universe = "universe"
-
-        static let transaction = "transaction"
     }
     
     struct Userdefaults {

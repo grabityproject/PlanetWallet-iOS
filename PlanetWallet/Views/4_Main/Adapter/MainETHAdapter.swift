@@ -30,15 +30,13 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
         
         if let cell = cell as? ETHCoinCell {
             
-            print("cell Come in this place")
-            
             cell.balanceLb.text = CoinNumberFormatter.full.toMaxUnit(balance: data.getBalance(), item: data)
             cell.coinLb.text = data.symbol
 //            cell.currencyLb.text = "";
             
             if let img_path = data.img_path{
                 if data.getCoinType() == CoinType.ETH.coinType {
-                    cell.coinIconImgView.image = UIImage(named:img_path )
+                    cell.coinIconImgView.defaultImage = UIImage(named:img_path )
                 } else {
                     cell.coinIconImgView.loadImageWithPath(Route.URL(img_path))
                 }

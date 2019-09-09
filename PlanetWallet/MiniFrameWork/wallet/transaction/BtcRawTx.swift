@@ -97,6 +97,7 @@ class BtcRawTx{
             
             let inputs = selection(amount: value, fee: feePerByte, utxos: utxos)
             guard let estimateFee = BigInt( "\(( feePerByte * ( inputs.count * 148 + 2 * 34 + 10 + 2 ) ))", radix: 10 ) else { return String() }
+            tx.fee = String(estimateFee)
             
             return String(estimateFee)
         }

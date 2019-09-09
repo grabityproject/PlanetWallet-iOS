@@ -103,11 +103,18 @@ class TransferConfirmController: PlanetWalletViewController {
         toAddressLb.setColoredAddress()
         
         // advancedGasView data binding
-        advancedGasPopup.mainItem = mainItem
-        if let ethAmountStr = planet.getMainItem()?.getBalance(),
-            let ethAmountDec = Decimal(string: ethAmountStr)
-        {
-            advancedGasPopup.ethAmount = ethAmountDec
+        if mainItem.getCoinType() == CoinType.BTC.coinType {
+            advancedGasContainer.isHidden = true
+        }
+        else {
+            advancedGasContainer.isHidden = false
+            
+            advancedGasPopup.mainItem = mainItem
+            if let ethAmountStr = planet.getMainItem()?.getBalance(),
+                let ethAmountDec = Decimal(string: ethAmountStr)
+            {
+                advancedGasPopup.ethAmount = ethAmountDec
+            }
         }
         
         // Bottom List View Data Binding
@@ -257,16 +264,20 @@ class TransferConfirmController: PlanetWalletViewController {
                                        userInfo:[Keys.UserInfo.planet: planet,
                                                  Keys.UserInfo.mainItem: mainItem,
                                                  Keys.UserInfo.tx: tx])
-                            
                         }
-                        
                     }
+                }
+                else {
+                    
                 }
             }
             
             if networkTaskCount == 2 {
                 feeViewSetting()
             }
+        }
+        else {
+            print(result)
         }
     }
     

@@ -41,7 +41,6 @@ class Transaction{
                 
             }else if mainItem.getCoinType() == CoinType.ETH.coinType{
                 
-                print( "EthRawTx.estimateFee()" )
                 return EthRawTx.estimateFee(tx: tx)
                 
             }else if mainItem.getCoinType() == CoinType.ERC20.coinType{

@@ -270,9 +270,10 @@ extension MainController: UITableViewDelegate {
             
             if coinType == CoinType.BTC.coinType {
                 
-                if let tx = txAdapter?.dataSource[indexPath.row]{
+                if let tx = txAdapter?.dataSource[indexPath.row], let item = selectedPlanet.getMainItem() {
                     sendAction(segue: Keys.Segue.MAIN_TO_DETAIL_TX, userInfo: [Keys.UserInfo.planet : selectedPlanet,
-                                                                               Keys.UserInfo.transaction : tx])
+                                                                               Keys.UserInfo.mainItem : item,
+                                                                               Keys.UserInfo.tx : tx])
                 }
                 
             }
