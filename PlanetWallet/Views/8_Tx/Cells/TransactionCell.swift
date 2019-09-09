@@ -15,7 +15,7 @@ class TransactionCell: PWTableCell {
     @IBOutlet var statusLb: PWLabel!
     @IBOutlet var amountLb: PWLabel!
     @IBOutlet var symbolLb: PWLabel!
-    @IBOutlet var monetaryLb: PWLabel!
+    @IBOutlet var currencyLb: PWLabel!
     
     
     override func commonInit() {

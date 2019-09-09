@@ -191,7 +191,13 @@ class KeyPairStore: HDKeyPairStore {
         if let keyPair:KeyPair = keyPairMap[keyId]{
             let hdKeyPair = HDKeyPair()
             if( pin.count > 0 ){
-                hdKeyPair.privateKey = try! defaultCrypter?.doubleDecrypt(encrypted: dataFromBufData(keyPair.value!, index: 0), pin: pin)
+                do {
+                    hdKeyPair.privateKey = try defaultCrypter?.doubleDecrypt(encrypted: dataFromBufData(keyPair.value!, index: 0), pin: pin)
+                }
+                catch {
+                    print(error)
+                    return HDKeyPair()
+                }
             }
             hdKeyPair.publicKey = defaultCrypter?.singleDecrypt(encrypted: dataFromBufData(keyPair.value!, index: 1))
             hdKeyPair.chainCode = defaultCrypter?.singleDecrypt(encrypted: dataFromBufData(keyPair.value!, index: 2))

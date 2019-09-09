@@ -19,8 +19,8 @@ class TransferAmountController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var keyPad: NumberPad!
     @IBOutlet var availableAmountLb: UILabel!
-    @IBOutlet var displayLb: UILabel!
-    @IBOutlet var fiatDisplayLb: UILabel!
+    @IBOutlet var inputAmountLb: UILabel!
+    @IBOutlet var currencyLb: UILabel!
     @IBOutlet var submitBtn: PWButton!
     
     @IBOutlet var titleWithPlanetContainer: UIView!
@@ -167,15 +167,15 @@ class TransferAmountController: PlanetWalletViewController {
             inputAmount = "0"
         }
         
-        fiatDisplayLb.text = "-"
-        fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
-        displayLb.text = inputAmount
+        currencyLb.text = ""
+        currencyLb.textColor = UIColor(red: 170, green: 170, blue: 170)
+        inputAmountLb.text = inputAmount
     }
     
     private func setDisableAmountUI(_ msg: String) {
-        fiatDisplayLb.text = msg
-        fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
-        displayLb.text = inputAmount
+        currencyLb.text = msg
+        currencyLb.textColor = UIColor(red: 255, green: 0, blue: 80)
+        inputAmountLb.text = inputAmount
         submitBtn.setEnabled(false, theme: currentTheme)
     }
     

@@ -110,6 +110,7 @@ class SyncManager: NetworkDelegate{
                         if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
                             if planet.name != syncItemName {
                                 planet.name = syncItemName
+                                planet.date = NSDate().timeIntervalSince1970.toString()
                                 SearchStore.shared.update(planet)
                                 isUpdated = true
                             }

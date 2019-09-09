@@ -334,6 +334,7 @@ extension TransferConfirmController: PinCodeCertificationDelegate {
         if isSuccess {
             self.view.isUserInteractionEnabled = false
             if let transaction = transaction{
+                
                 let rawTx = transaction.getRawTransaction(privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
                 if rawTx.isEmpty {
                     self.view.isUserInteractionEnabled = true

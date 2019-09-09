@@ -334,6 +334,7 @@ extension MainController:NodeServiceDelegate{
     func onBalance(_ planet: Planet, _ balance: String) {
         
         if let planet = self.planet{
+            UIApplication.shared.applicationIconBadgeNumber = 0
             
             planet.getMainItem()?.balance = balance
             
@@ -344,8 +345,6 @@ extension MainController:NodeServiceDelegate{
     }
     
     func onTokenBalance(_ planet: Planet, _ tokenList: [MainItem]) {
-        
-        print(tokenList)
         mainAdapter = MainETHAdapter(tableView, tokenList)
         mainAdapter?.delegates.append(self)
         

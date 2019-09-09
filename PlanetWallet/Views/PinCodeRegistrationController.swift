@@ -138,10 +138,10 @@ class PinCodeRegistrationController: PlanetWalletViewController {
                     KeyPairStore.shared.changePinCode(before: PINCODE, after: passwordArr)
                     
                     KeyStore.shared.setValue(key: Keys.Userdefaults.PINCODE, data: Crypto.sha256(pwData), pin: passwordArr)
-                    PINCODE = passwordArr
                     
+                    PINCODE = passwordArr
+                    BiometricManager.shared.saveKey(PINCODE: passwordArr)
                     self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-            
                 }
             }
         }

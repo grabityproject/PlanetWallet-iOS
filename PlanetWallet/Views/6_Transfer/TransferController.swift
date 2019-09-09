@@ -326,7 +326,7 @@ extension TransferController: QRCaptureDelegate {
 extension TransferController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
         if isUpdate {
-            guard let keyId = planet.keyId, let symbol = planet.symbol else { return }
+            guard let keyId = planet.keyId, let symbol = mainItem.symbol else { return }
             self.recentDatasource = SearchStore.shared.list(keyId: keyId, symbol: symbol, descending: true)
             recentSearchAdapter?.dataSetNotify(recentDatasource)
         }

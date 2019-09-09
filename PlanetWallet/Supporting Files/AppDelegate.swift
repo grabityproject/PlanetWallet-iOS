@@ -122,6 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         messagingDelegates.forEach { (delegate) in
             delegate.messaging?(messaging, didReceive: remoteMessage)
         }
+        
     }
 
     

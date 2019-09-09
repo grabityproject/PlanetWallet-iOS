@@ -275,7 +275,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5yY-on-mV1">
-                                <rect key="frame" x="0.0" y="314.5" width="375" height="224"/>
+                                <rect key="frame" x="0.0" y="314.5" width="375" height="168"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81Z-TW-SCy" userLabel="Announcement Container">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -365,11 +365,11 @@
                                             <constraint firstAttribute="bottom" secondItem="UDU-7a-RlR" secondAttribute="bottom" id="yYJ-Bi-vBf"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-6c-udx" userLabel="Currency Container">
-                                        <rect key="frame" x="0.0" y="112" width="375" height="56"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-6c-udx" userLabel="Currency Container">
+                                        <rect key="frame" x="0.0" y="112" width="375" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ns-ny-zKg" userLabel="currency" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="18" width="61" height="20.5"/>
+                                                <rect key="frame" x="20" y="-10" width="61" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -381,7 +381,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlW-8U-FvW" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="297" y="18" width="29" height="20.5"/>
+                                                <rect key="frame" x="297" y="-10" width="29" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                 <color key="textColor" name="detailTextLight"/>
                                                 <nil key="highlightedColor"/>
@@ -392,7 +392,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageArrowRightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="cbc-B7-g4E" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
-                                                <rect key="frame" x="338" y="18" width="20" height="20"/>
+                                                <rect key="frame" x="338" y="-10" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="XDH-70-y5k"/>
                                                     <constraint firstAttribute="width" constant="20" id="eWs-uk-Dw3"/>
@@ -402,7 +402,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zM4-cv-tCm">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <connections>
                                                     <action selector="didTouchedCurrency:" destination="uRm-nt-tVm" eventType="touchUpInside" id="Jpa-4Y-7bK"/>
                                                 </connections>
@@ -423,7 +423,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZB-12-Q5K" userLabel="Theme Container">
-                                        <rect key="frame" x="0.0" y="168" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="112" width="375" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyW-oX-MLC" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="18" width="99" height="20.5"/>

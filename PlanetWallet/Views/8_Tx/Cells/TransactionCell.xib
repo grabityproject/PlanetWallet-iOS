@@ -22,8 +22,8 @@
             <connections>
                 <outlet property="amountLb" destination="j5T-cq-SZw" id="sxQ-RO-PBr"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="r1C-CG-YVH"/>
+                <outlet property="currencyLb" destination="Y0k-Ez-4gv" id="QPm-tm-qos"/>
                 <outlet property="directionImgView" destination="Nzh-Ur-0GK" id="NJV-Au-eND"/>
-                <outlet property="monetaryLb" destination="Y0k-Ez-4gv" id="QPm-tm-qos"/>
                 <outlet property="statusLb" destination="s6Y-bx-ML7" id="eKY-QA-d4d"/>
                 <outlet property="symbolLb" destination="ddJ-1M-3pQ" id="tjx-qn-KYZ"/>
             </connections>
@@ -53,7 +53,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="66x-Ax-eBJ">
-                    <rect key="frame" x="233.5" y="11.5" width="121.5" height="47"/>
+                    <rect key="frame" x="233.5" y="23.5" width="121.5" height="23.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XtT-wD-wxN">
                             <rect key="frame" x="0.0" y="0.0" width="121.5" height="23.5"/>
@@ -82,8 +82,8 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0k-Ez-4gv" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="23.5" width="121.5" height="23.5"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0k-Ez-4gv" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="121.5" height="0.0"/>
                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                             <color key="textColor" red="0.36078431372549019" green="0.34901960784313724" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
