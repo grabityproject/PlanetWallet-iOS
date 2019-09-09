@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Decimal, gasLimit: Decimal)
+    func didTouchedSave(_ gasPrice: String, gasLimit: String)
 }
 
 class AdvancedGasView: UIView {
@@ -18,10 +18,12 @@ class AdvancedGasView: UIView {
     
     private static let GWEI:String = "1000000000"
     private static let ETH_DEFAULT_GAS_LIMIT:String = "21000"
-    private static let ETH_DEFAULT_GAS_GWEI:String = "20"
+    private static let ETH_DEFAULT_GAS_PRICE:String = "20"
     private static let ERC20_DEFAULT_GAS_LIMIT:String = "100000"
-    private static let ERC20_DEFAULT_GAS_GWEI:String = "10"
+    private static let ERC20_DEFAULT_GAS_PRICE:String = "10"
 
+    var mainItem = MainItem()
+    var ethAmount = Decimal()   //Wei
     
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var drawerView: UIView!
@@ -30,8 +32,9 @@ class AdvancedGasView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet var dimView: UIView!
     @IBOutlet var gasPriceContainer: PWView!
-    @IBOutlet var gasPriceBtn: UIButton!
-    @IBOutlet var gasLimitBtn: UIButton!
+    @IBOutlet var gasPriceLb: UILabel!
+    @IBOutlet var gasLimitLb: UILabel!
+    
     @IBOutlet var gasLimitContainer: PWView!
     @IBOutlet var gasFeesLb: UILabel!
     
@@ -45,24 +48,24 @@ class AdvancedGasView: UIView {
     var hasGasPriceFocus = true {
         didSet {
             if hasGasPriceFocus {
-                if let gasStr = gasPriceBtn.titleLabel?.text {
+                if let gasStr = gasPriceLb.text {
                     self.inputText = gasStr
                 }
                 
                 self.gasPriceContainer.layer.borderColor = UIColor.black.cgColor
                 self.gasLimitContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
-                self.gasPriceBtn.setTitleColor(.black, for: .normal)
-                self.gasLimitBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
+                self.gasPriceLb.textColor = UIColor.black
+                self.gasLimitLb.textColor = UIColor(red: 170, green: 170, blue: 170)
             }
             else {
-                if let gasLimitStr = gasLimitBtn.titleLabel?.text {
+                if let gasLimitStr = gasLimitLb.text {
                     self.inputText = gasLimitStr
                 }
                 
                 self.gasLimitContainer.layer.borderColor = UIColor.black.cgColor
                 self.gasPriceContainer.layer.borderColor = UIColor(red: 237, green: 237, blue: 237).cgColor
-                self.gasPriceBtn.setTitleColor(UIColor(red: 170, green: 170, blue: 170), for: .normal)
-                self.gasLimitBtn.setTitleColor(.black, for: .normal)
+                self.gasPriceLb.textColor = UIColor(red: 170, green: 170, blue: 170)
+                self.gasLimitLb.textColor = UIColor.black
             }
         }
     }
@@ -102,6 +105,7 @@ class AdvancedGasView: UIView {
                                 y: 0,
                                 width: SCREEN_WIDTH,
                                 height: SCREEN_HEIGHT)
+            self.reset()
         }
         hasGasPriceFocus = true
     }
@@ -117,6 +121,19 @@ class AdvancedGasView: UIView {
     }
     
     public func reset() {
+        
+        inputText = ""
+        
+        if mainItem.getCoinType() == CoinType.ETH.coinType {
+            gasPriceLb.text = AdvancedGasView.ETH_DEFAULT_GAS_PRICE
+            gasLimitLb.text = AdvancedGasView.ETH_DEFAULT_GAS_LIMIT
+        }
+        else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+            gasPriceLb.text = AdvancedGasView.ERC20_DEFAULT_GAS_PRICE
+            gasLimitLb.text = AdvancedGasView.ERC20_DEFAULT_GAS_LIMIT
+        }
+        
+        setTextFee()
     }
     
     //MARK: - Private
@@ -132,12 +149,86 @@ class AdvancedGasView: UIView {
         }
     }
     
-    private func calculateGasPrice(gas: Decimal, limit: Decimal) -> Decimal {
-        return gas * limit
+    private func calculateFee(gas: String?, limit: String?) -> Decimal? {
+        guard let gasLimitStr = gas,
+            let gasLimitDec = Decimal(string: gasLimitStr),
+            let gasPriceStr = limit,
+            let gasPriceDec = Decimal(string: gasPriceStr) else { return nil }
+        
+        return gasPriceDec * gasLimitDec
+    }
+    
+    private func tooLargeFee() -> Bool {
+        guard let fee = calculateFee(gas: gasPriceLb.text, limit: gasLimitLb.text)?.toString(),
+            let feeWeiStr = CoinNumberFormatter.full.convertUnit(balance: fee, from: 9, to: 0),
+            let feeWei = Decimal(string: feeWeiStr) else { return false }
+    
+        
+        if ethAmount < feeWei {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    private func isZeroGasPrice() -> Bool {
+        guard let gasPriceStr = gasPriceLb.text else { return false }
+        if gasPriceStr == "" { return true }
+        else { return false }
+    }
+    
+    private func tooLowGasLimit() -> Bool {
+        guard let gasLimitStr = gasLimitLb.text, let gasLimitDec = Decimal(string: gasLimitStr) else { return false }
+        var maxGasLimit: Decimal = 21000
+        
+        if mainItem.getCoinType() == CoinType.ETH.coinType {
+            maxGasLimit = 21000
+        }
+        else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+            maxGasLimit = 100000
+        }
+        
+        if gasLimitDec < maxGasLimit {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    private func isValidValues() -> Bool {
+       return !( tooLargeFee( ) || tooLowGasLimit( ) || isZeroGasPrice( ) )
+    }
+    
+    private func setTextFee() {
+        if let feeGwei = calculateFee(gas: gasPriceLb.text, limit: gasLimitLb.text)?.toString(),
+            let feeETH = CoinNumberFormatter.full.convertUnit(balance: feeGwei, from: 9, to: 18)
+        {
+            gasFeesLb.text = "Fees: " + feeETH + " ETH"
+        }
+        else {
+            gasFeesLb.text = "Fees: -"
+        }
     }
     
     //MARK: - IBAction
     @IBAction func didTouchedSave(_ sender: UIButton) {
+        
+        guard let gasLimitStr = gasLimitLb.text,
+            let gasPriceStr = gasPriceLb.text,
+            let gasPriceWei = CoinNumberFormatter.full.convertUnit(balance: gasPriceStr, from: 9, to: 0) else {
+                Toast(text: "eth_fee_popup_gas_check_title".localized).show()
+                return
+        }
+        
+        if isValidValues() {
+            delegate?.didTouchedSave(gasPriceWei, gasLimit: gasLimitStr)
+            self.hide()
+        }
+        else {
+            Toast(text: "eth_fee_popup_gas_check_title".localized).show()
+        }
     }
     
     @IBAction func didTouchedCancel(_ sender: UIButton) {
@@ -146,40 +237,46 @@ class AdvancedGasView: UIView {
     }
     
     @IBAction func didTouchedGasPrice(_ sender: UIButton) {
-        hasGasPriceFocus = true;
+        //check valid GasLimit
+        if tooLowGasLimit() {
+            if mainItem.getCoinType() == CoinType.ETH.coinType {
+                Toast(text: "fee_popup_gas_limit_least_title".localized).show()
+            }
+            else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+                Toast(text: "@@최소 가스 한도는 10,000 입니다.").show()
+            }
+        }
+        else {
+            hasGasPriceFocus = true
+        }
     }
     
     @IBAction func didTouchedGasLimit(_ sender: UIButton) {
-        hasGasPriceFocus = false;
+        //check valid GasPrice
+        if isZeroGasPrice() {
+            Toast(text: "eth_fee_popup_not_gas_zero_title".localized).show()
+        }
+        else {
+            hasGasPriceFocus = false
+        }
     }
     
     @IBAction func didTouchedKey(_ sender: UIButton) {
         
-        if sender.tag == 99 {
-            
+        if sender.tag == 99 {   //Delete btn
             inputText = String(inputText.dropLast())
-            
-        }else if let num = sender.titleLabel?.text{
-            if let _ = Int(num){
-                
-                inputText += num
-                
-            }
+        }
+        else if let num = sender.titleLabel?.text, let _ = Int(num) {
+            inputText += num
         }
         
         if hasGasPriceFocus {
-
-            gasPriceBtn.setTitle(inputText, for: UIControl.State.normal)
-            gasPriceBtn.setTitle(inputText, for: UIControl.State.highlighted)
-            gasPriceBtn.setTitle(inputText, for: UIControl.State.disabled)
-
+            gasPriceLb.text = inputText
         }else {
-            
-            gasLimitBtn.setTitle(inputText, for: UIControl.State.normal)
-            gasLimitBtn.setTitle(inputText, for: UIControl.State.highlighted)
-            gasLimitBtn.setTitle(inputText, for: UIControl.State.disabled)
+            gasLimitLb.text = inputText
         }
         
+        setTextFee()
     }
     
     

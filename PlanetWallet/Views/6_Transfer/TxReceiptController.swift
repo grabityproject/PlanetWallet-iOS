@@ -41,6 +41,9 @@ class TxReceiptController: PlanetWalletViewController {
             let mainItem = userInfo[Keys.UserInfo.mainItem] as? MainItem,
             let tx = userInfo[Keys.UserInfo.tx] as? Tx else { self.navigationController?.popViewController(animated: false); return }
         
+        self.planet = planet
+        self.mainItem = mainItem
+        self.tx = tx
         
         //Planet or Address
         if tx.to_planet != nil {
@@ -50,7 +53,6 @@ class TxReceiptController: PlanetWalletViewController {
             toPlanetNameLb.text = tx.to_planet
             toPlanetView.data = tx.to ?? ""
             toPlanetAddressLb.text = Utils.shared.trimAddress(tx.to ?? "")
-            
         }
         else {
             toPlanetContainer.isHidden = true
@@ -69,14 +71,14 @@ class TxReceiptController: PlanetWalletViewController {
         // Binding Icon
         if mainItem.getCoinType() == CoinType.BTC.coinType {
 
-            toAddressCoinImgView.image = UIImage(named: "imageTransferConfirmationBtc02")
+            toAddressCoinImgView.defaultImage = UIImage(named: "imageTransferConfirmationBtc02")
 
         }
         else if mainItem.getCoinType() == CoinType.ETH.coinType {
             
-            toAddressCoinImgView.image = UIImage(named: "eth")
+            toAddressCoinImgView.defaultImage = UIImage(named: "eth")
             
-        }else if mainItem.getCoinType() == CoinType.ETH.coinType {
+        }else if mainItem.getCoinType() == CoinType.ERC20.coinType {
             if let img_path = mainItem.img_path{
                 toAddressCoinImgView.loadImageWithPath(Route.URL( img_path ))
             }

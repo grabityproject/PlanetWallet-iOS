@@ -79,7 +79,12 @@ class TransferAmountController: PlanetWalletViewController {
                          resultCode: 0,
                          data: nil,
                          extraHeaders: ["device-key": DEVICE_KEY])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        checkAmount()
     }
     
     //MARK: - IBAction
@@ -95,8 +100,6 @@ class TransferAmountController: PlanetWalletViewController {
     
     //MARK: - Network
     private func handleBalanceResponse(json: [String: Any]) {
-        
-        
         if let balance = MainItem(JSON: json){
             
             self.mainItem.balance = balance.getBalance()
@@ -110,7 +113,6 @@ class TransferAmountController: PlanetWalletViewController {
     }
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        //TODO: - handle error message
         guard let dict = dictionary, let resultObj = dict["result"] as? [String:Any] else { return }
         self.handleBalanceResponse(json: resultObj)
     }
@@ -123,16 +125,38 @@ class TransferAmountController: PlanetWalletViewController {
                 submitBtn.setEnabled(false, theme: currentTheme)
                 
             }else{
-                
+
                 if let balance = Decimal(string:CoinNumberFormatter.full.toMaxUnit(balance: mainItem.getBalance(), item: mainItem)){
-                    if balance <= amount{
-                        fiatDisplayLb.text = "transfer_amount_not_balance_title".localized
-                        fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
-                        displayLb.text = inputAmount
-                        submitBtn.setEnabled(false, theme: currentTheme)
-                        return
-                    }else{
-                        submitBtn.setEnabled(true, theme: currentTheme)
+                    if mainItem.getCoinType() == CoinType.ERC20.coinType {
+                        //both check (Eth fee & balance)
+                        guard let ethAmountStr = planet.getMainItem()?.getBalance(),
+                            let ethAmount = Decimal(string: ethAmountStr) else
+                        {
+                            setDisableAmountUI("transfer_amount_not_balance_title".localized)
+                            return
+                        }
+                        
+                        if balance >= amount {
+                            if ethAmount <= 0 {
+                                setDisableAmountUI("@@ETH 수수료가 부족합니다.")
+                                return
+                            }
+                            else {
+                                submitBtn.setEnabled(true, theme: currentTheme)
+                            }
+                        }
+                        else {
+                            setDisableAmountUI("transfer_amount_not_balance_title".localized)
+                            return
+                        }
+                    }
+                    else {
+                        if balance <= amount{
+                            setDisableAmountUI("transfer_amount_not_balance_title".localized)
+                            return
+                        }else{
+                            submitBtn.setEnabled(true, theme: currentTheme)
+                        }
                     }
                 }else{
                     submitBtn.setEnabled(false, theme: currentTheme)
@@ -146,6 +170,13 @@ class TransferAmountController: PlanetWalletViewController {
         fiatDisplayLb.text = "-"
         fiatDisplayLb.textColor = UIColor(red: 170, green: 170, blue: 170)
         displayLb.text = inputAmount
+    }
+    
+    private func setDisableAmountUI(_ msg: String) {
+        fiatDisplayLb.text = msg
+        fiatDisplayLb.textColor = UIColor(red: 255, green: 0, blue: 80)
+        displayLb.text = inputAmount
+        submitBtn.setEnabled(false, theme: currentTheme)
     }
     
 }

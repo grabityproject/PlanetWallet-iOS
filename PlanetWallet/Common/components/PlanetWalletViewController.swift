@@ -107,8 +107,6 @@ class PlanetWalletViewController: UIViewController, NetworkDelegate
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    
-    
     func findAllViews( view:UIView, theme:Theme ){
         
         if( view is Themable ){

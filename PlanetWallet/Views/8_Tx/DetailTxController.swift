@@ -18,7 +18,7 @@ class DetailTxController: PlanetWalletViewController {
     @IBOutlet var naviBar: NavigationBar!
     
     @IBOutlet var toAddressContainer: UIView!
-    @IBOutlet var toAddressCoinImgView: UIImageView!
+    @IBOutlet var toAddressCoinImgView: PWImageView!
     @IBOutlet var toAddressLb: UILabel!
     
     @IBOutlet var toPlanetContainer: UIView!
@@ -145,8 +145,7 @@ class DetailTxController: PlanetWalletViewController {
         }else if mainItem.getCoinType() == CoinType.ERC20.coinType {
             
             if let img_path = mainItem.img_path {
-                print(img_path)
-//                toAddressCoinImgView.loadImageWithPath(Route.URL(img_path)) // PWImageView로 변경할 것
+                toAddressCoinImgView.loadImageWithPath(Route.URL(img_path))
             }
             
         }

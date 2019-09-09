@@ -102,6 +102,13 @@ class TransferConfirmController: PlanetWalletViewController {
         toAddressLb.text = tx.to
         toAddressLb.setColoredAddress()
         
+        // advancedGasView data binding
+        advancedGasPopup.mainItem = mainItem
+        if let ethAmountStr = planet.getMainItem()?.getBalance(),
+            let ethAmountDec = Decimal(string: ethAmountStr)
+        {
+            advancedGasPopup.ethAmount = ethAmountDec
+        }
         
         // Bottom List View Data Binding
         fromLb.text = tx.from_planet
@@ -169,9 +176,7 @@ class TransferConfirmController: PlanetWalletViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == Keys.Segue.TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION {
-            print("prepare")
             if segue.destination is PinCodeCertificationController {
-                print("prepare")
                 (segue.destination as? PinCodeCertificationController)?.delegate = self
             }
         }
@@ -190,7 +195,6 @@ class TransferConfirmController: PlanetWalletViewController {
         let fee = fees[Int(roundf(sender.value))];
         if fee != tx.gasPrice {
             tx.gasPrice = fee
-            print(fee)
             displayEstimateFee( )
         }
     }
@@ -201,7 +205,11 @@ class TransferConfirmController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedResetGas(_ sender: UIButton) {
+        feeViewSetting()
         self.advancedGasPopup.reset()
+        
+        gasContainer.isHidden = false
+        resetBtn.isHidden = true
     }
     
     //MARK: - Network
@@ -289,11 +297,14 @@ class TransferConfirmController: PlanetWalletViewController {
 
 //MARK: - AdvancedGasViewDelegate
 extension TransferConfirmController: AdvancedGasViewDelegate {
-    func didTouchedSave(_ gasPrice: Decimal, gasLimit: Decimal) {
-        tx.gasPrice = gasPrice.toString()
-        tx.gasLimit = gasLimit.toString()
+    func didTouchedSave(_ gasPrice: String, gasLimit: String) {
+        tx.gasPrice = gasPrice
+        tx.gasLimit = gasLimit
     
         displayEstimateFee()
+        
+        gasContainer.isHidden = true
+        resetBtn.isHidden = false
     }
 }
 

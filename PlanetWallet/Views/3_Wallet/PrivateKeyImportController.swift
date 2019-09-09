@@ -54,36 +54,30 @@ class PrivateKeyImportController: PlanetWalletViewController {
         
         if let coinType = planet.coinType, let privateKey = textField.text {
             
+            var planetToImport: Planet?
+            
             if coinType == CoinType.BTC.coinType{
-                let importedPlanet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
-                
-                if let keyId = importedPlanet.keyId{
-                    if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "privatekey_import_exists_title".localized).show()
-                    }else{
-                        let info = [Keys.UserInfo.planet:importedPlanet]
-                        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
-                        return
-                    }
-                }
-                else {
-                    Toast.init(text: "privatekey_import_not_match_title".localized).show()
-                }
+                planetToImport = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
             }else if coinType == CoinType.ETH.coinType{
-                let importedPlanet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
-                
-                if let keyId = importedPlanet.keyId{
-                    if PlanetStore.shared.get(keyId) != nil{
-                        Toast.init(text: "privatekey_import_exists_title".localized).show()
-                    }else{
-                        let info = [Keys.UserInfo.planet:importedPlanet]
-                        sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
-                        return
+                planetToImport = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+            }
+            
+            if let planetToImport = planetToImport, let keyId = planetToImport.keyId {
+                if PlanetStore.shared.get(keyId) != nil{
+                    Toast.init(text: "privatekey_import_exists_title".localized).show()
+                }else {
+                    var info: [String: Any] = [Keys.UserInfo.planet:planetToImport]
+                    
+                    if let isFromMain = userInfo?["isFromMain"] as? Bool {
+                        info["isFromMain"] = isFromMain
                     }
+                    
+                    sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
+                    return
                 }
-                else {
-                    Toast.init(text: "privatekey_import_not_match_title".localized).show()
-                }
+            }
+            else {
+                Toast.init(text: "privatekey_import_not_match_title".localized).show()
             }
         }
     }

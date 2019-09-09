@@ -118,3 +118,7 @@
 "pincode_registration_one_more_registration_title" = "한번 더 입력해주세요.";
 "pincode_registration_reset_title" = "리셋";
 "main_footer_planets_add_new_planet_title" = "플래닛 추가하기";
+
+"eth_fee_popup_not_gas_zero_title" = "가스비는 0이 될 수 없습니다.";
+"eth_fee_popup_gas_check_title" = "가스비 또는 가스한도를 확인해주세요.";
+"eth_fee_popup_high_fee_error_title" = "수수료가 너무 높습니다.";

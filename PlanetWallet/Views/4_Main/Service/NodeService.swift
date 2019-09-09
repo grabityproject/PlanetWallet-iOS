@@ -95,10 +95,6 @@ class EthNetworkDelegate:Node{
 
                         if let planet = planet, let mainItem = planet.getMainItem() {
                             mainItem.balance = balance?.balance
-                    
-                            print(mainItem.name)
-                            print(mainItem.symbol)
-                            print(mainItem._id)
                             
                             MainItemStore.shared.update( mainItem )
                         }

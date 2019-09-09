@@ -74,6 +74,8 @@ class Tx: Mappable {
         decimals       <- map["decimals"]
         
         utxos          <- map["utxos"]
+        
+        url            <- map["url"]
     }
     
     func formattedDate() -> String? {
