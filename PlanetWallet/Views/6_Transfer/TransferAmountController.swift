@@ -167,8 +167,8 @@ class TransferAmountController: PlanetWalletViewController {
             inputAmount = "0"
         }
         
-        currencyLb.text = ""
-        currencyLb.textColor = UIColor(red: 170, green: 170, blue: 170)
+        currencyLb.text = "-"
+        currencyLb.textColor = UIColor.clear
         inputAmountLb.text = inputAmount
     }
     

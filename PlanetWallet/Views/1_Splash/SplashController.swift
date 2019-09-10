@@ -23,6 +23,7 @@ class SplashController: PlanetWalletViewController {
     //MARK: - Init
     override func setData() {
         super.setData()
+        
         SyncManager.shared.syncPlanet( self )
         
         APP_DELEGATE.messagingDelegates.append(self)
