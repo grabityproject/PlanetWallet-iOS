@@ -115,7 +115,20 @@ class MainController: PlanetWalletViewController{
             self.planet = planetList.first
         }
         
-        updatePlanet()
+        //set default GBT
+        if let coinType = planet?.coinType,
+            let keyId = planet?.keyId
+        {
+            let items = MainItemStore.shared.list(keyId)
+            if CoinType.of(coinType).coinType == CoinType.ETH.coinType &&
+                items.contains(where: { $0.contract == GBT_CONTRACT }) == false
+            {
+                Get(self).action(Route.URL("search","token"), requestCode: 0, resultCode: 0, data: nil)
+            }
+            else {
+                updatePlanet()
+            }
+        }
     }
     
     
@@ -160,7 +173,30 @@ class MainController: PlanetWalletViewController{
                                                 height: 0)
         self.view.addSubview(rippleAnimationView)
     }
-  
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        if let dict = dictionary,
+            let keyId = planet?.keyId,
+            let returnVo = ReturnVO(JSON: dict),
+            let resultSuccess = returnVo.success,
+            let results = returnVo.result as? [[String: String]]
+        {
+                if( resultSuccess ){
+                    results.forEach { (json) in
+                        if json["contract"] == GBT_CONTRACT {
+                            let gbtToken = MainItem(JSON: json)
+                            gbtToken?.hide = "N"
+                            gbtToken?.keyId = keyId
+                            gbtToken?.coinType = CoinType.ERC20.coinType
+                            MainItemStore.shared.tokenSave(gbtToken!)
+                            
+                            updatePlanet()
+                            return
+                        }
+                    }
+                }
+        }
+    }
     
     private func updatePlanet() {
         
@@ -168,7 +204,7 @@ class MainController: PlanetWalletViewController{
             
             Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: planet.keyId ?? "" )
             
-            
+            //set mainItem
             if let keyId = planet.keyId{
                 planet.items = MainItemStore.shared.list(keyId, false)
             }

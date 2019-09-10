@@ -40,6 +40,11 @@ class TransferAmountController: PlanetWalletViewController {
         naviBar.delegate = self
         
         keyPad.shouldPoint = true
+        
+        if SCREEN_HEIGHT < 600 {
+            inputAmountLb.adjustsFontSizeToFitWidth = true
+            inputAmountLb.minimumScaleFactor = 0.65
+        }
     }
     
     override func setData() {

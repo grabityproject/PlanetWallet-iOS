@@ -19,15 +19,32 @@ class SearchStore {
     var delegate: SearchStoreDelegate?
     
     func list(keyId: String, symbol: String, descending: Bool = true) -> [Planet]{
+        
+        var searchList_: [Search]?
+        
         if descending {
-            return try! PWDBManager.shared.select(Planet.self,
-                                                  SearchStore.TABLE_NAME,
-                                                  "keyId = '\(keyId)' AND symbol='\(symbol)'", "date DESC")
+            searchList_ = try! PWDBManager.shared.select(Search.self,
+                                                        SearchStore.TABLE_NAME,
+                                                        "keyId = '\(keyId)' AND symbol='\(symbol)'", "date DESC")
         }
         else {
-            return try! PWDBManager.shared.select(Planet.self,
-                                                  SearchStore.TABLE_NAME,
-                                                  "keyId = '\(keyId)' AND symbol='\(symbol)'")
+            searchList_ = try! PWDBManager.shared.select(Search.self,
+                                                        SearchStore.TABLE_NAME,
+                                                        "keyId = '\(keyId)' AND symbol='\(symbol)'")
+        }
+        
+        guard let searchList = searchList_ else { return [Planet]() }
+        
+        return searchList.map { (search) -> Planet in
+            let planet = Planet()
+            planet._id = search._id
+            planet.keyId = search.keyId
+            planet.coinType = search.coinType
+            planet.date = search.date
+            planet.address = search.address
+            planet.name = search.name
+            planet.symbol = search.symbol
+            return planet
         }
     }
     
@@ -57,7 +74,7 @@ class SearchStore {
         
         let list = self.list(keyId: keyId, symbol: symbol, descending: false)
         
-        let date = NSDate().timeIntervalSince1970.toString()
+        let date = Int(NSDate().timeIntervalSince1970)
         
         list.forEach { (recent) in
             if let name = recent.name, let toInsertName = toPlanet.name {
@@ -78,11 +95,8 @@ class SearchStore {
         }
         
         if list.count >= 20 && isValid {
-            
-            for i in 0..<(list.count-20)+1 {
-                if let idToDelete = list[i]._id {
-                    _ = PWDBManager.shared.delete(list[i], SearchStore.TABLE_NAME, "_id='\(idToDelete)'")
-                }
+            if let oldestItem = list.first, let id = oldestItem._id {
+                _ = PWDBManager.shared.delete(oldestItem, SearchStore.TABLE_NAME, "_id='\(id)'")
             }
         }
         

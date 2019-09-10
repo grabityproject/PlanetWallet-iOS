@@ -26,6 +26,8 @@ var PINCODE = APP_DELEGATE.pinCode
 var DEVICE_KEY = APP_DELEGATE.device_key
 
 let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).languageCode)!
+let GBT_CONTRACT = "0xcbD49182346421D3B410B04AeB1789346DA6Ce43"
+
 
 struct Keys {
     struct UserInfo {

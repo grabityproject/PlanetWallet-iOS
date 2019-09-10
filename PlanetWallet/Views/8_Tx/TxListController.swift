@@ -164,7 +164,10 @@ class TxListController: PlanetWalletViewController {
         
         guard let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
-            let isSuccess = returnVo.success else { return }
+            let isSuccess = returnVo.success else {
+                print("no dict")
+                return
+        }
         
         if requestCode == 0 {
             //Handle balance response

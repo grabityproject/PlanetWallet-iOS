@@ -42,6 +42,21 @@ class PlanetNameController: PlanetWalletViewController {
         
         if let userInfo = userInfo, let planet = userInfo[Keys.UserInfo.planet] as? Planet {
             self.planet = planet
+            
+            if let name = planet.name {
+                
+                if let isFromMain = userInfo["isFromMain"] as? Bool,
+                    let keyId = planet.keyId,
+                    isFromMain == true {
+                    Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
+                }
+                
+                nameTextView.text = name
+                PlanetStore.shared.save(planet)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.sendAction(segue: Keys.Segue.MAIN_NAVI_UNWIND, userInfo: nil)
+                }
+            }
         }
     }
     

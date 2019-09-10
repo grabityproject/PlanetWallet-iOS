@@ -18,9 +18,9 @@ class Search: Mappable {
     var address: String!
     var symbol: String!
     var coinType: Int!
-    var date: String?
+    var date: Int?
     
-    init(keyId: String, name: String?, address: String, symbol: String, coinType: Int, date: String?) {
+    init(keyId: String, name: String?, address: String, symbol: String, coinType: Int, date: Int?) {
         self.keyId = keyId
         self.name = name
         self.address = address

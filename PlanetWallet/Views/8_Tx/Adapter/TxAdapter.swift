@@ -54,7 +54,7 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
             txCell.statusLb.text = "Pending"
             txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
             if txDirection == "received" {
-                txCell.amountLb.textColor = .green
+                txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
                 txCell.amountLb.text = formattedAmount
             }
             else {
@@ -66,7 +66,7 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
             txCell.statusLb.text = "Receive"
             if txDirection == "received" {
                 txCell.directionImgView.image = UIImage(named: "imageBtcDiscrease")
-                txCell.amountLb.textColor = .green
+                txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
                 txCell.statusLb.text = "Received"
                 txCell.amountLb.text = formattedAmount
             }

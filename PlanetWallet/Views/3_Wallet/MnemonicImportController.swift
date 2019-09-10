@@ -58,10 +58,10 @@ class MnemonicImportController: PlanetWalletViewController {
         pwTextfield.isSecureTextEntry = !pwTextfield.isSecureTextEntry
     }
     
+    var importedPlanet:Planet?
+    
     @IBAction func didTouchedContinue(_ sender: UIButton) {
         guard let coinType = planet.coinType else { return }
-        
-        var importedPlanet: Planet?
         
         if coinType == CoinType.BTC.coinType{
             importedPlanet = BitCoinManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
@@ -69,22 +69,47 @@ class MnemonicImportController: PlanetWalletViewController {
             importedPlanet = EthereumManager.shared.importMnemonic(mnemonicPhrase: mnemonicTextView.text, passPhrase: pwTextfield.text ?? "", pinCode: PINCODE)
         }
         
-        if let planet = importedPlanet, let keyId = importedPlanet?.keyId {
+        if let planet = importedPlanet, let _ = planet.keyId {
+            
+            if let symbol = planet.symbol, let address = planet.address{
+                Get(self).action(Route.URL("planet","search",symbol), requestCode: 0, resultCode: 0, data: ["q":address])
+            }
+            
+        }
+        else {
+            Toast.init(text: "mnemonic_import_not_match_title".localized).show()
+        }
+    }
+    
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
+        if success {
+            
+            guard let planet = importedPlanet,
+                let keyId = planet.keyId,
+                let dict = dictionary,
+                let returnVo = ReturnVO(JSON: dict),
+                let results = returnVo.result as? Array<Dictionary<String, Any>> else { return }
             
             if PlanetStore.shared.get(keyId) != nil{
                 Toast.init(text: "mnemonic_import_exists_title".localized).show()
                 
             }else{
                 if let isFromMain = userInfo?["isFromMain"] as? Bool {
+                    if results.count > 0 {
+                        if let item = results.first, let name = item["name"] as? String {
+                            planet.name = name
+                        }
+                    }
+                    
                     sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: [Keys.UserInfo.planet: planet,
                                                                                             "isFromMain" : isFromMain])
                 }
                 return
             }
         }
-        else {
-            Toast.init(text: "mnemonic_import_not_match_title".localized).show()
-        }
+        
+        
     }
     
     

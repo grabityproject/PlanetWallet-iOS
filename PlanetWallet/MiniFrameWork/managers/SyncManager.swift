@@ -47,7 +47,7 @@ class SyncManager: NetworkDelegate{
         var bitCount = 0
         list.forEach { (planet) in
             if let address = planet.address, let coinType = planet.coinType {
-                if( coinType == CoinType.ETH.coinType ){
+                if( coinType == CoinType.ETH.coinType ) || ( coinType == CoinType.ERC20.coinType ) {
                     addresses["\(CoinType.ETH.name)[\(ethCount)]"] = address
                     ethCount = ethCount + 1
                 }else if( coinType == CoinType.BTC.coinType ){
@@ -105,12 +105,11 @@ class SyncManager: NetworkDelegate{
                 didSyncCompleted = true
                 
                 if let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> {
-                    
+                    print(data)
                     planetList.forEach { (planet) in
                         if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
                             if planet.name != syncItemName {
                                 planet.name = syncItemName
-                                planet.date = NSDate().timeIntervalSince1970.toString()
                                 SearchStore.shared.update(planet)
                                 isUpdated = true
                             }

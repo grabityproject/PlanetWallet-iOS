@@ -26,7 +26,7 @@ class Planet: Mappable {
     var planet: String? //register planet name
     
     var items: [MainItem]?
-    var date: String?//Search date
+    var date: Int?//Search date
     
     init() {
         
