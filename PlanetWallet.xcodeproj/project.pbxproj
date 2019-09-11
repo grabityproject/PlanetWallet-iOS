@@ -75,6 +75,9 @@
 		0455D8ED22C4CD88005F6494 /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455D8E522C4CD88005F6494 /* KeyStore.swift */; };
 		0455D8EE22C4CD88005F6494 /* PlanetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455D8E622C4CD88005F6494 /* PlanetStore.swift */; };
 		0455D8EF22C4CD88005F6494 /* MainItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455D8E722C4CD88005F6494 /* MainItemStore.swift */; };
+		045692DE23288E03007C0742 /* PlanetName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 045692DD23288E03007C0742 /* PlanetName.plist */; };
+		045692E72328BEA9007C0742 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045692E52328BEA3007C0742 /* pcwf.framework */; };
+		045692E82328BEA9007C0742 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 045692E52328BEA3007C0742 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		045AA9B622C07FB7005EA387 /* KeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9B522C07FB7005EA387 /* KeyPair.swift */; };
 		045AA9B822C0800E005EA387 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9B722C0800E005EA387 /* Board.swift */; };
 		045AA9BA22C0804A005EA387 /* ErrorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9B922C0804A005EA387 /* ErrorResult.swift */; };
@@ -202,8 +205,6 @@
 		15A24DFF22F2B96D00CCB2D7 /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A24DFB22F2B96C00CCB2D7 /* CryptoEthereumSwift.framework */; };
 		15A24E0022F2B96D00CCB2D7 /* CryptoEthereumSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A24DFB22F2B96C00CCB2D7 /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15A3404122A54AFC00532D0F /* IntensityBlurVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */; };
-		15BE6DB9231F86CC00D14231 /* pcwf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE6DB8231F86CC00D14231 /* pcwf.framework */; };
-		15BE6DBA231F86CC00D14231 /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE6DB8231F86CC00D14231 /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15BE6DBD2320E03500D14231 /* Extension + Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BE6DBC2320E03500D14231 /* Extension + Alamofire.swift */; };
 		9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */; };
 /* End PBXBuildFile section */
@@ -217,7 +218,7 @@
 			files = (
 				15A24E0022F2B96D00CCB2D7 /* CryptoEthereumSwift.framework in Embed Frameworks */,
 				15A24DFE22F2B96D00CCB2D7 /* EthereumKit.framework in Embed Frameworks */,
-				15BE6DBA231F86CC00D14231 /* pcwf.framework in Embed Frameworks */,
+				045692E82328BEA9007C0742 /* pcwf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +298,8 @@
 		0455D8E522C4CD88005F6494 /* KeyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
 		0455D8E622C4CD88005F6494 /* PlanetStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetStore.swift; sourceTree = "<group>"; };
 		0455D8E722C4CD88005F6494 /* MainItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainItemStore.swift; sourceTree = "<group>"; };
+		045692DD23288E03007C0742 /* PlanetName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlanetName.plist; sourceTree = "<group>"; };
+		045692E52328BEA3007C0742 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		045AA9B522C07FB7005EA387 /* KeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPair.swift; sourceTree = "<group>"; };
 		045AA9B722C0800E005EA387 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		045AA9B922C0804A005EA387 /* ErrorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResult.swift; sourceTree = "<group>"; };
@@ -429,12 +432,10 @@
 		04FBCA53229E801400DEEDD9 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		04FBCA56229E908100DEEDD9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		04FBFBA322E07DE0000F8E3C /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncManager.swift; path = managers/SyncManager.swift; sourceTree = "<group>"; };
-		15A24DE522F1946F00CCB2D7 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		15A24DF822F2B89500CCB2D7 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		15A24DFA22F2B96C00CCB2D7 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EthereumKit.framework; sourceTree = "<group>"; };
 		15A24DFB22F2B96C00CCB2D7 /* CryptoEthereumSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoEthereumSwift.framework; sourceTree = "<group>"; };
 		15A3404022A54AFC00532D0F /* IntensityBlurVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityBlurVIew.swift; sourceTree = "<group>"; };
-		15BE6DB8231F86CC00D14231 /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
 		15BE6DBC2320E03500D14231 /* Extension + Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Alamofire.swift"; sourceTree = "<group>"; };
 		4B5750B74DC0323179F83A93 /* Pods-PlanetWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetWallet.release.xcconfig"; path = "Target Support Files/Pods-PlanetWallet/Pods-PlanetWallet.release.xcconfig"; sourceTree = "<group>"; };
 		635C41388B246F7EA5DB37A1 /* Pods_PlanetWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -447,7 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A24DFD22F2B96D00CCB2D7 /* EthereumKit.framework in Frameworks */,
-				15BE6DB9231F86CC00D14231 /* pcwf.framework in Frameworks */,
+				045692E72328BEA9007C0742 /* pcwf.framework in Frameworks */,
 				045049462294E7040046E343 /* LocalAuthentication.framework in Frameworks */,
 				9EEE88B7562EB89EC9FED59E /* Pods_PlanetWallet.framework in Frameworks */,
 				15A24DFF22F2B96D00CCB2D7 /* CryptoEthereumSwift.framework in Frameworks */,
@@ -546,10 +547,9 @@
 		044BC53A22793D3F00FD7E5E = {
 			isa = PBXGroup;
 			children = (
-				15BE6DB8231F86CC00D14231 /* pcwf.framework */,
+				045692E52328BEA3007C0742 /* pcwf.framework */,
 				15A24DFB22F2B96C00CCB2D7 /* CryptoEthereumSwift.framework */,
 				15A24DFA22F2B96C00CCB2D7 /* EthereumKit.framework */,
-				15A24DE522F1946F00CCB2D7 /* pcwf.framework */,
 				044BC54522793D3F00FD7E5E /* PlanetWallet */,
 				044BC54422793D3F00FD7E5E /* Products */,
 				A0315CB8F9480C007E773A4C /* Pods */,
@@ -622,6 +622,7 @@
 				044BC5AF227AD38800FD7E5E /* Fonts */,
 				044BC54D22793D4000FD7E5E /* Assets.xcassets */,
 				044BC55222793D4000FD7E5E /* Info.plist */,
+				045692DD23288E03007C0742 /* PlanetName.plist */,
 				04CB760E22D43D8D00C20811 /* Localizable.strings */,
 				041F9C8F22F1622A0037BED7 /* InfoPlist.strings */,
 			);
@@ -1216,6 +1217,7 @@
 				04A551C522A794EF007A17A3 /* 1_Splash.storyboard in Resources */,
 				044BC5C5227BCDD500FD7E5E /* CharPad.xib in Resources */,
 				04ED33212281506C0092075E /* TokenCell.xib in Resources */,
+				045692DE23288E03007C0742 /* PlanetName.plist in Resources */,
 				049C38EB230CF9C000AA7FA6 /* FooterView.xib in Resources */,
 				04A551C922A794EF007A17A3 /* LaunchScreen.storyboard in Resources */,
 				041F9C8D22F1622A0037BED7 /* InfoPlist.strings in Resources */,
@@ -1634,7 +1636,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PlanetWallet/PlanetWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1648,7 +1650,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = develop;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1664,7 +1666,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PlanetWallet/PlanetWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RMVZJ6ABU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1678,7 +1680,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.grabity.PlanetWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = develop;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlanetWallet/MiniFrameWork/FMDB/PlanetWallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

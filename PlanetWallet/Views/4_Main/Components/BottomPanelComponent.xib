@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +23,7 @@
             <connections>
                 <outlet property="blurView" destination="Cb6-Xv-EE3" id="nBf-ql-Rxh"/>
                 <outlet property="btnNext" destination="uMy-Li-BdU" id="C9H-TC-l6m"/>
+                <outlet property="erc20Lb" destination="iuX-Yc-mlW" id="IpY-uL-mIJ"/>
                 <outlet property="imageIcon" destination="XdX-85-MQJ" id="AgF-eM-mJR"/>
                 <outlet property="labelBalance" destination="9r7-Yo-a1o" id="Dpx-Tw-6z0"/>
                 <outlet property="labelName" destination="Rlv-MI-9da" id="h5N-no-PKS"/>
@@ -67,6 +69,12 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ERC20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-Yc-mlW">
+                    <rect key="frame" x="90" y="15" width="45" height="20.5"/>
+                    <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                    <color key="textColor" name="errorText"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka2-65-ZcV" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="90" y="37" width="6" height="21"/>
                     <constraints>
@@ -104,7 +112,9 @@
                 <constraint firstAttribute="bottom" secondItem="Cb6-Xv-EE3" secondAttribute="bottom" id="VT0-rK-VdN"/>
                 <constraint firstItem="9r7-Yo-a1o" firstAttribute="bottom" secondItem="Ka2-65-ZcV" secondAttribute="bottom" id="Whz-RM-NcZ"/>
                 <constraint firstItem="uMy-Li-BdU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rlv-MI-9da" secondAttribute="trailing" constant="10" id="ZeD-oG-0Nf"/>
+                <constraint firstItem="iuX-Yc-mlW" firstAttribute="centerY" secondItem="Rlv-MI-9da" secondAttribute="centerY" id="fTa-VU-FQC"/>
                 <constraint firstItem="Cb6-Xv-EE3" firstAttribute="leading" secondItem="J3m-SX-0eQ" secondAttribute="leading" id="hmQ-a0-dAF"/>
+                <constraint firstItem="iuX-Yc-mlW" firstAttribute="leading" secondItem="Rlv-MI-9da" secondAttribute="trailing" constant="5" id="kB7-QD-NbF"/>
                 <constraint firstItem="Cb6-Xv-EE3" firstAttribute="top" secondItem="J3m-SX-0eQ" secondAttribute="top" id="l7o-mA-Bif"/>
                 <constraint firstItem="9r7-Yo-a1o" firstAttribute="top" secondItem="Rlv-MI-9da" secondAttribute="bottom" constant="4" id="lIE-AQ-7xO"/>
                 <constraint firstAttribute="trailing" secondItem="uMy-Li-BdU" secondAttribute="trailing" constant="16" id="lV9-vd-vui"/>
@@ -127,5 +137,8 @@
     <resources>
         <image name="imageMainBottomNextBlue" width="60" height="60"/>
         <image name="imageMainBottomNextGray" width="60" height="60"/>
+        <namedColor name="errorText">
+            <color red="1" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

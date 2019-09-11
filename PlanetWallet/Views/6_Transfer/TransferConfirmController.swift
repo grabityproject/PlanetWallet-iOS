@@ -277,7 +277,7 @@ class TransferConfirmController: PlanetWalletViewController {
             }
         }
         else {
-            print(result)
+            print(result ?? "error in TransferConfirmController")
         }
     }
     

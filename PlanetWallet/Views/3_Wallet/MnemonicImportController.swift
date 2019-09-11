@@ -96,16 +96,24 @@ class MnemonicImportController: PlanetWalletViewController {
                 
             }else{
                 if let isFromMain = userInfo?["isFromMain"] as? Bool {
+                    //기존에 Planet이 있을 경우
                     if results.count > 0 {
                         if let item = results.first, let name = item["name"] as? String {
                             planet.name = name
+                            
+                            if isFromMain {
+                                Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
+                            }
+                            
+                            PlanetStore.shared.save(planet)
+                            sendAction(segue: Keys.Segue.MAIN_UNWIND, userInfo: nil)
+                            return
                         }
                     }
                     
                     sendAction(segue: Keys.Segue.MNEMONIC_IMPORT_TO_PLANET_NAME, userInfo: [Keys.UserInfo.planet: planet,
                                                                                             "isFromMain" : isFromMain])
                 }
-                return
             }
         }
         

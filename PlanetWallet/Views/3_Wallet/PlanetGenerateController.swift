@@ -71,6 +71,10 @@ class PlanetGenerateController: PlanetWalletViewController {
             hideCloseBtn()
             generateETH()
         }
+        
+        if let planet = self.planet, let address = planet.address {
+            nameTextView.text = PlanetStore.shared.createRandomName(address: address) + " "
+        }
     }
     
     //MARK: - Private
@@ -140,7 +144,6 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     //MARK: - IBAction
     @IBAction func didTouchedRefresh(_ sender: UIButton) {
-        //TODO: change planet
         guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
         
         if fromSegueID == Keys.Segue.WALLET_ADD_TO_PLANET_GENERATE {

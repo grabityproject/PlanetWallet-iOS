@@ -131,7 +131,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlY-dp-ueK">
-                            <rect key="frame" x="192" y="35" width="30" height="20"/>
+                            <rect key="frame" x="192" y="40" width="30" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE4-of-L87" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="10" height="20"/>
@@ -157,7 +157,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDf-6u-qhh">
-                            <rect key="frame" x="192" y="39" width="30" height="16"/>
+                            <rect key="frame" x="192" y="44" width="30" height="16"/>
                             <connections>
                                 <action selector="btnCopyDidTouched:" destination="-1" eventType="touchUpInside" id="scy-vL-D8o"/>
                             </connections>
@@ -169,7 +169,7 @@
                         <constraint firstItem="dwj-nn-3gl" firstAttribute="top" secondItem="M3q-kf-AJw" secondAttribute="top" id="7C8-8a-KFh"/>
                         <constraint firstAttribute="trailing" secondItem="dwj-nn-3gl" secondAttribute="trailing" constant="10" id="8eo-qj-Fvw"/>
                         <constraint firstItem="rDf-6u-qhh" firstAttribute="trailing" secondItem="qlY-dp-ueK" secondAttribute="trailing" id="EJE-zg-swV"/>
-                        <constraint firstItem="qlY-dp-ueK" firstAttribute="top" secondItem="dwj-nn-3gl" secondAttribute="bottom" id="Rdd-7k-XSu"/>
+                        <constraint firstItem="qlY-dp-ueK" firstAttribute="top" secondItem="dwj-nn-3gl" secondAttribute="bottom" constant="5" id="Rdd-7k-XSu"/>
                         <constraint firstItem="dwj-nn-3gl" firstAttribute="leading" secondItem="M3q-kf-AJw" secondAttribute="leading" constant="10" id="Udo-Ty-bpI"/>
                         <constraint firstItem="qlY-dp-ueK" firstAttribute="centerX" secondItem="M3q-kf-AJw" secondAttribute="centerX" id="g1W-K1-vGZ"/>
                         <constraint firstItem="rDf-6u-qhh" firstAttribute="bottom" secondItem="qlY-dp-ueK" secondAttribute="bottom" id="oGT-xx-OJ2"/>

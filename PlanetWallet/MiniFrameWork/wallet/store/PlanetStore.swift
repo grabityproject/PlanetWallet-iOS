@@ -99,4 +99,41 @@ class PlanetStore {
         }
     }
     
+    
+    func createRandomName(address: String) -> String {
+        let defaultName = "Rigel-III "
+        
+        guard let addressData = address.data(using: .utf8) else { return defaultName }
+        let addressSHA256 = addressData.sha256()
+        
+        let url = Bundle.main.url(forResource: "PlanetName", withExtension: "plist")!
+        let planetNameData = try! Data(contentsOf: url)
+        
+        if let myPlist = try! PropertyListSerialization.propertyList(from: planetNameData, options: [], format: nil) as? [String],
+            let idxOfName = self.selectRandomNumber(from: addressSHA256, max: myPlist.count)
+        {
+            return "\(myPlist[Int(idxOfName)])_\(Int.random(in: 0 ..< 1000))"
+        }
+        else {
+            return defaultName
+        }
+    }
+    
+    private func selectRandomNumber(from: Data, max: Int) -> UInt64? {
+        let randomIdx = Int.random(in: 0 ..< from.count - 2)
+        
+        let byteArray: [UInt8] = [from[randomIdx], from[randomIdx + 1]]
+        
+        if let selectedRanNum = UInt64(byteArray.toHexString(), radix: 16) {
+            if selectedRanNum > max {
+                return self.selectRandomNumber(from: from, max: max)
+            }
+            else {
+                print("success to select random number : \(selectedRanNum)")
+                return selectedRanNum
+            }
+        }
+        
+        return nil
+    }
 }

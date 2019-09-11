@@ -32,7 +32,7 @@ class Tx: Mappable {
     
     var decimals: String?
     
-    var url:String?
+    var explorer:String?
     
     var utxos: [UTXO]?
     
@@ -75,7 +75,7 @@ class Tx: Mappable {
         
         utxos          <- map["utxos"]
         
-        url            <- map["url"]
+        explorer       <- map["explorer"]
     }
     
     func formattedDate() -> String? {

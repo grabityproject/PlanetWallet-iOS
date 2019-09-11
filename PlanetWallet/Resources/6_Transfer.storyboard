@@ -194,7 +194,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can transfer to  the Planet name and Wallet address." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afe-Xn-Bs6" userLabel="Not found label" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="61" y="259" width="253.5" height="41"/>
+                                <rect key="frame" x="73" y="259" width="229" height="33"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextDark"/>
                                 <nil key="highlightedColor"/>
@@ -203,7 +203,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqh-v9-ic3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="163" width="48" height="20.5"/>
+                                <rect key="frame" x="20" y="163" width="44.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextDark"/>
                                 <nil key="highlightedColor"/>
@@ -849,13 +849,23 @@
                                                         </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-6U-9f4">
+                                                        <rect key="frame" x="117" y="17" width="234" height="50.5"/>
+                                                        <connections>
+                                                            <action selector="didTouchedTxHash:" destination="ZPB-95-dZB" eventType="touchUpInside" id="sLS-dL-FKY"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="ue5-6U-9f4" firstAttribute="trailing" secondItem="DLA-rX-nN1" secondAttribute="trailing" id="3uy-Fr-9NP"/>
                                                     <constraint firstItem="DLA-rX-nN1" firstAttribute="leading" secondItem="NgU-QN-2aP" secondAttribute="trailing" constant="50" id="4SV-0R-Eyx"/>
+                                                    <constraint firstItem="ue5-6U-9f4" firstAttribute="bottom" secondItem="DLA-rX-nN1" secondAttribute="bottom" id="9BH-nd-raQ"/>
                                                     <constraint firstItem="DLA-rX-nN1" firstAttribute="top" secondItem="pTO-dX-mg0" secondAttribute="top" constant="17" id="Sxq-LC-ANs"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DLA-rX-nN1" secondAttribute="trailing" constant="20" id="aZa-o4-gR7"/>
                                                     <constraint firstItem="NgU-QN-2aP" firstAttribute="leading" secondItem="pTO-dX-mg0" secondAttribute="leading" constant="19" id="boE-S9-OB5"/>
+                                                    <constraint firstItem="ue5-6U-9f4" firstAttribute="top" secondItem="DLA-rX-nN1" secondAttribute="top" id="ibi-GM-rv8"/>
+                                                    <constraint firstItem="ue5-6U-9f4" firstAttribute="leading" secondItem="DLA-rX-nN1" secondAttribute="leading" id="l7C-Ph-0qe"/>
                                                     <constraint firstItem="NgU-QN-2aP" firstAttribute="top" secondItem="pTO-dX-mg0" secondAttribute="top" constant="17" id="rdJ-0T-uHc"/>
                                                 </constraints>
                                             </view>
@@ -1591,7 +1601,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-VV-U9W" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="129" y="48.5" width="117.5" height="21"/>
+                                <rect key="frame" x="126.5" y="46" width="122.5" height="26.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

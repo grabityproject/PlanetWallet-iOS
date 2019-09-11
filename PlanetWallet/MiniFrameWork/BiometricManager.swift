@@ -43,6 +43,17 @@ class BiometricManager {
     
     var delegate: BiometricManagerDelegate!
     
+    func canEvaluatePolicy(handler: (_ success: Bool, _ error: LAError?)->Void) {
+        let context = LAContext()
+        var authError: NSError?
+        
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) else {
+            handler(false, authError as? LAError)
+            return
+        }
+        
+        handler(true, nil)
+    }
     
     func authenticateUser() {
         let context = LAContext()

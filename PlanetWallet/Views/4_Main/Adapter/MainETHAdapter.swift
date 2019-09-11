@@ -36,7 +36,7 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
             
             if let img_path = data.img_path{
                 if data.getCoinType() == CoinType.ETH.coinType {
-                    cell.coinIconImgView.defaultImage = UIImage(named:img_path )
+                    cell.coinIconImgView.defaultImage = UIImage(named:"eth" )
                 } else {
                     cell.coinIconImgView.loadImageWithPath(Route.URL(img_path))
                 }

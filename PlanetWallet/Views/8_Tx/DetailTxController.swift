@@ -208,7 +208,7 @@ class DetailTxController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedScan(_ sender: UIButton) {
-        if let urlString = tx.url, let url = URL(string: urlString){
+        if let urlString = tx.explorer, let url = URL(string: urlString){
             if UIApplication.shared.canOpenURL(url){
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }

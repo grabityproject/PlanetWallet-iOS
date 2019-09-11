@@ -23,6 +23,7 @@ class BottomPanelComponent: ViewComponent, Themable {
     @IBOutlet var labelBalance: PWLabel!
     @IBOutlet var labelUnit: PWLabel!
     @IBOutlet var labelName: PWLabel!
+    @IBOutlet var erc20Lb: UILabel!
     
     @IBOutlet var btnNext: PWImageView!
     
@@ -111,7 +112,6 @@ class BottomPanelComponent: ViewComponent, Themable {
                 }
                 
             }
-            
         }
         
         self.planet = planet
@@ -129,7 +129,8 @@ class BottomPanelComponent: ViewComponent, Themable {
             labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: mainItem.getBalance(), coinType: CoinType.BTC)
             
             btnNext.isHidden = true
-        
+            erc20Lb.isHidden = true
+            
         }else if( mainItem.getCoinType() == CoinType.ETH.coinType ){
             
             imageIcon.image = UIImage(named: "eth")
@@ -138,6 +139,7 @@ class BottomPanelComponent: ViewComponent, Themable {
             labelBalance.text = CoinNumberFormatter.short.toMaxUnit(balance: mainItem.getBalance(), coinType: CoinType.ETH)
             
             btnNext.isHidden = false
+            erc20Lb.isHidden = true
             
             tokenIndex = 0;
             
@@ -149,7 +151,7 @@ class BottomPanelComponent: ViewComponent, Themable {
             labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: mainItem.getBalance(), from: 0, to: Int(mainItem.decimals!)!)
             
             btnNext.isHidden = false
-            
+            erc20Lb.isHidden = false
         }
         
     }

@@ -130,6 +130,14 @@ class TxReceiptController: PlanetWalletViewController {
         present(ac, animated: true)
     }
     
+    @IBAction func didTouchedTxHash(_ sender: UIButton) {
+        if let urlString = tx.explorer, let url = URL(string: urlString){
+            if UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     //MARK: - Private
     private func dismiss() {
         sendAction(segue: Keys.Segue.MAIN_UNWIND, userInfo: nil)

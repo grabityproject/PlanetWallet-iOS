@@ -32,8 +32,15 @@ class SecurityController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedSwitch(_ sender: UIButton) {
-        sendAction(segue: Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION,
-                   userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.BIOMETRIC_TO_PINCODE_CERTIFICATION])
+        BiometricManager.shared.canEvaluatePolicy { (isSuccess, authError) in
+            if let _ = authError {
+                Toast(text: "iOS 설정에서 TouchID 또는 FaceID를 확인해주세요.").show()
+            }
+            else {
+                sendAction(segue: Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION,
+                           userInfo: [Keys.UserInfo.fromSegue: Keys.Segue.BIOMETRIC_TO_PINCODE_CERTIFICATION])
+            }
+        }
     }
 }
 

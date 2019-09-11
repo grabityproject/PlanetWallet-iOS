@@ -54,7 +54,7 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
             txCell.statusLb.text = "Pending"
             txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
             if txDirection == "received" {
-                txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
+//                txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
                 txCell.amountLb.text = formattedAmount
             }
             else {
