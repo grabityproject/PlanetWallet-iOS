@@ -203,6 +203,7 @@ class TransferConfirmController: PlanetWalletViewController {
         if fee != tx.gasPrice {
             tx.gasPrice = fee
             displayEstimateFee( )
+            isAvailableAmount()
         }
     }
     
@@ -292,6 +293,7 @@ class TransferConfirmController: PlanetWalletViewController {
             
             tx.gasPrice = fees[Int(floorf( Float(fees.count) / 2.0 ))]
             displayEstimateFee( )
+            isAvailableAmount()
         }
     }
     
@@ -304,6 +306,39 @@ class TransferConfirmController: PlanetWalletViewController {
         }
     }
     
+    func isAvailableAmount() {
+        guard let transaction = transaction,
+            let fee = Decimal(string: transaction.estimateFee()),
+            let amountOfTx = Decimal(string: tx.amount ?? "0")
+            else
+        {
+            confirmBtn.setEnabled(false, theme: currentTheme)
+            return
+        }
+        
+        var balance: Decimal = 0
+        
+        if mainItem.getCoinType() == CoinType.BTC.coinType {
+            
+            balance = Decimal(string: mainItem.getBalance()) ?? 0
+        }
+        else if mainItem.getCoinType() == CoinType.ETH.coinType {
+            balance = Decimal(string: mainItem.getBalance()) ?? 0
+        }
+        else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+            if let eth = planet.getMainItem(), let ethBalance = Decimal(string: eth.getBalance()) {
+                balance = ethBalance
+            }
+        }
+        
+        if fee + amountOfTx > balance {
+            confirmBtn.setEnabled(false, theme: currentTheme)
+        }
+        else {
+            confirmBtn.setEnabled(true, theme: currentTheme)
+        }
+        
+    }
 }
 
 //MARK: - AdvancedGasViewDelegate
@@ -313,6 +348,7 @@ extension TransferConfirmController: AdvancedGasViewDelegate {
         tx.gasLimit = gasLimit
     
         displayEstimateFee()
+        isAvailableAmount()
         
         gasContainer.isHidden = true
         resetBtn.isHidden = false

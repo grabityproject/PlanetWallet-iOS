@@ -16,6 +16,7 @@ class MnemonicImportController: PlanetWalletViewController {
 
     @IBOutlet var pwTextfield: UITextField!
     @IBOutlet var pwTextFieldContainer: PWView!
+    @IBOutlet var invisibleImgView: PWImageView!
     
     @IBOutlet var mnemonicTextView: UITextView!
     @IBOutlet var mnemonicTextViewContainer: PWView!
@@ -56,6 +57,13 @@ class MnemonicImportController: PlanetWalletViewController {
     //MARK: - IBAction
     @IBAction func didTouchedInvisible(_ sender: UIButton) {
         pwTextfield.isSecureTextEntry = !pwTextfield.isSecureTextEntry
+        
+        if pwTextfield.isSecureTextEntry {
+            invisibleImgView.image = ThemeManager.currentTheme().invisibleImg
+        }
+        else {
+            invisibleImgView.image = UIImage(named: "imageInputVisible")
+        }
     }
     
     var importedPlanet:Planet?

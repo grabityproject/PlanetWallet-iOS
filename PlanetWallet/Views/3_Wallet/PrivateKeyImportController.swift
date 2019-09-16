@@ -12,6 +12,7 @@ class PrivateKeyImportController: PlanetWalletViewController {
 
     @IBOutlet var pwTextFieldContainer: PWView!
     @IBOutlet var textField: PWTextField!
+    @IBOutlet var invisibleImgView: PWImageView!
     
     @IBOutlet var errMsgContainerView: UIView!
     @IBOutlet var continueBtn: PWButton!
@@ -48,6 +49,13 @@ class PrivateKeyImportController: PlanetWalletViewController {
     @IBAction func didTouchedInvisible(_ sender: PWButton) {
         
         textField.isSecureTextEntry = !textField.isSecureTextEntry
+        
+        if textField.isSecureTextEntry {
+            invisibleImgView.image = ThemeManager.currentTheme().invisibleImg
+        }
+        else {
+            invisibleImgView.image = UIImage(named: "imageInputVisible")
+        }
     }
     
     @IBAction func didTouchedContinue(_ sender: UIButton) {

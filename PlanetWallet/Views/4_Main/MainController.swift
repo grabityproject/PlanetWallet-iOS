@@ -123,7 +123,19 @@ class MainController: PlanetWalletViewController{
             if CoinType.of(coinType).coinType == CoinType.ETH.coinType &&
                 items.contains(where: { $0.contract == GBT_CONTRACT }) == false
             {
-                Get(self).action(Route.URL("search","token"), requestCode: 0, resultCode: 0, data: nil)
+//                Get(self).action(Route.URL("search","token"), requestCode: 0, resultCode: 0, data: nil)
+                let gbtToken = MainItem()
+                gbtToken.contract = GBT_CONTRACT
+                gbtToken.symbol = "GBT"
+                gbtToken.name = "Grabity Coin"
+                gbtToken.decimals = "18"
+                gbtToken.img_path = "/erc20/img/gbt.png"
+                gbtToken.hide = "N"
+                gbtToken.keyId = keyId
+                gbtToken.coinType = CoinType.ERC20.coinType
+                MainItemStore.shared.tokenSave(gbtToken)
+                
+                updatePlanet()
             }
             else {
                 updatePlanet()
@@ -172,30 +184,6 @@ class MainController: PlanetWalletViewController{
                                                 width: 0,
                                                 height: 0)
         self.view.addSubview(rippleAnimationView)
-    }
-    
-    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary,
-            let keyId = planet?.keyId,
-            let returnVo = ReturnVO(JSON: dict),
-            let resultSuccess = returnVo.success,
-            let results = returnVo.result as? [[String: String]]
-        {
-                if( resultSuccess ){
-                    results.forEach { (json) in
-                        if json["contract"] == GBT_CONTRACT {
-                            let gbtToken = MainItem(JSON: json)
-                            gbtToken?.hide = "N"
-                            gbtToken?.keyId = keyId
-                            gbtToken?.coinType = CoinType.ERC20.coinType
-                            MainItemStore.shared.tokenSave(gbtToken!)
-                            
-                            updatePlanet()
-                            return
-                        }
-                    }
-                }
-        }
     }
     
     private func updatePlanet() {

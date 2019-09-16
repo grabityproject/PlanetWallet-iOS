@@ -46,8 +46,15 @@ class TransferController: PlanetWalletViewController {
         didSet {
             switch self.tableState {
             case .RECENT_SEARCH:
-                recentLb.isHidden = false
-                tableTopConstraint.constant = 37
+                if recentDatasource.count == 0 {
+                    recentLb.isHidden = true
+                    tableTopConstraint.constant = 15
+                }
+                else {
+                    recentLb.isHidden = false
+                    tableTopConstraint.constant = 37
+                }
+                
                 recentSearchAdapter = RecentSearchAdapter(tableView, recentDatasource)
                 recentSearchAdapter?.delegate = self
             case .SEARCH:

@@ -800,6 +800,7 @@
                     <connections>
                         <outlet property="continueBtn" destination="Rg2-Pd-YsZ" id="5Cf-jc-lSd"/>
                         <outlet property="errMsgContainerView" destination="Ta9-Yq-KRu" id="YQ8-lP-yUn"/>
+                        <outlet property="invisibleImgView" destination="e62-i1-s8W" id="8mU-DS-2WJ"/>
                         <outlet property="pwTextFieldContainer" destination="Yd5-wD-T4G" id="L1V-Zb-wB1"/>
                         <outlet property="textField" destination="GIR-he-1iA" id="yFL-cO-43U"/>
                         <segue destination="zCZ-oN-aWM" kind="presentation" identifier="privatekeyimport_to_planetname" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="c1d-Ko-JM9"/>
@@ -1041,6 +1042,7 @@
                         <outlet property="continueBtn" destination="5DP-DQ-wQP" id="iq7-FH-grr"/>
                         <outlet property="errMsgContainerView" destination="NKc-Wy-916" id="j17-0r-xLh"/>
                         <outlet property="invisibleBtn" destination="y8F-1p-4CQ" id="5tf-8Z-f4h"/>
+                        <outlet property="invisibleImgView" destination="hMX-vU-Zlu" id="aiW-en-agd"/>
                         <outlet property="mnemonicTextView" destination="wPy-kB-fhI" id="udq-O0-wjE"/>
                         <outlet property="mnemonicTextViewContainer" destination="BIo-Mm-OpU" id="sXT-9K-m91"/>
                         <outlet property="pwTextFieldContainer" destination="sgX-yq-wWL" id="Iq4-Mw-htC"/>

@@ -38,6 +38,7 @@ class PWDBManager : DBManager {
             ")"
             let createMainItemTable = "CREATE TABLE MainItem( " +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "seq INTEGER," +
                 "keyId TEXT," +
                 "coinType INTEGER," +
                 "hide TEXT," +
