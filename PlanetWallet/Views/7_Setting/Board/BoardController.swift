@@ -66,7 +66,7 @@ class BoardController: PlanetWalletViewController {
     }
     
     override func setData() {
-        //category/list
+        
         Get(self).action(Route.URL("board", self.section.param(), "list"), requestCode: 0, resultCode: 0, data: nil)
     }
     

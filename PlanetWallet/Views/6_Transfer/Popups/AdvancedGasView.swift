@@ -240,10 +240,10 @@ class AdvancedGasView: UIView {
         //check valid GasLimit
         if tooLowGasLimit() {
             if mainItem.getCoinType() == CoinType.ETH.coinType {
-                Toast(text: "fee_popup_gas_limit_least_title".localized).show()
+                Toast(text: "eth_fee_popup_eth_minimun_gas_limit_error_title".localized).show()
             }
             else if mainItem.getCoinType() == CoinType.ERC20.coinType {
-                Toast(text: "@@최소 가스 한도는 10,000 입니다.").show()
+                Toast(text: "eth_fee_popup_erc_minimun_gas_limit_error_title".localized).show()
             }
         }
         else {

@@ -277,9 +277,6 @@ class TransferConfirmController: PlanetWalletViewController {
                 feeViewSetting()
             }
         }
-        else {
-            print(result ?? "error in TransferConfirmController")
-        }
     }
     
     func feeViewSetting(){

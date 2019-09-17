@@ -29,7 +29,6 @@ class MnemonicExportController: PlanetWalletViewController {
             if let planet = userInfo[Keys.UserInfo.planet] as? Planet {
                 self.planet = planet
                 textView.text = planet.getMnemonic(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
-                print(textView.text)
             }
         }
     }
@@ -39,7 +38,6 @@ class MnemonicExportController: PlanetWalletViewController {
 extension MnemonicExportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            //dismiss pincode certification vc
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }

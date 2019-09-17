@@ -8,9 +8,13 @@
 
 class Route{
     
-    private static let baseURL : String = "https://test.planetwallet.io"
+    private static var baseURL : String = "https://api.planetwallet.io"
     
     static func URL(_ segments : String...) -> String {
+        if TESTNET {
+            baseURL = "https://test.planetwallet.io"
+        }
+        
         var result : String = ""
         for segment in segments{
             result += ( "/" + segment )

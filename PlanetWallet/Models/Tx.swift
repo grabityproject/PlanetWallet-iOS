@@ -79,14 +79,22 @@ class Tx: Mappable {
     }
     
     func formattedDate() -> String? {
-        if let _createdAt = self.created_at, let createdAt = Int64(_createdAt) {
-            
-            return Utils.shared.changeDateFormat(date: Date(millis: createdAt),
-                                                 afterFormat: .yyyyMMddHHmmss)
+        if status == "pending" {
+            if let _createdAt = self.created_at, let createdAt = Int64(_createdAt) {
+                
+                return Utils.shared.changeDateFormat(date: Date(millis: createdAt),
+                                                     afterFormat: .yyyyMMddHHmmss)
+            }
         }
         else {
-            return nil
+            if let _updatedAt = self.updated_at, let updatedAt = Int64(_updatedAt) {
+                
+                return Utils.shared.changeDateFormat(date: Date(millis: updatedAt),
+                                                     afterFormat: .yyyyMMddHHmmss)
+            }
         }
+        
+        return nil
     }
 }
 

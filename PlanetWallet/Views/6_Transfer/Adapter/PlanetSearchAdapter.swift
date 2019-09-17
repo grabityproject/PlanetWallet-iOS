@@ -15,6 +15,7 @@ protocol PlanetSearchAdapterDelegate {
 class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
 
     var delegate: PlanetSearchAdapterDelegate?
+    var mainItem = MainItem()
     
     private let contactCellID = "contactCell"
     private let contactAddressCellID = "contractAddressCell"
@@ -46,13 +47,16 @@ class PlanetSearchAdapter: AbsTableViewAdapter<Planet> {
             let item = cell as! ContactAddrCell
             item.addressLb.text = data.address
             item.addressLb.setColoredAddress()
-            
-            if let coinType = data.coinType {
-                if coinType == CoinType.BTC.coinType {
-                    item.iconImgView.image = ThemeManager.currentTheme().transferBTCImg
-                }
-                else if coinType == CoinType.ETH.coinType {
-                    item.iconImgView.image = ThemeManager.currentTheme().transferETHImg
+
+            if mainItem.getCoinType() == CoinType.BTC.coinType {
+                item.iconImgView.defaultImage = ThemeManager.currentTheme().transferBTCImg
+            }
+            else if mainItem.getCoinType() == CoinType.ETH.coinType {
+                item.iconImgView.defaultImage = ThemeManager.currentTheme().transferETHImg
+            }
+            else if mainItem.getCoinType() == CoinType.ERC20.coinType {
+                if let path = mainItem.img_path {
+                    item.iconImgView.loadImageWithPath(Route.URL(path))
                 }
             }
         }else {

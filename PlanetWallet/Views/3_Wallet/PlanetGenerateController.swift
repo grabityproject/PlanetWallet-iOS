@@ -61,9 +61,6 @@ class PlanetGenerateController: PlanetWalletViewController {
                 }else if( coinType == CoinType.ETH.name ){
                     addETH()
                 }
-                
-            }else{
-               print("coinType 못가져옴")
             }
             
         }
@@ -105,7 +102,7 @@ class PlanetGenerateController: PlanetWalletViewController {
                     self.planet =  EthereumManager.shared.addPlanet(index: pathIndex + 1, pinCode: PINCODE)
                 }
             }catch{
-                print(error)
+                Toast(text: error.localizedDescription).show()
             }
         }else{
             self.planet = EthereumManager.shared.addPlanet(pinCode: PINCODE)
@@ -125,7 +122,7 @@ class PlanetGenerateController: PlanetWalletViewController {
                     self.planet =  BitCoinManager.shared.addPlanet(index: pathIndex + 1, pinCode: PINCODE)
                 }
             }catch{
-                print(error)
+                Toast(text: error.localizedDescription).show()
             }
         }else {
             self.planet = BitCoinManager.shared.addPlanet(pinCode: PINCODE)

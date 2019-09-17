@@ -12,7 +12,7 @@ class ContactAddrCell: PWTableCell {
 
     @IBOutlet var containerView: PWView!
     @IBOutlet var addressLb: PWLabel!
-    @IBOutlet var iconImgView: UIImageView!
+    @IBOutlet var iconImgView: PWImageView!
     
     override func commonInit() {
         super.commonInit()

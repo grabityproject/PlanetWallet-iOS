@@ -89,19 +89,15 @@ class TxReceiptController: PlanetWalletViewController {
             gasFeeLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: fee, item: parentMainItem)) \(coinSymbol)"
         }
         
-        // From Planet Name, Date
+        // From Planet Name
         fromPlanetNameLb.text = planet.name
-        dateLb.text = Utils.shared.getStringFromDate(Date(), format: .yyyyMMddHHmmss)
-        
-        // Tx Hash
-        if let txHash = tx.tx_id{
-            txHashValueLb.attributedText = NSAttributedString(string: txHash,
-                                                              attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
-                                                                           NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-        }
         
         // Insert saveRecentSearch()
         saveRecentSearch()
+        
+        if let txHash = tx.tx_id, let symbol = tx.symbol {
+            Get(self).action(Route.URL("tx",symbol,txHash), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
+        }
     }
     
     func saveRecentSearch() {
@@ -125,9 +121,15 @@ class TxReceiptController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedShare(_ sender: UIButton) {
-        let items = ["Transaction sharing"]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(ac, animated: true)
+        
+        if let fromName = planet.name, let amount = tx.amount, let symbol = tx.symbol, let explorer = tx.explorer {
+            
+            let sharingStr = String(format: "tx_receipt_shared_text".localized,
+                                    fromName, CoinNumberFormatter.full.toMaxUnit(balance: amount, item: mainItem), symbol, explorer)//from, amount, symbol, explorer
+            
+            let ac = UIActivityViewController(activityItems: [sharingStr], applicationActivities: nil)
+            present(ac, animated: true)
+        }
     }
     
     @IBAction func didTouchedTxHash(_ sender: UIButton) {
@@ -143,4 +145,33 @@ class TxReceiptController: PlanetWalletViewController {
         sendAction(segue: Keys.Segue.MAIN_UNWIND, userInfo: nil)
     }
     
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            success,
+            let results = returnVo.result as? [[String:Any]],
+            let resultJson = results.first,
+            let isSuccess = returnVo.success else { return }
+        
+        if isSuccess {
+            
+            self.tx = Tx(JSON: resultJson) ?? Tx()
+            // Tx Hash, date
+            if let txHash = tx.tx_id{
+                dateLb.text = tx.formattedDate()
+                
+                txHashValueLb.attributedText = NSAttributedString(string: txHash,
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
+                                                                               NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+            }
+        }
+        else {
+            if let errDic = returnVo.result as? [String: Any],
+                let errorMsg = errDic["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
+            }
+        }
+    }
 }

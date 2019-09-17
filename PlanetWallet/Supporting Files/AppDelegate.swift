@@ -86,12 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        
-        
-        // Print full message.
-        print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],

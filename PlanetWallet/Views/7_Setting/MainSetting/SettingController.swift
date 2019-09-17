@@ -16,6 +16,7 @@ class SettingController: PlanetWalletViewController {
     @IBOutlet var helloLb: PWLabel!
     @IBOutlet var currencyLb: PWLabel!
     @IBOutlet var planetView: PlanetView!
+    @IBOutlet var versionLb: PWLabel!
     
     var selectedPlanet: Planet? {
         didSet {
@@ -61,6 +62,8 @@ class SettingController: PlanetWalletViewController {
         if let currency = UserDefaults.standard.string(forKey: Keys.Userdefaults.CURRENCY) {
             currencyLb.text = currency
         }
+        
+        Get(self).action(Route.URL("version","ios"), requestCode: 0, resultCode: 0, data: nil)
     }
     
     //MARK: - IBAction
@@ -129,6 +132,26 @@ class SettingController: PlanetWalletViewController {
         {
             self.planetView.data = address
             self.helloLb.text = String(format: "setting_planet_main_title".localized, name)
+        }
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            let success = returnVo.success else { return }
+        
+        if success {
+            if let results = returnVo.result as? [String: Any], let version = results["version"] as? String {
+                versionLb.text = version
+            }
+        }
+        else {
+            if let errDict = returnVo.result as? [String: Any],
+                let errorMsg = errDict["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
+            }
         }
     }
 }

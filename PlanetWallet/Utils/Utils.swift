@@ -58,7 +58,6 @@ struct Utils {
             }
         }
         catch {
-            print("Planet name isn't valid")
             return false
         }
     }
@@ -77,8 +76,7 @@ struct Utils {
                 returnValue = false
             }
             
-        } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
+        } catch {
             returnValue = false
         }
         
@@ -191,7 +189,6 @@ struct Utils {
         if let beforeDate = dateFormatterGet.date(from: date) {//2016-02-29 12:24:26
             return dateFormatterPrint.string(from: beforeDate)
         } else {
-            print("There was an error decoding the string")
             return nil
         }
     }

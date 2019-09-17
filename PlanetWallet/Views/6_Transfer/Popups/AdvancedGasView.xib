@@ -48,8 +48,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDp-Xe-tbb">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGV-HO-2tr" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="112" y="37" width="151" height="26.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGV-HO-2tr" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                    <rect key="frame" x="122.5" y="37" width="130" height="26.5"/>
                                     <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

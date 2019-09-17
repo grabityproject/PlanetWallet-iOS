@@ -62,6 +62,7 @@ class TransferController: PlanetWalletViewController {
                 tableTopConstraint.constant = 15
                 planetSearchAdapter = PlanetSearchAdapter(tableView, searchingDatasource)
                 planetSearchAdapter?.delegate = self
+                planetSearchAdapter?.mainItem = mainItem
                 planetSearchAdapter?.dataSetNotify(searchingDatasource)
             }
         }
@@ -129,8 +130,6 @@ class TransferController: PlanetWalletViewController {
         guard let adapter = planetSearchAdapter else { return }
         
         if( adapter.dataSource.count == 0 && search.count == 0 ){
-//            recentSearchAdapter = RecentSearchAdapter(tableView, recentDatasource)
-//            recentSearchAdapter?.delegate = self
             self.tableState = .RECENT_SEARCH
             
             self.tableView.isHidden = false
@@ -211,9 +210,6 @@ class TransferController: PlanetWalletViewController {
                 }
             }
             
-//            planetSearchAdapter = PlanetSearchAdapter(tableView, searchingDatasource)
-//            planetSearchAdapter?.delegate = self
-//            planetSearchAdapter?.dataSetNotify(searchingDatasource)
             self.tableState = .SEARCH
             updateUI()
         }

@@ -32,14 +32,16 @@ class MainETHAdapter: AbsTableViewAdapter<MainItem> {
             
             cell.balanceLb.text = CoinNumberFormatter.full.toMaxUnit(balance: data.getBalance(), item: data)
             cell.coinLb.text = data.symbol
-//            cell.currencyLb.text = "";
             
             if let img_path = data.img_path{
                 if data.getCoinType() == CoinType.ETH.coinType {
-                    cell.coinIconImgView.defaultImage = UIImage(named:"eth" )
+                    cell.coinIconImgView.defaultImage = UIImage(named:"eth")
                 } else {
                     cell.coinIconImgView.loadImageWithPath(Route.URL(img_path))
                 }
+            }
+            else {
+                cell.coinIconImgView.defaultImage = UIImage(named:"eth")
             }
         }
         

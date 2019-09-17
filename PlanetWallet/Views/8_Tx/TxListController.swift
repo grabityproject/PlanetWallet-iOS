@@ -164,53 +164,53 @@ class TxListController: PlanetWalletViewController {
         
         guard let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
-            let isSuccess = returnVo.success else {
-                print("no dict")
-                return
-        }
+            let isSuccess = returnVo.success else { return }
         
-        if requestCode == 0 {
-            //Handle balance response
-            guard let json = dict["result"] as? [String:Any] else { return }
-            
-            if let b = MainItem(JSON:json) {
+        if isSuccess {
+            if requestCode == 0 {
+                //Handle balance response
+                guard let json = dict["result"] as? [String:Any] else { return }
                 
-                mainItem.balance =  b.getBalance()
-                if let symbol = mainItem.symbol{
-                    balanceLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance:  b.getBalance(), item: mainItem)) \(symbol)"
+                if let b = MainItem(JSON:json) {
+                    
+                    mainItem.balance =  b.getBalance()
+                    if let symbol = mainItem.symbol{
+                        balanceLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance:  b.getBalance(), item: mainItem)) \(symbol)"
+                    }
+                    
                 }
                 
-            }
-            
-        }else if requestCode == 1 {
-            //Handle transacion list response
-            guard let txItems = returnVo.result as? Array<Dictionary<String, Any>> else { return }
-            self.txList.removeAll()
-            
-            if isSuccess {
+            }else if requestCode == 1 {
+                //Handle transacion list response
+                self.txList.removeAll()
+                
+                guard let txItems = returnVo.result as? Array<Dictionary<String, Any>> else { return }
                 for i in 0..<txItems.count {
                     if let transaction = Tx(JSON: txItems[i]) {
                         txList.append(transaction)
                     }
                 }
+                
+                if txList.count == 0 {
+                    footerView.isHidden = false
+                }
+                
+                saveTx(txList)
+                txAdapter?.dataSetNotify(txList)
             }
-            else {
-                print("Failed to response txList")
+        }
+        else {
+            if let errDict = returnVo.result as? [String: Any],
+                let errorMsg = errDict["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
             }
-            
-            if txList.count == 0 {
-                footerView.isHidden = false
-            }
-            
-            saveTx(txList)
-            txAdapter?.dataSetNotify(txList)
         }
     }
 }
 
 extension TxListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         sendAction(segue: Keys.Segue.TX_LIST_TO_DETAIL_TX,
                    userInfo: [Keys.UserInfo.planet: planet,
                               Keys.UserInfo.mainItem: mainItem,

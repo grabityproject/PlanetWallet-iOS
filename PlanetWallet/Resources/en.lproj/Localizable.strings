@@ -67,7 +67,7 @@
 "transfer_confirm_fee_title" = "Fee";
 "transfer_confirm_slow_title" = "Slow";
 "transfer_confirm_fast_title" = "Fast";
-"transfer_confirm_advanced_options_title" = "Input yourself";
+"transfer_confirm_advanced_options_title" = "Customize Fee";
 "transfer_confirm_btn_title" = "Confirm";
 "tx_receipt_from_title" = "From";
 "tx_receipt_amount" = "Amount";
@@ -105,20 +105,40 @@
 "setting_version_title" = "Version";
 "erc_popup_btn_copy_title" = "Copy";
 "erc_popup_btn_transfer_title" = "Transfer";
-"fee_popup_advanced_option_title" = "Input fee yourself";
+"fee_popup_advanced_option_title" = "Customize Fee";
 "fee_popup_gas_price_title" = "Gas Price (Gwei)";
 "fee_popup_gas_limit_title" = "Gas Limit";
 "fee_popup_fees_title" = "Fee:";
 "fee_popup_btn_cancel_title" = "Cancel";
 "fee_popup_btn_save_title" = "Save";
 "fee_popup_not_spaces_title" = "Gas Price and Gas Limit are mandatory to input";
-"fee_popup_gas_limit_least_title" = "Minimum amount of Gas is 21,000";
-"fee_popup_gas_price_least_title" = "Minimum price of Gas is 1 Gwei";
 "pincode_registration_one_more_registration_title" = "Try again";
 "pincode_registration_reset_title" = "Reset";
 "main_footer_planets_add_new_planet_title" = "Add New Planet";
+"eth_fee_popup_not_gas_zero_title" = "Gas price can not be 0.";
+"eth_fee_popup_gas_check_title" = "Please check GasPrice or GasLimit again.";
+"eth_fee_popup_high_fee_error_title" = "Transfer fee is too high.";
+/*----------------------------------------------------------------*/
+"transfer_confirm_transaction_error_title" = "Currently, it is not possible to complete the transaction. Please try it again after few minutes.";
+"transfer_amount_not_fee_title" = "Transfer fee is not sufficient.";
+"transfer_confirm_not_fee_title" = "Transfer fee is not sufficient.";
+"eth_fee_popup_eth_minimun_gas_limit_error_title" = "Minimum Gas limit is 21,000.";
+"eth_fee_popup_erc_minimun_gas_limit_error_title" = "Minimum Gas limit is 100,000.";
+"transaction_status_pending_title" = "Pending";
+"transaction_status_completed_title" = "Completed";
+"transaction_type_sent_title" = "Sent";
+"transaction_type_received_title" = "Received";
+"detail_tx_status_title" = "Status";
+"detail_tx_amount_title" = "Amount";
+"detail_tx_fee_title" = "Fee";
+"detail_tx_date_title" = "Date";
+"detail_tx_tx_hash_title" = "Tx Hash";
+"detail_address_btn_copy_title" = "Copy";
+"detail_address_btn_transfer_title" = "Transfer";
+"detail_address_toolbar_receive_title" = "Receive";
+"tx_list_header_btn_receive_title" = "Receive";
+"tx_list_header_btn_transfer_title" = "Transfer";
+"security_bio_permission_never_not_allowed_title" = "Please unlock Touch ID/Face ID on settings.";
+"security_bio_not_registered_fingerprint" = "There is no registered TouchID/FaceID on this device.";
 
-"eth_fee_popup_not_gas_zero_title" = "가스비는 0이 될 수 없습니다.";
-"eth_fee_popup_gas_check_title" = "가스비 또는 가스한도를 확인해주세요.";
-"eth_fee_popup_high_fee_error_title" = "수수료가 너무 높습니다.";
-
+"tx_receipt_shared_text" = "%@ sent %@ %@.\n\nPlease refer to the link below to check the transaction.\n\n%@";

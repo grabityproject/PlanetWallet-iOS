@@ -143,7 +143,7 @@ class TransferAmountController: PlanetWalletViewController {
                         
                         if balance >= amount {
                             if ethAmount <= 0 {
-                                setDisableAmountUI("@@ETH 수수료가 부족합니다.")
+                                setDisableAmountUI("transfer_amount_not_fee_title".localized)
                                 return
                             }
                             else {
@@ -218,8 +218,6 @@ extension TransferAmountController: NumberPadDelegate {
                 }
             }
         }else {
-            print(inputAmount)
-            print(inputAmount.contains("."))
             if( !inputAmount.contains(".") ){
                 inputAmount += num
             }

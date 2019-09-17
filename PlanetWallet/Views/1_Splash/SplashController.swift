@@ -67,7 +67,7 @@ class SplashController: PlanetWalletViewController {
     private func getDeviceKey() {
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
-                print(error)
+                Toast(text: error.localizedDescription).show()
             } else if let result = result {
                 if let fcmToken: String = Utils.shared.getDefaults(for: Keys.Userdefaults.FCM_TOKEN ){
                     if fcmToken != result.token {
@@ -132,9 +132,7 @@ extension SplashController: MessagingDelegate {
 
 extension SplashController: SyncDelegate {
     func sync(_ syncType: SyncType, didSyncComplete complete: Bool, isUpdate: Bool) {
-        if isUpdate{
-            print("isUpdate!!")
-        }
+        
         isSync = true
     }
 }

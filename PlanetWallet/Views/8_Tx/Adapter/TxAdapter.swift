@@ -51,10 +51,9 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         guard let txStatus = data.status, let txDirection = data.type else { return }
         
         if txStatus == "pending" {
-            txCell.statusLb.text = "Pending"
+            txCell.statusLb.text = "transaction_status_pending_title".localized
             txCell.directionImgView.image = ThemeManager.currentTheme().pendingImg
             if txDirection == "received" {
-//                txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
                 txCell.amountLb.text = formattedAmount
             }
             else {
@@ -63,16 +62,16 @@ class TxAdapter: AbsTableViewAdapter<Tx> {
         }
         else if txStatus == "confirmed" {
             txCell.amountLb.text = formattedAmount
-            txCell.statusLb.text = "Receive"
+            txCell.statusLb.text = "transaction_type_received_title".localized
             if txDirection == "received" {
                 txCell.directionImgView.image = UIImage(named: "imageBtcDiscrease")
                 txCell.amountLb.textColor = UIColor(red: 0, green: 226, blue: 145)
-                txCell.statusLb.text = "Received"
+                txCell.statusLb.text = "transaction_type_received_title".localized
                 txCell.amountLb.text = formattedAmount
             }
             else {
                 txCell.directionImgView.image = UIImage(named: "imgeaBtcIncrease")
-                txCell.statusLb.text = "Sent"
+                txCell.statusLb.text = "transaction_type_sent_title".localized
                 txCell.amountLb.text = "-" + formattedAmount
             }
         }

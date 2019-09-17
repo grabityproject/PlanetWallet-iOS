@@ -6,7 +6,6 @@
   Copyright © 2019 grabity. All rights reserved.
 */
 
-
 "app_name" = "PlanetWallet";
 "continue_title" = "다음";
 "camera_permission_never_not_allowed_title" = "휴대폰 설정에서 카메라 권한을 허용해 주세요.";
@@ -113,12 +112,33 @@
 "fee_popup_btn_cancel_title" = "취소";
 "fee_popup_btn_save_title" = "저장";
 "fee_popup_not_spaces_title" = "가스비와 가스한도는 모두 비어 있을 수 없습니다.";
-"fee_popup_gas_limit_least_title" = "최소 가스 한도는 21,000 입니다.";
-"fee_popup_gas_price_least_title" = "가스비는 최소 1 Gwei 이상 입니다.";
 "pincode_registration_one_more_registration_title" = "한번 더 입력해주세요.";
 "pincode_registration_reset_title" = "리셋";
 "main_footer_planets_add_new_planet_title" = "플래닛 추가하기";
-
 "eth_fee_popup_not_gas_zero_title" = "가스비는 0이 될 수 없습니다.";
 "eth_fee_popup_gas_check_title" = "가스비 또는 가스한도를 확인해주세요.";
 "eth_fee_popup_high_fee_error_title" = "수수료가 너무 높습니다.";
+/*----------------------------------------------------------------*/
+"transfer_confirm_transaction_error_title" = "현재 거래를 완료할 수 없는 상태입니다. 잠시 후에 다시 시도해 주세요.";
+"transfer_amount_not_fee_title" = "전송에 필요한 수수료가 부족합니다.";
+"transfer_confirm_not_fee_title" = "전송에 필요한 수수료가 부족합니다.";
+"eth_fee_popup_eth_minimun_gas_limit_error_title" = "최소 가스 한도는 21,000 입니다.";
+"eth_fee_popup_erc_minimun_gas_limit_error_title" = "최소 가스 한도는 100,000 입니다.";
+"transaction_status_pending_title" = "거래대기";
+"transaction_status_completed_title" = "완료";
+"transaction_type_sent_title" = "송금완료";
+"transaction_type_received_title" = "입금완료";
+"detail_tx_status_title" = "거래상태";
+"detail_tx_amount_title" = "보낸 금액";
+"detail_tx_fee_title" = "수수료";
+"detail_tx_date_title" = "날짜";
+"detail_tx_tx_hash_title" = "트랜잭션 해시";
+"detail_address_btn_copy_title" = "주소 복사";
+"detail_address_btn_transfer_title" = "전송";
+"detail_address_toolbar_receive_title" = "입금주소보기";
+"tx_list_header_btn_receive_title" = "입금주소보기";
+"tx_list_header_btn_transfer_title" = "전송";
+"security_bio_permission_never_not_allowed_title" = "TouchID/FaceID을 위해 설정에서 권한을 허용해주세요.";
+"security_bio_not_registered_fingerprint" = "디바이스에 등록된 TouchID/FaceID가 없습니다.";
+
+"tx_receipt_shared_text" = "%@에서 %@ %@를 송금하였습니다.\n\n아래 링크를 눌러 내역을 확인하세요.\n\n%@";

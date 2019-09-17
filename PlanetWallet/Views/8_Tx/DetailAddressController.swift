@@ -28,6 +28,7 @@ class DetailAddressController: PlanetWalletViewController {
         super.viewInit()
         
         naviBar.delegate = self
+        naviBar.title = "detail_address_toolbar_receive_title".localized
         
         cardContentView.layer.cornerRadius = 25
         cardContentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -78,10 +79,8 @@ class DetailAddressController: PlanetWalletViewController {
     }
     
     @IBAction func didTouchedTransfer(_ sender: UIButton) {
-
         sendAction(segue: Keys.Segue.DETAIL_TX_TO_TRANSFER, userInfo: [Keys.UserInfo.planet: planet,
                                                                        Keys.UserInfo.mainItem: mainItem])
-        
     }
 }
 

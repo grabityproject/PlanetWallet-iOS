@@ -105,7 +105,6 @@ class SyncManager: NetworkDelegate{
                 didSyncCompleted = true
                 
                 if let data = dict["result"] as? Dictionary<String, Dictionary<String, Any>> {
-                    print(data)
                     planetList.forEach { (planet) in
                         if let address = planet.address, let syncItem = data[address.lowercased()], let syncItemName = syncItem["name"] as? String {
                             if planet.name != syncItemName {

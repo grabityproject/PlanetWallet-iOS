@@ -205,7 +205,7 @@ extension PinCodeCertificationController: BiometricManagerDelegate {
         }
         else {
             guard let error = error else { return }
-            print("failed to auth : \(error)")
+            Toast(text: error.localizedDescription).show()
         }
     }
 }

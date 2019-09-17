@@ -57,6 +57,11 @@ class DetailTxController: PlanetWalletViewController {
         self.mainItem = mainItem
         self.tx = tx
         
+        //Get Tx date
+        if let txHash = tx.tx_id, let symbol = tx.symbol {
+            Get(self).action(Route.URL("tx",symbol,txHash), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
+        }
+        
         //Set Tx data
         setTxData(tx)
         
@@ -65,11 +70,6 @@ class DetailTxController: PlanetWalletViewController {
         
         //Set Fee data
         setFeeData(tx)
-        
-        //Set Date data
-        if let dateStr = tx.formattedDate() {
-            dateLb.text = dateStr
-        }
         
         //Set TxHash data
         if let txHash = tx.tx_id {
@@ -156,18 +156,18 @@ class DetailTxController: PlanetWalletViewController {
         guard let txStatus = tx.status, let txDirection = tx.type else { return }
         
         if txStatus == "confirmed" {
-            statusLb.text = "Completed"
+            statusLb.text = "transaction_status_completed_title".localized
             
             if txDirection == "received" {
-                naviBar.title = "Received"
+                naviBar.title = "transaction_type_received_title".localized
             }
             else {
-                naviBar.title = "Sent"
+                naviBar.title = "transaction_type_sent_title".localized
             }
         }
         else if txStatus == "pending" {
-            statusLb.text = "Pending"
-            naviBar.title = "Pending"
+            statusLb.text = "transaction_status_pending_title".localized
+            naviBar.title = "transaction_status_pending_title".localized
         }
         
         //Set main display data
@@ -211,6 +211,29 @@ class DetailTxController: PlanetWalletViewController {
         if let urlString = tx.explorer, let url = URL(string: urlString){
             if UIApplication.shared.canOpenURL(url){
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            success,
+            let results = returnVo.result as? [[String:Any]],
+            let resultJson = results.first,
+            let isSuccess = returnVo.success else { return }
+        
+        if isSuccess {
+            self.tx = Tx(JSON: resultJson) ?? Tx()
+            // Tx Hash, date
+            dateLb.text = tx.formattedDate()
+        }
+        else {
+            if let errDic = returnVo.result as? [String: Any],
+                let errorMsg = errDic["errorMsg"] as? String
+            {
+                Toast(text: errorMsg).show()
             }
         }
     }

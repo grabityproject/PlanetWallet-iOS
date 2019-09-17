@@ -118,7 +118,7 @@ extension RenamePlanetController: UITextFieldDelegate {
             }
         }
         catch {
-            print("ERROR")
+            return false
         }
         
         let newLength = textFieldText.utf16.count + string.utf16.count - range.length

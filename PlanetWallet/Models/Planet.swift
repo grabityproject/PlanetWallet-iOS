@@ -43,7 +43,7 @@ class Planet: Mappable {
                     return privateKey.hexString
                 }
             } catch {
-                print(error)
+                return ""
             }
         }
         return ""

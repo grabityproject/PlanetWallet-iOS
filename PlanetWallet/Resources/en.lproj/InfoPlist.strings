@@ -7,4 +7,4 @@
 */
 CFBundleDisplayName = "PlanetWallet";
 NSCameraUsageDescription = "Please allow us to access camera QR Scan";
-NSFaceIDUsageDescription = "Please allow us to authenticate";
+NSFaceIDUsageDescription = "Please allow use access Touch ID/FaceID for Identity verification.";

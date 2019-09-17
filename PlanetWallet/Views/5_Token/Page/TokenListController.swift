@@ -59,7 +59,7 @@ class TokenListController: PlanetWalletViewController {
         tokenAdapter = TokenAdapter(tableView, tokenList)
         tokenAdapter?.delegates.append(self)
         
-        Get(self).action(Route.URL("search","token"), requestCode: 0, resultCode: 0, data: nil)
+        Get(self).action(Route.URL("token","ERC20"), requestCode: 0, resultCode: 0, data: nil)
     }
     
     override func onUpdateTheme(theme: Theme) {

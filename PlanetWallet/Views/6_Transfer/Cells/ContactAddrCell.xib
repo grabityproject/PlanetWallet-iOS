@@ -31,7 +31,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qua-Nb-OK3" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="22.5" width="40" height="40"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-6S-NGB">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-6S-NGB" customClass="PWImageView" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="BUw-ym-YFU"/>

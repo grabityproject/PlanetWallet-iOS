@@ -30,14 +30,12 @@ class QROverlay: UIView {
                                      y: padding + lineWidth,
                                      width: w - (padding * 2) - (lineWidth * 2),
                                      height: h - (padding * 2) - (lineWidth * 2))
-        
-        //-----꼭지점의 사각형
+
         self.createRoundedRect(corner: .topLeft)
         self.createRoundedRect(corner: .topRight)
         self.createRoundedRect(corner: .bottomLeft)
         self.createRoundedRect(corner: .bottomRight)
 
-        //-----
         createOverlayLayer(rect: rect, portionRect: transparentRect)
     }
     
@@ -58,12 +56,7 @@ class QROverlay: UIView {
         let maskLayerPath = UIBezierPath()
         maskLayerPath.append(UIBezierPath(rect: rect))
         maskLayerPath.append(UIBezierPath(rect: portionRect))
-        /*
-         CGRect(x: w*(1/6.0),
-         y: h*(1/6.0),
-         width: w*(2/3.0),
-         height: h*(2/3.0))
-         */
+        
         maskLayer.path = maskLayerPath.cgPath
         
         layer.mask = maskLayer

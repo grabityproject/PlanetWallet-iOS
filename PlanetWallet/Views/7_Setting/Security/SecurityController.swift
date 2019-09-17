@@ -34,7 +34,7 @@ class SecurityController: PlanetWalletViewController {
     @IBAction func didTouchedSwitch(_ sender: UIButton) {
         BiometricManager.shared.canEvaluatePolicy { (isSuccess, authError) in
             if let _ = authError {
-                Toast(text: "iOS 설정에서 TouchID 또는 FaceID를 확인해주세요.").show()
+                Toast(text: "security_bio_permission_never_not_allowed_title".localized).show()
             }
             else {
                 sendAction(segue: Keys.Segue.SECURITY_TO_PINCODE_CERTIFICATION,

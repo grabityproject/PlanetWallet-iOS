@@ -194,7 +194,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can transfer to  the Planet name and Wallet address." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afe-Xn-Bs6" userLabel="Not found label" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="73" y="259" width="229" height="33"/>
+                                <rect key="frame" x="61" y="259" width="253.5" height="41"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextDark"/>
                                 <nil key="highlightedColor"/>
@@ -203,7 +203,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqh-v9-ic3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="163" width="44.5" height="16.5"/>
+                                <rect key="frame" x="20" y="163" width="48" height="20.5"/>
                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                 <color key="textColor" name="detailTextDark"/>
                                 <nil key="highlightedColor"/>
@@ -525,7 +525,7 @@
                                                         <rect key="frame" x="21" y="23.5" width="333" height="55"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSD-1j-E9f" customClass="PlanetView" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="59.5" y="7.5" width="40" height="40"/>
+                                                                <rect key="frame" x="126.5" y="7.5" width="40" height="40"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="KSD-1j-E9f" secondAttribute="height" multiplier="1:1" id="arP-cz-Wvd"/>
@@ -536,8 +536,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="data" value="songsong"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="songasdfasfsaf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lx8-ee-NZH" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="119.5" y="3" width="134" height="26.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lx8-ee-NZH" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="186.5" y="3" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -547,8 +547,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x53B6…5b78" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD2-9c-AR3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="119.5" y="32.5" width="94.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD2-9c-AR3" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="186.5" y="6" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                                 <color key="textColor" name="detailTextDark"/>
                                                                 <nil key="highlightedColor"/>
@@ -611,8 +611,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0xf291b69799516156fAA7F9ed4c39536335Ab797A" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLS-jw-cxE">
-                                                                <rect key="frame" x="60" y="1.5" width="273" height="52.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLS-jw-cxE">
+                                                                <rect key="frame" x="60" y="27.5" width="273" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="18"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -637,8 +637,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSB-78-SQl">
                                                         <rect key="frame" x="21" y="100" width="333" height="41"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="194.30400503 GBT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="BpC-wQ-ayr" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="333" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="BpC-wQ-ayr" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="20.5" width="333" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-SemiBold" family="Work Sans" pointSize="28"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -703,8 +703,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_from_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="adshfjsakjfdjkhsakjdfhjksahfjkhsajkfhjskafhjksajkfhkjsahfjkhsajkfhsahdfkjhsakjf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-L6-KOl" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="67" y="14.5" width="288" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-L6-KOl" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -737,8 +737,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_amount"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="194.30400503 GBT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-t6-2Jy">
-                                                                <rect key="frame" x="202.5" y="14.5" width="152.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-t6-2Jy">
+                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" name="errorText"/>
                                                                 <nil key="highlightedColor"/>
@@ -765,8 +765,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_fee_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="0.03 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8B-ua-gvF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="284" y="14.5" width="71" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8B-ua-gvF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -798,8 +798,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_date_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019. 06. 13 13:05:10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o05-Go-eks" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="191.5" y="14.5" width="163.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o05-Go-eks" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -837,20 +837,12 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLA-rX-nN1">
-                                                        <rect key="frame" x="117" y="17" width="234" height="50.5"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="0x1507f1c7fba98b4ab985a4de07fd476920009a94401641b68249deec0f077cf7">
-                                                                <attributes>
-                                                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                        <rect key="frame" x="117" y="17" width="30" height="30"/>
+                                                        <attributedString key="attributedText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-6U-9f4">
-                                                        <rect key="frame" x="117" y="17" width="234" height="50.5"/>
+                                                        <rect key="frame" x="117" y="17" width="30" height="30"/>
                                                         <connections>
                                                             <action selector="didTouchedTxHash:" destination="ZPB-95-dZB" eventType="touchUpInside" id="sLS-dL-FKY"/>
                                                         </connections>
@@ -1252,8 +1244,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-zC-E5u" userLabel="Advanced Options Container">
                                                         <rect key="frame" x="133" y="75.5" width="200" height="20"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rx-YJ-nIc" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="50.5" y="0.0" width="124.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rx-YJ-nIc" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
+                                                                <rect key="frame" x="73.5" y="0.0" width="101.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1275,7 +1267,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-X8-3mh">
-                                                                <rect key="frame" x="50.5" y="0.0" width="149.5" height="20"/>
+                                                                <rect key="frame" x="73.5" y="0.0" width="126.5" height="20"/>
                                                                 <connections>
                                                                     <action selector="didTouchedAdvancedOpt:" destination="ekD-Ro-HFD" eventType="touchUpInside" id="SNA-Z0-mOa"/>
                                                                 </connections>

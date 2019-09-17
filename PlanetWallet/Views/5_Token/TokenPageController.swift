@@ -9,11 +9,6 @@
 import UIKit
 
 
-/*
- CutomTokenPage를 사용하지 않으므로
- 사용은 하나 기능이 없는 Controller
- */
-
 protocol TokenPageDelegate {
     func didMoveToPage(index: Int)
     func didScroll(offset: CGFloat)
@@ -27,12 +22,9 @@ class TokenPageController: UIPageViewController {
     lazy var orderedViewControllers: [UIViewController] = {
         //hide Custom token : disable PageController
         let page1: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "TokenListController") as! PlanetWalletViewController
-//        let page2: PlanetWalletViewController = UIStoryboard(name: "5_Token", bundle: nil).instantiateViewController(withIdentifier: "CustomTokenController") as! PlanetWalletViewController
-        
         page1.userInfo = self.userInfo
-//        page2.userInfo = self.userInfo
         
-        return [page1]//[page1,page2]
+        return [page1]
     }()
     
     lazy var scrollView: UIScrollView? = {

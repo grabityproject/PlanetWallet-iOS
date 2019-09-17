@@ -104,6 +104,7 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_list_header_btn_receive_title"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTouchedReceive:" destination="q86-7P-w4P" eventType="touchUpInside" id="LSd-YS-k7r"/>
@@ -126,6 +127,7 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_list_header_btn_transfer_title"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTouchedTransfer:" destination="q86-7P-w4P" eventType="touchUpInside" id="BSo-N6-IQF"/>
@@ -312,6 +314,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_address_btn_copy_title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedCopy:" destination="XrW-8k-2Ek" eventType="touchUpInside" id="L0O-uW-WDo"/>
@@ -335,6 +338,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextNormalColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_address_btn_transfer_title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didTouchedTransfer:" destination="XrW-8k-2Ek" eventType="touchUpInside" id="Rif-gw-X7i"/>
@@ -708,6 +712,7 @@
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_tx_status_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp5-V8-pc4" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -744,6 +749,7 @@
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_tx_amount_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.3301 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRa-27-6cQ" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -779,6 +785,7 @@
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_tx_fee_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.03 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcB-ie-fkU" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -814,6 +821,7 @@
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_tx_date_title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuB-Cb-c9H" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
@@ -851,6 +859,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
                                                                 <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="detail_tx_tx_hash_title"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXf-OZ-BTX">
@@ -1000,6 +1009,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u2m-9P-KqB"/>
+        <segue reference="rgf-V9-zUN"/>
     </inferredMetricsTieBreakers>
 </document>

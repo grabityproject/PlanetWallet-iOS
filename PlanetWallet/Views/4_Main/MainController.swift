@@ -123,7 +123,6 @@ class MainController: PlanetWalletViewController{
             if CoinType.of(coinType).coinType == CoinType.ETH.coinType &&
                 items.contains(where: { $0.contract == GBT_CONTRACT }) == false
             {
-//                Get(self).action(Route.URL("search","token"), requestCode: 0, resultCode: 0, data: nil)
                 let gbtToken = MainItem()
                 gbtToken.contract = GBT_CONTRACT
                 gbtToken.symbol = "GBT"

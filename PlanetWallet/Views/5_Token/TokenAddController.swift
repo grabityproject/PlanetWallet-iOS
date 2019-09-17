@@ -80,14 +80,8 @@ class TokenAddController: PlanetWalletViewController {
         switch selectedMenu {
         case .ADD_TOKEN:
             indicatorLeftAnchorConstraint.constant = 0
-            
-//            addTokenMenuBtn.setMenuItemSelected(true, theme: currentTheme)
-//            customTokenMenuBtn.setMenuItemSelected(false, theme: currentTheme)
         case .CUSTOM_TOKEN:
             indicatorLeftAnchorConstraint.constant = addTokenMenuBtn.frame.width
-            
-//            addTokenMenuBtn.setMenuItemSelected(false, theme: currentTheme)
-//            customTokenMenuBtn.setMenuItemSelected(true, theme: currentTheme)
         }
     }
 }

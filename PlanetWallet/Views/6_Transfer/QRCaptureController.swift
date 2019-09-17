@@ -75,7 +75,6 @@ class QRCaptureController: PlanetWalletViewController {
                                                                       mediaType: .video, position: .back)
         do {
             guard let captureDevice = deviceDiscoverySession.devices.first else {
-                NSLog("Failed to get the camera device")
                 return
             }
             
@@ -120,8 +119,7 @@ class QRCaptureController: PlanetWalletViewController {
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
             return results.map { nsString.substring(with: $0.range)}
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
+        } catch {
             return []
         }
     }
@@ -137,7 +135,6 @@ class QRCaptureController: PlanetWalletViewController {
 extension QRCaptureController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count == 0 {
-            NSLog("No qr code is detected")
             return
         }
         

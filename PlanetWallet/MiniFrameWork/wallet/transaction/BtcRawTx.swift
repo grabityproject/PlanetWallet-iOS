@@ -364,7 +364,7 @@ class BtcRawTx{
             let halfIdx = Int((sigData.count - 1) / 2)
             let r = sigData.subdata(in: 0..<halfIdx)
             let s = sigData.subdata(in: halfIdx..<sigData.count - 1)
-            let v = sigData.subdata(in: sigData.count-1..<sigData.count)
+            let _ = sigData.subdata(in: sigData.count-1..<sigData.count)
             
             var ret = "30"
             var rPrefix = "";

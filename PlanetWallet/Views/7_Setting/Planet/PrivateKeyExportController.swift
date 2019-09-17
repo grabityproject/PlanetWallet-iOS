@@ -30,8 +30,6 @@ class PrivateKeyExportController: PlanetWalletViewController {
             let privateKey = planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE)
             
             textView.text = planet.coinType == CoinType.BTC.coinType ? Utils.shared.convertPrivateKeyToWIF(privateKey) : privateKey
-            print(textView.text)
-            
         }
     }
 }
@@ -39,7 +37,6 @@ class PrivateKeyExportController: PlanetWalletViewController {
 extension PrivateKeyExportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
         if sender == .LEFT {
-            //dismiss pincode certification vc
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }

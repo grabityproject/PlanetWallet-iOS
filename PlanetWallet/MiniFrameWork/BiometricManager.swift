@@ -60,7 +60,6 @@ class BiometricManager {
         
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
             if let delegate = self.delegate{
-                print("설정에서 지문 또는 페이스 아이디 권한을 활성화하세요.")
                 delegate.didAuthenticated(success: false, key: nil, error: LAError.biometryNotAvailable as? Error)
             }
             return
@@ -82,13 +81,6 @@ class BiometricManager {
         }
     }
     
-    //                LAError.authenticationFailed = "There was a problem verifying your identity."
-    //                LAError.userCancel = "You pressed cancel."
-    //                LAError.userFallback = "You pressed password."
-    //                LAError.biometryNotAvailable = "Face ID/Touch ID is not available."
-    //                LAError.biometryNotEnrolled = "Face ID/Touch ID is not set up."
-    //                LAError.biometryLockout = "Face ID/Touch ID is locked."
-    //                another = message = "Face ID/Touch ID may not be configured"
     public func generateSecretKey(){
         put( alias: alias, value: Data(AES.randomIV(32)))
     }

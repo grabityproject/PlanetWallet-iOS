@@ -7,4 +7,4 @@
 */
 CFBundleDisplayName = "PlanetWallet";
 NSCameraUsageDescription = "QR 코드를 스캔하기 위하여 카메라 권한을 허용해주세요.";
-NSFaceIDUsageDescription = "로그인을 하기 위하여 권한을 허용해주세요.";
+NSFaceIDUsageDescription = "본인인증을 위해 TouchID/FaceID 권한을 허용해 주세요.";

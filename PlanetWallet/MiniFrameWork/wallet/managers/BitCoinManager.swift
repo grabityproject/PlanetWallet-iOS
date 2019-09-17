@@ -250,22 +250,18 @@ class BitCoinManager{
         guard let service = service else { return false }
         do {
             if TESTNET {
-                return isValidTestnetAddress(address)
+                if let _ = matches(for: "^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}", in: address).first {
+                    return true
+                }
+                else {
+                    return false
+                }
             }
             else {
                 return try service.validateAddress(address: address)
             }
         }
         catch {
-            return false
-        }
-    }
-    
-    private func isValidTestnetAddress(_ addr: String) -> Bool {
-        if let _ = matches(for: "^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}", in: addr).first {
-            return true
-        }
-        else {
             return false
         }
     }
