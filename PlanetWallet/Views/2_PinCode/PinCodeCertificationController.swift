@@ -203,10 +203,6 @@ extension PinCodeCertificationController: BiometricManagerDelegate {
                 self.handleSuccessSignIn()
             }
         }
-        else {
-            guard let error = error else { return }
-            Toast(text: error.localizedDescription).show()
-        }
     }
 }
 

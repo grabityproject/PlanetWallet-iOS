@@ -120,6 +120,7 @@ class Get {
                 
             }else{
                 
+                Toast(text: dataResponse.error!.localizedDescription, duration: 5.0).show()
                 self.delegate?.onReceive(false,
                                          requestCode: requestCode,
                                          resultCode: resultCode,

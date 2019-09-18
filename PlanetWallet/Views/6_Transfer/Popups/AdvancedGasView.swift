@@ -162,8 +162,7 @@ class AdvancedGasView: UIView {
         guard let fee = calculateFee(gas: gasPriceLb.text, limit: gasLimitLb.text)?.toString(),
             let feeWeiStr = CoinNumberFormatter.full.convertUnit(balance: fee, from: 9, to: 0),
             let feeWei = Decimal(string: feeWeiStr) else { return false }
-    
-        
+       
         if ethAmount < feeWei {
             return true
         }
@@ -226,7 +225,7 @@ class AdvancedGasView: UIView {
             delegate?.didTouchedSave(gasPriceWei, gasLimit: gasLimitStr)
             self.hide()
         }
-        else {
+        else if tooLargeFee(){
             Toast(text: "eth_fee_popup_gas_check_title".localized).show()
         }
     }

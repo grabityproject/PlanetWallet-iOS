@@ -87,9 +87,12 @@ class Toast: NSObject {
     }
     public var view: ToastView = ToastView()
     
-    public init(text: String?) {
+    private var duration: TimeInterval = 1.5
+    
+    public init(text: String?, duration: TimeInterval = 1.5) {
         super.init()
         self.text = text
+        self.duration = duration
     }
     
     open func show() {
@@ -109,7 +112,7 @@ class Toast: NSObject {
             },
                 completion: { completed in
                     UIView.animate(
-                        withDuration: 1.5,
+                        withDuration: self.duration,
                         animations: {
                             self.view.alpha = 1.0001
                     },

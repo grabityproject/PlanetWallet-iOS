@@ -15,22 +15,22 @@ extension BoardController {
         func localized() -> String {
             switch self {
             case .ANNOUNCEMENTS:    return "setting_announcements_title".localized
-            case .WALLET:           return "@@Wallet"
-            case .PLANET:           return "setting_planet_title".localized
-            case .UNIVERSE:         return "setting_universe_title".localized
-            case .SECURITY:         return "setting_security_title".localized
-            case .TRANSFER:         return "tx_list_header_btn_transfer_title".localized
+            case .WALLET:           return "service_wallet_title".localized
+            case .PLANET:           return "service_planet_title".localized
+            case .UNIVERSE:         return "service_universe_title".localized
+            case .SECURITY:         return "service_security_title".localized
+            case .TRANSFER:         return "service_transfer_title".localized
             }
         }
         
         func urlParam() -> String {
             switch self {
             case .ANNOUNCEMENTS:    return "notice"
-            case .WALLET:           return ""
-            case .PLANET:           return ""
-            case .UNIVERSE:         return ""
-            case .SECURITY:         return ""
-            case .TRANSFER:         return ""
+            case .WALLET:           return "wallet"
+            case .PLANET:           return "planet"
+            case .UNIVERSE:         return "universe"
+            case .SECURITY:         return "security"
+            case .TRANSFER:         return "transfer"
             }
         }
         
@@ -49,8 +49,8 @@ class BoardController: PlanetWalletViewController {
 
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var tableView: UITableView!
-    let cellID = "noticecell"
-    var datasource = [Board]()
+    
+    var adapter: BoardAdapter?
     
     var section: Category = .ANNOUNCEMENTS
     
@@ -68,17 +68,26 @@ class BoardController: PlanetWalletViewController {
         
         naviBar.title = section.localized()
         naviBar.delegate = self
-        tableView.register(NoticeCell.self, forCellReuseIdentifier: cellID)
     }
     
     override func setData() {
         
-        Get(self).action(Route.URL("board", self.section.urlParam(), "list"), requestCode: 0, resultCode: 0, data: nil)
+        adapter = BoardAdapter(self.tableView, [])
+        adapter?.delegates.append(self)
+        
+        switch section {
+        case .ANNOUNCEMENTS:
+            Get(self).action(Route.URL("board", self.section.urlParam(), "list"), requestCode: 0, resultCode: 0, data: nil)
+        case .PLANET, .WALLET, .SECURITY, .TRANSFER, .UNIVERSE:
+            Get(self).action(Route.URL("board", "service", "list"), requestCode: 0, resultCode: 0, data: ["value" : self.section.urlParam()])
+        }
     }
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary else { return }
+        guard success, let dict = dictionary else { return }
+        
+        var datasource = [Board]()
         
         if let returnVO = ReturnVO(JSON: dict), let isSuccess = returnVO.success {
             if isSuccess {
@@ -90,7 +99,7 @@ class BoardController: PlanetWalletViewController {
                     }
                 }
                 
-                tableView.reloadData()
+                adapter?.dataSetNotify(datasource)
             }
             else {
                 if let errDic = returnVO.result as? [String: Any],
@@ -111,42 +120,13 @@ extension BoardController: NavigationBarDelegate {
     }
 }
 
-extension BoardController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! NoticeCell
-        
-        let board = datasource[indexPath.row]
-        cell.titleLb.text = board.subject
-        
-        if let date = board.created_at {
-            cell.dateLb.text = Utils.shared.changeDateFormat(date: date,
-                                                             beforFormat: .BASIC,
-                                                             afterFormat: .yyyyMMdd)
-        }
-        
-        if section == .WALLET {
-            cell.dateLb.isHidden = true
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return section.cellHeight()
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        findAllViews(view: cell, theme: ThemeManager.currentTheme())
-    }
+extension BoardController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedBoard = datasource[indexPath.row]
-        sendAction(segue: Keys.Segue.BOARD_TO_DETAIL_BOARD, userInfo: ["board": selectedBoard,
-                                                                       "section": self.section])
+        if let selectedBoard = adapter?.dataSource[indexPath.row] {
+            sendAction(segue: Keys.Segue.BOARD_TO_DETAIL_BOARD, userInfo: ["board": selectedBoard,
+                                                                           "section": self.section])
+        }
     }
     
 }

@@ -85,47 +85,45 @@ class EthNetworkDelegate:Node{
             }
         }
         
-        if success {
+        guard success else { return }
+        
+        if let dict = dictionary {
             
-            if let dict = dictionary {
-                
-                if requestCode == 0 {
-                    if let json = dict["result"] as? [String: Any]{
-                        let balance = MainItem(JSON: json)
-
-                        if let planet = planet, let mainItem = planet.getMainItem() {
-                            mainItem.balance = balance?.balance
-                            
-                            MainItemStore.shared.update( mainItem )
-                        }
-                        
-                        delegate?.onBalance(self.planet!, balance!.balance! )
-                    }
-                }else {
+            if requestCode == 0 {
+                if let json = dict["result"] as? [String: Any]{
+                    let balance = MainItem(JSON: json)
                     
-                    if let planet = planet, let id = planet._id  {
+                    if let planet = planet, let mainItem = planet.getMainItem() {
+                        mainItem.balance = balance?.balance
                         
-                        if requestCode > 0 && id == requestCode {
+                        MainItemStore.shared.update( mainItem )
+                    }
+                    
+                    delegate?.onBalance(self.planet!, balance!.balance! )
+                }
+            }else {
+                
+                if let planet = planet, let id = planet._id  {
+                    
+                    if requestCode > 0 && id == requestCode {
+                        
+                        if let json = dict["result"] as? [String: Any]{
                             
-                            if let json = dict["result"] as? [String: Any]{
+                            if let i = MainItem(JSON: json), let balance = i.balance {
                                 
-                                if let i = MainItem(JSON: json), let balance = i.balance {
-
-                                    planet.items![resultCode].balance = balance
-                                    MainItemStore.shared.update( planet.items![resultCode] )
-                                    
-                                }
-
+                                planet.items![resultCode].balance = balance
+                                MainItemStore.shared.update( planet.items![resultCode] )
+                                
                             }
-                        
+                            
                         }
                         
-                        if parallelTaskCount == 0 {
-                            delegate?.onTokenBalance(planet, planet.items!)
-                        }
+                    }
+                    
+                    if parallelTaskCount == 0 {
+                        delegate?.onTokenBalance(planet, planet.items!)
                     }
                 }
-                
             }
             
         }
@@ -136,30 +134,29 @@ class EthNetworkDelegate:Node{
 class BtcNetworkDelegate:Node{
     
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard success else { return }
         
-        if success {
-            if let dict = dictionary {
-                if requestCode == 0 {
-                    if let json = dict["result"] as? [String: Any]{
-                        let balance = MainItem(JSON: json)
+        if let dict = dictionary {
+            if requestCode == 0 {
+                if let json = dict["result"] as? [String: Any]{
+                    let balance = MainItem(JSON: json)
+                    
+                    if let planet = planet, let mainItem = planet.getMainItem() {
+                        mainItem.balance = balance?.balance
                         
-                        if let planet = planet, let mainItem = planet.getMainItem() {
-                            mainItem.balance = balance?.balance
-                            
-                            MainItemStore.shared.update( mainItem )
-                        }
-                        delegate?.onBalance(self.planet!, balance!.balance! )
+                        MainItemStore.shared.update( mainItem )
+                    }
+                    delegate?.onBalance(self.planet!, balance!.balance! )
+                }
+            }
+            else if requestCode == 1 {
+                var txList = [Tx]();
+                if let items = dict["result"] as? [[String: Any]]{
+                    items.forEach { (json) in
+                        txList.append(Tx(JSON: json)!)
                     }
                 }
-                else if requestCode == 1 {
-                    var txList = [Tx]();
-                    if let items = dict["result"] as? [[String: Any]]{
-                        items.forEach { (json) in
-                            txList.append(Tx(JSON: json)!)
-                        }
-                    }
-                    delegate?.onTxList(self.planet!, txList)
-                }
+                delegate?.onTxList(self.planet!, txList)
             }
         }
     }

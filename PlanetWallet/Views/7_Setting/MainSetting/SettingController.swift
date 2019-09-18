@@ -148,11 +148,12 @@ class SettingController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary,
+        guard success,
+            let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
-            let success = returnVo.success else { return }
+            let isSuccess = returnVo.success else { return }
         
-        if success {
+        if isSuccess {
             if let results = returnVo.result as? [String: Any], let versionStr = results["version"] as? String {
                 
                 updateBadge.isHidden = !compareVersion(recentVersion: versionStr)

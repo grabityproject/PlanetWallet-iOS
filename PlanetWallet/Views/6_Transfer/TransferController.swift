@@ -184,9 +184,9 @@ class TransferController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary, let returnVo = ReturnVO(JSON: dict), let success = returnVo.success else { return }
+        guard success, let dict = dictionary, let returnVo = ReturnVO(JSON: dict), let isSuccess = returnVo.success else { return }
         
-        if( success ){
+        if( isSuccess ){
             searchingDatasource.removeAll()
             let items = returnVo.result as! Array<Dictionary<String, Any>>
 

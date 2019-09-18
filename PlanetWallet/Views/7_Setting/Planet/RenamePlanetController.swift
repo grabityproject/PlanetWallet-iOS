@@ -71,7 +71,7 @@ class RenamePlanetController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary, let response = ReturnVO(JSON: dict)
+        if success, let dict = dictionary, let response = ReturnVO(JSON: dict)
         {
             if( response.success! ){
                 if let planet = planet {

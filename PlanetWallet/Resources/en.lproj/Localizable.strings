@@ -140,5 +140,11 @@
 "tx_list_header_btn_transfer_title" = "Transfer";
 "security_bio_permission_never_not_allowed_title" = "Please unlock Touch ID/Face ID on settings.";
 "security_bio_not_registered_fingerprint" = "There is no registered TouchID/FaceID on this device.";
-
 "tx_receipt_shared_text" = "%@ sent %@ %@.\n\nPlease refer to the link below to check the transaction.\n\n%@";
+"service_wallet_title" = "Wallet";
+"service_planet_title" = "Planet";
+"service_universe_title" = "Universe";
+"service_security_title" = "Security";
+"service_transfer_title" = "Transfer";
+"service_contact_us_title" = "Contact us";
+"splash_force_update" = "Please update the app on the Appstore.";

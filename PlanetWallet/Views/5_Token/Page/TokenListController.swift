@@ -71,7 +71,8 @@ class TokenListController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary, let keyId = planet.keyId, let returnVo = ReturnVO(JSON: dict), let isSuccess = returnVo.success {
+        
+        if success, let dict = dictionary, let keyId = planet.keyId, let returnVo = ReturnVO(JSON: dict), let isSuccess = returnVo.success {
             if( isSuccess ){
                 tokenList.removeAll()
                 

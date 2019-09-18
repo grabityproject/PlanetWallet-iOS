@@ -317,26 +317,29 @@ class TransferConfirmController: PlanetWalletViewController {
         
         var balance: Decimal = 0
         
-        if mainItem.getCoinType() == CoinType.BTC.coinType {
+        if mainItem.getCoinType() == CoinType.BTC.coinType || mainItem.getCoinType() == CoinType.ETH.coinType {
             
             balance = Decimal(string: mainItem.getBalance()) ?? 0
-        }
-        else if mainItem.getCoinType() == CoinType.ETH.coinType {
-            balance = Decimal(string: mainItem.getBalance()) ?? 0
+            
+            if fee + amountOfTx > balance {
+                confirmBtn.setEnabled(false, theme: currentTheme)
+            }
+            else {
+                confirmBtn.setEnabled(true, theme: currentTheme)
+            }
         }
         else if mainItem.getCoinType() == CoinType.ERC20.coinType {
             if let eth = planet.getMainItem(), let ethBalance = Decimal(string: eth.getBalance()) {
                 balance = ethBalance
             }
+            
+            if fee > balance {
+                confirmBtn.setEnabled(false, theme: currentTheme)
+            }
+            else {
+                confirmBtn.setEnabled(true, theme: currentTheme)
+            }
         }
-        
-        if fee + amountOfTx > balance {
-            confirmBtn.setEnabled(false, theme: currentTheme)
-        }
-        else {
-            confirmBtn.setEnabled(true, theme: currentTheme)
-        }
-        
     }
 }
 

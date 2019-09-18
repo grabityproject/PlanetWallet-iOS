@@ -162,7 +162,8 @@ class TxListController: PlanetWalletViewController {
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         
-        guard let dict = dictionary,
+        guard success,
+            let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
             let isSuccess = returnVo.success else { return }
         
@@ -171,11 +172,11 @@ class TxListController: PlanetWalletViewController {
                 //Handle balance response
                 guard let json = dict["result"] as? [String:Any] else { return }
                 
-                if let b = MainItem(JSON:json) {
+                if let item = MainItem(JSON:json) {
                     
-                    mainItem.balance =  b.getBalance()
+                    mainItem.balance = item.getBalance()
                     if let symbol = mainItem.symbol{
-                        balanceLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance:  b.getBalance(), item: mainItem)) \(symbol)"
+                        balanceLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance:  item.getBalance(), item: mainItem)) \(symbol)"
                     }
                     
                 }

@@ -28,8 +28,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-cd-lhq">
-                    <rect key="frame" x="20" y="16" width="312" height="48"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-cd-lhq">
+                    <rect key="frame" x="20" y="18" width="312" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-54-fo8" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="37.5" height="20.5"/>
@@ -43,7 +43,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY2-9Z-3uU" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="27.5" width="37.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="23.5" width="37.5" height="20.5"/>
                             <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
                             <color key="textColor" name="detailTextLight"/>
                             <nil key="highlightedColor"/>

@@ -208,13 +208,15 @@ class PlanetGenerateController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard success else { return }
+        
         guard let planet = planet,
             let keyId = planet.keyId,
             let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
-            let success = returnVo.success else { return }
+            let isSuccess = returnVo.success else { return }
         
-        if( success ){
+        if( isSuccess ){
             PlanetStore.shared.save(planet)
             guard let fromSegueID = userInfo?[Keys.UserInfo.fromSegue] as? String else { return }
             
