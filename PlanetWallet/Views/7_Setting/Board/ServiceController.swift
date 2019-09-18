@@ -17,6 +17,7 @@ class ServiceController: PlanetWalletViewController {
     
     override func setData() {
         naviBar.delegate = self
+        naviBar.title = "setting_faq_title".localized
     }
     
     @IBAction func didTouchedCategory(_ sender: UIButton) {
@@ -40,6 +41,13 @@ class ServiceController: PlanetWalletViewController {
         }
         
         sendAction(segue: Keys.Segue.SERVICE_TO_BOARD, userInfo: ["section": boardCategory])
+    }
+    
+    @IBAction func didTouchedContact(_ sender: UIButton) {
+        let email = "planetwallet.io@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.open(url)
+        }
     }
     
 }

@@ -75,12 +75,7 @@ class BoardController: PlanetWalletViewController {
         adapter = BoardAdapter(self.tableView, [])
         adapter?.delegates.append(self)
         
-        switch section {
-        case .ANNOUNCEMENTS:
-            Get(self).action(Route.URL("board", self.section.urlParam(), "list"), requestCode: 0, resultCode: 0, data: nil)
-        case .PLANET, .WALLET, .SECURITY, .TRANSFER, .UNIVERSE:
-            Get(self).action(Route.URL("board", "service", "list"), requestCode: 0, resultCode: 0, data: ["value" : self.section.urlParam()])
-        }
+        Get(self).action(Route.URL("board", section.urlParam(), "list"), requestCode: 0, resultCode: 0, data: nil)
     }
     
     //MARK: - Network

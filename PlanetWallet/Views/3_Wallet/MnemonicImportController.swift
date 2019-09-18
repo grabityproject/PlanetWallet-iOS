@@ -158,6 +158,9 @@ extension MnemonicImportController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         pwTextFieldContainer.layer.borderColor = currentTheme.border.cgColor
+        
+        let mnemonicArr = mnemonicTextView.text.components(separatedBy: " ")
+        validateMnemonic(mnemonicArr)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -176,14 +179,14 @@ extension MnemonicImportController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         mnemonicTextViewContainer.layer.borderColor = currentTheme.border.cgColor
+        
+        let mnemonicArr = textView.text.components(separatedBy: " ")
+        validateMnemonic(mnemonicArr)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
-            let mnemonicArr = textView.text.components(separatedBy: " ")
-            validateMnemonic(mnemonicArr)
-            return false
         }
         
         return true

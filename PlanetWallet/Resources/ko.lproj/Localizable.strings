@@ -98,7 +98,7 @@
 "setting_universe_title" = "Universe";
 "setting_security_title" = "Security";
 "setting_announcements_title" = "공지사항";
-"setting_faq_title" = "FAQ";
+"setting_faq_title" = "서비스 안내 및 문의";
 "setting_language_title" = "언어";
 "setting_currency_title" = "통화";
 "setting_theme_setting_title" = "테마 설정";
@@ -146,5 +146,5 @@
 "service_universe_title" = "유니버스";
 "service_security_title" = "보안";
 "service_transfer_title" = "거래";
-"service_contact_us_title" = "Contact us";
+"service_contact_us_title" = "서비스 안내 및 문의";
 "splash_force_update" = "Appstore에서 업데이트를 해주세요.";

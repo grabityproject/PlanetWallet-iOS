@@ -59,6 +59,7 @@ class MainController: PlanetWalletViewController{
         rippleAnimationView.dismiss()
         
         self.getPlanet()
+        self.updatePlanet()
     }
     
     override func viewInit() {
@@ -115,7 +116,10 @@ class MainController: PlanetWalletViewController{
             self.planet = planetList.first
         }
         
-        //set default GBT
+        setDefaultGBT()
+    }
+    
+    private func setDefaultGBT() {
         if let coinType = planet?.coinType,
             let keyId = planet?.keyId
         {
@@ -128,20 +132,14 @@ class MainController: PlanetWalletViewController{
                 gbtToken.symbol = "GBT"
                 gbtToken.name = "Grabity Coin"
                 gbtToken.decimals = "18"
-                gbtToken.img_path = "/erc20/img/gbt.png"
+                gbtToken.img_path = "/img/erc20/gbt.png"
                 gbtToken.hide = "N"
                 gbtToken.keyId = keyId
                 gbtToken.coinType = CoinType.ERC20.coinType
                 MainItemStore.shared.tokenSave(gbtToken)
-                
-                updatePlanet()
-            }
-            else {
-                updatePlanet()
             }
         }
     }
-    
     
     private func initBackupAlertView() {
         if let planet = planet, let type = planet.coinType, let pathIdx = planet.pathIndex
@@ -341,6 +339,7 @@ extension MainController: UIScrollViewDelegate {
 extension MainController: TopMenuLauncherDelegate {
     func didSelected(planet: Planet) {
         self.planet = planet
+        setDefaultGBT()
         updatePlanet()
     }
     
