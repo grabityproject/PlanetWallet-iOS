@@ -89,15 +89,23 @@ class TxReceiptController: PlanetWalletViewController {
             gasFeeLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: fee, item: parentMainItem)) \(coinSymbol)"
         }
         
+        // Set Date
+        dateLb.text = tx.formattedDate()
+        
+        // Tx Hash
+        if let txHash = tx.tx_id{
+            txHashValueLb.attributedText = NSAttributedString(string: txHash,
+                                                              attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
+                                                                           NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        }
+        
+        
         // From Planet Name
         fromPlanetNameLb.text = planet.name
         
         // Insert saveRecentSearch()
         saveRecentSearch()
         
-        if let txHash = tx.tx_id, let symbol = tx.symbol {
-            Get(self).action(Route.URL("tx",symbol,txHash), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
-        }
     }
     
     func saveRecentSearch() {
@@ -145,33 +153,4 @@ class TxReceiptController: PlanetWalletViewController {
         sendAction(segue: Keys.Segue.MAIN_UNWIND, userInfo: nil)
     }
     
-    //MARK: - Network
-    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary,
-            let returnVo = ReturnVO(JSON: dict),
-            success,
-            let results = returnVo.result as? [[String:Any]],
-            let resultJson = results.first,
-            let isSuccess = returnVo.success else { return }
-        
-        if isSuccess {
-            
-            self.tx = Tx(JSON: resultJson) ?? Tx()
-            // Tx Hash, date
-            if let txHash = tx.tx_id{
-                dateLb.text = tx.formattedDate()
-                
-                txHashValueLb.attributedText = NSAttributedString(string: txHash,
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
-                                                                               NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-            }
-        }
-        else {
-            if let errDic = returnVo.result as? [String: Any],
-                let errorMsg = errDic["errorMsg"] as? String
-            {
-                Toast(text: errorMsg).show()
-            }
-        }
-    }
 }

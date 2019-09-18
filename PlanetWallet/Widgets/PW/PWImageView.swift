@@ -97,7 +97,6 @@ let imageCache = NSCache<AnyObject, AnyObject>()
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error != nil {
-                print(error as Any)
                 return
             }
             

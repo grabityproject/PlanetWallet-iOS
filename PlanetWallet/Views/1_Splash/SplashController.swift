@@ -21,15 +21,6 @@ class SplashController: PlanetWalletViewController {
     private var planet : Planet?
     
     //MARK: - Init
-    override func setData() {
-        super.setData()
-        
-        SyncManager.shared.syncPlanet( self )
-        
-        APP_DELEGATE.messagingDelegates.append(self)
-        getDeviceKey()
-    }
-    
     override func viewInit() {
         super.viewInit()
         
@@ -37,7 +28,7 @@ class SplashController: PlanetWalletViewController {
         case .DARK:         self.animationView.animation = Animation.named("splash_03_bk")
         case .LIGHT:        self.animationView.animation = Animation.named("splash_03_wh")
         }
-
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
         animationView.backgroundBehavior = .pauseAndRestore
@@ -47,6 +38,12 @@ class SplashController: PlanetWalletViewController {
                                      animationView.heightAnchor.constraint(equalTo: animationView.widthAnchor),
                                      animationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 38),
                                      animationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -38)])
+    }
+    
+    override func setData() {
+        super.setData()
+        
+        Get(self).action(Route.URL("version","ios"), requestCode: 0, resultCode: 0, data: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,6 +108,40 @@ class SplashController: PlanetWalletViewController {
             }
             
         }
+    }
+
+    
+    //MARK: - Network
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        guard let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            let success = returnVo.success else { return }
+        
+        if success {
+            if let results = returnVo.result as? [String: Any], let versionStr = results["version"] as? String, let forceUpdate = results["force_update"] as? String, let localVersionStr = Utils.shared.getVersion() {
+                
+                RECENT_VERSION = versionStr
+                
+                if let version = Decimal(string: versionStr), let localVersion = Decimal(string: localVersionStr) {
+                    
+                    if version > localVersion && forceUpdate == "Y" {
+                        Toast(text: "Appstore에서 업데이트를 해주세요.").show()
+                        return
+                    }
+                }
+                
+            }
+        }
+        else {
+            if let errDict = returnVo.result as? [String: Any]
+            {
+                Utils.shared.showNetworkErrorToast(json: errDict)
+            }
+        }
+        
+        SyncManager.shared.syncPlanet( self )
+        APP_DELEGATE.messagingDelegates.append(self)
+        getDeviceKey()
     }
 }
 

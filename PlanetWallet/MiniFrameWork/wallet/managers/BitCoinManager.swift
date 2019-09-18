@@ -174,7 +174,6 @@ class BitCoinManager{
             }
         }
         catch {
-            print("Add BTC planet error : \(error)")
             return Planet()
         }
     }
@@ -214,7 +213,6 @@ class BitCoinManager{
             
         }
         catch {
-            print("Add BTC planet error : \(error)")
             return Planet()
         }
     }
@@ -274,7 +272,6 @@ class BitCoinManager{
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
             return results.map { nsString.substring(with: $0.range)}
         } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
             return []
         }
     }

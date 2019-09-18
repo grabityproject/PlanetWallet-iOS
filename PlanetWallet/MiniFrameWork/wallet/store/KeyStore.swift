@@ -43,7 +43,6 @@ class KeyStore {
                     return encData
                 }
                 else {
-                    print("not string")
                     return nil
                 }
                 
@@ -74,7 +73,6 @@ class KeyStore {
                         return encData
                     }
                     else {
-                        print("not string")
                         return nil
                     }
                     

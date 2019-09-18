@@ -32,7 +32,6 @@ class PlanetStore {
             return try PWDBManager.shared.select( Planet.self, "Planet", "keyId = '\(keyId)'" ).first
         }
         catch {
-            print(error)
             return nil
         }
     }
@@ -57,7 +56,6 @@ class PlanetStore {
             let planets = try PWDBManager.shared.select( Planet.self, "Planet", condition )
             return planets
         } catch {
-            print(error)
             return [Planet]()
         }
     }
@@ -129,7 +127,6 @@ class PlanetStore {
                 return self.selectRandomNumber(from: from, max: max)
             }
             else {
-                print("success to select random number : \(selectedRanNum)")
                 return selectedRanNum
             }
         }

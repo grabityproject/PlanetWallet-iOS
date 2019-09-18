@@ -84,7 +84,6 @@ class AbsTableViewAdapter<T> : NSObject, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegates.forEach { (delegate) in
-            print(delegate)
             delegate.tableView!(tableView, didSelectRowAt: indexPath)
         }
     }

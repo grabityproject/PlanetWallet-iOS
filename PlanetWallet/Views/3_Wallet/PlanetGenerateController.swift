@@ -209,7 +209,7 @@ class PlanetGenerateController: PlanetWalletViewController {
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let planet = planet,
-            let keyID = planet.keyId,
+            let keyId = planet.keyId,
             let dict = dictionary,
             let returnVo = ReturnVO(JSON: dict),
             let success = returnVo.success else { return }
@@ -222,7 +222,7 @@ class PlanetGenerateController: PlanetWalletViewController {
                 
                 if let isRootMain = userInfo?["isFromMain"] as? Bool {
                     if isRootMain {
-                        Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyID)
+                        Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
                     }
                 }
                 

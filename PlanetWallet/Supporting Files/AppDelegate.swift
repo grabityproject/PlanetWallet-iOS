@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     var device_key: String = ""
 
+    var recent_version: String = "N"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -96,12 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        
-        
-        // Print full message.
-        print(userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }

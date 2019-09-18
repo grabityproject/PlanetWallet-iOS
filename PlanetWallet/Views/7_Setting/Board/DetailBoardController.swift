@@ -33,7 +33,7 @@ class DetailBoardController: PlanetWalletViewController {
         
         if let userInfo = userInfo,
             let board = userInfo["board"] as? Board,
-            let section = userInfo["section"] as? BoardController.Section,
+            let section = userInfo["section"] as? BoardController.Category,
             let date = board.created_at,
             let boardID = board.id
         {
@@ -44,7 +44,7 @@ class DetailBoardController: PlanetWalletViewController {
                                                              afterFormat: .yyyyMMdd)
             
             self.request(url: Route.URL("board",
-                                        section.param(),
+                                        section.urlParam(),
                                         "\(boardID)?theme=\(( settingTheme == .DARK ? "black" : "white" ))"))
         }
     }

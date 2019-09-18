@@ -26,7 +26,6 @@ class DBManager: NSObject {
         do{
             try createDatabase()
             try updateDatabase()
-            print( "datbase ready for use" )
         }catch let err {
             print(err.localizedDescription)
         }
@@ -187,7 +186,6 @@ class DBManager: NSObject {
                 return result
             }
             else {
-                print("Failed to open db")
                 return false;
             }
             

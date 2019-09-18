@@ -24,6 +24,7 @@ let APP_DELEGATE:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 var PINCODE = APP_DELEGATE.pinCode
 var DEVICE_KEY = APP_DELEGATE.device_key
+var RECENT_VERSION = APP_DELEGATE.recent_version
 
 let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).languageCode)!
 let GBT_CONTRACT = "0xcbD49182346421D3B410B04AeB1789346DA6Ce43"
@@ -95,8 +96,8 @@ struct Keys {
         static let SETTING_TO_DETAIL_PLANET = "setting_to_detailplanet"
         static let SETTING_TO_PLANET_MANAGEMENT = "setting_to_planetmanagemnet"
         static let SETTING_TO_SECURITY = "setting_to_security"
-        static let SETTING_TO_ANNOUNCEMENTS = "setting_to_announcements"
-        static let SETTING_TO_FAQ = "setting_to_faq"
+        static let SETTING_TO_BOARD = "setting_to_board"
+        static let SERVICE_TO_BOARD = "service_to_board"
         
         //Board
         static let BOARD_TO_DETAIL_BOARD = "board_to_detailboard"
@@ -120,7 +121,7 @@ struct Keys {
         static let TRANSFER_AMOUNT_TO_TRANSFER_CONFIRM = "transferamount_to_transferconfirm"
         static let TRANSFER_CONFIRM_TO_PINCODE_CERTIFICATION = "transferconfirm_to_pincodecertification"
         static let TRANSFER_CONFIRM_TO_TX_RECEIPT = "transferconfirm_to_txreceipt"
-        
+        //Wallet/Planet/Universe/Security/Transfer
         //Tx
         static let TX_LIST_TO_DETAIL_TX = "txlist_to_detailtx"
         static let TX_LIST_TO_TRANSFER = "txlist_to_transfer"

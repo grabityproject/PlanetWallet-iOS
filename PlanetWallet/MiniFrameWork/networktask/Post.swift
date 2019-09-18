@@ -101,17 +101,13 @@ class Post {
             switch result{
             case .success(let upload, _, _):
                 upload.responseJSON { response in
-                    print("Succesfully uploaded")
-                    print(response)
-                    if let err = response.error{
-                        print(err)
+                    if let _ = response.error{
                         return
                     }
                     
                 }
             case .failure(let error):
                 print("Error in upload: \(error.localizedDescription)")
-                
             }
         }
         

@@ -25,7 +25,6 @@ class MainItemStore {
             let tokens = try PWDBManager.shared.select( MainItem.self, "MainItem", condition )
             return tokens
         } catch {
-            print(error)
             return [MainItem]()
         }
     }

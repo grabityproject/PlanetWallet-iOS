@@ -57,10 +57,7 @@ class DetailTxController: PlanetWalletViewController {
         self.mainItem = mainItem
         self.tx = tx
         
-        //Get Tx date
-        if let txHash = tx.tx_id, let symbol = tx.symbol {
-            Get(self).action(Route.URL("tx",symbol,txHash), requestCode: 0, resultCode: 0, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
-        }
+        dateLb.text = tx.formattedDate()
         
         //Set Tx data
         setTxData(tx)
@@ -211,29 +208,6 @@ class DetailTxController: PlanetWalletViewController {
         if let urlString = tx.explorer, let url = URL(string: urlString){
             if UIApplication.shared.canOpenURL(url){
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    
-    //MARK: - Network
-    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        guard let dict = dictionary,
-            let returnVo = ReturnVO(JSON: dict),
-            success,
-            let results = returnVo.result as? [[String:Any]],
-            let resultJson = results.first,
-            let isSuccess = returnVo.success else { return }
-        
-        if isSuccess {
-            self.tx = Tx(JSON: resultJson) ?? Tx()
-            // Tx Hash, date
-            dateLb.text = tx.formattedDate()
-        }
-        else {
-            if let errDic = returnVo.result as? [String: Any],
-                let errorMsg = errDic["errorMsg"] as? String
-            {
-                Toast(text: errorMsg).show()
             }
         }
     }

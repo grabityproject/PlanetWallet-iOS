@@ -9,27 +9,37 @@
 import UIKit
 
 extension BoardController {
-    enum Section {
-        case Announcements, FAQ
+    enum Category {
+        case ANNOUNCEMENTS, WALLET, PLANET, UNIVERSE, SECURITY, TRANSFER
         
         func localized() -> String {
             switch self {
-            case .Announcements: return "setting_announcements_title".localized
-            case .FAQ:           return "setting_faq_title".localized
+            case .ANNOUNCEMENTS:    return "setting_announcements_title".localized
+            case .WALLET:           return "@@Wallet"
+            case .PLANET:           return "setting_planet_title".localized
+            case .UNIVERSE:         return "setting_universe_title".localized
+            case .SECURITY:         return "setting_security_title".localized
+            case .TRANSFER:         return "tx_list_header_btn_transfer_title".localized
             }
         }
         
-        func param() -> String {
+        func urlParam() -> String {
             switch self {
-            case .Announcements: return "notice"
-            case .FAQ:           return "faq"
+            case .ANNOUNCEMENTS:    return "notice"
+            case .WALLET:           return ""
+            case .PLANET:           return ""
+            case .UNIVERSE:         return ""
+            case .SECURITY:         return ""
+            case .TRANSFER:         return ""
             }
         }
         
         func cellHeight() -> CGFloat {
             switch self {
-            case .Announcements:    return 80.0
-            case .FAQ:              return 60.0
+            case .ANNOUNCEMENTS:
+                return 80.0
+            case .WALLET, .PLANET, .UNIVERSE, .SECURITY, .TRANSFER:
+                return 60.0
             }
         }
     }
@@ -42,32 +52,28 @@ class BoardController: PlanetWalletViewController {
     let cellID = "noticecell"
     var datasource = [Board]()
     
-    var section: Section = .Announcements {
-        didSet {
-            naviBar.title = section.localized()
-            tableView.reloadData()
-        }
-    }
+    var section: Category = .ANNOUNCEMENTS
     
     //MARK: - Init
     override func viewInit() {
         super.viewInit()
         
         if let userInfo = userInfo,
-            let value = userInfo["section"] as? Section {
+            let value = userInfo["section"] as? Category {
             self.section = value
         }
         else {
-            self.section = .Announcements
+            self.section = .ANNOUNCEMENTS
         }
         
+        naviBar.title = section.localized()
         naviBar.delegate = self
         tableView.register(NoticeCell.self, forCellReuseIdentifier: cellID)
     }
     
     override func setData() {
         
-        Get(self).action(Route.URL("board", self.section.param(), "list"), requestCode: 0, resultCode: 0, data: nil)
+        Get(self).action(Route.URL("board", self.section.urlParam(), "list"), requestCode: 0, resultCode: 0, data: nil)
     }
     
     //MARK: - Network
@@ -122,7 +128,7 @@ extension BoardController: UITableViewDelegate, UITableViewDataSource {
                                                              afterFormat: .yyyyMMdd)
         }
         
-        if section == .FAQ {
+        if section == .WALLET {
             cell.dateLb.isHidden = true
         }
         

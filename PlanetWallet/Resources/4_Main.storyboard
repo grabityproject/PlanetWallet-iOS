@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2bt-tB-4P6">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -37,19 +33,19 @@
             <objects>
                 <viewController storyboardIdentifier="MainController" id="pBn-Jn-OOA" customClass="MainController" customModule="PlanetWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gpI-PO-C1H" customClass="PWView" customModule="PlanetWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="table_main" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sj3-TY-bbB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="fFq-OX-4Zx" customClass="HeaderView" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="374"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="tqV-Mi-NOI" customClass="FooterView" customModule="PlanetWallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="374" width="414" height="66"/>
+                                    <rect key="frame" x="0.0" y="250" width="600" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
@@ -58,7 +54,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" restorationIdentifier="navibar" translatesAutoresizingMaskIntoConstraints="NO" id="3px-DW-HXl" customClass="NavigationBar" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="wSy-os-Czh"/>
@@ -91,7 +87,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" restorationIdentifier="group_main_loading" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-ZI-g2O">
-                                <rect key="frame" x="189.66666666666666" y="112" width="35" height="35"/>
+                                <rect key="frame" x="282.5" y="88" width="35" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="4b9-us-rz3"/>
@@ -99,7 +95,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="label_main_notice" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-gy-bOK" customClass="PWButton" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="740" width="414" height="42"/>
+                                <rect key="frame" x="0.0" y="478" width="600" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="yCQ-e9-ODo"/>
@@ -115,11 +111,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTouchedError:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="xvw-Ct-KRp"/>
+                                    <action selector="didTouchedMnemonicWarning:" destination="pBn-Jn-OOA" eventType="touchUpInside" id="xvw-Ct-KRp"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-pt-fi9" customClass="BottomPanelComponent" customModule="PlanetWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="782" width="414" height="240"/>
+                                <rect key="frame" x="0.0" y="520" width="600" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="cyr-zT-9wk"/>

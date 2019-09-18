@@ -23,7 +23,7 @@ class EthRawTx{
             }
             
             
-            if nonce.isEmpty { print("nonce is null"); return String() }
+            if nonce.isEmpty { return String() }
             
             let rawTransaction = RawTransaction(
                 wei: wei,
@@ -54,7 +54,6 @@ class EthRawTx{
             
             return data.toHexString()
         }else{
-            print("null item null");
             return String()
         }
     }

@@ -31,7 +31,6 @@ public class KeyStoreCrypter: HsmKeyCrypter {
             let encrypted = try AES(key: secretKey(alias: alias).bytes, blockMode: CBC(iv: iv), padding: .pkcs5).encrypt(data.bytes)
             return Data(encrypted)
         } catch {
-            print(error)
             return Data()
         }
     }
@@ -41,7 +40,6 @@ public class KeyStoreCrypter: HsmKeyCrypter {
             let decrypted = try AES(key: secretKey(alias: alias).bytes, blockMode: CBC(iv: iv), padding: .pkcs5).decrypt(encrypted.bytes)
             return Data(decrypted)
         } catch {
-            print(error)
             return Data()
         }
     }

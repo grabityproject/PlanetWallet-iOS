@@ -195,7 +195,6 @@ class KeyPairStore: HDKeyPairStore {
                     hdKeyPair.privateKey = try defaultCrypter?.doubleDecrypt(encrypted: dataFromBufData(keyPair.value!, index: 0), pin: pin)
                 }
                 catch {
-                    print(error)
                     return HDKeyPair()
                 }
             }
@@ -252,7 +251,6 @@ class KeyPairStore: HDKeyPairStore {
         datas.forEach { (data) in
             let hexString = data.hexString
             i = i + 1
-            print("\(i) : \(hexString)")
             returnData.append(contentsOf: String(format:"%02X", hexString.count))
             returnData.append(contentsOf: hexString)
         }

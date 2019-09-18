@@ -71,35 +71,39 @@ class TokenListController: PlanetWalletViewController {
     
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
-        if let dict = dictionary, let keyId = planet.keyId {
-            if let returnVo = ReturnVO(JSON: dict){
-                if( returnVo.success! ){
-                    tokenList.removeAll()
+        if let dict = dictionary, let keyId = planet.keyId, let returnVo = ReturnVO(JSON: dict), let isSuccess = returnVo.success {
+            if( isSuccess ){
+                tokenList.removeAll()
+                
+                let dbItems = MainItemStore.shared.list(keyId, true)
+                var dbMaps = [String:MainItem]()
+                
+                dbItems.forEach { (token) in
                     
-                    let dbItems = MainItemStore.shared.list(keyId, true)
-                    var dbMaps = [String:MainItem]()
+                    if let contract = token.contract {
+                        dbMaps[contract] = token
+                    }
+                }
+                
+                let items = returnVo.result as! [[String:Any]]
+                items.forEach { (item) in
+                    let token = MainItem(JSON: item)!
                     
-                    dbItems.forEach { (token) in
-                        
-                        if let contract = token.contract {
-                            dbMaps[contract] = token
-                        }
+                    token.hide = "Y"
+                    if let contract = token.contract, let dbToken = dbMaps[contract] {
+                        token.hide = dbToken.hide
                     }
                     
-                    let items = returnVo.result as! [[String:Any]]
-                    items.forEach { (item) in
-                        let token = MainItem(JSON: item)!
-                    
-                        token.hide = "Y"
-                        if let contract = token.contract, let dbToken = dbMaps[contract] {
-                            token.hide = dbToken.hide
-                        }
-                        
-                        
-                        tokenList.append(token)
-                    }
-
-                    tokenAdapter?.dataSetNotify(tokenList)
+                    tokenList.append(token)
+                }
+                
+                tokenAdapter?.dataSetNotify(tokenList)
+            }
+            else {
+                if let errDict = returnVo.result as? [String: Any],
+                    let errorMsg = errDict["errorMsg"] as? String
+                {
+                    Toast(text: errorMsg).show()
                 }
             }
         }

@@ -83,9 +83,9 @@ class PlanetNameController: PlanetWalletViewController {
         if isSuccess {
             
             if let isFromMain = userInfo?["isFromMain"] as? Bool,
-                let keyId = planet.keyId,
+                let keyID = planet.keyId,
                 isFromMain == true {
-                Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
+                Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyID)
             }
             
             PlanetStore.shared.save(planet)

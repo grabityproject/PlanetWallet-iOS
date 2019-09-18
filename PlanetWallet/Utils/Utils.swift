@@ -231,6 +231,11 @@ struct Utils {
         return UIFont(name: style.rawValue, size: size)
     }
     
+    //MARK: - Version
+    func getVersion() -> String? {
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
     //MARK: - UserDefaults
     func setDefaults(for key: String, value: Any) {
         UserDefaults.standard.set(value, forKey: key)
@@ -294,6 +299,14 @@ struct Utils {
         return nil
     }
     
+    
+    //MARK: - Network
+    func showNetworkErrorToast(json: [String: Any]) {
+        if let errorMsg = json["errorMsg"] as? String
+        {
+            Toast(text: errorMsg).show()
+        }
+    }
 }
 
 extension Utils {

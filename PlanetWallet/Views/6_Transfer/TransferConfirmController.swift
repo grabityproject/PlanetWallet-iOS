@@ -260,6 +260,8 @@ class TransferConfirmController: PlanetWalletViewController {
                         
                         if let resultData = dict["result"] as? [String:Any]{
                             self.tx.tx_id = resultData["txHash"] as? String
+                            self.tx.created_at = resultData["date"] as? String
+                            self.tx.explorer = resultData["explorer"] as? String
                             
                             sendAction(segue: Keys.Segue.TRANSFER_CONFIRM_TO_TX_RECEIPT,
                                        userInfo:[Keys.UserInfo.planet: planet,

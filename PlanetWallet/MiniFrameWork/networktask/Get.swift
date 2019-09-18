@@ -51,17 +51,12 @@ class Get {
                     }
                 }
                 catch {
-                    print("Failed to parsing json object")
-                    
                     result["success"] = true;
                     result["statusCode"] = response.statusCode;
                     result["result"] = String(data: resultData, encoding: .utf8);
                     result["dictionary"] = [String:Any]()
-                    
                 }
-            
             }
-            
         }else{
             
             result["statusCode"] = 0;
@@ -107,7 +102,6 @@ class Get {
                         }
                     }
                     catch {
-                        print("Failed to parsing json object")
                         self.delegate?.onReceive(true,
                                                  requestCode: requestCode,
                                                  resultCode: resultCode,

@@ -24,6 +24,7 @@
 		04278B6022FD59FC0018CC4C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B5F22FD59FC0018CC4C /* Search.swift */; };
 		04278B6222FD61790018CC4C /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04278B6122FD61790018CC4C /* SearchStore.swift */; };
 		042B833C2330B14900E9C2BA /* pcwf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 042B83382330AFE600E9C2BA /* pcwf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		042F7C772331D79B0016FB2C /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042F7C762331D79B0016FB2C /* ServiceController.swift */; };
 		042FF40E22B3342C00666DF9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF40D22B3342C00666DF9 /* Toast.swift */; };
 		042FF41222B34CF300666DF9 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41122B34CF300666DF9 /* Extension + UILabel.swift */; };
 		042FF41422B36BFE00666DF9 /* PWSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FF41322B36BFE00666DF9 /* PWSlider.swift */; };
@@ -244,6 +245,7 @@
 		04278B5F22FD59FC0018CC4C /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		04278B6122FD61790018CC4C /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		042B83382330AFE600E9C2BA /* pcwf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pcwf.framework; sourceTree = "<group>"; };
+		042F7C762331D79B0016FB2C /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
 		042FF40D22B3342C00666DF9 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		042FF41122B34CF300666DF9 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		042FF41322B36BFE00666DF9 /* PWSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWSlider.swift; sourceTree = "<group>"; };
@@ -1001,6 +1003,7 @@
 			children = (
 				04C82C9322890D4700235883 /* BoardController.swift */,
 				04C82C9522890D6400235883 /* DetailBoardController.swift */,
+				042F7C762331D79B0016FB2C /* ServiceController.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				04C82C9422890D4700235883 /* BoardController.swift in Sources */,
 				044BC54722793D3F00FD7E5E /* AppDelegate.swift in Sources */,
 				04116B322293DAAD00CFD921 /* MainETHAdapter.swift in Sources */,
+				042F7C772331D79B0016FB2C /* ServiceController.swift in Sources */,
 				044BC5942279704900FD7E5E /* Extension + UIView.swift in Sources */,
 				044BC59022794ED200FD7E5E /* Utils.swift in Sources */,
 				045AA9BE22C0819A005EA387 /* Planet.swift in Sources */,

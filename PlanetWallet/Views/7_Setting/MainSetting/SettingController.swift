@@ -17,6 +17,7 @@ class SettingController: PlanetWalletViewController {
     @IBOutlet var currencyLb: PWLabel!
     @IBOutlet var planetView: PlanetView!
     @IBOutlet var versionLb: PWLabel!
+    @IBOutlet var updateBadge: UIImageView!
     
     var selectedPlanet: Planet? {
         didSet {
@@ -63,6 +64,10 @@ class SettingController: PlanetWalletViewController {
             currencyLb.text = currency
         }
         
+        
+        versionLb.text = Utils.shared.getVersion()
+        updateBadge.isHidden = !compareVersion(recentVersion: RECENT_VERSION)
+        
         Get(self).action(Route.URL("version","ios"), requestCode: 0, resultCode: 0, data: nil)
     }
     
@@ -81,9 +86,8 @@ class SettingController: PlanetWalletViewController {
         updateThemeUI()
     }
     
-    @IBAction func didTouchedFAQ(_ sender: UIButton) {
-        let dict = ["section": BoardController.Section.FAQ]
-        sendAction(segue: Keys.Segue.SETTING_TO_ANNOUNCEMENTS, userInfo: dict)
+    @IBAction func didTouchedAnnouncements(_ sender: UIButton) {
+        sendAction(segue: Keys.Segue.SETTING_TO_BOARD, userInfo: ["section": BoardController.Category.ANNOUNCEMENTS])
     }
     
     @IBAction func didTouchedCurrency(_ sender: UIButton) {
@@ -135,6 +139,13 @@ class SettingController: PlanetWalletViewController {
         }
     }
     
+    private func compareVersion(recentVersion: String) -> Bool {
+        if let recentVer = Decimal(string: recentVersion), let localVersion = Utils.shared.getVersion(), let localVer = Decimal(string: localVersion) {
+            return  recentVer > localVer
+        }
+        return false
+    }
+    
     //MARK: - Network
     override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
         guard let dict = dictionary,
@@ -142,15 +153,16 @@ class SettingController: PlanetWalletViewController {
             let success = returnVo.success else { return }
         
         if success {
-            if let results = returnVo.result as? [String: Any], let version = results["version"] as? String {
-                versionLb.text = version
+            if let results = returnVo.result as? [String: Any], let versionStr = results["version"] as? String {
+                
+                updateBadge.isHidden = !compareVersion(recentVersion: versionStr)
+                RECENT_VERSION = versionStr
             }
         }
         else {
-            if let errDict = returnVo.result as? [String: Any],
-                let errorMsg = errDict["errorMsg"] as? String
+            if let errDict = returnVo.result as? [String: Any]
             {
-                Toast(text: errorMsg).show()
+                Utils.shared.showNetworkErrorToast(json: errDict)
             }
         }
     }
