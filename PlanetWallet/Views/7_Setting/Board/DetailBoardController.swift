@@ -57,7 +57,7 @@ class DetailBoardController: PlanetWalletViewController {
 extension DetailBoardController: UIScrollViewDelegate {
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         //disable pinch zooming
-        scrollView.pinchGestureRecognizer?.isEnabled = false
+//        scrollView.pinchGestureRecognizer?.isEnabled = false
     }
 }
 

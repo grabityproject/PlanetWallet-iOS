@@ -21,6 +21,12 @@ class SplashController: PlanetWalletViewController {
     private var planet : Planet?
     
     //MARK: - Init
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        APP_DELEGATE.messagingDelegates.append(self)
+    }
+    
     override func viewInit() {
         super.viewInit()
         
@@ -133,6 +139,10 @@ class SplashController: PlanetWalletViewController {
                     }
                 }
                 
+                if let url = results["url"] as? String {
+                    APP_URL = url
+                }
+                
             }
         }
         else {
@@ -143,7 +153,6 @@ class SplashController: PlanetWalletViewController {
         }
         
         SyncManager.shared.syncPlanet( self )
-        APP_DELEGATE.messagingDelegates.append(self)
         getDeviceKey()
     }
 }

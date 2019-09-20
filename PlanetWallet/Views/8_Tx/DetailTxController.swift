@@ -41,6 +41,7 @@ class DetailTxController: PlanetWalletViewController {
         super.viewInit()
         
         naviBar.delegate = self
+        
     }
     
     override func setData() {
@@ -75,7 +76,12 @@ class DetailTxController: PlanetWalletViewController {
                                                        attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
                                                                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        toAddressLb.setColoredAddress()
     }
     
     //MARK: - Private

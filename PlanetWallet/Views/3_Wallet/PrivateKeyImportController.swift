@@ -58,31 +58,30 @@ class PrivateKeyImportController: PlanetWalletViewController {
         }
     }
     
+    
+    var importedPlanet:Planet?
+    
     @IBAction func didTouchedContinue(_ sender: UIButton) {
         
         if let coinType = planet.coinType, let privateKey = textField.text {
             
-            var planetToImport: Planet?
+
             
             if coinType == CoinType.BTC.coinType{
-                planetToImport = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                importedPlanet = BitCoinManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
             }else if coinType == CoinType.ETH.coinType{
-                planetToImport = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
+                importedPlanet = EthereumManager.shared.importPrivateKey(privKey: privateKey, pinCode: PINCODE)
             }
             
-            if let planetToImport = planetToImport, let keyId = planetToImport.keyId {
-                if PlanetStore.shared.get(keyId) != nil{
-                    Toast.init(text: "privatekey_import_exists_title".localized).show()
-                }else {
-                    var info: [String: Any] = [Keys.UserInfo.planet:planetToImport]
-                    
-                    if let isFromMain = userInfo?["isFromMain"] as? Bool {
-                        info["isFromMain"] = isFromMain
-                    }
-                    
-                    sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: info)
-                    return
+            
+            if let planet = importedPlanet, let _ = planet.keyId {
+              
+                self.planet = planet
+                
+                if let symbol = planet.symbol, let address = planet.address{
+                    Get(self).action(Route.URL("planet","search",symbol), requestCode: 0, resultCode: 0, data: ["q":address])
                 }
+              
             }
             else {
                 Toast.init(text: "privatekey_import_not_match_title".localized).show()
@@ -90,13 +89,45 @@ class PrivateKeyImportController: PlanetWalletViewController {
         }
     }
     
-    
-    //MARK: - Private
-    private func isValid(_ privateKey: String) -> Bool {
-        //TODO: - Logic
-        return false
+    override func onReceive(_ success: Bool, requestCode: Int, resultCode: Int, statusCode: Int, result: Any?, dictionary: Dictionary<String, Any>?) {
+        
+        guard success else { return }
+        
+        guard let planet = importedPlanet,
+            let keyId = planet.keyId,
+            let dict = dictionary,
+            let returnVo = ReturnVO(JSON: dict),
+            let results = returnVo.result as? Array<Dictionary<String, Any>> else { return }
+        
+        if PlanetStore.shared.get(keyId) != nil{
+            Toast.init(text: "privatekey_import_exists_title".localized).show()
+        }
+        else {
+            if let isFromMain = userInfo?["isFromMain"] as? Bool {
+                //기존에 Planet이 있을 경우
+                if results.count > 0 {
+                    if let item = results.first, let name = item["name"] as? String {
+                        planet.name = name
+                        
+                        if isFromMain {
+                            Utils.shared.setDefaults(for: Keys.Userdefaults.SELECTED_PLANET, value: keyId)
+                        }
+                        
+                        PlanetStore.shared.save(planet)
+                        sendAction(segue: Keys.Segue.MAIN_UNWIND, userInfo: nil)
+                        return
+                    }
+                }
+                
+                sendAction(segue: Keys.Segue.PRIVATEKEY_IMPORT_TO_PLANET_NAME, userInfo: [Keys.UserInfo.planet: planet,
+                                                                                        "isFromMain" : isFromMain])
+                
+            }
+        }
+        
     }
     
+    //MARK: - Private
     private func updateValidUI() {
         if isValidPrivateKey {
             continueBtn.setEnabled(true, theme: currentTheme)

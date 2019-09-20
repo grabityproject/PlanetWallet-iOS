@@ -64,8 +64,8 @@ class TxReceiptController: PlanetWalletViewController {
         
         // Binding Amount
         if let amount = tx.amount, let symbol = tx.symbol {
-            mainAmountLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
-            amountLb.text = "\(CoinNumberFormatter.short.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
+            mainAmountLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
+            amountLb.text = "\(CoinNumberFormatter.full.toMaxUnit(balance: amount, item: mainItem)) \(symbol)"
         }
         
         // Binding Icon
@@ -106,6 +106,10 @@ class TxReceiptController: PlanetWalletViewController {
         // Insert saveRecentSearch()
         saveRecentSearch()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func saveRecentSearch() {

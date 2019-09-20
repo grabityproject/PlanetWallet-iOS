@@ -145,10 +145,13 @@ class BottomPanelComponent: ViewComponent, Themable {
             
         }else if( mainItem.getCoinType() == CoinType.ERC20.coinType ){
             
-            imageIcon.loadImageWithPath(Route.URL(mainItem.img_path!))
+            if let imgPath = mainItem.img_path {
+                imageIcon.loadImageWithPath(Route.URL(imgPath))
+            }
+            
             labelName.text = mainItem.name
             labelUnit.text = mainItem.symbol
-            labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: mainItem.getBalance(), from: 0, to: Int(mainItem.decimals!)!)
+            labelBalance.text = CoinNumberFormatter.short.convertUnit(balance: mainItem.getBalance(), from: 0, to: Int(mainItem.decimals ?? "18")!)
             
             btnNext.isHidden = false
             erc20Lb.isHidden = false

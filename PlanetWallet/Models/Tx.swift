@@ -103,7 +103,7 @@ class Tx: Mappable {
         }
         
         
-        return nil
+        return "-"
     }
 }
 

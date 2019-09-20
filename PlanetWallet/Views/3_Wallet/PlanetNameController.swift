@@ -59,11 +59,11 @@ class PlanetNameController: PlanetWalletViewController {
         
         self.planet?.name = nameTextView.text
         
-        if let planet = self.planet, let coinType = planet.coinType{
+        if let planet = self.planet, let coinType = planet.coinType, let name = planet.name {
             
             let request = Planet()
-            request.signature = Signer.sign(planet.name!, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
-            request.planet = planet.name
+            request.signature = Signer.sign(name, privateKey: planet.getPrivateKey(keyPairStore: KeyPairStore.shared, pinCode: PINCODE))
+            request.planet = name
             request.address = planet.address
             Post(self).action(Route.URL("planet", CoinType.of(coinType).name), requestCode: 0, resultCode: 0, data:request.toJSON(), extraHeaders: ["device-key":DEVICE_KEY])
         }

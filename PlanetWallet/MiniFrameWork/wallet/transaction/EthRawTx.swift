@@ -34,7 +34,8 @@ class EthRawTx{
                 data: Data()
             )
             
-            let signer = EIP155Signer(chainID: 3) // TestNet EIP155
+            let signer = EIP155Signer(chainID: TESTNET ? 3 : 1 ) // TestNet EIP155
+            
             let signiture = try! CryptoEthereumSwift.Crypto.sign(
                 try! signer.hash(rawTransaction: rawTransaction),
                 privateKey: Data(hex: privateKey)

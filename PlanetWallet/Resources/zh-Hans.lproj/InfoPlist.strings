@@ -6,5 +6,7 @@
   Copyright © 2019 grabity. All rights reserved.
 */
 
-
+CFBundleDisplayName = "PlanetWallet";
+NSCameraUsageDescription = "Please allow us to access camera QR Scan";
+NSFaceIDUsageDescription = "Please allow use access Touch ID/FaceID for Identity verification.";
 

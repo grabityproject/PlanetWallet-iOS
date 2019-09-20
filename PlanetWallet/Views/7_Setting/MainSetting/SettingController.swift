@@ -108,6 +108,18 @@ class SettingController: PlanetWalletViewController {
         }
     }
     
+    @IBAction func didTouchedVersion(_ sender: UIButton) {
+        if !updateBadge.isHidden {
+            
+            if let url = URL(string: APP_URL){
+                if UIApplication.shared.canOpenURL(url){
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+        }
+    }
+    
     
     @IBAction func didTouchedMyPlanet(_ sender: UIButton) {
         sendAction(segue: Keys.Segue.SETTING_TO_DETAIL_PLANET, userInfo: userInfo)
@@ -154,11 +166,18 @@ class SettingController: PlanetWalletViewController {
             let isSuccess = returnVo.success else { return }
         
         if isSuccess {
-            if let results = returnVo.result as? [String: Any], let versionStr = results["version"] as? String {
+            if let results = returnVo.result as? [String: Any] {
                 
-                updateBadge.isHidden = !compareVersion(recentVersion: versionStr)
-                RECENT_VERSION = versionStr
+                if let versionStr = results["version"] as? String  {
+                    updateBadge.isHidden = !compareVersion(recentVersion: versionStr)
+                    RECENT_VERSION = versionStr
+                }
+                
+                if let url = results["url"] as? String {
+                    APP_URL = url
+                }
             }
+            
         }
         else {
             if let errDict = returnVo.result as? [String: Any]

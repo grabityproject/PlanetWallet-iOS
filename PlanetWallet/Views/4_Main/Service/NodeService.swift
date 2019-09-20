@@ -32,11 +32,11 @@ class NodeService: NSObject {
     func getBalance(_ planet:Planet ){
         self.planet = planet;
         
-        if let coinType = planet.coinType, let id = planet._id{
+        if let coinType = planet.coinType, let id = planet._id, let address = planet.address {
             
             networkDelegates[coinType]?.planet = planet
             networkDelegates[coinType]?.delegate = delegate
-            Get(networkDelegates[coinType]).action(Route.URL("balance", CoinType.of(coinType).name, planet.address!), requestCode: 0, resultCode: id, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
+            Get(networkDelegates[coinType]).action(Route.URL("balance", CoinType.of(coinType).name, address), requestCode: 0, resultCode: id, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
             
         }
         
@@ -45,13 +45,13 @@ class NodeService: NSObject {
     
     func getMainList(_ planet:Planet ){
         
-        if let coinType = planet.coinType, let id = planet._id{
+        if let coinType = planet.coinType, let id = planet._id, let address = planet.address {
             
             if coinType == CoinType.BTC.coinType {
                 
                 networkDelegates[coinType]?.planet = planet
                 networkDelegates[coinType]?.delegate = delegate
-                Get(networkDelegates[coinType]).action(Route.URL("tx", "list" , CoinType.BTC.name, planet.address!), requestCode: 1, resultCode: id, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
+                Get(networkDelegates[coinType]).action(Route.URL("tx", "list" , CoinType.BTC.name, address), requestCode: 1, resultCode: id, data: nil, extraHeaders: ["device-key":DEVICE_KEY])
                 
             }else if coinType == CoinType.ETH.coinType {
                 
@@ -99,7 +99,7 @@ class EthNetworkDelegate:Node{
                         MainItemStore.shared.update( mainItem )
                     }
                     
-                    delegate?.onBalance(self.planet!, balance!.balance! )
+                    delegate?.onBalance(self.planet!, balance?.balance ?? "0" )
                 }
             }else {
                 
@@ -146,7 +146,8 @@ class BtcNetworkDelegate:Node{
                         
                         MainItemStore.shared.update( mainItem )
                     }
-                    delegate?.onBalance(self.planet!, balance!.balance! )
+                    
+                    delegate?.onBalance(self.planet!, balance?.balance ?? "0" )
                 }
             }
             else if requestCode == 1 {

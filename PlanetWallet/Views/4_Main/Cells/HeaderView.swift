@@ -31,10 +31,10 @@ class HeaderView: ViewComponent , Themable{
     
     var planet:Planet?{
         didSet{
-            if let planet = planet{
-                planetBackground.data = planet.address!
-                planetView.data = planet.address!
-                labelAddress.text = Utils.shared.trimAddress(planet.address!)
+            if let planet = planet, let address = planet.address {
+                planetBackground.data = address
+                planetView.data = address
+                labelAddress.text = Utils.shared.trimAddress(address)
                 labelName.text = planet.name
             }
         }

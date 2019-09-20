@@ -144,13 +144,17 @@ public protocol NavigationBarDelegate {
     
     @objc func onLeftButtonClick(_ sender:Any?){
         if( delegate != nil ){
-            delegate?.didTouchedBarItem(.LEFT)
+            if leftImageView.image != nil {
+                delegate?.didTouchedBarItem(.LEFT)
+            }
         }
     }
     
     @objc func onRightButtonClick(_ sender:Any?){
         if( delegate != nil ){
-            delegate?.didTouchedBarItem(.RIGHT)
+            if rightImageView.image != nil {
+                delegate?.didTouchedBarItem(.RIGHT)
+            }
         }
     }
     

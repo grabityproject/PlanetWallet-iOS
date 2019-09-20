@@ -102,7 +102,6 @@ extension WalletImportController: WalletImportPageDelegate {
 //MARK: - NavigationBarDelegate
 extension WalletImportController: NavigationBarDelegate {
     func didTouchedBarItem(_ sender: ToolBarButton) {
-        
         self.dismissDetail()
     }
 }

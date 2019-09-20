@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let TESTNET = true
+let TESTNET = false
 
 let DEFAULT_PLIST_NAME = "Preference"
 
@@ -25,6 +25,7 @@ let APP_DELEGATE:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 var PINCODE = APP_DELEGATE.pinCode
 var DEVICE_KEY = APP_DELEGATE.device_key
 var RECENT_VERSION = APP_DELEGATE.recent_version
+var APP_URL = APP_DELEGATE.app_url
 
 let LOCALE_CODE = (Locale(identifier: Locale.preferredLanguages.first!).languageCode)!
 let GBT_CONTRACT = "0xcbD49182346421D3B410B04AeB1789346DA6Ce43"

@@ -689,10 +689,10 @@
                                                 <viewLayoutGuide key="safeArea" id="pBf-ZD-hDn"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GTI-Xr-f54">
-                                                <rect key="frame" x="0.0" y="190" width="375" height="196"/>
+                                                <rect key="frame" x="20" y="190" width="335" height="196"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-oO-gtr" userLabel="From Container">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="49"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9H-sY-MNF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="14.5" width="33" height="20.5"/>
@@ -701,10 +701,13 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_from_title"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                                        <color key="value" name="detailTextLight"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-L6-KOl" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="315" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -726,7 +729,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYN-n3-wU9">
-                                                        <rect key="frame" x="0.0" y="49" width="375" height="49"/>
+                                                        <rect key="frame" x="0.0" y="49" width="335" height="49"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDM-EK-Cbw" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="14.5" width="54.5" height="20.5"/>
@@ -735,10 +738,13 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_amount"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                                        <color key="value" name="detailTextLight"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-t6-2Jy">
-                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="315" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" name="errorText"/>
                                                                 <nil key="highlightedColor"/>
@@ -754,7 +760,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIe-Si-xxo">
-                                                        <rect key="frame" x="0.0" y="98" width="375" height="49"/>
+                                                        <rect key="frame" x="0.0" y="98" width="335" height="49"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jk7-Kw-oCv" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="14.5" width="24" height="20.5"/>
@@ -763,10 +769,13 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_fee_title"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                                        <color key="value" name="detailTextLight"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8B-ua-gvF" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="315" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -787,7 +796,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOG-JU-HWk">
-                                                        <rect key="frame" x="0.0" y="147" width="375" height="49"/>
+                                                        <rect key="frame" x="0.0" y="147" width="335" height="49"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-eK-MKP" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="14.5" width="32" height="20.5"/>
@@ -796,10 +805,13 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="tx_receipt_date_title"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="themeTextColor">
+                                                                        <color key="value" name="detailTextLight"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o05-Go-eks" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
-                                                                <rect key="frame" x="355" y="24.5" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="315" y="24.5" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -822,7 +834,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTO-dX-mg0" userLabel="TxHashContainer">
-                                                <rect key="frame" x="0.0" y="386" width="375" height="115"/>
+                                                <rect key="frame" x="20" y="386" width="335" height="115"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Txhash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgU-QN-2aP" customClass="PWLabel" customModule="PlanetWallet" customModuleProvider="target">
                                                         <rect key="frame" x="19" y="17" width="48" height="20.5"/>
@@ -864,11 +876,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="GTI-Xr-f54" firstAttribute="leading" secondItem="e0W-67-13m" secondAttribute="leading" id="3Kh-Wl-s8K"/>
-                                            <constraint firstAttribute="trailing" secondItem="GTI-Xr-f54" secondAttribute="trailing" id="Fe3-pp-bgO"/>
-                                            <constraint firstAttribute="trailing" secondItem="pTO-dX-mg0" secondAttribute="trailing" id="FoM-ca-hhH"/>
+                                            <constraint firstItem="GTI-Xr-f54" firstAttribute="leading" secondItem="e0W-67-13m" secondAttribute="leading" constant="20" id="3Kh-Wl-s8K"/>
+                                            <constraint firstAttribute="trailing" secondItem="GTI-Xr-f54" secondAttribute="trailing" constant="20" id="Fe3-pp-bgO"/>
+                                            <constraint firstAttribute="trailing" secondItem="pTO-dX-mg0" secondAttribute="trailing" constant="20" id="FoM-ca-hhH"/>
                                             <constraint firstAttribute="trailing" secondItem="WJi-3F-XG5" secondAttribute="trailing" id="J87-W4-rFi"/>
-                                            <constraint firstItem="pTO-dX-mg0" firstAttribute="leading" secondItem="e0W-67-13m" secondAttribute="leading" id="Tfc-li-x5E"/>
+                                            <constraint firstItem="pTO-dX-mg0" firstAttribute="leading" secondItem="e0W-67-13m" secondAttribute="leading" constant="20" id="Tfc-li-x5E"/>
                                             <constraint firstItem="pTO-dX-mg0" firstAttribute="top" secondItem="GTI-Xr-f54" secondAttribute="bottom" id="Yk6-Ij-SgY"/>
                                             <constraint firstItem="GTI-Xr-f54" firstAttribute="top" secondItem="WJi-3F-XG5" secondAttribute="bottom" constant="20" id="aw9-4Y-CIG"/>
                                             <constraint firstItem="WJi-3F-XG5" firstAttribute="leading" secondItem="e0W-67-13m" secondAttribute="leading" id="koY-7d-y0g"/>
