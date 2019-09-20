@@ -75,7 +75,13 @@ class SettingController: PlanetWalletViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        if let mainNaviCon = self.navigationController as? MainNavigationController {
+            navigationController?.interactivePopGestureRecognizer?.delegate = mainNaviCon
+        }
+        else {
+            navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        }
+        
     }
     
     //MARK: - IBAction
