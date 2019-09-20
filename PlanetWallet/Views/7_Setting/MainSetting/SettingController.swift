@@ -26,12 +26,6 @@ class SettingController: PlanetWalletViewController {
     }
     
     //MARK: - Init
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updatePlanetUI()
-    }
-    
     override func viewInit() {
         super.viewInit()
         naviBar.delegate = self
@@ -64,11 +58,24 @@ class SettingController: PlanetWalletViewController {
             currencyLb.text = currency
         }
         
-        
         versionLb.text = Utils.shared.getVersion()
         updateBadge.isHidden = !compareVersion(recentVersion: RECENT_VERSION)
         
         Get(self).action(Route.URL("version","ios"), requestCode: 0, resultCode: 0, data: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        updatePlanetUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     //MARK: - IBAction
@@ -201,5 +208,11 @@ extension SettingController: NavigationBarDelegate {
                 self.navigationController?.popViewController(animated: false)
             }
         }
+    }
+}
+
+extension SettingController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

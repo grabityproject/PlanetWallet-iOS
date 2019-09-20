@@ -271,7 +271,7 @@ class BitCoinManager{
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
             return results.map { nsString.substring(with: $0.range)}
-        } catch let error {
+        } catch {
             return []
         }
     }

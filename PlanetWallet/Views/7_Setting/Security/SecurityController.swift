@@ -22,6 +22,7 @@ class SecurityController: PlanetWalletViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(self.navigationController?.interactivePopGestureRecognizer?.isEnabled)
         biometricSwitch.isOn = UserDefaults.standard.bool(forKey: Keys.Userdefaults.BIOMETRICS)
     }
     

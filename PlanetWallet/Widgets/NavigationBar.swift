@@ -108,8 +108,6 @@ public protocol NavigationBarDelegate {
         rightItemBtn.setTitle("", for: .normal)
         leftItemBtn.addTarget(self, action: #selector(onLeftButtonClick(_:)), for: .touchUpInside)
         rightItemBtn.addTarget(self, action: #selector(onRightButtonClick(_:)), for: .touchUpInside)
-//        leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLeftButtonClick)))
-//        rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onRightButtonClick)))
         
         leftImageView.isUserInteractionEnabled = true;
         rightImageView.isUserInteractionEnabled = true;
