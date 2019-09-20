@@ -10,16 +10,16 @@ import UIKit
 
 class TokenListController: PlanetWalletViewController {
     
-    private var planet:Planet = Planet()
-    
-    private var tokenList: [MainItem] = [MainItem]()
-    private var tokenAdapter: TokenAdapter?
-    
     @IBOutlet var textFieldContainer: PWView!
     @IBOutlet var textField: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var notFoundLb: UILabel!
     @IBOutlet var magnifyingImgView: PWImageView!
+    
+    private var planet:Planet = Planet()
+    
+    private var tokenList: [MainItem] = [MainItem]()
+    private var tokenAdapter: TokenAdapter?
     
     var search:String=""
     var isSearching = false {
@@ -64,8 +64,11 @@ class TokenListController: PlanetWalletViewController {
     
     override func onUpdateTheme(theme: Theme) {
         super.onUpdateTheme(theme: theme)
-        textField.attributedPlaceholder = NSAttributedString(string: "token_list_search_title".localized,
-                                                             attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText])
+        if let placeHolderFont = Utils.shared.planetFont(style: .REGULAR, size: 14) {
+            textField.attributedPlaceholder = NSAttributedString(string: "token_list_search_title".localized,
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: currentTheme.detailText,
+                                                                              NSAttributedString.Key.font: placeHolderFont])
+        }
     }
     
     

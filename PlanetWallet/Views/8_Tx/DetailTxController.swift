@@ -70,10 +70,11 @@ class DetailTxController: PlanetWalletViewController {
         setFeeData(tx)
         
         //Set TxHash data
-        if let txHash = tx.tx_id {
+        if let txHash = tx.tx_id, let font = Utils.shared.planetFont(style: .REGULAR, size: 14) {
             self.txHashStr = txHash
             txIdLb.attributedText = NSAttributedString(string: txHash,
                                                        attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
+                                                                    NSAttributedString.Key.font: font,
                                                                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         }
     }

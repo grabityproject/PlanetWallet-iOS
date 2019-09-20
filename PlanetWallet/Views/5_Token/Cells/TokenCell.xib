@@ -86,7 +86,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rB8-tq-OT5">
-                    <rect key="frame" x="97" y="0.0" width="364" height="70"/>
+                    <rect key="frame" x="0.0" y="0.0" width="461" height="70"/>
                     <connections>
                         <action selector="didTouchedSelection:" destination="-1" eventType="touchUpInside" id="U5U-vh-qdF"/>
                     </connections>
@@ -113,16 +113,16 @@
                 <constraint firstItem="e0A-YC-JeS" firstAttribute="leading" secondItem="V0M-P5-NyR" secondAttribute="leading" id="Mgy-nl-G6c"/>
                 <constraint firstItem="e0A-YC-JeS" firstAttribute="top" secondItem="V0M-P5-NyR" secondAttribute="bottom" id="PW1-FT-lzR"/>
                 <constraint firstItem="V0M-P5-NyR" firstAttribute="leading" secondItem="owr-nd-dg6" secondAttribute="trailing" constant="10" id="UhM-fz-J1X"/>
-                <constraint firstItem="rB8-tq-OT5" firstAttribute="leading" secondItem="V0M-P5-NyR" secondAttribute="trailing" id="WUT-og-PXa"/>
                 <constraint firstAttribute="bottom" secondItem="rB8-tq-OT5" secondAttribute="bottom" id="dEU-85-aoQ"/>
                 <constraint firstItem="owr-nd-dg6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ejg-4T-cm3"/>
                 <constraint firstItem="XIa-fZ-05F" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="f6k-df-0Eh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XIa-fZ-05F" secondAttribute="trailing" constant="22" id="nZB-6y-iyO"/>
+                <constraint firstItem="rB8-tq-OT5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="q1h-fY-Iqh"/>
                 <constraint firstItem="V0M-P5-NyR" firstAttribute="top" secondItem="owr-nd-dg6" secondAttribute="top" constant="-6" id="s0q-0j-8jf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="418.11594202898556" y="-226.00446428571428"/>
+            <point key="canvasLocation" x="418.11594202898556" y="-226.33928571428569"/>
         </view>
     </objects>
     <resources>

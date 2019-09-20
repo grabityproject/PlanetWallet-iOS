@@ -10,10 +10,6 @@ import UIKit
 import Lottie
 
 class MainController: PlanetWalletViewController{
-
-    var statusHeight: CGFloat { return Utils.shared.statusBarHeight() }
-    
-    var planet: Planet?
     
     @IBOutlet var naviBar: NavigationBar!
     @IBOutlet var tableView: UITableView!
@@ -22,6 +18,10 @@ class MainController: PlanetWalletViewController{
     @IBOutlet var headerView: HeaderView!
     @IBOutlet var footerView: FooterView!
     @IBOutlet var bottomPanelComponent: BottomPanelComponent!
+    
+    var statusHeight: CGFloat { return Utils.shared.statusBarHeight() }
+    
+    var planet: Planet?
     
     var refreshComponent:RefreshAnimationComponent!
     var topMenuLauncher: TopMenuLauncher!
@@ -34,7 +34,7 @@ class MainController: PlanetWalletViewController{
     override func viewDidLayoutSubviews() {
         
         if topMenuLauncher == nil {
-            self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightImageView)
+            self.topMenuLauncher = TopMenuLauncher(triggerView: naviBar.rightItemBtn)
             topMenuLauncher?.delegate = self
             topMenuLauncher?.planetList = PlanetStore.shared.list("", false)
         }
@@ -70,7 +70,6 @@ class MainController: PlanetWalletViewController{
         createRippleView()
         
         naviBar.backgroundView.alpha = 0
-        
     }
     
     override func setData() {
@@ -195,13 +194,15 @@ class MainController: PlanetWalletViewController{
             }
             
             if CoinType.of(coinType).coinType == CoinType.BTC.coinType {
+                naviBar.title = "BTC"
                 
                 txAdapter = TxAdapter(tableView, [Tx]())
                 txAdapter?.delegates.append(self)
                 txAdapter?.dataSetNotify(getTxFromLocal())
                 
             }else if CoinType.of(coinType).coinType == CoinType.ETH.coinType {
-
+                naviBar.title = "ETH"
+                
                 mainAdapter = MainETHAdapter(tableView, planet.items ?? [MainItem]() )
                 mainAdapter?.delegates.append(self)
                 

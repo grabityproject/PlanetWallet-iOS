@@ -31,6 +31,15 @@ class TxReceiptController: PlanetWalletViewController {
     @IBOutlet var dateLb: PWLabel!
     @IBOutlet var txHashValueLb: UILabel!
     
+    override func viewInit() {
+        super.viewInit()
+        
+        if let font = Utils.shared.planetFont(style: .REGULAR, size: 16) {
+            amountLb.font = font
+            gasFeeLb.font = font
+            dateLb.font = font
+        }
+    }
     
     override func setData() {
         super.setData()
@@ -93,9 +102,10 @@ class TxReceiptController: PlanetWalletViewController {
         dateLb.text = tx.formattedDate()
         
         // Tx Hash
-        if let txHash = tx.tx_id{
+        if let txHash = tx.tx_id, let font = Utils.shared.planetFont(style: .REGULAR, size: 14) {
             txHashValueLb.attributedText = NSAttributedString(string: txHash,
                                                               attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme().mainText,
+                                                                           NSAttributedString.Key.font: font,
                                                                            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
         }
         

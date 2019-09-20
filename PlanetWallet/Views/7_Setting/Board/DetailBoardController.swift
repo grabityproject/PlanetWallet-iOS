@@ -25,7 +25,6 @@ class DetailBoardController: PlanetWalletViewController {
         webView.backgroundColor = .clear
         webView.scrollView.delegate = self
         webViewContainer.addSubview(webView)
-        webView.frame = webViewContainer.bounds
     }
     
     override func setData() {
@@ -49,6 +48,13 @@ class DetailBoardController: PlanetWalletViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        webView.frame = webViewContainer.bounds
+        print(webView.frame)
+    }
+    
     func request(url: String) {
         self.webView.load(URLRequest(url: URL(string: url)!))
     }
@@ -57,7 +63,7 @@ class DetailBoardController: PlanetWalletViewController {
 extension DetailBoardController: UIScrollViewDelegate {
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         //disable pinch zooming
-//        scrollView.pinchGestureRecognizer?.isEnabled = false
+        scrollView.pinchGestureRecognizer?.isEnabled = false
     }
 }
 
