@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     /**
      * 키스토어에서 사용할 키의 식별자.
      */
-    let keystoreAlias = "TEE_ALIAS"
+    let keystoreAlias = "<KeyAlias>"
     /**
      * 하드웨어 보안 모듈 기반 암호화.
      */
@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var device_key: String = ""
 
     var recent_version: String = "N"
+    var app_url: String = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

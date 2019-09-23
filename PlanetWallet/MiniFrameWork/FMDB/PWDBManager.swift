@@ -18,7 +18,7 @@ class PWDBManager : DBManager {
     }
     
     override func getDatabseName() -> String? {
-        return "DATABASE_VERSION.sqlite"
+        return "<DataBase>"
     }
 
     override func createTables(_ database: FMDatabase) -> Bool {
